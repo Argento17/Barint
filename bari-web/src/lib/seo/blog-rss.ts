@@ -10,6 +10,13 @@ export type BlogRssEntry = {
 /** RSS entries for published blog articles (ISO 8601 pubDate). */
 export const BLOG_RSS_ENTRIES: BlogRssEntry[] = [
   {
+    title: "נסטלה מסירה צבעי מאכל סינתטיים בארה״ב — ומה עם ישראל?",
+    path: "/blog/food-dyes",
+    description:
+      "חוק, התחייבות וולונטרית ותווית אזהרה — שלושה דברים שמתערבבים. ולמה הסרת צבע היא שינוי קוסמטי ולא תזונתי.",
+    pubDate: "2026-06-30T08:00:00Z",
+  },
+  {
     title: "מה באמת קורה בחלב בישראל?",
     path: "/blog/milk-analysis",
     description:

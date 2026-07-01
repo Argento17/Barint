@@ -6,6 +6,8 @@ type BariBrandLogoProps = {
   className?: string;
   surface?: "light" | "dark";
   mark?: boolean;
+  /** Override the default logo height (e.g. "h-[56px]"). Defaults to h-[44px]. */
+  imgClassName?: string;
 };
 
 /** Icon-only mark — used in small badge contexts (e.g. hero badge). */
@@ -34,7 +36,7 @@ export function BariSignalMark({
 }
 
 /** Full wordmark + icon logo — used in navbar, footer, and mobile sheet. */
-export function BariBrandLogo({ className, surface = "light", mark = true }: BariBrandLogoProps) {
+export function BariBrandLogo({ className, surface = "light", mark = true, imgClassName }: BariBrandLogoProps) {
   // surface and mark kept for API compatibility; full logo PNG already contains both
   void surface;
   void mark;
@@ -49,7 +51,10 @@ export function BariBrandLogo({ className, surface = "light", mark = true }: Bar
         width={180}
         height={88}
         priority
-        className="h-[44px] w-auto transition-opacity duration-500 ease-out group-hover:opacity-85"
+        className={cn(
+          "w-auto transition-opacity duration-500 ease-out group-hover:opacity-85",
+          imgClassName ?? "h-[44px]"
+        )}
       />
     </span>
   );

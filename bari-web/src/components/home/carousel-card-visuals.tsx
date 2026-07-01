@@ -29,12 +29,14 @@ function VisualBand({
   accent,
   children,
   className,
-  heightClass = "h-40",
+  heightClass = "h-48",
+  white = false,
 }: {
   accent: string;
   children: React.ReactNode;
   className?: string;
   heightClass?: string;
+  white?: boolean;
 }) {
   return (
     <div
@@ -43,7 +45,7 @@ function VisualBand({
         heightClass,
         className
       )}
-      style={{ backgroundColor: accent + "18" }}
+      style={{ backgroundColor: white ? "#FFFFFF" : accent + "18" }}
     >
       {children}
     </div>
@@ -58,15 +60,15 @@ export function ProductDuelVisual({ card }: { card: CarouselCard }) {
   if (!left || !right) return null;
 
   return (
-    <VisualBand accent={card.accent}>
-      <div className="flex items-end justify-center gap-4 px-4 w-full" dir="ltr">
+    <VisualBand accent={card.accent} white>
+      <div className="flex items-end justify-center gap-4 px-4 w-full" dir="rtl">
         <div className="flex flex-1 flex-col items-center gap-1">
           <CarouselCardImage
             productId={left.productId}
             imageUrl={left.imageUrl}
             imageAlt={left.imageAlt}
-            sizes="64px"
-            className="h-28 w-16"
+            sizes="80px"
+            className="h-36 w-20"
             accent={card.accent}
           />
           <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
@@ -83,8 +85,8 @@ export function ProductDuelVisual({ card }: { card: CarouselCard }) {
             productId={right.productId}
             imageUrl={right.imageUrl}
             imageAlt={right.imageAlt}
-            sizes="64px"
-            className="h-28 w-16"
+            sizes="80px"
+            className="h-36 w-20"
             accent={card.accent}
           />
           <span className="line-clamp-1 max-w-[5rem] text-center text-[0.55rem] font-semibold text-[#4E5663]">
@@ -92,10 +94,6 @@ export function ProductDuelVisual({ card }: { card: CarouselCard }) {
           </span>
         </div>
       </div>
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(135deg, " + card.accent + "22 0%, transparent 60%)" }}
-      />
     </VisualBand>
   );
 }
@@ -107,18 +105,14 @@ export function ProductSingleVisual({ card }: { card: CarouselCard }) {
   if (!product) return null;
 
   return (
-    <VisualBand accent={card.accent}>
+    <VisualBand accent={card.accent} white>
       <CarouselCardImage
         productId={product.productId}
         imageUrl={product.imageUrl}
         imageAlt={product.imageAlt}
-        sizes="88px"
-        className="h-28 w-20"
+        sizes="112px"
+        className="h-36 w-28"
         accent={card.accent}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(135deg, " + card.accent + "22 0%, transparent 60%)" }}
       />
     </VisualBand>
   );
@@ -132,46 +126,88 @@ export function GradeHistogramVisual({ card }: { card: CarouselCard }) {
 
   const counts = GRADES.map((g) => dist.grades[g] ?? 0);
   const maxCount = Math.max(...counts, 1);
-  const MAX_BAR_H = 88;
+  const MAX_BAR_H = 96;
+  // Two horizontal gridlines at 33% and 66% of max
+  const gridLines = [Math.round(maxCount * 0.66), Math.round(maxCount * 0.33)].filter((v) => v > 0);
 
   return (
-    <VisualBand accent={card.accent} heightClass="h-40">
-      <div className="flex w-full flex-col items-center gap-1 px-3">
-        <div className="flex w-full items-end justify-center gap-2.5">
-          {GRADES.map((g, i) => {
-            const count = counts[i];
-            const isMax = count > 0 && count === maxCount;
-            const barH = Math.max(
-              Math.round((count / maxCount) * MAX_BAR_H),
-              count > 0 ? 4 : 0
-            );
+    <VisualBand accent={card.accent} heightClass="h-48">
+      <div className="flex w-full flex-col items-start gap-0 px-4 py-3">
+        {/* Chart area with axis */}
+        <div className="relative w-full" style={{ height: MAX_BAR_H + 24 }}>
+          {/* Horizontal gridlines + y-labels */}
+          {gridLines.map((val) => {
+            const yPct = 1 - val / maxCount;
             return (
-              <div key={g} className="flex flex-col items-center gap-0.5">
-                <span
-                  className="text-[0.5rem] font-bold tabular-nums"
-                  style={{ color: GRADE_COLORS[g], opacity: count > 0 ? 1 : 0 }}
-                >
-                  {count}
-                </span>
-                <div
-                  className="w-11 rounded-t transition-all"
-                  style={{
-                    height: barH,
-                    backgroundColor: GRADE_COLORS[g],
-                    opacity: isMax ? 1 : count > 0 ? 0.45 : 0.1,
-                    outline: isMax ? "2px solid " + GRADE_COLORS[g] : undefined,
-                    outlineOffset: isMax ? "1px" : undefined,
-                  }}
-                />
-                <span className="text-[0.55rem] font-semibold" style={{ color: GRADE_COLORS[g] }}>
-                  {g}
-                </span>
+              <div
+                key={val}
+                className="pointer-events-none absolute left-0 right-0 flex items-center"
+                style={{ top: yPct * MAX_BAR_H }}
+                aria-hidden="true"
+              >
+                <span className="mr-1.5 shrink-0 text-[0.42rem] tabular-nums text-[#AAAAAA]">{val}</span>
+                <div className="h-px flex-1 bg-black/[0.07]" />
               </div>
             );
           })}
+          {/* Baseline axis */}
+          <div
+            className="pointer-events-none absolute bottom-6 left-0 right-0 h-px bg-black/[0.13]"
+          />
+          {/* Bars row \u2014 pinned to baseline */}
+          <div
+            className="absolute bottom-6 flex w-full items-end justify-around"
+          >
+            {GRADES.map((g, i) => {
+              const count = counts[i];
+              const isMax = count > 0 && count === maxCount;
+              const barH = Math.max(
+                Math.round((count / maxCount) * MAX_BAR_H),
+                count > 0 ? 4 : 0
+              );
+              return (
+                <div key={g} className="flex flex-col items-center gap-0.5">
+                  {/* Count label above bar */}
+                  <span
+                    className="font-bold tabular-nums leading-none"
+                    style={{ color: GRADE_COLORS[g], opacity: count > 0 ? 1 : 0, fontSize: "10px" }}
+                  >
+                    {count}
+                  </span>
+                  <div
+                    className="w-8 rounded-t-sm"
+                    style={{
+                      height: barH,
+                      backgroundColor: GRADE_COLORS[g],
+                      opacity: isMax ? 1 : count > 0 ? 0.38 : 0.08,
+                      boxShadow: isMax ? `0 0 0 1.5px ${GRADE_COLORS[g]}44` : undefined,
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          {/* Grade ticks below baseline — decorative axis labels */}
+          <div
+            className="absolute bottom-0 flex w-full items-center justify-around"
+            style={{ height: 24 }}
+            aria-hidden="true"
+          >
+            {GRADES.map((g) => (
+              <span
+                key={g}
+                className="text-[0.5rem] font-bold"
+                style={{ color: GRADE_COLORS[g] }}
+              >
+                {g}
+              </span>
+            ))}
+          </div>
         </div>
-        <p className="mt-1 text-center text-[0.55rem] font-semibold text-[#5E6560]">
-          {dist.count} {dist.label}{" \u00B7 "}{"\u05D4\u05E4\u05E8\u05E9"} {dist.spread}
+        {/* Caption */}
+        <p className="mt-1 text-[0.5rem] font-semibold text-[#8A909A]" dir="rtl">
+          {dist.count} {dist.label}
+          {dist.spread ? <> &middot; {"\u05D4\u05E4\u05E8\u05E9"} {dist.spread}</> : null}
         </p>
       </div>
     </VisualBand>
@@ -185,14 +221,15 @@ export function GradeSkewVisual({ card }: { card: CarouselCard }) {
   if (!dist) return null;
 
   const total = GRADES.reduce((sum, g) => sum + (dist.grades[g] ?? 0), 0) || 1;
+  const activeGrades = GRADES.filter((g) => (dist.grades[g] ?? 0) > 0);
 
   return (
-    <VisualBand accent={card.accent} heightClass="h-40">
-      <div className="flex w-full flex-col items-center gap-3 px-4">
-        <div className="flex h-7 w-full overflow-hidden rounded-full">
-          {GRADES.map((g) => {
+    <VisualBand accent={card.accent} heightClass="h-48">
+      <div className="flex w-full flex-col items-center gap-3 px-4 py-4">
+        {/* Stacked bar \u2014 rounded pill */}
+        <div className="flex h-6 w-full overflow-hidden rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)]">
+          {activeGrades.map((g) => {
             const count = dist.grades[g] ?? 0;
-            if (count === 0) return null;
             const pct = (count / total) * 100;
             return (
               <div
@@ -202,18 +239,45 @@ export function GradeSkewVisual({ card }: { card: CarouselCard }) {
             );
           })}
         </div>
+        {/* Inline pct labels below bar, aligned to segment positions */}
+        <div className="flex w-full">
+          {activeGrades.map((g) => {
+            const count = dist.grades[g] ?? 0;
+            const pct = (count / total) * 100;
+            return (
+              <div
+                key={g}
+                className="flex flex-col items-center"
+                style={{ width: pct + "%" }}
+              >
+                {pct >= 10 && (
+                  <span
+                    className="text-[0.45rem] font-bold tabular-nums leading-tight"
+                    style={{ color: GRADE_COLORS[g] }}
+                  >
+                    {Math.round(pct)}%
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {/* Legend pills */}
         <div className="flex flex-wrap justify-center gap-1.5">
-          {GRADES.filter((g) => (dist.grades[g] ?? 0) > 0).map((g) => (
+          {activeGrades.map((g) => (
             <span
               key={g}
-              className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[0.55rem] font-bold text-white"
-              style={{ backgroundColor: GRADE_COLORS[g] }}
+              className="flex items-center gap-1 rounded-full px-2 py-0.5 text-[0.52rem] font-bold"
+              style={{
+                backgroundColor: GRADE_COLORS[g],
+                color: (g === "D" || g === "E") ? "#FFFFFF" : "#111318",
+              }}
             >
-              {g}{" \u00B7 "}{dist.grades[g]}
+              {g}&nbsp;{dist.grades[g]}
             </span>
           ))}
         </div>
-        <p className="text-center text-[0.55rem] font-semibold text-[#5E6560]">
+        <p className="text-center text-[0.5rem] font-semibold text-[#8A909A]" dir="rtl">
           {dist.count} {dist.label}
         </p>
       </div>
@@ -231,9 +295,10 @@ export function GradeStackedVisual({ card }: { card: CarouselCard }) {
   const activeGrades = GRADES.filter((g) => (dist.grades[g] ?? 0) > 0);
 
   return (
-    <VisualBand accent={card.accent} heightClass="h-40">
-      <div className="flex w-full flex-col items-center gap-1.5 px-4">
-        <div className="flex h-10 w-full gap-0.5">
+    <VisualBand accent={card.accent} heightClass="h-48">
+      <div className="flex w-full flex-col items-center gap-2 px-4 py-4">
+        {/* Segmented bar */}
+        <div className="flex h-10 w-full gap-px overflow-hidden rounded-full shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)]">
           {activeGrades.map((g, i) => {
             const count = dist.grades[g] ?? 0;
             const pct = (count / total) * 100;
@@ -241,17 +306,22 @@ export function GradeStackedVisual({ card }: { card: CarouselCard }) {
               <div
                 key={g}
                 className={cn(
-                  "flex items-center justify-center overflow-hidden text-[0.6rem] font-extrabold text-white",
+                  "flex items-center justify-center overflow-hidden text-[0.58rem] font-extrabold",
                   i === 0 && "rounded-l-full",
                   i === activeGrades.length - 1 && "rounded-r-full"
                 )}
-                style={{ width: pct + "%", backgroundColor: GRADE_COLORS[g] }}
+                style={{
+                  width: pct + "%",
+                  backgroundColor: GRADE_COLORS[g],
+                  color: (g === "D" || g === "E") ? "#FFFFFF" : "#111318",
+                }}
               >
-                {pct > 8 ? g : ""}
+                {pct > 9 ? g : ""}
               </div>
             );
           })}
         </div>
+        {/* Count row under segments */}
         <div className="flex w-full">
           {activeGrades.map((g) => {
             const count = dist.grades[g] ?? 0;
@@ -259,15 +329,36 @@ export function GradeStackedVisual({ card }: { card: CarouselCard }) {
             return (
               <div
                 key={g}
-                className="text-center text-[0.5rem] font-semibold"
+                className="flex flex-col items-center"
                 style={{ width: pct + "%", color: GRADE_COLORS[g] }}
               >
-                {count}
+                <span className="text-[0.48rem] font-bold tabular-nums leading-tight">
+                  {count}
+                </span>
+                {pct >= 12 && (
+                  <span className="text-[0.4rem] font-semibold opacity-70">
+                    {Math.round(pct)}%
+                  </span>
+                )}
               </div>
             );
           })}
         </div>
-        <p className="text-center text-[0.55rem] font-semibold text-[#5E6560]">
+        {/* Divider */}
+        <div className="w-full border-t border-black/[0.06]" />
+        {/* Legend inline */}
+        <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
+          {activeGrades.map((g) => (
+            <span key={g} className="flex items-center gap-1 text-[0.48rem] font-semibold text-[#5E6560]">
+              <span
+                className="inline-block h-2 w-2 rounded-sm"
+                style={{ backgroundColor: GRADE_COLORS[g] }}
+              />
+              {g}
+            </span>
+          ))}
+        </div>
+        <p className="text-center text-[0.5rem] font-semibold text-[#8A909A]" dir="rtl">
           {dist.count} {dist.label}
         </p>
       </div>

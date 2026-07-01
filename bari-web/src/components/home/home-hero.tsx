@@ -1,99 +1,296 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { Search } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 
-import { BariSignalMark } from "@/components/brand/bari-brand-logo";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { HERO_COPY } from "@/lib/home/hero-copy";
 
-import { heroTrust } from "./content";
-import { PlantHeroBackground } from "./plant-hero-background";
-import { HomeContainer } from "./section-frame";
-import { siteHeaderOffsetClass } from "@/lib/site-layout";
-import { cn } from "@/lib/utils";
+// ── Motion variants ──────────────────────────────────────────────────────────
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+function makeReveal(delay: number) {
+  return {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.76, delay, ease: EASE },
+    },
+  };
+}
+
+const photoVariant = {
+  hidden: { opacity: 0, y: 22 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.0, delay: 0.2, ease: EASE },
+  },
+};
+
+// ── Edge-dissolve mask (feather right ~11%, top ~14%, bottom ~11%; left bleeds) ──
+const MASK_STYLE = {
+  WebkitMaskImage: [
+    "linear-gradient(to right, #000 89%, transparent 100%)",
+    "linear-gradient(to bottom, transparent 0%, #000 14%, #000 89%, transparent 100%)",
+  ].join(", "),
+  WebkitMaskComposite: "source-in" as const,
+  maskImage: [
+    "linear-gradient(to right, #000 89%, transparent 100%)",
+    "linear-gradient(to bottom, transparent 0%, #000 14%, #000 89%, transparent 100%)",
+  ].join(", "),
+  maskComposite: "intersect" as const,
+};
+
+// ── Component ────────────────────────────────────────────────────────────────
 export function HomeHero() {
+  const reduceMotion = useReducedMotion();
+
+  // When reduced-motion is preferred, render all elements visible immediately.
+  const initial = reduceMotion ? "visible" : "hidden";
+  const animate = "visible";
+
   return (
     <section
-      className={cn(
-        "relative flex min-h-[72vh] items-center overflow-hidden border-b border-black/[0.06] md:min-h-[78vh]",
-        siteHeaderOffsetClass
-      )}
+      aria-label="hero"
+      style={{
+        background: "var(--canvas, #F7F7F2)",
+        // The global SiteHeader is sticky at ~64px; hero fills remaining viewport.
+        minHeight: "calc(100vh - var(--site-header-height, 4rem))",
+        display: "grid",
+        // RTL: col 1 (right in RTL) = headline, col 2 (left in RTL) = photo
+        gridTemplateColumns: "0.92fr 1.12fr",
+        alignItems: "center",
+        gap: "clamp(16px, 2vw, 44px)",
+        paddingBlock: "clamp(32px, 5vh, 64px)",
+        overflow: "hidden",
+      }}
+      className="hero-handoff"
     >
+      {/* ── Headline column (col 1 = right side in RTL) ────────────────── */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-full max-h-[44rem] bg-transparent"
-        aria-hidden
-      />
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
-        <PlantHeroBackground />
-      </div>
-      <div
-        className="pointer-events-none absolute -end-24 top-8 -z-10 size-[28rem] rounded-full bg-[#2FAE82]/[0.035] blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -start-16 top-24 -z-10 size-[22rem] rounded-full bg-[#F7F7F2]/70 blur-3xl"
-        aria-hidden
-      />
-      <HomeContainer className="py-[4.5rem] md:py-24">
-        <div className="mx-auto max-w-5xl text-center">
-          <Badge
-            variant="outline"
-            className="reveal-up mb-7 inline-flex items-center gap-2 rounded-full border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-2 text-sm font-semibold text-[#167A58] shadow-sm shadow-slate-900/20 backdrop-blur-sm"
-            asChild
+        style={{
+          paddingInline: "clamp(28px, 4.5vw, 80px) clamp(16px, 2vw, 40px)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
+      >
+        {/* H1 */}
+        <motion.h1
+          variants={makeReveal(0.08)}
+          initial={initial}
+          animate={animate}
+          style={{
+            fontFamily: "var(--font-heading, var(--font-sans))",
+            fontWeight: 800,
+            fontSize: "clamp(1.9rem, 3.25vw, 3.4rem)",
+            lineHeight: 1.16,
+            letterSpacing: "-0.045em",
+            color: "var(--fg1, #111318)",
+            margin: 0,
+            textWrap: "balance",
+          } as React.CSSProperties}
+        >
+          {/* Line 1: "אתם יודעים [באמת] מה יש במוצרים שאתם צורכים?" */}
+          <span style={{ display: "block" }}>
+            {HERO_COPY.headline1Part1}{" "}
+            <span style={{ color: "var(--bari-green, #1F8F6A)" }}>
+              {HERO_COPY.headline1Green}
+            </span>{" "}
+            {HERO_COPY.headline1Part2}
+          </span>
+          {/* Line 2: entire line in green */}
+          <span
+            style={{
+              display: "block",
+              color: "var(--bari-green, #1F8F6A)",
+            }}
           >
-            <Link href="#analysis-engine">
-              <BariSignalMark className="size-4" />
-              ניתוח מוצרים · המדף הישראלי
+            {HERO_COPY.headline2}
+          </span>
+        </motion.h1>
+
+        {/* Lead */}
+        <motion.p
+          variants={makeReveal(0.18)}
+          initial={initial}
+          animate={animate}
+          style={{
+            fontFamily: "var(--font-sans)",
+            fontWeight: 400,
+            fontSize: "clamp(1.05rem, 1.25vw, 1.25rem)",
+            lineHeight: 1.7,
+            color: "var(--fg2, #4E5663)",
+            maxWidth: "27em",
+            marginTop: "24px",
+            marginBottom: 0,
+            textWrap: "pretty",
+          } as React.CSSProperties}
+        >
+          {HERO_COPY.subline}
+        </motion.p>
+
+        {/* Primary CTA */}
+        <motion.div
+          variants={makeReveal(0.28)}
+          initial={initial}
+          animate={animate}
+          style={{ marginTop: "30px" }}
+          className="hero-cta-wrapper"
+        >
+          <Button
+            asChild
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "11px",
+              minWidth: "300px",
+              background: "var(--bari-green, #1F8F6A)",
+              color: "#fff",
+              borderRadius: "14px",
+              padding: "18px 32px",
+              fontSize: "19px",
+              fontWeight: 700,
+              boxShadow: "var(--shadow-cta, inset 0 1px 0 rgba(255,255,255,0.20), 0 14px 40px -16px rgba(31,143,106,0.58))",
+              border: "none",
+              height: "auto",
+              // Hover via CSS class below (framer-motion whileHover disabled when reduced-motion)
+            }}
+            className={
+              reduceMotion
+                ? "hero-cta-btn"
+                : "hero-cta-btn hero-cta-btn--motion"
+            }
+          >
+            <Link href="/hashvaot">
+              <Search
+                size={20}
+                strokeWidth={2.2}
+                aria-hidden="true"
+              />
+              {HERO_COPY.primaryCta}
             </Link>
-          </Badge>
+          </Button>
+        </motion.div>
 
-          <h1 className="reveal-up delay-100 text-balance bg-gradient-to-l from-[#111318] via-[#111318] to-[#4E5663] bg-clip-text text-4xl font-extrabold leading-[1.08] tracking-[-0.045em] text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-            Bari מנתחת מוצרי מזון
-            <br />
-            ומזהה את מה שחשוב באמת
-          </h1>
+        {/* Secondary coming-soon */}
+        <motion.span
+          variants={makeReveal(0.36)}
+          initial={initial}
+          animate={animate}
+          aria-label="סריקת ברקוד — בקרוב"
+          role="note"
+          style={{
+            display: "inline-block",
+            marginTop: "18px",
+            fontSize: "14px",
+            fontWeight: 600,
+            color: "var(--fg3, #5E6560)",
+            borderBottom: "1px solid var(--green-ring, rgba(31,143,106,0.25))",
+            paddingBottom: "2px",
+            whiteSpace: "nowrap",
+            cursor: "default",
+            userSelect: "none",
+          }}
+        >
+          {HERO_COPY.secondaryCta}
+        </motion.span>
+      </div>
 
-          <p className="reveal-up delay-200 mx-auto mt-7 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663] md:text-xl md:leading-relaxed">
-            פלטפורמה שמפרקת מוצרים מהמדף — רכיבים, עיבוד והקשר קטגוריאלי, לא נתון בודד.
-          </p>
+      {/* ── Photo column (col 2 = left side in RTL, bleeds off left edge) ── */}
+      <div style={{ position: "relative", alignSelf: "center" }}>
+        <motion.div
+          variants={photoVariant}
+          initial={initial}
+          animate={animate}
+          style={{
+            width: "100%",
+            maxWidth: "780px",
+            marginInlineStart: "auto",
+            lineHeight: 0,
+          }}
+        >
+          {/*
+           * next/image with explicit intrinsic dimensions (780×560, matching the
+           * handoff's max-width). CSS width:100%/height:auto scales it responsively.
+           * The `sizes` hint ensures the optimizer picks the right breakpoint source.
+           * The edge-dissolve mask is applied via MASK_STYLE; no border, no bg box.
+           *
+           * PERF NOTE: hero-products.png is ~2.2MB. next/image serves it optimised
+           * (WebP/AVIF) at the requested breakpoints. If LCP is a concern on low-end
+           * mobile, a pre-exported WebP at ≤800px wide would remove the server-side
+           * conversion overhead and shave ~400-600KB. Flag to owner as an asset task.
+           */}
+          <Image
+            src="/home/hero-products.png"
+            alt="מבחר מוצרי מזון — שיבולת שועל, שמן זית, יוגורט ועוד"
+            width={780}
+            height={560}
+            priority
+            sizes="(max-width: 768px) 100vw, 52vw"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              maxWidth: "780px",
+              ...MASK_STYLE,
+            }}
+          />
+        </motion.div>
+      </div>
 
-          <div className="reveal-up delay-300 mt-7 flex flex-col items-center justify-center gap-3 sm:mt-11 sm:flex-row sm:gap-4">
-            <Button
-              size="lg"
-              className="group h-12 w-full rounded-2xl border border-[#1F8F6A]/10 bg-[#167A58] px-8 text-base font-semibold text-[#F7F7F2] shadow-lg shadow-slate-900/10 transition-[box-shadow,transform,background-color] duration-500 ease-out hover:-translate-y-px hover:bg-[#167A58] hover:shadow-xl hover:shadow-slate-900/10 sm:w-auto"
-              asChild
-            >
-              <a href="#analysis-engine" className="inline-flex items-center justify-center gap-2">
-                איך Bari מנתחת מוצרים
-                <ChevronLeft
-                  className="size-5 transition-transform group-hover:-translate-x-0.5"
-                  aria-hidden
-                />
-              </a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-12 w-full rounded-2xl border-black/[0.08] bg-[#FFFFFF]/68 px-8 text-base font-semibold text-[#111318] shadow-sm shadow-slate-900/10 backdrop-blur-sm transition-[background-color,box-shadow,transform] duration-500 ease-out hover:-translate-y-px hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10 sm:w-auto"
-              asChild
-            >
-              <Link href="/hashvaot">השוואות מהמדף</Link>
-            </Button>
-          </div>
+      {/* ── Responsive + hover styles ────────────────────────────────────── */}
+      <style>{`
+        /* Mobile: single column, photo above headline */
+        @media (max-width: 768px) {
+          .hero-handoff {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: auto auto;
+            min-height: auto !important;
+            padding-block: clamp(24px, 4vh, 48px) !important;
+          }
+          /* On mobile, photo is col 1 (renders first in source) → shows above headline */
+          /* Headline col padding becomes symmetric */
+          .hero-handoff > div:first-child {
+            padding-inline: clamp(20px, 5vw, 40px) !important;
+            align-items: stretch;
+          }
+          /* CTA full-width on mobile */
+          .hero-cta-wrapper {
+            width: 100%;
+          }
+          .hero-cta-btn {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          /* Photo: drop left-bleed on mobile, center it */
+          .hero-handoff > div:last-child {
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+          }
+          .hero-handoff > div:last-child > div {
+            margin-inline-start: 0 !important;
+            max-width: 100% !important;
+          }
+        }
 
-          <div className="reveal-up delay-300 mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-9 gap-y-4 text-sm text-[#4E5663] sm:mt-16">
-            {heroTrust.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.label} className="flex items-center gap-2">
-                  <Icon className="size-5 shrink-0 text-[#2FAE82]" aria-hidden />
-                  <span className="font-medium">{item.label}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </HomeContainer>
+        /* CTA hover — only when motion is not reduced */
+        .hero-cta-btn--motion {
+          transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+                      box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .hero-cta-btn--motion:hover {
+          transform: translateY(-1px);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.20),
+                      0 18px 50px -16px rgba(31,143,106,0.66) !important;
+        }
+      `}</style>
     </section>
   );
 }

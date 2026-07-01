@@ -17,7 +17,7 @@ export function HomeNewsletter() {
           <div className="relative z-10">
           <NewsletterIcon />
           <div className="mx-auto mb-10 max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">Bari intelligence updates</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#167A58]">Bari intelligence updates</p>
             <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
               הצטרפו לקהילה שבוחרת טוב יותר
             </h2>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -7,8 +7,9 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { HomepageCardItem } from "@/components/home/micro-comparison-snapshot-card";
-import { Button } from "@/components/ui/button";
+import { FeaturedComparisonCard } from "@/components/home/featured-comparison-card";
 import { getHomepageCards } from "@/lib/home/micro-comparison-snapshots";
+import { HERO_COPY } from "@/lib/home/hero-copy";
 
 import { HomeContainer } from "./section-frame";
 
@@ -93,29 +94,31 @@ export function HomeComparisons() {
   return (
     <section className="relative overflow-hidden bg-[#F7F7F2] py-14 md:py-20" id="comparisons">
       <HomeContainer>
-        <div className="reveal-up mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl space-y-3 text-right">
-            <p className="text-sm font-bold text-[#167A58]">{"\u05E0\u05D9\u05EA\u05D5\u05D7\u05D9 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u00B7 \u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05D0\u05DE\u05D9\u05EA\u05D9\u05D9\u05DD"}</p>
-            <h2 className="text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
-              {"\u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05E9\u05E0\u05E8\u05D0\u05D9\u05DD \u05D3\u05D5\u05DE\u05D9\u05DD \u2014 \u05DC\u05D0 \u05EA\u05DE\u05D9\u05D3 \u05D0\u05D5\u05EA\u05D5 \u05D3\u05D1\u05E8"}
-            </h2>
-            <p className="text-pretty text-base leading-relaxed text-[#4E5663]">
-              {"\u05D7\u05DC\u05D1, \u05DC\u05D7\u05DD, \u05D2\u05E8\u05E0\u05D5\u05DC\u05D4, \u05D3\u05D2\u05E0\u05D9\u05DD \u2014 \u05D4\u05E9\u05D5\u05D5\u05D0\u05D5\u05EA, \u05DE\u05DE\u05E6\u05D0\u05D9\u05DD \u05D5\u05E4\u05D9\u05E8\u05D5\u05D8 \u05DE\u05D1\u05E0\u05D9 \u05DC\u05E4\u05D9 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4."}
-            </p>
-          </div>
-          <div className="flex shrink-0 flex-wrap items-center gap-3">
-            <Button variant="ghost" className="gap-2 text-[#167A58]" asChild>
-              <Link href="/hashvaot" className="font-semibold">
-                {"\u05DB\u05DC \u05D4\u05D4\u05E9\u05D5\u05D5\u05D0\u05D5\u05EA"}
-                <ChevronLeft className="size-5" aria-hidden />
-              </Link>
-            </Button>
-            <Button variant="ghost" className="gap-2 text-[#4E5663]" asChild>
-              <Link href="/blog" className="font-semibold">
-                {"\u05DC\u05D1\u05DC\u05D5\u05D2"}
-              </Link>
-            </Button>
-          </div>
+        {/* Centered section head per v5 spec */}
+        <div className="reveal-up mb-10 flex flex-col items-center gap-3 text-center" dir="rtl">
+          <p className="text-sm font-bold text-[#167A58]">{HERO_COPY.comparisonsEyebrow}</p>
+          <h2 className="text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-4xl">
+            {HERO_COPY.comparisonsTitle}
+          </h2>
+          <p className="max-w-xl text-pretty text-base leading-relaxed text-[#4E5663]">
+            {HERO_COPY.comparisonsSubtitle}
+          </p>
+          <Link
+            href="/hashvaot"
+            className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-[#1F8F6A] hover:underline"
+          >
+            כל ההשוואות
+            <ChevronLeft className="size-4" aria-hidden />
+          </Link>
+        </div>
+
+        {/* Comparison shell -- white rounded frame, padding, soft shadow */}
+        <div
+          className="reveal-up mb-10 mx-auto rounded-[34px] border border-black/[0.06] bg-white/[0.86] p-6 shadow-[0_16px_48px_-20px_rgba(17,19,24,0.14)] backdrop-blur-sm md:p-8"
+          style={{ maxWidth: "1180px" }}
+          dir="rtl"
+        >
+          <FeaturedComparisonCard />
         </div>
 
         <div className="relative z-20 mb-4 flex items-center gap-2">
@@ -123,7 +126,7 @@ export function HomeComparisons() {
             type="button"
             onClick={() => moveCarousel("right")}
             className="inline-flex size-10 items-center justify-center rounded-full border border-black/[0.08] bg-[#FFFFFF] text-[#4E5663] shadow-sm transition hover:border-[#1F8F6A]/20"
-            aria-label="\u05D4\u05D6\u05D6\u05EA \u05D4\u05E7\u05E8\u05D5\u05E1\u05DC\u05D4 \u05D9\u05DE\u05D9\u05E0\u05D4"
+            aria-label="הזזת הקרוסלה ימינה"
           >
             <ChevronRight className="size-5" aria-hidden />
           </button>
@@ -131,7 +134,7 @@ export function HomeComparisons() {
             type="button"
             onClick={() => moveCarousel("left")}
             className="inline-flex size-10 items-center justify-center rounded-full border border-[#1F8F6A]/20 bg-[#167A58] text-[#F7F7F2] shadow-sm"
-            aria-label="\u05D4\u05D6\u05D6\u05EA \u05D4\u05E7\u05E8\u05D5\u05E1\u05DC\u05D4 \u05E9\u05DE\u05D0\u05DC\u05D4"
+            aria-label="הזזת הקרוסלה שמאלה"
           >
             <ChevronLeft className="size-5" aria-hidden />
           </button>

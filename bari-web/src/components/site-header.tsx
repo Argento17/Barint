@@ -26,16 +26,19 @@ export function SiteHeader() {
   return (
     <header className="reveal-up sticky top-0 z-50 border-b border-black/[0.08] bg-[#F7F7F2]/82 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl">
       <HomeContainer>
-        <div className={cn("flex items-center justify-between gap-10", siteHeaderHeightClass)}>
+        <div
+          dir="ltr"
+          className={cn("flex items-center justify-between gap-10", siteHeaderHeightClass)}
+        >
           <Link
             href="/"
             aria-label="בית Bari"
             className="group flex shrink-0 items-center transition-opacity duration-500 ease-out hover:opacity-90"
           >
-            <BariBrandLogo surface="dark" />
+            <BariBrandLogo surface="dark" imgClassName="h-[56px]" />
           </Link>
 
-          <nav className="hidden items-center gap-4 md:flex" aria-label="ניווט ראשי">
+          <nav className="hidden items-center gap-4 md:flex" aria-label="ניווט ראשי" dir="rtl">
             {navLinks.map((link) => (
               <Link
                 key={`${link.label}-${link.href}`}

@@ -1,5 +1,5 @@
 ﻿/**
- * Homepage carousel -- 5 cards using the strict CarouselCard schema.
+ * Homepage carousel -- 7 cards using the strict CarouselCard schema.
  */
 
 import type { CarouselCard } from "./homepage-carousel-schema";
@@ -15,7 +15,42 @@ const CL =
 export { CAROUSEL_PRODUCT_FALLBACK };
 
 export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
-  // -- Comparison 3: Granola -----------------------------------------------------
+  // -- Comparison 1: Bread -------------------------------------------------------
+  {
+    id: "comparison-bread-sourdough-vs-cracker",
+    type: "comparison",
+    visualMode: "product_duel",
+    eyebrow: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4",
+    category: "\u05DC\u05D7\u05DD \u05D5\u05DE\u05D0\u05E4\u05D9\u05DD",
+    title: "\u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05DE\u05D5\u05DC \u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD",
+    evidence: "\u05D1\u05E7\u05E8\u05E7\u05E8: \u05E7\u05DE\u05D7 \u05DE\u05D6\u05D5\u05E7\u05E7 \u05DC\u05E4\u05E0\u05D9 \u05D4\u05E9\u05D5\u05DE\u05E9\u05D5\u05DD; \u05D1\u05DE\u05D7\u05DE\u05E6\u05EA: \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05D5\u05EA\u05E1\u05D9\u05E1\u05D4 \u05DE\u05DE\u05E9\u05D9\u05EA. \u05E4\u05E2\u05E8 \u05E9\u05DC \u05DB-29 \u05E0\u05E7\u05D5\u05D3\u05D5\u05EA, \u05D1\u05E2\u05D9\u05E7\u05E8 \u05D1\u05D6\u05DB\u05D5\u05EA \u05D4\u05E8\u05DB\u05D9\u05D1 \u05D4\u05E8\u05D0\u05E9\u05D5\u05DF.",
+    metric: "89 \u05DE\u05D5\u05DC 60",
+    href: "/hashvaot/bread",
+    accent: "#6B7B5E",
+    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
+    leftProduct: {
+      productId: "bsip1_bread_481203",
+      barcode: "481203",
+      name: "\u05DC\u05D7\u05DD \u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0",
+      brand: "\u05D0\u05E8\u05E0\u05D4",
+      score: 89,
+      imageUrl: CL + "IUU18_Z_P_481203_1.png",
+      imageAlt: "\u05DC\u05D7\u05DD \u05DE\u05D7\u05DE\u05E6\u05EA \u05E7\u05DE\u05D7 \u05DE\u05DC\u05D0 \u05D0\u05E8\u05E0\u05D4",
+      imageStatus: "verified",
+    },
+    rightProduct: {
+      productId: "bsip1_bread_74252",
+      barcode: "74252",
+      name: "\u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD",
+      brand: "\u05D0\u05E1\u05DD",
+      score: 60,
+      imageUrl: CL + "EUV20_Z_P_74252_1.png",
+      imageAlt: "\u05E7\u05E8\u05E7\u05E8 \u05E9\u05D5\u05DE\u05E9\u05D5\u05DD \u05D0\u05E1\u05DD",
+      imageStatus: "verified",
+    },
+  },
+
+  // -- Comparison 2: Granola -----------------------------------------------------
   {
     id: "comparison-granola-premium-vs-bottom",
     type: "comparison",
@@ -23,7 +58,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     eyebrow: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4",
     category: "\u05D2\u05E8\u05E0\u05D5\u05DC\u05D4",
     title: "\u05D2\u05E8\u05E0\u05D5\u05DC\u05D4 \u05D3\u05E0\u05D9 \u05D5\u05D2\u05DC\u05D9\u05EA \u05DE\u05D5\u05DC \u05E9\u05D5\u05E7 \u05E7\u05D5\u05DC\u05D9\u05E0\u05E8\u05D9",
-    evidence: "\u05D1'\u05E9\u05D5\u05E7 \u05E7\u05D5\u05DC\u05D9\u05E0\u05E8\u05D9' \u05D4\u05E1\u05D5\u05DB\u05E8 \u05DE\u05E7\u05D3\u05D9\u05DD \u05D0\u05EA \u05E9\u05D9\u05D1\u05D5\u05DC\u05EA \u05D4\u05E9\u05D5\u05E2\u05DC. \u05D0\u05E6\u05DC \u05D3\u05E0\u05D9 \u05D5\u05D2\u05DC\u05D9\u05EA \u2014 \u05DC\u05D4\u05E4\u05DA. \u05E1\u05D3\u05E8 \u05D4\u05E8\u05DB\u05D9\u05D1\u05D9\u05DD \u05DE\u05E1\u05D1\u05D9\u05E8 38 \u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05D4\u05E4\u05E8\u05E9.",
+    evidence: "\u05D1'\u05E9\u05D5\u05E7 \u05E7\u05D5\u05DC\u05D9\u05E0\u05E8\u05D9' \u05D4\u05E1\u05D5\u05DB\u05E8 \u05DE\u05E7\u05D3\u05D9\u05DD \u05D0\u05EA \u05E9\u05D9\u05D1\u05D5\u05DC\u05EA \u05D4\u05E9\u05D5\u05E2\u05DC. \u05D0\u05E6\u05DC \u05D3\u05E0\u05D9 \u05D5\u05D2\u05DC\u05D9\u05EA \u2014 \u05DC\u05D4\u05E4\u05DA. \u05E1\u05D3\u05E8 \u05D4\u05E8\u05DB\u05D9\u05D1\u05D9\u05DD \u05DE\u05E1\u05D1\u05D9\u05E8 \u05D7\u05DC\u05E7 \u05D2\u05D3\u05D5\u05DC \u05DE\u05E4\u05E2\u05E8 39 \u05D4\u05E0\u05E7\u05D5\u05D3\u05D5\u05EA.",
     metric: "70 \u05DE\u05D5\u05DC 31",
     href: "/hashvaot/granola",
     accent: "#8B7355",
@@ -57,9 +92,9 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     visualMode: "product_single",
     eyebrow: "\u05DE\u05D5\u05E6\u05E8 \u05DE\u05D5\u05D1\u05D9\u05DC",
     category: "\u05DC\u05D7\u05DD \u05D5\u05DE\u05D0\u05E4\u05D9\u05DD",
-    title: "\u05DC\u05D7\u05DD \u05D8\u05D7\u05D9\u05E0\u05D4 \u2014 \u05E6\u05D9\u05D5\u05DF 95",
-    evidence: "\u05E6\u05D9\u05D5\u05DF 95 \u05DE\u05D1\u05D9\u05DF 29 \u05DC\u05D7\u05DE\u05D9\u05DD: \u05D8\u05D7\u05D9\u05E0\u05D4 \u05D1\u05D1\u05E1\u05D9\u05E1, \u05E7\u05DE\u05D7\u05D9 \u05D6\u05E8\u05E2\u05D9\u05DD, \u05DC\u05DC\u05D0 \u05E1\u05D5\u05DB\u05E8 \u05DE\u05D5\u05E1\u05E3 \u2014 \u05D4\u05E9\u05D9\u05DC\u05D5\u05D1 \u05D4\u05D9\u05D7\u05D9\u05D3\u05D9 \u05D1\u05DE\u05D3\u05E3.",
-    metric: "95 / A",
+    title: "\u05DC\u05D7\u05DD \u05D8\u05D7\u05D9\u05E0\u05D4 \u2014 \u05E6\u05D9\u05D5\u05DF 94",
+    evidence: "\u05E6\u05D9\u05D5\u05DF 94 \u05DE\u05D1\u05D9\u05DF 29 \u05DC\u05D7\u05DE\u05D9\u05DD: \u05D8\u05D7\u05D9\u05E0\u05D4 \u05D1\u05D1\u05E1\u05D9\u05E1, \u05E7\u05DE\u05D7\u05D9 \u05D6\u05E8\u05E2\u05D9\u05DD, \u05DC\u05DC\u05D0 \u05E1\u05D5\u05DB\u05E8 \u05DE\u05D5\u05E1\u05E3 \u2014 \u05D4\u05E9\u05D9\u05DC\u05D5\u05D1 \u05D4\u05D9\u05D7\u05D9\u05D3\u05D9 \u05D1\u05DE\u05D3\u05E3.",
+    metric: "94 / S",
     href: "/hashvaot/bread",
     accent: "#6B7B5E",
     fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
@@ -68,7 +103,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
       barcode: "7290016245325",
       name: "\u05DC\u05D7\u05DD \u05D8\u05D7\u05D9\u05E0\u05D4 \u05E4\u05E8\u05D5\u05E1",
       brand: "\u05DC\u05D7\u05DD \u05D0\u05E8\u05E5",
-      score: 95,
+      score: 94,
       imageUrl: CL + "JDU46_Z_P_7290016245325_1.png",
       imageAlt: "\u05DC\u05D7\u05DD \u05D8\u05D7\u05D9\u05E0\u05D4 \u05E4\u05E8\u05D5\u05E1 \u05DC\u05D7\u05DD \u05D0\u05E8\u05E5",
       imageStatus: "verified",
