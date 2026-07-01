@@ -88,8 +88,9 @@ def parse_verdict(raw: str, lane: str) -> dict:
 def run_lane(cmd: str, payload: str, timeout: int = 180) -> dict:
     """Run one lane command, feeding the claim payload on stdin. Errors → abstain (UNSURE)."""
     try:
-        proc = subprocess.run(cmd, shell=True, input=payload, text=True,
-                              capture_output=True, timeout=timeout)
+        # UTF-8 explicitly — the claim payload carries Hebrew; default cp1252 stdin encode crashes.
+        proc = subprocess.run(cmd, shell=True, input=payload, encoding="utf-8",
+                              errors="replace", capture_output=True, timeout=timeout)
         if proc.returncode != 0:
             return {"lane": cmd, "vote": "UNSURE", "confidence": 0.0,
                     "rationale": f"(lane exit {proc.returncode}: {proc.stderr[:120]})"}

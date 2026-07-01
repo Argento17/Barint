@@ -77,12 +77,13 @@ def _read_ledger() -> list[dict]:
 def _run_gate(candidate: Path, gate_cmd: str | None) -> tuple[bool, str]:
     """Return (passed, detail). Default gate = rank_check.py exit 0 on the candidate."""
     if gate_cmd:
-        proc = subprocess.run(gate_cmd, shell=True, capture_output=True, text=True, timeout=300)
+        proc = subprocess.run(gate_cmd, shell=True, capture_output=True,
+                              encoding="utf-8", errors="replace", timeout=300)
         return proc.returncode == 0, f"custom gate exit {proc.returncode}"
     if not RANK_CHECK.exists():
         return False, "rank_check.py not found (pass --gate-cmd or --no-gate)"
     proc = subprocess.run([sys.executable, str(RANK_CHECK), "--json", str(candidate)],
-                          capture_output=True, text=True, timeout=300)
+                          capture_output=True, encoding="utf-8", errors="replace", timeout=300)
     verdict = "PASS" if proc.returncode == 0 else "FAIL"
     return proc.returncode == 0, f"rank_check {verdict} (exit {proc.returncode})"
 

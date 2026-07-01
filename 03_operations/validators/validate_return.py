@@ -301,8 +301,8 @@ def check_citations(c: dict, rep: Report, root: Path) -> None:
     vc = root / "03_operations" / "validators" / "verify_citations.py"
     if vc.exists():
         try:
-            proc = subprocess.run([sys.executable, str(vc), "--json", "-"],
-                                  input=blob, text=True, capture_output=True, timeout=120)
+            proc = subprocess.run([sys.executable, str(vc), "--json", "-"], input=blob,
+                                  encoding="utf-8", errors="replace", capture_output=True, timeout=120)
             rep.hard("C6.verify", proc.returncode == 0,
                      f"verify_citations.py exit {proc.returncode}"
                      + ("" if proc.returncode == 0 else f": {proc.stdout[-200:]}"))

@@ -155,8 +155,8 @@ def tree_is_dirty(repo: Path = REPO_ROOT) -> tuple[bool, int]:
     """(dirty?, untracked_count). Untracked files are what `git stash -u` would destroy."""
     import subprocess
     try:
-        out = subprocess.run(["git", "status", "--porcelain"], cwd=repo,
-                             capture_output=True, text=True, timeout=30).stdout
+        out = subprocess.run(["git", "status", "--porcelain"], cwd=repo, capture_output=True,
+                             encoding="utf-8", errors="replace", timeout=30).stdout
     except Exception:  # noqa: BLE001
         return False, 0
     lines = [ln for ln in out.splitlines() if ln.strip()]

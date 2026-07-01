@@ -123,7 +123,7 @@ def main():
         try:
             import subprocess
             proc = subprocess.run([sys.executable, rc_path, "--json", a.json, "--emit-json"],
-                                  capture_output=True, text=True, timeout=120)
+                                  capture_output=True, encoding="utf-8", errors="replace", timeout=120)
             rc = json.loads(proc.stdout or "{}")
             false_sups = [f for f in rc.get("findings", []) if f.get("status") == "FAIL"]
             manual = [f for f in rc.get("findings", []) if f.get("level") == "WARN"]
