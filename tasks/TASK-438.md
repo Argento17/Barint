@@ -3,7 +3,7 @@ id: TASK-438
 title: Root-cause brined_cheeses drift (GOLDEN page): 14/36 don't reproduce, 3 grade moves down — engine drift vs stale invocation? then refresh w/ fiber-gate bundled
 owner: nutrition-agent
 status: BLOCKED
-blocker: owner go/no-go for brined_cheeses golden-page re-flow (tripwire #1 + factory content gates); cakes/cookies_coffee root-cause queued
+blocker: FACTORY IN FLIGHT (owner granted complete mandate) — rescore+copy_stage done (3 grade movers 2xA->B/1xB->C, 0 new products); content authoring in flight -> Adversarial QA -> deploy
 priority: HIGH
 created_at: 2026-07-01
 depends_on: [TASK-436]
