@@ -21,8 +21,43 @@ Not a dietitian brochure. Not a warning label. Not a cheerleader.
 
 ---
 
+## 0.5 Default register — TASK-374 recalibration (supersedes on conflict)
+
+**Owner ruling 2026-06-22 (Project Tom's Voice, file 8 H5-R3 + file 10 §D).** The
+target register is **opinionated substance in natural connected Hebrew** — the
+"in-between." Two failure modes, both fatal:
+
+- **F1 — translationese-punch:** staccato fragments, calqued metaphors, the
+  `X, לא Y` closer, `(!)` as default texture. The agent produces this *by trying too
+  hard to sound "punchy."* This was the dominant defect on the live shelves (the
+  protein-bars pilot: 18/90 strings were `X, לא Y` calques).
+- **F2 — neutral-bland:** no verdict, hedge-only, "says nothing." This is the
+  over-correction if you simply tell the AI to be "calm." Equally banned.
+
+**The default texture is CONNECTED PROSE with a clear stance**, built on the owner's
+native connectors: **`יחד עם זאת` · `כי` · `מדובר ב…` · `במהותו` · `בגדול` ·
+`אומנם… אבל` · `ביחס ל…` · `כך ש…`**, and idioms over calques
+(`כל קשר בין X ל-Y מקרי בהחלט`). Resolve a contrast in flowing prose or land on a
+`מדובר בסך הכל ב…` / `עדיין`-style verdict — **never a bare `X, לא Y` parallel.**
+
+**Punch is seasoning, not the baseline.** Fragments, the `(!)` move, and compressed
+pivots are allowed **only when earned** (a genuinely egregious product, a single
+landing line) — not as the default rhythm. An *earned* short closer is fine
+(`לייט זה לא.`); a staccato chain of them is the failure.
+
+**Keep the stance (F2 guard).** Recalibrating toward natural prose does NOT mean
+going neutral: the verdict, the named driver, the honest catch all stay. "best ≠
+excellent," "punch on the egregious," and "de-escalation is not the default" remain
+true — they now live inside connected prose, not staccato. Where any rule below
+optimizes for punch/fragments/`(!)` as the *default*, **this section wins.**
+
+Gate: every string clears the Naturalness Gate (`11_naturalness_gate.md`) — Layer 1
+`naturalness_gate.py` (HIGH-clean) + the independent two-axis judge (F1 ≥ 4 AND F2 ≥ 4).
+
+---
+
 ## 1. The spine: every piece follows the same arc
-1. **Situation** — open inside a real supermarket / kitchen moment the reader recognizes. ("אתם ביום שישי בבוקר…", "בוקר. ילד צריך לצאת למסגרת…")
+1. **Orienting opener** — open with something the reader recognizes. This can be a real supermarket / kitchen moment ("אתם ביום שישי בבוקר…") OR — equally valid per the owner gold (file 10, TASK-374) — a **calm orienting sentence**: the category principle ("בשוקולד מריר עם אחוז קקאו גבוה לרוב אין סוכר…") or a familiar-product framing ("טובלרון קלאסי הוא ממתק נפוץ מאוד בכל העולם"). A "scene" is one option, not a requirement; do not force a gimmick opener where a calm orienting sentence reads more naturally.
 2. **Familiar perception** — state the comfortable assumption the product enjoys. ("נראה כמו פתרון מושלם", "נראה כמו עוגה ביתית")
 3. **The pivot** — turn from perception to evidence, often with the signature beat: **"אז זהו — שלא תמיד."** / "רשימת הרכיבים מספרת סיפור אחר."
 4. ★ **The investigative beat** (Harvest #1, E008) — for processed/critical products: establish the **simple ideal** the product *should* be ("עוגה היא מוצר פשוט יחסית. קמח, סוכר, ביצים, שמן...") → then introduce the **discovery** ("מה שגילינו הוא שזה ממש לא המצב") → then name the **mechanism / WHY** (e.g., shelf-life requirements → industrialization). Tom shows the reasoning, he does not merely assert the finding.
@@ -30,7 +65,7 @@ Not a dietitian brochure. Not a warning label. Not a cheerleader.
 6. **The stance** — never shame. "זה לא אומר שאי אפשר לאכול את זה. זה כן אומר שכדאי לדעת מה קונים."
 7. **הקשר במדף** (Harvest #2, ruling #2) — the closing beat. Places the product in its shelf context: how it ranks, what it beats, what it doesn't. This replaces שורת בארי as the structural closer. It may be two or three sentences for nuanced products.
 
-A draft missing the **situation** or the **pivot** does not sound like Tom, no matter how accurate.
+A draft missing an **orienting opener** or the **pivot** does not sound like Tom, no matter how accurate. (Per §0.5: the opener may be a scene *or* a calm orienting sentence — both count.)
 
 ★ **Headline rule (Harvest #1, E001 — ALL shelves):** Headlines are **not** poetic two-beat statements. They are a **direct second-person question** about the reader's real action at the shelf, followed by a **value promise**: "קונים X בסופרמרקט? הנה מה שאתם צריכים לדעת." The question establishes relevance; the promise earns the click. Poetic pivot-openers belong in the body, not the headline.
 
@@ -46,7 +81,7 @@ profile first, then pick the mode. Most of the voice's credibility comes from
 | Mode | When | Core sentence | Closer flavor |
 |---|---|---|---|
 | **Critical** | Ultra-processed / weak: long ingredient list + additives + high sugar/sat-fat, or "dessert in disguise." | "הבעיה היא לא רכיב אחד. הבעיה היא התמונה הכוללת." | exposes image-vs-contents gap |
-| **Balanced** | Clean but nutritionally flat: short list, no additives, but low fiber/protein. | "נקי לא תמיד אומר חזק תזונתית." | "מוצר סביר הוא לא תמיד מוצר חזק." |
+| **Balanced** | Clean but nutritionally flat: short list, no additives, but low fiber/protein. | "מוצר נקי הוא לא בהכרח מוצר חזק תזונתית." | "מוצר סביר הוא לא בהכרח מוצר חזק." |
 | **Positive** | Genuinely strong for the shelf: simple list, real fiber/protein, low sugar. | "מוצר חזק יחסית למדף, לא קסם תזונתי." | praises, then keeps it honest ("בסיס, לא ארוחה שלמה") |
 
 **Hard rule:** a clean-but-flat product gets Balanced mode, never Critical. A
@@ -68,12 +103,12 @@ finding (cf. `butter_clustering_honest_finding`, `owner_s_grade_honesty_ruling`)
 - **The "אז זהו — שלא תמיד" pivot** — the comfortable assumption gets gently broken.
 - **Image vs. structure** — "השם מוכר. המבנה פחות." / "המראה ביתי. המבנה פחות."
 - **"לא רכיב אחד — התמונה הכוללת"** — refuses single-villain reasoning (no "E471 → bad"). One additive is never the story; the whole picture is.
-- **"X לא תמיד אומר Y"** — the workhorse construction: "נקי לא תמיד אומר חזק", "קטן באריזה לא תמיד אומר קל", "ללא גלוטן הוא לא ציון תזונתי".
+- **"X הוא לא בהכרח Y"** — the workhorse construction (repaired 2026-06-22, TASK-374): "מוצר נקי הוא לא בהכרח מוצר חזק", "אריזה קטנה היא לא בהכרח מוצר קל", "'ללא גלוטן' הוא לא ציון תזונתי". ⚠️ The earlier form **"X לא תמיד אומר Y"** is **retired as a calque** (translationese tell T2, owner flag on "נקי לא תמיד אומר חזק") — keep the move's intent, not the "...לא תמיד אומר..." phrasing. The related "זה לא אומר Y" variant is on watch for the same reason.
 - **Naming the disguise** — "קינוח בתחפושת", "מוצר מתוק שמקבל תדמית של ארוחה רק כי מוזגים עליו חלב".
 - **The respect line** — "הצרכן לא צריך להיות כימאי כדי להבין מה הוא קונה."
 - **The rhetorical mirror** (cakes) — "אם על האריזה היה כתוב מראש 'עוגת מדף עם רשימת רכיבים ארוכה ותוספי מזון רבים' — האם הייתם מתייחסים אליה אותו דבר?"
 - ~~★ **Rhetorical-question dismissal (Harvest #1, E002)** — for clearly-bad products: "שוגי? תחשוב שוב." The name becomes the question; the verdict is immediate.~~ **RETIRED — Harvest #3 H3-R1.** This pattern attacks a brand by name and is banned. Bari critiques composition, not brand character. Replace with a direct composition statement: "82% קמח תירס מעובד, נתרן הגבוה ביותר בקטגוריה — זה מה שיש כאן."
-- ★ **Product-anchor precision (Harvest #1, E007, E011)** — "בעוגה הזאת יש 21 (!) תוספי מזון", not "כאן יש 21". Ground every count in the specific product. The "(!) " construction signals "stop and notice this number" without editorializing — use only for genuinely exceptional counts.
+- ★ **Product-anchor precision (Harvest #1, E007, E011)** — "בעוגה הזאת יש 21 (!) תוספי מזון", not "כאן יש 21". Ground every count in the specific product. The "(!) " construction signals "stop and notice this number" without editorializing — **seasoning only, for genuinely exceptional counts** (TASK-374 §0.5). The Naturalness Gate flags `(!)` as an EMPH candidate (MEDIUM for one, HIGH for more than one) — if it appears more than once on a shelf, or on an unexceptional number, it is overuse.
 - **הקשר במדף closer** — the shelf-context beat that closes every review. Not a one-liner; nuanced products earn two or three sentences.
 
 ---
@@ -89,7 +124,7 @@ When a product gets a structured positives/cautions block:
 ---
 
 ## 5. Rhythm, register & precision
-- **Short sentences.** Frequent full stops. Fragments are allowed for punch: "היא לא." / "אז זהו — שלא תמיד."
+- **Connected prose is the default texture (TASK-374 recalibration — see §0.5).** Write in flowing sentences joined by natural connectors (`יחד עם זאת`, `כי`, `מדובר ב…`, `כך ש…`). Short sentences are good; a **staccato chain of fragments is the F1 failure** that produced the live-shelf translationese. A fragment is allowed only when **earned** as a single landing line ("לייט זה לא.") — never as the running rhythm, and never the `X, לא Y` contrastive closer (resolve it in prose or land on `מדובר בסך הכל ב…`/`עדיין`).
 - **Direct, conversational Hebrew**, second person ("אתם", "תחשבו", "תסתכלו רגע").
 - Rhetorical questions to open or to land a point.
 - Plain words. A shopper in an aisle, not a data analyst.

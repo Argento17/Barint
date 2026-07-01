@@ -18,6 +18,31 @@ to confirmed (v1.0) through entries in this log.
    - add any reusable phrase to `4_approved_phrases.md`.
 5. If an edit **contradicts** a current fingerprint rule, that's a correction — update the rule and note that it was overturned by a Tom edit (highest authority, S5).
 
+## Standing harvest cadence (Phase 4, TASK-374 — 2026-06-22)
+
+The harvest was owner-burst (all of Harvests #1–#5 happened reactively). For a
+content-first strategy it must be a **standing loop**, not a reaction to noticing bad
+copy. Triggers — capture a harvest entry whenever ANY of these fire:
+
+1. **Per category batch** — every time a shelf's copy is authored/regenerated, run the
+   Naturalness Gate (`11_naturalness_gate.md`) and log the HIGH/MEDIUM distribution +
+   any owner/judge rewrites as before/after pairs. (The protein-bars pilot is the
+   template: `_phase1_pilot_report.md`.)
+2. **Per owner redline** — any owner edit to shipped/draft copy is captured before the
+   original is discarded (the original rule, step 1 above).
+3. **Gate-miss** — any mediocre line that PASSED the gate but the owner/judge still
+   flags = a calibration gap: add it to the gate's test set (`naturalness_gate.py`
+   selftest / file 10) AND log why it slipped. This is how the gate gets sharper.
+
+**Promotion threshold (unchanged):** a move repeated 2–3× promotes into files 2/3/4.
+**Calibration threshold (new):** a tell that recurs across ≥2 shelves becomes a HIGH
+detector in `naturalness_gate.py` (was MEDIUM) or a new T-row in file 10 §1.5 of file 5.
+
+**Ownership:** the Content Agent runs triggers 1–2 in its self-check; the Adversarial QA
+judge surfaces trigger 3. The orchestrator records the distribution at category close.
+No separate scheduled job is required — the cadence rides the existing build-page /
+two-gate flow.
+
 ## Entry template
 ```
 ### E### — <short title> · <YYYY-MM-DD> · <mode> · <surface>
@@ -44,6 +69,81 @@ edits at them so v1.0 rests on real data:
 ---
 
 ## Log (most recent first)
+
+---
+
+### Harvest #7 — Gate COVERAGE gap caught by render-verify · 2026-06-22 · ALL-SHELF (methodology)
+
+After the protein-bars copy passed the gate ("0 clean") and the judge (PASS), a
+**render-verify** of the live page (`localhost:3000/hashvaot/protein-bars`) showed
+`מזון שלם` ×19 still on screen. Root cause: the deterministic scanner + the pilot only
+covered `insightLine/rowVerdict/comparisonContext`. They MISSED `positiveSignals[]`,
+some `limitingFactors[]`, and ALL hardcoded `.ts/.tsx` copy — where `מזון שלם` ×16
+(JSON) + ×2 (loader + dimension-bars.tsx) survived. **Lesson (hard):** a gate's
+all-clear is only as wide as its field coverage; "0 HIGH" ≠ "page clean." RENDER-VERIFY
+(fetch the real DOM) is mandatory before declaring any page done — it is the only check
+that sees ALL consumer strings regardless of where they live. Two new owner editorial
+rules also landed this session: **T8** ("מזון שלם" → "אוכל אמיתי"/"חומרי גלם אמיתיים")
+and **T9** (gloss every named additive: "הממתיק מלטיטול"). Both encoded in the gate.
+
+---
+
+### Harvest #6 — Gate-miss on protein-bars refine (Phase-4 cadence trigger 3) · 2026-06-22 · ALL-SHELF
+
+The protein-bars rewrite cleared Layer-1 (0 HIGH) but the **independent judge** caught
+the Content Agent had traded the `X, לא Y` calque for a NEW one: the antithesis closer
+**`עובד/נוח/מצוין כ-X; פחות/רחוק כ-Y`** ("works as X; less so as Y") on 4 products, plus
+T4 metaphors that survived (`החלבון נושא אותו`, `נזקף לטובתו`) and a META opener
+(`כדאי לקרוא לזה כמו שזה`). Per the standing cadence (gate-miss → harden), these became
+new detectors in `naturalness_gate.py`: **T1b** (antithesis closer), **META**
+(meta-narration opener), and **T4 promoted MEDIUM→HIGH** (specific known calques). The
+selftest grew from 7 to 12 flagged lines. After a refine cycle the re-judge returned
+**PASS (16/16, F1≥4 AND F2≥4)**. Lesson: removing one calque is not enough — agents
+substitute a sibling calque; the gate must enumerate the family. The judge (not the
+deterministic layer) is what caught it — the two-gate is load-bearing, not ceremony.
+
+---
+
+### Harvest #5 — Translationese taxonomy (Project Tom's Voice / TASK-374) · 2026-06-22 · ALL-SHELF
+
+Source: owner provided **12 labeled live examples** (cereals + chocolate-tablet shelves)
++ **2 owner protein-bar rewrites**, flagging *naturalness* failures that pass every
+existing gate. Full catalogue: `10_translationese_taxonomy.md` (T1–T7 + the closer
+meta-finding). Two owner rulings promoted this round:
+
+**H5-R1 — Repair the "X לא תמיד אומר Y" signature move (calque T2).**
+**Failing:** `נקי לא תמיד אומר חזק` (#2 cereals) — owner: "weird phrasing."
+**Ruling:** the move's *intent* stays; the calqued "...לא תמיד אומר..." phrasing is
+retired. Repaired form: **`X הוא לא בהכרח Y`** (`מוצר נקי הוא לא בהכרח מוצר חזק`).
+**Promotion status:** promoted → file 2 §2 (Balanced core sentence + closer) + §3
+(workhorse construction) + file 4 §C (2026-06-22). "זה לא אומר Y" variant on watch.
+
+**H5-R2 — Pro/con (יתרון/חיסרון) labels in the protein rewrites = editing shorthand, not a format.**
+**Ruling:** final copy stays flowing prose (the #1-chocolate model). No frontend/design
+change. The value in the rewrites is the *phrasing* (T1/T4/T7 fixes, jargon gloss,
+discourse connectors), not the layout.
+**Promotion status:** recorded → file 10 RESOLVED (2026-06-22).
+
+**H5-R3 — The target register is "in-between"; two failure modes, not one.**
+Owner ruling on the 8 gold rewrites: the fix is NOT "calm" — *"AI does not treat
+'calm' nicely, it becomes too neutral that it doesn't write anything. Should be
+somewhere in between."* **Target = opinionated substance in natural connected Hebrew.**
+The gate must catch **F1 translationese-punch** (staccato calques, `X, לא Y`) AND
+**F2 neutral-bland** (no stance, hedge-only, says nothing). Fingerprint keeps its
+stance/verdict commitment (F2 guard) but moves default *texture* from staccato/"(!)"
+to connected prose; punch becomes seasoning-when-earned. **Promotion status:** recorded
+→ file 10 §D; drove Phase 1 (two-axis gate) + the fingerprint recalibration pass.
+**APPLIED 2026-06-22 (Phase 1.5):** file 2 §0.5 added (default register = opinionated
+substance in connected prose; F1+F2 failure modes; punch = seasoning-when-earned;
+stance kept as F2 guard, supersedes conflicting punch-default rules); §1 step 1 opener
+broadened to calm-orienting OR scene; §5 rhythm flipped to connected-prose default
+(staccato chain = F1 failure); §3 "(!)" marked seasoning-only + gate-monitored.
+
+**Meta-finding (owner):** the closer / "finish line" is the systematic failure zone —
+`הקשר במדף` reliably collapses into T1 (`X, לא Y`) and T3 (dangling `גם`) calques. The
+Phase 1 Naturalness Gate weights the final beat hardest. The full T1–T7 tell list is the
+gate's calibration target; pending confirmation of screenshot transcriptions before
+individual pairs promote to `3_before_after_pairs.md`.
 
 ---
 

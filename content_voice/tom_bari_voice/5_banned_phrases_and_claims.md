@@ -49,6 +49,61 @@ the HebEMO anger + disgust gate (`LABEL_0` on both) before shipping
 
 ---
 
+## 1.5 Translationese syntax sub-blacklist (T1–T7) — TASK-374
+
+These are **structural / syntactic** tells, not vocabulary. They are the defect no
+earlier firewall caught: grammatical, leakage-clean Hebrew that still reads
+*translated*. This is the human-facing mirror of the deterministic gate
+`integrations/clients/naturalness_gate.py` and the taxonomy
+`10_translationese_taxonomy.md`. A draft that trips a **HIGH** tell does not ship.
+
+| # | Tell (banned) | Why | Natural form |
+|---|---|---|---|
+| **T1** | The `X, לא Y` contrastive **closer** ("…מבודדים, לא מזון שלם", "…תוצאה של מעבדה, לא של מזון") — comma/dash + `לא` + short phrase ending the line | #1 calque ("it's X, not Y"); was 18/90 of the live protein-bars copy | Resolve in flowing prose, or land on `מדובר בסך הכל ב…` / `עדיין`. An *earned* bare fragment ("לייט זה לא.") is fine; the comma-contrastive closer is not. |
+| **T2** | `X לא תמיד אומר Y` (calque "doesn't always mean") | retired calque; owner flagged "נקי לא תמיד אומר חזק" | `X הוא לא בהכרח Y` ("מוצר נקי הוא לא בהכרח מוצר חזק"). `זה לא אומר Y` variant on watch. |
+| **T3** | Dangling `גם` ending a sentence ("הסוכר גם.") | calque of trailing "…too." | Full clause. (`גם` mid-sentence is fine: "יש בו גם דבש".) |
+| **T4** | Calqued metaphors ("המחיר שלו ברור", "נושא את החלבון", "לזכותו", "עוצר אותו בציון") | English figures that don't carry in Hebrew | Plain Hebrew ("מקורו מ…", "בזכות…"). |
+| **T5** | Passive nominalization ("הבחירה שנעשתה היא להוסיף", "סוכר שמוסף") | LLM-Hebrew register | Active verb ("בחרו להוסיף", "סוכר מוסף"). |
+| **T6** | Untranslated English loanword ("מילק") | breaks the Hebrew register | The Hebrew term ("שוקולד חלב"). |
+| **T7** | Wrong-register word / compression ("הפסד" for a food tradeoff, "סיבים יפים", "דבש בשם, X%") | register mismatch / calqued compression | Correct-register word ("עשיר בסיבים"); state it in full. |
+
+**T8–T14 — the contrastive-closer SIBLING family (milk shelf, 2026-06-25).** When the
+owner rejected the T1 `X, לא Y` closer, the lane swapped in these siblings — each reads
+equally translated. Banning T1 alone made the author cycle through the rest, costing 5
+revisions. Avoid the whole family up front. (Full repair examples: `10_translationese_taxonomy.md` §T8–T14.)
+
+| # | Tell (banned) | Why | Natural form |
+|---|---|---|---|
+| **T8** | "מה שמושיב אותו / מושיבה ... בראש/בתחתית/מעל/מתחת המדף" — the *seating* verb for a ranking position | calque of "what seats it at the top of the ranking"; `מושיב` ("sits it down") is not a natural ranking metaphor | Explain the rank by naming the driver, or let the number imply position ("הרשימה הקצרה היא הסיבה שהוא מוביל"). |
+| **T9** | "הצמרת הנקייה" / "צמרת נקייה" — the clean-cream compound | assembled "clean-cream" compound; not a natural Hebrew collocation | "מהטובים במדף" / "מהנקיים במדף" (name the *why* of clean). |
+| **T10** | Payment/price calque for a trade-off: "במחיר X", "משלמים על זה ב…", "הם המחיר", "היא משלמת ב…" | calqued "at the price of…" trade-off-as-payment; also smuggles a raw figure into a verdict (doubles as H3-R3 fact-tail) | State the trade-off as a plain catch ("חזק בחלבון, פחות מרשים בסוכר") — without the price figure. |
+| **T11** | The contrastive-closer **RHYTHM** as shelf-wide monotony — T1's disguises as the *terminal beat* across many products: "X, אבל Y", "X, אבל לא Y", "X, פחות Y", "X רק לא Y", "X ולא Y" | a single conjunction is fine; the BAN is on the contrastive-catch *shape* being the DEFAULT closer repeated across a shelf (same monotony as T1) | **Shelf-level rule:** vary closer shapes — close on a number / a use-case / a plain declarative / a dry aside / who-it's-for. >~⅓ of a shelf closing "positive-then-catch" = the tell. |
+| **T12** | "נקי ונעים" / "נעים" as a positive verdict | empty-positive (F2 calm-trap); "pleasant" says nothing actionable | A concrete, product-specific positive grounded in the data ("רשימת רכיבים קצרה: חלב בלבד"). |
+| **T13** | Passive nominalization at the closer ("הציפייה ... מושארת בחוץ") | LLM-Hebrew passive register (T5 sibling) landing the final beat | Active, plain phrasing ("כל עוד לא מצפים ממנו לחלבון"). |
+| **T14** | Boilerplate `limitingFactors` pasted verbatim across products | automation/translationese tell **+ factual hazard** — a generic "low protein/fiber" limiter landed on top-scoring products where it is **false** | `limitingFactors` must be **product-specific and factually true for THAT product**; an inapplicable limiter is a fabrication — remove it. Verify each vs the product's own scrape. |
+
+**CARVE-OUTS — legitimate Hebrew, do NOT flag (milk run, 2026-06-25).** The gate and
+authors must not over-correct into mush. Distinguish the bare contrastive **closer**
+(banned, T1/T11) from these (allowed):
+- **`לא X ולא Y`** (neither/nor) — legitimate idiomatic Hebrew. Not a tell.
+- **A single in-prose `אבל`** that **resolves into a full clause** — fine; T11 bans only the repeated terminal *shape* across a shelf, never one connective `אבל`.
+- **`לא X אלא Y`** (not X but rather Y) **naming the positive alternative** — this is the **APPROVED repair form**, not a tell.
+- Discriminator: a closer that **adds a positive alternative or a full resolving clause** is allowed; a closer that **only negates, repeated shelf-wide,** is the tell.
+
+**Two failure modes (owner ruling, file 8 H5-R3):** T1–T7 are the **F1
+translationese-punch** axis. The opposite failure is **F2 neutral-bland** — no
+verdict, hedge-only, "says nothing." Both are banned: the target is *opinionated
+substance in natural connected Hebrew* (file 2 §0.5). `(!)` is seasoning used
+sparingly and only when earned — more than once on a shelf is overuse.
+
+> ⚠️ Calibration guards (do NOT over-flag): `אשר` is natural Hebrew, not a tell; an
+> earned short-fragment closer is allowed; the three CARVE-OUTS above (`לא X ולא Y`,
+> a single resolving in-prose `אבל`, `לא X אלא Y` naming a positive) are explicitly
+> allowed — T11 is a **shelf-level monotony** check, not a line-level `אבל` ban. Only
+> the patterns above fire.
+
+---
+
 ## 2. Claim control — the firewall (mandatory)
 
 **Principle (project-wide):** *"Unknown is acceptable; fabrication is not."* The
@@ -96,7 +151,9 @@ scrape field, or an approved doc/URL). Vague provenance ("מקור מזון רש
 3. **Tone scan** — any witty/critical line passes HebEMO anger+disgust.
 4. **Form scan** — run hero/prologue/insight lines through DICTA Nakdan; garbled word = rewrite.
 5. **Grammar/agreement scan** — run `hebrew_grammar_gate.analyze(text).is_clean` (must be true); gender/number agreement failure = not-done. High-confidence flags may be auto-fixed via `hebrew_grammar_autofix.auto_fix(text)`; medium-confidence flags require human review.
+5.6. **Naturalness pre-filter (T1–T7, §1.5)** — run `naturalness_gate.analyze(text).is_clean` (must be true); any HIGH translationese tell = not-done. MEDIUM flags + `f2_signal` route to the independent judge (step 7).
 6. **Voice-match gate** — `7_voice_match_gate.md`.
+7. **Naturalness judge (two-axis, independent lane)** — `11_naturalness_gate.md`: F1 ≥ 4 AND F2 ≥ 4. Run by a lane that did NOT author the copy (Adversarial QA Track C). The author cannot self-clear it.
 
 Fail any → not done.
 
