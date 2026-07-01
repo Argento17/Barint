@@ -945,6 +945,20 @@ def cmd_dispatch(p_number: str, dry_run: bool, timeout: int) -> int:
 
     print(f"[dispatch] Route: {route}")
 
+    # W4 (TASK-423): refuse a tree-wiping cloud lane when the working tree is dirty — a cloud
+    # lane's `git stash -u` runs on the WHOLE tree and would wipe uncommitted/untracked work
+    # (the documented 82-file wipe). Guarded so it can never itself break dispatch.
+    if not dry_run:
+        try:
+            sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agentos"))
+            from dispatch_journal import guard_tree_for_cloud_lane
+            _refuse = guard_tree_for_cloud_lane(route)
+            if _refuse:
+                print(f"[dispatch] {_refuse}", file=sys.stderr)
+                return 3
+        except Exception:  # noqa: BLE001 — durability guard is best-effort, never fatal
+            pass
+
     if route == "C1":
         print("[dispatch] C1 → dispatch natively via orchestrator")
         return 0
@@ -1535,7 +1549,25 @@ def main():
     if not args.p_number:
         parser.error("p_number is required unless --selftest is used.")
 
-    sys.exit(cmd_dispatch(args.p_number, dry_run=args.dry_run, timeout=args.timeout))
+    # W4 (TASK-423): serialize dispatch under a fail-fast lock — two concurrent dispatch.py
+    # runs share one opencode server and cross-contaminate returns. Journal the run for the
+    # ledger + replay. Guarded: if the durability module is unavailable, fall back to the
+    # original direct call so the router never depends on it.
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agentos"))
+        from dispatch_journal import dispatch_lock, journal, DispatchBusy
+    except Exception:  # noqa: BLE001
+        sys.exit(cmd_dispatch(args.p_number, dry_run=args.dry_run, timeout=args.timeout))
+
+    try:
+        with dispatch_lock():
+            journal(args.p_number.upper(), "dispatch_start", dry_run=args.dry_run)
+            code = cmd_dispatch(args.p_number, dry_run=args.dry_run, timeout=args.timeout)
+            journal(args.p_number.upper(), "step_done", step="dispatch", exit=code)
+            sys.exit(code)
+    except DispatchBusy as e:
+        print(f"[dispatch] {e}", file=sys.stderr)
+        sys.exit(3)
 
 
 if __name__ == "__main__":
