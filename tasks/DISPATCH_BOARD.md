@@ -30,6 +30,18 @@
   - **TASK-416 → Content lane (Sonnet, bg):** #2 rewrite ALL category titles simpler + one key insight + NO numbers (also kills stale card counts). Title/config text only (hashvaot-categories.ts/.json, comparison-pages.json). DRAFT → must clear BOTH content + Adversarial QA gates before owner sees final.
 - **Verify-on-return:** tripwire diff (0 score/grade) on every lane; build exit-0 on frontend; brand provenance = real-scrape on hummus; discard list evidence-checked vs the rule; titles two-gated. Nothing deploys without owner.
 
+### 🔎 CONFORMITY REMEDIATION (owner: "fully conformity + sweep — the former chat confirmed it but it wasn't", 2026-07-01)
+Owner-flagged that a prior "confirmed full conformity" was false. Ran an INDEPENDENT deterministic audit (repeatable script) across all 15 live category JSONs → found real defects the confirmation missed. All fixes score-NEUTRAL (0 published-score changes, verified barcode-keyed), staging-only, each committed:
+- **Sort (8/15 rendered out of order)** — table has no sort logic → renders JSON order. Fixed: cereals (P417) + P260 batch (7) + cookies (P261). **Now 15/15 sorted.** Commits f520b86c9, 3cbd5395f.
+- **E-codes in verdict prose (HF-6 leak) — 45 across 6 cats** (my first audit undercounted at 21: it missed the NESTED `expansion.comparisonContext`). Reworked out (kept plain additive names: E407→קרגינאן, E466→CMC, E476→PGPR, E920→ציסטין…). **Now 0 prose E-codes across all 15.** Commits 1bb2ce311, dede42f58.
+- **Stale/false "partial" labels** — cookies 65 & cakes 63 flagged partial. P261 (C1): discarded genuinely-missing-material (2 cookies + 1 cake), relabeled complete-data-stale to full (32+11); P263 reworded the 31 cookies harsh "חסרים נתוני תזונה מהותיים" → honest soft tooltip. cakes soft tooltip already honest.
+- **Rank field ≠ position** on 4 cats (cheese/choc_bars/milk/hummus) — reindexed 1..N (P261/P262).
+- **chocolate_tablets title (QA-gate HIGH)** — falsely scoped "dark chocolate" for a dark/milk/white category → rewritten (P263). + 5 MEDIUM title refinements.
+- **Brands (bread 26 / hard_cheeses 31 / hummus 57 missing)** — P262 brand enrichment via il_prices returned **0 matches** (Shufersal PriceFull feed absent this run; no fabrication, OFF banned) → **brands stay null; needs a fresh il_prices PriceFull pull (separate job).** OWNER DECISION pending.
+- **Grade/band mismatches: 0** across all 15 (positive). **Placeholders: 0.** `npm run build` exit 0, all 17 /hashvaot routes compile.
+- **Final gate:** Adversarial QA re-gate on the reworked copy DISPATCHED (confirms E-code substitutions are the CORRECT additive, title HIGH resolved, tooltips honest). Then consolidated owner deploy go/no-go. Reusable audit script = the conformity gate this sweep lacked.
+- **Lanes used:** C2 (sort), C1-CURSOR (labels/rank P261, brands P262), Sonnet copy (E-codes/titles/tooltips P263), Adversarial QA (gate). Owner correction honored: router lanes, not native-Sonnet-default.
+
 ### Progress 2026-07-01 (owner: "use C1/C2/C3 lanes, be efficient" — routing corrected mid-run)
 - **TASK-415 (frontend) ✅ RETURNED + orchestrator-VERIFIED.** git diff = only the 2 intended .tsx; brined viz import+usage removed (charts gone), insights callout removed (props kept @deprecated for 14 callers), min-h-[22rem] uniform floor; build exit 0 / 16 routes; 0 data/score. Held in staging (deploy owner-gated). Dead file brined-cheeses-prologue-visualizations.tsx now unreferenced (follow-up delete).
 - **De-chain activation (TASK-395) — OWNER RULING: HOLD.** Eval verified (Stage0 byte-clean; Stage0+D4 = 224 down-moves, 7 grade movers, 0 large, 0 inversions; Chokita 26.1>Petit 21.4 UNRESOLVED — needs Stage 2). Owner chose "hold activation; fix repro + build Stage 2." No flag flipped.
