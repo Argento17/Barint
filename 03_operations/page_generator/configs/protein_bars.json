@@ -5,8 +5,8 @@
     "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365"
   ],
   "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365",
-  "baseline_json": "C:\\Bari\\.claude\\worktrees\\task409\\bari-web\\src\\data\\comparisons\\protein_combined_frontend_v2.json",
-  "_reproduce_note": "TASK-409: baseline_json pinned to worktree path (protein_combined_frontend_v2.json) for reproducible re-derive in this branch. Original live file was protein_bars_frontend_v1.json at C:\\Bari\\bari-web\\src\\data\\comparisons\\. Corpus uses lens-only scoring (batch_run_protein_bars_task365.py) — no standard BSIP1 trace dir.",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_combined_frontend_v2.json",
+  "_reproduce_note": "PHASE-1 REPRO (2026-07-01): baseline_json fixed from broken .claude/worktrees/task409 path to canonical bari-web path. Corpus uses lens-only scoring (rescore_task365_inplace.py + batch_run_protein_bars_task365.py) — no standard BSIP1 trace dir; generate_page.py is NOT compatible. Proper reproducer: rescore_task365_inplace.py from protein_combined_corpus_task365_33_20260621_fix.json (SHA256 469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3). Produces 32/32 scores matching deployed v2 from rerank_table_rescore.json.",
   "retailer_scope": ["shufersal"],
   "subpool_filter": null,
   "dedup": {
