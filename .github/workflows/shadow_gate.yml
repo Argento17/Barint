@@ -50,6 +50,32 @@ jobs:
                exit "$code" ;;
           esac
 
+      - name: Gold Set accuracy gate
+        # Exit 0 = all pass, 1 = advisories only, 2 = FAILs (finding — non-blocking),
+        # 3 = harness error or zero scorable (blocking).
+        # Disagreements (exit 2) are FINDINGS for Nutrition Agent review — they never
+        # auto-fix the engine and must never block a merge (C3 backdoor ruling P238/P240).
+        run: |
+          set +e
+          python 03_operations/shadow/goldset/validate_goldset.py
+          val_code=$?
+          python 03_operations/shadow/goldset/gold_check.py
+          gold_code=$?
+          set -e
+          if [ "$val_code" -ne 0 ]; then
+            echo "::error::Gold set schema validation failed (exit $val_code) — seed file is malformed."
+            exit "$val_code"
+          fi
+          case "$gold_code" in
+            0) echo "Gold gate: all scorable entries PASS." ;;
+            1) echo "::notice::Gold gate: ADVISORY only — borderline grade+score matches. No action needed." ;;
+            2) echo "::warning::Gold gate: DISAGREEMENTS found — engine vs gold-set band mismatches. Routed to Nutrition Agent for review. This is a FINDING, not a merge block." ;;
+            3) echo "::error::Gold gate: harness error or zero scorable entries (exit 3). Fix before merge."
+               exit 3 ;;
+            *) echo "::error::Gold gate failed unexpectedly (exit $gold_code)."
+               exit "$gold_code" ;;
+          esac
+
       - name: Upload shadow report
         if: always()
         uses: actions/upload-artifact@v4

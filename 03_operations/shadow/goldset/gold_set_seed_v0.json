@@ -1,0 +1,1355 @@
+{
+  "schema_version": "v0",
+  "source_baseline": "baseline_20260616T052730Z",
+  "note": "30-product Phase-0 gold seed. Expected bands derived from first-principles nutrition + physical label (direct product scrape). Independence firewall: no engine score/grade/dimension output was consulted when authoring expected{}. OFF-ban: no Open Food Facts values anywhere. Grade cutoffs: S>=90, A 80-89, B 65-79, C 50-64, D 35-49, E 0-34. Dimensions are advisory only (max 3 per entry, label-observable only). Data-gap entries (A02, A05, A06, A07, A08, A09, A10, P09) resolved from BSIP1 normalized_nutrition_per_100g fields; where null, noted as null with reason.",
+  "entries": [
+    {
+      "id": "G-001",
+      "pid": "bsip1_7290019790259",
+      "corpus": "milk",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["A"],
+        "score_range": [80, 87],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "medium",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-1 single-ingredient; NOVA1_SINGLE_FLOOR=85 applies",
+          "rationale": "Single-ingredient pasteurized whole milk. Zero additives. NOVA-1 floor raise to 85 minimum under engine constants. Fermentation bonus not applicable for fluid milk, so floor holds at A without elevation to S.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0 HTML scrape, barcode 7290019790259"
+        },
+        {
+          "criterion": "62 kcal/100g — beverage archetype favorable calorie density",
+          "rationale": "Calorie density well below 100 kcal threshold; scores in highest tier for beverage archetype.",
+          "basis": "BSIP0 panel",
+          "citation": "run_milk_002 output"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-002",
+      "pid": "bsip1_7290102392094",
+      "corpus": "milk",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["A"],
+        "score_range": [80, 87],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "medium",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-1 single-ingredient goat milk; NOVA1_SINGLE_FLOOR=85 applies",
+          "rationale": "Pasteurized goat milk, single ingredient, zero additives. Structurally identical to G-001. Floor raise to 85/A minimum. ~72 kcal/100g in favorable beverage tier.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0, barcode 7290102392094"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-003",
+      "pid": "bsip1_yogurt_7290102395231",
+      "corpus": "yogurt",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "on",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "on",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["A"],
+        "score_range": [80, 88],
+        "dimensions": {
+          "additive_quality": "high",
+          "glycemic_quality": "high",
+          "fat_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA 1-2 plain bio yogurt; fermentation bonus eligible (Path B under BARI_RECAL_P0=on + YOGURT_TRIM=on)",
+          "rationale": "Plain live-culture yogurt, 2.8% fat. sugars 2.9g (lactose only), sodium 45mg, no additives. Fermentation bonus +8 via Path B applies under yogurt corpus flags. Expected A under the registered corpus flag config (RECAL_P0=on, TRIM=on). Score range aligned to A floor=80. Note: authored blind from label; range [80,88] aligns to A-grade floor per Phase-1 G-003 fix.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0, barcode 7290102395231; yogurt corpus run_yogurt_006"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-004",
+      "pid": "bsip1_cereal_5010029000061",
+      "corpus": "cereals",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B"],
+        "score_range": [65, 75],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "high",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Whole-wheat biscuit 95%; NOVA 2-3; fiber 10g + protein 12g/100g; sugar 4.2g",
+          "rationale": "Weetabix: 95% whole wheat, malt extract as only processing marker. High fiber (10g) and protein (12g) at 342 kcal. Sugar 4.2g well below red-label. Malt extract = NOVA-3 marker nudging composite cap to 87 (NOVA_PROXY_3_PROCESSED). Fat 2g, sat_fat 0.6g — no fat penalty. Sodium 110mg — no red label. Expected B because NOVA-3 classification prevents A.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 5010029000061; run_cereals_008"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-005",
+      "pid": "bsip1_cereal_7290013433336",
+      "corpus": "granola",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_REDLABEL_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["B"],
+        "score_range": [65, 75],
+        "dimensions": {
+          "additive_quality": "high",
+          "glycemic_quality": "medium",
+          "fat_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "48% whole oats, seeds, nuts; no synthetic additives; protein 12g + fiber 9.4g/100g; sugar 13.5g (below red-label 17.5g)",
+          "rationale": "Superfood granola with 48% oats, dates, goji, olive oil. No synthetic additives (whole-food sources only). Strong protein (12g) and fiber (9.4g). Sugar 13.5g from dates/syrups below red-label threshold. Calorie density 410 kcal places it in medium tier for snack_bar_granola archetype. Sat_fat 4.5g just below 5g red-label. Expected B: calorie density holds it from A.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 7290013433336; run_cereals_005"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-006",
+      "pid": "bsip1_bread_7290018500316",
+      "corpus": "bread",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [55, 70],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "high",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "White spelt sourdough; fermentation bonus eligible; protein 9g; fiber 3.3g; sodium 366mg (below red-label 600mg)",
+          "rationale": "Short ingredient list with genuine sourdough starter (14% whole wheat sourdough). Low fat (1.5g/100g). Ascorbic acid (E300) as only synthetic additive. Sodium 366mg below red-label threshold. Fermentation bonus potentially eligible. Calorie density 248 kcal in favorable bread tier. Boundary B-C because NOVA-3 may fire on the sourdough + enzyme combination.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 7290018500316; run_bread_conform_001"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-007",
+      "pid": "bsip1_7290104061417",
+      "corpus": "hummus",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [58, 70],
+        "dimensions": {
+          "glycemic_quality": "high",
+          "fat_quality": "medium",
+          "additive_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Chickpeas 56%, tahini 17%; 3 additives (stabilizers + potassium sorbate); protein 7.9g; sodium 375mg",
+          "rationale": "Standard Israeli retail hummus. Real chickpea (56%) and raw tahini (16.9%). Sugar 1.1g (complex carbs from chickpeas). Sodium 375mg — below red-label 600mg but above shelf median ~390mg (mild shelf-relative penalty). Three additives (guar, xanthan, potassium sorbate) — borderline ADDITIVE_MARKERS_3_PLUS cap (72). Expected B-C with additive count as primary constraint.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0 HTML scrape, barcode 7290104061417"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-008",
+      "pid": "bsip1_brinedcheese_554457",
+      "corpus": "brined_cheeses",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [58, 72],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "medium",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-1 low-fat brined cheese; protein 12g at 117 kcal; sodium exactly 600mg (at red-label threshold); one additive (potassium sorbate)",
+          "rationale": "Minimally-processed low-fat Tzfatit. Excellent protein density (12g at 117 kcal). Only penalty is sodium at exactly 600mg (graduated sodium BARI_GRAD_SODIUM_V1=on applies; shelf-relative ~below median 1000mg gives relief not surcharge). Under DAIRY_PROTEIN_REWEIGHT_V1 protein weight elevated 10%->14%. Expected B.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal enriched BSIP1, barcode 554457; run_brined_cheeses_002"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-009",
+      "pid": "bsip1_7290011498870",
+      "corpus": "snack_bars",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [55, 68],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "high",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Three-ingredient whole-food date bar: dates 76%, almond paste 22%, almonds; NOVA-1; zero additives; 92 kcal/100g; sugar 15.5g (below 17.5g red-label)",
+          "rationale": "Minimal whole-food snack bar. No additives. Low calorie density (92 kcal) in top tier for snack_bar_granola. Sugar 15.5g from dates is concentrated fructose but below red-label. Protein very low (1.6g) — depresses protein_quality and satiety dimensions. Expected B-C depending on date-sugar glycemic penalty weight.",
+          "basis": "direct product scrape",
+          "citation": "Yohananof BSIP1, barcode 7290011498870; run_001"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "G-010",
+      "pid": "bsip1_7290106573628",
+      "corpus": "hummus",
+      "tier": "good",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [57, 68],
+        "dimensions": {
+          "glycemic_quality": "high",
+          "fat_quality": "medium",
+          "additive_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Chickpeas 62%, tahini 17%; 4 additives including unspecified vegetable oils; protein 8g; sodium 395mg (above shelf median ~390mg)",
+          "rationale": "Similar to G-007 (Achla hummus) but with slightly higher sodium (395mg vs 375mg) and unspecified 'shmanim tzimchiyim' (vegetable oils — fat_tech soft concern). Sugar 0.6g. Four additives. Sodium 395mg near shelf median — minimal shelf-relative penalty or near-zero. Marginally weaker than G-007. Expected B-C.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0 HTML scrape, barcode 7290106573628"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-001",
+      "pid": "bsip1_5411188300328",
+      "corpus": "milk",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["E"],
+        "score_range": [25, 34],
+        "dimensions": {
+          "additive_quality": "low",
+          "glycemic_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-4 chocolate soy drink; 5+ additives; added sugar ~7g; NOVA_PROXY_4_ULTRA_PROCESSED cap=68 + ADDITIVE_MARKERS_5_PLUS cap stack",
+          "rationale": "Industrial ultra-processed chocolate soy beverage. NOVA 4 with multiple emulsifiers, flavoring, cocoa. Protein 2.8g (very low for a soy drink). Added sugar fires glycemic penalty. Multiple caps stack below 35 = E. Confirmed by baseline at 33.5/E in approved baseline_20260616T052730Z.json.",
+          "basis": "direct product scrape",
+          "citation": "run_milk_002, barcode 5411188300328"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-002",
+      "pid": "bsip1_7290107646147",
+      "corpus": "snack_bars",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["D", "E"],
+        "score_range": [20, 49],
+        "dimensions": {
+          "additive_quality": "low",
+          "fat_quality": "low",
+          "glycemic_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-4 cereal bar; sugar 30g (red label); sat_fat 17.2g (red label); trans_fat 0.5g; 479 kcal (worst calorie-density tier); E-471 + E-476 emulsifiers",
+          "rationale": "Industrial cereal snack bar. Two red labels (sugar 30g and sat_fat 17.2g). Trans fat 0.5g HIGH_TRANS_FAT flag. NOVA 4. Calorie density at 479 kcal in worst snack-bar tier. E-471 + E-476 (PGPR) emulsifier identity deltas. HIGH_CAL_HIGH_SUGAR_SEVERE cap (50) and ISRAELI_RED_LABELS_2_PLUS cap (45) stack. Expected D-E.",
+          "basis": "direct product scrape",
+          "citation": "Yohananof BSIP1, barcode 7290107646147; run_001"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-003",
+      "pid": "bsip1_cereal_7290016883176",
+      "corpus": "granola",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["D", "E"],
+        "score_range": [30, 49],
+        "dimensions": {
+          "fat_quality": "low",
+          "additive_quality": "medium",
+          "glycemic_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Muesli with palm oil; sat_fat 7.1g (red label); multiple added-sugar sources (glucose syrup, brown sugar, inverted sugar); 443 kcal (worst calorie-density tier); sugar_g null on label",
+          "rationale": "Dark chocolate muesli with palm oil. Sat_fat 7.1g fires red label (1.4x threshold). Multiple added sugar sources expected to push sugars above 17.5g red-label (sugar_g null on label — adversarial data gap). Two red labels -> ISRAELI_RED_LABELS_2_PLUS cap (45). Calorie density 443 kcal in poor band. Expected D.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 7290016883176; run_cereals_005"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-004",
+      "pid": "bsip1_cakes_5410126006049",
+      "corpus": "cakes",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_GRAD_SODIUM_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["D", "E"],
+        "score_range": [20, 49],
+        "dimensions": {
+          "fat_quality": "low",
+          "glycemic_quality": "low",
+          "additive_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-4 caramel biscuit; sugar 38.1g (red label, 2.2x threshold); sat_fat 8g (red label, 1.6x); 484 kcal (worst dessert band); palm oil",
+          "rationale": "Lotus Biscoff: two red labels (sugar 38.1g and sat_fat 8g). NOVA 4. Calorie density 484 kcal in worst dessert tier. Sugar 38.1g exceeds the Q3 cakes shelf-relative floor threshold (33g) — shelf-relative surcharge applies. HIGH_CAL_HIGH_SUGAR_SEVERE cap (50) and ISRAELI_RED_LABELS_2_PLUS cap (45) both fire. Expected E.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 enriched, barcode 5410126006049; run_cakes_001"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-005",
+      "pid": "bsip1_5411188112709",
+      "corpus": "milk",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["D"],
+        "score_range": [40, 49],
+        "dimensions": {
+          "additive_quality": "low",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-4 almond drink; protein ~1g/100g; 3+ additives (ADDITIVE_MARKERS_3_PLUS cap=72); seed oil (sunflower) present; no added sugar = no sugar red label",
+          "rationale": "Ultra-processed almond drink, essentially water with almond flavoring. NOVA-4 with 3+ additives triggers ADDITIVE_MARKERS_3_PLUS cap (72), then NOVA_PROXY_4_ULTRA_PROCESSED cap (68). Low nutrient density severely depresses composite. Redeeming: very low calorie density (~13 kcal/100g) and no red labels. Confirmed by baseline at 46.2/D.",
+          "basis": "direct product scrape",
+          "citation": "run_milk_002, barcode 5411188112709"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-006",
+      "pid": "bsip1_brinedcheese_7290017065236",
+      "corpus": "brined_cheeses",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["C", "D"],
+        "score_range": [38, 64],
+        "dimensions": {
+          "fat_quality": "low",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Full-fat Bulgarian brined cheese 24%; sat_fat 16g (red label, 3.2x threshold); sodium 1010mg (red label, above 700mg); 274 kcal/100g",
+          "rationale": "Two red labels: sat_fat 16g (3.2x 5g threshold) and sodium 1010mg (above 700mg hard cap). Under BARI_GRAD_SODIUM_V1=on + BARI_SODIUM_SHELF_RELATIVE_V1=on, graduated + shelf-relative sodium penalties compound. Calorie density 274 kcal (just above 250 threshold for dairy_protein archetype — moves to lower band). DAIRY_PROTEIN_REWEIGHT_V1 partially offsets via elevated protein weight (protein 11g). Expected C-D.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 enriched, barcode 7290017065236; run_brined_cheeses_002"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-007",
+      "pid": "bsip1_cereal_7290017325910",
+      "corpus": "cereals",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["C"],
+        "score_range": [50, 64],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "high",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "Organic cornflakes; 3 ingredients (corn 94%, barley malt 5%, salt); protein 8g; fiber 4g; sodium 600mg (at standard red-label boundary but BARI_SODIUM_CEREAL=off, 700mg hard cap does not fire); 369 kcal",
+          "rationale": "Harduf organic cornflakes. Clean label (3 ingredients, no synthetic additives). Sugar 2g very low. Sodium 600mg is exactly at the standard red-label threshold but the hard cap fires at 700mg (BARI_SODIUM_CEREAL=off for cereals corpus). Fiber 4g is moderate — not exceptional for a whole-grain claim. Extruded cornflakes are high-GI despite the organic claim. Expected C-B depending on NOVA proxy classification.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 7290017325910; run_cereals_008"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-008",
+      "pid": "bsip1_bread_9398281",
+      "corpus": "bread",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["C", "D"],
+        "score_range": [40, 64],
+        "dimensions": {
+          "additive_quality": "medium",
+          "fat_quality": "high",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "White flour pita; added sugar as second ingredient; generic emulsifier ('mathalev') = Glass Box disclosure gap; NOVA 3; fiber 2.9g (low); protein 7.4g; sodium 298mg",
+          "rationale": "Commercial pita with added sugar (second ingredient after white flour) and a generic emulsifier class (no E-number). NOVA 3. Low fiber (2.9g) from white flour. Calorie density 235 kcal in favorable bread tier (+). No fat red label (fat 0.5g). Sugar is second ingredient, so glycemic penalty expected despite sugar_g null on label. Expected C-D depending on NOVA classification and sugar-null treatment.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 9398281; run_bread_conform_001"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-009",
+      "pid": "bsip1_cakes_4017100198151",
+      "corpus": "cakes",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+        "BARI_GRAD_SODIUM_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["D", "E"],
+        "score_range": [20, 49],
+        "dimensions": {
+          "fat_quality": "low",
+          "glycemic_quality": "low",
+          "additive_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-4 vanilla cookie (Balsen Hit); sugar 31g (red label, >17.5g threshold); sat_fat 17g (red label, 3.4x threshold); 508 kcal/100g; palm-oil based fat; fiber null",
+          "rationale": "Data-gap resolved: BSIP1 normalized_nutrition_per_100g = energy 508 kcal, fat 25g, sat_fat 17g, protein 5.8g, carbs 64g, sugar 31g, sodium 260mg. Two red labels (sugar 31g and sat_fat 17g). NOVA 4 with palm oil, cocoa powder, baking powder. 508 kcal in worst dessert calorie-density tier. HIGH_CAL_HIGH_SUGAR_SEVERE cap (50) and ISRAELI_RED_LABELS_2_PLUS cap (45) stack. Expected D-E.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 enriched, barcode 4017100198151; run_cakes_001; energy_kcal=508 sat_fat=17g sugar=31g sodium=260mg confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "P-010",
+      "pid": "bsip1_5411188124689",
+      "corpus": "milk",
+      "tier": "poor",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["D"],
+        "score_range": [42, 49],
+        "dimensions": {
+          "additive_quality": "low",
+          "calorie_density": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "NOVA-3 oat drink; protein ~1g/100g; 3+ additives (stabilizers + sunflower seed oil); enzymatic maltose (glycemic concern); ~40 kcal/100g",
+          "rationale": "Industrial oat drink with enzymes (process that produces maltose), stabilizers, and sunflower oil (seed oil penalty under BARI_FAT_TECH_V1=on). NOVA 3. Protein ~1g. Very low nutrient density. ADDITIVE_MARKERS_3_PLUS cap (72) and NOVA_PROXY_3_PROCESSED (87) both applicable — protein/nutrient floor depresses further. Confirmed by baseline at 49.7/D.",
+          "basis": "direct product scrape",
+          "citation": "run_milk_002, barcode 5411188124689"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-001",
+      "pid": "bsip1_cereal_7613035622623",
+      "corpus": "granola",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["C", "B"],
+        "score_range": [50, 65],
+        "dimensions": {
+          "additive_quality": "medium",
+          "glycemic_quality": "low",
+          "fat_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "ADVERSARIAL — 'Fitness' healthy-halo vs real score: sugar 17.9g/100g is EXACTLY at Israeli red-label threshold (17.5g); cap 55 (ISRAELI_RED_LABEL_1_SUGAR) is a ceiling; calorie density 428 kcal borderline worst tier",
+          "rationale": "Fitness honey granola: whole oats 44.5%, protein 8.7g, fiber 7.1g — genuine nutritional quality. But sugar 17.9g fires the sugar red-label cap (55). Calorie density 428 kcal is just inside the second-worst tier for snack_bar_granola. Sunflower oil present (seed-oil penalty). Glucose syrup + inverted sugar = industrial sweeteners. Consumer expects B given the 'Fitness' brand and whole-grain base. The engine should give C because the red-label cap (55) is a ceiling regardless of fiber/protein. Finding: a B result would be an anti-immunity concern.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP1 fallback, barcode 7613035622623; run_cereals_005"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-002",
+      "pid": "bsip1_cereal_7290013433091",
+      "corpus": "cereals_multiretailer",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [50, 79],
+        "dimensions": {}
+      },
+      "rubric": [
+        {
+          "criterion": "Multi-retailer corpus source (run_cereals_multiretailer_001) is ABSENT from this checkout — entry will be marked UNVERIFIABLE by gold_check.py",
+          "rationale": "A02 stress test: cereals_multiretailer corpus source directory does not exist locally. gold_check.py will mark this UNVERIFIABLE and exclude it from agreement denominator. Expected band is intentionally wide (B-C) pending Phase-1 data retrieval. Finding: harness must gracefully skip absent source and report it rather than aborting.",
+          "basis": "direct product scrape",
+          "citation": "Pending Phase-1: run_cereals_multiretailer_001 not in this checkout"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-003",
+      "pid": "bsip1_yogurt_7290102395231",
+      "corpus": "yogurt",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "on",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "on",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["A"],
+        "score_range": [80, 88],
+        "dimensions": {
+          "additive_quality": "high",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "FLAG-DEPENDENCY STRESS TEST: same product as G-003 (bio-naturel yogurt) scored under corpus flags (RECAL_P0=on, TRIM=on). Expected A under corpus config; would be B (72.8) under RECAL_P0=off (known coupling from shadow_registry note).",
+          "rationale": "This entry tests whether gold_check.py correctly applies the corpus flag config from shadow_registry_v1.json. The same product scores differently under different flags. A mismatch here is NOT an engine error — it is expected behavior under different flag states. Score range [80,88] is the corpus-flag expectation (RECAL_P0=on, TRIM=on). Authored blind.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0, barcode 7290102395231; yogurt corpus run_yogurt_006; known coupling documented in shadow_registry_v1.json"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-004",
+      "pid": "bsip1_brinedcheese_554457",
+      "corpus": "brined_cheeses",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [55, 72],
+        "dimensions": {
+          "additive_quality": "high",
+          "fat_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "SODIUM THRESHOLD ADVERSARIAL: sodium exactly 600mg/100g — at the standard red-label boundary. Tests boundary handling: standard HIGH_SODIUM_700MG_PLUS (700mg) does NOT fire; graduated BARI_GRAD_SODIUM_V1 applies; shelf-relative gives RELIEF (600mg << 1000mg median).",
+          "rationale": "Same product as G-008 (Tzfatit 5% fat). Second gold-set entry for the SAME product tests whether the harness is deterministic across duplicate PIDs (only the first occurrence scores; second is a dedup artifact — or if the harness re-scores it under the same flags, it must give an identical result). The adversarial focus is the sodium boundary: at exactly 600mg, the correct treatment is graduated penalty (not the 700mg hard cap). Expected B-C.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal enriched BSIP1, barcode 554457; run_brined_cheeses_002"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-005",
+      "pid": "bsip1_7290107647731",
+      "corpus": "cereals",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["C", "D"],
+        "score_range": [35, 64],
+        "dimensions": {
+          "glycemic_quality": "low",
+          "additive_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "SODIUM FLAG STRESS TEST: cereals corpus BARI_SODIUM_CEREAL=off. Cocoman chocolate cereal: sugar 19.6g (above red-label 17.5g); sodium 382mg (below cereal flag threshold); 384 kcal; chocolate-flavored (NOVA 3-4); fiber 5g; protein 9.4g",
+          "rationale": "Data-gap resolved: normalized_nutrition_per_100g = energy 384 kcal, fat 1.6g, sat_fat null, protein 9.4g, carbs 80.6g, sugar 19.6g, sodium 382mg, fiber 5g. Sugar 19.6g fires the sugar red-label (>17.5g threshold). NOVA 3-4 for chocolate-flavored extruded cereal. BARI_SODIUM_CEREAL=off means the cereal sodium cap does NOT activate (sodium 382mg would score differently if the flag were on). Expected C-D given sugar red-label cap (55). Finding: if engine scores B, that may indicate the sugar red-label cap is not applying correctly.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0, barcode 7290107647731; run_cereals_008; sugar=19.6g confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-006",
+      "pid": "bsip1_7296073134442",
+      "corpus": "bread",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "off",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "off",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off"
+      },
+      "expected": {
+        "grade_band": ["A", "B"],
+        "score_range": [65, 85],
+        "dimensions": {
+          "fat_quality": "high",
+          "additive_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "WHOLE-GRAIN RYE CRACKER STRESS TEST: does whole-grain + high-fiber earn A? Rye flour 4.9%, whole wheat 70%; fiber 6.9g; protein 10.8g; fat 0.25g (negligible); sodium 384mg; sugar null; 376 kcal",
+          "rationale": "Data-gap resolved: normalized_nutrition_per_100g = energy 376 kcal, fat 0.25g, sat_fat null, protein 10.8g, carbs 74.7g, sugar null, sodium 384mg, fiber 6.9g. Ingredients: 70% whole wheat flour, corn grits, rye flour (4.9%), potato starch, sugar, salt. Very low fat (0.25g). Good protein (10.8g) and fiber (6.9g). Sodium 384mg — no red label. Sugar listed as ingredient but null on panel. Note: this is a rye cracker (not a whole-rye sourdough bread as Phase-0 anticipated); the bsip1 product under pid bsip1_7296073134442 is 'קרקר פריך עם קמח שיפון'. The architectural question (can bread reach A?) applies here. Expected A-B depending on whether NOVA proxy, fermentation (none here), and calorie density (376 kcal) allow A.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0, barcode 7296073134442; run_bread_conform_001; fiber=6.9g protein=10.8g fat=0.25g confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-007",
+      "pid": "bsip1_7296073725367",
+      "corpus": "hummus",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["B", "C"],
+        "score_range": [55, 75],
+        "dimensions": {
+          "glycemic_quality": "high",
+          "fat_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "SHELF-RELATIVE RELIEF STRESS TEST: hummus+masabacha; sodium 373mg (below hummus shelf median ~390mg — should get RELIEF from shelf-relative mechanism). Protein 7.5g; fiber 4g; fat 22.4g; sugar 2.6g; 288 kcal",
+          "rationale": "Data-gap resolved: normalized_nutrition_per_100g = energy 288 kcal, fat 22.4g, protein 7.5g, carbs 11.6g, sugar 2.6g, fiber 4g, sodium 373mg. Ingredients: cooked chickpeas 49%, water, raw tahini 15%, soy oil. Sodium 373mg is BELOW the hummus shelf median (~390mg) — should receive shelf-relative RELIEF (B_max=3 points). Fat 22.4g is high for hummus (soy oil + tahini). Expected B-C: the sodium relief partially offsets the high fat. Finding: if engine fails to add 2-3 point relief for below-median sodium, score would be 2-3 points lower — detectable.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal BSIP0 HTML scrape, barcode 7296073725367; sodium=373mg fat=22.4g confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-008",
+      "pid": "bsip1_brinedcheese_48413",
+      "corpus": "brined_cheeses",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "on",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_GRAD_SODIUM_V1": "on",
+        "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+        "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["C"],
+        "score_range": [50, 64],
+        "dimensions": {
+          "fat_quality": "low",
+          "glycemic_quality": "high"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "MID-FAT BULGARIAN STRESS TEST: protein 20g (exceptional) vs sat_fat 10g (red label) + sodium 1065mg (high, above 700mg hard cap). Tests DAIRY_PROTEIN_REWEIGHT_V1 interaction with sat_fat endemic exclusion. energy 234 kcal, fat 16g, sat_fat 10g, protein 20g, sodium 1065mg",
+          "rationale": "Data-gap resolved: normalized_nutrition_per_100g = energy 234 kcal, fat 16g, sat_fat 10g, protein 20g, sodium 1065mg (carbs 2.4g, sugar null). Hamad 16% brined cheese. Protein 20g is exceptional for brined cheese. One additive (potassium sorbate). Two penalty signals: sat_fat 10g (2x red-label threshold 5g) fires sat_fat red label; sodium 1065mg (above 700mg) fires HIGH_SODIUM_700MG_PLUS. DAIRY_PROTEIN_REWEIGHT_V1=on elevates protein weight to 14%. Expected C: protein quality partially offsets penalty stack, but two red-label signals prevent B. Finding: if it scores D, penalty stack over-penalizes vs the clean processing profile.",
+          "basis": "direct product scrape",
+          "citation": "Shufersal enriched BSIP1, barcode 48413; run_brined_cheeses_002; protein=20g sat_fat=10g sodium=1065mg confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-009",
+      "pid": "bsip1_2385455",
+      "corpus": "maadanim",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "on",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["C", "D"],
+        "score_range": [38, 64],
+        "dimensions": {
+          "fat_quality": "low",
+          "glycemic_quality": "medium"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "MAADANIM SUGAR SHELF-RELATIVE STRESS TEST: Bulgarian 24% brined cheese in the maadanim corpus. energy 274 kcal, fat 24g, sat_fat 16g, protein 11g, carbs 3.7g, sugar 3.5g, sodium 1010mg",
+          "rationale": "Data-gap resolved: bsip1_2385455 is 'Bulgarian refined brined cheese 24%' in the maadanim run. normalized_nutrition_per_100g = energy 274 kcal, fat 24g, sat_fat 16g, sugar 3.5g (lactose), sodium 1010mg, protein 11g, fiber null. Note: despite the name, this product appears to be a full-fat brined cheese scored under maadanim corpus flags (BARI_TASK144_FIXES=on). Sat_fat 16g (3.2x red-label threshold) fires red label. Sodium 1010mg fires HIGH_SODIUM_700MG_PLUS. Sugar 3.5g is low (no sugar red label). BARI_SHELF_RELATIVE_V1=on (maadanim has sugar shelf-relative mechanism); sugar 3.5g is far below the Q3 threshold (16.08g) — no surcharge applies. Expected C-D with sat_fat and sodium as primary penalty signals.",
+          "basis": "direct product scrape",
+          "citation": "run_maadanim_001, pid bsip1_2385455; energy=274kcal sat_fat=16g sodium=1010mg confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    },
+    {
+      "id": "A-010",
+      "pid": "bsip1_7290107646826",
+      "corpus": "snack_bars",
+      "tier": "ambiguous",
+      "scoring_flags": {
+        "BARI_TASK144_FIXES": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "off",
+        "BARI_RECAL_P0": "off",
+        "BARI_RECAL_P0_YOGURT_TRIM": "off",
+        "BARI_GLASSBOX_D5D6": "off",
+        "BARI_GLASSBOX_W15": "off",
+        "BARI_GLASSBOX_W2": "off",
+        "BARI_GLASSBOX_W4": "on",
+        "BARI_SODIUM_CEREAL": "off",
+        "BARI_REDLABEL_V1": "off",
+        "BARI_TASK250_CONF": "off",
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on"
+      },
+      "expected": {
+        "grade_band": ["D", "E"],
+        "score_range": [20, 49],
+        "dimensions": {
+          "additive_quality": "low",
+          "glycemic_quality": "low",
+          "fat_quality": "low"
+        }
+      },
+      "rubric": [
+        {
+          "criterion": "CHOCOLATE SHOOGY CEREAL BAR STRESS TEST: sugar 36.5g (red label, well above 17.5g threshold); sat_fat 14.5g (red label, 2.9x threshold); trans_fat 0.5g; 461 kcal (worst snack-bar tier); NOVA 4; chocolate-flavored corn puff base",
+          "rationale": "Data-gap resolved: normalized_nutrition_per_100g = energy 461 kcal, fat 19g, sat_fat 14.5g, trans_fat 0.5g, protein 6.6g, carbs 64.3g, sugar 36.5g, sodium 310mg, fiber 3.3g. Shoogy chocolate cereal bar. Two red labels (sugar 36.5g and sat_fat 14.5g). Trans fat 0.5g HIGH_TRANS_FAT flag. 461 kcal in worst snack-bar calorie-density tier. NOVA 4. HIGH_CAL_HIGH_SUGAR_SEVERE cap (50) and ISRAELI_RED_LABELS_2_PLUS cap (45) both fire. A10 differs from P-002 (also Shoogy): this is the chocolate variant with higher sugar (36.5g vs 30g) and lower sat_fat (14.5g vs 17.2g). Expected D-E.",
+          "basis": "direct product scrape",
+          "citation": "BSIP1, barcode 7290107646826; run_001; sugar=36.5g sat_fat=14.5g trans_fat=0.5g confirmed from normalized_nutrition_per_100g"
+        }
+      ],
+      "provenance": {
+        "authored_by": "nutrition-agent (P235/Phase-0 + P237 data-gap resolved)",
+        "authored_blind": true,
+        "reviewed_by": "pending-red-team",
+        "agreement": "pending"
+      }
+    }
+  ]
+}

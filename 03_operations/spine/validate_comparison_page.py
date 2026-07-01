@@ -112,16 +112,39 @@ def main():
     print(f"[{'FAIL' if bad_ing else 'PASS'}] ingredient    ({len(bad_ing)} truncated/bleed)")
     if bad_ing: fails.append(("ingredients", bad_ing[:8]))
 
-    # 6. stale-rank copy (WARN — needs human/trace confirm, not auto-fail)
-    ranked = sorted(prods, key=lambda p: -(p["score"] or 0))
-    top_bc = ranked[0]["barcode"] if ranked else None
-    rankflag = []
-    for p in prods:
-        txt = (p.get("rowVerdict", "") or "") + (p.get("insightLine", "") or "")
-        if any(ph in txt for ph in RANK_PHRASES) and p["barcode"] != top_bc:
-            rankflag.append((p["barcode"], "claims rank but is not #1"))
-    print(f"[{'WARN' if rankflag else 'PASS'}] stale-rank    ({len(rankflag)} non-top products with rank claims)")
-    if rankflag: warns.append(("stale-rank", rankflag))
+    # 6. superlative rank check — AUTOMATED via rank_check.py (TASK-422/W3).
+    # Supersedes the old manual-WARN phrase scan: rank_check re-derives every superlative
+    # claim (nutrient extremum / score / additives) against the FULL corpus and HARD-fails a
+    # false one, while deferring subpool-scoped/uniqueness claims to WARN. Runs as a subprocess
+    # so the two validators stay decoupled; if it is unavailable, degrade to a WARN (never crash
+    # the ship gate).
+    rc_path = os.path.join(os.path.dirname(__file__), "..", "validators", "rank_check.py")
+    if os.path.exists(rc_path):
+        try:
+            import subprocess
+            proc = subprocess.run([sys.executable, rc_path, "--json", a.json, "--emit-json"],
+                                  capture_output=True, text=True, timeout=120)
+            rc = json.loads(proc.stdout or "{}")
+            false_sups = [f for f in rc.get("findings", []) if f.get("status") == "FAIL"]
+            manual = [f for f in rc.get("findings", []) if f.get("level") == "WARN"]
+            print(f"[{'FAIL' if false_sups else 'PASS'}] superlative   "
+                  f"({len(false_sups)} false, {len(manual)} manual-review) [rank_check.py]")
+            if false_sups:
+                fails.append(("superlative", [f["detail"] for f in false_sups][:8]))
+            if manual:
+                warns.append(("superlative-manual", [f["detail"] for f in manual][:8]))
+        except Exception as e:  # noqa: BLE001 — a validator hiccup must not break the ship gate
+            print(f"[WARN] superlative   (rank_check.py error: {e}) — run it standalone")
+            warns.append(("superlative", f"rank_check.py error: {e}"))
+    else:
+        # fallback: the original lightweight phrase scan
+        ranked = sorted(prods, key=lambda p: -(p["score"] or 0))
+        top_bc = ranked[0]["barcode"] if ranked else None
+        rankflag = [(p["barcode"], "claims rank but is not #1") for p in prods
+                    if any(ph in ((p.get("rowVerdict", "") or "") + (p.get("insightLine", "") or ""))
+                           for ph in RANK_PHRASES) and p["barcode"] != top_bc]
+        print(f"[{'WARN' if rankflag else 'PASS'}] stale-rank    ({len(rankflag)} rank claims; rank_check.py absent)")
+        if rankflag: warns.append(("stale-rank", rankflag))
 
     # 7. image presence (HTTP optional)
     noimg = [p["barcode"] for p in prods if not p.get("imageUrl")]

@@ -27,6 +27,13 @@ Rules:
 4. The orchestrator verifies the JSON against the filesystem before acceptance.
    A return block without this JSON is automatically CHANGES_REQUESTED.
 
+   **Enforced deterministically (TASK-420 / W1):** `03_operations\validators\validate_return.py`
+   is the C0 gate for this contract. It runs FIRST on every return
+   (`python 03_operations\validators\validate_return.py --md tasks\returns\PNN_return.md`):
+   schema + 7 keys, sha256 re-hash of every artifact, counts carry a named denominator/source,
+   a distribution marker on full-set claims (Rule 5 below), and fabricated-PMID/DOI detection.
+   Exit != 0 → automatic CHANGES_REQUESTED. Self-test: `validate_return.py --selftest`.
+
 ## Verification-hardening requirements (owner-directed 2026-06-13)
 
 *Added after return-block COUNTS proved untrustworthy: a scoring run reported

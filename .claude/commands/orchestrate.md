@@ -97,6 +97,13 @@ only — never two writers in the same files.** Mark the move dispatched on the 
 
 **5. On return — VERIFY before anything closes (this is your job, undivided).** Router/subagent output is
 **RETURNED-UNVERIFIED** until you check it. A return block is a **claim, not proof**.
+- **C0 gate FIRST (deterministic, before you read the prose):** run
+  `python 03_operations\validators\validate_return.py --md tasks\returns\PNN_return.md` (or `--json`).
+  It checks the contract schema, re-hashes every artifact's sha256, lints counts for a named
+  denominator/source, requires a distribution marker on full-set claims (Rule 5), and flags fabricated
+  PMIDs/DOIs. **Exit != 0 → `CHANGES_REQUESTED` automatically** — do not spend reasoning verifying a
+  return the gate already rejected. Exit 0 means the contract is *well-formed and self-consistent*, not
+  that the work is right — continue the human verification below.
 - Re-read the DoD in the task file; list each exit criterion.
 - Check **every claim against the artifact** — file:line / the real number / build / lint / deployed-state
   where consumer-facing — never the agent's prose. "Misroute 1.8%" → open the QA result. "Scores shipped"

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bari:gold_set_schema:v0",
+  "title": "Bari Gold Set Seed — Entry Schema v0",
+  "description": "JSON Schema for a single gold-set seed entry. Enforced by validate_goldset.py. Independence firewall: no actual engine scores may appear in expected{}. OFF-ban: basis may not be 'Open Food Facts' or 'OFF'.",
+  "type": "object",
+  "required": ["id", "pid", "corpus", "tier", "scoring_flags", "expected", "rubric", "provenance"],
+  "additionalProperties": true,
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Human-readable gold-set entry id, e.g. G-001, P-001, A-001"
+    },
+    "pid": {
+      "type": "string",
+      "description": "Canonical product id matching the BSIP1 file name stem"
+    },
+    "corpus": {
+      "type": "string",
+      "description": "Registry corpus name (from shadow_registry_v1.json)"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["good", "poor", "ambiguous"],
+      "description": "Gold tier: good = clearly good (expected A-S), poor = clearly poor (expected D-E), ambiguous = adversarial/stress-test"
+    },
+    "scoring_flags": {
+      "type": "object",
+      "description": "Merged flag config under which the expected band holds. Keys are BARI_* env-var names, values 'on'/'off'.",
+      "additionalProperties": {
+        "type": "string",
+        "enum": ["on", "off"]
+      }
+    },
+    "expected": {
+      "type": "object",
+      "required": ["grade_band", "score_range"],
+      "additionalProperties": false,
+      "properties": {
+        "grade_band": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["S", "A", "B", "C", "D", "E"]
+          },
+          "description": "Inclusive acceptable grades. score_range must be consistent with these grades per cutoffs: S>=90, A 80-89, B 65-79, C 50-64, D 35-49, E 0-34."
+        },
+        "score_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "description": "Inclusive [min, max] numeric score range. Must be internally consistent with grade_band."
+        },
+        "dimensions": {
+          "type": "object",
+          "description": "Label-observable dimension direction expectations (max 3, advisory only — never affects pass/fail). Keys from the 10 engine dimensions.",
+          "maxProperties": 3,
+          "additionalProperties": false,
+          "properties": {
+            "processing_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "nutrient_density": {"type": "string", "enum": ["low", "medium", "high"]},
+            "calorie_density": {"type": "string", "enum": ["low", "medium", "high"]},
+            "glycemic_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "protein_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "additive_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "satiety_support": {"type": "string", "enum": ["low", "medium", "high"]},
+            "fat_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "regulatory_quality": {"type": "string", "enum": ["low", "medium", "high"]},
+            "whole_food_integrity": {"type": "string", "enum": ["low", "medium", "high"]}
+          }
+        }
+      },
+      "not": {
+        "anyOf": [
+          {"required": ["actual_score"]},
+          {"required": ["bari_score"]},
+          {"required": ["engine_grade"]},
+          {"required": ["engine_score"]}
+        ]
+      }
+    },
+    "rubric": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["criterion", "rationale", "basis"],
+        "additionalProperties": true,
+        "properties": {
+          "criterion": {"type": "string"},
+          "rationale": {"type": "string"},
+          "basis": {
+            "type": "string",
+            "description": "Source for the claim. Must NOT be 'Open Food Facts', 'OFF', or any variant.",
+            "not": {
+              "pattern": "(?i)(open food facts|^OFF$|openfoodfacts)"
+            }
+          },
+          "citation": {"type": "string"}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["authored_by", "authored_blind"],
+      "additionalProperties": true,
+      "properties": {
+        "authored_by": {"type": "string"},
+        "authored_blind": {
+          "type": "boolean",
+          "description": "True = expected band derived from first-principles + label only, never from engine output"
+        },
+        "reviewed_by": {"type": "string"},
+        "agreement": {
+          "type": "string",
+          "enum": ["yes", "no", "pending"]
+        }
+      }
+    }
+  }
+}
