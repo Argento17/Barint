@@ -160,7 +160,9 @@ def score_one_corpus(corpus_cfg: dict) -> dict | None:
     return score_corpus(source, merged_flags, shelf_rel)
 
 
-def run_check(seed_path: pathlib.Path, verbose: bool = False) -> int:
+def run_check(seed_path: pathlib.Path, verbose: bool = False,
+              baseline_path: "pathlib.Path | None" = None,
+              write_baseline_path: "pathlib.Path | None" = None) -> int:
     """
     Main gold_check logic. Returns exit code (0/1/2/3).
     """
@@ -386,7 +388,42 @@ def run_check(seed_path: pathlib.Path, verbose: bool = False) -> int:
                 print(f"    {note.strip()}")
         print()
 
-    # Determine exit code
+    # ---- accepted-baseline / regression mode (W2 protective gate, TASK-421) --------------
+    # Standing FAILs are ACCEPTED engine_divergences (Nutrition-adjudicated). A protective
+    # merge-gate must block only on a REGRESSION — a baselined PASS/ADVISORY entry that newly
+    # FAILs (a real accuracy drop from an engine/data change) — not on the standing disagreements.
+    by_id = {r["id"]: r["verdict"] for r in results_by_entry}
+    if write_baseline_path:
+        import json as _json
+        write_baseline_path.write_text(
+            _json.dumps(by_id, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+        print(f"WROTE accepted baseline ({len(by_id)} entries) -> {write_baseline_path}")
+    if baseline_path:
+        import json as _json
+        try:
+            base = _json.loads(baseline_path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as _e:
+            print(f"EXIT 3: cannot read baseline {baseline_path}: {_e}")
+            return 3
+        regressions = [(i, base[i], by_id[i]) for i in by_id
+                       if i in base and base[i] in ("PASS", "ADVISORY") and by_id[i] == "FAIL"]
+        new_fails = [i for i in by_id if i not in base and by_id[i] == "FAIL"]
+        print("=" * 70)
+        print("REGRESSION CHECK vs accepted baseline")
+        if new_fails:
+            print(f"  {len(new_fails)} NEW entry(ies) failing (not in baseline — adjudicate + re-baseline): "
+                  f"{new_fails[:10]}")
+        if regressions:
+            print(f"  {len(regressions)} REGRESSION(S) — accepted entries newly FAILing:")
+            for i, was, now in regressions:
+                print(f"    {i}: {was} -> {now}")
+            print(f"EXIT 1: BLOCK — {len(regressions)} accuracy regression(s) vs baseline.")
+            return 1
+        print("  no regressions (standing accepted divergences unchanged).")
+        print("EXIT 0: no regression vs accepted baseline.")
+        return 0
+
+    # Determine exit code (standard, non-baseline mode — unchanged)
     if scorable == 0:
         print("EXIT 3: zero scorable entries.")
         return 3
@@ -415,6 +452,14 @@ def main() -> int:
         action="store_true",
         help="Print per-entry dimension advisory notes in the main results table",
     )
+    parser.add_argument(
+        "--baseline", type=pathlib.Path, default=None,
+        help="accepted-verdict baseline JSON; BLOCK (exit 1) only on a regression vs it (protective gate)",
+    )
+    parser.add_argument(
+        "--write-baseline", type=pathlib.Path, default=None,
+        help="write the current per-entry verdicts as the accepted baseline and exit",
+    )
     args = parser.parse_args()
 
     seed_path = args.seed
@@ -426,7 +471,8 @@ def main() -> int:
     print()
 
     try:
-        return run_check(seed_path, verbose=args.verbose)
+        return run_check(seed_path, verbose=args.verbose,
+                         baseline_path=args.baseline, write_baseline_path=args.write_baseline)
     except Exception as e:
         import traceback
         print(f"HARNESS CRASH: {type(e).__name__}: {e}", file=sys.stderr)

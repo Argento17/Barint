@@ -55,11 +55,17 @@ jobs:
         # 3 = harness error or zero scorable (blocking).
         # Disagreements (exit 2) are FINDINGS for Nutrition Agent review — they never
         # auto-fix the engine and must never block a merge (C3 backdoor ruling P238/P240).
+        # PROTECTIVE MODE (TASK-421/W2): run against the Nutrition-adjudicated accepted baseline.
+        # Standing disagreements are ACCEPTED engine_divergences and never block; the gate BLOCKS
+        # (exit 1) only on a REGRESSION — an accepted PASS/ADVISORY entry that newly FAILs (a real
+        # accuracy drop from an engine/data change). This preserves the C3 "findings-not-backdoor"
+        # ruling while making the gate genuinely protective.
         run: |
           set +e
           python 03_operations/shadow/goldset/validate_goldset.py
           val_code=$?
-          python 03_operations/shadow/goldset/gold_check.py
+          python 03_operations/shadow/goldset/gold_check.py \
+            --baseline 03_operations/shadow/goldset/accepted_baseline_v0.json
           gold_code=$?
           set -e
           if [ "$val_code" -ne 0 ]; then
@@ -67,10 +73,10 @@ jobs:
             exit "$val_code"
           fi
           case "$gold_code" in
-            0) echo "Gold gate: all scorable entries PASS." ;;
-            1) echo "::notice::Gold gate: ADVISORY only — borderline grade+score matches. No action needed." ;;
-            2) echo "::warning::Gold gate: DISAGREEMENTS found — engine vs gold-set band mismatches. Routed to Nutrition Agent for review. This is a FINDING, not a merge block." ;;
-            3) echo "::error::Gold gate: harness error or zero scorable entries (exit 3). Fix before merge."
+            0) echo "Gold gate: no accuracy regression vs the accepted baseline." ;;
+            1) echo "::error::Gold gate: ACCURACY REGRESSION — an accepted entry newly FAILs the gold set. A published-score change moved a product's accuracy. Investigate before merge."
+               exit 1 ;;
+            3) echo "::error::Gold gate: harness/baseline error or zero scorable entries (exit 3). Fix before merge."
                exit 3 ;;
             *) echo "::error::Gold gate failed unexpectedly (exit $gold_code)."
                exit "$gold_code" ;;

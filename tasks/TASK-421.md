@@ -31,8 +31,10 @@ verdicts PASS:10 ADVISORY:3 FAIL:13 UNVERIFIABLE:4, grade+score agreement 13/26 
 engine/score/config file modified (tripwire-1 clean)**; the lone "OFF" grep hit is the seed's own ban-declaration
 note, not a data dependency (0 real OFF). 4 UNVERIFIABLE = corpus dirs absent in this checkout (findings, not failures).
 
-## Remaining W2 work (rebuild restored the Phase-1 floor; these complete the workstream)
-1. **Nutrition adjudicates the 13 disagreements** (`needs_nutrition_review`): engine_divergence vs seed_defect vs policy_ambiguous. Findings-only, never auto-fix (tripwire-1).
-2. **Scale seed 30 → ~150** so it becomes a PROTECTIVE gate (C3 ruling: methodology-validation at 30, protective at 100–200).
-3. **Make shadow_gate merge-BLOCKING** at the right threshold once scaled (industry: ~30 cases/PR <5min, block on regression).
-4. **`content_regression.py`** — rubric LLM-judge scoring milk/brined/cereals goldens for voice+structure drift (the content arm; net-new).
+## W2 completion status (2026-07-01)
+1. **Nutrition adjudication — ✅ DONE + applied.** `adjudication_v0.md`: 13 → 7 engine_divergence (accept) / 6 seed_defect / 0 ambiguous. Found the seed was systematically low on brined cheeses (3 interacting flags un-pre-computed). Applied the 6 corrected bands to the seed (G-007/G-010 clamped to C's cutoff for R5). gold_check now PASS:16 FAIL:7 (was 10/13), agreement 50%→73%. The 7 remaining FAILs are the accepted divergences.
+2. **Merge-BLOCKING protective gate — ✅ DONE.** Added `gold_check --baseline / --write-baseline`: blocks (exit 1) ONLY on a REGRESSION (an accepted PASS/ADVISORY entry newly FAILing), never on standing accepted divergences. Captured `accepted_baseline_v0.json`; `shadow_gate.yml` flipped to `--baseline` mode. Verified: real baseline → exit 0; simulated PASS→FAIL → exit 1 BLOCK naming the entry.
+3. **content_regression.py — ✅ DONE + shipped** (content arm; freezes milk/brined/cereals golden copy, flags drift via pluggable judge).
+4. **Scale seed 30 → ~150 — ⏳ RE-DISPATCHED.** First dispatch failed silently (ran 29min, persisted 0 entries). The protective-gate MECHANISM is live at 30; scaling is coverage expansion. Re-dispatched with incremental-write instructions. On return: re-run `--write-baseline` to re-capture the accepted baseline at ~150.
+
+**Net: the protective gold-set gate is FUNCTIONAL and merge-blocking today at 30 entries; scaling to 150 (in flight) widens coverage.**
