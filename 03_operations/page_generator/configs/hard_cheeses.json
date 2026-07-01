@@ -2,8 +2,9 @@
   "_comment": "Hard cheeses category config. Score provenance PROVEN: run_hard_cheeses_003_shelfrel matches all 30 live barcodes with 0 score mismatches (verified 2026-06-16 by barcode-level comparison vs hard_cheeses_frontend_v2.json). The live page _meta.run_id='run_hard_cheeses_yohananof_001' is STALE (red-team RT-1 confirmed; run_summary.json in run_003_shelfrel confirms grade dist A:2/B:23/C:3/D:2 matching the actual live products). Corpus: bsip1_outputs (68 records, all 30 live barcodes covered). OFF BLOCKER: barcodes 7290102302864 (Gouda Pesto) and 7290014455252 (Grana Padano) carry open_food_facts_fallback as provenance.source — both are displayed live products. Generator will auto-exclude them (TASK-238 hard rule), producing 28 products vs 30 live. These two products are a launch blocker and must be re-scraped from a direct source before this config can achieve full parity. Run universe = 30 (no additional exclusions: run_003_shelfrel contains exactly the 30 live products). EXCLUDE run_hardcheese_redlabel_v1_001 (UNSHIPPED experimental, 0/28 bogus scores).",
   "category": "hard-cheeses",
   "corpus_dirs": [
-    "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs"
+    "C:\\Bari\\02_products\\hard_cheeses\\bsip1_task412"
   ],
+  "_corpus_dirs_provenance": "TASK-429 (2026-07-01): corpus source PINNED to bsip1_task412 — it covers all 31 published v4 barcodes (bsip1_outputs covers only 12/31, and produces WRONG scores for 4 of the 12 it does have, e.g. 7290110320850 -> 67.0 vs published 62.6). Proven to byte-reproduce hard_cheeses_frontend_v4 (31/31, 0.000 drift, 0 grade moves) via _t429_reproduce.py. Prior corpus_dirs=bsip1_outputs was the stale root cause of the A/85-vs-B/67 invocation contradiction.",
   "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hc_task412_rt4_fix\\products",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v4.json",
   "retailer_scope": [
@@ -19,12 +20,12 @@
       "BARI_SHELF_RELATIVE_V1": "on",
       "BARI_FAT_TECH_V1": "on",
       "BARI_RECAL_P0": "on",
-      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
-      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_HC002_NOVA1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "on",
       "BARI_REDLABEL_V1": "on",
-      "BARI_SODIUM_CEREAL": "off",
-      "BARI_GRAD_SODIUM_V1": "off"
+      "BARI_HC_DAIRY_SATFAT_V1": "on"
     },
+    "_flags_provenance": "TASK-429 (2026-07-01): flags set to the EXACT canonical vector that reproduces v4 — identical to hard_cheeses_frontend_v4._meta.flag_vector AND run_hc_task412_rt4_fix/run_summary.json.flags. Added BARI_DAIRY_SAT_FAT_INFER + BARI_HC_DAIRY_SATFAT_V1 (v4 declares both ON; config previously omitted them). Removed the four inert off-flags (all other engine flags default off). All 27 other flags off; BARI_GLASSBOX_W4 on (diag baseline). Requires constants.py:702 HC_DAIRY_SATFAT_NA_CAP_600_VALUE=67.0 (rt4 fix, present at HEAD). Score-neutral: reproduces published, changes nothing.",
     "shelf_rel": {
       "nutrient": "fat_saturated_g",
       "median": 18.0,

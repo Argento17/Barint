@@ -69,3 +69,31 @@ single, documented "how to score category X so it reproduces what's published" r
   HC gates PASS) but UNVERIFIED against a canonical baseline — treat as a lead, not truth.
 - All 16 live configs carry `flags: None` at top level; real flags live in `scoring.flags` and/or the frontend
   `_meta`. The mismatch between config flags and `_meta.flag_vector` is the likely core of the invocation gap.
+
+## RESOLUTION (2026-07-01, worktree `task429/canonical-repro` off f530bc87)
+**PROVEN — byte-reproduces `hard_cheeses_frontend_v4` 31/31, max abs drift 0.000, 0 grade moves, 0 missing.**
+Full write-up: `03_operations/page_generator/provenance/hard_cheeses_canonical_invocation_v1.md`.
+
+- **DoD #1 canonical invocation documented** — flags (7-vector), shelf-stats (frozen constants EV-090,
+  median 18.0/scale 1.40), corpus (`bsip1_task412`), engine fix (constants.py:702=67.0), loader
+  (`file_type ∈ {product, bsip1_enriched}`), reload order. Proven by `_t429_reproduce.py`.
+- **DoD #2 forks resolved with evidence** — (a) corpus = `bsip1_task412` (covers 31/31; `bsip1_outputs`
+  covers 12/31 and mis-scores 4 of the 12 — THIS was the A/85-vs-B/67 contradiction). (b) shelf-stats =
+  frozen constants, not recomputed.
+- **DoD #3 config completeness** — `configs/hard_cheeses.json`: `corpus_dirs → bsip1_task412`; `scoring.flags`
+  set to the exact canonical vector (added `BARI_DAIRY_SAT_FAT_INFER` + `BARI_HC_DAIRY_SATFAT_V1`, dropped
+  inert off-flags). Provenance comments added. Score-neutral.
+- **DoD #4 proven via `_reproduce_diag`** — config-driven diag with loader widened to accept `bsip1_enriched`:
+  hard_cheeses row = repro=31 drift=0 grade_moves=0 nocorpus=0 maxd=0.0.
+- **DoD #5 generalize** — recipe reproduces categories with no post-publication change (choc bars/tablets/
+  snacks/HC exact). cheese (22 drifters, all `_task405_clean`, +drift) and cereals/granola/milk (2 SKUs each,
+  small +drift) are since-applied data/engine cleans = owner-gated **TASK-418** refresh, NOT an invocation
+  gap. Flagged, not fixed here (score-neutral honored).
+
+**Open item for the standard path:** the generic corpus loader (`_reproduce_diag.py` and, if it shares the
+filter, `generate_page`) drops `file_type='bsip1_enriched'` records. HC's 79 shufersal records are enriched,
+so the standard path needs the one-line filter widening to reproduce HC without a bespoke harness. Diagnosed;
+production loader NOT modified in this task (out of Phase-0 scope — flag for TASK-418/419).
+
+Proposed status: ready to CLOSE once the config change + provenance doc land on the working line (unblocks
+TASK-418 verification and TASK-419 shadow baseline).
