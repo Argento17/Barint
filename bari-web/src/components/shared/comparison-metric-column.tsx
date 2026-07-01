@@ -211,8 +211,10 @@ export const SUGAR_METRIC: MetricSpec = {
 // Sugar is a real differentiator: shelf range 4.8–25g/100g.
 //   scaleMax 28 — gives the 25g outlier a near-full bar without false-clipping.
 //   good  ≤8g  — few products clear this; marks the genuinely low-sugar products.
-//   poor  ≥18g — at/above the Israeli MoH 17.5g/100g red-label threshold (§4.3:
-//                shown in amber only, never alarm-red — limits are information, not alarms).
+//   poor  ≥18g — Bari's own informational high-sugar flag for this shelf (NOT an MoH
+//                citation: per EV-108/TASK-442, 17.5/5.0/600 is a Bari anchor, never a real
+//                MoH figure; real MoH Stage-2 solid sugar cutoff is 10g/100g). Shown in amber
+//                only, never alarm-red — limits are information, not alarms (§4.3).
 // lowerIsBetter: true — a shorter bar = better for this metric.
 // aria unit is per-100g (solids, not per-100ml).
 export const GRANOLA_SUGAR_METRIC: MetricSpec = {
@@ -234,11 +236,13 @@ export const GRANOLA_SUGAR_METRIC: MetricSpec = {
 // Cereals sugar metric (TASK-387): sugar is the primary discriminator on the cereals
 // shelf — the range (3.8–29.9g/100g) is wider than granola's (4.8–25g). Most products
 // cluster at 16–29g; only 2 products score below 8g. The GRANOLA_SUGAR_METRIC thresholds
-// are reused (good≤8, poor≥18) because the MoH 17.5g/100g red-label anchor is relevant
-// here too, and the shelf biology is the same category of food. scaleMax=32 rather than
+// are reused (good≤8, poor≥18) because Bari's own informational high-sugar flag applies
+// here too (NOT an MoH figure — see EV-108/TASK-442; real MoH Stage-2 solid sugar cutoff is
+// 10g/100g), and the shelf biology is the same category of food. scaleMax=32 rather than
 // 28 — the 29.9g top product needs a few points of headroom to avoid false-clipping.
 //   good  ≤8g  — genuinely low-sugar for a breakfast cereal (only 2 products clear this).
-//   poor  ≥18g — at/above the Israeli MoH red-label threshold (amber only, §4.3).
+//   poor  ≥18g — Bari's own informational high-sugar flag, amber only (§4.3). NOT an MoH
+//                threshold — real MoH Stage-2 solid sugar cutoff is 10g/100g (EV-108/TASK-442).
 // lowerIsBetter: true. aria unit is per-100g (solids). neutralBarFill matches granola —
 // the mid-band (8–18g) neutral bars would otherwise be near-invisible on the track.
 export const CEREALS_SUGAR_METRIC: MetricSpec = {
@@ -257,7 +261,9 @@ export const CEREALS_SUGAR_METRIC: MetricSpec = {
 
 // Cookies-coffee saturated-fat metric (TASK-393): shelf range 0.4–17.0g/100g,
 // median ≈9g. Scale 0–20 gives the 17g top outlier a near-full bar with ~3g headroom.
-//   good  ≤5g  — below Israeli MoH red-label threshold for saturated fat in biscuits.
+//   good  ≤5g  — Bari's own informational low-saturated-fat marker for this shelf. NOTE: 5g
+//                is NOT the current MoH cutoff — it matches only the superseded 2020 Stage-1
+//                figure; MoH Stage-2 (2021-on) solid sat-fat cutoff is 4g/100g (EV-108/TASK-442).
 //   poor  ≥10g — EU amber traffic-light / high end of the biscuit shelf.
 // lowerIsBetter: true. aria unit per-100g (solids).
 // neutralBarFill matches granola/cereals: mid-band bars (5–10g) would otherwise
