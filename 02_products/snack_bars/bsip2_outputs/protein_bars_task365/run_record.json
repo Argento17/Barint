@@ -1,0 +1,1078 @@
+{
+  "run_id": "protein_bars_task365_fix33_20260621_124433",
+  "task": "TASK-365",
+  "generated_at": "2026-06-21T12:44:33.906950Z",
+  "lens": "BARI_PROTEIN_BAR_V1",
+  "lens_active": true,
+  "cond1_omitted": "PROTEIN_BAR_VERY_LONG_LIST omitted per Product Agent COND-1",
+  "cond2_branch": "RECAL_P0_ON=False",
+  "cond2_verification": "assertion in apply_protein_bar_lens() — no double-fire",
+  "fix_applied": {
+    "discarded_barcodes": [
+      "7290015130271",
+      "7290015130288"
+    ],
+    "reason": "truncated ingredient lists — no protein source token detected",
+    "rule": "missing_data_discard_rule",
+    "original_corpus_count": 35,
+    "fix_corpus_count": 33
+  },
+  "corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+  "corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
+  "corpus_product_count": 33,
+  "scored_count": 33,
+  "error_count": 0,
+  "score_distribution": {
+    "mean": 53.0,
+    "median": 50,
+    "min": 45,
+    "max": 70,
+    "grade_histogram": {
+      "B": 2,
+      "C": 26,
+      "D": 5
+    }
+  },
+  "ingredient_completeness_gate": {
+    "status": "PASS",
+    "checked": 33,
+    "truncations_found": 0,
+    "min_chars_threshold": 120,
+    "protein_source_tokens": [
+      "חלבון",
+      "פרוטאין",
+      "protein",
+      "איזולט",
+      "קזאין",
+      "מי גבינה",
+      "סויה",
+      "אפונה",
+      "קולגן",
+      "collagen",
+      "whey",
+      "isolate",
+      "casein",
+      "בוטנים",
+      "אגוזי לוז",
+      "אגוז",
+      "שקד"
+    ]
+  },
+  "score_stability_check": {
+    "status": "PASS",
+    "note": "Per-product scores of surviving 33 are unchanged from 35-product run",
+    "changed": []
+  },
+  "cond2_collagen_check": {
+    "status": "PASS",
+    "collagen_products": 6,
+    "double_fire_issues": 0,
+    "branch": "RECAL_P0_ON=False"
+  },
+  "acceptance_invariants": {
+    "INV_A_maltitol_vs_erythritol": {
+      "status": "SKIP",
+      "note": "maltitol_products=24, erythritol_products=0"
+    },
+    "INV_B_glycerol_penalty": {
+      "status": "PASS",
+      "glycerol_count": 26,
+      "avg_glycerol_score": 53.0,
+      "avg_non_glycerol_score": 52.9,
+      "note": "All glycerol products received total_pb_penalty >= 8"
+    },
+    "INV_C_protein_quantity_move_le5": {
+      "status": "PASS",
+      "scores_by_protein_g": {
+        "10.0": 40.2,
+        "15.0": 44.6,
+        "20.0": 45,
+        "30.0": 45
+      },
+      "max_move_points": 4.8,
+      "required_max": 5,
+      "note": "Varying protein_g from 10→30g on 'חטיף חלבון שוקולד דובאי'"
+    },
+    "INV_D_cap_hierarchy": {
+      "status": "PASS",
+      "maltitol_cap_check": "24 products all <=62: True",
+      "tier2_cap_check": "0 products all <=66: True",
+      "artificial_cap_check": "0 products all <=70: True",
+      "note": "Cap hierarchy: maltitol(62) < tier2(66) < artificial(70) < erythritol(uncapped)"
+    },
+    "INV_E_BEV014_no_double_count": {
+      "status": "PASS",
+      "collagen_products": 6,
+      "double_fire_issues": 0,
+      "cond2_branch": "RECAL_P0_ON=False",
+      "note": "RECAL_P0_ON inactive — penalty applies (discount not active, no double-fire)"
+    },
+    "INV_F_calorie_density_no_cliff": {
+      "status": "PASS",
+      "score_at_379kcal": 72,
+      "score_at_381kcal": 71,
+      "diff": 1,
+      "required_max_diff": 2,
+      "note": "protein_bar calorie table boundary check around 380 kcal"
+    },
+    "INV_G_routing_protein_name": {
+      "status": "PASS",
+      "checked_products_with_protein_in_name": 27,
+      "routing_fails": [],
+      "note": "Products with 'חלבון'/'פרוטאין'/'protein' in name must route to protein_bar subtype. Products lacking protein token in name (brand-only detection) are excluded from this check."
+    },
+    "INV_H_absolute_floor": {
+      "status": "PASS",
+      "below_floor_count": 0,
+      "below_floor_products": []
+    },
+    "INV_I_worst_cap_wins": {
+      "status": "PASS",
+      "combined_maltitol_artificial": 15,
+      "note": "maltitol(62) beats sucralose(70) — worst cap wins"
+    },
+    "_overall": {
+      "status": "PASS",
+      "all_checked": true,
+      "skipped": 1
+    }
+  },
+  "flag_off_proof": {
+    "flag_off_check": "NOTE",
+    "bari_protein_bar_v1": "on",
+    "note": "BARI_PROTEIN_BAR_V1=on for this run. Flag-OFF proof: apply_protein_bar_lens() returns base_result unchanged when PROTEIN_BAR_LENS_ON=False. Re-run with --flag-off-check to verify."
+  },
+  "v1_diff_count": 14,
+  "v1_diff": [
+    {
+      "barcode": "7290017516295",
+      "name": "חטיף חלבון אגוזי לוז",
+      "v1_score": 71.5,
+      "v1_grade": "B",
+      "v1_rank": 1,
+      "v2_score": 68.6,
+      "v2_grade": "B",
+      "v2_rank": 2,
+      "delta": -2.9
+    },
+    {
+      "barcode": "7290121161886",
+      "name": "חטיף חלבון בננה שוקולד",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v1_rank": 3,
+      "v2_score": 61.9,
+      "v2_grade": "C",
+      "v2_rank": 3,
+      "delta": 11.9
+    },
+    {
+      "barcode": "7290121166850",
+      "name": "חטיף חלבון וניל קראנץ'",
+      "v1_score": 54.1,
+      "v1_grade": "C",
+      "v1_rank": 2,
+      "v2_score": 60.9,
+      "v2_grade": "C",
+      "v2_rank": 4,
+      "delta": 6.8
+    },
+    {
+      "barcode": "8410076610379",
+      "name": "נייטשר פרוטאין שוקולד",
+      "v1_score": 35.0,
+      "v1_grade": "D",
+      "v1_rank": 13,
+      "v2_score": 55,
+      "v2_grade": "C",
+      "v2_rank": 5,
+      "delta": 20.0
+    },
+    {
+      "barcode": "8410076610386",
+      "name": "נייטשר פרוטאין קרמל מלוח",
+      "v1_score": 37.0,
+      "v1_grade": "D",
+      "v1_rank": 12,
+      "v2_score": 55,
+      "v2_grade": "C",
+      "v2_rank": 6,
+      "delta": 18.0
+    },
+    {
+      "barcode": "7290119371112",
+      "name": "חטיף חלבון קרמל ואגוזים",
+      "v1_score": 41.0,
+      "v1_grade": "D",
+      "v1_rank": 10,
+      "v2_score": 54,
+      "v2_grade": "C",
+      "v2_rank": 10,
+      "delta": 13.0
+    },
+    {
+      "barcode": "7290117384589",
+      "name": "חטיף חלבון קרמל מלוח",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v1_rank": 3,
+      "v2_score": 50,
+      "v2_grade": "C",
+      "v2_rank": 18,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290117384596",
+      "name": "חטיף חלבון פאי קינמון",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v1_rank": 3,
+      "v2_score": 50,
+      "v2_grade": "C",
+      "v2_rank": 19,
+      "delta": 0.0
+    },
+    {
+      "barcode": "7290121160582",
+      "name": "חטיף חלבון חמאת בוטנים",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v1_rank": 7,
+      "v2_score": 50,
+      "v2_grade": "C",
+      "v2_rank": 20,
+      "delta": 4.0
+    },
+    {
+      "barcode": "7290121161916",
+      "name": "חטיף חלבון טריפל שוקולד",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v1_rank": 7,
+      "v2_score": 50,
+      "v2_grade": "C",
+      "v2_rank": 21,
+      "delta": 4.0
+    },
+    {
+      "barcode": "7290121161930",
+      "name": "חטיף חלבון טעם בננה טופי",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v1_rank": 7,
+      "v2_score": 50,
+      "v2_grade": "C",
+      "v2_rank": 22,
+      "delta": 4.0
+    },
+    {
+      "barcode": "7290112915382",
+      "name": "חטיף חלבון שוקולד דובאי",
+      "v1_score": 23.6,
+      "v1_grade": "E",
+      "v1_rank": 16,
+      "v2_score": 45,
+      "v2_grade": "D",
+      "v2_rank": 31,
+      "delta": 21.4
+    },
+    {
+      "barcode": "7290112913487",
+      "name": "חטיף חלבון קרם אגוזים",
+      "v1_score": 28.0,
+      "v1_grade": "E",
+      "v1_rank": 14,
+      "v2_score": 45,
+      "v2_grade": "D",
+      "v2_rank": 32,
+      "delta": 17.0
+    },
+    {
+      "barcode": "7290112915351",
+      "name": "חטיף חלבון קרמל מלוח",
+      "v1_score": 25.6,
+      "v1_grade": "E",
+      "v1_rank": 15,
+      "v2_score": 45,
+      "v2_grade": "D",
+      "v2_rank": 33,
+      "delta": 19.4
+    }
+  ],
+  "rerank_table": [
+    {
+      "barcode": "7290112497994",
+      "name": "גרנולה פרוטאין+אגוזים",
+      "brand": "תלמה",
+      "format": "bar",
+      "rank": 1,
+      "score": 70,
+      "grade": "B",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 23.7,
+      "sugar_g": 9.0
+    },
+    {
+      "barcode": "7290017516295",
+      "name": "חטיף חלבון אגוזי לוז",
+      "brand": "פנגיאה",
+      "format": "bar",
+      "rank": 2,
+      "score": 68.6,
+      "grade": "B",
+      "caps_applied": [],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 27.0,
+      "sugar_g": 17.0
+    },
+    {
+      "barcode": "7290121161886",
+      "name": "חטיף חלבון בננה שוקולד",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 3,
+      "score": 61.9,
+      "grade": "C",
+      "caps_applied": [],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": false,
+        "polyol_tier": null
+      },
+      "protein_g": 36.0,
+      "sugar_g": 12.0
+    },
+    {
+      "barcode": "7290121166850",
+      "name": "חטיף חלבון וניל קראנץ'",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 4,
+      "score": 60.9,
+      "grade": "C",
+      "caps_applied": [],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": false,
+        "polyol_tier": null
+      },
+      "protein_g": 36.0,
+      "sugar_g": 16.0
+    },
+    {
+      "barcode": "8410076610379",
+      "name": "נייטשר פרוטאין שוקולד",
+      "brand": "נייטשר וואלי",
+      "format": "bar",
+      "rank": 5,
+      "score": 55,
+      "grade": "C",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 25.0,
+      "sugar_g": 17.2
+    },
+    {
+      "barcode": "8410076610386",
+      "name": "נייטשר פרוטאין קרמל מלוח",
+      "brand": "נייטשר וואלי",
+      "format": "bar",
+      "rank": 6,
+      "score": 55,
+      "grade": "C",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 26.0,
+      "sugar_g": 16.1
+    },
+    {
+      "barcode": "7290019766025",
+      "name": "אול אין סופט פיסטוק",
+      "brand": "all in",
+      "format": "bar",
+      "rank": 7,
+      "score": 55,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR",
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 27.4,
+      "sugar_g": 4.6
+    },
+    {
+      "barcode": "7290015130028",
+      "name": "WIN חטיף חלבון קרם חלב",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "rank": 8,
+      "score": 55,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 34.0,
+      "sugar_g": 4.4
+    },
+    {
+      "barcode": "7290119371129",
+      "name": "חטיף חלבון שוקולד עוגיות",
+      "brand": "פרו שטראוס",
+      "format": "cookie",
+      "rank": 9,
+      "score": 55,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR",
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 28.0,
+      "sugar_g": 3.9
+    },
+    {
+      "barcode": "7290119371112",
+      "name": "חטיף חלבון קרמל ואגוזים",
+      "brand": "פרו שטראוס",
+      "format": "bar",
+      "rank": 10,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.0,
+      "sugar_g": 3.7
+    },
+    {
+      "barcode": "7290019401018",
+      "name": "חטיף פרוטאין קרם עוגיות",
+      "brand": "פרוטאין",
+      "format": "cookie",
+      "rank": 11,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": false,
+        "polyol_tier": 1
+      },
+      "protein_g": 34.0,
+      "sugar_g": 3.7
+    },
+    {
+      "barcode": "7290019401049",
+      "name": "חטיף פרוטאין שוקולד קרמל",
+      "brand": "פרוטאין",
+      "format": "bar",
+      "rank": 12,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": false,
+        "polyol_tier": 1
+      },
+      "protein_g": 34.0,
+      "sugar_g": 3.6
+    },
+    {
+      "barcode": "7290015130035",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "rank": 13,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 31.0,
+      "sugar_g": 1.7
+    },
+    {
+      "barcode": "7290015130042",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "rank": 14,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 31.0,
+      "sugar_g": 2.3
+    },
+    {
+      "barcode": "7290018703991",
+      "name": "עוגיית חלבון דאבל שוקולד",
+      "brand": "all in",
+      "format": "cookie",
+      "rank": 15,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 25.0,
+      "sugar_g": 2.5
+    },
+    {
+      "barcode": "7290018703984",
+      "name": "עוגיית חלבון שוקולד צ'יפ",
+      "brand": "all in",
+      "format": "cookie",
+      "rank": 16,
+      "score": 54,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 25.0,
+      "sugar_g": 2.5
+    },
+    {
+      "barcode": "7290117384572",
+      "name": "חטיף חלבון קרם עוגיות",
+      "brand": "טודיי",
+      "format": "cookie",
+      "rank": 17,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.6,
+      "sugar_g": 3.0
+    },
+    {
+      "barcode": "7290117384589",
+      "name": "חטיף חלבון קרמל מלוח",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 18,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.7,
+      "sugar_g": 2.9
+    },
+    {
+      "barcode": "7290117384596",
+      "name": "חטיף חלבון פאי קינמון",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 19,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.8,
+      "sugar_g": 2.9
+    },
+    {
+      "barcode": "7290121160582",
+      "name": "חטיף חלבון חמאת בוטנים",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 20,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 34.8,
+      "sugar_g": 2.4
+    },
+    {
+      "barcode": "7290121161916",
+      "name": "חטיף חלבון טריפל שוקולד",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 21,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 32.4,
+      "sugar_g": 2.3
+    },
+    {
+      "barcode": "7290121161930",
+      "name": "חטיף חלבון טעם בננה טופי",
+      "brand": "טודיי",
+      "format": "bar",
+      "rank": 22,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.4,
+      "sugar_g": 2.5
+    },
+    {
+      "barcode": "7290019766018",
+      "name": "אול איןחלבון סופט עוגיות",
+      "brand": "all in",
+      "format": "cookie",
+      "rank": 23,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 27.2,
+      "sugar_g": 4.0
+    },
+    {
+      "barcode": "7290018703304",
+      "name": "אול אין קרם עוגיות",
+      "brand": "all in",
+      "format": "cookie",
+      "rank": 24,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 28.3,
+      "sugar_g": 3.4
+    },
+    {
+      "barcode": "7290018703076",
+      "name": "אול אין דאבל שוקולד",
+      "brand": "all in",
+      "format": "bar",
+      "rank": 25,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.3,
+      "sugar_g": 3.4
+    },
+    {
+      "barcode": "7290018043899",
+      "name": "אול אין בוטנים קרמל",
+      "brand": "all in",
+      "format": "bar",
+      "rank": 26,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 33.3,
+      "sugar_g": 3.6
+    },
+    {
+      "barcode": "7290018043134",
+      "name": "אול אין שוק.לבן עוגיות",
+      "brand": "all in",
+      "format": "cookie",
+      "rank": 27,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 29.0,
+      "sugar_g": 3.5
+    },
+    {
+      "barcode": "7290019310235",
+      "name": "אול אין ונילה קראנץ",
+      "brand": "all in",
+      "format": "bar",
+      "rank": 28,
+      "score": 50,
+      "grade": "C",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 29.0,
+      "sugar_g": 3.3
+    },
+    {
+      "barcode": "7290019766230",
+      "name": "חטיף חלבון אסטרה סופט",
+      "brand": "all in",
+      "format": "bar",
+      "rank": 29,
+      "score": 49.8,
+      "grade": "D",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1",
+        "SWEETENER_CAP_C_PROTEIN_BAR"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": true,
+        "isolate_stacking": true,
+        "wholefood_protein": true,
+        "polyol_tier": 1
+      },
+      "protein_g": 27.3,
+      "sugar_g": 4.8
+    },
+    {
+      "barcode": "7290019401544",
+      "name": "חטיף פרוטאין עוגיות טופי",
+      "brand": "פרוטאין",
+      "format": "cookie",
+      "rank": 30,
+      "score": 49.7,
+      "grade": "D",
+      "caps_applied": [
+        "PROTEIN_BAR_MALTITOL_TIER1"
+      ],
+      "key_signals_fired": {
+        "glycerol": true,
+        "maltitol": true,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": true,
+        "wholefood_protein": false,
+        "polyol_tier": 1
+      },
+      "protein_g": 34.0,
+      "sugar_g": 3.9
+    },
+    {
+      "barcode": "7290112915382",
+      "name": "חטיף חלבון שוקולד דובאי",
+      "brand": "מקס ברנר",
+      "format": "bar",
+      "rank": 31,
+      "score": 45,
+      "grade": "D",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 34.0,
+      "sugar_g": 27.0
+    },
+    {
+      "barcode": "7290112913487",
+      "name": "חטיף חלבון קרם אגוזים",
+      "brand": "מקס ברנר",
+      "format": "bar",
+      "rank": 32,
+      "score": 45,
+      "grade": "D",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 33.0,
+      "sugar_g": 31.0
+    },
+    {
+      "barcode": "7290112915351",
+      "name": "חטיף חלבון קרמל מלוח",
+      "brand": "מקס ברנר",
+      "format": "bar",
+      "rank": 33,
+      "score": 45,
+      "grade": "D",
+      "caps_applied": [
+        "BASE_ENGINE_BINDING_CAP_INHERIT"
+      ],
+      "key_signals_fired": {
+        "glycerol": false,
+        "maltitol": false,
+        "erythritol": false,
+        "sweetener_tier_c": false,
+        "isolate_stacking": false,
+        "wholefood_protein": true,
+        "polyol_tier": null
+      },
+      "protein_g": 34.0,
+      "sugar_g": 35.0
+    }
+  ],
+  "frontend_output": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_combined_frontend_v2.json",
+  "live_v1_path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_bars_frontend_v1.json",
+  "live_v1_untouched": true
+}
