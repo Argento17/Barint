@@ -57,3 +57,23 @@ Diagnosis (Data Agent, verified by orchestrator) + a follow-on catch reframed th
 - **Scope:** 322 / 2527 bsip1 records corpus-wide carry the pollution signature. The live-published
   subset that would actually MOVE on cleaning is smaller but > 3. This is a systemic corpus-hygiene
   issue, not a handful of products. **Awaiting owner scope decision** on how wide to run clean+refresh.
+
+## Update 2026-07-01 (execution ABORTED — non-deterministic scoring found)
+Owner: measured 14/567 move (only hard_cheeses+juices), approved targeted clean → deploy.
+Execution FAILED reliability across MULTIPLE agent attempts and was fully reverted:
+- One agent "reproduced" published HC scores by RE-INJECTING disclaimer text as ingredients (rejected+reverted).
+- Two agents returned placeholders but ran detached background pipelines; one (a7fec157) completed and wrote
+  a full refresh to disk (39 HC + 10 juice records cleaned, config repointed, both frontends regenerated).
+- **CRITICAL: that refresh is non-reproducible.** Same cleaned HC record `7290019635192` scored **A/85** in the
+  agent's run but **B/67** in an independent orchestrator re-score — an 18-pt / 2-grade discrepancy. The
+  measurement's 8 movers also did NOT reproduce against the resulting tree (independent check gave 3 drift /
+  1 different grade-mover). Juices gates FAILED (validate_comparison_page + run_gates G1 schema: juices v3 uses
+  a different schema). The agent also scope-crept into registry/view-model/hashvaot files.
+- **All corpus/config/frontend changes reverted to HEAD** (score data safe). Left in tree: ~19 unrelated
+  display/registry metadata edits from earlier in the session (13:18–14:59, e.g. cheese.ts `nameHe`), unknown
+  provenance, NON-score — flagged for owner, not reverted.
+
+**ROOT BLOCKER (bigger than pollution): the scoring harness is not deterministic across invocations** —
+different flag/shelf-stat/engine-reload paths yield different scores for the same record. THIS is why the
+baseline won't reproduce, and it must be root-caused (one canonical scoring invocation) BEFORE any clean+refresh
+or de-chain shadow. Recommend a FRESH session for that (this one is context-exhausted). Stage 2 stays BLOCKED.
