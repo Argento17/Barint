@@ -88,7 +88,7 @@ export function HomeCategoryIntelligence() {
                   </span>
                 </div>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4E5663]">{cat.hint}</p>
-                <p className="mt-4 flex items-center gap-1 text-xs font-bold text-[#167A58] opacity-80 group-hover:opacity-100">
+                <p className="mt-4 flex items-center gap-1 text-xs font-bold text-[#167A58] transition-opacity opacity-100 group-hover:opacity-100">
                   {cat.status === "זמין" ? "לניתוח" : "למידע"}
                   <ChevronLeft className="size-3.5" aria-hidden />
                 </p>

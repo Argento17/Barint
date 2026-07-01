@@ -336,7 +336,7 @@ function SignalRadar({
 
       <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center">
         <div className="w-36 rounded-[1.4rem] border border-black/[0.08] bg-[#FFFFFF]/85 px-4 py-3 text-center shadow-sm shadow-slate-900/25 backdrop-blur-md">
-          <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]/80">
+          <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#167A58]">
             פרמטר מוביל
           </div>
           <div className="mt-1 text-sm font-extrabold tracking-[-0.02em] text-[#111318]">
@@ -541,7 +541,7 @@ export function HomeMethodology() {
             inView ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           )}
         >
-          <p className="text-xs font-bold tracking-[0.16em] text-[#1F8F6A]/80">פרמטרים לניתוח</p>
+          <p className="text-xs font-bold tracking-[0.16em] text-[#167A58]">פרמטרים לניתוח</p>
           <h2 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
             ניתוח רב-ממדי של מספר רב של פרמטרים.
           </h2>

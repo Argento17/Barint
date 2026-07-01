@@ -1,12 +1,21 @@
-﻿/** Owner-approved copy for the Gen Z homepage hero. Locked. */
+/** Owner-approved copy for the Bari homepage hero. */
 export const HERO_COPY = {
-  heroEyebrow: "ניתוח מוצרים · המדף הישראלי",
-  headline1: "\u05D4\u05D0\u05E8\u05D9\u05D6\u05D4 \u05DE\u05E1\u05E4\u05E8\u05EA \u05E1\u05D9\u05E4\u05D5\u05E8.",
-  headline2: "\u05D1\u05D0\u05E8\u05D9 \u05D1\u05D5\u05D3\u05E7\u05EA \u05D0\u05EA \u05D4\u05E8\u05DB\u05D9\u05D1\u05D9\u05DD.",
-  subline: "\u05D7\u05E4\u05E9\u05D5 \u05DE\u05D5\u05E6\u05E8 \u05DE\u05D4\u05E1\u05D5\u05E4\u05E8 \u05D5\u05E7\u05D1\u05DC\u05D5 \u05EA\u05E9\u05D5\u05D1\u05D4 \u05E4\u05E9\u05D5\u05D8\u05D4: \u05DE\u05D4 \u05D8\u05D5\u05D1, \u05DE\u05D4 \u05D1\u05E2\u05D9\u05D9\u05EA\u05D9, \u05D5\u05DE\u05D4 \u05D1\u05E2\u05D9\u05E7\u05E8 \u05E9\u05D9\u05D5\u05D5\u05E7.",
-  primaryCta: "\u05D7\u05E4\u05E9\u05D5 \u05DE\u05D5\u05E6\u05E8",
-  secondaryCta: "\u05E1\u05E8\u05D9\u05E7\u05EA \u05D1\u05E8\u05E7\u05D5\u05D3 \u05D1\u05E7\u05E8\u05D5\u05D1",
-  comparisonsEyebrow: "\u05E0\u05D9\u05EA\u05D5\u05D7\u05D9 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4 \u00B7 \u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05D0\u05DE\u05D9\u05EA\u05D9\u05D9\u05DD",
-  comparisonsTitle: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D5\u05EA \u05DE\u05D4\u05DE\u05D5\u05E6\u05E8\u05D9\u05DD \u05E9\u05D0\u05EA\u05DD \u05E6\u05D5\u05E8\u05DB\u05D9\u05DD \u05D1\u05D9\u05D5\u05DD \u05D9\u05D5\u05DD",
-  comparisonsSubtitle: "\u05DC\u05D0 \u05DB\u05DC \u05DE\u05D4 \u05E9\u05E0\u05E8\u05D0\u05D4 \u05D3\u05D5\u05DE\u05D4 \u2014 \u05D1\u05D0\u05DE\u05EA \u05D3\u05D5\u05DE\u05D4.",
+  /** H1 line 1 — the word "באמת" is green; rest is ink. Rendered in component. */
+  headline1Part1: "אתם יודעים",
+  headline1Green: "באמת",
+  headline1Part2: "מה יש במוצרים שאתם צורכים?",
+  /** H1 line 2 — entire line is green. */
+  headline2: "בארי בודקת את זה בשבילכם",
+  /** Lead paragraph under H1. */
+  subline:
+    "חפשו מוצר מהסופר וקבלו תשובה פשוטה: מה טוב, מה בעייתי, ומה בעיקר שיווק.",
+  /** Primary CTA label. */
+  primaryCta: "חפשו מוצר",
+  /** Secondary coming-soon label (inert). */
+  secondaryCta: "סריקת ברקוד בקרוב",
+
+  // ── Comparisons section (home-comparisons.tsx imports these — do NOT remove) ──
+  comparisonsEyebrow: "ניתוח קטגוריה · מוצרים אמיתיים",
+  comparisonsTitle: "השוואות מהמוצרים שאתם צורכים ביום יום",
+  comparisonsSubtitle: "לא כל מה שנראה דומה — באמת דומה.",
 } as const;

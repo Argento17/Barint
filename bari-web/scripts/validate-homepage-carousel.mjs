@@ -139,10 +139,10 @@ for (const c of cards) {
 }
 
 // 10. Total card count
-check("Total cards === 7", cards.length === 7, `got ${cards.length}`);
+check("Total cards === 6", cards.length === 6, `got ${cards.length}`);
 
 // 11. No removed card ids present
-const removedIds = ["category-report-snacks", "supplement-magnesium-form", "ingredient-cereal-sugar-aliases", "comparison-milk-whole-vs-soy"];
+const removedIds = ["category-report-snacks", "supplement-magnesium-form", "ingredient-cereal-sugar-aliases", "comparison-milk-whole-vs-soy", "comparison-hummus-tahini-rich-vs-lean"];
 for (const rid of removedIds) {
   check(`Removed card "${rid}" is absent`, !ids.includes(rid));
 }

@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 // -- Card shell ────────────────────────────────────────────────────────────────
 
 const CARD_SHELL =
-  "group block h-full min-h-[18rem] w-[92vw] max-w-[38rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[36rem] flex flex-col";
+  "group block h-full min-h-[20rem] w-[92vw] max-w-[44rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[42rem] flex flex-col";
 
 const CONTENT_PAD = "px-4 py-3 md:px-5 flex flex-col flex-1";
 

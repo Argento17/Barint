@@ -29,7 +29,7 @@ export function CarouselCardImage({
   const [errored, setErrored] = useState(false);
 
   const src = !imageUrl || errored ? CAROUSEL_PRODUCT_FALLBACK : imageUrl;
-  const tileColor = accent ? accent + "1A" : "#00000010";
+  const tileColor = "#FFFFFF";
 
   return (
     <div
@@ -46,10 +46,12 @@ export function CarouselCardImage({
           src={src}
           alt={imageAlt}
           className={cn(
-            "absolute inset-0 h-full w-full object-contain transition-opacity duration-300",
-            loaded ? "opacity-100" : "opacity-0",
+            "absolute inset-0 h-full w-full object-contain",
             !errored && "mix-blend-multiply"
           )}
+          ref={(node) => {
+            if (node?.complete) setLoaded(true);
+          }}
           onLoad={() => setLoaded(true)}
           onError={() => {
             setErrored(true);

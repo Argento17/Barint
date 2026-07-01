@@ -50,42 +50,7 @@ export const HOMEPAGE_CAROUSEL_CARDS: CarouselCard[] = [
     },
   },
 
-  // -- Comparison 2: Hummus duel (replaces milk) ---------------------------------
-  {
-    id: "comparison-hummus-tahini-rich-vs-lean",
-    type: "comparison",
-    visualMode: "product_duel",
-    eyebrow: "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4",
-    category: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05D5\u05DE\u05DE\u05E8\u05D7\u05D9\u05DD",
-    title: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA \u05DE\u05D5\u05DC \u05DE\u05E1\u05D1\u05D7\u05D4",
-    evidence: "31% \u05D8\u05D7\u05D9\u05E0\u05D4 \u05DE\u05D5\u05DC 10% \u2014 \u05D0\u05D5\u05EA\u05D5 \u05DE\u05D3\u05E3, \u05D4\u05E4\u05E8\u05E9 20 \u05E0\u05E7\u05D5\u05D3\u05D5\u05EA \u05E9\u05E0\u05E7\u05D1\u05E2 \u05D1\u05D9\u05D7\u05E1 \u05D4\u05D8\u05D7\u05D9\u05E0\u05D4 \u05DC\u05D7\u05D5\u05DE\u05D5\u05E1.",
-    metric: "71 \u05DE\u05D5\u05DC 51",
-    href: "/hashvaot/hummus",
-    accent: "#8B7355",
-    fallbackVisual: CAROUSEL_PRODUCT_FALLBACK,
-    leftProduct: {
-      productId: "bsip1_7296073725404",
-      barcode: "7296073725404",
-      name: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA",
-      brand: "\u05D0\u05E1\u05DD",
-      score: 71,
-      imageUrl: CL + "IMV56_Z_P_7296073725404_1.png",
-      imageAlt: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05E2\u05D3\u05D5\u05EA",
-      imageStatus: "verified",
-    },
-    rightProduct: {
-      productId: "bsip1_7296073725398",
-      barcode: "7296073725398",
-      name: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05D1\u05D7\u05D4",
-      brand: "\u05D0\u05E1\u05DD",
-      score: 51,
-      imageUrl: CL + "IMP68_Z_P_7296073725398_1.png",
-      imageAlt: "\u05D7\u05D5\u05DE\u05D5\u05E1 \u05DE\u05E1\u05D1\u05D7\u05D4",
-      imageStatus: "verified",
-    },
-  },
-
-  // -- Comparison 3: Granola -----------------------------------------------------
+  // -- Comparison 2: Granola -----------------------------------------------------
   {
     id: "comparison-granola-premium-vs-bottom",
     type: "comparison",
