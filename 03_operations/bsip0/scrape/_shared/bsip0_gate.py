@@ -45,7 +45,11 @@ from typing import Any
 from urllib.request import urlopen, Request
 from urllib.error import URLError, HTTPError
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+if hasattr(sys.stdout, "buffer") and (getattr(sys.stdout, "encoding", "") or "").lower() not in ("utf-8", "utf8"):
+    try:
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):
+        pass
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import bsip0_nutrition as bn  # noqa: E402
 

@@ -24,8 +24,9 @@ from structural_classifier import classify_structural_class, classify_from_bundl
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
-CORPUS_PATH  = pathlib.Path(r"C:\Bari\01_framework\bsip2_framework\validation\golden_corpus\golden_corpus_manifest.json")
-REPORT_ROOT  = pathlib.Path(r"C:\Bari\03_operations\reports\regression")
+_REPO_ROOT   = pathlib.Path(__file__).resolve().parents[4]
+CORPUS_PATH  = _REPO_ROOT / "01_framework/bsip2_framework/validation/golden_corpus/golden_corpus_manifest.json"
+REPORT_ROOT  = _REPO_ROOT / "03_operations/reports/regression"
 SCORE_DRIFT_THRESHOLD = 5.0  # flag if score moves more than this from prior baseline
 
 

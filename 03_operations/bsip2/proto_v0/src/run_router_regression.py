@@ -24,8 +24,9 @@ from router_v2 import classify_category, ROUTER_VERSION
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
+_REPO_ROOT  = pathlib.Path(__file__).resolve().parents[4]
 CORPUS_PATH = pathlib.Path(__file__).parent / "router_regression_corpus.json"
-REPORT_ROOT = pathlib.Path(r"C:\Bari\03_operations\reports\regression")
+REPORT_ROOT = _REPO_ROOT / "03_operations/reports/regression"
 
 
 def load_corpus() -> dict:

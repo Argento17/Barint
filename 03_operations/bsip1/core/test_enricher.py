@@ -271,8 +271,9 @@ def test_fermentation_markers():
 
 def test_full_enrich():
     print("\n== Full enrich() on real BSIP1 records ==")
-    snack_dir = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_001\output")
-    yogurt_dir = pathlib.Path(r"C:\Bari\03_operations\bsip1\run_yogurt_001\output")
+    repo_root = pathlib.Path(__file__).resolve().parents[3]
+    snack_dir = repo_root / "03_operations" / "bsip1" / "run_001" / "output"
+    yogurt_dir = repo_root / "03_operations" / "bsip1" / "run_yogurt_001" / "output"
 
     # Test a snack bar
     sb_file = snack_dir / "bsip1_16000423534.json"

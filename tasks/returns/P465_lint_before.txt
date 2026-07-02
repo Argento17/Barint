@@ -1,0 +1,152 @@
+﻿
+> bari@0.1.0 lint
+> eslint
+
+
+C:\bari_wt_t462b\bari-web\e2e\vision-probe.spec.ts
+  199:71  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\bari_wt_t462b\bari-web\public\hero\plant.js
+   28:12  warning  'easeInOutCubic' is defined but never used       @typescript-eslint/no-unused-vars
+  121:9   error    Unexpected aliasing of 'this' to local variable  @typescript-eslint/no-this-alias
+  183:11  warning  'ny' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  190:9   warning  'vis' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\public\hero\tweaks-panel.jsx
+  272:19  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+  270 |       <style>{__TWEAKS_STYLE}</style>
+  271 |       <div ref={dragRef} className="twk-panel" data-omelette-chrome=""
+> 272 |            style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+      |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  273 |         <div className="twk-hd" onMouseDown={onDragStart}>
+  274 |           <b>{title}</b>
+  275 |           <button className="twk-x" aria-label="Close tweaks"  react-hooks/refs
+  272:28  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+  270 |       <style>{__TWEAKS_STYLE}</style>
+  271 |       <div ref={dragRef} className="twk-panel" data-omelette-chrome=""
+> 272 |            style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+      |                            ^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  273 |         <div className="twk-hd" onMouseDown={onDragStart}>
+  274 |           <b>{title}</b>
+  275 |           <button className="twk-x" aria-label="Close tweaks"                                 react-hooks/refs
+  272:57  error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+  270 |       <style>{__TWEAKS_STYLE}</style>
+  271 |       <div ref={dragRef} className="twk-panel" data-omelette-chrome=""
+> 272 |            style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+      |                                                         ^^^^^^^^^^^^^^^^^^^ Cannot access ref value during render
+  273 |         <div className="twk-hd" onMouseDown={onDragStart}>
+  274 |           <b>{title}</b>
+  275 |           <button className="twk-x" aria-label="Close tweaks"    react-hooks/refs
+  338:3   error  Error: Cannot access refs during render
+
+React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected (https://react.dev/reference/react/useRef).
+
+  336 |   // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  337 |   const valueRef = React.useRef(value);
+> 338 |   valueRef.current = value;
+      |   ^^^^^^^^^^^^^^^^ Cannot update ref during render
+  339 |
+  340 |   // Segments wrap mid-word once per-segment width runs out. The track is
+  341 |   // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px                                                                                                         react-hooks/refs
+
+C:\bari_wt_t462b\bari-web\scripts\strip-fiber-unknowns-task166.mjs
+  123:9  warning  'rewritten' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\app\feed.xml\route.ts
+  2:10  warning  'SITE_URL' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\app\privacy\page.tsx
+  187:80  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  191:37  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\bari_wt_t462b\bari-web\src\app\terms\page.tsx
+  211:77  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+C:\bari_wt_t462b\bari-web\src\components\blog\bread-article.tsx
+  16:31  warning  'BREAD_BLOG_HREF' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\components\blog\milk-analysis-comparisons.tsx
+  31:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\blog\olive-oil-external-research.tsx
+  106:15  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\blog\olive-oil-transparency-matrix.tsx
+  114:119  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\bari_wt_t462b\bari-web\src\components\bread\bread-shelf-product-image.tsx
+  52:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\comparisons\bari-product-thumbnail.tsx
+  52:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\comparisons\magnesium-comparison-page.tsx
+  31:47  warning  '_activeFilters' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\components\comparisons\product-thumbnail.tsx
+  60:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\home\carousel-card-image.tsx
+  26:3  warning  'accent' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\components\home\home-flagship-analysis.tsx
+  52:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\bari_wt_t462b\bari-web\src\components\shared\consent-manager.tsx
+   78:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\bari_wt_t462b\bari-web\src\components\shared\consent-manager.tsx:78:7
+  76 |     const stored = getStoredConsent();
+  77 |     if (!stored) {
+> 78 |       setView("banner");
+     |       ^^^^^^^ Avoid calling setState() directly within an effect
+  79 |     }
+  80 |   }, []);
+  81 |  react-hooks/set-state-in-effect
+  115:5  warning  Unused eslint-disable directive (no problems were reported from 'react-hooks/exhaustive-deps')
+
+C:\bari_wt_t462b\bari-web\src\components\shared\ga4-script.tsx
+  70:28  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\bari_wt_t462b\bari-web\src\components\shared\ga4-script.tsx:70:28
+  68 |     // Apply the stored choice, then react to future CMP changes.
+  69 |     const stored = getStoredConsent();
+> 70 |     if (stored?.analytics) setGranted(true);
+     |                            ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  71 |
+  72 |     const unsub = onConsentChange((record) => {
+  73 |       setGranted(record.analytics);  react-hooks/set-state-in-effect
+
+C:\bari_wt_t462b\bari-web\src\lib\comparisons\brined-cheeses-page-data.ts
+  75:47  warning  '_activeFilters' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\lib\comparisons\cheese-page-data.ts
+  64:47  warning  '_activeFilters' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\bari_wt_t462b\bari-web\src\lib\comparisons\cookies-coffee-page-data.ts
+  96:47  warning  '_activeFilters' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 30 problems (12 errors, 18 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

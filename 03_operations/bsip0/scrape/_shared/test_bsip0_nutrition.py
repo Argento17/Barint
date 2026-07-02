@@ -22,9 +22,15 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bsip0_nutrition as bn  # noqa: E402
 
-CEREALS_RAW = (
-    r"C:\Bari\02_products\breakfast_cereals\bsip0_outputs"
-    r"\cereals_bsip0_raw_20260601T152207.json"
+_REPO_ROOT = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "..")
+)
+CEREALS_RAW = os.path.join(
+    _REPO_ROOT,
+    "02_products",
+    "breakfast_cereals",
+    "bsip0_outputs",
+    "cereals_bsip0_raw_20260601T152207.json",
 )
 
 
