@@ -86,6 +86,38 @@ Maximum 2 sentences. No additional explanation.
 
 ---
 
+### EXCEPTION-002 — "Algorithm / Scoring Engine" Vocabulary in Social Marketing Collateral
+
+**Status:** Approved
+**Category:** Off-page social/marketing collateral (Instagram carousel and equivalent), NOT comparison pages
+**Date approved:** 2026-07-02
+**Authority:** Owner ruling (explicit override, 2026-07-02)
+**Rule violated:** Framework-invisibility / ontology-leakage policy (`bari_editorial_intelligence_v1`) and the leakage gate `integrations/clients/hebrew_readability.py` `_LEAK_TERMS`, which ban "אלגוריתם" and "מנוע הניקוד" in consumer-facing copy.
+
+---
+
+**What it is:**
+
+Social marketing collateral may name the scoring mechanism explicitly — e.g. "מנוע ניקוד אלגוריתמי" (algorithmic scoring engine) and "אלגוריתמי" — to convey the rigor/objectivity of Bari's scoring as an acquisition message.
+
+---
+
+**Why it is allowed:**
+
+Owner ruling: the algorithmic, systematic, science-based nature of the scoring IS the differentiator for marketing acquisition ("it is not someone guessing the scores"), and the owner explicitly wants it named in ad copy. On-page framework invisibility exists to keep the *comparison experience* clean; a top-of-funnel social ad has a different job (explain why Bari is credible) and a different audience (people who have not yet seen the product). The owner, as the highest editorial authority, weighed this and chose to expose the mechanism in marketing only.
+
+---
+
+**Constraints preventing multiplication:**
+
+1. **Marketing collateral only.** This exception NEVER extends to comparison pages, product rows, score chips, ingredient lists, filters, or any on-site consumer copy. Framework invisibility holds in full on the site.
+2. **This term only.** It does not license other framework vocabulary. NOVA, BSIP, cap values, routing logic, structural classes, weight constants remain banned everywhere, marketing included.
+3. **Claims stay defensible.** Naming the engine does not permit overclaim: no "every product / same way" universality (categories carve-out / mid-rollout), no per-score citation claim, no health/medical claim.
+4. **Two-gate still applies.** Every such asset still passes Content + Adversarial QA. This exception resolves the leakage finding only; all other findings stand.
+5. **Gate bug is separate.** The leakage gate currently false-passes "אלגוריתמי" because Hebrew final-letter inflection (מ vs ם) breaks its substring match. That is a defect to fix in `hebrew_readability.py` regardless of this exception; the exception does not depend on or excuse the bug.
+
+---
+
 ## Rejected Exception Requests
 
 *None yet. This section will log exception requests that were reviewed and denied, with rationale, so future contributors understand the boundaries.*

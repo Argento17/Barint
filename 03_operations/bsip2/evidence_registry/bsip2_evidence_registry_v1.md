@@ -1568,6 +1568,22 @@ Formally logged gaps where current data or testing is insufficient to resolve a 
 | **status** | Adopted-behind-flag (`BARI_REDLABEL_V1`, default OFF). |
 | **rollback_flag** | `BARI_REDLABEL_V1` (default OFF). |
 
+### EV-REDLABEL-013 — Endemic Sat-Fat Carve-Out Extended to Chocolate (cocoa-butter matrix)
+
+| Field | Value |
+|-------|-------|
+| **finding_id** | EV-REDLABEL-013 |
+| **task** | TASK-455 (chocolate de-anchor carve-out + reshelf) |
+| **recorded** | 2026-07-02 |
+| **status** | RULED — carve-out required; NOT yet implemented (chocolate stays on current live/pre-flip scores until landed). D7 PENDING Product co-sign. |
+| **signal** | Extend `REDLABEL_ENDEMIC_SATFAT_CATEGORIES` (`constants.py:247`, currently `{"dairy_protein","whole_food_fat"}`) to include `"chocolate_bars"` and `"chocolate_tablets"`. Excludes ONLY the sat-fat red label from (a) the continuous `regulatory_quality` deduction and (b) the `reformulable_rl_count` used by `REFORMULABLE_LABELS_2_PLUS` — mirroring the existing dairy path exactly (`score_engine.py:2163, 2231-2244, 2391-2404`). No new code path. Does NOT touch `score_fat_quality()`'s independent continuous sat-fat term (`score_engine.py:2079-2103`) — cocoa-butter sat-fat still costs points there; this is a double-count fix, not a sat-fat amnesty. Sugar/sodium red labels on chocolate remain fully continuous. |
+| **rationale** | Under `BARI_REDLABEL_CONTINUOUS_V1`, `score_regulatory_quality()` (`REGQUAL_SLOPE_PER_LABEL=40.0`, `REGQUAL_MAX_PER_LABEL=28.0`, `constants.py:221/225`) taxes sat-fat excess-ratio as a reformulation signal. For dark chocolate ≥62% cocoa, cocoa-butter sat-fat (~55–60% of fat, botanically fixed) produces excess ratios 3.8–5.0× the 5g/100g MoH threshold on structurally clean products, saturating the per-label ceiling on nearly every dark tablet regardless of quality. Measured: 2 grade-flips C→D on the two cleanest sampled tablets — `3046920029759` Lindt 90% (8 ingredients, 0 additives, sat_fat=30.0g → ded=28.0 ceiling; `chocolate_tablets/products/bsip1_3046920029759/bsip2_trace.json:284`) and `7290119500482` Tosso 62% (6 ingredients, sunflower lecithin only, sat_fat=24.0g → ded=28.0; `...bsip1_7290119500482/bsip2_trace.json:291`). Inversion tell: higher cocoa % / cleaner list carries a LARGER penalty — the mechanic cannot distinguish engineered high-sat-fat from unmodified high-cocoa chocolate. Same precedent test as dairy (`"endemic dairy fat is not a seed-oil engineering choice"`, `score_engine.py:198`): compositionally fixed by the defining ingredient, not reformulable without ceasing to be the product. |
+| **evidence_strength** | Moderate — dairy matrix-effect/LDL literature well established; cocoa-butter/stearic-acid neutral-LDL literature is convergent but not yet line-by-line reviewed by Research Agent. The carve-out rests on the structural "endemic/compositionally-fixed" precedent test (not a health claim), so it does not require the stearic-acid framing; Research corroboration recommended only if that framing enters public methodology text. |
+| **label_observability** | N/A (removes a double-tax; no new UI element). |
+| **co_sign** | Nutrition Agent (2026-07-02). **Product D7 co-sign REQUIRED before implementation.** |
+| **rollback_flag** | Revert the 2-category addition to `REDLABEL_ENDEMIC_SATFAT_CATEGORIES`; zero other code to unwind. |
+| **blocking_note** | SEPARATE defect flagged, blocks chocolate go-live independent of this ruling: all 3 sampled chocolate tablets classify as `category="snack_bar_granola"` (conf 0.69–0.72; classifier fires on שוקולד/שוקו tokens shared with granola-bar vocab) → chocolate is currently scored against granola-bar calorie/cap thresholds. Routed to Product + Data (D1/shelf-mapping). |
+
 ### EV-045 — Emulsifier/Stabilizer Complexity Score
 
 | Field | Value |
