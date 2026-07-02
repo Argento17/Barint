@@ -56,7 +56,7 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
       <CatalogKpiStrip metrics={metrics} />
 
       <section
-        className="overflow-hidden rounded-lg border bg-white shadow-[0_1px_4px_rgba(17,19,24,0.06)]"
+        className="overflow-clip rounded-lg border bg-white shadow-[0_1px_4px_rgba(17,19,24,0.06)]"
         style={{ borderColor: "rgba(17,19,24,0.08)" }}
         aria-label="טבלת מוצרים"
       >

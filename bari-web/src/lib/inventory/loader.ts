@@ -114,7 +114,13 @@ export function buildInventoryRows(): InventoryProductRowVM[] {
         categoryNameHe: nameHe,
         grade: product.grade ?? null,
         score: product.score ?? null,
-        confidence: product.confidence,
+        // BariConfidence contract (view-models/index.ts): backend "full" maps to
+        // "verified" at the language boundary — some corpus JSONs (cheese v5)
+        // still carry the raw backend value.
+        confidence:
+          (product.confidence as string) === "full"
+            ? "verified"
+            : product.confidence,
         retailer,
         sku,
         imageUrl: product.imageUrl ?? null,

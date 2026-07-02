@@ -274,7 +274,8 @@ function FilterBar({
   categoryOptions,
   retailerOptions,
   appearance = "default",
-}: FilterBarProps & { appearance?: "default" | "dashboard" }) {
+  hasUnscored = true,
+}: FilterBarProps & { appearance?: "default" | "dashboard"; hasUnscored?: boolean }) {
   const isDashboard = appearance === "dashboard";
   const selectClass = isDashboard
     ? "rounded-md border border-[rgba(17,19,24,0.12)] bg-white px-2.5 py-1 text-xs font-medium text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
@@ -345,7 +346,7 @@ function FilterBar({
         className={selectClass}
         aria-label="סינון לפי דרגה"
       >
-        {GRADE_OPTIONS.map((o) => (
+        {GRADE_OPTIONS.filter((o) => o.value !== "unscored" || hasUnscored).map((o) => (
           <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
@@ -611,6 +612,7 @@ export function ProductTable({
         categoryOptions={categoryOptions}
         retailerOptions={retailerOptions}
         appearance={isDashboard ? "dashboard" : "default"}
+        hasUnscored={rows.some((r) => r.grade === null)}
       />
 
       {!loading && !error && (
@@ -659,7 +661,9 @@ export function ProductTable({
       )}
 
       {/* Table wrapper */}
-      <div className={isDashboard ? "overflow-x-auto" : "overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]"}>
+      {/* lg:overflow-visible — an overflow-x-auto ancestor traps position:sticky, so the
+          dashboard thead can only stick to the page when the table fits without scrolling */}
+      <div className={isDashboard ? "overflow-x-auto lg:overflow-visible" : "overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]"}>
 
         {/* Mobile: stacked list */}
         <div className="block sm:hidden">

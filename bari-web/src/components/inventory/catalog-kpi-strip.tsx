@@ -144,9 +144,13 @@ export function CatalogKpiStrip({ metrics }: CatalogKpiStripProps) {
     metrics;
   const gradedTotal = GRADED_KEYS.reduce((s, g) => s + gradeDistribution[g], 0);
 
+  // When every product is scored, the "מוצרים עם ציון" card would just repeat the
+  // total — show it only when there is an unscored remainder worth surfacing.
+  const showGradedCard = gradeDistribution.unscored > 0;
+
   return (
     <section aria-label="מדדי קטלוג" className="space-y-3">
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className={`grid grid-cols-2 gap-3 ${showGradedCard ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         <KpiCard
           label="סה״כ מוצרים"
           value={totalProducts.toLocaleString("he-IL")}
@@ -155,15 +159,13 @@ export function CatalogKpiStrip({ metrics }: CatalogKpiStripProps) {
           label="קטגוריות"
           value={categoryCount.toLocaleString("he-IL")}
         />
-        <KpiCard
-          label="מוצרים עם ציון"
-          value={gradedTotal.toLocaleString("he-IL")}
-          sub={
-            gradeDistribution.unscored > 0
-              ? `${gradeDistribution.unscored.toLocaleString("he-IL")} ללא ציון`
-              : undefined
-          }
-        />
+        {showGradedCard && (
+          <KpiCard
+            label="מוצרים עם ציון"
+            value={gradedTotal.toLocaleString("he-IL")}
+            sub={`${gradeDistribution.unscored.toLocaleString("he-IL")} ללא ציון`}
+          />
+        )}
         <KpiCard
           label="נתונים מלאים"
           value={`${fullDataPercent.toLocaleString("he-IL")}%`}
