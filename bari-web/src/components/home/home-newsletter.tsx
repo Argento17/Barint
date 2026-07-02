@@ -22,7 +22,7 @@ export function HomeNewsletter() {
             src="/mascots/nori-newsletter.png"
             alt=""
             width={760}
-            height={601}
+            height={678}
             className="pointer-events-none mx-auto mb-4 h-auto w-44 md:w-52"
             aria-hidden
           />

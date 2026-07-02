@@ -205,8 +205,8 @@ export function BlogIndexPage() {
           <Image
             src="/mascots/mascot-nori-desk-v2.png"
             alt=""
-            width={1260}
-            height={913}
+            width={870}
+            height={737}
             aria-hidden
             className="pointer-events-none -mt-2 hidden h-auto w-56 shrink-0 select-none lg:block xl:w-64"
             priority
