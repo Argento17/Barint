@@ -5,19 +5,34 @@ import type { BariProductVM } from "@/lib/view-models";
 // the legacy bread-retail-curated.json. Decouples the filter from the old
 // bespoke data file.
 
+// TASK-433: "crackers" lens removed — the 6 crackers products were split out of the
+// bread corpus into their own /hashvaot/crackers category (bread_frontend_v4.json no
+// longer contains any _website_cluster: "crackers" product, by design).
+//
+// TASK-435: the filter ids below previously referenced a stale cluster taxonomy
+// (everyday/fermentation/strong/wellness_ambig) that matched ZERO products against
+// bread_frontend_v4.json's actual _website_cluster values. Realigned 1:1 to the real
+// clusters shipped in the JSON (verified by direct count against bread_frontend_v4.json,
+// 23/23 products covered): high_protein(1) / wholegrain(7) / sourdough(4) / everyday(5) /
+// wellness_ambig(1) / pita(2) / specialty(3). Hebrew labels kept human/consumer-facing
+// (Frontend judgment call within lane — not Content-authored copy).
 export type BreadShelfFilterId =
+  | "high_protein"
+  | "wholegrain"
+  | "sourdough"
   | "everyday"
-  | "fermentation"
-  | "strong"
   | "wellness_ambig"
-  | "crackers";
+  | "pita"
+  | "specialty";
 
 export const BREAD_SHELF_LENS_OPTIONS: Array<{ id: BreadShelfFilterId; label: string }> = [
   { id: "everyday", label: "יומיומי" },
-  { id: "fermentation", label: "מחמצת" },
-  { id: "strong", label: "מלא ודגנים" },
+  { id: "wholegrain", label: "דגן מלא" },
+  { id: "sourdough", label: "מחמצת" },
+  { id: "high_protein", label: "עתיר חלבון" },
+  { id: "pita", label: "פיתות" },
+  { id: "specialty", label: "מיוחד" },
   { id: "wellness_ambig", label: "לחמי בריאות" },
-  { id: "crackers", label: "קרקרים" },
 ];
 
 export function filterBreadProducts(

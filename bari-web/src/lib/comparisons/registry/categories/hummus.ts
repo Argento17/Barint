@@ -8,6 +8,7 @@ import {
 export const hummusCategoryDefinition: ComparisonCategoryDefinition = {
   id: "hummus",
   routePath: "/hashvaot/hummus",
+  nameHe: "חומוס וממרחים",
   metadata: hummusComparisonMetadata,
   getPageData: getHummusPageData,
   getCorpusPayload: getHummusCorpusPayload,

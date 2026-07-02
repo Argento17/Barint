@@ -8,6 +8,7 @@ import {
 export const snacksCategoryDefinition: ComparisonCategoryDefinition = {
   id: "snacks",
   routePath: "/hashvaot/snacks",
+  nameHe: "חטיפים מלוחים",
   metadata: snacksComparisonMetadata,
   getPageData: getSnacksPageData,
   getCorpusPayload: getSnacksCorpusPayload,

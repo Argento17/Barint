@@ -19,7 +19,8 @@
 // authoritative "what is live" mapping). Regenerate with:
 //   grep -rn "data/comparisons/.*\.json" src/lib/comparisons
 export const LIVE_COMPARISON_FILES: Record<string, string> = {
-  bread: "bread_frontend_v3.json",
+  bread: "bread_frontend_v4.json",
+  crackers: "crackers_frontend_v1.json",
   brined_cheeses: "brined_cheeses_frontend_v2.json",
   cakes_hard_cookies: "cakes_hard_cookies_frontend_v1.json",
   cereals: "cereals_frontend_v2.json",
