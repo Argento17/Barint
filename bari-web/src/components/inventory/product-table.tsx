@@ -1105,10 +1105,19 @@ function EmptyState() {
   return (
     <div className="py-12 text-center" role="status" aria-live="polite">
       <p className="text-sm font-medium" style={{ color: "var(--fg2, #4E5663)" }}>
-        אין מוצרים בסינון הזה
+        לא נמצאו מוצרים תואמים
       </p>
       <p className="mt-1 text-xs" style={{ color: "var(--fg3, #5E6560)" }}>
-        נסו לשנות את פרמטרי הסינון
+        נסו לשנות את הסינון, או שהמוצר עדיין לא נבדק. הקטלוג גדל כל שבוע, וכל ההשוואות המלאות נמצאות ב
+        {" "}
+        <a
+          href="/hashvaot"
+          className="font-semibold underline underline-offset-2"
+          style={{ color: "var(--bari-green-deep, #176F53)" }}
+        >
+          השוואות
+        </a>
+        .
       </p>
     </div>
   );

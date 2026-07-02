@@ -34,7 +34,8 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "קטלוג המוצרים | Bari",
-  description: "כל המוצרים שבארי בדקה — מדורגים לפי קטגוריה, רשת ואיכות תזונתית.",
+  description:
+    "המוצרים שבארי כבר בדקה, מדורגים לפי קטגוריה, רשת ואיכות תזונתית. הקטלוג גדל כל שבוע.",
   robots: { index: true, follow: true },
 };
 
