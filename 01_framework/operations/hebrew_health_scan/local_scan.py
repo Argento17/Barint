@@ -14,8 +14,9 @@ loop now runs here — no cloud, no Notion, no human trigger:
      to READ 1-2 real Israeli health articles and emit register keepers as a JSON array file.
      Claude holds the no-harvest firewall (technique described, never phrasing copied).
   2. Run those keepers through the deterministic no-harvest firewall (apply_scan_keepers).
-  3. Append survivors to content_voice/tom_bari_voice/2b_learned_register_moves.md — the file
-     the Content Agent loads when it writes (loop closed to the writer).
+  3. Append survivors to content_voice/tom_bari_voice/9_israeli_food_blog_research.md (§6) — the
+     canonical register-calibration file the Content Agent loads when it writes (charter: file 9
+     stays register-calibration-only). Loop closed to the writer.
   4. git commit the change locally.
 
 Schedule this daily via a Windows Scheduled Task (see register_local_scan_task.ps1). It replaces
@@ -39,7 +40,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO_ROOT = HERE.parents[2]
-VOICE_FILE = REPO_ROOT / "content_voice" / "tom_bari_voice" / "2b_learned_register_moves.md"
+VOICE_FILE = REPO_ROOT / "content_voice" / "tom_bari_voice" / "9_israeli_food_blog_research.md"
 SCANS = HERE / "daily_scans"
 LOG = SCANS / "local_scan_log.txt"
 MODEL = "claude-sonnet-4-6"
