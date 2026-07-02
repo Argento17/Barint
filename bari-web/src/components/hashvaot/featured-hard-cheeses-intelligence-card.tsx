@@ -27,9 +27,9 @@ type Props = {
 };
 
 const HARD_CHEESES_INSIGHT_LINES = [
-  "אף גבינה לא הגיעה ל-A — הציון המרבי שייך לגאודה עם מינימום מרכיבים",
-  "גבינת לייט עם מייצבים מקבלת D — המנוע מעניש נכון על עומס תוספים",
-  "פרמזן: חלבון גבוה מאוד, אבל נתרן קיצוני מוריד אותו ל-D",
+  "גבינה אחת בלבד מגיעה ל-A — גלבוע 5%, דלת-השומן האמיתית של המדף",
+  "רוב המדף מתקבץ ב-B — השומן הרווי המובנה הוא הגורם הכובל המשותף",
+  "ההפרשים נולדים בניואנסים: מלח, ניקיון הרשימה וגובה השומן הרווי",
   "האחוז על האריזה הוא שומן בחומר יבש — לא מה שאתם אוכלים בפועל",
 ] as const;
 
@@ -59,7 +59,7 @@ export function FeaturedHardCheesesIntelligenceCard({ href, description }: Props
         stats={[
           { value: hardCheesesProducts.length, label: "מוצרים נותחו" },
           { value: scoredCount, label: "קיבלו ציון" },
-          { value: bCount, label: "בציון B (המרבי)" },
+          { value: bCount, label: "בציון B" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(hardCheesesCorpusMeta.generated)}
         asLinkChild

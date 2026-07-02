@@ -28,7 +28,7 @@ type Props = {
 
 const CHOCOLATE_TABLETS_INSIGHT_LINES = [
   "מריר אמיתי — מה שנקרא שוקולד לבן הוא בעיקרו שמן, סוכר וחלב, בלי מוצקי קקאו כלל",
-  "הציון הגבוה ביותר בקטגוריה הוא C — שוקולד הוא ממתק",
+  "הציון הגבוה ביותר בקטגוריה הוא B, ורק שתי טבלאות מגיעות אליו — שוקולד הוא ממתק",
   "ככל שאחוז הקקאו עולה, הסוכר יורד ורשימת הרכיבים מתקצרת",
 ] as const;
 
@@ -52,7 +52,7 @@ export function FeaturedChocolateTabletsIntelligenceCard({ href, description }: 
         insightLines={lines}
         stats={[
           { value: chocolateTabletsProducts.length, label: "בדף ההשוואה" },
-          { value: "C", label: "תקרת הקטגוריה" },
+          { value: "B", label: "תקרת הקטגוריה" },
           { value: "90%", label: "אחוז קקאו מקסימלי" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(chocolateTabletCorpusMeta.generated)}

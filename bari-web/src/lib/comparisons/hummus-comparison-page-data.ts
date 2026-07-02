@@ -122,7 +122,16 @@ const hummusProducts = enrichHummusRowSurface(
 
 export { hummusCorpusMeta, hummusProducts };
 
-export const hummusMetadataLine = `${hummusProducts.length} מוצרים בדירוג · שופרסל, מאי 2026 · ממוין לפי ציון Bari`;
+const hummusMetadataUpdated = (() => {
+  const date = new Date(hummusCorpusMeta.generated);
+  return Number.isNaN(date.getTime())
+    ? ""
+    : date.toLocaleDateString("he-IL", { month: "long", year: "numeric" });
+})();
+
+export const hummusMetadataLine = hummusMetadataUpdated
+  ? `${hummusProducts.length} מוצרים בדירוג · שופרסל, ${hummusMetadataUpdated} · ממוין לפי ציון Bari`
+  : `${hummusProducts.length} מוצרים בדירוג · שופרסל · ממוין לפי ציון Bari`;
 
 export const hummusHero = {
   eyebrow: "מנוע השוואה · חומוס",

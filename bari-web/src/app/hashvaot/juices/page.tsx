@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת מיצים ומשקאות פירות | Bari",
   description:
-    'השוואת 65 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.',
+    'השוואת 17 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.',
 };
 
 export default async function JuicesComparisonRoute({

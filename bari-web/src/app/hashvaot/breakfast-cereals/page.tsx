@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת דגני בוקר | Bari",
   description:
-    "השוואת 37 מוצרי דגני בוקר מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
+    "השוואת 20 מוצרי דגני בוקר מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
 };
 
 export default async function BreakfastCerealsComparisonRoute({
