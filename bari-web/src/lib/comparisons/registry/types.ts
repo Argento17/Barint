@@ -4,7 +4,7 @@ import type { BariProductVM } from "@/lib/view-models";
 
 import type { ComparisonCorpusMeta } from "../corpus";
 
-export type ComparisonCategoryId = "bread" | "snacks" | "hummus" | "cheese" | "breakfast-cereals" | "granola";
+export type ComparisonCategoryId = "bread" | "snacks" | "hummus" | "cheese" | "breakfast-cereals" | "granola" | "crackers";
 
 export interface ComparisonShelfLensOption<TFilterId extends string = string> {
   id: TFilterId;
@@ -39,6 +39,10 @@ export interface ComparisonCategoryPageData<TFilterId extends string = string>
 export interface ComparisonCategoryDefinition<TFilterId extends string = string> {
   id: ComparisonCategoryId;
   routePath: `/hashvaot/${string}`;
+  /** Short Hebrew display name for the category. Required — TypeScript blocks any new
+   *  category registration that omits it, so it can never be silently forgotten.
+   *  Author a clean consumer-facing short name (e.g. "גבינות"), not a hero headline. */
+  nameHe: string;
   metadata: Metadata;
   getPageData: () => ComparisonCategoryPageData<TFilterId>;
   getCorpusPayload: () => {

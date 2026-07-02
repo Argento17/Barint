@@ -1,0 +1,42 @@
+{
+  "_comment": "Crackers category config — TASK-433 category split from bread (Crackers Category Constitution v1, Nutrition Agent, 2026-07-01). Corpus: 21 candidates identified in real_bread_retail_003_v1 raw BSIP0 scrape carrying literal 'קרקר' (cracker) identity in canonical_name_he — no matzah/breadsticks/rice-cake candidates present in this corpus (held-out categories per constitution do not appear in this scrape). 1 discarded (barcode 5317200, total nutrition+ingredients blackout confirmed by one-shot targeted re-scrape of the live Shufersal page — missing-data-discard rule). BSIP1: run_crackers_conform_001 (20 records, direct Shufersal scrape only, OFF=0). BSIP2: run_crackers_conform_001 (20 scored). Flag set: IDENTICAL to the pinned canonical bread invocation (grain/non-dairy vector) — crackers is a grain product family, same profile as bread/cereals (RECAL_P0=on, FAT_TECH=on, no shelf-rel, no dairy flags, no cereal sodium mode). Category routing: router_v2.classify_category already routes 'קרקר'-named products to category='cracker' (0.93 confidence, HARD_ANCHORS) with NO caller override — score_calorie_density() automatically uses CALORIE_DENSITY_TABLES['cracker'] via cd_table_key=category (score_engine.py:3636). Verified: the 6 products previously living inside bread_frontend_v3.json under _website_cluster=='crackers' were ALREADY scored under the 'cracker' table when published (same router mechanism fires regardless of which BSIP1 folder a record is loaded from) — fresh run reproduces all 6 at 0.000 delta (see run_record.json legacy_6_delta_report). This is the corroboration outcome from Crackers Category Constitution v1 Section 2.3, not a score change. Copy fields are PENDING_COPY — Content Agent authors consumer copy; Frontend Agent wires the registry/route next.",
+  "category": "crackers",
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\crackers\\bsip2_outputs\\run_crackers_conform_001\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\crackers_frontend_v1.json",
+  "retailer_scope": ["shufersal"],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output",
+    "corpus_filter": null,
+    "_source": "batch_run_crackers_conform_001.py (run_crackers_conform_001, grain flag set identical to canonical bread invocation, no shelf-rel)"
+  },
+  "exclusions": [
+    {
+      "barcode": "5317200",
+      "reason": "missing-data-discard: BSIP0 raw + one-shot targeted re-scrape (Shufersal P_5317200) both confirm no nutrition table / ingredients list on the retailer page — total data blackout, discarded per missing-data-discard rule."
+    }
+  ],
+  "extension_fields": [],
+  "render_fields": ["confidence_level", "d4_additives"],
+  "_render_fields_note": "TASK-433: confidence_level from trace.data_sufficiency; d4_additives from detect_additives_d4+w2 lookup. Mirrors bread/cereals render contract.",
+  "_website_cluster": "crackers",
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

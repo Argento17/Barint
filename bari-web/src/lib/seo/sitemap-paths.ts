@@ -1,6 +1,7 @@
 /** Stable, indexable public routes for sitemap generation. */
 export const ALL_INDEXABLE_PATHS = [
   "/",
+  "/catalog",
   "/hashvaot",
   "/hashvaot/bread",
   "/hashvaot/breakfast-cereals",
@@ -10,6 +11,7 @@ export const ALL_INDEXABLE_PATHS = [
   "/hashvaot/chocolate-bars",
   "/hashvaot/chocolate-tablets",
   "/hashvaot/cookies-coffee",
+  "/hashvaot/crackers",
   "/hashvaot/granola",
   "/hashvaot/hard-cheeses",
   "/hashvaot/hummus",

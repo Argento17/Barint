@@ -54,12 +54,31 @@ def main():
     fails, warns = [], []
 
     # 1. score == trace
+    # NOTE: a product can be legitimately unscored (score=None, grade=None is
+    # the schema-documented state for INSUFFICIENT products — see
+    # page_output_schema_v1.json "score: null for INSUFFICIENT products").
+    # The trace still carries a placeholder final_score_estimate (e.g. the
+    # neutral 50 the engine returns for structurally-empty input) — that is
+    # an internal engine value, not something meant to be displayed, so it
+    # must NOT be compared numerically against a null JSON score. Guard both
+    # sides so a real null-vs-real-number mismatch still fails loudly.
+    def _scores_match(json_score, json_grade, trace_score, trace_grade):
+        if json_score is None:
+            # Null score is only valid when the trace agrees the product is
+            # unscoreable (insufficient/None grade_estimate on the engine
+            # side); a null JSON score paired with a real trace grade is a
+            # genuine mismatch and must still fail.
+            return json_grade is None and trace_grade in (None, "insufficient_data")
+        if trace_score is None:
+            return False
+        return (round(json_score, 1), json_grade) == (round(trace_score, 1), trace_grade)
+
     mism = []
     for p in prods:
         t = tr.get(str(p["barcode"]))
         if not t:
             mism.append((p["barcode"], "no trace")); continue
-        if (round(p["score"], 1), p["grade"]) != (round(t["final_score_estimate"], 1), t["grade_estimate"]):
+        if not _scores_match(p["score"], p["grade"], t["final_score_estimate"], t["grade_estimate"]):
             mism.append((p["barcode"], f'{p["score"]}/{p["grade"]} vs {t["final_score_estimate"]}/{t["grade_estimate"]}'))
     (fails if mism else warns).append(("score==trace", f"{len(mism)} mismatch") if mism else None) if mism else None
     print(f"[{'FAIL' if mism else 'PASS'}] score==trace  ({len(prods)} products, {len(mism)} mismatch)")

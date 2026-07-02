@@ -1,4 +1,4 @@
-import breadCorpus from "@/data/comparisons/bread_frontend_v3.json";
+import breadCorpus from "@/data/comparisons/bread_frontend_v4.json";
 import breakfastCerealsCorpus from "@/data/comparisons/cereals_frontend_v2.json";
 import brinedCheesesCorpus from "@/data/comparisons/brined_cheeses_frontend_v2.json";
 import cakesCorpus from "@/data/comparisons/cakes_hard_cookies_frontend_v1.json";
@@ -6,6 +6,7 @@ import cheeseCorpus from "@/data/comparisons/cheese_frontend_v4.json";
 import chocolateBarsCorpus from "@/data/comparisons/chocolate_bars_frontend_v1.json";
 import chocolateTabletsCorpus from "@/data/comparisons/chocolate_tablets_frontend_v1.json";
 import cookiesCoffeeCorpus from "@/data/comparisons/cookies_coffee_frontend_v2.json";
+import crackersCorpus from "@/data/comparisons/crackers_frontend_v1.json";
 import granolaCorpus from "@/data/comparisons/granola_frontend_v2.json";
 import hardCheesesCorpus from "@/data/comparisons/hard_cheeses_frontend_v4.json";
 import hummusCorpus from "@/data/comparisons/hummus_frontend_v5.json";
@@ -24,6 +25,7 @@ const CORPUS_BY_SLUG: Record<string, Record<string, unknown>> = {
   "chocolate-bars": chocolateBarsCorpus as Record<string, unknown>,
   "chocolate-tablets": chocolateTabletsCorpus as Record<string, unknown>,
   "cookies-coffee": cookiesCoffeeCorpus as Record<string, unknown>,
+  crackers: crackersCorpus as Record<string, unknown>,
   granola: granolaCorpus as Record<string, unknown>,
   "hard-cheeses": hardCheesesCorpus as Record<string, unknown>,
   hummus: hummusCorpus as Record<string, unknown>,
