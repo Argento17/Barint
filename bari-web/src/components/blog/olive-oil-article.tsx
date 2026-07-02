@@ -451,7 +451,11 @@ export function OliveOilArticle() {
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
             <div className="flex items-center gap-4">
-              <SharePageButton title={oliveOilArticle.hero.title} />
+              <SharePageButton
+                title={oliveOilArticle.hero.title}
+                // DRAFT — content-gate pending (TASK-467 fix round)
+                shareTitle="שמן זית: מה באמת יש בבקבוק"
+              />
               <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
                 חזרה לבלוג
               </Link>
