@@ -5,6 +5,7 @@ import { ArrowRight, ChevronLeft } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import { SugarAlcoholsChart1 } from "@/components/blog/sugar-alcohols-chart1";
 import { SugarAlcoholsChart2 } from "@/components/blog/sugar-alcohols-chart2";
 import { SugarAlcoholsEfsaCard } from "@/components/blog/sugar-alcohols-efsa-card";
@@ -239,12 +240,15 @@ export function SugarAlcoholsArticle() {
               כל ניתוחי המדף
               <ChevronLeft className="size-4" aria-hidden />
             </Link>
-            <Link
-              href="/blog"
-              className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]"
-            >
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton title={hero.title} />
+              <Link
+                href="/blog"
+                className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]"
+              >
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>

@@ -6,6 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { BreadShelfProductImage } from "@/components/bread/bread-shelf-product-image";
 import { BreadConfidencePill } from "@/components/bread/bread-confidence-pill";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import {
   breadScoreObservation,
   fermentationSignal,
@@ -408,9 +409,12 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
             {article.ctaLabel}
             <ChevronLeft className="size-4" aria-hidden />
           </Link>
-          <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-            לכל הכתבות
-          </Link>
+          <div className="flex items-center gap-4">
+            <SharePageButton title={article.title} />
+            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+              לכל הכתבות
+            </Link>
+          </div>
         </footer>
       </HomeContainer>
     </div>

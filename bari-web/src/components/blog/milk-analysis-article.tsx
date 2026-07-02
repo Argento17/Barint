@@ -15,6 +15,7 @@ import { MilkAnalysisSimplicity } from "@/components/blog/milk-analysis-simplici
 import { ProductThumbnail } from "@/components/comparisons/product-thumbnail";
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import {
   MILK_COMPARISON_HREF,
   getPreviewProducts,
@@ -348,9 +349,12 @@ export function MilkAnalysisArticle() {
               דוח ההשוואה המלא
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
-            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton title={article.hero.title} />
+              <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>

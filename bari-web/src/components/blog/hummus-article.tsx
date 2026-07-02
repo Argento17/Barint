@@ -8,6 +8,7 @@ import { HummusArticleHero } from "@/components/blog/hummus-article-hero";
 import { HummusScoreDistribution } from "@/components/blog/hummus-score-distribution";
 import { HummusSodiumTable } from "@/components/blog/hummus-sodium-table";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import {
   hummusArticle,
   HUMMUS_HASHVAOT_HREF,
@@ -498,9 +499,12 @@ export function HummusArticle() {
               כל ניתוחי המדף
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
-            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton title={hummusArticle.hero.title} />
+              <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>
