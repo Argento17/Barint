@@ -18,8 +18,7 @@
     "grade_distribution": {
       "B": 2,
       "C": 42,
-      "D": 12,
-      "E": 1
+      "D": 13
     },
     "confidence_distribution": {
       "partial": 57
@@ -32,11 +31,9 @@
       "masabacha": 2
     },
     "score_statistics": {
-      "count": 57,
-      "min": 31.8,
-      "max": 70.6,
-      "mean": 52.8,
-      "median": 54.0
+      "min": 36.6,
+      "mean": 53.0,
+      "max": 70.6
     },
     "nutrition_policy": {
       "panel_visible": true,
@@ -163,7 +160,19 @@
       "build_script": "02_products/build_glassbox_w4_frontend.py",
       "source_version": "hummus_frontend_v4.json"
     },
-    "run_id": "run_hummus_shelfrel_002"
+    "run_id": "run_hummus_shelfrel_002",
+    "reflow": {
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [
+        "7290106577480 E->D"
+      ],
+      "grade_flip_count": 1,
+      "date": "2026-07-02",
+      "content_authored": "workflow w0467uq2m (Content Agent, Tom-Bari voice)"
+    },
+    "deanchor_meta_regenerated": "2026-07-02",
+    "off_used": false
   },
   "products": [
     {
@@ -315,6 +324,71 @@
       "categoryTotal": 57
     },
     {
+      "id": "bsip1_6666444",
+      "name": "סלט מטבוחה",
+      "_product_type": "matbucha",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GOR36_Z_P_6666444_1.png",
+      "score": 60.7,
+      "grade": "C",
+      "insightLine": "מטבוחה שפירוט הרכיבים שלה כללי בלבד — 'ירקות, שמן, תבלינים' וחומר משמר, בלי אחוזים. ציון C בשל הרכב ללא פירוט אחוזים וחומר משמר. נתרן: 623 מ\"ג ל-100 גרם.",
+      "confidence": "partial",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 100.0,
+          "protein": 2.1,
+          "sugar": null,
+          "fat": 5.9,
+          "fiber": null,
+          "sodium": 623.0
+        },
+        "ingredients": "ירקות,שמן,תבלינים,חומר משמר E202",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
+        ],
+        "limitingFactors": [
+          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
+        ],
+        "unknowns": [
+          "ערכי השומן הרווי לא היו זמינים בסריקת המקור."
+        ],
+        "caveats": []
+      },
+      "glassBox": {
+        "gateState": "unconstrained"
+      },
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
+      "d3_processing_signal": {
+        "nova_class": 3,
+        "confidence": "medium",
+        "uncertainty_materiality": "non_material",
+        "population_correlation": 0.4,
+        "modifier": 15.0,
+        "modifier_note": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
+        "note_he": "דפוס הרכב זה מתאם, במחקרים גדולים על אוכלוסיות רבות, עם צריכה תזונתית גבוהה יותר של סוכר, שומן ונתרן — לא אמירה על מוצר זה בפני עצמו.",
+        "note_he_mobile": "דפוס הרכב זה מתאם, במחקרים גדולים על אוכלוסיות רבות, עם צריכה תזונתית גבוהה יותר של סוכר, שומן ונתרן — לא אמירה על מוצר זה בפני עצמו.",
+        "confidence_note": "list present, classifier band medium (two-signal fallback)",
+        "materiality_note": "visible signals pin the NOVA read; unresolved terms peripheral (no M1–M4 trigger)"
+      },
+      "retailer": "shufersal",
+      "barcode": "6666444",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "rank": 3,
+      "categoryTotal": 57
+    },
+    {
       "id": "bsip1_7296073725565",
       "name": "חומוס אסלי",
       "_product_type": "hummus_spread",
@@ -392,7 +466,7 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 3,
+      "rank": 4,
       "categoryTotal": 57
     },
     {
@@ -473,71 +547,6 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 4,
-      "categoryTotal": 57
-    },
-    {
-      "id": "bsip1_6666444",
-      "name": "סלט מטבוחה",
-      "_product_type": "matbucha",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GOR36_Z_P_6666444_1.png",
-      "score": 58.0,
-      "grade": "C",
-      "insightLine": "מטבוחה שפירוט הרכיבים שלה כללי בלבד — 'ירקות, שמן, תבלינים' וחומר משמר, בלי אחוזים. ציון C בשל הרכב ללא פירוט אחוזים וחומר משמר. נתרן: 623 מ\"ג ל-100 גרם.",
-      "confidence": "partial",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 100.0,
-          "protein": 2.1,
-          "sugar": null,
-          "fat": 5.9,
-          "fiber": null,
-          "sodium": 623.0
-        },
-        "ingredients": "ירקות,שמן,תבלינים,חומר משמר E202",
-        "confidenceLabel": "ניתוח חלקי",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "רשימת תוספים קצרה — תוסף מזון יחיד מעבר לבסיס"
-        ],
-        "limitingFactors": [
-          "חומר משמר אחד מופיע ברשימה — תוספת בודדת על בסיס פשוט"
-        ],
-        "unknowns": [
-          "ערכי השומן הרווי לא היו זמינים בסריקת המקור."
-        ],
-        "caveats": []
-      },
-      "glassBox": {
-        "gateState": "unconstrained"
-      },
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "d3_processing_signal": {
-        "nova_class": 3,
-        "confidence": "medium",
-        "uncertainty_materiality": "non_material",
-        "population_correlation": 0.4,
-        "modifier": 15.0,
-        "modifier_note": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 65.0 (EV-042 revised, TASK-181J)",
-        "note_he": "דפוס הרכב זה מתאם, במחקרים גדולים על אוכלוסיות רבות, עם צריכה תזונתית גבוהה יותר של סוכר, שומן ונתרן — לא אמירה על מוצר זה בפני עצמו.",
-        "note_he_mobile": "דפוס הרכב זה מתאם, במחקרים גדולים על אוכלוסיות רבות, עם צריכה תזונתית גבוהה יותר של סוכר, שומן ונתרן — לא אמירה על מוצר זה בפני עצמו.",
-        "confidence_note": "list present, classifier band medium (two-signal fallback)",
-        "materiality_note": "visible signals pin the NOVA read; unresolved terms peripheral (no M1–M4 trigger)"
-      },
-      "retailer": "shufersal",
-      "barcode": "6666444",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "ניתוח חלקי",
-      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
-      "confidence_sub_reason": "missing_nutrition",
       "rank": 5,
       "categoryTotal": 57
     },
@@ -4452,7 +4461,7 @@
       "name": "פלפל צ'ומה",
       "_product_type": "pepper_spread",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/USG42_Z_P_7290010154265_1.png",
-      "score": 37.7,
+      "score": 38.6,
       "grade": "D",
       "insightLine": "ממרח חריף שבנוי קודם-כול על שמן — שמן קנולה הרכיב הראשון, לפני 30% פלפל ו-20% שום. יורד ל-D כי זה ממרח שמן בעיקרו: 599 קלוריות ו-864 מ\"ג נתרן ל-100 גרם, מהגבוהים במדף.",
       "confidence": "verified",
@@ -4509,9 +4518,9 @@
       "name": "חציל על האש בטחינה",
       "_product_type": "eggplant_spread",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WPL56_Z_P_7290106577480_1.png",
-      "score": 31.8,
-      "grade": "E",
-      "insightLine": "הבסיס נשמע טוב — חציל קלוי 44% וטחינה גולמית — אבל זה התחתון של המדף: חמישה תוספים (עמילן מעובד E-1422, מייצבים, חומר משמר) ושמן קנולה דוחקים את החציל הצדה, ב-222 קלוריות.",
+      "score": 36.6,
+      "grade": "D",
+      "insightLine": "הבסיס טוב — חציל קלוי 44% וטחינה גולמית 14% — אבל זה ממרח עתיר-שמן: 20 גרם שומן שהם 81% מהקלוריות, על בסיס שמן קנולה. מעל הירק נערמת שורת תוספים — עמילן מעובד E-1422, שני מייצבים (גואר וקסנטן) וחומר משמר — שמניחה אותו בתחתית המדף.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
