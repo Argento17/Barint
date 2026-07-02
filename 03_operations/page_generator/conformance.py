@@ -71,7 +71,7 @@ THIS_DIR = Path(__file__).resolve().parent          # .../page_generator
 REPO = THIS_DIR.parents[1]                           # C:\Bari
 CONFIGS_DIR = THIS_DIR / "configs"
 SHADOW_REGISTRY = REPO / "03_operations" / "shadow" / "shadow_registry_v1.json"
-LIVE_MANIFEST = REPO / "03_operations" / "spine" / "live_manifest.json"
+LIVE_MANIFEST = THIS_DIR / "live_manifest.json"
 WEB_DATA_DIR = REPO / "bari-web" / "src" / "data" / "comparisons"
 
 OFF_MARKERS = ("openfoodfacts", "open_food_facts", "off.net", "world.off",
@@ -87,6 +87,26 @@ def norm_path(p: str | None) -> str:
     if not p:
         return ""
     return str(Path(p)).lower().replace("\\", "/").rstrip("/")
+
+
+def to_repo_relative(p: str | Path) -> str:
+    """Normalize any path to a repo-relative forward-slash form for comparison."""
+    raw = str(p).replace("\\", "/")
+    path = Path(p)
+    if not path.is_absolute():
+        return norm_path(raw)
+    try:
+        rel = path.resolve().relative_to(REPO.resolve())
+        return norm_path(str(rel))
+    except ValueError:
+        pass
+    # Cross-worktree absolutes (e.g. C:/Bari/...) — strip to known repo suffix.
+    lower = raw.lower()
+    for marker in ("bari-web/", "02_products/", "03_operations/"):
+        idx = lower.find(marker)
+        if idx >= 0:
+            return norm_path(raw[idx:])
+    return norm_path(raw)
 
 
 def load_json(path: Path) -> Any:
@@ -110,10 +130,53 @@ def load_configs() -> dict[str, dict]:
     return out
 
 
-def load_manifest_entries() -> list[dict]:
+def load_manifest_raw() -> dict:
     if not LIVE_MANIFEST.is_file():
-        return []
-    return load_json(LIVE_MANIFEST).get("files", [])
+        return {"categories": []}
+    return load_json(LIVE_MANIFEST)
+
+
+def load_manifest_entries() -> list[dict]:
+    """Normalize derived manifest categories to legacy entry shape for HARD-3 checks."""
+    data = load_manifest_raw()
+    entries: list[dict] = []
+    for cat in data.get("categories", []):
+        frontend = cat.get("frontend_json")
+        if not frontend:
+            continue
+        fpath = REPO / frontend
+        product_count = None
+        if fpath.is_file():
+            try:
+                payload = load_json(fpath)
+                if isinstance(payload, dict) and "products" in payload:
+                    product_count = len(payload["products"])
+            except Exception:  # noqa: BLE001
+                product_count = None
+        entries.append({
+            "category": cat.get("category_id"),
+            "path": frontend,
+            "data_file": Path(frontend).name,
+            "product_count": product_count,
+        })
+    return entries
+
+
+def manifest_config_stems(manifest: dict, configs: dict[str, dict]) -> list[str]:
+    """Map live_manifest categories to page_generator config stems (sorted)."""
+    stems: list[str] = []
+    for cat in manifest.get("categories", []):
+        cfg_rel = cat.get("config_json")
+        if cfg_rel:
+            stem = Path(cfg_rel).stem
+            if stem in configs:
+                stems.append(stem)
+                continue
+        cat_id = cat.get("category_id", "")
+        resolved = resolve_stem(cat_id, configs)
+        if resolved:
+            stems.append(resolved)
+    return sorted(set(stems))
 
 
 def load_registry() -> dict:
@@ -153,9 +216,9 @@ def manifest_for_category(cat_norm: str, entries: list[dict]) -> list[dict]:
 def manifest_for_path(baseline_json: str | None, entries: list[dict]) -> dict | None:
     if not baseline_json:
         return None
-    target = norm_path(baseline_json)
+    target = to_repo_relative(baseline_json)
     for e in entries:
-        if norm_path(e.get("path")) == target:
+        if to_repo_relative(e.get("path", "")) == target:
             return e
     return None
 
@@ -612,8 +675,13 @@ def print_report(results: list[dict], registry_unmapped: list[dict] | None = Non
 def main() -> int:
     parser = argparse.ArgumentParser(description="Spine-conformance gate / auditor.")
     g = parser.add_mutually_exclusive_group(required=True)
-    g.add_argument("--all", action="store_true", help="check every configured shelf")
+    g.add_argument("--all", action="store_true",
+                   help="check every live category from live_manifest.json")
     g.add_argument("--slug", help="check one category (route slug, category name, or config stem)")
+    parser.add_argument(
+        "--categories",
+        help="override manifest category list (comma-separated ids or config stems)",
+    )
     parser.add_argument("--json", action="store_true", help="emit JSON instead of human report")
     args = parser.parse_args()
 
@@ -624,12 +692,31 @@ def main() -> int:
     if not configs:
         print("ERROR: no configs found in " + str(CONFIGS_DIR), file=sys.stderr)
         return 3
+    manifest = load_manifest_raw()
     entries = load_manifest_entries()
     registry = load_registry()
     stem_corpora = real_stem_to_corpora()
 
     if args.all:
-        stems = sorted(configs)
+        if args.categories:
+            stems = []
+            for item in args.categories.split(","):
+                item = item.strip()
+                if not item:
+                    continue
+                stem = resolve_stem(item, configs)
+                if stem is None:
+                    print(f"ERROR: no config matches category override '{item}'.",
+                          file=sys.stderr)
+                    return 3
+                stems.append(stem)
+            stems = sorted(set(stems))
+        else:
+            stems = manifest_config_stems(manifest, configs)
+            if not stems:
+                print("ERROR: live_manifest.json has no resolvable config stems. "
+                      f"Manifest: {LIVE_MANIFEST}", file=sys.stderr)
+                return 3
     else:
         stem = resolve_stem(args.slug, configs)
         if stem is None:
