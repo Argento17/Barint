@@ -35,7 +35,7 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-REPO_ROOT = Path(r"C:\Bari")
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 JOURNAL_DIR = REPO_ROOT / "tasks" / "_journal"
 LOCK_PATH = JOURNAL_DIR / "dispatch.lock"
 DEFAULT_STALE_SECONDS = 1800  # a lock older than this is presumed abandoned (crashed run)
