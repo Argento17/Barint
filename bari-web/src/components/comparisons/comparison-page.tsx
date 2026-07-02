@@ -6,6 +6,7 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import { ComparisonTable } from "@/components/shared/comparison-table";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import type { MetricSpec } from "@/components/shared/comparison-metric-column";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import type { ComparisonShelfFilters } from "@/lib/comparisons/registry/types";
@@ -316,6 +317,12 @@ export function ComparisonPage<TFilterId extends string = string>({
           wide
           glassBoxMethodologyLink={glassBoxMethodologyLink}
         />
+
+        {/* TASK-467: end-of-content share module — shared insertion point for
+            all categories assembled through ComparisonPage. */}
+        <div className={cn("px-4 pb-6", comparisonWebSectionPaddingClass(), "-mt-2")}>
+          <SharePageButton title={hero.title} />
+        </div>
       </div>
     </div>
   );
