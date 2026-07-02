@@ -114,6 +114,10 @@ C3_PROVIDER_ID = "openai"
 _CURSOR_VERSIONS_DIR = (
     Path(os.environ.get("LOCALAPPDATA", "")) / "cursor-agent" / "versions"
 )
+# Dated builds only (e.g. 2026.06.29-2ad2186). The versions dir also collects
+# stray entries (dist-package, *.zip) whose node.exe is a wrong-platform binary
+# ("Exec format error") — never candidates.
+_CURSOR_VERSION_DIR_RE = re.compile(r"^\d{4}\.\d{2}\.\d{2}-")
 
 
 def find_cursor_agent_cmd() -> Path:
@@ -125,7 +129,10 @@ def find_cursor_agent_cmd() -> Path:
         )
     candidates = sorted(
         (d for d in _CURSOR_VERSIONS_DIR.iterdir()
-         if d.is_dir() and (d / "cursor-agent.cmd").exists()),
+         if d.is_dir()
+         and _CURSOR_VERSION_DIR_RE.match(d.name)
+         and (d / "cursor-agent.cmd").exists()
+         and (d / "node.exe").exists()),
         key=lambda d: d.name,
         reverse=True,
     )
