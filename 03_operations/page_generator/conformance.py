@@ -130,18 +130,24 @@ def load_configs() -> dict[str, dict]:
     return out
 
 
+def _manifest_routes(manifest: dict) -> list[dict]:
+    return manifest.get("routes") or manifest.get("categories") or []
+
+
 def load_manifest_raw() -> dict:
     if not LIVE_MANIFEST.is_file():
-        return {"categories": []}
+        return {"routes": []}
     return load_json(LIVE_MANIFEST)
 
 
 def load_manifest_entries() -> list[dict]:
-    """Normalize derived manifest categories to legacy entry shape for HARD-3 checks."""
+    """Normalize derived manifest routes to legacy entry shape for HARD-3 checks."""
     data = load_manifest_raw()
     entries: list[dict] = []
-    for cat in data.get("categories", []):
-        frontend = cat.get("frontend_json")
+    for route in _manifest_routes(data):
+        if route.get("type") not in (None, "comparison"):
+            continue
+        frontend = route.get("frontend_json")
         if not frontend:
             continue
         fpath = REPO / frontend
@@ -153,8 +159,9 @@ def load_manifest_entries() -> list[dict]:
                     product_count = len(payload["products"])
             except Exception:  # noqa: BLE001
                 product_count = None
+        cat_id = route.get("route_slug") or route.get("category_id")
         entries.append({
-            "category": cat.get("category_id"),
+            "category": cat_id,
             "path": frontend,
             "data_file": Path(frontend).name,
             "product_count": product_count,
@@ -163,17 +170,19 @@ def load_manifest_entries() -> list[dict]:
 
 
 def manifest_config_stems(manifest: dict, configs: dict[str, dict]) -> list[str]:
-    """Map live_manifest categories to page_generator config stems (sorted)."""
+    """Map live_manifest comparison routes to page_generator config stems (sorted)."""
     stems: list[str] = []
-    for cat in manifest.get("categories", []):
-        cfg_rel = cat.get("config_json")
+    for route in _manifest_routes(manifest):
+        if route.get("type") not in (None, "comparison"):
+            continue
+        cfg_rel = route.get("config_json")
         if cfg_rel:
             stem = Path(cfg_rel).stem
             if stem in configs:
                 stems.append(stem)
                 continue
-        cat_id = cat.get("category_id", "")
-        resolved = resolve_stem(cat_id, configs)
+        slug = route.get("route_slug") or route.get("category_id", "")
+        resolved = resolve_stem(slug, configs)
         if resolved:
             stems.append(resolved)
     return sorted(set(stems))

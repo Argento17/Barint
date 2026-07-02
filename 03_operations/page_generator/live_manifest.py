@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """
-live_manifest.py — Derived live-category manifest (TASK-466 / P473).
+live_manifest.py — Route-derived live manifest (TASK-466 / P474 rework).
 
-Parses the frontend comparisons registry (bari-web/src/lib/comparisons/registry/)
-and each category's page-data import chain to produce a single machine-readable
-manifest of live comparison categories. Consumed by conformance.py --all and CI.
+Source of truth is the Next.js app directory: every bari-web/src/app/hashvaot/*/page.tsx
+route (plus the /hashvaot index). For each route, statically resolves:
+  page.tsx -> page-data TS -> src/data/comparisons/*.json
+
+comparisonCategoryRegistry is an annotation (in_comparison_registry), not the filter.
+Consumed by conformance.py --all and CI drift gate.
 
 Usage:
   python 03_operations/page_generator/live_manifest.py           # write manifest
@@ -25,22 +28,30 @@ THIS_DIR = Path(__file__).resolve().parent
 REPO = THIS_DIR.parents[1]
 MANIFEST_PATH = THIS_DIR / "live_manifest.json"
 CONFIGS_DIR = THIS_DIR / "configs"
-REGISTRY_DIR = REPO / "bari-web" / "src" / "lib" / "comparisons" / "registry"
-REGISTRY_INDEX = REGISTRY_DIR / "index.ts"
-REGISTRY_CATEGORIES_DIR = REGISTRY_DIR / "categories"
+HASHVAOT_APP = REPO / "bari-web" / "src" / "app" / "hashvaot"
 COMPARISONS_LIB = REPO / "bari-web" / "src" / "lib" / "comparisons"
-WEB_DATA_DIR = REPO / "bari-web" / "src" / "data" / "comparisons"
-PUBLIC_CORPUS_REGISTRY = REPO / "bari-web" / "src" / "lib" / "seo" / "public-corpus-registry.ts"
+REGISTRY_INDEX = COMPARISONS_LIB / "registry" / "index.ts"
+CATALOG_ROUTE = HASHVAOT_APP / "catalog" / "page.tsx"
 
-IMPORT_JSON_RE = re.compile(
-    r'import\s+\w+\s+from\s+"@/data/comparisons/([\w.\-]+\.json)"\s*;'
-)
+OTHER_VERTICAL_SLUGS = frozenset({
+    "magnesium",
+    "supplements",
+    "personal-care",
+    "raw-foods",
+})
+HUB_SLUGS = frozenset({"supermarket"})
+
+ROUTE_CONFIG_ALIASES: dict[str, str] = {
+    "milk-comparison": "milk",
+    "breakfast-cereals": "cereals",
+}
+
 PAGE_DATA_IMPORT_RE = re.compile(
-    r'from\s+"\.\./\.\./([^"]+)"\s*;'
+    r'from\s+"@/lib/comparisons/([^"]+)"'
 )
-ROUTE_PATH_RE = re.compile(r'routePath:\s*"(/hashvaot/[^"]+)"')
-CATEGORY_ID_RE = re.compile(r'\bid:\s*"([^"]+)"')
-CATALOG_SLUG_RE = re.compile(r'^\s*["\']?([\w-]+)["\']?\s*:', re.MULTILINE)
+IMPORT_JSON_RE = re.compile(
+    r'import\s+\w+\s+from\s+"@/data/(?:comparisons/)?([^"]+\.json)"'
+)
 
 
 def norm(s: str | None) -> str:
@@ -61,75 +72,101 @@ def load_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def parse_catalog_slugs(src: str) -> set[str]:
-    block = re.search(r"CORPUS_BY_SLUG[^=]*=\s*\{(.*?)\n\};", src, re.DOTALL)
-    if not block:
-        return set()
-    slugs: set[str] = set()
-    for line in block.group(1).splitlines():
-        m = CATALOG_SLUG_RE.match(line)
-        if m:
-            slugs.add(m.group(1))
-    return slugs
-
-
-def parse_registry_index_ids(src: str) -> list[str]:
-    """Return category ids registered in comparisonCategoryRegistry (sorted)."""
+def parse_registry_ids(src: str) -> set[str]:
     block = re.search(
         r"comparisonCategoryRegistry\s*=\s*\{(.*?)\}\s*as const",
         src,
         re.DOTALL,
     )
     if not block:
-        return []
-    ids: list[str] = []
-    for m in re.finditer(r'["\']?([\w-]+)["\']?\s*:\s*\w+CategoryDefinition', block.group(1)):
-        ids.append(m.group(1))
-    return sorted(ids, key=norm)
+        return set()
+    ids: set[str] = set()
+    for m in re.finditer(
+        r'["\']?([\w-]+)["\']?\s*:\s*\w+CategoryDefinition', block.group(1)
+    ):
+        ids.add(m.group(1))
+    return ids
 
 
-def resolve_page_data_ts(category_ts: Path) -> tuple[str | None, list[str]]:
-    """Follow category -> page-data import; return (repo-rel ts path, gaps)."""
-    gaps: list[str] = []
-    src = load_text(category_ts)
+def enumerate_route_slugs() -> list[str]:
+    slugs: list[str] = []
+    if not HASHVAOT_APP.is_dir():
+        return slugs
+    for child in sorted(HASHVAOT_APP.iterdir()):
+        if not child.is_dir():
+            continue
+        if (child / "page.tsx").is_file():
+            slugs.append(child.name)
+    return slugs
+
+
+def parse_page_data_import(page_tsx: Path) -> str | None:
+    src = load_text(page_tsx)
     m = PAGE_DATA_IMPORT_RE.search(src)
     if not m:
-        gaps.append(f"no page-data import in {repo_rel(category_ts)}")
-        return None, gaps
+        return None
     rel = m.group(1)
     if not rel.endswith(".ts"):
         rel = f"{rel}.ts"
-    page_data = COMPARISONS_LIB / rel
+    return rel
+
+
+def resolve_page_data_ts(module_rel: str) -> tuple[str | None, list[str]]:
+    gaps: list[str] = []
+    page_data = COMPARISONS_LIB / module_rel
     if not page_data.is_file():
         gaps.append(f"page-data file missing: {repo_rel(page_data)}")
         return None, gaps
     return repo_rel(page_data), gaps
 
 
-def resolve_frontend_json(page_data_ts: Path) -> tuple[str | None, list[str]]:
+def _json_import_to_repo_rel(match: re.Match[str]) -> str:
+    full = match.group(0)
+    rel_name = match.group(1)
+    if rel_name.startswith("comparisons/"):
+        return f"bari-web/src/data/{rel_name}"
+    if "/comparisons/" in full:
+        return f"bari-web/src/data/comparisons/{rel_name}"
+    return f"bari-web/src/data/{rel_name}"
+
+
+def resolve_frontend_json(page_data_ts: Path) -> tuple[str | None, list[str], list[str]]:
     gaps: list[str] = []
     src = load_text(page_data_ts)
-    m = IMPORT_JSON_RE.search(src)
-    if not m:
+    matches = list(IMPORT_JSON_RE.finditer(src))
+    if not matches:
         gaps.append(f"no @/data/comparisons/*.json import in {repo_rel(page_data_ts)}")
-        return None, gaps
-    rel = f"bari-web/src/data/comparisons/{m.group(1)}"
-    if not (REPO / rel).is_file():
-        gaps.append(f"frontend JSON missing on disk: {rel}")
-    return rel, gaps
+        return None, gaps, []
+
+    all_imports: list[str] = []
+    for m in matches:
+        rel = _json_import_to_repo_rel(m)
+        all_imports.append(rel)
+        if not (REPO / rel).is_file():
+            gaps.append(f"frontend JSON missing on disk: {rel}")
+
+    comparisons_hits = [
+        m for m in matches if m.group(1).startswith("comparisons/")
+        or "/comparisons/" in m.group(0)
+    ]
+    chosen = comparisons_hits[0] if comparisons_hits else matches[0]
+    primary = _json_import_to_repo_rel(chosen)
+    return primary, gaps, sorted(set(all_imports))
 
 
-def resolve_config_json(category_id: str) -> tuple[str | None, list[str]]:
+def resolve_config_json(route_slug: str) -> tuple[str | None, list[str]]:
     gaps: list[str] = []
-    direct = CONFIGS_DIR / f"{category_id}.json"
+    alias = ROUTE_CONFIG_ALIASES.get(route_slug, route_slug)
+
+    direct = CONFIGS_DIR / f"{alias}.json"
     if direct.is_file():
         return repo_rel(direct), gaps
 
-    alt = CONFIGS_DIR / f"{category_id.replace('-', '_')}.json"
-    if alt.is_file():
-        return repo_rel(alt), gaps
+    underscored = CONFIGS_DIR / f"{alias.replace('-', '_')}.json"
+    if underscored.is_file():
+        return repo_rel(underscored), gaps
 
-    target = norm(category_id)
+    target = norm(alias)
     matches: list[Path] = []
     for cfg_path in sorted(CONFIGS_DIR.glob("*.json")):
         if cfg_path.name.startswith("_generated_"):
@@ -145,77 +182,133 @@ def resolve_config_json(category_id: str) -> tuple[str | None, list[str]]:
         return repo_rel(matches[0]), gaps
     if len(matches) > 1:
         gaps.append(
-            f"ambiguous config match for {category_id}: "
+            f"ambiguous config match for route={route_slug}: "
             f"{', '.join(p.name for p in matches)}"
         )
         return repo_rel(matches[0]), gaps
 
-    gaps.append(f"no config for category_id={category_id}")
     return None, gaps
 
 
-def derive_category(category_id: str, catalog_slugs: set[str]) -> dict[str, Any]:
+def route_type_for_slug(route_slug: str, *, is_index: bool = False) -> str:
+    if is_index or route_slug in HUB_SLUGS:
+        return "hub"
+    if route_slug in OTHER_VERTICAL_SLUGS:
+        return "other-vertical"
+    return "comparison"
+
+
+def derive_route(
+    route_slug: str,
+    *,
+    registry_ids: set[str],
+    is_index: bool = False,
+) -> dict[str, Any]:
     gaps: list[str] = []
-    cat_file = REGISTRY_CATEGORIES_DIR / f"{category_id}.ts"
-    if not cat_file.is_file():
-        gaps.append(f"registry category file missing: categories/{category_id}.ts")
+    route = "/hashvaot" if is_index else f"/hashvaot/{route_slug}"
+    route_type = route_type_for_slug(route_slug, is_index=is_index)
+
+    if is_index:
         return {
-            "category_id": category_id,
-            "gaps": sorted(gaps),
+            "route_slug": "(index)",
+            "route": route,
+            "type": "hub",
+            "page_tsx": repo_rel(HASHVAOT_APP / "page.tsx"),
+            "in_comparison_registry": False,
         }
 
-    cat_src = load_text(cat_file)
-    route_m = ROUTE_PATH_RE.search(cat_src)
-    route = route_m.group(1) if route_m else None
-    if not route:
-        gaps.append(f"routePath not resolved in {repo_rel(cat_file)}")
+    page_tsx = HASHVAOT_APP / route_slug / "page.tsx"
+    entry: dict[str, Any] = {
+        "route_slug": route_slug,
+        "route": route,
+        "type": route_type,
+        "page_tsx": repo_rel(page_tsx),
+        "in_comparison_registry": route_slug in registry_ids,
+    }
 
-    page_data_rel, pd_gaps = resolve_page_data_ts(cat_file)
-    gaps.extend(pd_gaps)
+    if route_type != "comparison":
+        return entry
+
+    module_rel = parse_page_data_import(page_tsx)
+    page_data_rel = None
+    if module_rel:
+        page_data_rel, pd_gaps = resolve_page_data_ts(module_rel)
+        gaps.extend(pd_gaps)
+    else:
+        gaps.append(f"no @/lib/comparisons/* import in {repo_rel(page_tsx)}")
 
     frontend_json = None
+    imported_jsons: list[str] = []
     if page_data_rel:
-        frontend_json, fj_gaps = resolve_frontend_json(REPO / page_data_rel)
+        frontend_json, fj_gaps, imported_jsons = resolve_frontend_json(REPO / page_data_rel)
         gaps.extend(fj_gaps)
 
-    config_json, cfg_gaps = resolve_config_json(category_id)
-    gaps.extend(cfg_gaps)
+    if page_data_rel:
+        entry["page_data_ts"] = page_data_rel
+    if frontend_json:
+        entry["frontend_json"] = frontend_json
+    if len(imported_jsons) > 1:
+        entry["imported_jsons"] = imported_jsons
 
-    entry: dict[str, Any] = {
-        "category_id": category_id,
-        "route": route,
-        "frontend_json": frontend_json,
-        "page_data_ts": page_data_rel,
-        "config_json": config_json,
-        "registered_in_catalog": category_id in catalog_slugs,
-    }
+    config_json, cfg_gaps = resolve_config_json(route_slug)
+    gaps.extend(cfg_gaps)
+    if config_json:
+        entry["config_json"] = config_json
+        entry["config_stem"] = Path(config_json).stem
+    elif not cfg_gaps:
+        gaps.append(f"no page_generator config for live comparison route={route_slug}")
+
+    if not frontend_json:
+        gaps.append(f"comparison route {route_slug} has no resolvable frontend JSON")
+
     if gaps:
         entry["gaps"] = sorted(set(gaps))
     return entry
 
 
 def build_manifest() -> dict[str, Any]:
-    if not REGISTRY_INDEX.is_file():
-        raise RuntimeError(f"registry index missing: {repo_rel(REGISTRY_INDEX)}")
+    registry_ids: set[str] = set()
+    if REGISTRY_INDEX.is_file():
+        registry_ids = parse_registry_ids(load_text(REGISTRY_INDEX))
 
-    index_src = load_text(REGISTRY_INDEX)
-    category_ids = parse_registry_index_ids(index_src)
-    if not category_ids:
-        raise RuntimeError("no categories found in comparisonCategoryRegistry")
+    routes: list[dict[str, Any]] = []
 
-    catalog_slugs: set[str] = set()
-    if PUBLIC_CORPUS_REGISTRY.is_file():
-        catalog_slugs = parse_catalog_slugs(load_text(PUBLIC_CORPUS_REGISTRY))
+    index_page = HASHVAOT_APP / "page.tsx"
+    if index_page.is_file():
+        routes.append(
+            derive_route("(index)", registry_ids=registry_ids, is_index=True)
+        )
 
-    categories = [derive_category(cid, catalog_slugs) for cid in category_ids]
-    return {
-        "_meta": {
-            "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "source": "bari-web/src/lib/comparisons/registry (derived, static parse)",
-            "category_count": len(categories),
-        },
-        "categories": categories,
+    for slug in enumerate_route_slugs():
+        routes.append(derive_route(slug, registry_ids=registry_ids))
+
+    catalog_note = None
+    if CATALOG_ROUTE.is_file():
+        routes.append({
+            "route_slug": "catalog",
+            "route": "/hashvaot/catalog",
+            "type": "hub",
+            "page_tsx": repo_rel(CATALOG_ROUTE),
+            "in_comparison_registry": False,
+        })
+    else:
+        catalog_note = "/hashvaot/catalog page.tsx not present (skipped)"
+
+    comparison_count = sum(1 for r in routes if r.get("type") == "comparison")
+    meta: dict[str, Any] = {
+        "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "source": "bari-web/src/app/hashvaot/*/page.tsx (derived, static parse)",
+        "route_count": len(routes),
+        "comparison_route_count": comparison_count,
     }
+    if catalog_note:
+        meta["catalog_note"] = catalog_note
+
+    return {"_meta": meta, "routes": routes}
+
+
+def manifest_routes(manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    return manifest.get("routes") or manifest.get("categories") or []
 
 
 def write_manifest(path: Path = MANIFEST_PATH) -> dict[str, Any]:
@@ -230,7 +323,6 @@ def load_committed_manifest(path: Path = MANIFEST_PATH) -> dict[str, Any]:
 
 
 def canonical_for_drift(manifest: dict[str, Any]) -> str:
-    """Stable JSON for drift comparison (exclude volatile _meta.generated timestamp)."""
     copy = json.loads(json.dumps(manifest, ensure_ascii=False, sort_keys=True))
     meta = copy.get("_meta", {})
     meta.pop("generated", None)
@@ -240,11 +332,21 @@ def canonical_for_drift(manifest: dict[str, Any]) -> str:
 
 def manifest_frontend_files(manifest: dict[str, Any]) -> set[str]:
     out: set[str] = set()
-    for cat in manifest.get("categories", []):
-        fj = cat.get("frontend_json")
-        if fj:
-            out.add(fj.replace("\\", "/"))
+    for route in manifest_routes(manifest):
+        for key in ("imported_jsons", "frontend_json"):
+            val = route.get(key)
+            if isinstance(val, list):
+                out.update(v.replace("\\", "/") for v in val)
+            elif val:
+                out.add(val.replace("\\", "/"))
     return out
+
+
+def comparison_routes_with_config(manifest: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        r for r in manifest_routes(manifest)
+        if r.get("type") == "comparison" and r.get("config_json")
+    ]
 
 
 def check_drift(*, simulate: bool = False) -> int:
@@ -260,17 +362,16 @@ def check_drift(*, simulate: bool = False) -> int:
     fresh = build_manifest()
 
     if simulate:
-        cats = fresh.get("categories", [])
-        if cats and cats[0].get("frontend_json"):
-            cats[0] = dict(cats[0])
-            cats[0]["frontend_json"] = cats[0]["frontend_json"] + ".DRIFT_SIM"
-            fresh = dict(fresh)
-            fresh["categories"] = cats
+        routes = list(manifest_routes(fresh))
+        for i, route in enumerate(routes):
+            if route.get("type") == "comparison" and route.get("frontend_json"):
+                routes[i] = dict(route)
+                routes[i]["frontend_json"] = routes[i]["frontend_json"] + ".DRIFT_SIM"
+                break
+        fresh = dict(fresh)
+        fresh["routes"] = routes
 
-    # (d) stale committed manifest (ignore volatile generated timestamp)
-    committed_canon = canonical_for_drift(committed)
-    fresh_canon = canonical_for_drift(fresh)
-    if committed_canon != fresh_canon:
+    if canonical_for_drift(committed) != canonical_for_drift(fresh):
         if simulate:
             errors.append(
                 "DRIFT (simulate): committed manifest differs from fresh derivation"
@@ -280,15 +381,15 @@ def check_drift(*, simulate: bool = False) -> int:
 
     manifest_files = manifest_frontend_files(committed)
 
-    # (b) manifest names file that does not exist
-    for cat in committed.get("categories", []):
-        fj = cat.get("frontend_json")
+    for route in manifest_routes(committed):
+        fj = route.get("frontend_json")
         if fj and not (REPO / fj).is_file():
             errors.append(f"manifest frontend_json missing on disk: {fj}")
 
-    # (a) live page imports JSON not in manifest
-    for cat in committed.get("categories", []):
-        page_data = cat.get("page_data_ts")
+    for route in manifest_routes(committed):
+        if route.get("type") != "comparison":
+            continue
+        page_data = route.get("page_data_ts")
         if not page_data:
             continue
         page_path = REPO / page_data
@@ -296,18 +397,16 @@ def check_drift(*, simulate: bool = False) -> int:
             continue
         src = load_text(page_path)
         for m in IMPORT_JSON_RE.finditer(src):
-            rel = f"bari-web/src/data/comparisons/{m.group(1)}"
+            rel = _json_import_to_repo_rel(m)
             if rel not in manifest_files:
                 errors.append(
-                    f"live page imports {rel} but it is not in manifest "
-                    f"(category={cat.get('category_id')})"
+                    f"live route imports {rel} but it is not in manifest "
+                    f"(route={route.get('route_slug')})"
                 )
 
-    # (c) orphan configs — WARN not FAIL
     live_config_stems = {
-        Path(c["config_json"]).stem
-        for c in committed.get("categories", [])
-        if c.get("config_json")
+        Path(r["config_json"]).stem
+        for r in comparison_routes_with_config(committed)
     }
     for cfg_path in sorted(CONFIGS_DIR.glob("*.json")):
         if cfg_path.name.startswith("_generated_"):
@@ -340,7 +439,7 @@ def _emit_check(errors: list[str], warnings: list[str]) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Derived live-category manifest.")
+    parser = argparse.ArgumentParser(description="Route-derived live manifest.")
     parser.add_argument(
         "--check",
         action="store_true",
@@ -372,13 +471,15 @@ def main() -> int:
     else:
         write_manifest()
         print(
-            f"live_manifest.json written: {manifest['_meta']['category_count']} categories"
+            f"live_manifest.json written: {manifest['_meta']['route_count']} routes "
+            f"({manifest['_meta']['comparison_route_count']} comparison)"
         )
-        for cat in manifest["categories"]:
-            gap_note = f"  gaps={cat['gaps']}" if cat.get("gaps") else ""
+        for route in manifest["routes"]:
+            gap_note = f"  gaps={route['gaps']}" if route.get("gaps") else ""
             print(
-                f"  {cat['category_id']:20s}  "
-                f"{cat.get('frontend_json') or '(no json)'}{gap_note}"
+                f"  {route.get('route_slug', '?'):22s} "
+                f"[{route.get('type', '?'):14s}] "
+                f"{route.get('frontend_json') or '(no json)'}{gap_note}"
             )
     return 0
 
