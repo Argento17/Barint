@@ -35,13 +35,16 @@ export function activeCommunityLinks(): CommunityLink[] {
 }
 
 /**
- * Share message builder — DRAFT COPY, gate-pending (owner content sign-off +
- * Adversarial QA two-gate; see CLAUDE.md "Content sign-off"). Do not treat
- * this string as final consumer-facing copy; it is a functional placeholder
- * so the share feature is testable before copy is approved.
+ * Share message builder. `title` is always the page's full editorial headline
+ * (hero.title / article.title) — never a bare category name — so the template
+ * uses the publisher-prefix idiom ("ברי בדקה: <headline>"), which stays
+ * grammatical for statement, question, and multi-sentence headlines alike.
+ *
+ * Copy status: Content gate 1 signed off (TASK-467). Adversarial QA (gate 2)
+ * still pending per CLAUDE.md "Content sign-off".
  */
 export function buildShareText(title: string): string {
-  return `בדיקת ${title} של ברי`;
+  return `ברי בדקה: ${title}`;
 }
 
 /**
