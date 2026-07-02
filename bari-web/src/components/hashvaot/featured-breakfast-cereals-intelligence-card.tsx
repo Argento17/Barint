@@ -25,7 +25,7 @@ function stripCardDigits(text: string): string {
 
 const INSIGHT_LINES = [
   "תווית «דגנים מלאים» מופיעה על מוצרים שמדורגים D",
-  "שיבולת שועל בגרסה העבה — רכיב אחד, ציון B גבוה",
+  "פצפוצי אורז מדגן מלא ללא תוספת סוכר — רכיב אחד, ציון B",
   "אף מוצר לא מגיע ל-A — הטוב ביותר עוצר ב-B",
   "טענת «דגנים מלאים» על חלק מהמדף — לא בכולם הסדר תומך בה",
   "יש מוצרים שמיועדים לילדים",
@@ -38,6 +38,8 @@ type Props = {
 };
 
 export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: Props) {
+  const cerealsBCount = cerealsProducts.filter((p) => p.grade === "B").length;
+
   return (
     <Link
       href={href}
@@ -55,7 +57,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
         stats={[
           { value: cerealsProducts.length, label: "מוצרים נותחו" },
           { value: 38, label: "פרמטרים הושוו" },
-          { value: 4, label: "קטגוריות" },
+          { value: cerealsBCount, label: "בציון B" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(cerealsCorpusMeta.generated)}
         asLinkChild

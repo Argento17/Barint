@@ -52,7 +52,7 @@ export function FeaturedProteinBarsIntelligenceCard({ href, description }: Props
         insightLines={lines}
         stats={[
           { value: proteinBarsProducts.length, label: "בדף ההשוואה" },
-          { value: "25–34", label: "גרם חלבון ל-100 גרם" },
+          { value: "25–36", label: "גרם חלבון ל-100 גרם" },
           { value: "B", label: "תקרת הקטגוריה" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(proteinBarsCorpusMeta.generated)}
