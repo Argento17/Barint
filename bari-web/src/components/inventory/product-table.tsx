@@ -476,7 +476,11 @@ export function ProductTable({
 
   const filtered = useMemo(() => {
     // externalQ (AppShell header) takes precedence over internal search field
-    const q = (externalQ.trim() || filters.q.trim()).toLowerCase();
+    const rawQ = externalQ.trim() || filters.q.trim();
+    const q = rawQ.toLowerCase();
+    const normalizedSkuQuery = /^\d+$/.test(rawQ.replace(/\s+/g, ""))
+      ? rawQ.replace(/\s+/g, "")
+      : null;
     // resolvedCategoryName: externalCategory (by id→name lookup) OR internal select
     const cat = resolvedCategoryName;
     return rows.filter((r) => {
@@ -490,7 +494,12 @@ export function ProductTable({
         }
       }
       if (q) {
-        const haystack = [r.name, r.brand ?? "", r.categoryNameHe, r.retailer.nameHe].join(" ").toLowerCase();
+        if (normalizedSkuQuery && r.sku?.replace(/\s+/g, "") === normalizedSkuQuery) {
+          return true;
+        }
+        const haystack = [r.name, r.brand ?? "", r.categoryNameHe, r.retailer.nameHe, r.sku ?? ""]
+          .join(" ")
+          .toLowerCase();
         if (!haystack.includes(q)) return false;
       }
       return true;
