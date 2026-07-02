@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { BariBrandLogo } from "@/components/brand/bari-brand-logo";
 import { HomeContainer } from "@/components/home/section-frame";
 import { Button } from "@/components/ui/button";
+import { activeCommunityLinks } from "@/lib/social-links";
 import { siteHeaderHeightClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
 import {
@@ -24,6 +25,8 @@ const navLinks = [
 ] as const;
 
 export function SiteHeader() {
+  const community = activeCommunityLinks();
+
   return (
     <header className="reveal-up sticky top-0 z-50 border-b border-black/[0.08] bg-[#F7F7F2]/82 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl">
       <HomeContainer>
@@ -101,6 +104,24 @@ export function SiteHeader() {
                     <span className="nav-newsletter-dot size-1.5 rounded-full bg-[#167A58]" aria-hidden />
                   </span>
                 </Link>
+
+                {/* TASK-467: quiet community links — renders nothing while
+                    communityLinks hrefs are unset (placeholder state). */}
+                {community.length > 0 ? (
+                  <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/[0.06] pt-4">
+                    {community.map((link) => (
+                      <a
+                        key={link.id}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-[#4E5663] transition hover:text-[#2FAE82]"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
               </nav>
             </SheetContent>
           </Sheet>
