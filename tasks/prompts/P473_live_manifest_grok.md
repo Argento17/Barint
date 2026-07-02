@@ -1,0 +1,21 @@
+# P473 / TASK-466 derived live_manifest: kill the "categories outside the safety net" class (route: C1-GROK)
+
+## 1. Context
+- You are ALREADY in isolated worktree `C:\bari_wt_t466`, branch `feat/task466-live-manifest`, cut from origin/master `6284546a`. Never touch `C:\Bari`. Commit here; NO push/PR.
+- Read FIRST: `C:\Bari\tasks\reports\launch_readiness_and_strategy_investigation_2026-07-02.md` section on P0-4 / live_manifest (owner approved in full), and `03_operations/page_generator/conformance.py` (the `--all` list) + `bari-web/src/lib/comparisons/registry/` (the frontend's own registry of live categories).
+- The defect class: tooling (conformance, gate sweeps, rescore_all, spine_flip) each carry their OWN hand-maintained list of live categories/datasets. When a category goes live (e.g. /catalog-era additions) or a dataset version bumps (bread v3→v4, cheese v4→v5), hand lists silently go stale → categories fall OUT of the safety net (6 found this way in the launch audit; TASK-463's bread/cheese wholesale gap survived partly because nothing swept them).
+
+## 2. Objective
+**Build ONE derived manifest + make the consumers read it.**
+1. **Generator** `03_operations/page_generator/live_manifest.py`: derives the manifest by parsing the FRONTEND source of truth — the comparisons registry (`bari-web/src/lib/comparisons/registry/*`) and each category's page-data import chain — to produce `03_operations/page_generator/live_manifest.json`: per live category: `{category_id, route, frontend_json (repo-relative), page_data_ts, config_json (03_operations/page_generator/configs/<id>.json if exists), registered_in_catalog: bool}`. Parsing = static (regex/AST over TS files is fine); NO node execution required; deterministic output (sorted keys). If a category's pieces can't all be resolved, emit it with explicit `"gaps": [...]` rather than dropping it.
+2. **Drift check** `--check` mode: exits nonzero when (a) a frontend JSON under `bari-web/src/data/comparisons/` is imported by a live page but missing from the manifest, (b) the manifest names a file that doesn't exist, (c) a `configs/*.json` category has no live page (orphan config — WARN not FAIL), (d) the committed `live_manifest.json` differs from a fresh derivation (stale manifest).
+3. **Wire the consumers minimally:** `conformance.py --all` reads the category list FROM the manifest (keep a `--categories` override). Do NOT rewire rescore_all/spine_flip in this pass — list what their adoption would take in the return (follow-up scope).
+4. **CI:** add a step to the `python-tests` job in `.github/workflows/barint_ci.yml`: `python 03_operations/page_generator/live_manifest.py --check` (fails on drift). CI is currently FULLY GREEN — your branch must keep it green.
+**Gates:** manifest generation exit 0 + committed JSON; `--check` exit 0 on this tree AND a demonstrated nonzero on a synthetic drift (temporarily rename a dataset in a scratch copy or use a `--simulate-drift` test path — show the failing output, then restore); `conformance.py --all` runs off the manifest with the SAME category set as before the change (list both sets — must be equal or every difference explained as a previously-missed live category, which is the whole point: report any such catch loudly); full python-tests job steps locally green; static path sweep: no `C:\Bari` literals in anything you add (module-relative paths only — CI runs Linux).
+
+## 3. Boundaries
+- Read-only on all scoring/engine/frontend behavior — this is tooling+CI only; NO score paths touched, no data JSON edits, no consumer strings. OFF ban absolute. FREEZE: no product-description fields.
+- You are the EXECUTOR — do NOT spawn subagents.
+
+## 4. Return
+`tasks\returns\P473_contract.md` (NOT P473_return.md). Manifest content summary (categories + any gaps found — a previously-uncovered live category is a HEADLINE finding), drift-check demonstration output, conformance before/after category sets, every command + exit code, real sha256s, counts with denominators + distribution markers on full-set claims. Self-gate: `python 03_operations\validators\validate_return.py --md tasks\returns\P473_contract.md --root C:\bari_wt_t466` exit 0 (PowerShell). Commit code + contract. Propose RETURNED.

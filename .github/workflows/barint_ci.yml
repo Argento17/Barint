@@ -80,6 +80,9 @@ jobs:
       - name: Spine smoke manifest dry-run (TASK-290)
         run: python 03_operations/spine/smoke_test.py --dry-run
 
+      - name: Live manifest drift check (TASK-466)
+        run: python 03_operations/page_generator/live_manifest.py --check
+
   off-sweep:
     # TASK-238 — OFF is BANNED project-wide. Fail if any Open-Food-Facts marker
     # appears in the frontend data directory (bari-web/src/data/).
