@@ -39,6 +39,7 @@ type Props = {
 
 export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: Props) {
   const cerealsBCount = cerealsProducts.filter((p) => p.grade === "B").length;
+  const cerealsDCount = cerealsProducts.filter((p) => p.grade === "D").length;
 
   return (
     <Link
@@ -56,7 +57,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
         insightLines={INSIGHT_LINES}
         stats={[
           { value: cerealsProducts.length, label: "מוצרים נותחו" },
-          { value: 38, label: "פרמטרים הושוו" },
+          { value: cerealsDCount, label: "בציון D" },
           { value: cerealsBCount, label: "בציון B" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(cerealsCorpusMeta.generated)}

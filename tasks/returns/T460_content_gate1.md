@@ -267,3 +267,65 @@ Executor: content-agent (second pass). Trigger: gate-2 verdict GO_WITH_FIXES fla
 5. Voice observations (pre-existing, NOT touched per scope): "X לא Y" antithesis constructions remain in protein-bars L60/L64-65 ("לא הופחת אלא הוחלף", "לא מזון חזק"), chocolate-tablets hero, brined hero/L53-54. Recommend a dedicated Tom-voice pass as a separate task.
 
 Status proposal: RETURNED (pending a targeted gate-2 re-verify on the pass-2 diff).
+
+---
+
+## Gate-4 fixes (final four string fixes from `T460_redteam_gate2.md` Gate 4)
+
+Date: 2026-07-02. Worktree re-verified clean (`git status --porcelain` = 0 lines) before starting; branch `fix/task460-stale-adapter-prose` ahead of its origin tracking branch by 2 commits (prior gate-3 work), no other writer active.
+
+Method: independently re-derived every count from the JSON/curated dataset in this worktree before touching any string (not taken from the gate-4 report's numbers on faith), per file:line below.
+
+### GATE4-1 — bread "13 מוצרים כוללים \"מחמצת\" בשם"
+File: `bari-web/src/lib/comparisons/bread-page-data.ts:128`
+Independent derivation: scanned `02_products/bread_retail_003/real_bread_retail_003_v1_curated_comparison_dataset.json` (the curated 31-product set actually rendered on `/hashvaot/bread`) for `name_he` containing "מחמצת" — **7** matches (matches gate-4's own count and the file's pre-existing `supporting` list, which only ever named 3 of those 7).
+- Old: `"13 מוצרים כוללים \"מחמצת\" בשם — שמרים מופיעים לפני המחמצת"`
+- New: `"7 מוצרים כוללים \"מחמצת\" בשם — שמרים מופיעים לפני המחמצת"`
+No restructure needed — the true count is a clean, low, easily-defensible number; corrected in place.
+
+### GATE4-2 — snacks "655 נסרקו / 73 קיבלו ציון"
+Confirmed unsourced: no manifest/run-record anywhere under `02_products/snack_bars/` supports 655 or 73 (re-checked directory tree myself; nothing matches). Found and fixed **two** live render sites (gate-4's report named one; a second identical fabrication was found during this pass):
+
+1. `bari-web/src/components/hashvaot/featured-snacks-intelligence-card.tsx:54-58` (stats array on `/hashvaot/supermarket` card)
+   - Old: `stats={[{ value: 655, label: "מוצרים נסרקו" }, { value: 73, label: "קיבלו ציון" }, { value: snacksProducts.length, label: "בדף ההשוואה" }]}`
+   - New: `stats={[{ value: snacksProducts.length, label: "בדף ההשוואה" }, { value: eCount, label: "בציון E" }]}` — both values now live-derived (`snacksProducts.length`, and a new `eCount = snacksProducts.filter(p => p.grade === "E").length` = 12/21 from `snacks_frontend_v5.json`), no invented lineage numbers.
+2. `bari-web/src/components/home/home-category-intelligence.tsx:27` (homepage category hint — same fabrication, not named in the gate-4 report but same defect class, found while tracing all "655" occurrences)
+   - Old: `` hint: `655 נסרקו · ${snacksProducts.length} בדף · שופרסל` ``
+   - New: `` hint: `${snacksProducts.length} בדף ההשוואה · שופרסל` ``
+Checked `snacksDescription` in `hashvaot/supermarket/page.tsx:72` — already clean (uses live `.length` only, no fabricated stat); left unchanged.
+
+### GATE4-3 — "38 פרמטרים הושוו" (cereals + granola cards)
+Confirmed contradiction: `01_framework/glass_box/glass_box_technical_methodology_v1.md:33` states BSIP2 operates over "ten internal scoring dimensions" (grouped into 6 public D1–D6); no doc anywhere states 38. Also confirmed `01_framework/editorial/bsip2_to_web_translation_contract_v1.md:122,192` bans "dimension"/parameter/weight counts from consumer copy outright (Tier-4 internal, never rendered/paraphrased) — so the correct fix is removal, not a corrected number, and not substituting the "ten dimensions" language either (that would still be leaking internal mechanics into a public stat card).
+1. `bari-web/src/components/hashvaot/featured-breakfast-cereals-intelligence-card.tsx:57-61`
+   - Old: `stats={[{ value: cerealsProducts.length, label: "מוצרים נותחו" }, { value: 38, label: "פרמטרים הושוו" }, { value: cerealsBCount, label: "בציון B" }]}`
+   - New: `stats={[{ value: cerealsProducts.length, label: "מוצרים נותחו" }, { value: cerealsDCount, label: "בציון D" }, { value: cerealsBCount, label: "בציון B" }]}` — added live `cerealsDCount = cerealsProducts.filter(p => p.grade === "D").length` (10/20 from `cereals_frontend_v2.json`).
+2. `bari-web/src/components/hashvaot/featured-granola-intelligence-card.tsx:60-64`
+   - Old: `stats={[{ value: granolaProducts.length, label: "מוצרים נותחו" }, { value: 38, label: "פרמטרים הושוו" }, { value: granolaScoreSpread, label: "נקודות פער" }]}`
+   - New: `stats={[{ value: granolaProducts.length, label: "מוצרים נותחו" }, { value: granolaCDCount, label: "בציון C או D" }, { value: granolaScoreSpread, label: "נקודות פער" }]}` — added live `granolaCDCount = granolaProducts.filter(p => p.grade === "C" || p.grade === "D").length` (16/22 from `granola_frontend_v2.json`).
+Verified no other "38 פרמטרים" occurrence exists anywhere in `bari-web/src` after the fix (repo-wide grep, 0 hits).
+
+### GATE4-4 — red-label fallback line (cakes + cookies-coffee cards)
+Confirmed: no red-label field exists in `cakes_hard_cookies_frontend_v1.json` or `cookies_coffee_frontend_v2.json` product schema (full key scan on both). The claim also references the binary red-label cap concept, retired project-wide per standing ruling (`redlabel_deanchor_directive`). This line is fallback-only (renders only if every product's `insightLine` is empty — dormant today, real insightLines exist on all products in both categories) but should not ship referencing a dead field/retired concept. The "C ceiling" half of the sentence is independently true and derivable (`cakes_hard_cookies_frontend_v1.json` n=62: C=1,D=1,E=60; `cookies_coffee_frontend_v2.json` n=117: C=9,D=27,E=81 — C is the ceiling in both), so it was kept; only the red-label clause was removed.
+1. `bari-web/src/components/hashvaot/featured-cakes-hard-cookies-intelligence-card.tsx:30`
+   - Old: `"ציון C הוא תקרת הקטגוריה — אין כאן מוצר ללא תווית אדומה לפחות אחת"`
+   - New: `"ציון C הוא תקרת הקטגוריה, ורוב המדף מתכנס סביב E"` (60/62 = E, true and derivable; positive declarative, no negation)
+2. `bari-web/src/components/hashvaot/featured-cookies-coffee-intelligence-card.tsx:30`
+   - Old: `"ציון C הוא תקרת הקטגוריה — אין כאן מוצר ללא תווית אדומה לפחות אחת"`
+   - New: `"ציון C הוא תקרת הקטגוריה, ורוב המדף מתכנס סביב E"` (81/117 = E, true and derivable)
+
+### Build verification
+| Command | Result | Exit code |
+|---|---|---|
+| `npx tsc --noEmit` | PASS | 0 |
+| `npm run build` | PASS (all routes incl. /hashvaot/supermarket, /hashvaot/bread, /hashvaot/cakes, /hashvaot/cookies-coffee, /hashvaot/breakfast-cereals, /hashvaot/granola, /hashvaot/snacks built) | 0 |
+
+### Files changed (7)
+- `bari-web/src/lib/comparisons/bread-page-data.ts`
+- `bari-web/src/components/hashvaot/featured-snacks-intelligence-card.tsx`
+- `bari-web/src/components/home/home-category-intelligence.tsx`
+- `bari-web/src/components/hashvaot/featured-breakfast-cereals-intelligence-card.tsx`
+- `bari-web/src/components/hashvaot/featured-granola-intelligence-card.tsx`
+- `bari-web/src/components/hashvaot/featured-cakes-hard-cookies-intelligence-card.tsx`
+- `bari-web/src/components/hashvaot/featured-cookies-coffee-intelligence-card.tsx`
+
+Status proposal: RETURNED.

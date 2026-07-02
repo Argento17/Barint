@@ -37,6 +37,8 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
   const insightLines = snacksProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : SNACKS_INSIGHT_LINES).map(stripCardDigits);
 
+  const eCount = snacksProducts.filter((p) => p.grade === "E").length;
+
   return (
     <Link
       href={href}
@@ -52,9 +54,8 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: 655, label: "מוצרים נסרקו" },
-          { value: 73, label: "קיבלו ציון" },
           { value: snacksProducts.length, label: "בדף ההשוואה" },
+          { value: eCount, label: "בציון E" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(snacksCorpusMeta.generated)}
         asLinkChild
