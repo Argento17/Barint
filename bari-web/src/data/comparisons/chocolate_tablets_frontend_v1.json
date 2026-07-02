@@ -27,84 +27,35 @@
     "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
     "generated": "2026-06-26T15:58:10",
     "category": "chocolate-tablets",
-    "product_count": 35
+    "product_count": 35,
+    "reflow": {
+      "task": "TASK-455 chocolate correctness (classifier fix + endemic carve-out)",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [
+        "7296073382416 C->B",
+        "7290112197467 C->B",
+        "7290119500437 D->C",
+        "7296073747819 D->C",
+        "7610400075770 E->D",
+        "7296073747802 E->D",
+        "4000417025005 E->D"
+      ],
+      "grade_flip_count": 7,
+      "date": "2026-07-02",
+      "note": "chocolate re-classified from snack_bar_granola to chocolate (router_v2 Rule 4) + EV-REDLABEL-013 endemic sat-fat carve-out; all moves upward"
+    },
+    "deanchor_meta_regenerated": "2026-07-02"
   },
   "products": [
-    {
-      "id": "ct-001",
-      "barcode": "7296073382416",
-      "name": "שוקולד מריר 90%",
-      "name_he": "שוקולד מריר 90%",
-      "brand": "ARENSTO",
-      "score": 55.0,
-      "grade": "C",
-      "rank": 1,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VCZ58_Z_P_7296073382416_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VCZ58_Z_P_7296073382416_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 607.0,
-        "fat_g": 53.0,
-        "fat_saturated_g": 32.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 10.0,
-        "carbohydrates_g": 13.0,
-        "sugars_g": 2.0,
-        "dietary_fiber_g": 17.0,
-        "protein_g": 11.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "אחת הטבלות הקרובות ביותר לקקאו טהור, ובין טבלות ה-90% זו עם סוכר כמעט אפסי.",
-      "rowVerdict": "אחת הטבלות הקרובות ביותר לקקאו טהור: רשימה קצרה שפותחת במסת קקאו, סיבים גבוהים שמגיעים מהקקאו עצמו ולא מתוסף. הקאץ' הוא הטעם — 90% מריר הוא בחירה נישתית שלא מתאימה לכל חך.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 11.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 607.0,
-          "protein": 11.0,
-          "sugar": 2.0,
-          "fat": 53.0,
-          "fiber": 17.0,
-          "sodium": 10.0
-        },
-        "ingredients": "מסת קקאו, חמאת קקאו, סוכר, רבקת קקאו שמן, חומר טעם וריח מכיל אגוזי מלך,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "במדף שכולו ממתק, זה אחד משני המוצרים שמובילים את הדירוג — וגם הוא רק C. ה-C הזה הוא הצד הנקי של שוקולד: הרבה קקאו, מעט סוכר. הוא לא 'בריא', הוא פשוט הכי קרוב לקקאו אמיתי שתמצאו פה.",
-        "positiveSignals": [
-          "שני גרם סוכר ל-100 גרם — מהנמוכים במדף כולו",
-          "רשימת רכיבים קצרה שמתחילה במסת קקאו וחמאת קקאו",
-          "17 גרם סיבים ו-11 גרם חלבון ל-100 גרם — מהקקאו עצמו, לא מתוספת"
-        ],
-        "limitingFactors": [
-          {
-            "text": "53 גרם שומן ו-32 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
-            "magnitude": 2
-          },
-          {
-            "text": "מריר 90% הוא טעם נישתי — לא נעים לכל חך",
-            "magnitude": 1
-          }
-        ]
-      },
-      "_hash_no_rank": "219f5f872de537687b291bc9fb41e833ef3b5f9072ea2e0c336bf3fbb1cf498a"
-    },
     {
       "id": "ct-002",
       "barcode": "7290112197467",
       "name": "שוקולד מריר",
       "name_he": "שוקולד מריר",
       "brand": "טרו",
-      "score": 55.0,
-      "grade": "C",
-      "rank": 2,
+      "score": 65.8,
+      "grade": "B",
+      "rank": 1,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QEU56_Z_P_7290112197467_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QEU56_Z_P_7290112197467_1.png",
@@ -142,10 +93,10 @@
           "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
         }
       ],
-      "insightLine": "52% קקאו ללא תוספת סוכר — הסטיביה ואריתריתול מחליפים את הסוכר, והסיבים מהגבוהים על המדף.",
-      "rowVerdict": "מוצר שמנסה לשבת על שני הכיסאות: קקאו אמיתי עם ממתיקים טבעיים. הסיבים הגבוהים מגיעים מאינולין, לא מהקקאו. מי שמחפש חוויה מתוקה בלי סוכר — זה בין האמינים בקטגוריה, אבל הנוסחה מהונדסת יותר מ-90% קקאו פשוט.",
+      "insightLine": "52% קקאו ללא תוספת סוכר, עם 2.1 גרם סוכר בלבד ל-100 גרם — מהמובילים במדף הזה.",
+      "rowVerdict": "אחת משתי הטבלות שמובילות את המדף: קקאו אמיתי, 2.1 גרם סוכר בלבד, וסטיביה ואריתריתול במקום תוספת סוכר. הסיבים הגבוהים (25 גרם) מגיעים מאינולין ולא מהקקאו — נוסחה מהונדסת יותר מ-90% קלאסי, אבל מהצד הנקי של הסוכר. עדיין 34 גרם שומן ו-406 קלוריות ל-100 גרם: פינוק, לא מזון יומיומי.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.5
       },
       "expansion": {
@@ -180,70 +131,70 @@
       "_hash_no_rank": "ff75df1af431461fb323dfd312795fc642e2a9c96d3ccd5e96d973956786188c"
     },
     {
-      "id": "ct-003",
-      "barcode": "3046920029759",
+      "id": "ct-001",
+      "barcode": "7296073382416",
       "name": "שוקולד מריר 90%",
-      "name_he": "שוקולד מריר לינדט 90%",
-      "brand": "לינדט",
-      "score": 51.2,
-      "grade": "C",
-      "rank": 3,
+      "name_he": "שוקולד מריר 90%",
+      "brand": "ARENSTO",
+      "score": 65.1,
+      "grade": "B",
+      "rank": 2,
       "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XMU56_Z_P_3046920029759_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XMU56_Z_P_3046920029759_1.png",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VCZ58_Z_P_7296073382416_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VCZ58_Z_P_7296073382416_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 592.0,
-        "fat_g": 55.0,
-        "fat_saturated_g": 30.0,
+        "energy_kcal": 607.0,
+        "fat_g": 53.0,
+        "fat_saturated_g": 32.0,
         "fat_trans_g": null,
         "cholesterol_mg": null,
-        "sodium_mg": 13.0,
-        "carbohydrates_g": 14.0,
-        "sugars_g": 7.0,
-        "dietary_fiber_g": null,
-        "protein_g": 10.0
+        "sodium_mg": 10.0,
+        "carbohydrates_g": 13.0,
+        "sugars_g": 2.0,
+        "dietary_fiber_g": 17.0,
+        "protein_g": 11.0
       },
       "confidence": "verified",
       "confidence_label_he": "נתונים מאומתים",
       "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
       "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
       "d4_additives": [],
-      "insightLine": "90% קקאו לינדט — עצמתי ומינימליסטי, עם סוכר מעט יותר מהגרסה הישראלית ברמה הזו.",
-      "rowVerdict": "חמישה מרכיבים בלבד: עיסת קקאו, חמאת קקאו, אבקת קקאו, סוכר, וניל. הנוסחה ישרה. הסוכר קיים ונמוך. לינדט מציעה כאן 90% מריר שנגיש קצת יותר מהגרסה הקיצונית — עמוק, אבל לא חד כמו פגיון.",
+      "insightLine": "אחת משתי הטבלות שמובילות את המדף: 90% קקאו, חמישה מרכיבים ורק 2 גרם סוכר ל-100 גרם.",
+      "rowVerdict": "אחת משתי הטבלות שמובילות את המדף, וההיגיון שלה שונה: חמישה מרכיבים שפותחים במסת קקאו, 2 גרם סוכר בלבד, וסיבים (17 גרם) שמגיעים מהקקאו עצמו ולא מתוסף. הקאץ' הוא הטעם — 90% מריר הוא בחירה נישתית — וגם הצפיפות: 53 גרם שומן ו-607 קלוריות ל-100 גרם. הכי קרוב לקקאו טהור שתמצאו פה, אבל עדיין טבלה עתירת שומן.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 10.0
+        "category": "chocolate",
+        "protein_g": 11.0
       },
       "expansion": {
         "nutrition": {
-          "energyKcal": 592.0,
-          "protein": 10.0,
-          "sugar": 7.0,
-          "fat": 55.0,
-          "fiber": null,
-          "sodium": 13.0
+          "energyKcal": 607.0,
+          "protein": 11.0,
+          "sugar": 2.0,
+          "fat": 53.0,
+          "fiber": 17.0,
+          "sodium": 10.0
         },
-        "ingredients": "עיסת קקאו, חמאת קקאו, אבקת קקאו דל שומן, סוכר לבן, חומר טעם, וניל. מינימום מוצקי קקאו בשוקולד מריר:90%. מכיל אגוזי קשיו עלול להכיל אגוזי קשיו,",
+        "ingredients": "מסת קקאו, חמאת קקאו, סוכר, רבקת קקאו שמן, חומר טעם וריח מכיל אגוזי מלך,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מוביל בשליש העליון של המדף, ברמת קקאו של 90%. הסוכר הנמוך והרשימה הקצרה מעלים אותו, אבל הוא לא לבדו שם — יש מריר 90% נוסף עם פחות סוכר. עדיין C, כי שוקולד נשאר ממתק.",
+        "comparisonContext": "במדף שכולו ממתק, זה אחד משני המוצרים שמובילים את הדירוג — וגם הוא רק C. ה-C הזה הוא הצד הנקי של שוקולד: הרבה קקאו, מעט סוכר. הוא לא 'בריא', הוא פשוט הכי קרוב לקקאו אמיתי שתמצאו פה.",
         "positiveSignals": [
-          "שבעה גרם סוכר בלבד ל-100 גרם",
-          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
-          "מינימום 90% מוצקי קקאו"
+          "שני גרם סוכר ל-100 גרם — מהנמוכים במדף כולו",
+          "רשימת רכיבים קצרה שמתחילה במסת קקאו וחמאת קקאו",
+          "17 גרם סיבים ו-11 גרם חלבון ל-100 גרם — מהקקאו עצמו, לא מתוספת"
         ],
         "limitingFactors": [
           {
-            "text": "55 גרם שומן ו-30 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "text": "53 גרם שומן ו-32 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
             "magnitude": 2
           },
           {
-            "text": "כמות הסיבים לא צוינה על האריזה",
+            "text": "מריר 90% הוא טעם נישתי — לא נעים לכל חך",
             "magnitude": 1
           }
         ]
       },
-      "_hash_no_rank": "4b287c24080f5bfb3800a7e9a284a30561bd776e5f79a4a560a02db5f3cf1ee4"
+      "_hash_no_rank": "219f5f872de537687b291bc9fb41e833ef3b5f9072ea2e0c336bf3fbb1cf498a"
     },
     {
       "id": "ct-038",
@@ -251,9 +202,9 @@
       "name": "שוקולד מריר ללת\"ס 72%",
       "name_he": "שוקולד מריר ללת\"ס 72%",
       "brand": "DUBRO",
-      "score": 51.0,
+      "score": 55.3,
       "grade": "C",
-      "rank": 4,
+      "rank": 3,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KFJ62_Z_P_7296073726562_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KFJ62_Z_P_7296073726562_1.png",
@@ -286,7 +237,7 @@
       "insightLine": "72% קקאו ללא תוספת סוכר — ממתיק מלטיטול וסטיביה במקום סוכר, עם נוסחה יחסית נקייה.",
       "rowVerdict": "הסוכר כמעט אפסי, אבל לא בגלל שהמוצר קל — בגלל שהמתיקות מגיעה ממלטיטול. 72% קקאו אמיתי ברשימה. מי שמחפש מריר גבוה בלי תוספת סוכר, ומוכן לממתיק בסיסי — זה בין הנקיים בקטגוריה.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 7.2
       },
       "expansion": {
@@ -330,9 +281,9 @@
       "name": "שוקולד מריר 62%",
       "name_he": "טוסו שוקולד מריר 62%",
       "brand": "טוסו",
-      "score": 50.5,
+      "score": 54.3,
       "grade": "C",
-      "rank": 5,
+      "rank": 4,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DLZ48_Z_P_7290119500482_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DLZ48_Z_P_7290119500482_1.png",
@@ -356,7 +307,7 @@
       "insightLine": "62% קקאו ללא תוספת סוכר — ממתיק מלטיטול לבדו, הנוסחה הכי פשוטה בקטגוריית ה'ללא סוכר'.",
       "rowVerdict": "ממתיק אחד בלבד — מלטיטול — ורשימה קצרה שפותחת בעיסת קקאו. פחות קקאו מה-72% של DUBRO, אבל הנוסחה נקייה יותר. מי שמחפש 'ללא סוכר' בלי שלל תוספים ימצא כאן את האפשרות הפשוטה ביותר.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 7.1
       },
       "expansion": {
@@ -395,76 +346,14 @@
       "_hash_no_rank": "c8828ce7bb1a0191c300b9c0e4d776bf1323f522849466b20d716999eb0fa507"
     },
     {
-      "id": "ct-007",
-      "barcode": "4000539280740",
-      "name": "שוקולד מריר 78%",
-      "name_he": "שוקולד מריר לינדט 78%",
-      "brand": "לינדט",
-      "score": 50.0,
-      "grade": "C",
-      "rank": 6,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWB42_Z_P_4000539280740_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWB42_Z_P_4000539280740_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 576.0,
-        "fat_g": 46.0,
-        "fat_saturated_g": 29.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 21.0,
-        "carbohydrates_g": 24.0,
-        "sugars_g": 17.0,
-        "dietary_fiber_g": 13.0,
-        "protein_g": 10.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "לינדט 78% עם שומן חלב — ממתן את המרירות ומייצר מרקם קרמי, בלי להיות שוקולד חלב.",
-      "rowVerdict": "78% קקאו עם תוספת שומן חלב — שיטה לגיטימית לעשות מריר גבוה נגיש יותר. הסוכר נמוך בהרבה מהמילק, הסיבים גבוהים. פשרה הגיונית בין עומק ונגישות.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 10.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 576.0,
-          "protein": 10.0,
-          "sugar": 17.0,
-          "fat": 46.0,
-          "fiber": 13.0,
-          "sodium": 21.0
-        },
-        "ingredients": "עיסת קקאו, חמאת קקאו, סוכר לבן, קקאו מופחת שומן, שומן חלב אלמימי.nמינימום מוצקי קקאו בשוקולד מריר מעולה: 78%. מכיל חלב עלול להכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בשליש העליון של המדף. הוא לא הכי נקי — הסוכר גבוה מ-90% — אבל הוא פשרה הגיונית בין טעם נגיש לסוכר נמוך יחסית. עדיין C, עדיין ממתק, רק מהצד הטוב יותר שלו.",
-        "positiveSignals": [
-          "17 גרם סוכר ל-100 גרם — פחות ממחצית משוקולד חלב טיפוסי",
-          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
-          "13 גרם סיבים ו-10 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [
-          {
-            "text": "46 גרם שומן ו-29 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
-            "magnitude": 2
-          }
-        ]
-      },
-      "_hash_no_rank": "00092339f25344fb17d9d5b8961dfa1ca30f75f19a41bb3f3a0b4bdf57d00086"
-    },
-    {
       "id": "ct-008",
       "barcode": "7290119500437",
       "name": "שוקולד מריר",
       "name_he": "טוסו שוקולד מריר",
       "brand": "טוסו",
-      "score": 48.2,
-      "grade": "D",
-      "rank": 7,
+      "score": 54.1,
+      "grade": "C",
+      "rank": 5,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKG48_Z_P_7290119500437_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DKG48_Z_P_7290119500437_1.png",
@@ -494,10 +383,10 @@
           "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
         }
       ],
-      "insightLine": "מריר ללא תוספת סוכר — אבל הממתיק מלטיטול מופיע לפני עיסת הקקאו ברשימת הרכיבים.",
-      "rowVerdict": "כשהממתיק מופיע לפני מסת הקקאו, זו קודם נוסחת ממתיק ורק אחר כך טבלת קקאו. 52% קקאו בלבד לעומת ה-72%–90% של המתחרים. זו אפשרות 'כמעט-ללא-סוכר', אבל לא שוקולד מריר עמוק.",
+      "insightLine": "כמעט ללא סוכר — 0.2 גרם ל-100 גרם — אבל הממתיק מלטיטול מופיע לפני עיסת הקקאו.",
+      "rowVerdict": "0.2 גרם סוכר בלבד ל-100 גרם מציב אותו בצד הנקי של המדף, אבל המתיקות מגיעה ממלטיטול שפותח את רשימת הרכיבים — קודם נוסחת ממתיק, ורק אחר כך טבלת קקאו. 52% קקאו בלבד, פחות עומק מה-72%–90% שמעליו. אפשרות טובה למי שסופר סוכר, לא מריר עמוק.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 5.7
       },
       "expansion": {
@@ -531,70 +420,123 @@
       "_hash_no_rank": "c0765eeae56ff9b7e81c4230017c5c7566c051757a0e96e83cb93505e83f531d"
     },
     {
-      "id": "ct-014",
-      "barcode": "5941021001674",
-      "name": "שוקולד מריר 85%",
-      "name_he": "שוקולד מריר 85%",
-      "brand": "היידי",
-      "score": 46.9,
-      "grade": "D",
-      "rank": 8,
+      "id": "ct-007",
+      "barcode": "4000539280740",
+      "name": "שוקולד מריר 78%",
+      "name_he": "שוקולד מריר לינדט 78%",
+      "brand": "לינדט",
+      "score": 53.7,
+      "grade": "C",
+      "rank": 6,
       "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IZR40_Z_P_5941021001674_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IZR40_Z_P_5941021001674_1.png",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWB42_Z_P_4000539280740_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWB42_Z_P_4000539280740_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 603.0,
-        "fat_g": 52.0,
-        "fat_saturated_g": 31.0,
+        "energy_kcal": 576.0,
+        "fat_g": 46.0,
+        "fat_saturated_g": 29.0,
         "fat_trans_g": null,
         "cholesterol_mg": null,
-        "sodium_mg": 8.0,
-        "carbohydrates_g": 16.0,
-        "sugars_g": 12.0,
-        "dietary_fiber_g": null,
-        "protein_g": 9.3
+        "sodium_mg": 21.0,
+        "carbohydrates_g": 24.0,
+        "sugars_g": 17.0,
+        "dietary_fiber_g": 13.0,
+        "protein_g": 10.0
       },
       "confidence": "verified",
       "confidence_label_he": "נתונים מאומתים",
       "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
       "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "היידי 85% — קקאו אמיתי ראשון ברשימה, לציטין יחיד בסוף, תמצית וניל טבעית.",
-      "rowVerdict": "הנוסחה ישרה: עיסת קקאו, חמאת קקאו, אבקת קקאו, סוכר, לציטין, תמצית וניל טבעית. פחות מפורסם מלינדט ומספלנדיד, אבל מציע 85% אמין עם נתרן נמוך במיוחד.",
+      "d4_additives": [],
+      "insightLine": "לינדט 78% עם שומן חלב — ממתן את המרירות ומייצר מרקם קרמי, בלי להיות שוקולד חלב.",
+      "rowVerdict": "78% קקאו עם תוספת שומן חלב — שיטה לגיטימית לעשות מריר גבוה נגיש יותר. הסוכר נמוך בהרבה מהמילק, הסיבים גבוהים. פשרה הגיונית בין עומק ונגישות.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 9.3
+        "category": "chocolate",
+        "protein_g": 10.0
       },
       "expansion": {
         "nutrition": {
-          "energyKcal": 603.0,
-          "protein": 9.3,
-          "sugar": 12.0,
-          "fat": 52.0,
-          "fiber": null,
-          "sodium": 8.0
+          "energyKcal": 576.0,
+          "protein": 10.0,
+          "sugar": 17.0,
+          "fat": 46.0,
+          "fiber": 13.0,
+          "sodium": 21.0
         },
-        "ingredients": "עיסת קקאו, חמאת קקאו,  אבקת קקאו, סוכר ,חומר מתחלב(לציטין סויה), חומרי טעם (תמצית וניל טבעית), כלל מוצקים בשוקולד מינימום 85% עלול להכיל גלוטן",
+        "ingredients": "עיסת קקאו, חמאת קקאו, סוכר לבן, קקאו מופחת שומן, שומן חלב אלמימי.nמינימום מוצקי קקאו בשוקולד מריר מעולה: 78%. מכיל חלב עלול להכיל אגוזי לוז,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "באמצע קבוצת ה-D, מהצד הנקי של המדף מבחינת סוכר ואחוז קקאו. ה-D נובע מצפיפות הקלוריות והשומן הרווי, לא מרשימה ארוכה או הרבה תוספים. אפשרות סבירה לחובבי מריר.",
+        "comparisonContext": "בשליש העליון של המדף. הוא לא הכי נקי — הסוכר גבוה מ-90% — אבל הוא פשרה הגיונית בין טעם נגיש לסוכר נמוך יחסית. עדיין C, עדיין ממתק, רק מהצד הטוב יותר שלו.",
         "positiveSignals": [
-          "12 גרם סוכר ל-100 גרם — מהנמוכים בקבוצת ה-85%",
+          "17 גרם סוכר ל-100 גרם — פחות ממחצית משוקולד חלב טיפוסי",
           "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
-          "מינימום 85% מוצקי קקאו"
+          "13 גרם סיבים ו-10 גרם חלבון ל-100 גרם"
         ],
         "limitingFactors": [
           {
-            "text": "52 גרם שומן ו-31 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "text": "46 גרם שומן ו-29 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "magnitude": 2
+          }
+        ]
+      },
+      "_hash_no_rank": "00092339f25344fb17d9d5b8961dfa1ca30f75f19a41bb3f3a0b4bdf57d00086"
+    },
+    {
+      "id": "ct-003",
+      "barcode": "3046920029759",
+      "name": "שוקולד מריר 90%",
+      "name_he": "שוקולד מריר לינדט 90%",
+      "brand": "לינדט",
+      "score": 53.0,
+      "grade": "C",
+      "rank": 7,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XMU56_Z_P_3046920029759_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XMU56_Z_P_3046920029759_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 592.0,
+        "fat_g": 55.0,
+        "fat_saturated_g": 30.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 13.0,
+        "carbohydrates_g": 14.0,
+        "sugars_g": 7.0,
+        "dietary_fiber_g": null,
+        "protein_g": 10.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [],
+      "insightLine": "90% קקאו לינדט — עצמתי ומינימליסטי, עם סוכר מעט יותר מהגרסה הישראלית ברמה הזו.",
+      "rowVerdict": "חמישה מרכיבים בלבד: עיסת קקאו, חמאת קקאו, אבקת קקאו, סוכר, וניל. הנוסחה ישרה. הסוכר קיים ונמוך. לינדט מציעה כאן 90% מריר שנגיש קצת יותר מהגרסה הקיצונית — עמוק, אבל לא חד כמו פגיון.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 10.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 592.0,
+          "protein": 10.0,
+          "sugar": 7.0,
+          "fat": 55.0,
+          "fiber": null,
+          "sodium": 13.0
+        },
+        "ingredients": "עיסת קקאו, חמאת קקאו, אבקת קקאו דל שומן, סוכר לבן, חומר טעם, וניל. מינימום מוצקי קקאו בשוקולד מריר:90%. מכיל אגוזי קשיו עלול להכיל אגוזי קשיו,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מוביל בשליש העליון של המדף, ברמת קקאו של 90%. הסוכר הנמוך והרשימה הקצרה מעלים אותו, אבל הוא לא לבדו שם — יש מריר 90% נוסף עם פחות סוכר. עדיין C, כי שוקולד נשאר ממתק.",
+        "positiveSignals": [
+          "שבעה גרם סוכר בלבד ל-100 גרם",
+          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
+          "מינימום 90% מוצקי קקאו"
+        ],
+        "limitingFactors": [
+          {
+            "text": "55 גרם שומן ו-30 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
             "magnitude": 2
           },
           {
@@ -603,78 +545,69 @@
           }
         ]
       },
-      "_hash_no_rank": "6dffbb5251a6d08ed390f522efd7a21b3c81af88d2082ae8161b394515e47c71"
+      "_hash_no_rank": "4b287c24080f5bfb3800a7e9a284a30561bd776e5f79a4a560a02db5f3cf1ee4"
     },
     {
-      "id": "ct-009",
-      "barcode": "7290018893609",
-      "name": "שוקולד מריר 85%",
-      "name_he": "צ'וקטה שוקולד מריר 85%",
-      "brand": "צ'וקטה",
-      "score": 44.7,
-      "grade": "D",
-      "rank": 9,
+      "id": "ct-015",
+      "barcode": "7296073747819",
+      "name": "שוקולד מריר פרימיום 81%",
+      "name_he": "שוקולד מריר פרימיום 81%",
+      "brand": "ARENSTO",
+      "score": 50.7,
+      "grade": "C",
+      "rank": 8,
       "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ASW62_Z_P_7290018893609_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ASW62_Z_P_7290018893609_1.png",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQY70_Z_P_7296073747819_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQY70_Z_P_7296073747819_1.png",
       "nutrition_per_100g": {
-        "energy_kcal": 569.0,
-        "fat_g": 45.0,
-        "fat_saturated_g": 28.0,
+        "energy_kcal": 603.0,
+        "fat_g": 50.0,
+        "fat_saturated_g": 30.0,
         "fat_trans_g": null,
         "cholesterol_mg": null,
-        "sodium_mg": 8.0,
+        "sodium_mg": 10.0,
         "carbohydrates_g": 23.0,
-        "sugars_g": 16.0,
-        "dietary_fiber_g": 16.0,
-        "protein_g": 10.0
+        "sugars_g": 18.0,
+        "dietary_fiber_g": 13.0,
+        "protein_g": 8.7
       },
       "confidence": "verified",
       "confidence_label_he": "נתונים מאומתים",
       "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
       "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "85% קקאו צ'וקטה — נוסחה ישרה, מתחרה בכנות בלינדט ברמה הזו.",
-      "rowVerdict": "עיסת קקאו, סוכר, חמאת קקאו, אבקת קקאו, לציטין — נוסחה קלאסית ואמינה. הסיבים גבוהים מהקקאו עצמו. מי שאוהב מריר 85% לא מוצא כאן הפתעות — ועל זה בדיוק המוצר הזה מבנה את הטיעון שלו.",
+      "d4_additives": [],
+      "insightLine": "ARENSTO 81% — ארבעה מרכיבים שפותחים בעיסת קקאו, עם 18 גרם סוכר ל-100 גרם.",
+      "rowVerdict": "רשימה נקייה של ארבעה מרכיבים שפותחת בעיסת קקאו: עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו. 81% מריר שנגיש יותר מ-90% — הסוכר (18 גרם) מעט גבוה יותר מטבלאות ה-85%, שם עובר ההבדל. עדיין 50 גרם שומן ו-603 קלוריות ל-100 גרם: פשרה טובה למי ש-90% חזק לו מדי, אבל טבלה עתירת שומן.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 10.0
+        "category": "chocolate",
+        "protein_g": 8.7
       },
       "expansion": {
         "nutrition": {
-          "energyKcal": 569.0,
-          "protein": 10.0,
-          "sugar": 16.0,
-          "fat": 45.0,
-          "fiber": 16.0,
-          "sodium": 8.0
+          "energyKcal": 603.0,
+          "protein": 8.7,
+          "sugar": 18.0,
+          "fat": 50.0,
+          "fiber": 13.0,
+          "sodium": 10.0
         },
-        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, אבקת קקאו דל שומן,  מתחלב (לציטין סויה), חומרי טעם וריח. מינימום 85% מוצקי קקאו. מכיל סויה עלול להכיל אגוזי לוז,",
+        "ingredients": "עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו, חומר טעם וריח.nכלל מוצקי קקאו בשוקולד- מינימום 81%. עלול להכיל אגוזי לוז,",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "פותח את קבוצת ה-D, אבל מבחינת סוכר ואחוז קקאו הוא שייך לצד הנקי של המדף. מה שמושך אותו מטה הוא השומן הרווי הגבוה, מאפיין של מריר 85%. עדיין מהאפשרויות הטובות יותר לחובבי מריר.",
+        "comparisonContext": "בתחתית קבוצת ה-D הגבוהה, עדיין מהצד הנקי של המדף. אחוז הקקאו והרשימה הקצרה לטובתו; הסוכר מעט גבוה יותר מטבלאות ה-85%, וזה ההבדל. אפשרות סבירה לחובבי מריר.",
         "positiveSignals": [
-          "16 גרם סוכר ל-100 גרם — מהנמוכים בין טבלות המריר עם סוכר רגיל",
-          "16 גרם סיבים ו-10 גרם חלבון ל-100 גרם",
-          "מינימום 85% מוצקי קקאו"
+          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
+          "18 גרם סוכר ל-100 גרם — פחות ממחצית משוקולד חלב",
+          "13 גרם סיבים ל-100 גרם"
         ],
         "limitingFactors": [
           {
-            "text": "45 גרם שומן ו-28 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "text": "50 גרם שומן ו-30 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
             "magnitude": 2
           }
         ]
       },
-      "_hash_no_rank": "cd0d1d0470376a0cf5c402449fc23ff72dca914e5a376d0e0525f3979b1e5dc9"
+      "_hash_no_rank": "bba3127e610d08a5081a8ae540158363a9abd399d5fcf4e45e28c1016eae8c84"
     },
     {
       "id": "ct-010",
@@ -682,9 +615,9 @@
       "name": "שוקולד חלב",
       "name_he": "שוקולד חלב",
       "brand": "טרו",
-      "score": 44.2,
+      "score": 49.3,
       "grade": "D",
-      "rank": 10,
+      "rank": 9,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QDW50_Z_P_7290112197443_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QDW50_Z_P_7290112197443_1.png",
@@ -725,7 +658,7 @@
       "insightLine": "שוקולד חלב 30% קקאו ללא סוכר — אריתריתול + סטיביה + אגוזי לוז, נוסחה מהונדסת לחלוטין.",
       "rowVerdict": "רשימת המרכיבים כוללת אריתריתול, Truvia, סטיביה, אגוזי לוז, אינולין, לציטין סויה — הרבה מרכיבים כדי להגיע לאפקט 'ללא סוכר'. 30% קקאו בלבד. מי שמטרתו הפחתת סוכר ממשית ומוכן למוצר מהונדס — זו אפשרות; מי שמחפש שוקולד פשוט — לא.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 9.0
       },
       "expansion": {
@@ -764,9 +697,9 @@
       "name": "שוקולד חלב",
       "name_he": "טוסו שוקולד חלב",
       "brand": "טוסו",
-      "score": 43.9,
+      "score": 47.8,
       "grade": "D",
-      "rank": 11,
+      "rank": 10,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DIE48_Z_P_7290119500383_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DIE48_Z_P_7290119500383_1.png",
@@ -799,7 +732,7 @@
       "insightLine": "שוקולד חלב ללא סוכר של טוסו — 31% קקאו, הממתיק מלטיטול ראשון ברשימת הרכיבים.",
       "rowVerdict": "הממתיק מוביל את הרשימה לפני הקקאו — הדפוס שחוזר על עצמו בגרסות ה'ללא סוכר' של טוסו. 31% קקאו הוא הבסיס המינימלי לשוקולד חלב. כממתק עם סוכר נמוך זה עושה את העבודה; מי שמחפש עומק קקאו ימצא מה שמחפש בטבלאות אחרות.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 8.3
       },
       "expansion": {
@@ -833,14 +766,160 @@
       "_hash_no_rank": "193590f115c12d8723274b522c7b88033f8122860f149624cfa473c16458bda4"
     },
     {
+      "id": "ct-009",
+      "barcode": "7290018893609",
+      "name": "שוקולד מריר 85%",
+      "name_he": "צ'וקטה שוקולד מריר 85%",
+      "brand": "צ'וקטה",
+      "score": 47.5,
+      "grade": "D",
+      "rank": 11,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ASW62_Z_P_7290018893609_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ASW62_Z_P_7290018893609_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 569.0,
+        "fat_g": 45.0,
+        "fat_saturated_g": 28.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 8.0,
+        "carbohydrates_g": 23.0,
+        "sugars_g": 16.0,
+        "dietary_fiber_g": 16.0,
+        "protein_g": 10.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "85% קקאו צ'וקטה — נוסחה ישרה, מתחרה בכנות בלינדט ברמה הזו.",
+      "rowVerdict": "עיסת קקאו, סוכר, חמאת קקאו, אבקת קקאו, לציטין — נוסחה קלאסית ואמינה. הסיבים גבוהים מהקקאו עצמו. מי שאוהב מריר 85% לא מוצא כאן הפתעות — ועל זה בדיוק המוצר הזה מבנה את הטיעון שלו.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 10.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 569.0,
+          "protein": 10.0,
+          "sugar": 16.0,
+          "fat": 45.0,
+          "fiber": 16.0,
+          "sodium": 8.0
+        },
+        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, אבקת קקאו דל שומן,  מתחלב (לציטין סויה), חומרי טעם וריח. מינימום 85% מוצקי קקאו. מכיל סויה עלול להכיל אגוזי לוז,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "פותח את קבוצת ה-D, אבל מבחינת סוכר ואחוז קקאו הוא שייך לצד הנקי של המדף. מה שמושך אותו מטה הוא השומן הרווי הגבוה, מאפיין של מריר 85%. עדיין מהאפשרויות הטובות יותר לחובבי מריר.",
+        "positiveSignals": [
+          "16 גרם סוכר ל-100 גרם — מהנמוכים בין טבלות המריר עם סוכר רגיל",
+          "16 גרם סיבים ו-10 גרם חלבון ל-100 גרם",
+          "מינימום 85% מוצקי קקאו"
+        ],
+        "limitingFactors": [
+          {
+            "text": "45 גרם שומן ו-28 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "magnitude": 2
+          }
+        ]
+      },
+      "_hash_no_rank": "cd0d1d0470376a0cf5c402449fc23ff72dca914e5a376d0e0525f3979b1e5dc9"
+    },
+    {
+      "id": "ct-014",
+      "barcode": "5941021001674",
+      "name": "שוקולד מריר 85%",
+      "name_he": "שוקולד מריר 85%",
+      "brand": "היידי",
+      "score": 46.7,
+      "grade": "D",
+      "rank": 12,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IZR40_Z_P_5941021001674_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IZR40_Z_P_5941021001674_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 603.0,
+        "fat_g": 52.0,
+        "fat_saturated_g": 31.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 8.0,
+        "carbohydrates_g": 16.0,
+        "sugars_g": 12.0,
+        "dietary_fiber_g": null,
+        "protein_g": 9.3
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "היידי 85% — קקאו אמיתי ראשון ברשימה, לציטין יחיד בסוף, תמצית וניל טבעית.",
+      "rowVerdict": "הנוסחה ישרה: עיסת קקאו, חמאת קקאו, אבקת קקאו, סוכר, לציטין, תמצית וניל טבעית. פחות מפורסם מלינדט ומספלנדיד, אבל מציע 85% אמין עם נתרן נמוך במיוחד.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 9.3
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 603.0,
+          "protein": 9.3,
+          "sugar": 12.0,
+          "fat": 52.0,
+          "fiber": null,
+          "sodium": 8.0
+        },
+        "ingredients": "עיסת קקאו, חמאת קקאו,  אבקת קקאו, סוכר ,חומר מתחלב(לציטין סויה), חומרי טעם (תמצית וניל טבעית), כלל מוצקים בשוקולד מינימום 85% עלול להכיל גלוטן",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "באמצע קבוצת ה-D, מהצד הנקי של המדף מבחינת סוכר ואחוז קקאו. ה-D נובע מצפיפות הקלוריות והשומן הרווי, לא מרשימה ארוכה או הרבה תוספים. אפשרות סבירה לחובבי מריר.",
+        "positiveSignals": [
+          "12 גרם סוכר ל-100 גרם — מהנמוכים בקבוצת ה-85%",
+          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
+          "מינימום 85% מוצקי קקאו"
+        ],
+        "limitingFactors": [
+          {
+            "text": "52 גרם שומן ו-31 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
+            "magnitude": 2
+          },
+          {
+            "text": "כמות הסיבים לא צוינה על האריזה",
+            "magnitude": 1
+          }
+        ]
+      },
+      "_hash_no_rank": "6dffbb5251a6d08ed390f522efd7a21b3c81af88d2082ae8161b394515e47c71"
+    },
+    {
       "id": "ct-012",
       "barcode": "3046920028363",
       "name": "שוקולד מריר 85%",
       "name_he": "שוקולד מריר לינדט 85%",
       "brand": "לינדט",
-      "score": 43.8,
+      "score": 44.8,
       "grade": "D",
-      "rank": 12,
+      "rank": 13,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VLC46_Z_P_3046920028363_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VLC46_Z_P_3046920028363_1.png",
@@ -864,7 +943,7 @@
       "insightLine": "85% קקאו לינדט עם סוכר דמררה — נוסחה ייחודית, והחלבון הגבוה ביותר במדף מקורו בריכוז הקקאו עצמו.",
       "rowVerdict": "עיסת קקאו, קקאו מופחת שומן, חמאת קקאו, סוכר חום דמררה, וניל — רשימה קצרה עם אופי משלה. החלבון הגבוה ביותר במדף — תוצאה של ריכוז הקקאו, מקורו בדיוק בשם. השומן הרווי הגבוה הוא מאפיין מובנה של מריר 85% — הנוסחה לא עושה אותו.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 12.5
       },
       "expansion": {
@@ -904,9 +983,9 @@
       "name": "שוקולד מריר 85%",
       "name_he": "שוקולד ספלנדיד מריר 85%",
       "brand": "ספלנדיד",
-      "score": 43.3,
+      "score": 44.3,
       "grade": "D",
-      "rank": 13,
+      "rank": 14,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VKW52_Z_P_7290105961525_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VKW52_Z_P_7290105961525_1.png",
@@ -930,7 +1009,7 @@
       "insightLine": "ספלנדיד 85% עם חמישה מרכיבים בלבד — נוסחה מינימליסטית שקשה לתקוף.",
       "rowVerdict": "עיסת קקאו, סוכר, חמאת קקאו, ונילין, מלח — חמישה מרכיבים. נדיר בשוק. השומן הרווי הגבוה הוא מאפיין של מריר 85% בכלל, לא כשל של הנוסחה. שוקולד מריר 'נקי' ואמין.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 9.1
       },
       "expansion": {
@@ -961,74 +1040,12 @@
       "_hash_no_rank": "cf02ec95246e649e2b63e3cc43adb7862c54d0f91df3d9b95b8db686368abaad"
     },
     {
-      "id": "ct-015",
-      "barcode": "7296073747819",
-      "name": "שוקולד מריר פרימיום 81%",
-      "name_he": "שוקולד מריר פרימיום 81%",
-      "brand": "ARENSTO",
-      "score": 40.0,
-      "grade": "D",
-      "rank": 14,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQY70_Z_P_7296073747819_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQY70_Z_P_7296073747819_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 603.0,
-        "fat_g": 50.0,
-        "fat_saturated_g": 30.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 10.0,
-        "carbohydrates_g": 23.0,
-        "sugars_g": 18.0,
-        "dietary_fiber_g": 13.0,
-        "protein_g": 8.7
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [],
-      "insightLine": "ARENSTO 81% — נוסחה נקייה של ארבעה מרכיבים, צעד אחד מתחת ל-90% של אותו מותג.",
-      "rowVerdict": "עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו — ארבעה מרכיבים. הסוכר מעט גבוה יותר מה-85%, אבל הנוסחה פשוטה כמו שהמותג עושה בכל הקו שלו. פשרה טובה למי ש-90% חזק מדי.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 8.7
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 603.0,
-          "protein": 8.7,
-          "sugar": 18.0,
-          "fat": 50.0,
-          "fiber": 13.0,
-          "sodium": 10.0
-        },
-        "ingredients": "עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו, חומר טעם וריח.nכלל מוצקי קקאו בשוקולד- מינימום 81%. עלול להכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בתחתית קבוצת ה-D הגבוהה, עדיין מהצד הנקי של המדף. אחוז הקקאו והרשימה הקצרה לטובתו; הסוכר מעט גבוה יותר מטבלאות ה-85%, וזה ההבדל. אפשרות סבירה לחובבי מריר.",
-        "positiveSignals": [
-          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
-          "18 גרם סוכר ל-100 גרם — פחות ממחצית משוקולד חלב",
-          "13 גרם סיבים ל-100 גרם"
-        ],
-        "limitingFactors": [
-          {
-            "text": "50 גרם שומן ו-30 גרם שומן רווי ל-100 גרם — צפיפות קלורית גבוהה",
-            "magnitude": 2
-          }
-        ]
-      },
-      "_hash_no_rank": "bba3127e610d08a5081a8ae540158363a9abd399d5fcf4e45e28c1016eae8c84"
-    },
-    {
       "id": "ct-016",
       "barcode": "7290107955782",
       "name": "טבלת שוקולד מריר ללת\"ס",
       "name_he": "טבלת שוקולד מריר ללת\"ס",
       "brand": "שוקולד פרה",
-      "score": 36.9,
+      "score": 42.0,
       "grade": "D",
       "rank": 15,
       "categoryTotal": 35,
@@ -1079,7 +1096,7 @@
       "insightLine": "מהטבלות המהונדסות ביותר במדף: שלושה ממתיקים (ביניהם ממתיק מלטיטול) ושני מתחלבים, כולל PGPR.",
       "rowVerdict": "55% קקאו עם שלושה ממתיקים (אריתריתול, מלטיטול, סוכרלוז) ושני מתחלבים (לציטין ו-PGPR): נוסחה מורכבת שמשקפת מאמץ להגיע לטעם ספציפי. הסיבים הגבוהים מגיעים מסיבי תירס ואינולין, לא מהקקאו. תקין מבחינת סוכר; מוטל בספק מבחינת נוסחה.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 7.1
       },
       "expansion": {
@@ -1113,162 +1130,14 @@
       "_hash_no_rank": "701dc9415071f53447c99ad128ee6303482299524247fbb01cc003a2823c9f3e"
     },
     {
-      "id": "ct-017",
-      "barcode": "4000539280726",
-      "name": "שוקולד מריר 70% מילד",
-      "name_he": "שוקולד מריר לינדט70%מילד",
-      "brand": "לינדט",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 16,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OVN46_Z_P_4000539280726_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OVN46_Z_P_4000539280726_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 610.0,
-        "fat_g": 48.0,
-        "fat_saturated_g": 29.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 20.0,
-        "carbohydrates_g": 33.0,
-        "sugars_g": 29.0,
-        "dietary_fiber_g": 9.2,
-        "protein_g": 6.9
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "לינדט 70% 'מילד' — הגרסה שנועדה להיות נגישה, והסוכר כאן מאשר בדיוק את זה.",
-      "rowVerdict": "'מילד' פירושו פחות מריר, יותר מתוק. הנוסחה קצרה ונקייה, אבל הסוכר קרוב כבר לחצי הדרך אל שוקולד החלב. מי שמחפש פתח כניסה לעולם המריר — זה מקום סביר. מי שכבר שם — אפשר לעלות דרגה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 6.9
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 610.0,
-          "protein": 6.9,
-          "sugar": 29.0,
-          "fat": 48.0,
-          "fiber": 9.2,
-          "sodium": 20.0
-        },
-        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, מתחלב (לציטין סויה). מינימום מוצקי קקאו בשוקולד מריר מעולה: 70% . מכיל סויה עלול להכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "פותח את קבוצת ה-E, נמוך מכל טבלאות ה-78%-90%. ה'מילד' אומר פחות מריר ויותר סוכר, וזה בדיוק מה שמפריד אותו מהצד הנקי של המדף. נגיש בטעם, אבל לא מהצד הנקי.",
-        "positiveSignals": [
-          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
-          "9.2 גרם סיבים ל-100 גרם"
-        ],
-        "limitingFactors": [
-          {
-            "text": "29 גרם סוכר ל-100 גרם — כמעט פי שניים מטבלאות ה-85%",
-            "magnitude": 2
-          },
-          {
-            "text": "48 גרם שומן ו-29 גרם שומן רווי ל-100 גרם",
-            "magnitude": 2
-          }
-        ]
-      },
-      "_hash_no_rank": "880b3c34cafc39483e6668bbf7b2d328af59a452dd8d5c4ecb046aef61e03994"
-    },
-    {
-      "id": "ct-018",
-      "barcode": "7610400075770",
-      "name": "שוקולד מריר אגוזי לוז",
-      "name_he": "שוק.לינדט מריר אגוזי לוז",
-      "brand": "לינדט",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 17,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CSX44_Z_P_7610400075770_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CSX44_Z_P_7610400075770_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 573.0,
-        "fat_g": 40.0,
-        "fat_saturated_g": 13.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 8.0,
-        "carbohydrates_g": 42.0,
-        "sugars_g": 39.0,
-        "dietary_fiber_g": 6.5,
-        "protein_g": 8.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "לינדט 'מריר' עם אגוזי לוז — הסוכר ראשון ברשימה, קקאו 43% בלבד.",
-      "rowVerdict": "עם 34% אגוזי לוז, הסוכר פותח את הרשימה קודם לקקאו. 43% קקאו מינימום שורד כרקע, לא כגיבור. האגוזים הם הנכס כאן; שאר הטבלה נשענת על סוכר יותר מאשר על קקאו.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 8.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 573.0,
-          "protein": 8.0,
-          "sugar": 39.0,
-          "fat": 40.0,
-          "fiber": 6.5,
-          "sodium": 8.0
-        },
-        "ingredients": "סוכר לבן, אגוזי לוז (34%), עיסת קקאו, חמאת קקאו, שומן חלב אלמימי, מתחלב (לציטין סויה), חומרי טעם.nמינימום מוצקי קקאו בשוקולד מריר: 43% מכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בקבוצת ה-E. למרות השם 'מריר', תוספת אגוזי הלוז דוחפת את הסוכר מעלה ואת הקקאו מטה, כך שהוא יושב הרבה מתחת לטבלאות ה-85%-90%. ממולא ומתוק יותר ממה שהשם מרמז.",
-        "positiveSignals": [
-          "שומן רווי נמוך יחסית למדף — 13 גרם ל-100 גרם",
-          "מכיל אגוזי לוז אמיתיים (34%)"
-        ],
-        "limitingFactors": [
-          {
-            "text": "סוכר הוא הרכיב הראשון — 39 גרם ל-100 גרם",
-            "magnitude": 3
-          },
-          {
-            "text": "אחוז קקאו יורד ל-43% למרות הכינוי 'מריר'",
-            "magnitude": 1
-          }
-        ]
-      },
-      "_hash_no_rank": "8677bad4a12182500bf174f25753452d98406345304d0c915107a84273dfc1da"
-    },
-    {
       "id": "ct-039",
       "barcode": "7296073747802",
       "name": "שוקולד מריר פרימיום 75%",
       "name_he": "שוקולד מריר פרימיום 75%",
       "brand": "ARENSTO",
-      "score": 32.0,
-      "grade": "E",
-      "rank": 18,
+      "score": 41.3,
+      "grade": "D",
+      "rank": 16,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQH62_Z_P_7296073747802_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQH62_Z_P_7296073747802_1.png",
@@ -1289,10 +1158,10 @@
       "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
       "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
       "d4_additives": [],
-      "insightLine": "ARENSTO 75% פרימיום — נוסחה נקייה, אבל הסוכר כאן גבוה מה-81% של אותו מותג.",
-      "rowVerdict": "אותם ארבעה מרכיבים כמו ה-81% והשיא של ARENSTO: עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו. 75% קקאו עם סוכר גבוה יותר מהאח הגדול — ולכן E ולא D. הנוסחה מצוינת; ההחלטה לגבי 75% לעומת 81% היא של הסוכר.",
+      "insightLine": "ARENSTO 75% פרימיום — אותם ארבעה מרכיבים נקיים, עם 21 גרם סוכר ל-100 גרם.",
+      "rowVerdict": "אותה נוסחה של ארבעה מרכיבים כמו ה-81% והשיא של המותג: עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו. הרשימה מצוינת; מה שמפריד אותו מהאח הגדול הוא הסוכר — 21 גרם לעומת 18. עדיין 75% קקאו אמיתי, אבל עם 593 קלוריות ו-48 גרם שומן ל-100 גרם זו טבלה עתירת סוכר וצפופה קלורית.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 8.7
       },
       "expansion": {
@@ -1336,9 +1205,9 @@
       "name": "שוקולד מריר עם מרציפן",
       "name_he": "שוקולד מריר עם מרציפן",
       "brand": "ריטר ספורט",
-      "score": 30.0,
-      "grade": "E",
-      "rank": 19,
+      "score": 35.3,
+      "grade": "D",
+      "rank": 17,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TEK28_Z_P_4000417025005_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TEK28_Z_P_4000417025005_1.png",
@@ -1368,10 +1237,10 @@
           "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
         }
       ],
-      "insightLine": "ריטר ספורט מרציפן — 44% מהמוצר הוא מרציפן (סוכר+שקדים+סירופ); הקקאו הוא הציפוי.",
-      "rowVerdict": "שוקולד מריר 56% עם מרציפן 44%: השקדים אמיתיים, אבל המרציפן מביא איתו סוכר+סירופ סוכר. הסוכר הכולל מתיישב עמוק בצד המתוק של המדף. לאוהבי מרציפן — מוצלח. לשוקולד 'מריר' — לא.",
+      "insightLine": "ריטר ספורט מרציפן — 44% מהמוצר מרציפן (סוכר+שקדים+סירופ), עם 51 גרם סוכר ל-100 גרם.",
+      "rowVerdict": "שוקולד מריר 56% עם מילוי מרציפן 44%: השקדים (38% מהמרציפן) אמיתיים, אבל המרציפן מביא איתו סוכר וסירופ סוכר אינברטי — 51 גרם סוכר ל-100 גרם קובעים את הפרופיל. השומן הרווי דווקא נמוך יחסית למדף (11 גרם). לאוהבי מרציפן זו טבלה מוצלחת; כשוקולד 'מריר' זה בעיקר ממתק ממולא.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 7.0
       },
       "expansion": {
@@ -1401,12 +1270,160 @@
       "_hash_no_rank": "33064d5bb7d72c545a0b29028c25844679ffaaff0b619fbbb02b81987426bbcd"
     },
     {
+      "id": "ct-018",
+      "barcode": "7610400075770",
+      "name": "שוקולד מריר אגוזי לוז",
+      "name_he": "שוק.לינדט מריר אגוזי לוז",
+      "brand": "לינדט",
+      "score": 35.1,
+      "grade": "D",
+      "rank": 18,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CSX44_Z_P_7610400075770_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CSX44_Z_P_7610400075770_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 573.0,
+        "fat_g": 40.0,
+        "fat_saturated_g": 13.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 8.0,
+        "carbohydrates_g": 42.0,
+        "sugars_g": 39.0,
+        "dietary_fiber_g": 6.5,
+        "protein_g": 8.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "לינדט 'מריר' עם אגוזי לוז — סוכר ראשון ברשימה, 39 גרם ל-100 גרם, קקאו 43% בלבד.",
+      "rowVerdict": "עם 34% אגוזי לוז אמיתיים, הסוכר פותח את הרשימה לפני הקקאו — 39 גרם ל-100 גרם — ואחוז הקקאו יורד ל-43% למרות הכינוי 'מריר'. השומן הרווי דווקא נמוך יחסית למדף (13 גרם). האגוזים הם הנכס כאן; שאר הטבלה נשענת על סוכר יותר מאשר על קקאו.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 8.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 573.0,
+          "protein": 8.0,
+          "sugar": 39.0,
+          "fat": 40.0,
+          "fiber": 6.5,
+          "sodium": 8.0
+        },
+        "ingredients": "סוכר לבן, אגוזי לוז (34%), עיסת קקאו, חמאת קקאו, שומן חלב אלמימי, מתחלב (לציטין סויה), חומרי טעם.nמינימום מוצקי קקאו בשוקולד מריר: 43% מכיל אגוזי לוז,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "בקבוצת ה-E. למרות השם 'מריר', תוספת אגוזי הלוז דוחפת את הסוכר מעלה ואת הקקאו מטה, כך שהוא יושב הרבה מתחת לטבלאות ה-85%-90%. ממולא ומתוק יותר ממה שהשם מרמז.",
+        "positiveSignals": [
+          "שומן רווי נמוך יחסית למדף — 13 גרם ל-100 גרם",
+          "מכיל אגוזי לוז אמיתיים (34%)"
+        ],
+        "limitingFactors": [
+          {
+            "text": "סוכר הוא הרכיב הראשון — 39 גרם ל-100 גרם",
+            "magnitude": 3
+          },
+          {
+            "text": "אחוז קקאו יורד ל-43% למרות הכינוי 'מריר'",
+            "magnitude": 1
+          }
+        ]
+      },
+      "_hash_no_rank": "8677bad4a12182500bf174f25753452d98406345304d0c915107a84273dfc1da"
+    },
+    {
+      "id": "ct-017",
+      "barcode": "4000539280726",
+      "name": "שוקולד מריר 70% מילד",
+      "name_he": "שוקולד מריר לינדט70%מילד",
+      "brand": "לינדט",
+      "score": 34.5,
+      "grade": "E",
+      "rank": 19,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OVN46_Z_P_4000539280726_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OVN46_Z_P_4000539280726_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 610.0,
+        "fat_g": 48.0,
+        "fat_saturated_g": 29.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 20.0,
+        "carbohydrates_g": 33.0,
+        "sugars_g": 29.0,
+        "dietary_fiber_g": 9.2,
+        "protein_g": 6.9
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "לינדט 70% 'מילד' — הגרסה שנועדה להיות נגישה, והסוכר כאן מאשר בדיוק את זה.",
+      "rowVerdict": "'מילד' פירושו פחות מריר, יותר מתוק. הנוסחה קצרה ונקייה, אבל הסוכר קרוב כבר לחצי הדרך אל שוקולד החלב. מי שמחפש פתח כניסה לעולם המריר — זה מקום סביר. מי שכבר שם — אפשר לעלות דרגה.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 6.9
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 610.0,
+          "protein": 6.9,
+          "sugar": 29.0,
+          "fat": 48.0,
+          "fiber": 9.2,
+          "sodium": 20.0
+        },
+        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, מתחלב (לציטין סויה). מינימום מוצקי קקאו בשוקולד מריר מעולה: 70% . מכיל סויה עלול להכיל אגוזי לוז,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "פותח את קבוצת ה-E, נמוך מכל טבלאות ה-78%-90%. ה'מילד' אומר פחות מריר ויותר סוכר, וזה בדיוק מה שמפריד אותו מהצד הנקי של המדף. נגיש בטעם, אבל לא מהצד הנקי.",
+        "positiveSignals": [
+          "רשימת רכיבים קצרה שמתחילה בעיסת קקאו",
+          "9.2 גרם סיבים ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "29 גרם סוכר ל-100 גרם — כמעט פי שניים מטבלאות ה-85%",
+            "magnitude": 2
+          },
+          {
+            "text": "48 גרם שומן ו-29 גרם שומן רווי ל-100 גרם",
+            "magnitude": 2
+          }
+        ]
+      },
+      "_hash_no_rank": "880b3c34cafc39483e6668bbf7b2d328af59a452dd8d5c4ecb046aef61e03994"
+    },
+    {
       "id": "ct-020",
       "barcode": "3046920023047",
       "name": "אקסלנס פיסטוק",
       "name_he": "לינדט אקסלנס פיסטוק",
       "brand": "לינדט",
-      "score": 29.9,
+      "score": 33.9,
       "grade": "E",
       "rank": 20,
       "categoryTotal": 35,
@@ -1441,7 +1458,7 @@
       "insightLine": "לינדט 'אקסלנס' פיסטוק — הסוכר פותח את הרשימה, הפיסטוקים מגיעים מקורמלים בסוכר נוסף.",
       "rowVerdict": "כשהמרכיב הראשון הוא סוכר, הפיסטוק הוא המילוי והשוקולד הוא הציפוי. הפיסטוקים אמיתיים ומקורמלים. ה'אקסלנס' מתייחס לחוויה — ציון E אומר את שאר הסיפור.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.4
       },
       "expansion": {
@@ -1480,7 +1497,7 @@
       "name": "שוקולד מריר 70%",
       "name_he": "שוקולד מריר לינדט 70%",
       "brand": "לינדט",
-      "score": 28.7,
+      "score": 32.7,
       "grade": "E",
       "rank": 21,
       "categoryTotal": 35,
@@ -1506,7 +1523,7 @@
       "insightLine": "לינדט 70% הקלאסי — ארבעה מרכיבים ישירים, הסוכר הרכיב השני ברשימה.",
       "rowVerdict": "הנוסחה הכי ישרה ב-70%: עיסת קקאו, סוכר, חמאת קקאו, וניל. הסוכר הוא כמעט שליש מהמשקל — זה שמשאיר 70% בצד המתוק. ביצוע מצוין של מה שהמוצר הוא, בפרופיל של ממתק קלאסי.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 9.5
       },
       "expansion": {
@@ -1549,7 +1566,7 @@
       "name": "שוקולד מריר 70%",
       "name_he": "צ'וקטה שוקולד מריר 70%",
       "brand": "צ'וקטה",
-      "score": 27.9,
+      "score": 31.8,
       "grade": "E",
       "rank": 22,
       "categoryTotal": 35,
@@ -1575,7 +1592,7 @@
       "insightLine": "צ'וקטה 70% — כמעט זהה ללינדט בסוכר ובמרכיבים, עם יתרון קל בסיבים.",
       "rowVerdict": "הנוסחה דומה ללינדט 70%: עיסת קקאו, סוכר, אבקת קקאו, חמאת קקאו, לציטין. הסיבים מעט גבוהים יותר — זה יתרון קל, לא החלטי. הסוכר כמעט זהה ללינדט — הפרש שולי. בכל שאר הפרמטרים מדובר בהפרש של מחיר ומותג.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 8.2
       },
       "expansion": {
@@ -1618,7 +1635,7 @@
       "name": "שוקולד מריר 60%",
       "name_he": "צ'וקטה שוקולד מריר 60%",
       "brand": "צ'וקטה",
-      "score": 26.5,
+      "score": 30.8,
       "grade": "E",
       "rank": 23,
       "categoryTotal": 35,
@@ -1661,7 +1678,7 @@
       "insightLine": "צ'וקטה 60% — הגבול התחתון של 'שוקולד מריר' רשמי, עם PGPR ברשימה.",
       "rowVerdict": "60% קקאו היא ההגדרה המינימלית ל'מריר'. כשצ'וקטה יורדת לרמה הזו, PGPR נכנס לנוסחה. הסוכר גדל כשהקקאו יורד — זה הדינמיקה הבסיסית של המדף. לא הבחירה הראשונה אם יש ברירה בטווח ה-70%.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 9.2
       },
       "expansion": {
@@ -1700,7 +1717,7 @@
       "name": "שוקולד חלב ללא סוכר",
       "name_he": "שוקולד חלב ללא סוכר",
       "brand": "כרמית",
-      "score": 24.6,
+      "score": 30.5,
       "grade": "E",
       "rank": 24,
       "categoryTotal": 35,
@@ -1743,7 +1760,7 @@
       "insightLine": "כרמית 'ללא סוכר' — ממתיק מלטיטול וסטיביה ראשונים ברשימה, PGPR ברשימת המתחלבים, קקאו 31%.",
       "rowVerdict": "הממתיקים פותחים את הרשימה לפני כל קקאו. 31% קקאו מינימלי עם PGPR ושני מתחלבים. אין סיבים. ה'ללא סוכר' הוא ההבדל המרכזי שמבדיל בין זה לכרמית שוקולד חלב.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.9
       },
       "expansion": {
@@ -1776,91 +1793,14 @@
       "_hash_no_rank": "aea18953f5eec2b7d3e78cfd8ac274fb86c8023c0315ade4b3def032792d9fba"
     },
     {
-      "id": "ct-026",
-      "barcode": "7610008641001",
-      "name": "טבלת חלב",
-      "name_he": "טבלת טורינו חלב",
-      "brand": "טורינו",
-      "score": 23.9,
-      "grade": "E",
-      "rank": 25,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DFM34_Z_P_7610008641001_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DFM34_Z_P_7610008641001_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 589.0,
-        "fat_g": 39.0,
-        "fat_saturated_g": 23.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 44.0,
-        "carbohydrates_g": 50.0,
-        "sugars_g": 46.0,
-        "dietary_fiber_g": null,
-        "protein_g": 8.0
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "טורינו חלב — אבקת שומן קוקוס ברשימת מרכיבי השוקולד, מרכיב לא שגרתי בקטגוריה.",
-      "rowVerdict": "שוקולד חלב 31% קקאו עם אגוזי לוז 8% ואבקת שומן קוקוס. הקוקוס לא מוסיף ערך תזונתי מוצהר — הוא מחליף חלקית את חמאת הקקאו. ממתק חלבי מתוק עם נוסחה מעט לא-שגרתית.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 8.0
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 589.0,
-          "protein": 8.0,
-          "sugar": 46.0,
-          "fat": 39.0,
-          "fiber": null,
-          "sodium": 44.0
-        },
-        "ingredients": "סוכר,אבקת חלב מלא,חמאת קקאו,אבקת שומן קוקוס,עיסת קקאו,אבקת חלב רזה,קמח סויה,אגוזי לוז8%,מתחלב לציטין זרעי לפתית,תמצית וניל טהורה,כלל  המוצקים בשוקולד ,קקאו 31% מינימום",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בקבוצת ה-E, בצד המתוק של המדף. הסוכר הגבוה ותוספת שומן הקוקוס הם מה שמושך אותו מטה. מוצר חלב מתוק, לא טבלת קקאו.",
-        "positiveSignals": [
-          "מכיל אגוזי לוז אמיתיים (8%)"
-        ],
-        "limitingFactors": [
-          {
-            "text": "46 גרם סוכר ל-100 גרם",
-            "magnitude": 3
-          },
-          {
-            "text": "אבקת שומן קוקוס ברשימה לצד חמאת הקקאו",
-            "magnitude": 1
-          },
-          {
-            "text": "כמות הסיבים לא צוינה על האריזה",
-            "magnitude": 1
-          }
-        ]
-      },
-      "_hash_no_rank": "bc75e2cedf879c6ac7ff8a072e707281bea53f8569782cf98cd38d792f573e2c"
-    },
-    {
       "id": "ct-023",
       "barcode": "3046920028752",
       "name": "שוקולד מריר מנטה",
       "name_he": "שוקולד מריר לינדט מנטה",
       "brand": "לינדט",
-      "score": 23.0,
+      "score": 28.7,
       "grade": "E",
-      "rank": 26,
+      "rank": 25,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WAB48_Z_P_3046920028752_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WAB48_Z_P_3046920028752_1.png",
@@ -1893,7 +1833,7 @@
       "insightLine": "לינדט 'מריר' מנטה — סוכר ראשון ברשימה, קקאו 47%, שמן מנטה נותן את שם המוצר.",
       "rowVerdict": "שם אומר 'מריר', רשימת מרכיבים אומרת 'מתוק': הסוכר ראשון, קקאו רק 47%. המנטה היא ניחוח, לא תוכן. הפרש גדול בין השם לפרופיל — מדובר בממתק מנטה-שוקולד.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.3
       },
       "expansion": {
@@ -1931,9 +1871,9 @@
       "name": "שוקולד מריר מלח",
       "name_he": "שוקולד מריר לינדט מלח",
       "brand": "לינדט",
-      "score": 22.5,
+      "score": 28.3,
       "grade": "E",
-      "rank": 27,
+      "rank": 26,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XJN52_Z_P_3046920029674_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XJN52_Z_P_3046920029674_1.png",
@@ -1966,7 +1906,7 @@
       "insightLine": "לינדט 'מריר' מלח ים — זהה בנוסחה למנטה: סוכר ראשון, קקאו 47%, ריח ועוד נתרן.",
       "rowVerdict": "אותה נוסחה בדיוק כמו לינדט מנטה — סוכר ראשון, קקאו 47% — אלא שמלח ים 0.3% מחליף את שמן המנטה. המלח מעלה את הנתרן בצורה ניכרת. הטעם מתוק-מלוח מוצלח; הפרופיל הוא של ממתק.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.2
       },
       "expansion": {
@@ -1999,12 +1939,89 @@
       "_hash_no_rank": "b6fa88d1b71d7c3a5f8a6cacf4eb5c232c782a709a8cb8040d42eab96a048be6"
     },
     {
+      "id": "ct-026",
+      "barcode": "7610008641001",
+      "name": "טבלת חלב",
+      "name_he": "טבלת טורינו חלב",
+      "brand": "טורינו",
+      "score": 26.0,
+      "grade": "E",
+      "rank": 27,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DFM34_Z_P_7610008641001_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DFM34_Z_P_7610008641001_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 589.0,
+        "fat_g": 39.0,
+        "fat_saturated_g": 23.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 44.0,
+        "carbohydrates_g": 50.0,
+        "sugars_g": 46.0,
+        "dietary_fiber_g": null,
+        "protein_g": 8.0
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "טורינו חלב — אבקת שומן קוקוס ברשימת מרכיבי השוקולד, מרכיב לא שגרתי בקטגוריה.",
+      "rowVerdict": "שוקולד חלב 31% קקאו עם אגוזי לוז 8% ואבקת שומן קוקוס. הקוקוס לא מוסיף ערך תזונתי מוצהר — הוא מחליף חלקית את חמאת הקקאו. ממתק חלבי מתוק עם נוסחה מעט לא-שגרתית.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 8.0
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 589.0,
+          "protein": 8.0,
+          "sugar": 46.0,
+          "fat": 39.0,
+          "fiber": null,
+          "sodium": 44.0
+        },
+        "ingredients": "סוכר,אבקת חלב מלא,חמאת קקאו,אבקת שומן קוקוס,עיסת קקאו,אבקת חלב רזה,קמח סויה,אגוזי לוז8%,מתחלב לציטין זרעי לפתית,תמצית וניל טהורה,כלל  המוצקים בשוקולד ,קקאו 31% מינימום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "בקבוצת ה-E, בצד המתוק של המדף. הסוכר הגבוה ותוספת שומן הקוקוס הם מה שמושך אותו מטה. מוצר חלב מתוק, לא טבלת קקאו.",
+        "positiveSignals": [
+          "מכיל אגוזי לוז אמיתיים (8%)"
+        ],
+        "limitingFactors": [
+          {
+            "text": "46 גרם סוכר ל-100 גרם",
+            "magnitude": 3
+          },
+          {
+            "text": "אבקת שומן קוקוס ברשימה לצד חמאת הקקאו",
+            "magnitude": 1
+          },
+          {
+            "text": "כמות הסיבים לא צוינה על האריזה",
+            "magnitude": 1
+          }
+        ]
+      },
+      "_hash_no_rank": "bc75e2cedf879c6ac7ff8a072e707281bea53f8569782cf98cd38d792f573e2c"
+    },
+    {
       "id": "ct-025",
       "barcode": "7290112331984",
       "name": "קראנצ' בסקויט",
       "name_he": "שוקולד פרה קראנצ' בסקויט",
       "brand": "שוקולד פרה",
-      "score": 21.8,
+      "score": 25.8,
       "grade": "E",
       "rank": 28,
       "categoryTotal": 35,
@@ -2039,7 +2056,7 @@
       "insightLine": "שוקולד פרה עם ביסקוויט — שמנים צמחיים, אינולין, מלח ונתרן גבוה מתוספת הביסקוויט.",
       "rowVerdict": "שוקולד חלב 51% עם ביסקוויט 12% ושמנים צמחיים נוספים. המלח שבביסקוויט מסביר את הנתרן הגבוה יחסית. האינולין מגיע כסיב תזונתי — לא הגבוה בקטגוריה. קינוח מורכב שעובד כפינוק; הפרופיל הוא של ממתק ממולא.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 9.4
       },
       "expansion": {
@@ -2081,7 +2098,7 @@
       "name": "מריר",
       "name_he": "טובלרון מריר",
       "brand": "טובלרון",
-      "score": 17.5,
+      "score": 21.7,
       "grade": "E",
       "rank": 29,
       "categoryTotal": 35,
@@ -2116,7 +2133,7 @@
       "insightLine": "טובלרון 'מריר' — 50% קקאו, דבש 3% ושקדים 1.6% — שם אומר מריר, פרופיל אומר משהו אחר.",
       "rowVerdict": "הדבש הוא לא רק טעם — הוא גם סוכר שמצטרף לחשבון. 50% קקאו מינימום עם סוכר שמוביל הרשימה. הצורה המשולשת היא הנכס הגדול; הפרופיל הוא שוקולד-נוגט מתוק, לא מריר. נתרן נמוך מאוד — נקודת אור.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 5.9
       },
       "expansion": {
@@ -2155,7 +2172,7 @@
       "name": "חלב שברי אגוז",
       "name_he": "שוקולד פרה חלב שברי אגוז",
       "brand": "שוקולד פרה",
-      "score": 16.6,
+      "score": 20.6,
       "grade": "E",
       "rank": 30,
       "categoryTotal": 35,
@@ -2198,7 +2215,7 @@
       "insightLine": "שוקולד פרה חלב שברי אגוז — הסוכר ראשון, PGPR בין המתחלבים, אגוזי לוז 16% אמיתיים.",
       "rowVerdict": "אגוזי הלוז אמיתיים ובכמות ניכרת (16%), אבל הסוכר פותח את הרשימה. PGPR מצטרף ללציטין כמתחלב. הנתרן יחסית גבוה. שוקולד חלב אגוזי קלאסי — הפרופיל מתוק, האגוזים הם הנכס.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 10.0
       },
       "expansion": {
@@ -2232,87 +2249,14 @@
       "_hash_no_rank": "9a664ebe093e6f085e4b337fc0dc903fae02dea6bca2805c2a0cd24693a7c4c6"
     },
     {
-      "id": "ct-029",
-      "barcode": "7622202257506",
-      "name": "אקסטרה קקאו",
-      "name_he": "מילקה אקסטרה קקאו",
-      "brand": "מילקה",
-      "score": 16.0,
-      "grade": "E",
-      "rank": 31,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HLR46_Z_P_7622202257506_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HLR46_Z_P_7622202257506_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 557.0,
-        "fat_g": 36.0,
-        "fat_saturated_g": 22.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 75.0,
-        "carbohydrates_g": 47.0,
-        "sugars_g": 44.0,
-        "dietary_fiber_g": null,
-        "protein_g": 7.6
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "מילקה 'אקסטרה קקאו' — הסוכר פותח את הרשימה לפני כל קקאו, למרות השם.",
-      "rowVerdict": "הסוכר ראשון ברשימה, ממרח אגוזי לוז, אבקת מי גבינה — הרכב שוקולד חלב קלאסי. ה'אקסטרה קקאו' מוסיף עומק טעם, לא משנה את הפרופיל. ממתק חלבי מתוק עם תווית שיווקית שמרחיקה אותו מה-85% יותר ממה שקרוב אליו.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 7.6
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 557.0,
-          "protein": 7.6,
-          "sugar": 44.0,
-          "fat": 36.0,
-          "fiber": null,
-          "sodium": 75.0
-        },
-        "ingredients": "סוכר, עיסת קקאו, אבקת חלב רזה, שומן חלב, אבקת מי גבינה, חומר מתחלב (לציטין סויה), ממרח אגוזי לוז, חומרי טעם וריח. מכיל אגוזי לוז,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "עמוק בקבוצת ה-E. 'אקסטרה קקאו' נשמע כמו צעד לכיוון המריר, אבל הסוכר הראשון ברשימה מספר אחרת. ממתק חלבי, לא טבלת קקאו.",
-        "positiveSignals": [
-          "מוצר חלב מוכר עם טעם קקאו עמוק יחסית"
-        ],
-        "limitingFactors": [
-          {
-            "text": "סוכר הוא הרכיב הראשון — 44 גרם ל-100 גרם, למרות הכינוי 'אקסטרה קקאו'",
-            "magnitude": 3
-          },
-          {
-            "text": "22 גרם שומן רווי ל-100 גרם",
-            "magnitude": 1
-          }
-        ]
-      },
-      "_hash_no_rank": "73f168750d66325ad0d16006423d3599321409390900d009a863e0ae4ecc2fc0"
-    },
-    {
       "id": "ct-030",
       "barcode": "7614500010013",
       "name": "חלב 100 גרם",
       "name_he": "טובלרון חלב 100 גרם",
       "brand": "טובלרון",
-      "score": 15.7,
+      "score": 17.1,
       "grade": "E",
-      "rank": 32,
+      "rank": 31,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AFM28_Z_P_7614500010013_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AFM28_Z_P_7614500010013_1.png",
@@ -2345,7 +2289,7 @@
       "insightLine": "טובלרון חלב — הסוכר ראשון ברשימה, הדבש מוסיף עוד, יחד זה מוצר מתוק מאוד.",
       "rowVerdict": "28% קקאו מינימום + סוכר ראשון ברשימה + דבש 3% — שלושה מקורות מתיקות. הצורה המשולשת האייקונית היא הנכס; הפרופיל ממקם אותו בתחתית המתוקה של המדף.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 5.6
       },
       "expansion": {
@@ -2378,14 +2322,160 @@
       "_hash_no_rank": "60ab23434d9f294bb7b555ccd69ad5a6239b59911654f14bdfdc20a6dee66892"
     },
     {
+      "id": "ct-029",
+      "barcode": "7622202257506",
+      "name": "אקסטרה קקאו",
+      "name_he": "מילקה אקסטרה קקאו",
+      "brand": "מילקה",
+      "score": 16.5,
+      "grade": "E",
+      "rank": 32,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HLR46_Z_P_7622202257506_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HLR46_Z_P_7622202257506_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 557.0,
+        "fat_g": 36.0,
+        "fat_saturated_g": 22.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 75.0,
+        "carbohydrates_g": 47.0,
+        "sugars_g": 44.0,
+        "dietary_fiber_g": null,
+        "protein_g": 7.6
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "מילקה 'אקסטרה קקאו' — הסוכר פותח את הרשימה לפני כל קקאו, למרות השם.",
+      "rowVerdict": "הסוכר ראשון ברשימה, ממרח אגוזי לוז, אבקת מי גבינה — הרכב שוקולד חלב קלאסי. ה'אקסטרה קקאו' מוסיף עומק טעם, לא משנה את הפרופיל. ממתק חלבי מתוק עם תווית שיווקית שמרחיקה אותו מה-85% יותר ממה שקרוב אליו.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 7.6
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 557.0,
+          "protein": 7.6,
+          "sugar": 44.0,
+          "fat": 36.0,
+          "fiber": null,
+          "sodium": 75.0
+        },
+        "ingredients": "סוכר, עיסת קקאו, אבקת חלב רזה, שומן חלב, אבקת מי גבינה, חומר מתחלב (לציטין סויה), ממרח אגוזי לוז, חומרי טעם וריח. מכיל אגוזי לוז,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "עמוק בקבוצת ה-E. 'אקסטרה קקאו' נשמע כמו צעד לכיוון המריר, אבל הסוכר הראשון ברשימה מספר אחרת. ממתק חלבי, לא טבלת קקאו.",
+        "positiveSignals": [
+          "מוצר חלב מוכר עם טעם קקאו עמוק יחסית"
+        ],
+        "limitingFactors": [
+          {
+            "text": "סוכר הוא הרכיב הראשון — 44 גרם ל-100 גרם, למרות הכינוי 'אקסטרה קקאו'",
+            "magnitude": 3
+          },
+          {
+            "text": "22 גרם שומן רווי ל-100 גרם",
+            "magnitude": 1
+          }
+        ]
+      },
+      "_hash_no_rank": "73f168750d66325ad0d16006423d3599321409390900d009a863e0ae4ecc2fc0"
+    },
+    {
+      "id": "ct-031",
+      "barcode": "7622202265648",
+      "name": "שוקולד לבן",
+      "name_he": "שוקולד לבן מילקה",
+      "brand": "מילקה",
+      "score": 16.3,
+      "grade": "E",
+      "rank": 33,
+      "categoryTotal": 35,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMV52_Z_P_7622202265648_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMV52_Z_P_7622202265648_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 534.0,
+        "fat_g": 28.0,
+        "fat_saturated_g": 17.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 103.0,
+        "carbohydrates_g": 65.0,
+        "sugars_g": 65.0,
+        "dietary_fiber_g": null,
+        "protein_g": 4.2
+      },
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "cosmetic_mup": true,
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "שוקולד לבן מילקה — אפס מוצקי קקאו; חמאת קקאו, שומן חלב וסוכר שלובשים את השם.",
+      "rowVerdict": "שוקולד לבן הוא קטגוריה בפני עצמה: חמאת קקאו ומוצרי חלב, ולא טיפת מוצקי קקאו. הסוכר הגבוה ביותר על המדף כולו. כל מה שמגדיר קקאו — המרירות, הסיבים, הצבע — פשוט לא נמצא כאן. לגיטימי לאכול; חשוב לדעת מה זה.",
+      "_scoring_trace": {
+        "category": "chocolate",
+        "protein_g": 4.2
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 534.0,
+          "protein": 4.2,
+          "sugar": 65.0,
+          "fat": 28.0,
+          "fiber": null,
+          "sodium": 103.0
+        },
+        "ingredients": "סוכר, חמאת קקאו, אבקת חלב דל שומן, אבקת מי גבינה, שומן חלב, מתחלב (לציטין סויה), חומרי טעם וריח. מכיל חלב,",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "בתחתית המדף. שוקולד לבן הוא הקצה ההפוך של ה-90% מריר: שם כמעט הכל קקאו, כאן אין מוצקי קקאו בכלל. 65 גרם סוכר ל-100 גרם הופכים אותו לממתק המתוק במדף.",
+        "positiveSignals": [
+          "מרקם וטעם חלבי-מתוק אהובים על רבים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "65 גרם סוכר ל-100 גרם — הגבוה במדף כולו",
+            "magnitude": 3
+          },
+          {
+            "text": "אין בו מוצקי קקאו כלל — רק חמאת קקאו, סוכר ושומן חלב",
+            "magnitude": 2
+          }
+        ]
+      },
+      "_hash_no_rank": "f6924d5bc36dadfab292741c571c7102e577f7c6a3e8cda7f39aa9c9bc88c44a"
+    },
+    {
       "id": "ct-032",
       "barcode": "7290112914699",
       "name": "שוקולד חלב וקרמל מלוח",
       "name_he": "שוקולד חלב וקרמל מלוח",
       "brand": "מקס ברנר",
-      "score": 14.2,
+      "score": 15.1,
       "grade": "E",
-      "rank": 33,
+      "rank": 34,
       "categoryTotal": 35,
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LEQ60_Z_P_7290112914699_1.png",
       "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LEQ60_Z_P_7290112914699_1.png",
@@ -2434,7 +2524,7 @@
       "insightLine": "מקס ברנר קרמל מלוח — 56% נוגט-קרמל מלוח, הנתרן הגבוה ביותר על המדף כולו.",
       "rowVerdict": "56% מהמוצר הוא קרם נוגט מלוח (שוקולד חלב + אגוזי לוז + מלח ים 1%). הנתרן הגבוה ביותר במדף, ובהפרש גדול. מדובר בקינוח שוקולד; מיוחד בטעמו, אבל בפרופיל של ממתק-ממרח.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.0
       },
       "expansion": {
@@ -2471,85 +2561,12 @@
       "_hash_no_rank": "9aab9ca382f8f7bc6f26d518fcc5957eebb92182df19da91bdc409994e892452"
     },
     {
-      "id": "ct-031",
-      "barcode": "7622202265648",
-      "name": "שוקולד לבן",
-      "name_he": "שוקולד לבן מילקה",
-      "brand": "מילקה",
-      "score": 14.1,
-      "grade": "E",
-      "rank": 34,
-      "categoryTotal": 35,
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMV52_Z_P_7622202265648_1.png",
-      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMV52_Z_P_7622202265648_1.png",
-      "nutrition_per_100g": {
-        "energy_kcal": 534.0,
-        "fat_g": 28.0,
-        "fat_saturated_g": 17.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 103.0,
-        "carbohydrates_g": 65.0,
-        "sugars_g": 65.0,
-        "dietary_fiber_g": null,
-        "protein_g": 4.2
-      },
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "cosmetic_mup": true,
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "שוקולד לבן מילקה — אפס מוצקי קקאו; חמאת קקאו, שומן חלב וסוכר שלובשים את השם.",
-      "rowVerdict": "שוקולד לבן הוא קטגוריה בפני עצמה: חמאת קקאו ומוצרי חלב, ולא טיפת מוצקי קקאו. הסוכר הגבוה ביותר על המדף כולו. כל מה שמגדיר קקאו — המרירות, הסיבים, הצבע — פשוט לא נמצא כאן. לגיטימי לאכול; חשוב לדעת מה זה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "protein_g": 4.2
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 534.0,
-          "protein": 4.2,
-          "sugar": 65.0,
-          "fat": 28.0,
-          "fiber": null,
-          "sodium": 103.0
-        },
-        "ingredients": "סוכר, חמאת קקאו, אבקת חלב דל שומן, אבקת מי גבינה, שומן חלב, מתחלב (לציטין סויה), חומרי טעם וריח. מכיל חלב,",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "בתחתית המדף. שוקולד לבן הוא הקצה ההפוך של ה-90% מריר: שם כמעט הכל קקאו, כאן אין מוצקי קקאו בכלל. 65 גרם סוכר ל-100 גרם הופכים אותו לממתק המתוק במדף.",
-        "positiveSignals": [
-          "מרקם וטעם חלבי-מתוק אהובים על רבים"
-        ],
-        "limitingFactors": [
-          {
-            "text": "65 גרם סוכר ל-100 גרם — הגבוה במדף כולו",
-            "magnitude": 3
-          },
-          {
-            "text": "אין בו מוצקי קקאו כלל — רק חמאת קקאו, סוכר ושומן חלב",
-            "magnitude": 2
-          }
-        ]
-      },
-      "_hash_no_rank": "f6924d5bc36dadfab292741c571c7102e577f7c6a3e8cda7f39aa9c9bc88c44a"
-    },
-    {
       "id": "ct-033",
       "barcode": "7290112348548",
       "name": "לבן",
       "name_he": "שוקולד פרה לבן",
       "brand": "שוקולד פרה",
-      "score": 12.2,
+      "score": 12.8,
       "grade": "E",
       "rank": 35,
       "categoryTotal": 35,
@@ -2592,7 +2609,7 @@
       "insightLine": "שוקולד פרה לבן — אין מוצקי קקאו; חמאת קקאו, חלב ולקטוז עם PGPR.",
       "rowVerdict": "כמו כל שוקולד לבן: חמאת קקאו, לא מוצקי קקאו. סוכר ראשון ברשימה, לקטוז נוסף, PGPR בין המתחלבים. הציון הנמוך ביותר על המדף. בחירה לגיטימית לפינוק — רק לא כדאי לקרוא לה שוקולד במובן הרגיל.",
       "_scoring_trace": {
-        "category": "snack_bar_granola",
+        "category": "chocolate",
         "protein_g": 6.1
       },
       "expansion": {

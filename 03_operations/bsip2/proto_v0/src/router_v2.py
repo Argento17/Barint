@@ -81,6 +81,22 @@ CATEGORIES = [
     "biscuit",
     # Frozen vegetable (TASK-??? / EV-006 follow-up)
     "frozen_vegetable",
+    # TASK-455 / EV-REDLABEL-013 — dedicated chocolate bucket (bars + tablets).
+    # Not reached via Stage 1/2 name-token scoring (that path is what caused the
+    # pre-fix bug: chocolate has no dedicated signals in _score_signals and fell to
+    # snack_bar_granola, then partially to Rule 3's "confectionery_chocolate"
+    # subtype — but Rule 3's destination was ALSO snack_bar_granola, never
+    # correcting the underlying mis-shelving). This category is only assigned by
+    # the new Rule 4 override (see _apply_req362_overrides) gated on the BSIP1
+    # acquisition-shelf field `category` == "chocolate_bar"/"chocolate_tablet" —
+    # i.e. only products actually scraped as chocolate-shelf members, never a
+    # name-token guess. This mirrors CATEGORY_PRIOR_SUBTYPE_FIELDS' shelf-identity
+    # philosophy (cereal/yogurt/frozen_vegetable/brined_cheese) rather than adding
+    # more token-guessing surface area that would need re-fighting the same
+    # chocolate-adjacent false-positive problem Rule 3 already has (choc-chip
+    # cookies, choc-coated granola bars, choc protein bars all legitimately carry
+    # "שוקולד" in the name and must NOT be pulled into this bucket).
+    "chocolate",
     "default",
 ]
 
@@ -830,11 +846,56 @@ _R3_CHOCOLATE_NAME_MARKERS: frozenset[str] = frozenset({
 # These are the wrong-engine categories that Rule 3 corrects.
 # whole_food_fat: the primary offender (16 tablets got B/E free-pass on the fat lens).
 # dairy_protein, dessert, biscuit, sauce_spread, default, cracker, cereal: other wrong paths.
-# snack_bar_granola is intentionally excluded — that is the correct destination.
+# snack_bar_granola was historically excluded here — treated as "the correct
+# destination" for chocolate confectionery (TASK-362). TASK-455 / EV-REDLABEL-013
+# supersedes that: snack_bar_granola is a granola-BAR lens (oat/grain-diluted
+# calorie regime, snack-bar-specific caps) and is the WRONG lens for chocolate —
+# same defect Rule 3 already diagnosed for whole_food_fat, just not yet corrected
+# for this one destination. Rule 4 (below) now moves genuine chocolate-shelf
+# products from snack_bar_granola to the dedicated "chocolate" category. Rule 3
+# itself is UNCHANGED (still redirects non-chocolate-shelf products with a
+# chocolate name marker to snack_bar_granola/confectionery_chocolate — e.g. a
+# cake/cookie/dessert product that happens to be a chocolate confection but was
+# never scraped as a chocolate_bar/chocolate_tablet shelf member days stays on
+# the snack_bar_granola lens, which remains the correct destination for THOSE).
 _R3_WRONG_CATS: frozenset[str] = frozenset({
     "whole_food_fat", "dairy_protein", "dessert", "biscuit",
     "sauce_spread", "default", "cracker", "cereal",
 })
+
+# ---------------------------------------------------------------------------
+# Rule 4 — Chocolate shelf de-anchor (TASK-455 / EV-REDLABEL-013, Nutrition-ruled
+# + Product D7 co-signed 2026-07-02).
+# ---------------------------------------------------------------------------
+# Fixes the mis-shelving EV-REDLABEL-013 flagged: ALL 58 chocolate_bars +
+# chocolate_tablets products (23 bars + 35 tablets, fresh_rescore_task391 corpus)
+# land in category="snack_bar_granola" today (verified pre-fix on the real
+# corpus: 0/58 escape it — Rule 3 only relabels category_subtype to
+# "confectionery_chocolate" for the 12 that carry a brand/name marker; it does
+# NOT change the destination category). Chocolate scored against the granola-bar
+# calorie/cap regime is the root defect this rule fixes.
+#
+# Gate: the BSIP1 acquisition-shelf field `category` (set at BSIP0/BSIP1 time by
+# classify_chocolate() in plausibility_gate.py) equals "chocolate_bar" or
+# "chocolate_tablet". This is a SHELF-IDENTITY gate, not a name-token guess —
+# mirrors CATEGORY_PRIOR_SUBTYPE_FIELDS' philosophy (cereal/yogurt/
+# frozen_vegetable/brined_cheese all use the same "trust the acquisition shelf"
+# pattern) rather than adding new token-matching surface that would have to
+# re-solve the exact false-positive problem Rule 3's name markers already have
+# (choc-chip cookies, choc-coated granola bars, choc protein bars all carry
+# "שוקולד" in the name and must NEVER be pulled into the chocolate bucket —
+# TASK-455 cross-category regression testing found 108 such false positives
+# when a name-token-only approach was tried; a shelf-identity gate has zero
+# false-positive surface against the 11 other live categories by construction,
+# since none of them populate this field with these values).
+#
+# Runs BEFORE Rule 3 in the pass below (Rule 4 is a hard override — if it fires,
+# Rule 3's chocolate-name-marker redirect is superseded for this product, since
+# Rule 4 already knows definitively this IS a chocolate-shelf product; Rule 3's
+# name-marker heuristic is now only needed for chocolate confections that were
+# NOT scraped from the chocolate shelf, e.g. a chocolate cake).
+_R4_CHOCOLATE_SHELF_FIELD: str = "category"
+_R4_CHOCOLATE_SHELF_VALUES: frozenset[str] = frozenset({"chocolate_bar", "chocolate_tablet"})
 
 
 def _apply_req362_overrides(result: dict, product: dict) -> dict:
@@ -862,9 +923,23 @@ def _apply_req362_overrides(result: dict, product: dict) -> dict:
         chocolate confectionery is NOT a whole-food fat product.  This produced a 21-pt
         coherence gap between identical product types (prot-014 class failure at scale).
         dairy_protein/dessert/biscuit/sauce_spread/default are also wrong paths;
-        snack_bar_granola is the single correct lens for all chocolate confectionery.
+        snack_bar_granola is the single correct lens for all chocolate confectionery
+        NOT scraped from the dedicated chocolate shelf (see Rule 4).
         Name-only check: ingredient text is NOT consulted (avoids false-positives on
         products that contain chocolate as a coating/filling in another category).
+
+    Rule 4 — Chocolate shelf de-anchor (TASK-455 / EV-REDLABEL-013):
+        If the BSIP1 acquisition-shelf field `category` == "chocolate_bar" or
+        "chocolate_tablet" → route to "chocolate" (dedicated category), subtype
+        preserved from the shelf field. Runs BEFORE Rule 3 and, when it fires,
+        supersedes Rule 3 for this product (Rule 3's name-marker heuristic is not
+        needed — shelf membership is definitive). Fixes the root mis-shelving:
+        ALL 58 chocolate_bars/chocolate_tablets products landed in
+        category="snack_bar_granola" pre-fix (scored against the granola-bar
+        calorie/cap regime), regardless of whether Rule 3's weaker name-marker
+        check also fired. Shelf-identity gate, not a name-token guess — zero
+        false-positive surface against the other 11 live categories (verified:
+        803-product cross-category regression scan, 0 flips).
 
     Note: the original "Rule 3" (negation-aware sweetener detection "ללא ממתיקים")
     is implemented upstream in signal_extractor.py and is unchanged.
@@ -880,6 +955,38 @@ def _apply_req362_overrides(result: dict, product: dict) -> dict:
     current_cat = result.get("category")
     override_applied = None
     override_reason  = None
+
+    # --- Rule 4 — Chocolate shelf de-anchor (TASK-455 / EV-REDLABEL-013) ---
+    # Runs first: a definitive shelf-identity gate. If it fires, Rule 1/2/3 below
+    # are skipped for this product (early return) — shelf membership already
+    # settles routing, and none of Rule 1/2/3's corrections apply to a product
+    # that is about to be routed to "chocolate" anyway.
+    _shelf_val = product.get(_R4_CHOCOLATE_SHELF_FIELD)
+    if isinstance(_shelf_val, str) and _shelf_val.strip().lower() in _R4_CHOCOLATE_SHELF_VALUES:
+        _shelf_subtype = _shelf_val.strip().lower()
+        result["category"]              = "chocolate"
+        result["category_subtype"]      = _shelf_subtype
+        result["anchor_override"]       = True
+        result["category_confidence"]   = 0.93
+        result["confidence_band"]       = "high"
+        result["category_instability_flag"] = False
+        result["routing_instability_warning"] = None
+        result["classification_basis"]  = [
+            f"task455_r4:chocolate_shelf_field(category={_shelf_val!r})",
+            f"{current_cat}_overridden:chocolate_shelf_deanchor_ev_redlabel_013",
+        ] + result.get("classification_basis", [])[:3]
+        result["req362_override_trace"] = {
+            "override_applied": "rule4_chocolate_shelf_deanchor",
+            "reason": (
+                f"{current_cat}→chocolate: BSIP1 shelf field "
+                f"{_R4_CHOCOLATE_SHELF_FIELD}={_shelf_val!r} (TASK-455 / "
+                f"EV-REDLABEL-013, Nutrition-ruled + Product D7 co-signed "
+                f"2026-07-02)"
+            ),
+            "ingredient_count_used": ingredient_count,
+            "protein_g_used": protein_g,
+        }
+        return result
 
     # --- Rule 1 ---
     if current_cat == "cracker":
