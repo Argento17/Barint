@@ -123,6 +123,9 @@ interface AnchorRect {
   right: number;
 }
 
+/** Minimum gap kept between a portaled menu/toast and either viewport edge (px). */
+const VIEWPORT_EDGE_MARGIN = 8;
+
 const buttonClass =
   "inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-transparent px-4 py-2 text-sm font-semibold text-[#4E5663] transition-colors duration-200 hover:text-[#2FAE82] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]";
 
@@ -147,6 +150,7 @@ export function SharePageButton({ title, shareTitle, url, className }: SharePage
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const toastRef = useRef<HTMLDivElement>(null);
   const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuId = useId();
 
@@ -164,6 +168,30 @@ export function SharePageButton({ title, shareTitle, url, className }: SharePage
     setAnchorRect({ top: rect.bottom, right: window.innerWidth - rect.right });
   }, []);
 
+  // RT-1-FOLLOWUP fix: `right` above anchors the portal to the button's end edge
+  // with no awareness of the box's own width, so a button near the left viewport
+  // edge (e.g. the blog footer's justify-between layout) pushes a fixed-width
+  // menu — or the toast, whose width depends on its text — past x=0. Measure the
+  // actual portaled element after it paints and clamp its `left` to keep an
+  // 8px margin from both edges; re-clamp on scroll/resize alongside the anchor.
+  // `anchorRectRight` is the original CSS `right` value the element was painted
+  // with (from React state, not read back from `el.style`, which this function
+  // itself mutates) — that keeps repeated calls idempotent.
+  const clampToViewport = useCallback((el: HTMLElement | null, anchorRectRight: number) => {
+    if (!el) return;
+    const width = el.getBoundingClientRect().width;
+    const naturalLeft = window.innerWidth - (anchorRectRight + width);
+    const maxLeft = window.innerWidth - width - VIEWPORT_EDGE_MARGIN;
+    const clampedLeft = Math.min(Math.max(naturalLeft, VIEWPORT_EDGE_MARGIN), Math.max(maxLeft, VIEWPORT_EDGE_MARGIN));
+    if (clampedLeft !== naturalLeft) {
+      el.style.left = `${clampedLeft}px`;
+      el.style.right = "auto";
+    } else {
+      el.style.left = "auto";
+      el.style.right = `${anchorRectRight}px`;
+    }
+  }, []);
+
   // Recompute the portal's anchor position whenever the menu or toast is shown,
   // and keep it in sync with scroll/resize while either is visible.
   useLayoutEffect(() => {
@@ -176,6 +204,23 @@ export function SharePageButton({ title, shareTitle, url, className }: SharePage
       window.removeEventListener("resize", updateAnchorRect);
     };
   }, [menuOpen, toastVisible, updateAnchorRect]);
+
+  // Runs after `anchorRect` paints the portal at its naive `right`-anchored
+  // position — measure the real element and clamp it inside the viewport.
+  useLayoutEffect(() => {
+    if (!anchorRect) return;
+    const runClamp = () => {
+      clampToViewport(menuRef.current, anchorRect.right);
+      clampToViewport(toastRef.current, anchorRect.right);
+    };
+    runClamp();
+    window.addEventListener("scroll", runClamp, true);
+    window.addEventListener("resize", runClamp);
+    return () => {
+      window.removeEventListener("scroll", runClamp, true);
+      window.removeEventListener("resize", runClamp);
+    };
+  }, [anchorRect, menuOpen, toastVisible, clampToViewport]);
 
   useEffect(() => {
     // Post-mount capability probe (matches src/components/shared/ga4-script.tsx's
@@ -343,6 +388,7 @@ export function SharePageButton({ title, shareTitle, url, className }: SharePage
     mounted && toastVisible && anchorRect
       ? createPortal(
           <div
+            ref={toastRef}
             role="status"
             aria-live="polite"
             dir="rtl"
