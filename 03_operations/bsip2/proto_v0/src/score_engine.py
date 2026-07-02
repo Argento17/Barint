@@ -244,6 +244,60 @@ BARI_SODIUM_CEREAL = os.environ.get("BARI_SODIUM_CEREAL", "off").lower() == "on"
 # before activation. Source: redlabel_v1_design_spec.md. EV-REDLABEL-001–012.
 BARI_REDLABEL_V1 = os.environ.get("BARI_REDLABEL_V1", "off").lower() == "on"
 
+# TASK-395/442 / EV-REDLABEL-013 — Cross-category continuous red-label de-anchor.
+# DEFAULT OFF → engine byte-identical to baseline for ALL categories. NEW, independent
+# of BARI_REDLABEL_V1 (that flag's continuous regulatory_quality formula is reused, not
+# duplicated — see BARI_REDLABEL_CONTINUOUS_V1 gate inside score_regulatory_quality()).
+#
+# WHAT THIS FLAG DOES that BARI_REDLABEL_V1 alone does not:
+#   BARI_REDLABEL_V1's continuous zero-base formula (score_regulatory_quality, EV-REDLABEL-
+#   001-004) already runs category-agnostically when BARI_REDLABEL_V1=on — but it is
+#   ADDITIVE to, not a REPLACEMENT for, three hard cliff caps that bind the final score
+#   downstream at Stage 5 (score_after_cap = min(weighted_dim_score, binding_cap)):
+#     ISRAELI_RED_LABEL_1_SUGAR      (cap 55, or 63/68 for SC-2/plain-dairy relief)
+#     ISRAELI_RED_LABELS_2_PLUS / REFORMULABLE_LABELS_2_PLUS (cap 45)
+#     ISRAELI_RED_LABEL_1_SAT_FAT    (cap 55; already suppressed under BARI_RECAL_P0)
+#   Because binding_cap = min(all family caps), a smooth regulatory_quality DIMENSION
+#   score cannot lift the final score past a still-active binary cap — this is the
+#   confirmed mechanism behind the BARI_REDLABEL_V1 0-move/0-flip finding (TASK-395/442
+#   orchestrator brief). BARI_REDLABEL_CONTINUOUS_V1 suppresses those three caps
+#   (replacing their contribution with the already-proven EV-REDLABEL severity formula)
+#   so continuity actually reaches the composite score, in every category — not just
+#   REDLABEL_ENDEMIC_SATFAT_CATEGORIES.
+#
+# Scope: ALL categories (no REDLABEL_ENDEMIC_SATFAT_CATEGORIES restriction — that scoping
+# governed the reformulable-count EXCLUSION for compositionally-fixed dairy/fat sat_fat,
+# which is a separate, narrower ruling this flag does not touch or widen).
+#
+# Composes with BARI_RECAL_P0 (sat_fat graded penalty) without double-counting: when
+# BARI_RECAL_P0 is on, ISRAELI_RED_LABEL_1_SAT_FAT is already suppressed via that flag's
+# own gate (score_engine.py ~line 2990); BARI_REDLABEL_CONTINUOUS_V1 suppresses it
+# independently when BARI_RECAL_P0 is off, so sat_fat is never double-penalized under
+# any flag combination. Composes with the live BARI_HC_DAIRY_SATFAT_V1 (hard_cheeses)
+# hc_endemic_relief exclusion unchanged — that predicate already reduces
+# reformulable_rl_count before this flag's cap suppression is evaluated.
+#
+# Preserves (unconditionally, not touched by this flag):
+#   (a) safety vetoes — TRANS_FAT_VETO fires before any cap/dimension logic (score_product
+#       Stage 0, returns veto_score=0 immediately; this flag's suppression code sits inside
+#       evaluate_guardrails() cap-family assembly, downstream of the veto's early return).
+#   (b) inversion-invariant — the Pareto dominance gate (inversion_invariant_v2.py) reads
+#       dimension_scores, not caps; replacing a step-function cap with a monotonic
+#       continuous deduction on regulatory_quality can only make regulatory_quality MORE
+#       ordinally consistent with the underlying nutrient value, never less — cannot
+#       introduce a dominance violation that wasn't already possible under the cliff.
+#   (c) monotonicity — the EV-REDLABEL formula is monotonic in excess_ratio by
+#       construction (deduction = min(MAX, SLOPE × excess_ratio), SLOPE > 0); more sugar/
+#       sodium/sat_fat past the MoH threshold can only reduce or hold regulatory_quality,
+#       never raise it. Removing a hard cap cannot raise a score for a worse product either,
+#       because the cap was a MINIMUM ceiling (binding_cap), never a floor.
+#
+# D7 co-sign (Nutrition + Product) REQUIRED before any category activation — tripwire-1
+# (changes published scores / scoring philosophy). This proposal package measures the
+# effect; it does not activate it. Source: TASK-395/442 return package (this file's
+# accompanying design doc block, this commit).
+BARI_REDLABEL_CONTINUOUS_V1 = os.environ.get("BARI_REDLABEL_CONTINUOUS_V1", "off").lower() == "on"
+
 # TASK-267 / EV-055 — Surgical graduated-sodium flag for endemic-sodium dairy categories.
 # DEFAULT OFF → engine byte-identical to baseline.
 # Controls ONLY the SODIUM_GENERAL_BANDS block (score_engine.py ~lines 2005-2044) for
@@ -1728,7 +1782,12 @@ def _score_fat_quality_sprint1(nn: dict, l3: dict, se_result: dict,
     seed_pen  = _seed_pen_base if has_seed_oil else 0
     # R5 — graded red-label sat-fat penalty on the fat dimension (replaces the composite
     # cliff cap, which guardrails stops firing under RECAL_P0). 0 at/below 5.0g threshold.
-    red_pen = _red_satfat_penalty(sat_f) if RECAL_P0_ON else 0.0
+    # TASK-395/442: BARI_REDLABEL_CONTINUOUS_V1 also activates this graded penalty (the
+    # guardrail-side cap suppression above is widened to match — see fat_caps_fired block),
+    # WITHOUT pulling in R5's other RECAL_P0-only branches (leanness score, neutral-50
+    # fallback) — this flag's scope is the red-label cliff-to-continuous swap only, not
+    # the broader P0 fat-quality recalibration.
+    red_pen = _red_satfat_penalty(sat_f) if (RECAL_P0_ON or BARI_REDLABEL_CONTINUOUS_V1) else 0.0
     if fat >= _FAT_RATIO_GUARD and sat_f > 0:
         ratio = max(0.0, fat - sat_f) / sat_f
         base  = _fat_ratio_to_score(ratio)
@@ -2109,7 +2168,12 @@ def score_regulatory_quality(l3: dict, nn: dict = None, category: str = "") -> t
     count  = l3.get("red_label_count", 0)
     labels = l3.get("red_labels", [])
 
-    if not BARI_REDLABEL_V1:
+    # TASK-395/442: BARI_REDLABEL_CONTINUOUS_V1 reuses the proven EV-REDLABEL continuous
+    # formula category-agnostically (no REDLABEL_ENDEMIC_SATFAT_CATEGORIES gate on the
+    # formula itself — that gate only ever applied to the reformulable-count exclusion,
+    # not to whether the dimension formula runs continuously).
+    _continuous_regqual = BARI_REDLABEL_V1 or BARI_REDLABEL_CONTINUOUS_V1
+    if not _continuous_regqual:
         # Legacy: hard step function (unchanged)
         if count == 0:
             return 95.0, "no Israeli red labels"
@@ -2118,7 +2182,7 @@ def score_regulatory_quality(l3: dict, nn: dict = None, category: str = "") -> t
         else:
             return 25.0, f"{count} red labels: {labels}"
 
-    # BARI_REDLABEL_V1: continuous per-label deduction, zero-base formula.
+    # BARI_REDLABEL_V1 / BARI_REDLABEL_CONTINUOUS_V1: continuous per-label deduction, zero-base formula.
     # score = max(REGQUAL_FLOOR, 95 − Σ min(MAX[cat], SLOPE[cat] × excess_ratio))
     # BASE is retired (always 0). Category-specific SLOPE/MAX via REGQUAL_SODIUM_BY_CATEGORY.
     # Formula continuity fix (2026-06-08): old BASE caused a 0→BASE cliff at MoH threshold.
@@ -2382,15 +2446,40 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     _snack_sugar_cap = 63 if sc2_or_plain_dairy else 55
     check_cap("SNACK_BAR_RED_SUGAR_LABEL",    is_snack_bar and red_label_sugar, _snack_sugar_cap, sugar_caps_fired)
     # ISRAELI_RED_LABEL_1 sugar: only if SC-2+ (suspended for SC-1); SC-2 gets elevated cap
-    if sc_class == "SC-1":
+    # TASK-395/442 / BARI_REDLABEL_CONTINUOUS_V1: the cliff cap is suppressed in ALL
+    # categories (not just SC-1) — its severity contribution is carried instead by the
+    # continuous regulatory_quality formula (score_regulatory_quality, forced-continuous
+    # above) plus the existing SUGAR_GRADUATED_BAND near-threshold penalty (widened below).
+    # Signal is not lost, only de-cliffed: the red label is still counted in
+    # red_label_count/red_labels and still visibly deducts regulatory_quality.
+    if BARI_REDLABEL_CONTINUOUS_V1:
+        caps_considered.append({"rule": "ISRAELI_RED_LABEL_1_SUGAR", "cap": 55, "condition": red_label_sugar,
+                                 "fired": False,
+                                 "note": "TASK-395/442: cliff cap replaced by continuous regulatory_quality deduction"})
+    elif sc_class == "SC-1":
         caps_considered.append({"rule": "ISRAELI_RED_LABEL_1_SUGAR", "cap": 55, "condition": red_label_sugar,
                                  "fired": False, "note": "SRC-02: SC-1 product, cap suspended"})
     else:
         _isr_sugar_cap = 63 if sc2_or_plain_dairy else 55
         check_cap("ISRAELI_RED_LABEL_1_SUGAR", red_label_sugar, _isr_sugar_cap, sugar_caps_fired)
-    # BARI_REDLABEL_V1: family-aware cap uses reformulable count (endemic sat_fat excluded).
-    # Legacy: ISRAELI_RED_LABELS_2_PLUS fires on any red_label_count >= 2.
-    if BARI_REDLABEL_V1:
+    # BARI_REDLABEL_V1 / BARI_REDLABEL_CONTINUOUS_V1: family-aware cap uses reformulable
+    # count (endemic sat_fat excluded). Legacy: ISRAELI_RED_LABELS_2_PLUS fires on any
+    # red_label_count >= 2.
+    # TASK-395/442: BARI_REDLABEL_CONTINUOUS_V1 suppresses the 2+ cliff entirely (all
+    # categories) — each label's severity is already additive in the continuous
+    # regulatory_quality deduction (Σ over labels), so a 2nd/3rd label naturally deducts
+    # more without a step function. Reuses the same reformulable_rl_count computation
+    # (endemic sat_fat + brined_food sodium exclusions) purely for trace annotation.
+    if BARI_REDLABEL_CONTINUOUS_V1:
+        _rl_count_for_2plus = reformulable_rl_count if hc_endemic_relief else red_label_count
+        if context_flag == "brined_food":  # EV-053, preserved under the new flag
+            _sodium_in_labels = "sodium" in (l3.get("red_labels") or [])
+            if _sodium_in_labels:
+                _rl_count_for_2plus = max(0, _rl_count_for_2plus - 1)
+        caps_considered.append({"rule": "ISRAELI_RED_LABELS_2_PLUS", "cap": 45,
+                                 "condition": _rl_count_for_2plus >= 2, "fired": False,
+                                 "note": f"TASK-395/442: cliff cap replaced by continuous regulatory_quality deduction (reformulable_count={_rl_count_for_2plus})"})
+    elif BARI_REDLABEL_V1:
         check_cap("REFORMULABLE_LABELS_2_PLUS", reformulable_rl_count >= 2,
                   REDLABEL_MULTI_CAP_VALUE, sugar_caps_fired)
     else:
@@ -2413,13 +2502,32 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
                   f"added_sugar_sources={added_sugar_ct}")
     check_penalty("HIGH_CAL_HIGH_SUGAR_SOFT",     kcal >= 430 and sugar >= sugar_threshold_15, 5, sugar_pens_fired)
 
-    # BARI_REDLABEL_V1: graduated sugar penalty for near-threshold continuity (EV-REDLABEL-011).
-    # Smooths the cliff at the 17.5g red-label boundary.
-    if BARI_REDLABEL_V1:
+    # BARI_REDLABEL_V1 / BARI_REDLABEL_CONTINUOUS_V1: graduated sugar penalty for
+    # near-threshold continuity (EV-REDLABEL-011). Smooths the cliff at the 17.5g
+    # red-label boundary.
+    if BARI_REDLABEL_V1 or BARI_REDLABEL_CONTINUOUS_V1:
         _sugar_grad_pen = 0
         _sugar_grad_band = None
-        # BARI_REDLABEL_V1: scoped to dairy_protein/whole_food_fat until cross-category D7
-        if category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES:
+        # BARI_REDLABEL_V1: scoped to dairy_protein/whole_food_fat until cross-category D7.
+        # BARI_REDLABEL_CONTINUOUS_V1 (TASK-395/442): ALL categories EXCEPT where a
+        # DIFFERENT, still-active red-label-driven cliff cap governs the same sugar
+        # excess (SNACK_BAR_RED_SUGAR_LABEL / SNACK_BAR_HIGH_CAL_SUGAR are snack-bar-
+        # specific caps this flag does NOT suppress — they are out of the named scope
+        # of ISRAELI_RED_LABEL_1_SUGAR / ISRAELI_RED_LABELS_2_PLUS / ISRAELI_RED_LABEL_
+        # 1_SAT_FAT). Measurement (TASK-395/442, cereals/granola shelf) caught this: a
+        # snack-bar product's un-suppressed SNACK_BAR_RED_SUGAR_LABEL cap (55) stayed
+        # binding while the new graduated penalty ALSO fired underneath it — a pure
+        # stack, not a cliff-to-continuous substitution, producing an indefensible net
+        # score drop despite an unambiguously improved regulatory_quality dimension.
+        # Guard: skip the graduated penalty when the snack-bar sugar cliffs would fire.
+        _snack_bar_sugar_cliff_active = (
+            is_snack_bar and (red_label_sugar or (kcal >= 470 and sugar >= sugar_threshold_15))
+        )
+        _sugar_grad_scope_ok = (
+            category in REDLABEL_ENDEMIC_SATFAT_CATEGORIES
+            or (BARI_REDLABEL_CONTINUOUS_V1 and not _snack_bar_sugar_cliff_active)
+        )
+        if _sugar_grad_scope_ok:
             for _lo, _hi, _pen in SUGAR_GRADUATED_BANDS:
                 if _hi is None:
                     if sugar >= _lo:
@@ -2987,10 +3095,18 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     # R5 — under RECAL_P0 the composite cliff cap is replaced by a graded fat-dimension
     # penalty (applied in _score_fat_quality_sprint1). Suppress the cap so it never fires;
     # flag OFF → unchanged.
-    if RECAL_P0_ON:
+    # TASK-395/442: BARI_REDLABEL_CONTINUOUS_V1 gets the SAME graded-penalty relief as
+    # RECAL_P0 even when RECAL_P0 is off — reuses R5's proven _red_satfat_penalty()
+    # formula (score_engine.py ~line 1705) rather than inventing a second sat_fat curve.
+    # This is the correct reuse: R5 already IS the continuous sat_fat de-anchor; this
+    # flag just widens its trigger condition so categories running with RECAL_P0=off
+    # (cakes, cookies_coffee, chocolate_bars/tablets, protein_bars, snacks, milk — see
+    # shelf config census, TASK-395/442 measurement) also get it instead of the raw cliff.
+    if RECAL_P0_ON or BARI_REDLABEL_CONTINUOUS_V1:
         caps_considered.append({"rule": "ISRAELI_RED_LABEL_1_SAT_FAT", "cap": 55,
                                  "fired": False,
-                                 "note": "R5: composite cap → graded fat-dimension penalty (RECAL_P0)"})
+                                 "note": ("R5: composite cap -> graded fat-dimension penalty (RECAL_P0)" if RECAL_P0_ON
+                                          else "TASK-395/442: composite cap -> graded fat-dimension penalty (BARI_REDLABEL_CONTINUOUS_V1, reuses R5 formula)")})
     else:
         # EV-048 — endemic sat-fat gate for intact dairy fat (whole_food_fat archetype).
         # Butter's sat-fat (48–70g/100g) structurally guarantees a red-label hit; the cap
