@@ -53,3 +53,12 @@ _rescore_staging/
 
 # W4 durable-execution runtime state (journals, locks, promotion backups)
 tasks/_journal/
+
+# Root scratch/debris (TASK-459 P0-6) — one-off verification dumps, ad hoc
+# script stdout/stderr captures, and log-analysis scratch files. Never
+# durable state; regenerate on demand if actually needed.
+/scratch*.txt
+/err*.txt
+/out*.txt
+/build-*.txt
+/_*_gates_report.md
