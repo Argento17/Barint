@@ -268,3 +268,51 @@ Commit `cef964d4` may merge as-is for its own internal correctness — all 21 cl
 3. Remove "38 פרמטרים הושוו" from both cereals and granola featured cards.
 4. Remove the red-label fallback line from cakes and cookies-coffee featured cards.
 No fixes applied by this gate. No push/PR/deploy beyond this report commit. Main tree read-only except for this report file.
+
+---
+
+## Gate 5 — Final targeted re-verify of gate-4 fixes (commit `9e17a35b`, 8 files)
+
+Date: 2026-07-02. Reviewer: adversarial-qa-agent (executor; no subagents used).
+Worktree re-checked at start: `git status --porcelain` = 0 lines — clean. Method: `git diff 88347cc2..9e17a35b`, contents pulled via `git show 9e17a35b:<path>`, independent recount against the exact JSON files the live adapters import.
+
+### VERDICT: GO
+
+### 1. Scope — CONFIRMED
+`git diff 88347cc2..9e17a35b --stat`: exactly 8 files — 5 featured-card components, `home-category-intelligence.tsx`, `bread-page-data.ts`, plus the gate-1 log. Every change is either a Hebrew string literal or one of two new `.filter(...).length` derived-stat expressions (cereals D-count, granola C-or-D count) plus the pre-existing E-count pattern reused for snacks. **No clobbering:** diffed `88347cc2..9e17a35b` against all prior fix sites (`chocolate-tablets-comparison-page-data.ts`, `cookies-coffee-page-data.ts`, `hard-cheeses-page-data.ts`, `cookies_coffee_frontend_v2.json`, `protein-bars-comparison-page-data.ts`, `snacks-comparison-page-data.ts`) — zero touched, all prior fixes intact.
+
+### 2. GATE4-1 (bread sourdough count) — CONFIRMED PASS
+Traced the actual import chain: `bread-page-data.ts` imports `bari-web/src/data/bread-retail-curated.json`, not the `02_products` file directly. Verified lineage: this web-tree file is **byte-identical** in `all_products` to `02_products/bread_retail_003/real_bread_retail_003_v1_curated_comparison_dataset.json`, both stamped `run_id: real_bread_retail_003_v1`, `total_curated: 31` — confirming this is the correct, documented lineage for the live bread page (matches the project's own `corpus_traceability_program` memory). Independently recounted sourdough-named products (`"מחמצת"` in `name_he`) in the exact file the page imports: **7** — matches the committed title text "7 מוצרים כוללים 'מחמצת' בשם" exactly.
+
+### 3. GATE4-2 ("655" removal + live derivation) — CONFIRMED PASS
+`git grep -n "655"` across `bari-web/src/components`, `bari-web/src/lib`, `bari-web/src/app`: the only hit is an unrelated 13-digit barcode substring (`7290001065594`) — zero remaining "655 נסרקו"/"73 קיבלו ציון" anywhere. Both sites fixed: `featured-snacks-intelligence-card.tsx` (removed 2 hardcoded stats, added live `eCount`) and `home-category-intelligence.tsx` (removed "655 נסרקו ·" prefix entirely, now reads `${snacksProducts.length} בדף ההשוואה · שופרסל`).
+Verified the derivation expressions against `snacks_frontend_v5.json` (n=21, grades B=1/C=2/D=6/E=12): `snacksProducts.filter(p => p.grade === "E").length` = **12**, matches independent recount. Confirmed `snacksProducts` (via `enrichRowReasonOnly`, a pure 1:1 `.map()` that only touches `rowVerdict` — read the function source, it never drops records or alters `grade`) has the same length and grade distribution as the raw JSON. Both `snacksProducts.length` (21) and `eCount` (12) are correct and durable by construction.
+
+### 4. GATE4-3 ("38 פרמטרים" removal + replacement counts) — CONFIRMED PASS
+Zero remaining "38 פרמטרים"/"פרמטרים הושוו" anywhere in the 8 changed files. Tier-4 banned-vocabulary sweep (NOVA, BSIP, structural_class, matrix_integrity, pillar, dimension_score, weighted_dim, routing, binding_cap, caps_applied, penalties_applied, floors_applied, confidence_score) across all 8 files: **zero hits** — no internal-mechanics vocabulary introduced.
+Replacement counts independently verified: `cerealsProducts.filter(grade==="D").length` against `cereals_frontend_v2.json` (n=20, grades B=2/C=6/D=10/E=2) = **10**, matches. `granolaProducts.filter(grade==="C"||grade==="D").length` against `granola_frontend_v2.json` (n=22, grades B=4/C=8/D=8/E=2) = **16**, matches. Both expressions read the exact filter logic shown in the diff and both are correct, live-derived, durable.
+
+### 5. GATE4-4 (cakes/cookies-coffee "C ceiling, E-majority") — CONFIRMED PASS, both categories
+Same shared string used on both cards: "ציון C הוא תקרת הקטגוריה, ורוב המדף מתכנס סביב E".
+- **Cakes** (`cakes_hard_cookies_frontend_v1.json`, n=62): grades C=1, D=1, **E=60** — matches the earlier gate-1/gate-2 finding exactly (no drift). E=60/62=96.8%, overwhelming majority. Ceiling grade present = C. Coordinator's flagged risk (that the real E-count might not support "majority") does not materialize — 96.8% comfortably clears "רוב."
+- **Cookies-coffee** (`cookies_coffee_frontend_v2.json`, n=117): confirmed this file has had **zero changes** since `83e09811` (RT-3 fix intact, still 117/81). Grades C=9, D=27, **E=81** — E=81/117=69.2%, clear majority. Ceiling grade present = C.
+Both claims ("C is the ceiling" AND "majority is E") are independently true for both categories with real margin — not a borderline call in either case.
+
+### 6. Build
+`npx tsc --noEmit` (bari-web, worktree clean): exit **0**.
+
+### Summary
+| Item | Committed value | Claim | Match |
+|---|---|---|---|
+| GATE4-1 bread lineage | `bread-retail-curated.json` ≡ `real_bread_retail_003_v1` (byte-identical) | correct source | Yes |
+| GATE4-1 bread count | 7 sourdough-named (in the imported file) | "7 מוצרים" | Yes |
+| GATE4-2 "655" | 0 remaining hits (barcode substring excluded) | fully removed | Yes |
+| GATE4-2 snacks eCount | 12/21 (E grade count) | live-derived, correct | Yes |
+| GATE4-3 "38 פרמטרים" | 0 remaining hits, 0 Tier-4 vocabulary introduced | fully removed, clean | Yes |
+| GATE4-3 cereals D-count | 10/20 | live-derived, correct | Yes |
+| GATE4-3 granola C+D count | 16/22 | live-derived, correct | Yes |
+| GATE4-4 cakes | C=1 ceiling, E=60/62 (96.8%) | "C ceiling, majority E" | Yes |
+| GATE4-4 cookies-coffee | C=9 ceiling, E=81/117 (69.2%) | "C ceiling, majority E" | Yes |
+
+### Verdict: GO
+All 4 gate-4 fixes (GATE4-1 through GATE4-4) verified correct against committed state and the exact JSON files the live adapters import. Bread lineage confirmed to be the documented `real_bread_retail_003_v1` source. Zero remaining unsourced numbers, zero Tier-4 leakage introduced, zero clobbering of any prior fix (RT-1/RT-2/RT-3, and all of pass-2's 21 verified fixes remain intact). Scope confined to the claimed 8 files, all changes are string literals or correct live-derivation expressions. tsc clean. This closes out the full TASK-460 fix chain (`d57eae3b` → `b5a75204` → `cef964d4` → `9e17a35b`) with no open blockers from any of the five gates run on this branch. **Clear to ship to the owner.** No fixes applied by this gate. No push/PR/deploy performed by this agent — that is the orchestrator's/owner's next step.
