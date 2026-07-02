@@ -214,7 +214,7 @@ export function FoodDyesArticle() {
 
           {/* ATOM inspects industrial food dyes — small transparent illustration */}
           <Image
-            src="/blog/food-dyes/atom-food-dyes.png"
+            src="/blog/food-dyes/atom-food-dyes-v2.png"
             alt=""
             width={910}
             height={723}

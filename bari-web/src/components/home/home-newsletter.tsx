@@ -19,7 +19,7 @@ export function HomeNewsletter() {
           <div className="relative z-10">
           {/* NORI — the Ingredient Expert, reading BARI NEWS. Small transparent emblem. */}
           <Image
-            src="/mascots/nori-newsletter.png"
+            src="/mascots/nori-newsletter-v2.png"
             alt=""
             width={760}
             height={678}

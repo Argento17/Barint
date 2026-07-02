@@ -203,7 +203,7 @@ export function BlogIndexPage() {
 
           {/* NORI — the ingredient tile, Bari's Expert, taking ingredient notes. Decorative. */}
           <Image
-            src="/mascots/mascot-nori-desk-v2.png"
+            src="/mascots/mascot-nori-desk-v3.png"
             alt=""
             width={870}
             height={737}
