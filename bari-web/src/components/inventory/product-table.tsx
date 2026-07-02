@@ -268,15 +268,39 @@ interface FilterBarProps {
   retailerOptions: Array<{ id: string; nameHe: string }>;
 }
 
-function FilterBar({ filters, onChange, categoryOptions, retailerOptions }: FilterBarProps) {
-  const selectClass =
-    "rounded-full border border-[rgba(17,19,24,0.12)] bg-white px-3.5 py-1.5 text-sm text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
+function FilterBar({
+  filters,
+  onChange,
+  categoryOptions,
+  retailerOptions,
+  appearance = "default",
+}: FilterBarProps & { appearance?: "default" | "dashboard" }) {
+  const isDashboard = appearance === "dashboard";
+  const selectClass = isDashboard
+    ? "rounded-md border border-[rgba(17,19,24,0.12)] bg-white px-2.5 py-1 text-xs font-medium text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
+    : "rounded-full border border-[rgba(17,19,24,0.12)] bg-white px-3.5 py-1.5 text-sm text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
+  const inputClass = isDashboard
+    ? "w-full rounded-md border border-[rgba(17,19,24,0.12)] bg-white pe-8 ps-3 py-1 text-xs text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
+    : "w-full rounded-full border border-[rgba(17,19,24,0.12)] bg-white pe-9 ps-4 py-1.5 text-sm text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
 
   return (
-    <div className="flex flex-wrap items-center gap-2" role="search" aria-label="סינון מוצרים">
-      <div className="relative flex-1 min-w-[200px]">
+    <div
+      className={
+        isDashboard
+          ? "flex flex-wrap items-center gap-1.5 rounded-md border p-2"
+          : "flex flex-wrap items-center gap-2"
+      }
+      style={
+        isDashboard
+          ? { borderColor: "rgba(17,19,24,0.10)", background: "#FAFAF8" }
+          : undefined
+      }
+      role="search"
+      aria-label="סינון מוצרים"
+    >
+      <div className={isDashboard ? "relative min-w-[180px] flex-[1.4]" : "relative flex-1 min-w-[200px]"}>
         <Search
-          className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-50"
+          className={`pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 opacity-50 ${isDashboard ? "h-3.5 w-3.5" : "h-4 w-4"}`}
           style={{ color: "var(--fg3, #5E6560)" }}
           aria-hidden
         />
@@ -286,7 +310,7 @@ function FilterBar({ filters, onChange, categoryOptions, retailerOptions }: Filt
           onChange={(e) => onChange({ ...filters, q: e.target.value })}
           placeholder="חיפוש שם מוצר, מותג..."
           dir="rtl"
-          className="w-full rounded-full border border-[rgba(17,19,24,0.12)] bg-white pe-9 ps-4 py-1.5 text-sm text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
+          className={inputClass}
           aria-label="חיפוש מוצר"
         />
       </div>
@@ -336,11 +360,15 @@ function SortHeader({
   sortKey,
   sort,
   onSort,
+  alignEnd = false,
+  compact = false,
 }: {
   label: string;
   sortKey: SortKey;
   sort: SortState;
   onSort: (key: SortKey) => void;
+  alignEnd?: boolean;
+  compact?: boolean;
 }) {
   const active = sort.key === sortKey;
   const ariaSort: React.AriaAttributes["aria-sort"] = !active
@@ -350,7 +378,7 @@ function SortHeader({
       : "descending";
 
   return (
-    <th scope="col" aria-sort={ariaSort} style={{ ...thStyle, padding: "13px 22px", textAlign: "start" }}>
+    <th scope="col" aria-sort={ariaSort} style={{ ...thStyle, padding: compact ? "10px 16px" : "13px 22px", textAlign: alignEnd ? "end" : "start" }}>
       <button
         type="button"
         onClick={() => onSort(sortKey)}
@@ -386,6 +414,8 @@ function SortHeader({
 interface ProductTableProps {
   rows: InventoryProductRowWithBuy[];
   variant?: "public" | "admin";
+  /** Dashboard styling for /catalog — dense grid, sticky header, toolbar filters. */
+  appearance?: "default" | "dashboard";
   loading?: boolean;
   error?: string | null;
   onRetry?: () => void;
@@ -412,6 +442,7 @@ interface ProductTableProps {
 export function ProductTable({
   rows,
   variant = "public",
+  appearance = "default",
   loading = false,
   error = null,
   onRetry,
@@ -420,6 +451,7 @@ export function ProductTable({
   detailsById,
 }: ProductTableProps) {
   const isAdmin = variant === "admin";
+  const isDashboard = appearance === "dashboard" && !isAdmin;
   const hasExpansion = !isAdmin && detailsById !== undefined;
   const [filters, setFilters] = useState<TableFilters>(EMPTY_FILTERS);
   const [sort, setSort] = useState<SortState>(NO_SORT);
@@ -565,7 +597,7 @@ export function ProductTable({
   };
 
   return (
-    <div className="flex flex-col gap-4" id="product-table-root">
+    <div className={`flex flex-col ${isDashboard ? "gap-3" : "gap-4"}`} id="product-table-root">
       <FilterBar
         filters={displayFilters}
         onChange={(next) => {
@@ -578,6 +610,7 @@ export function ProductTable({
         }}
         categoryOptions={categoryOptions}
         retailerOptions={retailerOptions}
+        appearance={isDashboard ? "dashboard" : "default"}
       />
 
       {!loading && !error && (
@@ -586,7 +619,7 @@ export function ProductTable({
           style={{ color: "var(--fg3, #5E6560)" }}
           aria-live="polite"
         >
-          {filtered.length.toLocaleString("he-IL")} מוצרים מוצגים
+          {filtered.length.toLocaleString("he-IL")} מוצרים
         </p>
       )}
 
@@ -626,7 +659,7 @@ export function ProductTable({
       )}
 
       {/* Table wrapper */}
-      <div className="overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]">
+      <div className={isDashboard ? "overflow-x-auto" : "overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]"}>
 
         {/* Mobile: stacked list */}
         <div className="block sm:hidden">
@@ -681,12 +714,12 @@ export function ProductTable({
           </colgroup>
 
           {/* Thead: background #FAFAF8, mono uppercase, H1 padding 13px/22px */}
-          <thead>
+          <thead className={isDashboard ? "sticky top-[var(--site-header-height-sm,4.25rem)] z-10" : undefined}>
             <tr style={{ background: "#FAFAF8", borderBottom: "1px solid rgba(17,19,24,0.08)" }}>
-              <SortHeader label="מוצר" sortKey="name" sort={sort} onSort={handleSort} />
-              <SortHeader label="קטגוריה" sortKey="category" sort={sort} onSort={handleSort} />
-              <SortHeader label="ציון" sortKey="score" sort={sort} onSort={handleSort} />
-              <SortHeader label="רשת · מקור" sortKey="retailer" sort={sort} onSort={handleSort} />
+              <SortHeader label="מוצר" sortKey="name" sort={sort} onSort={handleSort} compact={isDashboard} />
+              <SortHeader label="קטגוריה" sortKey="category" sort={sort} onSort={handleSort} compact={isDashboard} />
+              <SortHeader label="ציון" sortKey="score" sort={sort} onSort={handleSort} alignEnd={isDashboard} compact={isDashboard} />
+              <SortHeader label="רשת · מקור" sortKey="retailer" sort={sort} onSort={handleSort} compact={isDashboard} />
               {!isAdmin && (
                 <th scope="col" style={{ ...thStyle, padding: "13px 12px", textAlign: "start" }}>
                   <span className="sr-only">צפייה ברשת</span>
@@ -722,6 +755,7 @@ export function ProductTable({
                   row={row}
                   idx={idx}
                   isAdmin={isAdmin}
+                  isDashboard={isDashboard}
                   hasExpansion={hasExpansion}
                   detail={hasExpansion ? (detailsById?.[row.id] ?? null) : null}
                   expanded={expandedId === row.id}
@@ -783,6 +817,7 @@ function DesktopRow({
   row,
   idx,
   isAdmin,
+  isDashboard,
   hasExpansion,
   detail,
   expanded,
@@ -794,6 +829,7 @@ function DesktopRow({
   row: InventoryProductRowWithBuy;
   idx: number;
   isAdmin: boolean;
+  isDashboard: boolean;
   hasExpansion: boolean;
   detail: BariProductVM | null;
   expanded: boolean;
@@ -812,7 +848,7 @@ function DesktopRow({
         style={{ background: expanded ? "#F4FAF7" : rowBg }}
       >
         {/* מוצר */}
-        <td style={{ padding: "13px 22px" }}>
+        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
           <div className="flex items-center gap-3 min-w-0">
             <ProductThumb imageUrl={row.imageUrl} name={row.name} />
             <div className="flex flex-col gap-0.5 min-w-0">
@@ -848,19 +884,43 @@ function DesktopRow({
         </td>
 
         {/* קטגוריה */}
-        <td style={{ padding: "13px 22px" }}>
-          <span style={{ fontSize: 13.5, fontWeight: 500, color: "var(--fg2, #4E5663)" }}>
+        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
+          <span
+            className={isDashboard ? "inline-block rounded px-2 py-0.5" : undefined}
+            style={{
+              fontSize: isDashboard ? 12 : 13.5,
+              fontWeight: 500,
+              color: "var(--fg2, #4E5663)",
+              background: isDashboard ? "rgba(17,19,24,0.04)" : undefined,
+              border: isDashboard ? "1px solid rgba(17,19,24,0.06)" : undefined,
+            }}
+          >
             {row.categoryNameHe}
           </span>
         </td>
 
         {/* ציון */}
-        <td style={{ padding: "13px 22px" }}>
-          <InventoryGradeChip grade={row.grade} />
+        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px", textAlign: isDashboard ? "end" : "start" }}>
+          <div className={isDashboard ? "inline-flex flex-col items-end gap-1" : undefined}>
+            {isDashboard && row.score !== null ? (
+              <span
+                className="font-bold tabular-nums"
+                style={{
+                  fontSize: 13,
+                  color: "var(--fg1, #111318)",
+                  fontVariantNumeric: "tabular-nums",
+                  fontFamily: "var(--font-mono, ui-monospace, monospace)",
+                }}
+              >
+                {row.score.toLocaleString("he-IL")}
+              </span>
+            ) : null}
+            <InventoryGradeChip grade={row.grade} />
+          </div>
         </td>
 
         {/* רשת + optional SKU (admin only) */}
-        <td style={{ padding: "13px 22px" }}>
+        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
           <div className="flex flex-col gap-0.5">
             <span style={{ fontSize: 13.5, fontWeight: 500, color: "var(--fg2, #4E5663)" }}>
               {row.retailer.nameHe}
@@ -883,7 +943,7 @@ function DesktopRow({
 
         {/* Buy affordance (public only) — tighter horizontal padding so the pill fits */}
         {!isAdmin && (
-          <td style={{ padding: "13px 12px" }}>
+          <td style={{ padding: isDashboard ? "10px 8px" : "13px 12px" }}>
             <BuyAffordance buyUrl={row.buyUrl} />
           </td>
         )}
