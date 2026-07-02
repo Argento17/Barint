@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Activity, CheckCircle2, Layers3, Sparkles } from "lucide-react";
 
 import { HomeContainer } from "./section-frame";
+import { MascotClip } from "./mascot-clip";
 import { cn } from "@/lib/utils";
 
 const radarSignals = [
@@ -559,13 +560,19 @@ export function HomeMethodology() {
         >
           <div className="relative overflow-hidden rounded-[1.65rem] border border-black/[0.08] bg-[#FFFFFF]/72 p-4 md:p-6">
             <div className="mb-4 flex items-center justify-between gap-3">
-              <div>
+              <div className="shrink-0">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5E6560]">פרופיל מוצר לדוגמה</p>
                 <h3 className="mt-1 text-xl font-extrabold tracking-[-0.035em] text-[#111318]">
                   ניתוח רב־ממדי של מוצר
                 </h3>
               </div>
-              <div className="rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
+              {/* OLI conducts the holographic radar — mastered on the panel white, plays plain */}
+              <MascotClip
+                src="/mascots/clips/oli-radar.mp4"
+                plain
+                className="hidden aspect-video w-56 sm:block"
+              />
+              <div className="shrink-0 rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
                 8 פרמטרים
               </div>
             </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
@@ -22,24 +23,31 @@ export function HomeGuides() {
               מופיע כאן; שאר הקטגוריות נפתחות בהדרגה.
             </p>
           </div>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
-          >
-            כל הניתוחים
-            <ChevronLeft className="size-4" aria-hidden />
-          </Link>
+          {/* LUMO hanging from a branch beside the title, above the article batch. Decorative. */}
+          <Image
+            src="/mascots/lumo-tree.png"
+            alt=""
+            width={1100}
+            height={869}
+            aria-hidden
+            className="pointer-events-none hidden w-44 shrink-0 self-start lg:block lg:-translate-x-10 lg:translate-y-8"
+          />
+          <div className="flex items-center gap-2 md:ms-auto md:flex-col md:items-center md:gap-1">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-1 text-sm font-bold text-[#167A58] hover:underline"
+            >
+              כל הניתוחים
+              <ChevronLeft className="size-4" aria-hidden />
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {teasers.map((article, i) => (
+          {teasers.map((article) => (
             <article
               key={article.slug}
-              className={
-                i === 0
-                  ? "flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-[#1F8F6A]/22 bg-[#FFFFFF] p-5 shadow-[0_18px_40px_-34px_rgba(31,143,106,0.28)]"
-                  : "flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
-              }
+              className="flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
             >
               <p className="text-xs font-bold text-[#167A58]">{article.categoryLabel}</p>
               <h3 className="mt-2 text-lg font-extrabold leading-snug text-[#111318]">
