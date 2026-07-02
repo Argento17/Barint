@@ -83,7 +83,7 @@ export default function SupermarketCategoryPage() {
   const crackersAGrade = crackersProducts.filter((p) => p.grade === "A").length;
   const crackersBGrade = crackersProducts.filter((p) => p.grade === "B").length;
   const crackersTop = crackersProducts.find((p) => p.rank === 1);
-  const crackersDescription = `בדקנו ${crackersProducts.length} קרקרים מהמדף הישראלי: ${crackersAGrade} הגיע ל-A ו-${crackersBGrade} קיבלו B. ${crackersTop ? `${crackersTop.nameHe} מוביל את הדף` : "המוביל בדף"} — קטגוריה נפרדת מלחם, כי בקרקר היבש הקלוריות ל-100 גרם גבוהות מטבעו.`;
+  const crackersDescription = `בדקנו ${crackersProducts.length} קרקרים מהמדף הישראלי: ${crackersAGrade} הגיע ל-A ו-${crackersBGrade} קיבלו B. ${crackersTop ? `${crackersTop.name} מוביל את הדף` : "המוביל בדף"} — קטגוריה נפרדת מלחם, כי בקרקר היבש הקלוריות ל-100 גרם גבוהות מטבעו.`;
 
   return (
     <HashvaotCategoryLanding

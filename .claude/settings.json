@@ -1,4 +1,30 @@
 {
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Bash(npm *)",
+      "Bash(git *)",
+      "Bash(vitest *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pytest *)",
+      "Bash(pip *)",
+      "PowerShell(*)",
+      "WebFetch",
+      "WebSearch",
+      "WebFetch(domain:bari.digital)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(curl *)",
+      "Bash(wget *)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
   "enabledMcpjsonServers": [],
   "hooks": {
     "UserPromptSubmit": [
@@ -73,30 +99,5 @@
         ]
       }
     ]
-  },
-  "permissions": {
-    "allow": [
-      "Read",
-      "Write",
-      "Edit",
-      "Glob",
-      "Grep",
-      "Bash(npm *)",
-      "Bash(git *)",
-      "Bash(vitest *)",
-      "Bash(python *)",
-      "Bash(python3 *)",
-      "Bash(pytest *)",
-      "Bash(pip *)",
-      "PowerShell(*)",
-      "WebFetch",
-      "WebSearch"
-    ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Bash(curl *)",
-      "Bash(wget *)"
-    ],
-    "defaultMode": "bypassPermissions"
   }
 }
