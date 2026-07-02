@@ -26,13 +26,24 @@
         "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output"
       ],
       "run_products_dir": [
-        "C:\\Bari\\02_products\\crackers\\bsip2_outputs\\run_crackers_conform_001\\products"
-      ]
+        "C:\\bari_deanchor_wt\\_rescore_staging\\crackers\\products"
+      ],
+      "deanchor_traces": "C:\\bari_deanchor_wt\\_rescore_staging\\crackers\\products"
     },
     "subpool_filter": null,
     "task433_data_rework": "TASK-433 data-layer rework (Adversarial QA + C3 red-team NO-GO fix): FIX1 ingredient bleed/truncation cleaned at BSIP1 source for 20/20 rows (reproducible marker-cut rule, verbatim prefix of raw scrape, never invented); FIX2 sodium thousands-separator parser bug corrected (7290018790328: 1.2->1200mg) and source-confirmed corrupted nutrition block nulled per missing-data-discard rule (7290112968807: all fields null, ~1/4.6 of sibling products, no clean scaling factor found); FIX3 sugar extracted from embedded nutrition-panel-bleed text for 2/20 rows (5000396021202=8.5g, 8434165658523=4.0g), remaining rows genuinely null at source. Re-scored through canonical BSIP2 batch_run_crackers_conform_001.py (identical flag set, unchanged). Copy fields (nameHe, rowVerdict, insightLine, consumerTakeaway, bariInterpretation[].interpretation/label/strength text, expansion.consumerExplanation prose, expansion.whyRated, _meta.categoryCaveat) preserved verbatim -- NOT rewritten by this pass.",
     "task433_frontend_discard": "Orchestrator directive (within-lane, no tripwire): 7290112968807 dropped from displayable set post-rescore (insufficient_data, unrecoverable). 20 scored -> 19 displayable. See _meta.exclusions and 03_operations/page_generator/configs/crackers_frontend_discards_v1.json for the reproducible discard record.",
-    "task433_structural_finalization": "rank (1..20, score desc) and _website_cluster added — structural/data fields only, no copy authored. _website_cluster derived from whole-grain-flour-percentage evidence in BSIP1 ingredients_text_he (sum of explicit % for כוסמין מלא/חיטה מלא(ה)/שיפון מלא terms): whole_grain >=70%, mixed_grain >0% and <70%, refined_white =0%. Cluster counts: {'whole_grain': 3, 'mixed_grain': 9, 'refined_white': 8}. KRIT (8434165658523) brand left null — the pre-existing bread_frontend_v3.json 'KRIT' value is unsourced (not derivable from any scrape/BSIP0/BSIP1 artifact) and was NOT carried forward, per reproducibility rule."
+    "task433_structural_finalization": "rank (1..20, score desc) and _website_cluster added — structural/data fields only, no copy authored. _website_cluster derived from whole-grain-flour-percentage evidence in BSIP1 ingredients_text_he (sum of explicit % for כוסמין מלא/חיטה מלא(ה)/שיפון מלא terms): whole_grain >=70%, mixed_grain >0% and <70%, refined_white =0%. Cluster counts: {'whole_grain': 3, 'mixed_grain': 9, 'refined_white': 8}. KRIT (8434165658523) brand left null — the pre-existing bread_frontend_v3.json 'KRIT' value is unsourced (not derivable from any scrape/BSIP0/BSIP1 artifact) and was NOT carried forward, per reproducibility rule.",
+    "reflow": {
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [],
+      "grade_flip_count": 0,
+      "date": "2026-07-02",
+      "copy": "score-only reflow — 0 grade flips; verdicts describe product composition (unchanged), not the numeric score"
+    },
+    "deanchor_meta_regenerated": "2026-07-02",
+    "off_used": false
   },
   "products": [
     {
@@ -2237,7 +2248,7 @@
       "rank": 16,
       "retailer": "shufersal",
       "rowVerdict": "נתרן 754 מ\"ג ל-100 גרם — השני בגובהו בהשוואה. הבסיס קמח לבן עם שני מקורות סוכר וחמישה תוספי מזון, שחלקם שנויים במחלוקת — הנתרן והרשימה הארוכה מושכים אותו למטה.",
-      "score": 54.8,
+      "score": 55.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -2403,7 +2414,7 @@
       "rank": 17,
       "retailer": "shufersal",
       "rowVerdict": "הנתרן הגבוה ביותר בהשוואה — 1,200 מ\"ג ל-100 גרם, עקבי עם השם 'מלוח'. קמח לבן ושמן דקל, שלושה מקורות סוכר ורשימת תוספי מזון ארוכה שחלקם שנויים במחלוקת — התמונה הכוללת של מוצר מעובד.",
-      "score": 52.5,
+      "score": 52.9,
       "source_traceability_status": "resolved"
     },
     {

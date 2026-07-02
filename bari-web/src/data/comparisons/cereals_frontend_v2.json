@@ -24,7 +24,20 @@
     "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
     "generated": "2026-06-26T15:58:10",
     "category": "cereals",
-    "product_count": 20
+    "product_count": 20,
+    "reflow": {
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [
+        "7290017894911 C->D",
+        "3387390525960 D->E"
+      ],
+      "grade_flip_count": 2,
+      "date": "2026-07-02",
+      "content_authored": "workflow w0467uq2m (Content Agent, Tom-Bari voice)"
+    },
+    "deanchor_meta_regenerated": "2026-07-02",
+    "off_used": false
   },
   "products": [
     {
@@ -207,6 +220,60 @@
       "brand": "דג\"ש"
     },
     {
+      "id": "bsip1_cereal_5900020012814",
+      "name": "דגני בוקר נסקוויק",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QPR32_Z_P_5900020012814_1.png",
+      "score": 58.4,
+      "grade": "C",
+      "insightLine": "53.1% חיטה מלאה ראשונה ברשימה, נתרן נמוך מאוד לדגני ילדים — העצירה היא שני מקורות סוכר מוסף מוקדם ברשימה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 381,
+          "protein": 8.9,
+          "sugar": 22.4,
+          "fat": 0.5,
+          "fiber": 8,
+          "sodium": 88
+        },
+        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (53.1%), סוכר, גריסי תירס (17.2%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, מינרלים (סידן (קלציום קרבונט), ברזל), שמן צמחי, מלח, חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין B2 (ריבופלאבין), ויטמין B6, ויטמין B1 (תיאמין), חומצה פולית, ויטמין D).",
+        "positiveSignals": [
+          "8.9 גרם חלבון ל-100 גרם — גבוה יחסית גם לקטגוריית ילדים",
+          "8 גרם סיבים ל-100 גרם — חוזק ממשי",
+          "חיטה מלאה כרכיב ראשון לפי הצהרת אריזת המוצר",
+          "88 מיליגרם נתרן ל-100 גרם — נמוך מאוד, גם ביחס למוצרי ילדים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "22.4 גרם סוכר ל-100 גרם — גבוה. סוכר וסירופ גלוקוזה הם הרכיב השני והרביעי ברשימה. במוצר ילדים, זה המספר שהורים שואלים עליו",
+            "magnitude": "high"
+          },
+          {
+            "text": "381 קלוריות ל-100 גרם",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "נסקוויק מגיע עם פרופיל מוצלח יחסית לדגני ילדים: 8 גרם סיבים ו-8.9 גרם חלבון הם מספרים טובים בקטגוריה הזאת. אבל 22.4 גרם סוכר ל-100 גרם לא נעלמים מהקערה רק כי שאר המספרים טובים. להורים שמחפשים פשרה בקטגוריית הילדים, זה אחד המקומות הסבירים יותר למצוא אותה.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "53.1% חיטה מלאה ראשונה, נתרן נמוך מאוד ופרופיל חלבון וסיבים מהטובים בקרב דגני הילדים — יש כאן בסיס אמיתי. הפשרה: סוכר וסירופ גלוקוזה מגיעים שני ורביעי ברשימה. לא מושלם, אבל בולט לטובה ביחס לאלטרנטיבות בקטגוריית הילדים.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "5900020012814",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 4,
+      "categoryTotal": 20,
+      "brand": "נסטלה"
+    },
+    {
       "id": "bsip1_cereal_7296073642046",
       "name": "קורנפלקס ללא גלוטן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PET56_Z_P_7296073642046_1.png",
@@ -272,9 +339,67 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 4,
+      "rank": 5,
       "categoryTotal": 20,
       "brand": "גרין"
+    },
+    {
+      "id": "bsip1_cereal_72968",
+      "name": "דגני בוקר סיני מיניס",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CXL32_Z_P_72968_1.png",
+      "score": 56.9,
+      "grade": "C",
+      "insightLine": "מוצר ילדים עם רמת סוכר שחוצה את סף הסימון האדום, נתרן גבוה וסביבת רכיבים ארוכה.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 414,
+          "protein": 5.9,
+          "sugar": 25,
+          "fat": 0.5,
+          "fiber": 5.7,
+          "sodium": 338
+        },
+        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (33.8%), קמח אורז (30%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מילוי (קלציום קרבונט), עמילן חיטה, מלח, קינמון (0.4%), חומרי טעם וריח, חומר מתחלב (לציטין), חומר מעכב חימצון (טוקופרולים), תמצית לתת שעורה (מכיל גלוטן), צבע מאכל (אנאטו), ברזל, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין D, ויטמין B6, ויטמין B1 (תיאמין), ויטמין B2 (ריבופלאבין), חומצה פולית).",
+        "positiveSignals": [
+          "5.7 גרם סיבים ל-100 גרם — סביר לדגני ילדים",
+          "חיטה מלאה לפי הצהרת האריזה",
+          "ללא תוספי מזון מסוג E-numbers פונקציונליים",
+          "5.9 גרם חלבון ל-100 גרם — קיים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "25 גרם סוכר ל-100 גרם — גבוה. סוכר וסירופ גלוקוז הם הרכיב השלישי והרביעי ברשימה — הגורם המגביל העיקרי",
+            "magnitude": "high"
+          },
+          {
+            "text": "338 מיליגרם נתרן ל-100 גרם — גבוה לדגני ילדים",
+            "magnitude": "medium"
+          },
+          {
+            "text": "414 קלוריות ל-100 גרם — הגבוה בקרב מוצרי הציון C בקטגוריה",
+            "magnitude": "medium"
+          }
+        ],
+        "comparisonContext": "סיני מיניס נמכר תחת כותרת של דגנים מלאים לילדים, אבל 25 גרם סוכר ל-100 גרם ו-338 מיליגרם נתרן הם לא המספרים שמצפים לראות שם. הסיבים והדגן המלא הם מה שמרים את הציון; הסוכר והנתרן הם מה שמוריד אותו.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "הדגן והסיבים תורמים לציון, אבל 25 גרם סוכר ל-100 גרם חוצים את סף הסימון האדום הישראלי. הנתרן גבוה במוצר שמיועד לילדים צעירים, ורשימת הרכיבים ארוכה לאריזה שמוכרת תחת כותרת 'דגנים מלאים'.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": true,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "72968",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 6,
+      "categoryTotal": 20,
+      "brand": "נסטלה"
     },
     {
       "id": "bsip1_cereal_5900020036407",
@@ -326,61 +451,7 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 5,
-      "categoryTotal": 20,
-      "brand": "נסטלה"
-    },
-    {
-      "id": "bsip1_cereal_5900020012814",
-      "name": "דגני בוקר נסקוויק",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QPR32_Z_P_5900020012814_1.png",
-      "score": 55.0,
-      "grade": "C",
-      "insightLine": "53.1% חיטה מלאה ראשונה ברשימה, נתרן נמוך מאוד לדגני ילדים — העצירה היא שני מקורות סוכר מוסף מוקדם ברשימה.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 381,
-          "protein": 8.9,
-          "sugar": 22.4,
-          "fat": 0.5,
-          "fiber": 8,
-          "sodium": 88
-        },
-        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (53.1%), סוכר, גריסי תירס (17.2%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, מינרלים (סידן (קלציום קרבונט), ברזל), שמן צמחי, מלח, חומרי טעם וריח, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין B2 (ריבופלאבין), ויטמין B6, ויטמין B1 (תיאמין), חומצה פולית, ויטמין D).",
-        "positiveSignals": [
-          "8.9 גרם חלבון ל-100 גרם — גבוה יחסית גם לקטגוריית ילדים",
-          "8 גרם סיבים ל-100 גרם — חוזק ממשי",
-          "חיטה מלאה כרכיב ראשון לפי הצהרת אריזת המוצר",
-          "88 מיליגרם נתרן ל-100 גרם — נמוך מאוד, גם ביחס למוצרי ילדים"
-        ],
-        "limitingFactors": [
-          {
-            "text": "22.4 גרם סוכר ל-100 גרם — גבוה. סוכר וסירופ גלוקוזה הם הרכיב השני והרביעי ברשימה. במוצר ילדים, זה המספר שהורים שואלים עליו",
-            "magnitude": "high"
-          },
-          {
-            "text": "381 קלוריות ל-100 גרם",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "נסקוויק מגיע עם פרופיל מוצלח יחסית לדגני ילדים: 8 גרם סיבים ו-8.9 גרם חלבון הם מספרים טובים בקטגוריה הזאת. אבל 22.4 גרם סוכר ל-100 גרם לא נעלמים מהקערה רק כי שאר המספרים טובים. להורים שמחפשים פשרה בקטגוריית הילדים, זה אחד המקומות הסבירים יותר למצוא אותה.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "53.1% חיטה מלאה ראשונה, נתרן נמוך מאוד ופרופיל חלבון וסיבים מהטובים בקרב דגני הילדים — יש כאן בסיס אמיתי. הפשרה: סוכר וסירופ גלוקוזה מגיעים שני ורביעי ברשימה. לא מושלם, אבל בולט לטובה ביחס לאלטרנטיבות בקטגוריית הילדים.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": true,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [],
-      "barcode": "5900020012814",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "rank": 6,
+      "rank": 7,
       "categoryTotal": 20,
       "brand": "נסטלה"
     },
@@ -388,7 +459,7 @@
       "id": "bsip1_cereal_7290107647731",
       "name": "דגני בוקר קוקומן חום לבן",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TUY54_Z_P_7290107647731_1.png",
-      "score": 55.0,
+      "score": 53.4,
       "grade": "C",
       "insightLine": "71% דגנים נשמע טוב; הסוכר רכיב שני ברשימה, והנתרן הגבוה ביותר בין דגני הילדים.",
       "confidence": "verified",
@@ -449,257 +520,15 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 7,
-      "categoryTotal": 20,
-      "brand": "תלמה"
-    },
-    {
-      "id": "bsip1_cereal_72968",
-      "name": "דגני בוקר סיני מיניס",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CXL32_Z_P_72968_1.png",
-      "score": 55.0,
-      "grade": "C",
-      "insightLine": "מוצר ילדים עם רמת סוכר שחוצה את סף הסימון האדום, נתרן גבוה וסביבת רכיבים ארוכה.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 414,
-          "protein": 5.9,
-          "sugar": 25,
-          "fat": 0.5,
-          "fiber": 5.7,
-          "sodium": 338
-        },
-        "ingredients": "קמח חיטה מלא (מכיל גלוטן) (33.8%), קמח אורז (30%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מילוי (קלציום קרבונט), עמילן חיטה, מלח, קינמון (0.4%), חומרי טעם וריח, חומר מתחלב (לציטין), חומר מעכב חימצון (טוקופרולים), תמצית לתת שעורה (מכיל גלוטן), צבע מאכל (אנאטו), ברזל, ויטמינים (ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), ויטמין D, ויטמין B6, ויטמין B1 (תיאמין), ויטמין B2 (ריבופלאבין), חומצה פולית).",
-        "positiveSignals": [
-          "5.7 גרם סיבים ל-100 גרם — סביר לדגני ילדים",
-          "חיטה מלאה לפי הצהרת האריזה",
-          "ללא תוספי מזון מסוג E-numbers פונקציונליים",
-          "5.9 גרם חלבון ל-100 גרם — קיים"
-        ],
-        "limitingFactors": [
-          {
-            "text": "25 גרם סוכר ל-100 גרם — גבוה. סוכר וסירופ גלוקוז הם הרכיב השלישי והרביעי ברשימה — הגורם המגביל העיקרי",
-            "magnitude": "high"
-          },
-          {
-            "text": "338 מיליגרם נתרן ל-100 גרם — גבוה לדגני ילדים",
-            "magnitude": "medium"
-          },
-          {
-            "text": "414 קלוריות ל-100 גרם — הגבוה בקרב מוצרי הציון C בקטגוריה",
-            "magnitude": "medium"
-          }
-        ],
-        "comparisonContext": "סיני מיניס נמכר תחת כותרת של דגנים מלאים לילדים, אבל 25 גרם סוכר ל-100 גרם ו-338 מיליגרם נתרן הם לא המספרים שמצפים לראות שם. הסיבים והדגן המלא הם מה שמרים את הציון; הסוכר והנתרן הם מה שמוריד אותו.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "הדגן והסיבים תורמים לציון, אבל 25 גרם סוכר ל-100 גרם חוצים את סף הסימון האדום הישראלי. הנתרן גבוה במוצר שמיועד לילדים צעירים, ורשימת הרכיבים ארוכה לאריזה שמוכרת תחת כותרת 'דגנים מלאים'.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": true,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [],
-      "barcode": "72968",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
       "rank": 8,
       "categoryTotal": 20,
-      "brand": "נסטלה"
-    },
-    {
-      "id": "bsip1_cereal_7290017894911",
-      "name": "טבעות דגנים שיבולת שועל",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FJK58_Z_P_7290017894911_1.png",
-      "score": 50.0,
-      "grade": "C",
-      "insightLine": "54% שיבולת שועל מלאה — בסיס אמיתי; ארבעה מקורות סוכר מוסף ברשימה כי המתיקות לא הגיעה בחינם.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 389,
-          "protein": 8.9,
-          "sugar": 22,
-          "fat": 0.5,
-          "fiber": 7,
-          "sodium": 76
-        },
-        "ingredients": "קמח שיבולת שועל מלאה (54%) (מכיל גלוטן), סולת תירס, סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה, מתפיח: סידן פחמתי, טעם טבעי וניל וקרמל, מלח, נוגד חמצון: תמצית טוקופרול",
-        "positiveSignals": [
-          "54% קמח שיבולת שועל מלאה — בסיס דגן מלא משמעותי",
-          "7 גרם סיבים ל-100 גרם — טוב לקטגוריה",
-          "8.9 גרם חלבון ל-100 גרם — ממוצע חזק",
-          "76 מיליגרם נתרן ל-100 גרם — נמוך מאוד"
-        ],
-        "limitingFactors": [
-          {
-            "text": "22 גרם סוכר ל-100 גרם — גבוה. וזה מגיע מארבעה מקורות מוסף ברשימת הרכיבים: סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה",
-            "magnitude": "high"
-          },
-          {
-            "text": "389 קלוריות ל-100 גרם",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "הבסיס של שיבולת שועל מלאה כאן אמיתי — 54% זה לא סתם הצהרה על האריזה. מה שמגביל את הציון הוא הצד הממתיק: ארבעה מקורות סוכר מוסף ברשימה שמצטברים יחד ל-22 גרם ל-100 גרם.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "54% שיבולת שועל מלאה, נתרן נמוך מאוד, פרופיל סיבים חזק — הבסיס עובד. הבעיה היא ארבעה מקורות סוכר מוסף ברשימה: סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה. ארבעה שמות אחרים לאותה מתיקות.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": false,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        }
-      ],
-      "barcode": "7290017894911",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "rank": 9,
-      "categoryTotal": 20,
-      "brand": "קציר"
-    },
-    {
-      "id": "bsip1_cereal_7290107647854",
-      "name": "דגני בוקר שוגי",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TZR60_Z_P_7290107647854_1.png",
-      "score": 49.7,
-      "grade": "D",
-      "insightLine": "82% קמח תירס מעובד, הנתרן הגבוה ביותר בקטגוריה, ואין נתוני סיבים — הוויטמינים הוספו מבחוץ.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 383,
-          "protein": 6.7,
-          "sugar": 16.4,
-          "fat": 0.9,
-          "fiber": null,
-          "sodium": 435
-        },
-        "ingredients": "קמח תירס (82%), סוכר (12%), תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמנים ומינרלים. מאפיינים נוספים ללא צבעי מאכל",
-        "positiveSignals": [
-          "תערובת ויטמינים ומינרלים מוספת ברשימת הרכיבים",
-          "6.7 גרם חלבון ל-100 גרם — קיים, ברמה בסיסית"
-        ],
-        "limitingFactors": [
-          {
-            "text": "82% קמח תירס — לא תירס מלא; קמח תירס מעובד. נתוני הסיבים לא היו זמינים בלוח התזונה",
-            "magnitude": "high"
-          },
-          {
-            "text": "16.4 גרם סוכר ל-100 גרם — הסוכר (12% מהרשימה) הוא הרכיב השני",
-            "magnitude": "high"
-          },
-          {
-            "text": "435 מיליגרם נתרן ל-100 גרם — הגבוה ביותר בקטגוריה כולה",
-            "magnitude": "high"
-          },
-          {
-            "text": "מתחלב ברשימת הרכיבים",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "מוצר שמדגיש ויטמינים ומינרלים על האריזה אבל הבסיס שיספק סיבים לא נמצא כאן — הוויטמינים הגיעו מתוספת חיצונית, לא מדגן מלא. ו-435 מיליגרם נתרן ל-100 גרם הם הגבוהים ביותר בקטגוריה כולה.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "82% קמח תירס מעובד, ללא דגן מלא, ללא נתוני סיבים בלוח התזונה. הוויטמינים הגיעו מתוספת חיצונית — הדגן עצמו לא מספק אותם. הנתרן הגבוה ביותר בקטגוריה כולה, ומתחלב ברשימה. ציון D שמגיע מכמה כיוונים בו-זמנית.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": false,
-      "_wholeGrainClaim": false,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
-        }
-      ],
-      "barcode": "7290107647854",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "rank": 10,
-      "categoryTotal": 20,
       "brand": "תלמה"
-    },
-    {
-      "id": "bsip1_cereal_7290017894928",
-      "name": "צדפי דגנים טעם שוקולד",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FKB66_Z_P_7290017894928_1.png",
-      "score": 47.0,
-      "grade": "D",
-      "insightLine": "57% שיבולת שועל מלאה ופרופיל חלבון וסיבים חזק — ארבעה שמות שונים לסוכר ברשימה הם שמורידים את הציון ל-D.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 397,
-          "protein": 9.6,
-          "sugar": 22,
-          "fat": 0.5,
-          "fiber": 8.5,
-          "sodium": 80
-        },
-        "ingredients": "קמח שיבולת שועל מלאה (57%) (מכיל גלוטן), סולת תירס, סוכר קנים, סירופ אגבה, אבקת חרובים, אבקת קקאו דל שומן, אבקת תמרים, סי רופ גלוקוז, שמן חמניות, מתפיח: סידן פחמתי, טעם טבעי וניל וקקאו מלח, נוגד חמצון: תמצית טוקופרול, אבקת קינמון",
-        "positiveSignals": [
-          "57% קמח שיבולת שועל מלאה — בסיס דגן מלא אמיתי ומשמעותי",
-          "8.5 גרם סיבים ל-100 גרם — גבוה גם לפי סטנדרט הקטגוריה",
-          "9.6 גרם חלבון ל-100 גרם — חזק יחסית למדף",
-          "80 מיליגרם נתרן ל-100 גרם — נמוך"
-        ],
-        "limitingFactors": [
-          {
-            "text": "22 גרם סוכר ל-100 גרם — גבוה. וברשימת הרכיבים: סוכר קנים, סירופ אגבה, אבקת תמרים, סירופ גלוקוז — ארבעה מקורות סוכר שמוסף",
-            "magnitude": "high"
-          },
-          {
-            "text": "397 קלוריות ל-100 גרם",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "זאת הדוגמה הכי ממחישה לפער שרץ לאורך המדף הזה: בסיס שיבולת שועל מלאה ברמה של ציון גבוה, שריבוי הסוכר מוריד את הציון. הבסיס מצוין, והסוכר מגיע מארבעה מקורות נפרדים — דפוס שחוזר על עצמו לאורך כל הנוסחה.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "57% שיבולת שועל מלאה, חלבון וסיבים מהגבוהים בקטגוריה — על הבסיס אין ויכוח. מה שמוריד את הציון הוא ארבעה מקורות סוכר מוסף: סוכר קנים, סירופ אגבה, אבקת תמרים וסירופ גלוקוז. הבסיס לבדו היה מצדיק ציון גבוה בהרבה.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": false,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [],
-      "barcode": "7290017894928",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "rank": 11,
-      "categoryTotal": 20,
-      "brand": "קציר"
     },
     {
       "id": "bsip1_cereal_7296073705550",
       "name": "כדורי דגנים טעם שוקו",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDF56_Z_P_7296073705550_1.png",
-      "score": 46.0,
+      "score": 49.8,
       "grade": "D",
       "insightLine": "25% חיטה מלאה על האריזה — וסוכר לבן עם סירופ גלוקוז-פרוקטוז מגיעים רביעי וחמישי ברשימה.",
       "confidence": "verified",
@@ -766,15 +595,143 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 12,
+      "rank": 9,
       "categoryTotal": 20,
       "brand": "MONRO"
+    },
+    {
+      "id": "bsip1_cereal_7290017894911",
+      "name": "טבעות דגנים שיבולת שועל",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FJK58_Z_P_7290017894911_1.png",
+      "score": 49.6,
+      "grade": "D",
+      "insightLine": "54% שיבולת שועל מלאה — בסיס אמיתי; ארבעה מקורות סוכר מוסף ברשימה כי המתיקות לא הגיעה בחינם.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 389,
+          "protein": 8.9,
+          "sugar": 22,
+          "fat": 0.5,
+          "fiber": 7,
+          "sodium": 76
+        },
+        "ingredients": "קמח שיבולת שועל מלאה (54%) (מכיל גלוטן), סולת תירס, סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה, מתפיח: סידן פחמתי, טעם טבעי וניל וקרמל, מלח, נוגד חמצון: תמצית טוקופרול",
+        "positiveSignals": [
+          "54% קמח שיבולת שועל מלאה — בסיס דגן מלא משמעותי",
+          "7 גרם סיבים ל-100 גרם — טוב לקטגוריה",
+          "8.9 גרם חלבון ל-100 גרם — ממוצע חזק",
+          "76 מיליגרם נתרן ל-100 גרם — נמוך מאוד"
+        ],
+        "limitingFactors": [
+          {
+            "text": "22 גרם סוכר ל-100 גרם — גבוה. וזה מגיע מארבעה מקורות מוסף ברשימת הרכיבים: סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה",
+            "magnitude": "high"
+          },
+          {
+            "text": "389 קלוריות ל-100 גרם",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "הבסיס של שיבולת שועל מלאה כאן אמיתי — 54% זה לא סתם הצהרה על האריזה. מה שמגביל את הציון הוא הצד הממתיק: ארבעה מקורות סוכר מוסף ברשימה שמצטברים יחד ל-22 גרם ל-100 גרם.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "הבסיס כאן מהטובים במדף: 54% שיבולת שועל מלאה, נתרן נמוך מאוד (76 מ\"ג) ו-7 גרם סיבים. אבל ארבעה מקורות סוכר מוסף — סוכר קנים, סירופ גלוקוז, אבקת תמרים, סירופ אגבה — מצטברים ל-22 גרם ל-100 גרם, ובזה נחתך הציון. ארבעה שמות אחרים לאותה מתיקות; הבסיס הטוב לא מספיק כדי לפצות עליה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        }
+      ],
+      "barcode": "7290017894911",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 10,
+      "categoryTotal": 20,
+      "brand": "קציר"
+    },
+    {
+      "id": "bsip1_cereal_7290112495433",
+      "name": "דגני בוקר דליפקאן",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZA50_Z_P_7290112495433_1.png",
+      "score": 49.5,
+      "grade": "D",
+      "insightLine": "פקאן אמיתי (8.5%) ושקדים (7%) ברשימה — יתרון שמגיע עם סוכר, כי הפקאן מגיע מקורמל.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 421,
+          "protein": 9.9,
+          "sugar": 18.5,
+          "fat": 0.5,
+          "fiber": 7.4,
+          "sodium": 285
+        },
+        "ingredients": "דגנים (63%) (קמח חיטה מלא (35%) (מכיל גלוטן) קמח אורז, שיבולת שועל מלאה (6%) (מכיל גלוטן) תמצית לתת שעורה (מכיל גלוטן) גריסי תירס, ק מח שיפון, (מכיל גלוטן)), סוכר, אגוזי פקאן מקורמלים (13%) (אגוזי פקאן (8.5%), סוכר, סירופ סוכר שרוף), שקדים (7%), עמילן חיטה, דבש (1% ), מלח, מתחלב (E471). מאפיינים נוספים עשיר בדגנים מלאים מכיל אגוזי פקאן",
+        "positiveSignals": [
+          "פקאן אמיתי (8.5%) ושקדים אמיתיים (7%) ברשימת הרכיבים — לא רק שמות",
+          "9.9 גרם חלבון ל-100 גרם — גבוה יחסית לקטגוריה",
+          "7.4 גרם סיבים ל-100 גרם — סביר-טוב",
+          "35% קמח חיטה מלא ועוד דגנים מלאים נוספים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "18.5 גרם סוכר ל-100 גרם — גבוה. וגם הפקאן מקורמל בסוכר — כך שחלק מהפקאן האמיתי מגיע עם ציפוי",
+            "magnitude": "high"
+          },
+          {
+            "text": "421 קלוריות ל-100 גרם — הגבוה בקרב כל מוצרי ה-D בסקירה",
+            "magnitude": "medium"
+          },
+          {
+            "text": "285 מיליגרם נתרן ל-100 גרם — בינוני",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "דליפקאן מציע אגוזי פקאן ושקדים אמיתיים, וזה יתרון שקשה למצוא במדף הזה. הקאץ' הוא שהפקאן מגיע מקורמל בסוכר, כך שחלק מהאגוז האמיתי בא עם ציפוי מתוק, ובסך הכול 18.5 גרם סוכר ל-100 גרם מורידים את הציון. האגוז כאן אמיתי, וגם הסוכר שמלווה אותו.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "פקאן אמיתי (8.5%) ושקדים (7%) הם יתרון שקשה למצוא במדף הזה — אבל הפקאן מגיע מקורמל בסוכר וסירופ סוכר שרוף, וסוכר מגיע שני ברשימה הכוללת. הנתרן בינוני. האגוז האמיתי עובד בעד המוצר; ממתיק האגוז עובד נגדו.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
+        }
+      ],
+      "barcode": "7290112495433",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 11,
+      "categoryTotal": 20,
+      "brand": "תלמה"
     },
     {
       "id": "bsip1_cereal_7296073705567",
       "name": "טבעות דגנים בטעם דבש",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FDW64_Z_P_7296073705567_1.png",
-      "score": 46.0,
+      "score": 48.0,
       "grade": "D",
       "insightLine": "השם מבטיח דבש, אבל יש כאן רק 2% דבש ברשימה, ושלושה מקורות סוכר מוסף מוסיפים את יתר המתיקות.",
       "confidence": "verified",
@@ -842,9 +799,131 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 13,
+      "rank": 12,
       "categoryTotal": 20,
       "brand": "MONRO"
+    },
+    {
+      "id": "bsip1_cereal_7290107647854",
+      "name": "דגני בוקר שוגי",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TZR60_Z_P_7290107647854_1.png",
+      "score": 47.7,
+      "grade": "D",
+      "insightLine": "82% קמח תירס מעובד, הנתרן הגבוה ביותר בקטגוריה, ואין נתוני סיבים — הוויטמינים הוספו מבחוץ.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 383,
+          "protein": 6.7,
+          "sugar": 16.4,
+          "fat": 0.9,
+          "fiber": null,
+          "sodium": 435
+        },
+        "ingredients": "קמח תירס (82%), סוכר (12%), תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמנים ומינרלים. מאפיינים נוספים ללא צבעי מאכל",
+        "positiveSignals": [
+          "תערובת ויטמינים ומינרלים מוספת ברשימת הרכיבים",
+          "6.7 גרם חלבון ל-100 גרם — קיים, ברמה בסיסית"
+        ],
+        "limitingFactors": [
+          {
+            "text": "82% קמח תירס — לא תירס מלא; קמח תירס מעובד. נתוני הסיבים לא היו זמינים בלוח התזונה",
+            "magnitude": "high"
+          },
+          {
+            "text": "16.4 גרם סוכר ל-100 גרם — הסוכר (12% מהרשימה) הוא הרכיב השני",
+            "magnitude": "high"
+          },
+          {
+            "text": "435 מיליגרם נתרן ל-100 גרם — הגבוה ביותר בקטגוריה כולה",
+            "magnitude": "high"
+          },
+          {
+            "text": "מתחלב ברשימת הרכיבים",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "מוצר שמדגיש ויטמינים ומינרלים על האריזה אבל הבסיס שיספק סיבים לא נמצא כאן — הוויטמינים הגיעו מתוספת חיצונית, לא מדגן מלא. ו-435 מיליגרם נתרן ל-100 גרם הם הגבוהים ביותר בקטגוריה כולה.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "82% קמח תירס מעובד, ללא דגן מלא, ללא נתוני סיבים בלוח התזונה. הוויטמינים הגיעו מתוספת חיצונית — הדגן עצמו לא מספק אותם. הנתרן הגבוה ביותר בקטגוריה כולה, ומתחלב ברשימה. ציון D שמגיע מכמה כיוונים בו-זמנית.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": false,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
+        }
+      ],
+      "barcode": "7290107647854",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 13,
+      "categoryTotal": 20,
+      "brand": "תלמה"
+    },
+    {
+      "id": "bsip1_cereal_7290017894928",
+      "name": "צדפי דגנים טעם שוקולד",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FKB66_Z_P_7290017894928_1.png",
+      "score": 47.0,
+      "grade": "D",
+      "insightLine": "57% שיבולת שועל מלאה ופרופיל חלבון וסיבים חזק — ארבעה שמות שונים לסוכר ברשימה הם שמורידים את הציון ל-D.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 397,
+          "protein": 9.6,
+          "sugar": 22,
+          "fat": 0.5,
+          "fiber": 8.5,
+          "sodium": 80
+        },
+        "ingredients": "קמח שיבולת שועל מלאה (57%) (מכיל גלוטן), סולת תירס, סוכר קנים, סירופ אגבה, אבקת חרובים, אבקת קקאו דל שומן, אבקת תמרים, סי רופ גלוקוז, שמן חמניות, מתפיח: סידן פחמתי, טעם טבעי וניל וקקאו מלח, נוגד חמצון: תמצית טוקופרול, אבקת קינמון",
+        "positiveSignals": [
+          "57% קמח שיבולת שועל מלאה — בסיס דגן מלא אמיתי ומשמעותי",
+          "8.5 גרם סיבים ל-100 גרם — גבוה גם לפי סטנדרט הקטגוריה",
+          "9.6 גרם חלבון ל-100 גרם — חזק יחסית למדף",
+          "80 מיליגרם נתרן ל-100 גרם — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "22 גרם סוכר ל-100 גרם — גבוה. וברשימת הרכיבים: סוכר קנים, סירופ אגבה, אבקת תמרים, סירופ גלוקוז — ארבעה מקורות סוכר שמוסף",
+            "magnitude": "high"
+          },
+          {
+            "text": "397 קלוריות ל-100 גרם",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "זאת הדוגמה הכי ממחישה לפער שרץ לאורך המדף הזה: בסיס שיבולת שועל מלאה ברמה של ציון גבוה, שריבוי הסוכר מוריד את הציון. הבסיס מצוין, והסוכר מגיע מארבעה מקורות נפרדים — דפוס שחוזר על עצמו לאורך כל הנוסחה.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "57% שיבולת שועל מלאה, חלבון וסיבים מהגבוהים בקטגוריה — על הבסיס אין ויכוח. מה שמוריד את הציון הוא ארבעה מקורות סוכר מוסף: סוכר קנים, סירופ אגבה, אבקת תמרים וסירופ גלוקוז. הבסיס לבדו היה מצדיק ציון גבוה בהרבה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [],
+      "barcode": "7290017894928",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 14,
+      "categoryTotal": 20,
+      "brand": "קציר"
     },
     {
       "id": "bsip1_cereal_7290017894904",
@@ -900,147 +979,15 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 14,
-      "categoryTotal": 20,
-      "brand": "קציר"
-    },
-    {
-      "id": "bsip1_cereal_7290112495433",
-      "name": "דגני בוקר דליפקאן",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZA50_Z_P_7290112495433_1.png",
-      "score": 43.0,
-      "grade": "D",
-      "insightLine": "פקאן אמיתי (8.5%) ושקדים (7%) ברשימה — יתרון שמגיע עם סוכר, כי הפקאן מגיע מקורמל.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 421,
-          "protein": 9.9,
-          "sugar": 18.5,
-          "fat": 0.5,
-          "fiber": 7.4,
-          "sodium": 285
-        },
-        "ingredients": "דגנים (63%) (קמח חיטה מלא (35%) (מכיל גלוטן) קמח אורז, שיבולת שועל מלאה (6%) (מכיל גלוטן) תמצית לתת שעורה (מכיל גלוטן) גריסי תירס, ק מח שיפון, (מכיל גלוטן)), סוכר, אגוזי פקאן מקורמלים (13%) (אגוזי פקאן (8.5%), סוכר, סירופ סוכר שרוף), שקדים (7%), עמילן חיטה, דבש (1% ), מלח, מתחלב (E471). מאפיינים נוספים עשיר בדגנים מלאים מכיל אגוזי פקאן",
-        "positiveSignals": [
-          "פקאן אמיתי (8.5%) ושקדים אמיתיים (7%) ברשימת הרכיבים — לא רק שמות",
-          "9.9 גרם חלבון ל-100 גרם — גבוה יחסית לקטגוריה",
-          "7.4 גרם סיבים ל-100 גרם — סביר-טוב",
-          "35% קמח חיטה מלא ועוד דגנים מלאים נוספים"
-        ],
-        "limitingFactors": [
-          {
-            "text": "18.5 גרם סוכר ל-100 גרם — גבוה. וגם הפקאן מקורמל בסוכר — כך שחלק מהפקאן האמיתי מגיע עם ציפוי",
-            "magnitude": "high"
-          },
-          {
-            "text": "421 קלוריות ל-100 גרם — הגבוה בקרב כל מוצרי ה-D בסקירה",
-            "magnitude": "medium"
-          },
-          {
-            "text": "285 מיליגרם נתרן ל-100 גרם — בינוני",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "דליפקאן מציע אגוזי פקאן ושקדים אמיתיים, וזה יתרון שקשה למצוא במדף הזה. הקאץ' הוא שהפקאן מגיע מקורמל בסוכר, כך שחלק מהאגוז האמיתי בא עם ציפוי מתוק, ובסך הכול 18.5 גרם סוכר ל-100 גרם מורידים את הציון. האגוז כאן אמיתי, וגם הסוכר שמלווה אותו.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "פקאן אמיתי (8.5%) ושקדים (7%) הם יתרון שקשה למצוא במדף הזה — אבל הפקאן מגיע מקורמל בסוכר וסירופ סוכר שרוף, וסוכר מגיע שני ברשימה הכוללת. הנתרן בינוני. האגוז האמיתי עובד בעד המוצר; ממתיק האגוז עובד נגדו.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": false,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם."
-        }
-      ],
-      "barcode": "7290112495433",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
       "rank": 15,
       "categoryTotal": 20,
-      "brand": "תלמה"
-    },
-    {
-      "id": "bsip1_cereal_8445291638839",
-      "name": "צ'יריוס טעם דבש ושקדים",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XRC70_Z_P_8445291638839_1.png",
-      "score": 42.5,
-      "grade": "D",
-      "insightLine": "91.9% מהדגנים מלאים — שלושה סוגים שונים; הדבש שנותן שם הוא 2.4%, הסוכר הוסף.",
-      "confidence": "verified",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 371,
-          "protein": 8.3,
-          "sugar": 22.4,
-          "fat": 0.5,
-          "fiber": 9.4,
-          "sodium": 248
-        },
-        "ingredients": "קמח שיבולת שועל מלא (מכיל גלוטן) (30.1%), קמח חיטה מלא (מכיל גלוטן) (28%), סוכר, קמח שעורה מלא (מכיל גלוטן) (17.2%), קמח חיטה (6.6%) , דבש (2.4%), סירופ סוכר אינברטי, מינרלים (סידן (קלציום קרבונט), ברזל), שמן צמחי, מלח, מולסה, חומרי טעם וריח (מכיל שקדים), מעכב חמצ ון (טוקופרולים), ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין D)",
-        "positiveSignals": [
-          "81.9% דגנים, ומתוכם 91.9% דגנים מלאים — שיעור דגן מלא גבוה יוצא דופן",
-          "שלושה דגנים מלאים שונים: שיבולת שועל (30.1%), חיטה מלאה (28%), שעורה מלאה (17.2%)",
-          "9.4 גרם סיבים ל-100 גרם — גבוה לדגני מדף",
-          "הנתונים מבוססים על בדיקה מלאה ומאומתת — לא חלקיים"
-        ],
-        "limitingFactors": [
-          {
-            "text": "22.4 גרם סוכר ל-100 גרם — גבוה. הסוכר הוא הרכיב השלישי ברשימה, מיד אחרי שני הדגנים המלאים",
-            "magnitude": "high"
-          },
-          {
-            "text": "גם סירופ סוכר אינברטי ברשימה — מקור סוכר נוסף",
-            "magnitude": "medium"
-          },
-          {
-            "text": "248 מיליגרם נתרן ל-100 גרם — בינוני",
-            "magnitude": "low"
-          }
-        ],
-        "comparisonContext": "91.9% מהדגנים כאן הם מלאים — מספר שקשה למצוא במדף הזה. אבל 22.4 גרם סוכר ל-100 גרם עם סירופ סוכר אינברטי אחריו מראים בחירה ברורה: לייצר מוצר טעים עם בסיס טוב. הבסיס מצוין; סוכר מוסף בנפרד ועוד סירופ אחריו הם הפשרה.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם"
-      },
-      "rowVerdict": "91.9% מהדגנים מלאים — שלושה סוגים, פרופיל סיבים מהגבוהים בסקירה; זה בסיס שמעט מוצרים במדף הזה יכולים להתחרות בו. הדבש שבשם הוא 2.4% בלבד, והמתיקות מגיעה בעיקר מסוכר שמופיע רכיב שלישי ברשימה ומסירופ סוכר אינברטי אחריו. כאן נמצאת הפשרה.",
-      "_subpool": "standard_cereal",
-      "_isChildrens": false,
-      "_wholeGrainClaim": true,
-      "confidence_level": "sufficient",
-      "retailer": "shufersal",
-      "d4_additives": [
-        {
-          "e_number": "E300",
-          "name_he": "חומצה אסקורבית",
-          "tier": "contested",
-          "function_he": "נוגד חמצון / משפר בצק",
-          "explanation_he": "ויטמין C כתוסף שימור נקשר במחקר תצפיתי לסיכון קרדיווסקולרי מוגבר; הממצא מוקדם ואינו נוגע לוויטמין C הטבעי בפירות."
-        }
-      ],
-      "barcode": "8445291638839",
-      "source_traceability_status": "resolved",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "rank": 16,
-      "categoryTotal": 20,
-      "brand": "נסטלה"
+      "brand": "קציר"
     },
     {
       "id": "bsip1_cereal_7296073642022",
       "name": "דגני בוקר טבעות דבש לל\"ג",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PDV50_Z_P_7296073642022_1.png",
-      "score": 41.8,
+      "score": 42.7,
       "grade": "D",
       "insightLine": "ללא גלוטן — הצהרה שמכסה בסיס של 65% גריסי תירס, סיבים מהנמוכים בקטגוריה ושלושה מקורות סוכר.",
       "confidence": "verified",
@@ -1104,15 +1051,81 @@
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "rank": 17,
+      "rank": 16,
       "categoryTotal": 20,
       "brand": "גרין"
+    },
+    {
+      "id": "bsip1_cereal_8445291638839",
+      "name": "צ'יריוס טעם דבש ושקדים",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XRC70_Z_P_8445291638839_1.png",
+      "score": 41.7,
+      "grade": "D",
+      "insightLine": "91.9% מהדגנים מלאים — שלושה סוגים שונים; הדבש שנותן שם הוא 2.4%, הסוכר הוסף.",
+      "confidence": "verified",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 371,
+          "protein": 8.3,
+          "sugar": 22.4,
+          "fat": 0.5,
+          "fiber": 9.4,
+          "sodium": 248
+        },
+        "ingredients": "קמח שיבולת שועל מלא (מכיל גלוטן) (30.1%), קמח חיטה מלא (מכיל גלוטן) (28%), סוכר, קמח שעורה מלא (מכיל גלוטן) (17.2%), קמח חיטה (6.6%) , דבש (2.4%), סירופ סוכר אינברטי, מינרלים (סידן (קלציום קרבונט), ברזל), שמן צמחי, מלח, מולסה, חומרי טעם וריח (מכיל שקדים), מעכב חמצ ון (טוקופרולים), ויטמינים (ויטמין C, ויטמין B3 (ניאצין), ויטמין B5 (חומצה פנטותנית), חומצה פולית, ויטמין B6, ויטמין B2 (ריבופלאבין), ויטמין D)",
+        "positiveSignals": [
+          "81.9% דגנים, ומתוכם 91.9% דגנים מלאים — שיעור דגן מלא גבוה יוצא דופן",
+          "שלושה דגנים מלאים שונים: שיבולת שועל (30.1%), חיטה מלאה (28%), שעורה מלאה (17.2%)",
+          "9.4 גרם סיבים ל-100 גרם — גבוה לדגני מדף",
+          "הנתונים מבוססים על בדיקה מלאה ומאומתת — לא חלקיים"
+        ],
+        "limitingFactors": [
+          {
+            "text": "22.4 גרם סוכר ל-100 גרם — גבוה. הסוכר הוא הרכיב השלישי ברשימה, מיד אחרי שני הדגנים המלאים",
+            "magnitude": "high"
+          },
+          {
+            "text": "גם סירופ סוכר אינברטי ברשימה — מקור סוכר נוסף",
+            "magnitude": "medium"
+          },
+          {
+            "text": "248 מיליגרם נתרן ל-100 גרם — בינוני",
+            "magnitude": "low"
+          }
+        ],
+        "comparisonContext": "91.9% מהדגנים כאן הם מלאים — מספר שקשה למצוא במדף הזה. אבל 22.4 גרם סוכר ל-100 גרם עם סירופ סוכר אינברטי אחריו מראים בחירה ברורה: לייצר מוצר טעים עם בסיס טוב. הבסיס מצוין; סוכר מוסף בנפרד ועוד סירופ אחריו הם הפשרה.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם"
+      },
+      "rowVerdict": "91.9% מהדגנים מלאים — שלושה סוגים, פרופיל סיבים מהגבוהים בסקירה; זה בסיס שמעט מוצרים במדף הזה יכולים להתחרות בו. הדבש שבשם הוא 2.4% בלבד, והמתיקות מגיעה בעיקר מסוכר שמופיע רכיב שלישי ברשימה ומסירופ סוכר אינברטי אחריו. כאן נמצאת הפשרה.",
+      "_subpool": "standard_cereal",
+      "_isChildrens": false,
+      "_wholeGrainClaim": true,
+      "confidence_level": "sufficient",
+      "retailer": "shufersal",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "contested",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "ויטמין C כתוסף שימור נקשר במחקר תצפיתי לסיכון קרדיווסקולרי מוגבר; הממצא מוקדם ואינו נוגע לוויטמין C הטבעי בפירות."
+        }
+      ],
+      "barcode": "8445291638839",
+      "source_traceability_status": "resolved",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "rank": 17,
+      "categoryTotal": 20,
+      "brand": "נסטלה"
     },
     {
       "id": "bsip1_cereal_7296073705574",
       "name": "ריבועי דגנים עם קינמון",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FED62_Z_P_7296073705574_1.png",
-      "score": 36.8,
+      "score": 37.6,
       "grade": "D",
       "insightLine": "42% חיטה מלאה ראשונה ברשימה — הבטחה טובה; סוכר לבן שני ופרוקטוז חמישי, והקינמון שבשם הוא 0.6%.",
       "confidence": "verified",
@@ -1184,9 +1197,9 @@
       "id": "bsip1_cereal_3387390525960",
       "name": "דגני בוקר קראנץ'",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XRL60_Z_P_3387390525960_1.png",
-      "score": 35.5,
-      "grade": "D",
-      "insightLine": "שוקולד מריר על האריזה — בפועל מקדמים אותו ברשימה שלושה מקורות סוכר שונים.",
+      "score": 34.4,
+      "grade": "E",
+      "insightLine": "שוקולד מריר על האריזה — מאחוריו רשימה של 21 רכיבים, ארבעה מקורות סוכר מוסף ו-24.9 גרם סוכר ל-100 גרם.",
       "confidence": "verified",
       "expansion": {
         "nutrition": {
@@ -1209,7 +1222,7 @@
             "magnitude": "high"
           },
           {
-            "text": "שלושה מקורות סוכר ברשימה: סוכר, סירופ גלוקוזה, סירופ סוכר אינברטי",
+            "text": "ארבעה מקורות סוכר מוסף ברשימה: סוכר, סירופ גלוקוזה, סירופ סוכר אינברטי, מולסה",
             "magnitude": "high"
           },
           {
@@ -1221,11 +1234,11 @@
             "magnitude": "low"
           }
         ],
-        "comparisonContext": "קראנץ' מציג שוקולד מריר על האריזה, והוא אכן מופיע ברשימת הרכיבים — אבל לפניו רשומים סוכר, סירופ גלוקוז וסירופ סוכר אינברטי. הציון נובע מריבוי הסוכר ומרמת העיבוד הגבוהה, בעוד שהקקאו עצמו הוא דווקא הרכיב התמים בסיפור.",
+        "comparisonContext": "קראנץ' מציג שוקולד מריר על האריזה, והוא אכן מופיע ברשימת הרכיבים — אבל לפניו רשומים ארבעה מקורות סוכר מוסף (סוכר, סירופ גלוקוזה, סירופ סוכר אינברטי, מולסה), בתוך רשימה של 21 רכיבים. הציון נובע לא רק מ-24.9 גרם הסוכר אלא מהמורכבות של ההרכבה כולה — שמן צמחי, מתחלב וחומרי טעם וריח שמסמנים מוצר מהונדס לעומק. הנתרן, לעומת זאת, נמוך מאוד (16 מ\"ג).",
         "confidenceLabel": "מבוסס על נתונים מלאים",
         "servingNote": "ל-100 גרם"
       },
-      "rowVerdict": "שוקולד מריר אכן מופיע ברשימה, אבל לפניו רשומים שלושה מקורות סוכר: סוכר, סירופ גלוקוזה וסירופ סוכר אינברטי. יש כאן יתרון אחד בולט — הנתרן הנמוך ביותר מבין מוצרי ה-D בסקירה. הקקאו עצמו תמים לגמרי; מה שמוריד את הציון הוא ריבוי הסוכר והעיבוד הגבוה.",
+      "rowVerdict": "יש כאן בסיס אמיתי — 31.5% חיטה מלאה, 7.2 גרם סיבים והנתרן הנמוך בסקירה (16 מ\"ג ל-100 גרם). אבל סביבו נבנתה רשימה של 21 רכיבים, ובתוכה ארבעה מקורות סוכר מוסף (סוכר, סירופ גלוקוזה, סירופ סוכר אינברטי, מולסה), שמן צמחי ומתחלב — 24.9 גרם סוכר ל-100 גרם. המורכבות עצמה, לא רק הסוכר, היא שמכריעה את הציון.",
       "_subpool": "standard_cereal",
       "_isChildrens": false,
       "_wholeGrainClaim": true,
@@ -1253,7 +1266,7 @@
       "id": "bsip1_cereal_7613030979647",
       "name": "טריקס דגנים בטעם פירות",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KJO62_Z_P_7613030979647_1.png",
-      "score": 32.2,
+      "score": 32.6,
       "grade": "E",
       "insightLine": "שני צבעי מאכל סינתטיים מתוך שלושה מחייבים באירופה אזהרת לייבל על השפעה אפשרית על קשב ילדים — בחירת רכיבים חריגה למוצר ילדים.",
       "confidence": "verified",

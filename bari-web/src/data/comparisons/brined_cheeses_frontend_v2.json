@@ -9,25 +9,25 @@
     "version": "v2",
     "provenance": "BSIP1 run_brined_cheeses_002 (hygiene-cleaned) → BSIP2 run_brined_005 + brined_cheeses_copy_v1.json",
     "grade_distribution": {
-      "A": 7,
+      "A": 8,
       "B": 21,
       "C": 6,
-      "D": 2
+      "D": 1
     },
     "off_used": false,
     "reflow": {
-      "task": "TASK-438",
-      "to": "current_engine (EV-099 NOVA-gate)",
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
       "grade_movers": [
-        "7290011499129 A->B",
-        "7290108509106 A->B",
-        "7290108509755 B->C"
+        "7290108509106 B->A",
+        "7290108509755 C->B",
+        "369617 D->C"
       ],
-      "fixed_false_superlatives": 2,
-      "date": "2026-07-01",
-      "content_gate": "signed",
-      "adversarial_qa": "CONDITIONAL_PASS (0 CRITICAL; 2 HIGH pre-existing golden-page, routed to follow-up)"
-    }
+      "grade_flip_count": 3,
+      "date": "2026-07-02",
+      "content_authored": "workflow w0467uq2m (Content Agent, Tom-Bari voice)"
+    },
+    "deanchor_meta_regenerated": "2026-07-02"
   },
   "products": [
     {
@@ -35,7 +35,7 @@
       "name": "קוביות פטה עיזים מעודנת 5%",
       "barcode": "7290019635826",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GRR58_Z_P_7290019635826_1.png",
-      "score": 83.3,
+      "score": 84.1,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -82,6 +82,56 @@
       "_hash_no_rank": "d179dcf663f524fefc0b2505dba207a075e95449b90219d84bf607f0ae13958a"
     },
     {
+      "id": "bc-003",
+      "name": "בולגרית מסורתית 5%",
+      "barcode": "7296073641940",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PAR58_Z_P_7296073641940_1.png",
+      "score": 82.8,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "בולגרית 5% ישירה: חלב, מלח, משמר אחד — ללא תוספות.",
+      "rowVerdict": "בולגרית מסורתית 5%. שלושה רכיבים, נתרן ליד חציון המדף, חלבון של 16 גרם. מה שמבדיל אותה מהמובילות: חלבון מעט נמוך יותר ורמת אמון בסיסית נמוכה יותר מגרסת 5% עם מקורות כפולים.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 117.0,
+          "protein": 16.0,
+          "sugar": 2.0,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 1000.0
+        },
+        "ingredients": "חלב, מלח, משמר (E202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (16g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "נתרן בינוני-גבוה (1000mg ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 2,
+      "categoryTotal": 36,
+      "brand": "שופרסל",
+      "_hash_no_rank": "0b9a81982e9d1a5c01e5a9bcd7b00d3fd1a36cd0a02168de8556cbbf748f8a06"
+    },
+    {
       "id": "bc-004",
       "name": "גבינה צפתית 5% שומן",
       "barcode": "554457",
@@ -125,7 +175,7 @@
           "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
         }
       ],
-      "rank": 2,
+      "rank": 3,
       "categoryTotal": 36,
       "brand": "מחלבות גד",
       "_hash_no_rank": "c1b3f8305979054efd001d307d2a3327f42c7d46663ddbcb1ec909cf00be1157"
@@ -174,67 +224,17 @@
           "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
         }
       ],
-      "rank": 3,
+      "rank": 4,
       "categoryTotal": 36,
       "brand": "מחלבות גד",
       "_hash_no_rank": "8427a2f666b5abffa56d0370d72dc574c9c6b38745e8dfbd01c1de734e784ce5"
-    },
-    {
-      "id": "bc-003",
-      "name": "בולגרית מסורתית 5%",
-      "barcode": "7296073641940",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PAR58_Z_P_7296073641940_1.png",
-      "score": 82.0,
-      "grade": "A",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "בולגרית 5% ישירה: חלב, מלח, משמר אחד — ללא תוספות.",
-      "rowVerdict": "בולגרית מסורתית 5%. שלושה רכיבים, נתרן ליד חציון המדף, חלבון של 16 גרם. מה שמבדיל אותה מהמובילות: חלבון מעט נמוך יותר ורמת אמון בסיסית נמוכה יותר מגרסת 5% עם מקורות כפולים.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 117.0,
-          "protein": 16.0,
-          "sugar": 2.0,
-          "fat": 5.0,
-          "satFat": 3.0,
-          "fiber": null,
-          "sodium": 1000.0
-        },
-        "ingredients": "חלב, מלח, משמר (E202)",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון טוב (16g ל-100g)",
-          "שומן נמוך (5g ל-100g)"
-        ],
-        "limitingFactors": [
-          "נתרן בינוני-גבוה (1000mg ל-100g)"
-        ]
-      },
-      "retailer": "שופרסל",
-      "novaGroup": 2,
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר",
-          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
-        }
-      ],
-      "rank": 4,
-      "categoryTotal": 36,
-      "brand": "שופרסל",
-      "_hash_no_rank": "0b9a81982e9d1a5c01e5a9bcd7b00d3fd1a36cd0a02168de8556cbbf748f8a06"
     },
     {
       "id": "bc-002",
       "name": "גבינה בולגרית 5%",
       "barcode": "7290102397334",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AYP50_Z_P_7290102397334_1.png",
-      "score": 81.5,
+      "score": 82.2,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -285,7 +285,7 @@
       "name": "פטה מעודנת עיזים 5%",
       "barcode": "7290011499303",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IKM48_Z_P_7290011499303_1.png",
-      "score": 80.4,
+      "score": 81.2,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -335,7 +335,7 @@
       "name": "גבינה בולגרית 5% שומן",
       "barcode": "2133162",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/INR18_Z_P_2133162_1.png",
-      "score": 80.3,
+      "score": 81.0,
       "grade": "A",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -381,11 +381,51 @@
       "_hash_no_rank": "81edf417e57fbe615384bebe97327b9a8145feecdac0f3bb44b975ae47e0cafe"
     },
     {
+      "id": "bc-013",
+      "name": "קוביות בולגרית מעודנת 13%",
+      "barcode": "7290108509106",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UAT48_Z_P_7290108509106_1.png",
+      "score": 80.3,
+      "grade": "A",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שלושה רכיבים, חלב מותסס — והנתרן הנמוך ביותר בין הגבינות בשומן מלא במדף (720 מ\"ג).",
+      "rowVerdict": "בולגרית 13% שמגיעה לראש המדף בזכות שני דברים שנדיר למצוא יחד בגבינה בכבישה: רשימה של שלושה רכיבים בלבד — חלב מפוסטר, מלח, תרבית לקטית — ללא מייצבים או תוספים, ונתרן של 720 מ\"ג, הנמוך ביותר בין כל הגבינות בשומן מלא בקטגוריה. 12 גרם חלבון, 13 גרם שומן. זו גבינה מותססת ופשוטה שאין בה מה לתקן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 176.0,
+          "protein": 12.0,
+          "sugar": 2.8,
+          "fat": 13.0,
+          "satFat": 8.5,
+          "fiber": null,
+          "sodium": 720.0
+        },
+        "ingredients": "חלב מפוסטר, מלח,תרבית לקטית  מקריש",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (12g ל-100g)",
+          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
+        ],
+        "limitingFactors": null
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 1,
+      "d4_additives": [],
+      "rank": 8,
+      "categoryTotal": 36,
+      "brand": "יורו מחלבות אירופה",
+      "_hash_no_rank": "6c49e52ce4a87e60b3a3df003c8b066e390a59f89f40aae05f0a223e5a3b70bd"
+    },
+    {
       "id": "bc-009",
       "name": "בולגרית מעודנת 5% שומן",
       "barcode": "2133889",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JPQ34_Z_P_2133889_1.png",
-      "score": 78.9,
+      "score": 79.6,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -432,7 +472,7 @@
           "explanation_he": "נגזרת גלוקוז שמחמיצה את החלב ומסייעת לקרישה; סימן לייצור מהיר."
         }
       ],
-      "rank": 8,
+      "rank": 9,
       "categoryTotal": 36,
       "brand": "מחלבת רמת הגולן",
       "_hash_no_rank": "8bdb152d211070db4a8b9b78193b169a7b12f0fdcfc57229dcd3d0d05d6ba112"
@@ -442,7 +482,7 @@
       "name": "בולגרית מעודנת 5%",
       "barcode": "7296073641964",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PBP64_Z_P_7296073641964_1.png",
-      "score": 78.7,
+      "score": 79.4,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -489,57 +529,17 @@
           "explanation_he": "נגזרת גלוקוז שמחמיצה את החלב ומסייעת לקרישה; סימן לייצור מהיר."
         }
       ],
-      "rank": 9,
+      "rank": 10,
       "categoryTotal": 36,
       "brand": "שופרסל",
       "_hash_no_rank": "7f4e6e8647bde58dbfb5316fef852264b423a0f7a209cc7add389d74f6c4663d"
-    },
-    {
-      "id": "bc-013",
-      "name": "קוביות בולגרית מעודנת 13%",
-      "barcode": "7290108509106",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UAT48_Z_P_7290108509106_1.png",
-      "score": 78.6,
-      "grade": "B",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "שלושה רכיבים בלבד (חלב, מלח, תרבית לקטית) עם 12 גרם חלבון. 720 מ\"ג נתרן — נמוך יחסית לגבינה בכבישה.",
-      "rowVerdict": "176 קלוריות ל-100 גרם עם 12 גרם חלבון ורשימה של שלושה רכיבים בלבד — חלב מפוסטר, מלח, תרבית לקטית. 13 גרם שומן (8.5 רווי) ו-720 מ\"ג נתרן מהכבישה מציבים אותה בטווח הטוב, לא הגבוה.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 176.0,
-          "protein": 12.0,
-          "sugar": 2.8,
-          "fat": 13.0,
-          "satFat": 8.5,
-          "fiber": null,
-          "sodium": 720.0
-        },
-        "ingredients": "חלב מפוסטר, מלח,תרבית לקטית  מקריש",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון טוב (12g ל-100g)",
-          "עיבוד מינימלי — רכיבים בסיסיים בלבד"
-        ],
-        "limitingFactors": null
-      },
-      "retailer": "שופרסל",
-      "novaGroup": 1,
-      "d4_additives": [],
-      "rank": 10,
-      "categoryTotal": 36,
-      "brand": "יורו מחלבות אירופה",
-      "_hash_no_rank": "6c49e52ce4a87e60b3a3df003c8b066e390a59f89f40aae05f0a223e5a3b70bd"
     },
     {
       "id": "bc-006",
       "name": "קוביות בולגרית מעודנת 5%",
       "barcode": "7290011499129",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IDU54_Z_P_7290011499129_1.png",
-      "score": 78.0,
+      "score": 78.7,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -590,7 +590,7 @@
       "name": "גבינה בולגרית מעודנת 5%",
       "barcode": "7290011499327",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ILK54_Z_P_7290011499327_1.png",
-      "score": 76.2,
+      "score": 76.9,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -636,11 +636,60 @@
       "_hash_no_rank": "aa87f72b18a1ad54bd756a14f7e4e28b9b427b88e66c1af756d072f4bb93f8bb"
     },
     {
+      "id": "bc-029",
+      "name": "פטה עיזים 20% שומן",
+      "barcode": "7290011499358",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMP58_Z_P_7290011499358_1.png",
+      "score": 76.8,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "פטה עיזים 20% עם נתרן נמוך יחסית למדף — הגבוהה בין הפטות 20%.",
+      "rowVerdict": "פטה עיזים 20% של מחלבות גד. שלושה רכיבים, 14 גרם חלבון. הנתרן (770 מ\"ג) נמוך מחציון המדף, ולכן אינו מוסיף חיסרון. מה שמגביל: 20% שומן.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 242.0,
+          "protein": 14.0,
+          "sugar": 0.8,
+          "fat": 20.0,
+          "satFat": 13.3,
+          "fiber": null,
+          "sodium": 770.0
+        },
+        "ingredients": "חלב עיזים מפוסטר, מלח, חומר משמר (E-202)",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון טוב (14g ל-100g)"
+        ],
+        "limitingFactors": [
+          "שומן גבוה (20g ל-100g)"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 2,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 13,
+      "categoryTotal": 36,
+      "brand": "מחלבות גד",
+      "_hash_no_rank": "76be2e9df1a5b528c10fc3468b8e2315a046cb67b08baa576f4ceef008b487a3"
+    },
+    {
       "id": "bc-011",
       "name": "גבינה בולגרית מסורתית 5%",
       "barcode": "7290011499105",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ICW48_Z_P_7290011499105_1.png",
-      "score": 75.4,
+      "score": 76.1,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -680,66 +729,17 @@
           "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
         }
       ],
-      "rank": 13,
-      "categoryTotal": 36,
-      "brand": "מחלבות גד",
-      "_hash_no_rank": "daa6b045c1d5b3b63870b08a6b26dbd309c8e54b2f1fdbf4f8419b17531a7b52"
-    },
-    {
-      "id": "bc-029",
-      "name": "פטה עיזים 20% שומן",
-      "barcode": "7290011499358",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMP58_Z_P_7290011499358_1.png",
-      "score": 75.3,
-      "grade": "B",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "פטה עיזים 20% עם נתרן נמוך יחסית למדף — הגבוהה בין הפטות 20%.",
-      "rowVerdict": "פטה עיזים 20% של מחלבות גד. שלושה רכיבים, 14 גרם חלבון. הנתרן (770 מ\"ג) נמוך מחציון המדף, ולכן אינו מוסיף חיסרון. מה שמגביל: 20% שומן.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 242.0,
-          "protein": 14.0,
-          "sugar": 0.8,
-          "fat": 20.0,
-          "satFat": 13.3,
-          "fiber": null,
-          "sodium": 770.0
-        },
-        "ingredients": "חלב עיזים מפוסטר, מלח, חומר משמר (E-202)",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון טוב (14g ל-100g)"
-        ],
-        "limitingFactors": [
-          "שומן גבוה (20g ל-100g)"
-        ]
-      },
-      "retailer": "שופרסל",
-      "novaGroup": 2,
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר",
-          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
-        }
-      ],
       "rank": 14,
       "categoryTotal": 36,
       "brand": "מחלבות גד",
-      "_hash_no_rank": "76be2e9df1a5b528c10fc3468b8e2315a046cb67b08baa576f4ceef008b487a3"
+      "_hash_no_rank": "daa6b045c1d5b3b63870b08a6b26dbd309c8e54b2f1fdbf4f8419b17531a7b52"
     },
     {
       "id": "bc-014",
       "name": "בולגרית של פעם 16%",
       "barcode": "7290019790402",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BIX50_Z_P_7290019790402_1.png",
-      "score": 74.3,
+      "score": 75.4,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -777,61 +777,11 @@
       "_hash_no_rank": "ce10825a5b203c44b8ab9783ec41ba851e2d49f47cac89ecaa956430e256e343"
     },
     {
-      "id": "bc-031",
-      "name": "גבינה צפתית בטעמים",
-      "barcode": "4861360",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OIJ28_Z_P_4861360_1.png",
-      "score": 73.6,
-      "grade": "B",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "שום ושמיר כרכיבים ממשיים, חלבון גבוה לצפתית מתובלת — מדד העיבוד מגביל.",
-      "rowVerdict": "צפתית מתובלת עם שום ושמיר בכמויות ממשיות — לא רק טעם, אלא רכיבים שנמצאים ברשימה ונמדדים. קרוב ל-19 גרם חלבון, גבוה. מדד עיבוד גבוה יותר (תיבול ותוספים) מגביל את הציון, אבל החלבון עוזר לשמור על B. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 135.0,
-          "protein": 18.5,
-          "sugar": null,
-          "fat": 5.0,
-          "satFat": 3.0,
-          "fiber": null,
-          "sodium": 850.0
-        },
-        "ingredients": "חלב בקר מפוסטר, מלח, שום 1.8%, שמיר 0.97%, חומר משמר E202, אנזים",
-        "confidenceLabel": "חסרים נתוני תזונה",
-        "servingNote": "ל-100 גרם",
-        "positiveSignals": [
-          "חלבון גבוה (18.5g ל-100g)",
-          "שומן נמוך (5g ל-100g)"
-        ],
-        "limitingFactors": [
-          "חסרים נתוני סוכר — לוח התזונה לא מלא"
-        ]
-      },
-      "retailer": "שופרסל",
-      "novaGroup": 3,
-      "d4_additives": [
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "likely-neutral",
-          "function_he": "חומר משמר",
-          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
-        }
-      ],
-      "rank": 16,
-      "categoryTotal": 36,
-      "brand": "מחלבת המושבה",
-      "_hash_no_rank": "6028ae1151f5d112f3665651327abba5e9eaae46a4935dbb4dd6502f0078c8f5"
-    },
-    {
       "id": "bc-015",
       "name": "פטה עיזים מעודנת 16%",
       "barcode": "7290017065663",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ARG52_Z_P_7290017065663_1.png",
-      "score": 73.5,
+      "score": 74.6,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -871,17 +821,67 @@
           "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
         }
       ],
-      "rank": 17,
+      "rank": 16,
       "categoryTotal": 36,
       "brand": "מחלבות גד",
       "_hash_no_rank": "39b8b8ba95b0e38a4ceada1793d11f6e244f30ed308f8eb401d0fbcfe5b04206"
+    },
+    {
+      "id": "bc-031",
+      "name": "גבינה צפתית בטעמים",
+      "barcode": "4861360",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OIJ28_Z_P_4861360_1.png",
+      "score": 74.5,
+      "grade": "B",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "confidence_sub_reason": null,
+      "insightLine": "שום ושמיר כרכיבים ממשיים, חלבון גבוה לצפתית מתובלת — מדד העיבוד מגביל.",
+      "rowVerdict": "צפתית מתובלת עם שום ושמיר בכמויות ממשיות — לא רק טעם, אלא רכיבים שנמצאים ברשימה ונמדדים. קרוב ל-19 גרם חלבון, גבוה. מדד עיבוד גבוה יותר (תיבול ותוספים) מגביל את הציון, אבל החלבון עוזר לשמור על B. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 135.0,
+          "protein": 18.5,
+          "sugar": null,
+          "fat": 5.0,
+          "satFat": 3.0,
+          "fiber": null,
+          "sodium": 850.0
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח, שום 1.8%, שמיר 0.97%, חומר משמר E202, אנזים",
+        "confidenceLabel": "חסרים נתוני תזונה",
+        "servingNote": "ל-100 גרם",
+        "positiveSignals": [
+          "חלבון גבוה (18.5g ל-100g)",
+          "שומן נמוך (5g ל-100g)"
+        ],
+        "limitingFactors": [
+          "חסרים נתוני סוכר — לוח התזונה לא מלא"
+        ]
+      },
+      "retailer": "שופרסל",
+      "novaGroup": 3,
+      "d4_additives": [
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר",
+          "explanation_he": "חומר משמר שעוצר עובש ושמרים; נפוץ ברוב הגבינות המלוחות במדף."
+        }
+      ],
+      "rank": 17,
+      "categoryTotal": 36,
+      "brand": "מחלבת המושבה",
+      "_hash_no_rank": "6028ae1151f5d112f3665651327abba5e9eaae46a4935dbb4dd6502f0078c8f5"
     },
     {
       "id": "bc-016",
       "name": "בולגרית מעודנת 5%",
       "barcode": "2107798",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XAD34_Z_P_2107798_1.png",
-      "score": 72.5,
+      "score": 73.2,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -945,7 +945,7 @@
       "name": "בולגרית מסורתית 16%",
       "barcode": "7296073641957",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PBI66_Z_P_7296073641957_1.png",
-      "score": 72.0,
+      "score": 73.1,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -994,7 +994,7 @@
       "name": "פטה כבשים 20%",
       "barcode": "7296073641902",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZF56_Z_P_7296073641902_1.png",
-      "score": 71.7,
+      "score": 72.8,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1044,7 +1044,7 @@
       "name": "גבינה פטה כבשים 20%",
       "barcode": "7290011499051",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAU48_Z_P_7290011499051_1.png",
-      "score": 71.6,
+      "score": 72.7,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1094,7 +1094,7 @@
       "name": "פטה עיזים 16% שומן",
       "barcode": "7290019790808",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BYN60_Z_P_7290019790808_1.png",
-      "score": 71.6,
+      "score": 72.7,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1143,7 +1143,7 @@
       "name": "פטה כבשים 20% שומן",
       "barcode": "7290019790112",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AXT48_Z_P_7290019790112_1.png",
-      "score": 70.5,
+      "score": 71.5,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1193,7 +1193,7 @@
       "name": "בולגרית 24%",
       "barcode": "7290114314015",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BEM38_Z_P_7290114314015_1.png",
-      "score": 70.3,
+      "score": 71.4,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1243,7 +1243,7 @@
       "name": "גבינה בולגרית 16% שומן",
       "barcode": "7290011499112",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IDD46_Z_P_7290011499112_1.png",
-      "score": 70.2,
+      "score": 71.3,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1292,7 +1292,7 @@
       "name": "קוביות בולגרית מעודנת 16%",
       "barcode": "7290019635222",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FUL48_Z_P_7290019635222_1.png",
-      "score": 67.0,
+      "score": 68.1,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1342,7 +1342,7 @@
       "name": "בולגרית מעודנת 24%",
       "barcode": "7290017065236",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AAV48_Z_P_7290017065236_1.png",
-      "score": 66.3,
+      "score": 67.4,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1393,7 +1393,7 @@
       "name": "גבינה מלוחה חמד 16%",
       "barcode": "48413",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SPA20_Z_P_48413_1.png",
-      "score": 66.3,
+      "score": 67.4,
       "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1443,14 +1443,14 @@
       "name": "גבינת חלומי 23%",
       "barcode": "7290108509755",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UZS58_Z_P_7290108509755_1.png",
-      "score": 64.6,
-      "grade": "C",
+      "score": 65.7,
+      "grade": "B",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "insightLine": "22 גרם חלבון לצד 23 גרם שומן (כ-14 רווי) ו-1000 מ\"ג נתרן מכבישה — פרופיל של חלומי מלא.",
-      "rowVerdict": "301 קלוריות ל-100 גרם עם 22 גרם חלבון — מהגבוהים במדף. אבל 23 גרם שומן, מתוכם כ-14 רווי, לצד 1000 מ\"ג נתרן, הם הגורם המגביל שמציב אותה באמצע.",
+      "insightLine": "22 גרם חלבון — מהגבוהים במדף — לצד 23 גרם שומן (כ-14 רווי) ו-1000 מ\"ג נתרן: פרופיל חלומי מלא.",
+      "rowVerdict": "חלומי משלושה סוגי חלב — פרה, כבשים ועיזים — עם 22 גרם חלבון, מהגבוהים בקטגוריה, ורשימה נקייה בלי תוספים. מה שמחזיק אותה ב-B ולא גבוה יותר הוא הפרופיל השמן של חלומי: 23 גרם שומן, מתוכם כ-14 רווי, ו-1000 מ\"ג נתרן מהכבישה. גבינה טובה בבירור — עם תקרה שקובע השומן.",
       "expansion": {
         "nutrition": {
           "energyKcal": 301.0,
@@ -1486,7 +1486,7 @@
       "name": "גבינת טמרה מלוחה בקר 17%",
       "barcode": "3075805",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YZE28_Z_P_3075805_1.png",
-      "score": 62.5,
+      "score": 63.6,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1528,7 +1528,7 @@
       "name": "חלומי בקר",
       "barcode": "7290102393718",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VPN52_Z_P_7290102393718_1.png",
-      "score": 62.5,
+      "score": 63.6,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1579,7 +1579,7 @@
       "name": "חלומי בקר 24%",
       "barcode": "7296073641919",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OZW64_Z_P_7296073641919_1.png",
-      "score": 62.5,
+      "score": 63.6,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1629,7 +1629,7 @@
       "name": "גבינת חלומי 24%",
       "barcode": "7290011499365",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IMW56_Z_P_7290011499365_1.png",
-      "score": 56.6,
+      "score": 57.7,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1686,7 +1686,7 @@
       "name": "בולגרית מעודנת 16%",
       "barcode": "7290114312707",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZGE44_Z_P_7290114312707_1.png",
-      "score": 54.8,
+      "score": 55.9,
       "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
@@ -1747,14 +1747,14 @@
       "name": "כדורי פטה בשמן מתובל",
       "barcode": "369617",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTA32_Z_P_369617_1.png",
-      "score": 48.5,
-      "grade": "D",
+      "score": 50.9,
+      "grade": "C",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
       "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
       "confidence_sub_reason": null,
-      "insightLine": "פטה טבולה בשמן צמחי — מוצר שונה מהותית מגבינה מלוחה רגילה.",
-      "rowVerdict": "כדורי פטה בשמן מתובל. השמן הצמחי שמוסף לגבינה הופך את המוצר למשהו אחר לחלוטין: 31 גרם שומן, 355 קק\"ל, מייצבים, עיבוד גבוה. 8 גרם חלבון בלבד — הנמוך ביותר בין גבינות השמן. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
+      "insightLine": "פטה טבולה בשמן צמחי — התוספת מעלה את השומן ל-31 גרם ומורידה את החלבון ל-8.",
+      "rowVerdict": "כדורי פטה בשמן מתובל. הפטה עצמה בסדר, אבל היא טבולה בשמן צמחי ושמן זית — וזה מה שקובע את הציון: 31 גרם שומן ו-355 קק\"ל ל-100 גרם, לצד 8 גרם חלבון בלבד, הנמוך בין גבינות השמן. הנתרן (800 מ\"ג) דווקא מהנמוכים במדף. חלק מנתוני התזונה (סוכר) חסרים — ההערכה מבוססת על מה שזמין.",
       "expansion": {
         "nutrition": {
           "energyKcal": 355.0,
@@ -1795,7 +1795,7 @@
       "name": "בולגרית שום+עשבי תיבול 16%",
       "barcode": "7290114312486",
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YXR48_Z_P_7290114312486_1.png",
-      "score": 46.0,
+      "score": 47.1,
       "grade": "D",
       "confidence": "verified",
       "confidence_label_he": "מבוסס על נתונים מלאים",
