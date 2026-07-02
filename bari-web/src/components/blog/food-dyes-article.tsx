@@ -216,8 +216,8 @@ export function FoodDyesArticle() {
           <Image
             src="/blog/food-dyes/atom-food-dyes.png"
             alt=""
-            width={1000}
-            height={633}
+            width={910}
+            height={723}
             className="pointer-events-none mx-auto mt-8 h-auto w-full max-w-sm"
             aria-hidden
           />
