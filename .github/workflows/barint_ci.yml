@@ -72,7 +72,7 @@ jobs:
         run: python -m pytest 03_operations/bsip0/validators/test_bsip0_qa_validator.py -v --tb=short
 
       - name: BSIP0 exit gate tests (30)
-        run: python -m pytest 03_operations/bsip0/scrape/_shared/test_bsip0_gate.py -v --tb=short
+        run: python 03_operations/bsip0/scrape/_shared/test_bsip0_gate.py
 
       - name: BSIP0 exit gate — live corpus check
         run: python 03_operations/bsip0/scrape/_shared/bsip0_gate.py 02_products/breakfast_cereals/bsip0_outputs/cereals_bsip0_raw_20260601T152207.json || true
