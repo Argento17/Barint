@@ -42,9 +42,7 @@ declare global {
 }
 
 export function GA4Script() {
-  const [granted, setGranted] = useState(
-    () => getStoredConsent()?.analytics ?? false
-  );
+  const [granted, setGranted] = useState(false);
 
   useEffect(() => {
     if (!GA_ID) return;
@@ -67,7 +65,13 @@ export function GA4Script() {
       ad_personalization: "denied",
     });
 
-    // React to future CMP changes.
+    // Apply the stored choice, then react to future CMP changes.
+    const stored = getStoredConsent();
+    if (stored?.analytics) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- TASK-462: post-mount boot read from localStorage, SSR-hydration-safe by design
+      setGranted(true);
+    }
+
     const unsub = onConsentChange((record) => {
       setGranted(record.analytics);
       if (!record.analytics && typeof window.gtag === "function") {

@@ -65,16 +65,22 @@ function trapFocus(containerRef: React.RefObject<HTMLElement | null>) {
 
 // ── Component ─────────────────────────────────────────────────────────────────
 export function ConsentManager() {
-  const [view, setView] = useState<CMPView>(() => {
-    if (typeof window === "undefined") return "hidden";
-    return getStoredConsent() ? "hidden" : "banner";
-  });
+  const [view, setView] = useState<CMPView>("hidden");
   const [analyticsChecked, setAnalyticsChecked] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   // Track the element that triggered the panel so we can restore focus
   const triggerRef = useRef<HTMLElement | null>(null);
 
-// ── Listen for the footer "re-open preferences" event ─────────────────────
+  // ── Boot: decide whether to show the banner ────────────────────────────────
+  useEffect(() => {
+    const stored = getStoredConsent();
+    if (!stored) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- TASK-462: post-mount boot read from localStorage, SSR-hydration-safe by design
+      setView("banner");
+    }
+  }, []);
+
+  // ── Listen for the footer "re-open preferences" event ─────────────────────
   useEffect(() => {
     function handleOpenPreferences(e: Event) {
       triggerRef.current = (e as CustomEvent).detail?.trigger ?? null;
@@ -107,6 +113,7 @@ export function ConsentManager() {
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [view]);
 
   // ── Helpers ────────────────────────────────────────────────────────────────
