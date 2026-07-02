@@ -582,7 +582,7 @@ _DAIRY: list[tuple[str, float, str]] = [
     # "גבינת" is the Hebrew construct form of "גבינה" ("גבינת עיזים" = goat cheese,
     # "גבינת גאודה" = Gouda cheese). It does not match the absolute-form signal above.
     ("גבינת",        0.85, "name_only"),
-    ("חלב",          0.70, "name_only"),
+    ("חלב",          0.85, "name_only"),
     ("לבן",          0.60, "name_only"),
     ("קפיר",         0.95, "name_only"),
     ("ריקוטה",       0.90, "name_only"),

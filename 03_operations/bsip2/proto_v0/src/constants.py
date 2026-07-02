@@ -1798,6 +1798,20 @@ import os as _os
 PROTEIN_BAR_LENS_ON = _os.environ.get("BARI_PROTEIN_BAR_V1", "off").lower() == "on"
 
 # ---------------------------------------------------------------------------
+# TASK-449 (P459) — BARI_FERMENT_MARKER_BRINED_FIX_V1 (Option A)
+# Gated by env flag BARI_FERMENT_MARKER_BRINED_FIX_V1 (default OFF).
+# When OFF (default): Path B cultured_cheese_name fermentation bonus fires for
+# brined_food products that match CULTURED_CHEESE_NAME_MARKERS_HE (current HEAD behavior).
+# When ON: the bonus is suppressed for context_flag == "brined_food" (name marker
+# identifies cheese *type* within brined corpus, not a fermentation-quality
+# differentiator above table-stakes; see TASK-449 D6/D7 co-sign).
+# Flag OFF → engine byte-identical for non-brined + no restrict for brined (for baseline diff).
+# Used with RECAL_P0_ON; candidate runs set =on to build brined fix artifacts.
+# Emission of fermentation_bonus_* to traces is also now wired (see trace_writer + score_engine).
+# ---------------------------------------------------------------------------
+BARI_FERMENT_MARKER_BRINED_FIX_V1 = _os.environ.get("BARI_FERMENT_MARKER_BRINED_FIX_V1", "off").lower() == "on"
+
+# ---------------------------------------------------------------------------
 # EV-PBAR-005 — Protein Bar dimension weight profile
 # Sum check: 0.12+0.14+0.10+0.17+0.13+0.10+0.06+0.08+0.07+0.03 = 1.00 CONFIRMED
 # ---------------------------------------------------------------------------

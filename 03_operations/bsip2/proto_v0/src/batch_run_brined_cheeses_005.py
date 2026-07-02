@@ -17,7 +17,7 @@ Changes from run_brined_003:
   3. bc-048 (גבינת טמרה מלוחה בקר 17%, barcode 3075805) now receives context_flag=brined_food,
      EV-053/054/055 all fire. Score expected to rise from 39/D to mid-B or higher.
 
-Flag config (identical to run_brined_003):
+Flag config (identical to run_brined_003 + TASK-449 brined fix for candidate):
   BARI_RECAL_P0=on
   BARI_RECAL_P0_YOGURT_TRIM=off
   BARI_GRAD_SODIUM_V1=on          — EV-055 graduated sodium (brined_food scope only)
@@ -26,6 +26,7 @@ Flag config (identical to run_brined_003):
   BARI_TASK144_FIXES=off
   BARI_TASK250_CONF=off
   BARI_GLASSBOX_W4=on (default)
+  BARI_FERMENT_MARKER_BRINED_FIX_V1=on  — TASK-449 Option A (restricts Path B +8 for brined_food)
 
 OFF ban: absolute. off_used=0.
 """
@@ -52,6 +53,7 @@ os.environ["BARI_GLASSBOX_W2"] = "off"
 os.environ["BARI_SODIUM_SHELF_RELATIVE_V1"] = "on"   # EV-056
 os.environ["BARI_DAIRY_PROTEIN_REWEIGHT_V1"] = "on"   # EV-057
 os.environ["BARI_SHELF_RELATIVE_V1"] = "on"           # P109 Step-4: explicit on for brined byte-id check (must be no-op for non-cereal/biscuit)
+os.environ["BARI_FERMENT_MARKER_BRINED_FIX_V1"] = "on"  # TASK-449 Option A (P459)
 # BARI_GLASSBOX_W4 defaults to on (module-level default)
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -72,17 +74,20 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
 # --- Paths ---
-ROOT        = pathlib.Path(r"C:\Bari")
+# Worktree-safe (P459): compute repo root relative to this file (in src/) so runs
+# stay inside the worktree and never touch C:\Bari . Use distinct output dir for
+# the TASK-449 brined-fix candidate so committed baseline run_brined_005 traces are untouched.
+ROOT = pathlib.Path(__file__).resolve().parents[4]
 BSIP0_FILE  = ROOT / "02_products" / "brined_cheeses" / "bsip0_outputs" / \
               "brined_cheese_bsip0_raw_20260613T065721.json"
 CORPUS_FILE = ROOT / "02_products" / "brined_cheeses" / "factory_run_001" / "corpus_filter.json"
 # run_brined_005 uses the hygiene-cleaned BSIP1 run_002
 BSIP1_REUSE_DIR = ROOT / "03_operations" / "bsip1" / "run_brined_cheeses_002" / "output"
-BSIP2_OUTPUT    = ROOT / "02_products" / "brined_cheeses" / "bsip2_outputs" / "run_brined_005"
+BSIP2_OUTPUT    = ROOT / "02_products" / "brined_cheeses" / "bsip2_outputs" / "run_brined_005_brinedfix_on"
 REPORT_ROOT     = ROOT / "02_products" / "brined_cheeses" / "reports"
-# Baseline for before/after comparison
+# Baseline for before/after comparison (committed, not overwritten)
 BSIP2_PREV_DIR  = ROOT / "02_products" / "brined_cheeses" / "bsip2_outputs" / "run_brined_003"
-RUN_ID = "run_brined_005"
+RUN_ID = "run_brined_005_brinedfix_on"
 
 (BSIP2_OUTPUT / "products").mkdir(parents=True, exist_ok=True)
 REPORT_ROOT.mkdir(parents=True, exist_ok=True)
