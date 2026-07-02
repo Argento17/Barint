@@ -196,8 +196,16 @@ test(`vision-probe: ${ROUTE}`, async ({ page }, testInfo) => {
   );
 
   // Sanity: a blank page is a failed probe, not a clean one.
-  const anyGeometry = Object.values(report.geometry as Record<string, any>).some(
-    (g) => g && typeof g.count === "number" && g.count > 0
+  type GeometryEntry = { count: number } | { error: string } | null;
+  const anyGeometry = Object.values(
+    report.geometry as Record<string, GeometryEntry>
+  ).some(
+    (g) =>
+      g &&
+      typeof g === "object" &&
+      "count" in g &&
+      typeof g.count === "number" &&
+      g.count > 0
   );
   expect(
     anyGeometry || report.contrastScanned > 0,

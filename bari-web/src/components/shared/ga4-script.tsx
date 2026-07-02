@@ -42,7 +42,9 @@ declare global {
 }
 
 export function GA4Script() {
-  const [granted, setGranted] = useState(false);
+  const [granted, setGranted] = useState(
+    () => getStoredConsent()?.analytics ?? false
+  );
 
   useEffect(() => {
     if (!GA_ID) return;
@@ -65,10 +67,7 @@ export function GA4Script() {
       ad_personalization: "denied",
     });
 
-    // Apply the stored choice, then react to future CMP changes.
-    const stored = getStoredConsent();
-    if (stored?.analytics) setGranted(true);
-
+    // React to future CMP changes.
     const unsub = onConsentChange((record) => {
       setGranted(record.analytics);
       if (!record.analytics && typeof window.gtag === "function") {
