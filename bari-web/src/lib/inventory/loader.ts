@@ -231,13 +231,16 @@ export function buildInventorySummary(
  * Build a Map<productId, BariProductVM> for the catalog's per-product expansion panel.
  *
  * Sources from the same getComparisonCategoryCorpusPayload used by buildInventoryRows,
- * so the detail set is guaranteed to match the 174 catalog rows exactly (same corpus,
- * same hummus curation, same normalizeProductBrandDisplay already applied by
- * loadComparisonCorpus inside each category's getCorpusPayload).
+ * so the detail set is guaranteed to match the catalog rows exactly — same registry
+ * categories, same corpus curation (e.g. hummus exclusions), same
+ * normalizeProductBrandDisplay already applied by loadComparisonCorpus inside each
+ * category's getCorpusPayload. Row/category counts are registry-driven on purpose:
+ * they are not repeated here, so this comment cannot go stale when a category is
+ * registered or a corpus curates.
  *
- * Payload size (measured 2026-07-01): 464 KB serialized for the 6 registered categories
- * → safely under the 1.5 MB embed threshold → embedded in the page at render time.
- * Expansions render lazily on user interaction, so the data weight is acceptable.
+ * Payload size scales with the registry and is kept safely under the 1.5 MB embed
+ * threshold → embedded in the page at render time. Expansions render lazily on user
+ * interaction, so the data weight is acceptable.
  *
  * Pure function — no auth, no I/O. Safe to call from public Server Components.
  */

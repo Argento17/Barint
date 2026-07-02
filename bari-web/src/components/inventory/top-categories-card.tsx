@@ -100,8 +100,11 @@ export function TopCategoriesCard({
   // Sort descending by count — biggest first = rank 1
   const sorted = [...categories].sort((a, b) => b.count - a.count);
 
+  // role=group (not list): the rows are toggle BUTTONS (filter select/clear), so they
+  // must keep the native button role — role="listitem" would override it and does not
+  // support aria-pressed (jsx-a11y/role-supports-aria-props, QA gate-2 F-V3).
   return (
-    <div className="flex flex-col" role="list" aria-label="קטגוריות מובילות">
+    <div className="flex flex-col" role="group" aria-label="קטגוריות מובילות">
       {sorted.map((cat, idx) => {
         const rank = idx + 1;
         const isActive = cat.categoryId === activeCategoryId;
@@ -110,7 +113,6 @@ export function TopCategoriesCard({
           <button
             key={cat.categoryId}
             type="button"
-            role="listitem"
             aria-pressed={isActive}
             onClick={() => onCategorySelect?.(isActive ? "" : cat.categoryId)}
             className="flex w-full items-center gap-3 rounded-[10px] px-1.5 py-2 text-start transition-colors"
