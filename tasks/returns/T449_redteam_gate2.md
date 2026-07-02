@@ -197,3 +197,83 @@ Track V is green partly because I reproduced the numbers from the engine — tha
   "self_check": "Pareto flagship resolved + 2 residual ruled pre-existing/sub-noise; engine independently reproduces candidate 36/36 (ON) and worktree-live 36/36 (OFF); 2 CRITICAL stale-artifact side-effects found (RT-1 meta grade_distribution, RT-2 FAQ JSON-LD) that the returns did not disclose; verdict GO_WITH_FIXES."
 }
 ```
+
+---
+
+## RE-VERIFY (targeted, post-fix) — 2026-07-02
+
+**Trigger:** content lane applied RT-1/RT-2/RT-3 at commit `dbba8afc` (log: `tasks/returns/T449_content_gate3run.md`). Independently re-checked against artifacts, not the log — same method as gate 2 (read files directly, re-derive counts programmatically, never trust the builder's self-report).
+
+### RT-1 — RESOLVED (verified)
+- `_rescore_staging/brined_cheeses/brined_cheeses_candidate_brinedfix.json` → `_meta.grade_distribution = {A:3, B:18, C:13, D:2}`.
+- Independently recomputed `Counter(p['grade'] for p in products)` over the current 36-product array → **identical** `{A:3, B:18, C:13, D:2}`. Matches my own gate-2 count exactly.
+- Audited every other `_meta` key for staleness: `product_count`=36 == `len(products)` ✓; `scored_count`=36 ✓; `off_used`=false, consistent with 0 OFF markers (G4 PASS); `reflow` block is a historical record of the prior de-anchor sweep (dated 2026-07-02, correctly static, not a live summary stat); `p461_construction` carries an added audit note (`grade_distribution_regenerated`). **No other product-derived summary field found stale.**
+
+### RT-2 — RESOLVED (verified)
+`bari-web/src/data/seo/brined_cheeses_faq_schema.json` read directly and every claim checked against the candidate:
+
+| Claim | FAQ text | Independently computed from candidate | Match |
+|---|---|---|---|
+| A-count | "3 מוצרים קיבלו ציון A" | `len([p for grade=='A'])` = 3 | ✓ |
+| A-list names | 554457, 554532, 7290108509106 (exactly 3, 0 others) | candidate A-set = exactly {554457, 554532, 7290108509106} | ✓ |
+| Top score | "83/100" | max score 82.7 → `Math.round(82.7)` = 83 (verified against `bari-grade-badge.tsx:41,101`, the live page's actual rounding call) | ✓ |
+| Min score | "47/100" | min score 47.1 → round = 47 | ✓ |
+| product_count | 36 (both Q3 body and `_bari_meta`) | `len(products)` = 36 | ✓ |
+| Tied-top clause | "בציון זהה לגרסה המעודנת שלה" (554532 ties 554457) | 554457=82.7, 554532=82.7 — genuine tie | ✓ factually correct |
+| A-group sodium superlative | "הנתרן הנמוך ביותר בין כל גבינות ה-A" | A-group sodiums = 600 / 600 / 720 mg → 554457 tied-lowest | ✓ |
+| Stale phrases purged | — | "85/100", "46/100", "9 מוצרים" all **absent**; 0 raw decimals anywhere in the file | ✓ |
+| Leakage | — | `hebrew_readability.analyze` on all 4 answers: **4/4 `is_clean=True`** | ✓ |
+| JSON-LD structural validity | — | parses; `@context`=schema.org, `@type`=FAQPage, `mainEntity`=4 well-formed Question/Answer pairs, all required sub-fields present | ✓ VALID |
+
+No residual stale claim, no decimal leakage, no orphaned old-grade product name found anywhere in the file.
+
+### RT-3 — RESOLVED (verified)
+`7290019635826` rowVerdict re-read from the candidate: superlative `הרשימה הקצרה ביותר האפשרית` (shortest possible) is **gone**, replaced by plain `רשימה קצרה` (short list) — no "-est" claim remains, so there is nothing left to disprove. Remaining sub-claims re-checked: "אין מייצבים, אין רכיבי חלב נוספים" (no stabilizers, no additional dairy components) — true against its 3-item ingredient list (goat milk, salt, one preservative). `hebrew_readability` on the line: `is_clean=True`.
+
+### No-collateral checks
+- **Drift vs gate-2 state:** re-diffed candidate vs worktree-live recursively. `score`/`grade`/`rank` diffs total exactly 72 (24+14+34 — unchanged from gate 2). **0 undeclared (non score/grade/rank/copy) diffs.**
+- **Copy-divergence set:** still exactly the **same 12 (barcode, field) pairs** as gate 2 (RT-3 re-edited an already-diverging field, so membership didn't grow).
+- **Gates re-run independently** (`run_gates.py`, baseline = worktree-live): **G5 PASS, G6 PASS, G7 PASS with exactly 14 grade changes**, G2/G4/G8 PASS. Overall still FAIL, but driven *only* by the same pre-existing G1 SCHEMA + G3 SCOPE debt gate 2 already proved also fails on the untouched live baseline — no new gate regression.
+- **FAQ JSON-LD stays structurally valid** — confirmed above.
+
+### RE-VERIFY VERDICT
+
+**GO.**
+
+All three assigned findings (RT-1 CRITICAL, RT-2 CRITICAL, RT-3 HIGH) are resolved and independently confirmed against the artifacts — not the log. No collateral drift introduced (0/36 score/grade/rank change beyond gate-2's own 72 diffs, copy-divergence set unchanged at 12, gates G5/G6/G7 green with G7=14). The two MEDIUM pre-existing items (RT-4, RT-5) and the 2 residual sub-noise same-grade Pareto inversions remain standing, non-blocking items already routed to `content-agent`/`nutrition-agent` in the base gate-2 report — they do not gate this PR. This is the final gate before the owner PR: **package is clear to proceed.**
+
+```json
+{
+  "task": "TASK-449 gate-2 targeted re-verify (RT-1/RT-2/RT-3)",
+  "proposed_status": "GO",
+  "verdict": "GO",
+  "artifacts": [
+    {"path": "tasks/returns/T449_redteam_gate2.md", "action": "modified (re-verify section appended)"}
+  ],
+  "counts": {
+    "rt1_grade_distribution_match": "true (meta {A:3,B:18,C:13,D:2} == independently recomputed Counter over 36 products)",
+    "rt1_other_meta_stale_fields": "0/9 other _meta keys stale (product_count, scored_count, off_used, reflow, p461_construction all consistent)",
+    "rt2_claims_verified": "10/10 (A-count, A-names 3/3 with 0 non-A names, top-score rounding, min-score rounding, product_count, tied-top clause, A-sodium superlative, stale-phrase absence, 0 raw decimals, readability 4/4 clean)",
+    "rt2_jsonld_valid": "true (parses; FAQPage shape intact, 4/4 Question/Answer pairs well-formed)",
+    "rt3_superlative_removed": "true (0 occurrences of 'הקצרה ביותר האפשרית' in candidate; replaced with unqualified 'רשימה קצרה')",
+    "collateral_score_grade_rank_diffs": "72/72 (24 score + 14 grade + 34 rank — unchanged vs gate-2 baseline)",
+    "collateral_undeclared_diffs": "0",
+    "copy_divergence_set_size": "12/12 (same barcode,field pairs as gate 2)",
+    "gates_rerun": "G2/G4/G5/G6/G7/G8 PASS (G7=14 grade changes); G1/G3 FAIL = same pre-existing debt as gate 2 (also fails on live)"
+  },
+  "commands_run": [
+    {"cmd": "python -c \"Counter(p['grade'] for p in candidate['products'])\" vs _meta.grade_distribution", "exit_code": 0},
+    {"cmd": "python -c faq claim verification (A-count/names/top/min/product_count/tied-top/sodium/stale-phrase/decimal scan)", "exit_code": 0},
+    {"cmd": "python -c hebrew_readability.analyze on 4 FAQ answers + RT-3 rowVerdict", "exit_code": 0},
+    {"cmd": "python -c JSON-LD FAQPage shape validation (parses, required fields present)", "exit_code": 0},
+    {"cmd": "python -c recursive candidate-vs-worktree-live diff (score/grade/rank/copy/undeclared buckets)", "exit_code": 0},
+    {"cmd": "python 03_operations/page_generator/gates/run_gates.py <candidate> --baseline bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json", "exit_code": 1},
+    {"cmd": "grep Math.round bari-web/src/components/comparisons/bari-grade-badge.tsx (confirm rounding convention)", "exit_code": 0}
+  ],
+  "not_done": [
+    "RT-4/RT-5 MEDIUM pre-existing items and the 2 residual Pareto inversions remain standing, non-blocking (already routed in base gate-2 report)",
+    "owner PR / push / deploy (out of this gate's boundary)"
+  ],
+  "self_check": "RT-1/RT-2/RT-3 all independently re-derived from artifacts and match; 0 collateral drift; G5/G6/G7 green with G7=14; FAQ JSON-LD valid; verdict GO."
+}
+```
