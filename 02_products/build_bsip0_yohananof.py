@@ -5,6 +5,9 @@ runs OFF fallback for products with no storefront panel.
 
 Run:
     python 02_products/build_bsip0_yohananof.py
+
+RETIRED (TASK-238 / off_ban_hard_rule): this script's OFF-fallback path is
+project-wide banned. Not wired to any live category config. Guarded below.
 """
 import json
 import sys
@@ -17,7 +20,9 @@ sys.path.insert(0, str(ROOT / "integrations"))
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-from clients.open_food_facts import get_product as off_get
+# from clients.open_food_facts import get_product as off_get  # TASK-238: OFF banned project-wide
+
+raise RuntimeError("OFF banned project-wide (TASK-238 / off_ban_hard_rule) — this script is retired; see CLAUDE.md")
 
 LI_PAT = re.compile(r"<span[^>]*>([^<]+)</span></div>([^<]*)</li>")
 

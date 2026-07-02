@@ -10,6 +10,9 @@ with a volume-based unit. unit="per_100ml" is set on every product.
 
 Juice keyword classifier: scans Hebrew item name for juice/nectar/drink markers.
 Output: one JSON per retailer in 02_products/juices/bsip0_outputs/
+
+RETIRED (TASK-238 / off_ban_hard_rule): the "Enrichment: Open Food Facts" step above
+is banned project-wide. Not wired to any live category config. Guarded below.
 """
 from __future__ import annotations
 import sys
@@ -27,8 +30,10 @@ from clients.il_prices import (
     list_shufersal_files, list_laibcatalog_files,
     fetch_items, PriceItem,
 )
-from clients.open_food_facts import get_product as off_get
+# from clients.open_food_facts import get_product as off_get  # TASK-238: OFF banned project-wide
 from source_validator import require_il_prices_accessible, SourceAccessError
+
+raise RuntimeError("OFF banned project-wide (TASK-238 / off_ban_hard_rule) — this script is retired; see CLAUDE.md")
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")

@@ -14,8 +14,9 @@ Israeli hard cheese brands well-known on market:
 - תל עמל / שטראוס: various
 - Known Israeli 729-prefix barcodes
 
-OFF coverage: Israeli dairy (729* barcodes) has partial coverage.
-Tanua/Tnuva products often listed under international database.
+RETIRED (TASK-238 / off_ban_hard_rule): "OFF per-barcode API only" above describes
+a nutrition source that is now banned project-wide. Not wired to any live category
+config. Guarded below.
 """
 from __future__ import annotations
 
@@ -25,8 +26,10 @@ import os
 from datetime import datetime, timezone
 
 sys.path.insert(0, "C:\\Bari")
-from integrations.clients.open_food_facts import get_product
+# from integrations.clients.open_food_facts import get_product  # TASK-238: OFF banned project-wide
 from integrations.clients.il_gov_data import datastore_search, RESOURCES
+
+raise RuntimeError("OFF banned project-wide (TASK-238 / off_ban_hard_rule) — this script is retired; see CLAUDE.md")
 
 RUN_ID = "run_hard_cheeses_rerun_001"
 RUN_TS = datetime.now(timezone.utc).isoformat()

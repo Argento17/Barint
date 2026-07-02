@@ -8,8 +8,9 @@ Strategy:
 3. Dedup by barcode, keep richest record.
 4. Output: BSIP1-schema JSON files in 03_operations/bsip1/run_juices_001/output/
 
-This is a valid Bari acquisition approach: the price feed gives identity,
-OFF gives the panel candidate (EDPG: verification_status=candidate).
+RETIRED (TASK-238 / off_ban_hard_rule): the "OFF gives the panel candidate" strategy
+above is now banned project-wide — OFF is never a source for any field, candidate or
+otherwise. Not wired to any live category config. Guarded below.
 """
 from __future__ import annotations
 import sys, json, pathlib, datetime, logging, re
@@ -17,8 +18,10 @@ import sys, json, pathlib, datetime, logging, re
 ROOT = pathlib.Path(r"C:\Bari")
 sys.path.insert(0, str(ROOT / "integrations"))
 
-from clients.open_food_facts import get_product as off_get
+# from clients.open_food_facts import get_product as off_get  # TASK-238: OFF banned project-wide
 from clients.il_prices import list_laibcatalog_files, fetch_items
+
+raise RuntimeError("OFF banned project-wide (TASK-238 / off_ban_hard_rule) — this script is retired; see CLAUDE.md")
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 sys.stderr.reconfigure(encoding="utf-8", errors="replace")
