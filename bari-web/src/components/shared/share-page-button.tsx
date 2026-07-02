@@ -13,7 +13,8 @@
 // `fireEvent` (src/lib/analytics.ts) — never UTM params on the shared URL
 // itself (copy-forward misattribution risk).
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { fireEvent } from "@/lib/analytics";
 import { buildShareText, buildWhatsAppShareUrl } from "@/lib/social-links";
@@ -21,6 +22,13 @@ import { cn } from "@/lib/utils";
 
 export interface SharePageButtonProps {
   title: string;
+  /**
+   * Optional short title for share payloads (native share sheet, WhatsApp,
+   * Telegram, and the `buildShareText` prefix). Use when `title` is the full
+   * editorial headline and too long for a share message — falls back to
+   * `title` when omitted.
+   */
+  shareTitle?: string;
   /** Defaults to the current page URL (window.location, query/hash stripped). */
   url?: string;
   className?: string;
@@ -108,6 +116,13 @@ function FacebookGlyph() {
   );
 }
 
+interface AnchorRect {
+  /** Distance from viewport top to the anchor's bottom edge (px). */
+  top: number;
+  /** Distance from viewport right edge to the anchor's right edge (px) — RTL: menu/toast align to the button's end (right) edge. */
+  right: number;
+}
+
 const buttonClass =
   "inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-transparent px-4 py-2 text-sm font-semibold text-[#4E5663] transition-colors duration-200 hover:text-[#2FAE82] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]";
 
@@ -119,13 +134,48 @@ const menuItemClass =
  * minimal RTL popover fallback otherwise (copy link → WhatsApp → Telegram →
  * Facebook).
  */
-export function SharePageButton({ title, url, className }: SharePageButtonProps) {
+export function SharePageButton({ title, shareTitle, url, className }: SharePageButtonProps) {
+  // RT-2 fix: share payloads (native sheet, WhatsApp, Telegram, buildShareText)
+  // use the short shareTitle when the caller provides one — title itself can be
+  // a full editorial headline unfit for a share message. Falls back to title.
+  const effectiveTitle = shareTitle ?? title;
   const [menuOpen, setMenuOpen] = useState(false);
   const [toastVisible, setToastVisible] = useState(false);
   const [canNativeShare, setCanNativeShare] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [anchorRect, setAnchorRect] = useState<AnchorRect | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const toastTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuId = useId();
+
+  // RT-1 fix: the popover/toast portal to document.body (see below), so they must
+  // only render client-side post-mount — document.body isn't available during SSR.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- TASK-467: post-mount SSR-hydration-safe boot flag, same pattern as canNativeShare below
+    setMounted(true);
+  }, []);
+
+  const updateAnchorRect = useCallback(() => {
+    const el = buttonRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    setAnchorRect({ top: rect.bottom, right: window.innerWidth - rect.right });
+  }, []);
+
+  // Recompute the portal's anchor position whenever the menu or toast is shown,
+  // and keep it in sync with scroll/resize while either is visible.
+  useLayoutEffect(() => {
+    if (!menuOpen && !toastVisible) return;
+    updateAnchorRect();
+    window.addEventListener("scroll", updateAnchorRect, true);
+    window.addEventListener("resize", updateAnchorRect);
+    return () => {
+      window.removeEventListener("scroll", updateAnchorRect, true);
+      window.removeEventListener("resize", updateAnchorRect);
+    };
+  }, [menuOpen, toastVisible, updateAnchorRect]);
 
   useEffect(() => {
     // Post-mount capability probe (matches src/components/shared/ga4-script.tsx's
@@ -141,7 +191,13 @@ export function SharePageButton({ title, url, className }: SharePageButtonProps)
   useEffect(() => {
     if (!menuOpen) return;
     function handleClickAway(event: MouseEvent) {
-      if (!containerRef.current?.contains(event.target as Node)) {
+      const target = event.target as Node;
+      // Menu is portaled to document.body (RT-1 fix), so containment must check
+      // both the trigger container AND the portaled menu element.
+      if (
+        !containerRef.current?.contains(target) &&
+        !menuRef.current?.contains(target)
+      ) {
         setMenuOpen(false);
       }
     }
@@ -181,7 +237,11 @@ export function SharePageButton({ title, url, className }: SharePageButtonProps)
     const shareUrl = resolveUrl();
 
     if (canNativeShare) {
-      const shareData = { title: buildShareText(title), text: buildShareText(title), url: shareUrl };
+      const shareData = {
+        title: buildShareText(effectiveTitle),
+        text: buildShareText(effectiveTitle),
+        url: shareUrl,
+      };
       try {
         // canShare is optional on the Navigator type in some lib.dom versions —
         // guard defensively before calling it.
@@ -200,7 +260,7 @@ export function SharePageButton({ title, url, className }: SharePageButtonProps)
     }
 
     setMenuOpen((open) => !open);
-  }, [canNativeShare, resolveUrl, title, track]);
+  }, [canNativeShare, resolveUrl, effectiveTitle, track]);
 
   const handleCopyLink = useCallback(async () => {
     const shareUrl = resolveUrl();
@@ -225,9 +285,80 @@ export function SharePageButton({ title, url, className }: SharePageButtonProps)
 
   const shareUrl = resolveUrl();
 
+  // RT-1 fix: the fallback popover and toast are portaled to document.body instead
+  // of rendering inline. Both live inside comparison cards with `overflow-hidden`
+  // (frozen design geometry — never weakened to fix this), which clips any
+  // absolutely-positioned descendant past the card boundary. A `position: fixed`
+  // portal escapes every current and future ancestor-clipping context. Position
+  // is computed from the trigger button's rect and re-measured on scroll/resize.
+  const menuPortal =
+    mounted && !canNativeShare && menuOpen && anchorRect
+      ? createPortal(
+          <div
+            ref={menuRef}
+            id={menuId}
+            role="menu"
+            dir="rtl"
+            aria-label="אפשרויות שיתוף"
+            style={{ position: "fixed", top: anchorRect.top + 8, right: anchorRect.right }}
+            className="z-[100] w-56 rounded-2xl border border-black/[0.08] bg-white p-1.5 shadow-lg shadow-black/[0.08]"
+          >
+            <button type="button" role="menuitem" onClick={handleCopyLink} className={menuItemClass}>
+              <LinkGlyph />
+              העתקת קישור
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => handleExternalShare("whatsapp", buildWhatsAppShareUrl(effectiveTitle, shareUrl))}
+              className={menuItemClass}
+            >
+              <WhatsAppGlyph />
+              וואטסאפ
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => handleExternalShare("telegram", telegramShareUrl(effectiveTitle, shareUrl))}
+              className={menuItemClass}
+            >
+              <TelegramGlyph />
+              טלגרם
+            </button>
+            <button
+              type="button"
+              role="menuitem"
+              onClick={() => handleExternalShare("facebook", facebookShareUrl(shareUrl))}
+              className={menuItemClass}
+            >
+              <FacebookGlyph />
+              פייסבוק
+            </button>
+          </div>,
+          document.body
+        )
+      : null;
+
+  const toastPortal =
+    mounted && toastVisible && anchorRect
+      ? createPortal(
+          <div
+            role="status"
+            aria-live="polite"
+            dir="rtl"
+            style={{ position: "fixed", top: anchorRect.top + 8, right: anchorRect.right }}
+            className="z-[100] whitespace-nowrap rounded-full bg-[#111318] px-4 py-2 text-xs font-semibold text-white shadow-lg"
+          >
+            הקישור הועתק
+          </div>,
+          document.body
+        )
+      : null;
+
   return (
     <div ref={containerRef} className={cn("relative inline-block", className)}>
       <button
+        ref={buttonRef}
         type="button"
         onClick={handleShareClick}
         className={buttonClass}
@@ -239,57 +370,8 @@ export function SharePageButton({ title, url, className }: SharePageButtonProps)
         שיתוף
       </button>
 
-      {!canNativeShare && menuOpen ? (
-        <div
-          id={menuId}
-          role="menu"
-          dir="rtl"
-          aria-label="אפשרויות שיתוף"
-          className="absolute top-full z-30 mt-2 w-56 rounded-2xl border border-black/[0.08] bg-white p-1.5 shadow-lg shadow-black/[0.08] end-0"
-        >
-          <button type="button" role="menuitem" onClick={handleCopyLink} className={menuItemClass}>
-            <LinkGlyph />
-            העתקת קישור
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => handleExternalShare("whatsapp", buildWhatsAppShareUrl(title, shareUrl))}
-            className={menuItemClass}
-          >
-            <WhatsAppGlyph />
-            וואטסאפ
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => handleExternalShare("telegram", telegramShareUrl(title, shareUrl))}
-            className={menuItemClass}
-          >
-            <TelegramGlyph />
-            טלגרם
-          </button>
-          <button
-            type="button"
-            role="menuitem"
-            onClick={() => handleExternalShare("facebook", facebookShareUrl(shareUrl))}
-            className={menuItemClass}
-          >
-            <FacebookGlyph />
-            פייסבוק
-          </button>
-        </div>
-      ) : null}
-
-      {toastVisible ? (
-        <div
-          role="status"
-          aria-live="polite"
-          className="absolute top-full z-30 mt-2 whitespace-nowrap rounded-full bg-[#111318] px-4 py-2 text-xs font-semibold text-white shadow-lg end-0"
-        >
-          הקישור הועתק
-        </div>
-      ) : null}
+      {menuPortal}
+      {toastPortal}
     </div>
   );
 }
