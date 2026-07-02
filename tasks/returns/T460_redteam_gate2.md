@@ -121,3 +121,46 @@ Root-cause note for the orchestrator: the durable fix is to source these counts 
 - Commit `d57eae3b` itself: clean. 9/9 STALE fixes verified accurate + durable; scope confined to Hebrew strings; tsc 0; no regression; no wrongly-kept claim in a 15+ sample. **This commit may merge.**
 - But three HIGH live consumer-facing numeric defects remain on the chocolate-tablets, protein-bars, and cookies-coffee pages (RT-1/2/3), plus two MEDIUM (RT-4/5). They are follow-on work, correctly outside this commit's edit boundary, and must be tracked and fixed before those pages are declared clean.
 - No fixes applied by this gate. No push/PR/deploy. Main tree read-only. OFF ban not implicated.
+
+---
+
+## Gate 3 — Targeted re-verification of RT-1/RT-2/RT-3 fixes (commit `b5a75204`)
+
+Date: 2026-07-02. Reviewer: adversarial-qa-agent (executor; no subagents used).
+**Method constraint honored:** the worktree had 13 dirty files from an unrelated runaway process at review time. All verification below was performed exclusively against **committed git state** — `git diff f1bca7b0..b5a75204`, and file contents pulled via `git show b5a75204:<path>` into the session scratchpad (never the working-tree copies). `npx tsc --noEmit` was also run and returned exit 0, but that check runs against the full worktree-on-disk and is treated as a secondary/weaker signal given the dirty tree; the git-level diffs are the load-bearing evidence.
+
+### VERDICT: GO
+
+### 1. Diff shape — CONFIRMED
+`git diff f1bca7b0..b5a75204 --stat` = exactly 4 files: `cookies_coffee_frontend_v2.json` (1 line), `chocolate-tablets-comparison-page-data.ts` (2 lines), `protein-bars-comparison-page-data.ts` (1 line), `tasks/returns/T460_content_gate3.md` (new file, log). Full diff inspected line-by-line: every change in the three data/code files is a single-sentence string edit — no key additions/removals, no structural JSON changes, no logic changes.
+
+### 2. RT-1 chocolate-tablets — CONFIRMED FIXED
+Independent recount against `git show b5a75204:.../chocolate_tablets_frontend_v1.json`: n=35, grades B=2/C=6/D=10/E=17. The two B products score 65.8 and 65.1; the next-highest (first C) is 55.3 — gap = **9.8 points**, rounds to "עשר נקודות" exactly as the new sentence states: "רק שתי טבלאות במדף הזה מגיעות ל-B, ואחריהן פער של עשר נקודות עד הבאה בתור." Both the count (2) and the gap (~10) are independently verified true. The companion sentence was also rewritten — "יכולה להגיע ל-C" → "יכולה להגיע גם ל-B" — no longer implies a C ceiling. **PASS.**
+
+### 3. RT-2 protein-bars — CONFIRMED FIXED
+Recount of `expansion.ingredients` for maltitol/E965 across `git show b5a75204:.../protein_combined_frontend_v2.json` (n=32): **16/32** — identical to my gate-2 finding, and identical to the new adapter text "ב-16 מתוך 32". Diff confirms only "24"→"16" changed in that sentence; scanned every numeric token in the committed adapter file (10, 100, 16, 2, 23, 25, 32, 35, 36, 4, 65, 69) — none of the other numbers (protein range 25-36g, top score 69/B, n=32, etc.) were disturbed. **PASS.**
+
+### 4. RT-3 cookies-coffee — CONFIRMED FIXED
+In the same committed JSON (`git show b5a75204:.../cookies_coffee_frontend_v2.json`): `products.length`=117, grade E count=81 — and `page_copy.prologue.sentences[0]` now reads "81 מתוך 117 המוצרים שנבחנו מקבלים ציון E" (no more "119"/"83" anywhere in that sentence). Denominator and E-count both internally consistent with the live products array in the identical committed file. Diff confirms this was the only `page_copy` field touched — one line changed, nothing else in the JSON. **PASS.**
+
+### 5. Voice / banned-phrase sweep on the 3 new strings
+`hebrew_readability.analyze()`:
+- choc_tablets sentence 1 (new): `is_clean=True`
+- choc_tablets sentence 2 (rewritten): `is_clean=True`
+- protein sentence (24→16 edit): `is_clean=False` — flags "long sentences" + `SCORE MECHANIC exposed: '69/B'` (×2)
+- cookies-coffee sentence (119/83→117/81): `is_clean=True`
+- `'חלבון נמוך'`: 0 occurrences in all 3 new strings.
+
+The protein flag is **pre-existing, not introduced by `b5a75204`**: re-ran the identical check against the string as it existed at `f1bca7b0` (pre-fix) and got the identical `is_clean=False` with the identical flags — the "69/B" score-mechanic exposure and long-sentence flag were already there; this commit only changed "24"→"16" inside that same sentence and did not touch the "69/B" clauses. This is the same leakage class already logged as RT-5 in the main gate-2 report (granola) — now also present, unresolved, in this protein-bars sentence. Not a regression; not a blocker for this fix commit; still open follow-on work.
+
+### Summary
+| Item | Committed value | Claim in new copy | Match |
+|---|---|---|---|
+| RT-1 B-count | 2 (65.8, 65.1) | "שתי טבלאות ... ל-B" | Yes |
+| RT-1 gap | 9.8 pts to next (55.3/C) | "פער של עשר נקודות" | Yes |
+| RT-2 maltitol | 16/32 (expansion.ingredients) | "16 מתוך 32" | Yes |
+| RT-3 denominator | products.length=117 | "117" | Yes |
+| RT-3 E-count | 81 | "81" | Yes |
+
+### Verdict: GO
+All three flagged fixes (RT-1, RT-2, RT-3) are verified correct against committed state, diff shape is confined to the expected 4 files with string-only edits, and no new leakage was introduced (the one `is_clean=False` result is pre-existing and unchanged by this commit — carried forward as open follow-on work, not a blocker). Clear for the owner PR. No fixes applied by this gate. Verification performed entirely against `git show`/`git diff` committed blobs per the coordinator's method constraint; the dirty worktree was not read.
