@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { getFeaturedCerealDuel } from "@/lib/home/featured-cereal-duel";
@@ -24,7 +25,7 @@ export function FeaturedComparisonCard({ className = "" }: { className?: string 
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
 
         {/* Story column */}
-        <div className="flex flex-col justify-between gap-4 border-b border-black/[0.05] px-6 py-6 md:border-b-0 md:border-s md:border-black/[0.05]">
+        <div className="flex flex-col justify-between gap-4 border-b border-black/[0.05] px-6 py-6 md:border-b-0">
           <div className="space-y-2">
             <p className="text-[11px] font-bold uppercase tracking-widest text-[#167A58]">
               {duel.eyebrow}
@@ -46,14 +47,25 @@ export function FeaturedComparisonCard({ className = "" }: { className?: string 
         </div>
 
         {/* Product A -- vitabix */}
-        <div className="flex flex-col items-center gap-3 border-b border-black/[0.05] px-5 py-6 text-center md:border-b-0 md:border-s md:border-black/[0.05]">
-          <CarouselCardImage
-            productId={vitabix.id}
-            imageUrl={vitabix.imageUrl ?? CAROUSEL_PRODUCT_FALLBACK}
-            imageAlt={vitabix.imageAlt}
-            className="h-32 w-24 sm:h-36 sm:w-28"
-            accent="#546E14"
-          />
+        <div className="flex flex-col items-center gap-3 border-b border-black/[0.05] px-5 py-6 text-center md:border-b-0">
+          <div className="relative">
+            {/* OLI in boxing gloves beside the winning pack, fully clear of it. Decorative. */}
+            <Image
+              src="/mascots/oli-boxing.png"
+              alt=""
+              width={820}
+              height={900}
+              aria-hidden
+              className="pointer-events-none absolute bottom-0 -start-28 hidden w-24 md:block"
+            />
+            <CarouselCardImage
+              productId={vitabix.id}
+              imageUrl={vitabix.imageUrl ?? CAROUSEL_PRODUCT_FALLBACK}
+              imageAlt={vitabix.imageAlt}
+              className="h-32 w-24 sm:h-36 sm:w-28"
+              accent="#546E14"
+            />
+          </div>
           <ScoreChip score={vitabix.score} grade={vitabix.grade} />
           <p className="max-w-[7rem] text-xs font-bold leading-snug text-[#111318]">
             {vitabix.brand}
@@ -68,7 +80,7 @@ export function FeaturedComparisonCard({ className = "" }: { className?: string 
         </div>
 
         {/* Product B -- lyon */}
-        <div className="flex flex-col items-center gap-3 border-b border-black/[0.05] px-5 py-6 text-center md:border-b-0 md:border-s md:border-black/[0.05]">
+        <div className="flex flex-col items-center gap-3 border-b border-black/[0.05] px-5 py-6 text-center md:border-b-0">
           <CarouselCardImage
             productId={lyon.id}
             imageUrl={lyon.imageUrl ?? CAROUSEL_PRODUCT_FALLBACK}
