@@ -302,37 +302,6 @@ function PlusGlyph() {
   );
 }
 
-// Check: green ring (opacity 0.7 per R-09) + checkmark in bari-green-deep
-function CheckGlyph() {
-  return (
-    <svg
-      width="15"
-      height="15"
-      viewBox="0 0 16 16"
-      aria-hidden
-      className="shrink-0 mt-[1px]"
-    >
-      <circle
-        cx="8"
-        cy="8"
-        r="7.2"
-        fill="none"
-        stroke="#1F8F6A"
-        strokeWidth="1.3"
-        opacity="0.7"
-      />
-      <path
-        d="M5 8.2l2 2 4-4.2"
-        fill="none"
-        stroke="#176F53"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 // Dash: neutral ring (strokeWidth 1.5 per R-09) + dash in fg3
 function DashGlyph() {
   return (
@@ -448,15 +417,21 @@ function AssessmentSection({
   const hasLimits = limitingFactors.length > 0;
   const hasPositives = positiveSignals.length > 0;
 
+  if (!hasPositives && !hasLimits) {
+    return null;
+  }
+
+  const twoCol = hasPositives && hasLimits;
+
   return (
-    // wlGrid: 2-col when both panels present → 1-col when positives absent or < 640px
+    // wlGrid: 2-col when both panels present → 1-col when only one side has content or < 640px
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: hasPositives ? "1fr 1fr" : "1fr",
+        gridTemplateColumns: twoCol ? "1fr 1fr" : "1fr",
         gap: "14px",
       }}
-      className={hasPositives ? "max-sm:grid-cols-1!" : undefined}
+      className={twoCol ? "max-sm:grid-cols-1!" : undefined}
     >
       {/* Positive panel — only rendered when there are positive signals */}
       {hasPositives && (
@@ -517,8 +492,9 @@ function AssessmentSection({
         </div>
       )}
 
-      {/* Limits panel */}
-      <div
+      {/* Limits panel — only rendered when there are limiting factors */}
+      {hasLimits ? (
+        <div
         style={{
           borderRadius: BOX_RADIUS_PANEL,
           padding: BOX_PADDING_PANEL,
@@ -537,8 +513,7 @@ function AssessmentSection({
           }}
         >
           {LABEL_LIMITING}
-          {/* Count pill only when > 0 (spec §3.1) — R-05: ringed neutral */}
-          {hasLimits ? (
+          {/* Count pill — R-05: ringed neutral */}
             <span
               style={{
                 fontFamily: "var(--font-mono)",
@@ -554,11 +529,9 @@ function AssessmentSection({
             >
               {limitingFactors.length}
             </span>
-          ) : null}
         </p>
 
-        {hasLimits ? (
-          limitingFactors.map((lf, i) => (
+          {limitingFactors.map((lf, i) => (
             <div
               key={i}
               style={{
@@ -579,24 +552,9 @@ function AssessmentSection({
                   mismatched (owner issue #1). Removed for column symmetry. */}
               <span style={{ flex: 1, minWidth: 0 }}>{lf.text}</span>
             </div>
-          ))
-        ) : (
-          /* Empty state: green check + text, no count pill */
-          <div
-            style={{
-              display: "flex",
-              gap: "8px",
-              alignItems: "center",
-              ...FONT_BODY,
-              color: "var(--bari-green-deep)",
-              padding: "9px 0",
-            }}
-          >
-            <CheckGlyph />
-            אין גורמים מגבילים מהותיים
-          </div>
-        )}
+          ))}
       </div>
+      ) : null}
     </div>
   );
 }
@@ -1179,7 +1137,7 @@ export function ExpansionSection({
   // ── Normalise VM data ───────────────────────────────────────────────────────
   const positiveSignals = expansion.positiveSignals ?? [];
   const limitingFactors = normaliseLimits(expansion.limitingFactors);
-  const hasAssessment = positiveSignals.length > 0 || expansion.limitingFactors !== undefined;
+  const hasAssessment = positiveSignals.length > 0 || limitingFactors.length > 0;
   const hasShelfCtx =
     rank !== undefined &&
     categoryTotal !== undefined &&
