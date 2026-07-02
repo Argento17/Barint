@@ -52,6 +52,20 @@ CALORIE_DENSITY_TABLES = {
     # Simpler approach: use 380/382 breakpoints to bracket the 381 test point.
     # Table: 379→72, 381→71 (diff=1, PASS). Adjacent tiers smoothed with 2-kcal cushion.
     "protein_bar":       [(250,90),(320,80),(379,72),(381,71),(430,62),(480,50),(540,38),(1e9,20)],
+    # TASK-455 / EV-REDLABEL-013 — chocolate archetype (bars + tablets share this
+    # bucket; see category_classifier.py CATEGORIES). Calibrated from the real
+    # 58-product corpus (23 countline bars + 35 tablets, fresh_rescore_task391):
+    # kcal range 390-610/100g, median ~510-545. Format is calorie-dense BY NATURE
+    # (cocoa butter + sugar matrix, no oat/grain dilution the way granola bars have)
+    # — the snack_bar_granola table this shelf was WRONGLY scored against before
+    # this fix caps out at score=15 for kcal>500, flattening nearly the entire
+    # format to the harshest bucket regardless of formulation quality (median
+    # 510-545kcal -> 15/100, same as a poorly-engineered 600kcal snack bar). This
+    # table still differentiates within-format (85 down to 25 across the observed
+    # 390-610kcal range) rather than reusing whole_food_fat's more lenient nut/oil
+    # curve verbatim — chocolate is a sugar+fat confection, not an intact whole-food
+    # fat, so it should not receive nut/oil-level calorie-density leniency.
+    "chocolate":         [(420,85),(480,75),(530,62),(570,50),(610,38),(1e9,25)],
     "default":           [(150,90),(250,80),(350,65),(450,50),(550,35),(1e9,20)],
 }
 
@@ -244,7 +258,17 @@ REGQUAL_SODIUM_BY_CATEGORY = {
 # EV-REDLABEL-005 — Categories where sat_fat red label is endemic (compositionally
 # fixed, not reformulable). Extends EV-048 (butter whole_food_fat) to the full
 # dairy_protein spectrum.
-REDLABEL_ENDEMIC_SATFAT_CATEGORIES = frozenset({"dairy_protein", "whole_food_fat"})
+# EV-REDLABEL-013 (TASK-455, Nutrition-ruled 2026-07-02, Product D7 co-signed) —
+# extends the same endemic test to "chocolate": cocoa-butter sat-fat (~55-60% of
+# fat, botanically fixed) is not a seed-oil engineering choice, mirroring the dairy
+# precedent exactly. Excludes ONLY the sat-fat red label from the continuous
+# regulatory_quality deduction (score_engine.py:~2227) and the reformulable-label
+# count (score_engine.py:~2295) — sugar/sodium red labels on chocolate remain fully
+# continuous; score_fat_quality()'s independent continuous sat-fat term is untouched
+# (cocoa-butter sat-fat still costs points there). Single bucket name covers both
+# chocolate_bars and chocolate_tablets shelves (both score under internal
+# category="chocolate" — see category_classifier.py CATEGORIES).
+REDLABEL_ENDEMIC_SATFAT_CATEGORIES = frozenset({"dairy_protein", "whole_food_fat", "chocolate"})
 
 # EV-REDLABEL-006 — Cap for REFORMULABLE_LABELS_2_PLUS (replaces ISRAELI_RED_LABELS_2_PLUS).
 # Only counts labels NOT in endemic categories toward the >=2 trigger.

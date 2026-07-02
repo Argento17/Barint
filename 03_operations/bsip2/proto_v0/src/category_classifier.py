@@ -10,6 +10,8 @@ A product that contains milk is not necessarily a dairy product;
 a product that contains juice is not necessarily a beverage.
 """
 
+import re
+
 CATEGORIES = [
     "whole_food_fat",
     "snack_bar_granola",
@@ -18,6 +20,7 @@ CATEGORIES = [
     "dairy_protein",
     "cereal",
     "sauce_spread",
+    "chocolate",
     "default",
 ]
 
@@ -58,7 +61,88 @@ CATEGORY_SIGNALS = {
         ("טפנד", 0.9), ("ממרח שוקולד", 0.95), ("הלב", 0.4),
         ("פסטה", 0.4), ("ציר", 0.7),
     ],
+    # TASK-455 / EV-REDLABEL-013 — dedicated chocolate bucket (bars + tablets).
+    # Deliberately does NOT raise the bare "שוקולד" token — that stays at its existing
+    # 0.3 weight inside snack_bar_granola/dessert unchanged (chocolate-coated granola
+    # bars and chocolate mousse must keep winning on their own stronger format signals,
+    # zero regression risk to those 11 live categories). Chocolate wins on high-
+    # confidence FORMAT markers (explicit dark/milk/white chocolate naming, tablet
+    # form, praline form, couverture, gianduja) PLUS compositional cocoa markers
+    # (cocoa butter/mass/solids — legally definitional of chocolate). Both are gated
+    # by CHOCOLATE_FORMAT_GATE below (mirrors the beverage liquid-gate pattern in
+    # this file): the whole "chocolate" score is suppressed to 0 whenever the name
+    # carries a competing FORMAT noun from another category (cake/cookie/bar/wafer/
+    # cereal-ball/etc.) — TASK-455 cross-category regression testing on all 11 live
+    # corpora (803 products) found 108 false positives (choc-chip cookies, choc-
+    # coated cakes, choc protein bars, choc granola balls, a cocoa-flavored cheese
+    # spread) before this gate was added; zero after.
+    "chocolate": [
+        ("שוקולד מריר", 1.1),       # dark chocolate
+        ("שוקולד חלב", 1.1),        # milk chocolate
+        ("שוקולד לבן", 1.05),       # white chocolate
+        ("טבלת שוקולד", 0.97),      # chocolate tablet (explicit tablet form)
+        ("פרלין", 0.9), ("פרלינים", 0.9),  # pralines
+        ("קוברטורה", 0.85),         # couverture chocolate
+        ("גיאנדויה", 0.85),         # gianduja
+        # Compositional cocoa markers — legally definitional of chocolate (a product
+        # cannot be labeled שוקולד in Israel without cocoa butter/cocoa mass/cocoa
+        # solids). Only reached at all when CHOCOLATE_FORMAT_GATE passes (see below),
+        # so these no longer need to out-weigh whole_food_fat on their own merit for
+        # products carrying a competing format noun — the gate removes those before
+        # this scoring is even considered.
+        ("חמאת קקאו", 1.25),        # cocoa butter
+        ("עיסת קקאו", 1.25),        # cocoa mass/paste
+        ("מסת קקאו", 1.25),         # cocoa mass (alt. spelling)
+        ("מוצקי קקאו", 1.0),        # cocoa solids
+        ("אבקת קקאו", 0.9),         # cocoa powder
+        ("שוקולד", 0.3),            # bare "chocolate" — UNCHANGED weight (parity with
+                                     # snack_bar_granola/dessert's existing 0.3 signal;
+                                     # never the sole discriminator for this bucket).
+    ],
 }
+
+# Cocoa-percentage regex pattern (e.g. "70% קקאו", "85% מריר") — checked separately in
+# classify_category() since CATEGORY_SIGNALS only supports literal substring match.
+CHOCOLATE_COCOA_PERCENT_PATTERN = r"\d{2,3}\s*%\s*(קקאו|מריר|חלב)"
+
+# Chocolate format gate — matched against the product NAME ONLY (not ingredient
+# text). Mirrors BEVERAGE_LIQUID_GATE_KEYWORDS / PLANT_MILK_SOLID_EXCLUSIONS in this
+# file: a real chocolate bar/tablet's name either (a) carries no competing format
+# noun at all (countline brands: Twix/Snickers/Bounty/Lindt Excellence — name is
+# just the brand + flavor), or (b) is an explicit tablet/bar-of-chocolate name. Any
+# of these FORMAT nouns in the name means the product's primary identity is a
+# DIFFERENT shelf that happens to use chocolate as a component/coating/flavor —
+# derived directly from the TASK-455 cross-category regression scan (803 products,
+# 11 live categories): every one of the 108 false positives found carried one of
+# these words. Zero chocolate bar/tablet in the 58-product corpus carries any of them.
+CHOCOLATE_FORMAT_EXCLUSION_WORDS = [
+    "עוגה", "עוגת", "עוגות", "עוגיות", "עוגי",   # cake / cookies (all inflections seen)
+    "קוקיס",                                      # cookies (loanword)
+    "ביסקוטי", "ביסקוויט",                        # biscotti / biscuit
+    "וופל",                                       # wafer
+    "חטיף חלבון",                                 # protein bar (explicit — bare "חטיף"
+                                                   # alone is NOT excluded, see below)
+    "חטיף דגנים", "חטיפי דגנים",                  # cereal/granola bar
+    "חטיף שיבולת שועל",                           # oat bar
+    "חטיף תמר", "חטיפי תמר",                      # date bar
+    "חטיף קידס",                                  # kids' snack bar line
+    "קורני", "כורני",                             # "corny"-style granola bar line
+    "מוזלי", "גרנולה",                            # muesli / granola
+    "כדורי דגנים", "כדורי", "צדפי דגנים", "צדפי",  # cereal balls/shells (kids' cereal)
+    "קראנץ", "קרמוגית", "מרבה", "פתי בר",         # cookie/wafer product-line brand names
+    "משקה שוקו", "חלב שוקו",                       # chocolate milk drink
+    "דגני בוקר", "קורנפלקס",                       # breakfast cereal
+    "גבינת",                                       # cheese (cocoa-flavored cheese spread)
+    "נייטשר פרוטאין",                              # protein-bar brand line
+    "עוג.", "עוג ",                                # truncated retail listing of "עוגה/עוגיות"
+                                                    # (e.g. "עוג. שוקולד צ'יפס מצופות")
+]
+
+# Bare "חטיף" is deliberately NOT in the exclusion list above — the chocolate BARS
+# shelf itself is named with חטיף (Twix/Snickers/Bounty/Click are all "חטיף שוקולד..."
+# in Hebrew retail naming). It is excluded only in the specific compounds above
+# (חטיף חלבון / חטיף דגנים / חטיף שיבולת שועל / חטיף תמר) which are unambiguous
+# non-chocolate bar formats.
 
 # These signals are matched against the product NAME ONLY, not ingredient text.
 # Rationale: a snack bar that contains milk is not a dairy product;
@@ -186,12 +270,30 @@ def classify_category(product: dict) -> dict:
     scores = {cat: 0.0 for cat in CATEGORIES}
     matched_signals = {cat: [] for cat in CATEGORIES}
 
+    # TASK-455: chocolate format gate — evaluated BEFORE any chocolate scoring is
+    # applied. Mirrors the beverage liquid-gate pattern in this file. If the name
+    # carries a competing format noun, the entire chocolate dimension (both the
+    # CATEGORY_SIGNALS full-text loop below AND the cocoa-percent regex) is skipped
+    # for this product. See CHOCOLATE_FORMAT_EXCLUSION_WORDS for the regression-
+    # derived word list and rationale.
+    chocolate_format_gate_open = not any(ex in name for ex in CHOCOLATE_FORMAT_EXCLUSION_WORDS)
+
     # Full-text signals (name + ingredient text)
     for cat, signals in CATEGORY_SIGNALS.items():
+        if cat == "chocolate" and not chocolate_format_gate_open:
+            continue
         for keyword, weight in signals:
             if keyword in search_text:
                 scores[cat] += weight
                 matched_signals[cat].append(keyword)
+
+    # TASK-455: chocolate cocoa-percentage regex signal (e.g. "70% קקאו", "85% מריר").
+    # Checked against the product name only — this labeling convention appears on
+    # chocolate bar/tablet packaging, not on chocolate-flavored adjacent products.
+    # Gated the same as the CATEGORY_SIGNALS loop above.
+    if chocolate_format_gate_open and re.search(CHOCOLATE_COCOA_PERCENT_PATTERN, name):
+        scores["chocolate"] += 0.9
+        matched_signals["chocolate"].append("cocoa_percent_pattern")
 
     # Name-only signals — beverage and dairy_protein to prevent ingredient-text leakage
     for cat, signals in CATEGORY_SIGNALS_NAME_ONLY.items():
