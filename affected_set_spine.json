@@ -1,0 +1,99 @@
+{
+  "flag_overrides": {
+    "BARI_D4_SCORE_V1": "on"
+  },
+  "shadow_verdict": "MOVEMENT",
+  "shadow_exit_code": 1,
+  "affected": [
+    {
+      "corpus": "cereals",
+      "class": "published",
+      "n": 63,
+      "moved": 11,
+      "grade_changes": 1,
+      "max_abs_move": 4.0,
+      "shelf": "cereals"
+    },
+    {
+      "corpus": "cheese",
+      "class": "published",
+      "n": 59,
+      "moved": 10,
+      "grade_changes": 2,
+      "max_abs_move": 4.0,
+      "shelf": "cheese"
+    },
+    {
+      "corpus": "hard_cheeses",
+      "class": "candidate",
+      "n": 37,
+      "moved": 10,
+      "grade_changes": 2,
+      "max_abs_move": 2.0,
+      "shelf": "hard_cheeses"
+    },
+    {
+      "corpus": "hummus",
+      "class": "published",
+      "n": 69,
+      "moved": 2,
+      "grade_changes": 2,
+      "max_abs_move": 2.2,
+      "shelf": "hummus_shelfrel_002"
+    },
+    {
+      "corpus": "maadanim",
+      "class": "published",
+      "n": 200,
+      "moved": 68,
+      "grade_changes": 11,
+      "max_abs_move": 6.0,
+      "shelf": null
+    },
+    {
+      "corpus": "milk",
+      "class": "frozen",
+      "n": 20,
+      "moved": 4,
+      "grade_changes": 1,
+      "max_abs_move": 4.0,
+      "shelf": "milk"
+    },
+    {
+      "corpus": "snack_bars",
+      "class": "frozen",
+      "n": 53,
+      "moved": 7,
+      "grade_changes": 0,
+      "max_abs_move": 2.0,
+      "shelf": "snacks"
+    },
+    {
+      "corpus": "yogurt",
+      "class": "candidate",
+      "n": 88,
+      "moved": 6,
+      "grade_changes": 3,
+      "max_abs_move": 6.4,
+      "shelf": null
+    }
+  ],
+  "affected_shelves": [
+    "cereals",
+    "cheese",
+    "hard_cheeses",
+    "hummus_shelfrel_002",
+    "milk",
+    "snacks"
+  ],
+  "affected_no_config": [
+    {
+      "corpus": "maadanim",
+      "reason": "no matching page_generator config (deferred/bespoke or not yet shelved)"
+    },
+    {
+      "corpus": "yogurt",
+      "reason": "no matching page_generator config (deferred/bespoke or not yet shelved)"
+    }
+  ]
+}

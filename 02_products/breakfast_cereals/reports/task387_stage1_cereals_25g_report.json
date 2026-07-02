@@ -1,0 +1,566 @@
+{
+  "_meta": {
+    "task": "TASK-387",
+    "stage": "1 — re-score check",
+    "flag": "BARI_GRAN_SUGAR_25G_V1",
+    "generated": "2026-06-24T04:32:55.617637+00:00",
+    "run_id_off": "run_cereals_task387_off",
+    "run_id_on": "run_cereals_task387_25g",
+    "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+    "corpus_count": 63,
+    "curated_count": 20,
+    "flags": {
+      "BARI_GRAN_SUGAR_25G_V1": "varies (A=off / B=on)",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_RECAL_P0": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SHELF_RELATIVE_V1": "off"
+    }
+  },
+  "grade_distributions": {
+    "live_cereals_frontend_v2": {
+      "B": 2,
+      "C": 7,
+      "D": 10,
+      "E": 1
+    },
+    "flag_off": {
+      "B": 2,
+      "C": 7,
+      "D": 10,
+      "E": 1
+    },
+    "flag_on": {
+      "B": 2,
+      "C": 7,
+      "D": 9,
+      "E": 2
+    }
+  },
+  "verification": {
+    "v1_drift_check": {
+      "pass": false,
+      "drift_movers": 6,
+      "drift_grade_movers": 0,
+      "movers": [
+        {
+          "barcode": "7297488199590",
+          "live_score": 61.8,
+          "live_grade": "C",
+          "off_score": 59.0,
+          "off_grade": "C",
+          "delta": -2.8,
+          "grade_moved": false
+        },
+        {
+          "barcode": "7296073642046",
+          "live_score": 56.2,
+          "live_grade": "C",
+          "off_score": 55.4,
+          "off_grade": "C",
+          "delta": -0.8,
+          "grade_moved": false
+        },
+        {
+          "barcode": "7290107647731",
+          "live_score": 55.0,
+          "live_grade": "C",
+          "off_score": 54.3,
+          "off_grade": "C",
+          "delta": -0.7,
+          "grade_moved": false
+        },
+        {
+          "barcode": "7290107647854",
+          "live_score": 47.7,
+          "live_grade": "D",
+          "off_score": 46.8,
+          "off_grade": "D",
+          "delta": -0.9,
+          "grade_moved": false
+        },
+        {
+          "barcode": "7290112495433",
+          "live_score": 41.0,
+          "live_grade": "D",
+          "off_score": 43.0,
+          "off_grade": "D",
+          "delta": 2.0,
+          "grade_moved": false
+        },
+        {
+          "barcode": "7613030979647",
+          "live_score": 30.2,
+          "live_grade": "E",
+          "off_score": 32.2,
+          "off_grade": "E",
+          "delta": 2.0,
+          "grade_moved": false
+        }
+      ]
+    },
+    "v2_sugar_on_movers": {
+      "total_movers": 4,
+      "grade_movers": 1,
+      "movers": [
+        {
+          "barcode": "7296073705567",
+          "name": "טבעות דגנים בטעם דבש",
+          "sugar_g": 28.0,
+          "score_off": 46.0,
+          "grade_off": "D",
+          "score_on": 41.0,
+          "grade_on": "D",
+          "delta": -5.0,
+          "grade_moved": false,
+          "binding_cap_on": 50,
+          "caps_fired_on": [
+            "HIGH_SUGAR_25G_PLUS",
+            "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+            "ISRAELI_RED_LABEL_1_SUGAR",
+            "NOVA_PROXY_3_PROCESSED"
+          ]
+        },
+        {
+          "barcode": "72968",
+          "name": "דגני בוקר סיני מיניס",
+          "sugar_g": 25.0,
+          "score_off": 55.0,
+          "grade_off": "C",
+          "score_on": 50.0,
+          "grade_on": "C",
+          "delta": -5.0,
+          "grade_moved": false,
+          "binding_cap_on": 50,
+          "caps_fired_on": [
+            "HIGH_SUGAR_25G_PLUS",
+            "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+            "ISRAELI_RED_LABEL_1_SUGAR",
+            "NOVA_PROXY_3_PROCESSED"
+          ]
+        },
+        {
+          "barcode": "7296073642022",
+          "name": "דגני בוקר טבעות דבש לל\"ג",
+          "sugar_g": 25.6,
+          "score_off": 41.8,
+          "grade_off": "D",
+          "score_on": 40.0,
+          "grade_on": "D",
+          "delta": -1.8,
+          "grade_moved": false,
+          "binding_cap_on": 50,
+          "caps_fired_on": [
+            "HIGH_SUGAR_25G_PLUS",
+            "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+            "ISRAELI_RED_LABEL_1_SUGAR",
+            "NOVA_PROXY_3_PROCESSED"
+          ]
+        },
+        {
+          "barcode": "7296073705574",
+          "name": "ריבועי דגנים עם קינמון",
+          "sugar_g": 26.0,
+          "score_off": 36.8,
+          "grade_off": "D",
+          "score_on": 32.0,
+          "grade_on": "E",
+          "delta": -4.8,
+          "grade_moved": true,
+          "binding_cap_on": 50,
+          "caps_fired_on": [
+            "HIGH_SUGAR_25G_PLUS",
+            "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+            "ISRAELI_RED_LABEL_1_SUGAR",
+            "NOVA_PROXY_3_PROCESSED"
+          ]
+        }
+      ]
+    },
+    "v3_corpus_isolation": {
+      "foreign_category_movers": 0,
+      "cereal_non_curated_movers": 0,
+      "isolation_pass": true,
+      "details": [
+        {
+          "barcode": "7290011131388",
+          "category": "?",
+          "sugar_g": 30.0,
+          "score_off": 43.0,
+          "grade_off": "D",
+          "score_on": 42.0,
+          "grade_on": "D",
+          "delta": -1.0,
+          "category_resolved": "?"
+        },
+        {
+          "barcode": "7290011668587",
+          "category": "?",
+          "sugar_g": 25.0,
+          "score_off": 38.0,
+          "grade_off": "D",
+          "score_on": 33.0,
+          "grade_on": "E",
+          "delta": -5.0,
+          "category_resolved": "?"
+        }
+      ]
+    },
+    "v4_cross_category_isolation_bread": {
+      "result": "SKIPPED — bread BSIP1 dir not found; scope-guard code confirmed in score_engine.py:2345"
+    },
+    "v5_token_scan": {
+      "foreign_tokens_fired": 3,
+      "isolation_pass": false,
+      "hits": [
+        {
+          "barcode": "5900020036407",
+          "rule": "SNACK_BAR_RED_SUGAR_LABEL",
+          "fired": true
+        },
+        {
+          "barcode": "7290017894928",
+          "rule": "SNACK_BAR_RED_SUGAR_LABEL",
+          "fired": true
+        },
+        {
+          "barcode": "7290017894904",
+          "rule": "SNACK_BAR_RED_SUGAR_LABEL",
+          "fired": true
+        }
+      ]
+    }
+  },
+  "full_20_curated_table": [
+    {
+      "barcode": "5010029000061",
+      "name": "דגני בוקר ויטביקס",
+      "live_score": 74.7,
+      "live_grade": "B",
+      "off_score": 74.7,
+      "off_grade": "B",
+      "on_score": 74.7,
+      "on_grade": "B",
+      "sugar_g": 4.2,
+      "binding_cap_on": 94.8,
+      "caps_applied_on": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7297488098688",
+      "name": "פצפוצי אורז ללת\"ס",
+      "live_score": 67.3,
+      "live_grade": "B",
+      "off_score": 67.3,
+      "off_grade": "B",
+      "on_score": 67.3,
+      "on_grade": "B",
+      "sugar_g": null,
+      "binding_cap_on": 94.8,
+      "caps_applied_on": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7297488199590",
+      "name": "פצפוצי אורז תפוח",
+      "live_score": 61.8,
+      "live_grade": "C",
+      "off_score": 59.0,
+      "off_grade": "C",
+      "on_score": 59.0,
+      "on_grade": "C",
+      "sugar_g": 3.8,
+      "binding_cap_on": 94.8,
+      "caps_applied_on": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7296073642046",
+      "name": "קורנפלקס ללא גלוטן",
+      "live_score": 56.2,
+      "live_grade": "C",
+      "off_score": 55.4,
+      "off_grade": "C",
+      "on_score": 55.4,
+      "on_grade": "C",
+      "sugar_g": 8.0,
+      "binding_cap_on": 94.8,
+      "caps_applied_on": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "5900020012814",
+      "name": "דגני בוקר נסקוויק",
+      "live_score": 55.0,
+      "live_grade": "C",
+      "off_score": 55.0,
+      "off_grade": "C",
+      "on_score": 55.0,
+      "on_grade": "C",
+      "sugar_g": 22.4,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "72968",
+      "name": "דגני בוקר סיני מיניס",
+      "live_score": 55.0,
+      "live_grade": "C",
+      "off_score": 55.0,
+      "off_grade": "C",
+      "on_score": 50.0,
+      "on_grade": "C",
+      "sugar_g": 25.0,
+      "binding_cap_on": 50,
+      "caps_applied_on": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "5900020036407",
+      "name": "ליון דגני שוקולד וקרמל",
+      "live_score": 55.0,
+      "live_grade": "C",
+      "off_score": 55.0,
+      "off_grade": "C",
+      "on_score": 55.0,
+      "on_grade": "C",
+      "sugar_g": 24.7,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290107647731",
+      "name": "דגני בוקר קוקומן חום לבן",
+      "live_score": 55.0,
+      "live_grade": "C",
+      "off_score": 54.3,
+      "off_grade": "C",
+      "on_score": 54.3,
+      "on_grade": "C",
+      "sugar_g": 19.6,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290017894911",
+      "name": "טבעות דגנים שיבולת שועל",
+      "live_score": 50.0,
+      "live_grade": "C",
+      "off_score": 50.0,
+      "off_grade": "C",
+      "on_score": 50.0,
+      "on_grade": "C",
+      "sugar_g": 22.0,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290017894928",
+      "name": "צדפי דגנים טעם שוקולד",
+      "live_score": 47.0,
+      "live_grade": "D",
+      "off_score": 47.0,
+      "off_grade": "D",
+      "on_score": 47.0,
+      "on_grade": "D",
+      "sugar_g": 22.0,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290107647854",
+      "name": "דגני בוקר שוגי",
+      "live_score": 47.7,
+      "live_grade": "D",
+      "off_score": 46.8,
+      "off_grade": "D",
+      "on_score": 46.8,
+      "on_grade": "D",
+      "sugar_g": 16.4,
+      "binding_cap_on": 94.8,
+      "caps_applied_on": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7296073705567",
+      "name": "טבעות דגנים בטעם דבש",
+      "live_score": 46.0,
+      "live_grade": "D",
+      "off_score": 46.0,
+      "off_grade": "D",
+      "on_score": 41.0,
+      "on_grade": "D",
+      "sugar_g": 28.0,
+      "binding_cap_on": 50,
+      "caps_applied_on": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7296073705550",
+      "name": "כדורי דגנים טעם שוקו",
+      "live_score": 46.0,
+      "live_grade": "D",
+      "off_score": 46.0,
+      "off_grade": "D",
+      "on_score": 46.0,
+      "on_grade": "D",
+      "sugar_g": 22.0,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290112495433",
+      "name": "דגני בוקר דליפקאן",
+      "live_score": 41.0,
+      "live_grade": "D",
+      "off_score": 43.0,
+      "off_grade": "D",
+      "on_score": 43.0,
+      "on_grade": "D",
+      "sugar_g": 18.5,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7290017894904",
+      "name": "כדורי דגנים טעם שוקולד",
+      "live_score": 43.0,
+      "live_grade": "D",
+      "off_score": 43.0,
+      "off_grade": "D",
+      "on_score": 43.0,
+      "on_grade": "D",
+      "sugar_g": 22.0,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "8445291638839",
+      "name": "צ'יריוס בטעם דבש ושקדים",
+      "live_score": 42.5,
+      "live_grade": "D",
+      "off_score": 42.5,
+      "off_grade": "D",
+      "on_score": 42.5,
+      "on_grade": "D",
+      "sugar_g": 22.4,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7296073642022",
+      "name": "דגני בוקר טבעות דבש לל\"ג",
+      "live_score": 41.8,
+      "live_grade": "D",
+      "off_score": 41.8,
+      "off_grade": "D",
+      "on_score": 40.0,
+      "on_grade": "D",
+      "sugar_g": 25.6,
+      "binding_cap_on": 50,
+      "caps_applied_on": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7296073705574",
+      "name": "ריבועי דגנים עם קינמון",
+      "live_score": 36.8,
+      "live_grade": "D",
+      "off_score": 36.8,
+      "off_grade": "D",
+      "on_score": 32.0,
+      "on_grade": "E",
+      "sugar_g": 26.0,
+      "binding_cap_on": 50,
+      "caps_applied_on": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "3387390525960",
+      "name": "דגני בוקר קראנץ'",
+      "live_score": 35.5,
+      "live_grade": "D",
+      "off_score": 35.5,
+      "off_grade": "D",
+      "on_score": 35.5,
+      "on_grade": "D",
+      "sugar_g": 24.9,
+      "binding_cap_on": 55,
+      "caps_applied_on": [
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "barcode": "7613030979647",
+      "name": "טריקס דגנים בטעם פירות",
+      "live_score": 30.2,
+      "live_grade": "E",
+      "off_score": 32.2,
+      "off_grade": "E",
+      "on_score": 32.2,
+      "on_grade": "E",
+      "sugar_g": 29.9,
+      "binding_cap_on": 50,
+      "caps_applied_on": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED",
+        "ADDITIVE_MARKERS_3_PLUS"
+      ]
+    }
+  ]
+}

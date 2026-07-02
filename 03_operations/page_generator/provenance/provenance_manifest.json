@@ -1,0 +1,510 @@
+{
+ "_doc": "TASK-406 per-published-file provenance. Round-trip score verification = de-chain re-shadow.",
+ "engine_head_at_record": "c38bc6fad",
+ "d4_patch_commit": "361748722",
+ "records": {
+  "bread_frontend_v3.json": {
+   "served_file": "bread_frontend_v3.json",
+   "exists": true,
+   "meta_run_id": null,
+   "n_products": 29,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\bread.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\bread\\bsip2_outputs\\run_bread_conform_001\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "products",
+   "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [
+    "NULL_meta_run_id"
+   ],
+   "status": "GAP_SOFT:NULL_meta_run_id"
+  },
+  "brined_cheeses_frontend_v2.json": {
+   "served_file": "brined_cheeses_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "run_brined_005",
+   "n_products": 36,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\brined_cheeses.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_brined_cheeses_002\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\brined_cheeses\\bsip2_outputs\\run_brined_005\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_brined_005",
+   "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "off",
+    "BARI_GRAD_SODIUM_V1": "on",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "off",
+    "BARI_GLASSBOX_D5D6": "off",
+    "BARI_GLASSBOX_W15": "off",
+    "BARI_GLASSBOX_W2": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "on",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "cakes_hard_cookies_frontend_v1.json": {
+   "served_file": "cakes_hard_cookies_frontend_v1.json",
+   "exists": true,
+   "meta_run_id": "run_cakes_shelfrel_001",
+   "n_products": 65,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\cakes.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\cakes_hard_cookies\\bsip2_outputs\\run_cakes_shelfrel_001\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_cakes_shelfrel_001",
+   "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "cereals_frontend_v2.json": {
+   "served_file": "cereals_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "run_cereals_task387_25g",
+   "n_products": 20,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\cereals.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_cereals_task387_25g",
+   "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAN_SUGAR_25G_V1": "on",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "cheese_frontend_v4.json": {
+   "served_file": "cheese_frontend_v4.json",
+   "exists": true,
+   "meta_run_id": null,
+   "n_products": 53,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\cheese.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_004\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "products",
+   "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [
+    "NULL_meta_run_id"
+   ],
+   "status": "GAP_SOFT:NULL_meta_run_id"
+  },
+  "chocolate_bars_frontend_v1.json": {
+   "served_file": "chocolate_bars_frontend_v1.json",
+   "exists": true,
+   "meta_run_id": null,
+   "n_products": 23,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\chocolate_bars.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\fresh_rescore_task391_20260624_113405\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "products",
+   "flag_vector": {
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_FIBER_FERMENT_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_PROTEIN_BAR_V1": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [
+    "NULL_meta_run_id"
+   ],
+   "status": "GAP_SOFT:NULL_meta_run_id"
+  },
+  "chocolate_tablets_frontend_v1.json": {
+   "served_file": "chocolate_tablets_frontend_v1.json",
+   "exists": true,
+   "meta_run_id": null,
+   "n_products": 35,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\chocolate_tablets.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\fresh_rescore_task391_20260624_113405\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "products",
+   "flag_vector": {
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_FIBER_FERMENT_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_PROTEIN_BAR_V1": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [
+    "NULL_meta_run_id"
+   ],
+   "status": "GAP_SOFT:NULL_meta_run_id"
+  },
+  "cookies_coffee_frontend_v2.json": {
+   "served_file": "cookies_coffee_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "run_cookies_005+run_cakes_001_cookies",
+   "n_products": 119,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\cookies_coffee.json",
+   "corpus_dirs": [
+    "C:\\\\Bari\\\\03_operations\\\\bsip1\\\\run_cookies_001\\\\output",
+    "C:\\\\Bari\\\\03_operations\\\\bsip1\\\\run_cakes_001\\\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": null,
+   "bsip1_dir_exists": false,
+   "run_products_dir": "C:\\\\Bari\\\\02_products\\\\cookies_coffee\\\\bsip2_outputs\\\\run_cookies_005\\\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_cookies_005+run_cakes_001_cookies",
+   "flag_vector": {
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "granola_frontend_v2.json": {
+   "served_file": "granola_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "run_granola_task385_25g",
+   "n_products": 22,
+   "config_match": "category_token",
+   "config": "03_operations\\page_generator\\configs\\granola.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cereals_005\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": null,
+   "bsip1_dir_exists": false,
+   "run_products_dir": "C:\\Bari\\02_products\\breakfast_cereals\\bsip2_outputs\\run_cereals_008\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_granola_task385_25g",
+   "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "hard_cheeses_frontend_v2.json": {
+   "served_file": "hard_cheeses_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "run_hc_redlabel_v2_001",
+   "n_products": 23,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\hard_cheeses.json",
+   "corpus_dirs": [
+    "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hard_cheeses_003_shelfrel\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_hard_cheeses_003_shelfrel",
+   "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "on",
+    "BARI_HC002_NOVA1": "on",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "hummus_frontend_v5.json": {
+   "served_file": "hummus_frontend_v5.json",
+   "exists": true,
+   "meta_run_id": "run_hummus_shelfrel_002",
+   "n_products": 57,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\hummus_shelfrel_002.json",
+   "corpus_dirs": [
+    "C:\\Bari\\02_products\\hummus\\canonical_bsip1"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\02_products\\hummus\\canonical_bsip1",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\hummus\\intelligence_bsip2\\run_hummus_shelfrel_002\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_hummus_shelfrel_002",
+   "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_TASK144_FIXES": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "juices_frontend_v3.json": {
+   "served_file": "juices_frontend_v3.json",
+   "exists": true,
+   "meta_run_id": "run_juices_shelfrel_001",
+   "n_products": 17,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\juices.json",
+   "corpus_dirs": [
+    "C:\\Bari\\02_products\\juices\\bsip1_outputs"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\02_products\\juices\\bsip1_outputs",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\juices\\bsip2_outputs\\run_juices_yohananof_002\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_juices_shelfrel_001",
+   "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_TASK144_FIXES": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "milk_frontend_v1.json": {
+   "served_file": "milk_frontend_v1.json",
+   "exists": true,
+   "meta_run_id": "run_005_headpin",
+   "n_products": 18,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\milk.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\milk_and_alternatives\\intelligence_bsip2\\run_006_shelfrel_refreeze\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "run_005_headpin",
+   "flag_vector": {
+    "BARI_RECAL_P0": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "protein_combined_frontend_v2.json": {
+   "served_file": "protein_combined_frontend_v2.json",
+   "exists": true,
+   "meta_run_id": "protein_bars_task365_rescore_20260621_134052",
+   "n_products": 32,
+   "config_match": "category_token",
+   "config": "03_operations\\page_generator\\configs\\protein_bars.json",
+   "corpus_dirs": [
+    "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": null,
+   "bsip1_dir_exists": false,
+   "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "protein_bars_task365_rescore_20260621_134052",
+   "flag_vector": {
+    "BARI_PROTEIN_BAR_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_FAT_TECH_V1": "off",
+    "BARI_GLASSBOX_W4": "off",
+    "BARI_FIBER_FERMENT_V1": "off"
+   },
+   "d4_in_flags": false,
+   "problems_hard": [],
+   "problems_soft": [],
+   "status": "REPRODUCIBLE_PENDING_RESHADOW"
+  },
+  "snacks_frontend_v5.json": {
+   "served_file": "snacks_frontend_v5.json",
+   "exists": true,
+   "meta_run_id": null,
+   "n_products": 21,
+   "config_match": "baseline_json",
+   "config": "03_operations\\page_generator\\configs\\snacks.json",
+   "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output"
+   ],
+   "corpus_exists": true,
+   "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output",
+   "bsip1_dir_exists": true,
+   "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\run_snack_bars_001\\products",
+   "run_products_dir_exists": true,
+   "run_id_resolved": "score_bars_task362_20260620_143230",
+   "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_D4_SCORE_V1": "on"
+   },
+   "d4_in_flags": true,
+   "problems_hard": [],
+   "problems_soft": [
+    "NULL_meta_run_id"
+   ],
+   "status": "GAP_SOFT:NULL_meta_run_id"
+  }
+ }
+}

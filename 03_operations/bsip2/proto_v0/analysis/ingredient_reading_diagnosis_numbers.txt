@@ -1,0 +1,211 @@
+================================================================================
+BARI INGREDIENT READING DIAGNOSIS
+Generated: 2026-06-25T12:28:18.279575+00:00
+Gold set:  C:\Bari\03_operations\bsip2\proto_v0\analysis\matrix_gold_set_v1.json
+================================================================================
+
+Total products in gold set:           58
+Products with ingredient text:        57
+
+────────────────────────────────────────────────────────────────────────────────
+TASK 1: BUG-TYPE FREQUENCY ANALYSIS
+────────────────────────────────────────────────────────────────────────────────
+  Harmful bug fires (product skipped, whole grain LOST):
+    Products affected: 31 / 57
+    Items affected:    92
+
+  Bug-type breakdown:
+    ALLERGEN_PLUS_PCT
+      (מכיל ...) paren AND a percentage in the same item — THE PRIMARY BUG
+      Products: 32  |  Items: 46
+      Examples:
+        [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+        [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+        [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+
+    DOUBLE_PAREN_PCT
+      Two or more parenthetical groups with a pct in one — fires sub_match
+      Products: 31  |  Items: 49
+      Examples:
+        [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+        [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+          ITEM: שבבי שוקולד מריר מעולה (7%) (סויה)
+        [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+
+    PCT_ONLY_PAREN
+      (54%) alone — sub_text='54%', no real sub-ingredients
+      Products: 30  |  Items: 90
+      Examples:
+        [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+        [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+          ITEM: שבבי שוקולד מריר מעולה (7%) (סויה)
+        [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+          ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+
+    CURLY_OR_BRACKET
+      { } or [ ] used for sub-lists (not standard Hebrew label format)
+      Products: 2  |  Items: 2
+      Examples:
+        [7290112199942] גרנולה תותים ללת"ס
+          ITEM: ממתיק [Truvia] ממתיקים (אריתריתול, גליקוזידים של סטיביול)
+        [7290117382868] טורטיה כוסמין
+          ITEM: תערובת קמחים (מכיל גלוטן) {קמח חיטה (46%), קמח כוסמין מלא (5%)}
+
+    MULTILEVEL_NESTING
+      Nested parentheses ((...))
+      Products: 10  |  Items: 12
+      Examples:
+        [574141] לחם חיטה מלא
+          ITEM: קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח, 62.2% מהלחם)
+        [7290119040568] עוגת קראנץ אגוזים
+          ITEM: מילוי בטעם שוקולד (10%) (ממרח בטעם שוקולד, סוכר, שמן סויה, קמח סויה, אבקת קקאו, מתחלב (לציטין סויה), שמן דקלים, חומר טעם וריח, מלח)
+        [7296073431916] עוגת מאפין בטעם תפוז
+          ITEM: מרגרינה (סויה) (חומר משמר (E202))
+
+  Harmful-bug item examples (whole grain LOST):
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה  (item_pct=54.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה  (item_pct=7.0%)
+      ITEM: שבבי שוקולד מריר מעולה (7%) (סויה)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה  (item_pct=60.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה  (item_pct=3.0%)
+      ITEM: דבש (3%)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה  (item_pct=60.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה  (item_pct=2.0%)
+      ITEM: סירופ מייפל (2%)
+
+────────────────────────────────────────────────────────────────────────────────
+TASK 2: PERCENTAGE PHRASINGS INVENTORY
+────────────────────────────────────────────────────────────────────────────────
+  BARE_PCT — standalone (54%) or 54% with no denominator qualifier
+    Unique items: 86
+    Examples:
+      פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+      שבבי שוקולד מריר מעולה (7%) (סויה)
+      פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+      דבש (3%)
+
+  PCT_PRODUCT_WEIGHT — X% מהמוצר / X% ממשקל המוצר
+    Unique items: 3
+    Examples:
+      קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים, 58% מהמוצר)
+      קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר)
+      קמח חיטת כוסמין בהיר (70% מתכולת הגרעין — 38% מהמוצר הסופי — מכיל גלוטן)
+
+  PCT_FLOUR_WEIGHT — X% מהקמחים / X% מסך הקמחים  ← WRONG denominator for product-weight calc
+    Unique items: 6
+    Examples:
+      קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם)
+      קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח, 62.2% מהלחם)
+      קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים, 58% מהמוצר)
+      קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר)
+
+  PCT_WITHIN_PARENT — percentage inside a real sub-list parenthetical
+    Unique items: 13
+    Examples:
+      קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם)
+      קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח, 62.2% מהלחם)
+      קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים, 58% מהמוצר)
+      קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר)
+
+────────────────────────────────────────────────────────────────────────────────
+TASK 3: STATED_PCT EXTRACTION ACCURACY
+────────────────────────────────────────────────────────────────────────────────
+  Items where a percentage is present in text:
+    Correctly captured by probe:        36
+    Lost to bug (item skipped):         92
+    Flour-denominator (excluded):        6
+    Pct-loss rate:                       71.9%
+
+  Items lost to bug (probe marks as composite_parent, skips in marker extraction):
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה  (pct=54.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה  (pct=7.0%)
+      ITEM: שבבי שוקולד מריר מעולה (7%) (סויה)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה  (pct=60.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה  (pct=3.0%)
+      ITEM: דבש (3%)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה  (pct=60.0%)
+      ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה  (pct=2.0%)
+      ITEM: סירופ מייפל (2%)
+
+  Items with מהקמחים denominator (different basis, should NOT be used as product-weight):
+    [574615] קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם)
+    [574141] קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח, 62.2% מהלחם)
+    [7290017947464] קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים, 58% מהמוצר)
+    [7290018500644] קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר)
+
+────────────────────────────────────────────────────────────────────────────────
+TASK 4: WHOLE / REFINED QUALIFIER COVERAGE
+────────────────────────────────────────────────────────────────────────────────
+  Items with whole qualifiers (מלא/מלאה/מלאים) as seen by BSIP1:  47
+  Items with refined qualifiers (לבן/לבנה/בהיר) as seen by BSIP1: 1
+  Whole-qualifier items LOST by probe bug:                         29
+  T1 products where FIRST ingredient is lost by probe bug:         9
+
+  BSIP1 behavior: BSIP1 _parse_ingredients_ordered splits at depth=0 only (no sub-composite expansion). It sees פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן) as a SINGLE item. CORRECT behavior: whole qualifier is visible, position=1 intact.
+
+  BSIP2 probe behavior: BSIP2 probe expand_composites fires sub_match on the FIRST paren group containing %. For items like X (54%) (מכיל גלוטן): sub_match captures (54%), sub_text='54%'. is_composite_parent=True → item SKIPPED in marker extraction. The whole oat/spelt/wheat DISAPPEARS from the marker list entirely.
+
+  T1 products with first ingredient lost (CRITICAL — whole grain at position 1):
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+      FIRST ITEM: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+      FIRST ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה
+      FIRST ITEM: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [7290112199942] גרנולה תותים ללת"ס
+      FIRST ITEM: פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן)
+    [7290112199959] גרנולה פירות ללת"ס
+      FIRST ITEM: פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן)
+    [7290013740823] קרקר כוסמין טבעי
+      FIRST ITEM: קמח כוסמין מלא (37%) (גלוטן)
+
+  Sample whole-qualifier items as BSIP1 sees them (intact):
+    [16000423534] פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+    [16000548404] פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548503] פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [7290112199942] פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן)
+
+  Sample whole-qualifier items LOST by probe:
+    [16000423534] קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה
+      פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן)
+    [16000548404] קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+      פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [16000548503] קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה
+      פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן)
+    [7290112199942] גרנולה תותים ללת"ס
+      פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן)
+
+────────────────────────────────────────────────────────────────────────────────
+VERDICT
+────────────────────────────────────────────────────────────────────────────────
+  BSIP1 reading failure:       NO
+  BSIP2 probe reading failure: YES
+
+  BSIP1 (_parse_ingredients_ordered) does NOT have this bug. It treats each
+  depth-0 comma-separated item atomically, so allergen declarations and
+  percentages remain part of the ingredient token — the whole qualifier is
+  preserved and correctly visible to downstream logic. BSIP2 probe
+  (expand_composites in matrix_signal_probe_v2.py) has the confirmed bug:
+  sub_match fires on the FIRST paren group that contains %, which includes
+  (54%) standalone and (מכיל גלוטן) — neither is a composite sub-recipe. This
+  marks the item is_composite_parent=True and skips it in marker extraction,
+  causing whole-grain ingredients at position 1 to be silently dropped. The
+  fix: before treating an item as composite, verify that (a) the parenthetical
+  sub_text is NOT an allergen declaration and (b) NOT a bare percentage alone.
+  Only expand when the paren content contains comma-separated sub-ingredients.
+
+================================================================================
+END OF REPORT
+================================================================================

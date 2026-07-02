@@ -6,6 +6,14 @@ import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-
 import { magnesiumProducts } from "@/lib/comparisons/magnesium-page-data";
 import { cn } from "@/lib/utils";
 
+
+function stripCardDigits(text: string): string {
+  return text
+    .replace(/[0-9]+(?:[.,][0-9]+)?/g, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+([,.—–])/g, "$1")
+    .trim();
+}
 type Props = {
   href: string;
   description: string;
@@ -15,7 +23,7 @@ type Props = {
 const MAGNESIUM_INSIGHT_LINES = [
   "המספר הגדול על האריזה לא אומר כמה מגנזיום מגיע לגוף — הצורה הכימית קובעת",
   "ציטראט וביסגליצינט נספגים טוב יותר מאוקסיד — אבל מינון נמוך גם בצורה טובה ייתן פחות",
-  "ארבעה מוצרים עם 450–520 מ\"ג יסודי ביום — מעל הגבול העליון המומלץ לתוספים (IOM)",
+  "ארבעה מוצרים עם מינון מעל הגבול העליון המומלץ לתוספים (IOM)",
   "שלושה מוצרים ללא ציון כי התווית לא מאפשרת חישוב מינון אמין",
 ] as const;
 
@@ -23,7 +31,7 @@ export function FeaturedMagnesiumIntelligenceCard({ href, description }: Props) 
   const insightLines = magnesiumProducts
     .map((product) => product.insightLine)
     .filter((l) => Boolean(l) && !l.startsWith("[PLACEHOLDER]"));
-  const lines = insightLines.length > 0 ? insightLines : MAGNESIUM_INSIGHT_LINES;
+  const lines = (insightLines.length > 0 ? insightLines : MAGNESIUM_INSIGHT_LINES).map(stripCardDigits);
 
   const bCount = magnesiumProducts.filter((p) => p.grade === "B").length;
   const cCount = magnesiumProducts.filter((p) => p.grade === "C").length;
@@ -41,7 +49,7 @@ export function FeaturedMagnesiumIntelligenceCard({ href, description }: Props) 
         badge="מעודכן"
         categoryTags="מגנזיום · תוספי תזונה · ישראל"
         title="קונים תוסף מגנזיום? הצורה הכימית היא שקובעת כמה מהמגנזיום ייספג בגוף — הרבה יותר מהספרה הגדולה על האריזה"
-        description={description}
+        description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
           { value: magnesiumProducts.length, label: "מוצרים נותחו" },

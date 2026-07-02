@@ -1,0 +1,86 @@
+{
+  "run_id": "rescrape_conflicts_20260625",
+  "run_date": "2026-06-25T12:22:57.998375+00:00",
+  "off_used": false,
+  "source": "shufersal_direct_scrape",
+  "products": [
+    {
+      "barcode": "7290108506624",
+      "category": "cheese_spreads",
+      "conflict_description": "name=גבינת עזים 32% שומן (GOAT) but scraped ingredients=חלב כבשים מפוסטר (SHEEP)",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%92%D7%91%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%99%D7%94/%D7%92%D7%91%D7%99%D7%A0%D7%95%D7%AA-%D7%91%D7%A7%D7%A8-%D7%95%D7%A6%D7%90%D7%9F-%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%95%D7%AA/%D7%92%D7%91%D7%99%D7%A0%D7%AA-%D7%A2%D7%96%D7%99%D7%9D-32%25-%D7%A9%D7%95%D7%9E%D7%9F/p/P_7290108506624",
+      "fetched_at": "2026-06-25T12:22:48.385687+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "fetch_error": null,
+      "fresh_name": "גבינת עזים 32% שומן",
+      "fresh_ingredients": "חלב כבשים מפוסטר, מלח, מגביר חוזק E509 תרבית לקטית ,מקריש ציפוי(אינו למאכל ) חומר משמר E202 E235 ,צבע מאכל E172",
+      "fresh_nutrition": null,
+      "nutrition_plausibility_issues": [],
+      "resolution": "ingredients_were_right",
+      "resolution_notes": "CONFIRMED CONFLICT: Fresh Shufersal page STILL shows name='גבינת עזים' (goat) but ingredients_text first item='חלב כבשים מפוסטר' (pasteurised sheep milk). The product is a SHEEP cheese sold under a GOAT label — this is a real mislabeling issue on the Shufersal page. Ingredients are ground truth (the label declares sheep milk). Action: correct canonical_name_he to remove 'עזים' claim, OR mark as 'goat_label_sheep_milk' and flag. The name conflict is CONFIRMED from the direct scrape — it is not a scrape error.",
+      "recommended_action": "correct_data",
+      "provenance": {
+        "source": "shufersal_direct_scrape",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%97%D7%9C%D7%91-%D7%95%D7%91%D7%99%D7%A6%D7%99%D7%9D/%D7%92%D7%91%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A2%D7%93%D7%A0%D7%99%D7%99%D7%94/%D7%92%D7%91%D7%99%D7%A0%D7%95%D7%AA-%D7%91%D7%A7%D7%A8-%D7%95%D7%A6%D7%90%D7%9F-%D7%9E%D7%99%D7%95%D7%97%D7%93%D7%95%D7%AA/%D7%92%D7%91%D7%99%D7%A0%D7%AA-%D7%A2%D7%96%D7%99%D7%9D-32%25-%D7%A9%D7%95%D7%9E%D7%9F/p/P_7290108506624",
+        "fetched_at": "2026-06-25T12:22:48.385687+00:00",
+        "client": "rescrape_conflicts_v2.py/direct_urllib",
+        "verification_status": "candidate",
+        "off_used": false
+      }
+    },
+    {
+      "barcode": "4504656",
+      "category": "cakes_hard_cookies",
+      "conflict_description": "name=מיני שטרודל תפוח עץ (APPLE) but scraped ingredients=מלית חצילים (24%) (EGGPLANT filling)",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9E%D7%90%D7%A4%D7%99%D7%9D-%D7%95%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%94/%D7%91%D7%95%D7%A8%D7%A7%D7%A1-%D7%95%D7%9E%D7%90%D7%A4%D7%94-%D7%9E%D7%9C%D7%95%D7%97/%D7%9E%D7%99%D7%A0%D7%99-%D7%A9%D7%98%D7%A8%D7%95%D7%93%D7%9C-%D7%AA%D7%A4%D7%95%D7%97-%D7%A2%D7%A5/p/P_4504656",
+      "fetched_at": "2026-06-25T12:22:51.388446+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "fetch_error": null,
+      "fresh_name": "מיני שטרודל תפוח עץ",
+      "fresh_ingredients": "קמח חיטה(גלוטן), מלית חצילים (24%)(חצילים, מלח), מרגרינה (סויה) (צבע מאכל (בטא קרוטן)), מים, שמנת צמחית (מים, סוכר, שומן דקלים מוקשה , מלח, חומרי טעם וריח, מייצבים (E466, E461, E410, E407), מתחלבים (E322, E435, E471), צבע מאכל (E160b)), שמן סויה, שמן קוקוס, ביצים, עמילני תירס מעובדים (E1450, E1414, E1442), מלח, סוכר, סיבים תזונתיים (אינולין), מתפיחים (E450, E500), שום, חומרי טעם וריח, עמילן תיר ס, מווסתי חומציות (E333, E330), חומר משמר (E202), צבע מאכל (E171)",
+      "fresh_nutrition": null,
+      "nutrition_plausibility_issues": [],
+      "resolution": "ingredients_were_right",
+      "resolution_notes": "DISCARD: Fresh Shufersal page STILL shows eggplant filling. Name 'מיני שטרודל תפוח עץ' does not match. Product identity unresolvable from the retail page alone; physical label would be needed. Missing-data rule applies — discard.",
+      "recommended_action": "discard",
+      "provenance": {
+        "source": "shufersal_direct_scrape",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9E%D7%90%D7%A4%D7%99%D7%9D-%D7%95%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%94/%D7%91%D7%95%D7%A8%D7%A7%D7%A1-%D7%95%D7%9E%D7%90%D7%A4%D7%94-%D7%9E%D7%9C%D7%95%D7%97/%D7%9E%D7%99%D7%A0%D7%99-%D7%A9%D7%98%D7%A8%D7%95%D7%93%D7%9C-%D7%AA%D7%A4%D7%95%D7%97-%D7%A2%D7%A5/p/P_4504656",
+        "fetched_at": "2026-06-25T12:22:51.388446+00:00",
+        "client": "rescrape_conflicts_v2.py/direct_urllib",
+        "verification_status": "candidate",
+        "off_used": false
+      }
+    },
+    {
+      "barcode": "4504670",
+      "category": "cakes_hard_cookies",
+      "conflict_description": "name=מיני שטרודל שקדים (ALMOND) but scraped ingredients=גבינה קשה כחושה (12%) + זיתים ירוקים (CHEESE/OLIVE)",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9E%D7%90%D7%A4%D7%99%D7%9D-%D7%95%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%94/%D7%91%D7%95%D7%A8%D7%A7%D7%A1-%D7%95%D7%9E%D7%90%D7%A4%D7%94-%D7%9E%D7%9C%D7%95%D7%97/%D7%9E%D7%99%D7%A0%D7%99-%D7%A9%D7%98%D7%A8%D7%95%D7%93%D7%9C-%D7%91%D7%9E%D7%99%D7%9C%D7%95%D7%99-%D7%A9%D7%A7%D7%93%D7%99%D7%9D/p/P_4504670",
+      "fetched_at": "2026-06-25T12:22:54.653919+00:00",
+      "http_status": 200,
+      "reachable": true,
+      "fetch_error": null,
+      "fresh_name": "מיני שטרודל במילוי שקדים",
+      "fresh_ingredients": "קמח חיטה (גלוטן), מרגרינה (סויה)(צבע מאכל (בטא קרוטן)), מים, גבינה קשה כחושה (12%)(חלב), שמנת חמוצה, שמנת צמחית (מים, סוכר, שומן דקל ים מוקשה, מלח, חומרי טעם וריח, מייצבים (E466, E461, E410, E407), מתחלבים (E322, E435, E471), צבע מאכל (E160b)), ביצים, זיתים ירוקים (2%), שמן קוקוס, שמן סויה, עמילנים מעובדים (E1442, E1414, E1450, E1412), מלח, סוכר, סיבים תזונתיים (אינולין), מתפיחים (E500 ,E450), חומרי טעם וריח, עמילן תירס, חומר משמר (E202), מווסתי חומציות (E333, E330), צבע מאכל (E171).",
+      "fresh_nutrition": null,
+      "nutrition_plausibility_issues": [],
+      "resolution": "ingredients_were_right",
+      "resolution_notes": "DISCARD: Fresh page STILL shows cheese/olive ingredients for this barcode. has_cheese=True, has_olive=True. Product identity unresolvable from Shufersal data. Discard per missing-data rule.",
+      "recommended_action": "discard",
+      "provenance": {
+        "source": "shufersal_direct_scrape",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9C%D7%97%D7%9E%D7%99%D7%9D-%D7%95%D7%9E%D7%95%D7%A6%D7%A8%D7%99-%D7%9E%D7%90%D7%A4%D7%94/%D7%9E%D7%90%D7%A4%D7%99%D7%9D-%D7%95%D7%A2%D7%95%D7%92%D7%95%D7%AA-%D7%9E%D7%94%D7%9E%D7%90%D7%A4%D7%94/%D7%91%D7%95%D7%A8%D7%A7%D7%A1-%D7%95%D7%9E%D7%90%D7%A4%D7%94-%D7%9E%D7%9C%D7%95%D7%97/%D7%9E%D7%99%D7%A0%D7%99-%D7%A9%D7%98%D7%A8%D7%95%D7%93%D7%9C-%D7%91%D7%9E%D7%99%D7%9C%D7%95%D7%99-%D7%A9%D7%A7%D7%93%D7%99%D7%9D/p/P_4504670",
+        "fetched_at": "2026-06-25T12:22:54.653919+00:00",
+        "client": "rescrape_conflicts_v2.py/direct_urllib",
+        "verification_status": "candidate",
+        "off_used": false
+      }
+    }
+  ]
+}

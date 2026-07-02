@@ -1,0 +1,354 @@
+{
+  "run_id": "run_task394_r3_measure",
+  "task": "TASK-394",
+  "generated": "2026-06-24T13:23:39.819226+00:00",
+  "flag_state": {
+    "BARI_R3_BISCUIT_NARROW_V1": "off (baseline) vs on (treatment)",
+    "BARI_FAT_TECH_V1": "on",
+    "all_others": "off"
+  },
+  "scope": {
+    "shelves_scored": 16,
+    "shelf_slugs": [
+      "bread",
+      "brined_cheeses",
+      "cakes_hard_cookies",
+      "cereals",
+      "cheese",
+      "chocolate_bars",
+      "chocolate_tablets",
+      "cookies_coffee",
+      "granola",
+      "hard_cheeses",
+      "hummus",
+      "juices",
+      "milk",
+      "protein_bars",
+      "protein_combined",
+      "snacks"
+    ],
+    "total_products_scored": 586,
+    "total_unique_barcodes": 572
+  },
+  "diff_summary": {
+    "total_products_with_any_change": 14,
+    "category_changes": 14,
+    "grade_changes": 2,
+    "score_only_changes": 12,
+    "diff_table_path": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\diff_table.json"
+  },
+  "grade_distribution": {
+    "OFF": {
+      "S": 1,
+      "A": 14,
+      "B": 55,
+      "C": 96,
+      "D": 130,
+      "E": 218
+    },
+    "ON": {
+      "S": 1,
+      "A": 14,
+      "B": 55,
+      "C": 96,
+      "D": 132,
+      "E": 216
+    }
+  },
+  "per_shelf_grade_diffs": {
+    "bread": {
+      "A": {
+        "off": 5,
+        "on": 5,
+        "delta": 0
+      },
+      "B": {
+        "off": 20,
+        "on": 20,
+        "delta": 0
+      },
+      "C": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      },
+      "S": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      }
+    },
+    "brined_cheeses": {
+      "B": {
+        "off": 14,
+        "on": 14,
+        "delta": 0
+      },
+      "C": {
+        "off": 21,
+        "on": 21,
+        "delta": 0
+      },
+      "D": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      }
+    },
+    "cakes_hard_cookies": {
+      "C": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "D": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "E": {
+        "off": 63,
+        "on": 63,
+        "delta": 0
+      }
+    },
+    "cereals": {
+      "B": {
+        "off": 2,
+        "on": 2,
+        "delta": 0
+      },
+      "C": {
+        "off": 7,
+        "on": 7,
+        "delta": 0
+      },
+      "D": {
+        "off": 10,
+        "on": 10,
+        "delta": 0
+      },
+      "E": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      }
+    },
+    "cheese": {
+      "B": {
+        "off": 14,
+        "on": 14,
+        "delta": 0
+      },
+      "C": {
+        "off": 9,
+        "on": 9,
+        "delta": 0
+      },
+      "D": {
+        "off": 27,
+        "on": 27,
+        "delta": 0
+      },
+      "E": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      }
+    },
+    "chocolate_bars": {
+      "E": {
+        "off": 23,
+        "on": 23,
+        "delta": 0
+      }
+    },
+    "chocolate_tablets": {
+      "C": {
+        "off": 6,
+        "on": 6,
+        "delta": 0
+      },
+      "D": {
+        "off": 9,
+        "on": 9,
+        "delta": 0
+      },
+      "E": {
+        "off": 20,
+        "on": 20,
+        "delta": 0
+      }
+    },
+    "cookies_coffee": {
+      "C": {
+        "off": 10,
+        "on": 10,
+        "delta": 0
+      },
+      "D": {
+        "off": 24,
+        "on": 26,
+        "delta": 2
+      },
+      "E": {
+        "off": 85,
+        "on": 83,
+        "delta": -2
+      }
+    },
+    "granola": {},
+    "hard_cheeses": {},
+    "hummus": {
+      "B": {
+        "off": 2,
+        "on": 2,
+        "delta": 0
+      },
+      "C": {
+        "off": 27,
+        "on": 27,
+        "delta": 0
+      },
+      "D": {
+        "off": 27,
+        "on": 27,
+        "delta": 0
+      },
+      "E": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      }
+    },
+    "juices": {
+      "A": {
+        "off": 6,
+        "on": 6,
+        "delta": 0
+      },
+      "D": {
+        "off": 7,
+        "on": 7,
+        "delta": 0
+      },
+      "E": {
+        "off": 4,
+        "on": 4,
+        "delta": 0
+      }
+    },
+    "milk": {
+      "A": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      },
+      "B": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "C": {
+        "off": 5,
+        "on": 5,
+        "delta": 0
+      },
+      "D": {
+        "off": 8,
+        "on": 8,
+        "delta": 0
+      },
+      "E": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      }
+    },
+    "protein_bars": {
+      "B": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "C": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      },
+      "D": {
+        "off": 9,
+        "on": 9,
+        "delta": 0
+      },
+      "E": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      }
+    },
+    "protein_combined": {
+      "B": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "C": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      },
+      "D": {
+        "off": 12,
+        "on": 12,
+        "delta": 0
+      },
+      "E": {
+        "off": 3,
+        "on": 3,
+        "delta": 0
+      }
+    },
+    "snacks": {
+      "B": {
+        "off": 1,
+        "on": 1,
+        "delta": 0
+      },
+      "C": {
+        "off": 4,
+        "on": 4,
+        "delta": 0
+      },
+      "D": {
+        "off": 2,
+        "on": 2,
+        "delta": 0
+      },
+      "E": {
+        "off": 14,
+        "on": 14,
+        "delta": 0
+      }
+    }
+  },
+  "safety_assertions": {
+    "SA1_pass": true,
+    "SA2_pass": true,
+    "SA2_note": "Inline check had a bug (req362_override_trace not in lightweight score_shelf result). SA2 verified externally by _t394_anchor_verify.py (all 14 biscuit-anchored) + _t394_ing_verify.py (all 14 no-confectionery-signal). See safety_assertions.json for full evidence.",
+    "SA3_2986065_moved": true,
+    "SA3_7290017894317_moved": true
+  },
+  "artifacts": {
+    "off_scores": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\off_scores.json",
+    "on_scores": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\on_scores.json",
+    "diff_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\diff_table.json",
+    "safety_assertions": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\safety_assertions.json",
+    "verification_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_task394_r3_measure\\verification_table.csv"
+  },
+  "engine_sha256": "a9cbadb320eb48f14413c2fd0a696b7dd6d2e07b5576a3095575b794aa8de2cc",
+  "router_sha256": "3c55f9f7cbe807deffc03b3b7856b0eed6ed8065ea13f330ebafe3a54f9cea42",
+  "signal_sha256": "e3e8c8641f059a925a1f087c4a926704e9e29ad5322c0a7d16c5dbdc996581c4",
+  "eval_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "off_used": false
+}

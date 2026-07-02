@@ -8,6 +8,7 @@ import {
 export const cerealsCategoryDefinition: ComparisonCategoryDefinition = {
   id: "breakfast-cereals",
   routePath: "/hashvaot/breakfast-cereals",
+  nameHe: "דגני בוקר",
   metadata: cerealsComparisonMetadata,
   getPageData: getCerealsPageData,
   getCorpusPayload: getCerealsCorpusPayload,

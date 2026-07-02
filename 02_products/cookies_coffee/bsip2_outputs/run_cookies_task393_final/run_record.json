@@ -1,0 +1,153 @@
+{
+  "run_id": "run_cookies_task393_final",
+  "task": "TASK-393 Stage 2.5 + TASK-394",
+  "category": "cookies_coffee",
+  "generated": "2026-06-24T13:35:50.580356+00:00",
+  "flag_state": {
+    "BARI_R3_BISCUIT_NARROW_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_D4_SCORE_V1": "off",
+    "BARI_HC_DAIRY_SATFAT_V1": "off",
+    "BARI_SHELF_RELATIVE_V1": "off"
+  },
+  "router_version": "router_v2.5",
+  "flag_rationale": "BARI_R3_BISCUIT_NARROW_V1 promoted to production-default ON by owner sign-off (TASK-394). This yields R3 for biscuit-anchored flavor-descriptor cookies: 2986065 and 7290017894317 stay biscuit/D instead of routing to snack_bar_granola/E. 313184 and 7290018893845 are co-signed biscuit-path E→D corrections. BARI_FAT_TECH_V1=on is the engine default since 2026-06-15.",
+  "baseline": {
+    "run_id": "cookies_coffee_frontend_v2.json (current live)",
+    "grade_distribution": {
+      "C": 10,
+      "D": 24,
+      "E": 85
+    },
+    "product_count": 119
+  },
+  "fresh_run": {
+    "products_in_baseline": 119,
+    "products_excluded": 6,
+    "no_corpus_match": 0,
+    "score_errors": 0,
+    "rescored": 119,
+    "grade_distribution": {
+      "C": 10,
+      "D": 26,
+      "E": 83
+    },
+    "score_stats": {
+      "min": 10,
+      "max": 59.8,
+      "median": 23.3,
+      "stdev": 12.84,
+      "n": 119,
+      "most_common_score": 18.4,
+      "most_common_count": 5,
+      "histogram": {
+        "10-19": 50,
+        "20-29": 26,
+        "30-39": 21,
+        "40-49": 12,
+        "50-59": 10
+      }
+    }
+  },
+  "grade_movers": {
+    "count": 2,
+    "movers": [
+      {
+        "barcode": "313184",
+        "name": "עוגיות גן חיות טעם וניל",
+        "old_score": 33.3,
+        "old_grade": "E",
+        "new_score": 35.3,
+        "new_grade": "D",
+        "score_delta": 2.0,
+        "grade_changed": true,
+        "driver": "binding_cap=72 | cap:NOVA_PROXY_4_ULTRA_PROCESSED | cap:ADDITIVE_MARKERS_3_PLUS | pen-5:MULTIPLE_ADDED_SUGAR_MARKERS | pen-5:HIGH_CAL_HIGH_SUGAR_SOFT",
+        "category": "biscuit",
+        "binding_cap": 72,
+        "nova": 4,
+        "context_flag": null,
+        "d4_score_penalty": 0
+      },
+      {
+        "barcode": "7290018893845",
+        "name": "פתי בר בטעם חמאה — צ'וקטה",
+        "old_score": 34.4,
+        "old_grade": "E",
+        "new_score": 36.4,
+        "new_grade": "D",
+        "score_delta": 2.0,
+        "grade_changed": true,
+        "driver": "binding_cap=55 | cap:ISRAELI_RED_LABEL_1_SUGAR | cap:NOVA_PROXY_4_ULTRA_PROCESSED | pen-5:MULTIPLE_ADDED_SUGAR_MARKERS | pen-5:HIGH_CAL_HIGH_SUGAR_SOFT",
+        "category": "biscuit",
+        "binding_cap": 55,
+        "nova": 4,
+        "context_flag": null,
+        "d4_score_penalty": 0
+      }
+    ]
+  },
+  "score_only_drifts": {
+    "count": 30,
+    "nonzero_drift_count": 30
+  },
+  "cross_category_isolation": {
+    "pass": false,
+    "foreign_hits": 22
+  },
+  "score_trace_check": {
+    "pass": true,
+    "mismatch_count": 0,
+    "mismatches": []
+  },
+  "distribution_assert": {
+    "pass": true,
+    "expected": {
+      "C": 10,
+      "D": 26,
+      "E": 83
+    },
+    "actual": {
+      "C": 10,
+      "D": 26,
+      "E": 83
+    }
+  },
+  "key_product_asserts": {
+    "313184": {
+      "pass": true
+    },
+    "7290018893845": {
+      "pass": true
+    },
+    "2986065": {
+      "pass": true
+    },
+    "7290017894317": {
+      "pass": true
+    }
+  },
+  "grade_changed_barcodes": [
+    "313184",
+    "7290018893845"
+  ],
+  "no_corpus_match": [],
+  "score_errors": [],
+  "engine_sha256": "a9cbadb320eb48f14413c2fd0a696b7dd6d2e07b5576a3095575b794aa8de2cc",
+  "signal_extractor_sha256": "e3e8c8641f059a925a1f087c4a926704e9e29ad5322c0a7d16c5dbdc996581c4",
+  "evaluation_scope_sha256": "59cabfd786b072b86f6b54379e955388c70aa6ddca60cdd4fdd7d4130257392f",
+  "router_sha256": "421dd4b8572fa8ea2865337d43c6131924a06c0e465357e861a6c0dc57c114cd",
+  "off_used": false,
+  "artifacts": {
+    "verification_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_task393_final\\verification_table.csv",
+    "grade_mover_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_task393_final\\grade_mover_table.json",
+    "score_drift_table": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_task393_final\\score_drift_table.json",
+    "cross_category_scan": "C:\\Bari\\02_products\\cookies_coffee\\bsip2_outputs\\run_cookies_task393_final\\cross_category_scan.json"
+  }
+}

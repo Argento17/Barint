@@ -1,0 +1,43 @@
+{
+  "slug": "chocolate_tablets",
+  "generated_at": "2026-06-25T00:00:00Z",
+  "task": "TASK-391",
+  "description": "Baseline manifest for chocolate_tablets (flat tablets). Shared BSIP0/BSIP1/BSIP2 corpus with chocolate_bars — both come from choc_bsip0_raw_20260621T093256.json (146 raw, Shufersal), run through fresh_rescore_task391.py to produce 121 scored products. The chocolate_tablet subpool (92 products) is selected by classify_chocolate() on product name: tablet markers (טבלת/טבלה/טבלאות) plus Milka/Lindt/Toblerone brands and default (non-countline = tablet). Live page displays 35/92 tablets; 57 not displayed (E-grade editorial curation). BSIP0 sha256: f2bf44c08c57c77e4b6c1ef7ab0c0cecda453ac871b22b8ae5085a938f025929. OFF check PASS.",
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output",
+  "bsip2_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\fresh_rescore_task391_20260624_113405\\products",
+  "bsip0_raw": "C:\\Bari\\02_products\\chocolate\\bsip0_outputs\\choc_bsip0_raw_20260621T093256.json",
+  "bsip0_sha256": "f2bf44c08c57c77e4b6c1ef7ab0c0cecda453ac871b22b8ae5085a938f025929",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\chocolate_tablets_frontend_v1.json",
+  "baseline_sha256": "f6d5556f01c8d189c9710b911b0e123a629aefafca090b825a4079d54b7de458",
+  "flag_vector": {
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_FIBER_FERMENT_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_PROTEIN_BAR_V1": "off"
+  },
+  "shelf_rel": null,
+  "engine_version": "proto_v0 (score_engine.py) v0.4.1",
+  "subpool": "chocolate_tablet",
+  "subpool_classifier": "classify_chocolate() in plausibility_gate.py — tablet markers on name_he + brand defaults",
+  "total_run_scored": 121,
+  "subpool_product_count": 92,
+  "live_product_count": 35,
+  "corpus_not_displayed_count": 57,
+  "corpus_not_displayed_reason": "E-grade editorial curation — 57 tablets scored E were not included in the live display page",
+  "verdict": "PASS",
+  "notes": [
+    "Shared BSIP1/BSIP2 run with chocolate_bars (run_id: fresh_rescore_task391_20260624_113405).",
+    "Bar/tablet split determined by classify_chocolate() on name_he — NOT a field in BSIP1 files.",
+    "57 tablets in corpus not displayed on live page (CORPUS_NOT_DISPLAYED) — all E-grade per editorial curation policy.",
+    "All products sourced from Shufersal direct scrape; OFF check PASS.",
+    "BARI_SHELF_RELATIVE_V1=on but shelf_rel calibration block is null — enrollment is by engine constants scope, not this flag alone."
+  ],
+  "verified_at": "2026-06-25T00:00:00Z"
+}

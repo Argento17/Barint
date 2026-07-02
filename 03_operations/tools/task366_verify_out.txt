@@ -1,0 +1,48 @@
+﻿======================================================================
+TASK-366 Track-V verification
+======================================================================
+
+[CHECK-5] Character count of new clause: 104
+  Limit: 120  Status: PASS
+
+[JSON-PARSE] protein_bars
+  Parse: PASS
+  E476 entries found: 2
+  hits with NEW clause: 2
+  hits with OLD clause: 0 PASS
+  hits with OTHER explanation: 0 ok
+
+[JSON-PARSE] chocolate_bars
+  Parse: PASS
+  E476 entries found: 3
+  hits with NEW clause: 3
+  hits with OLD clause: 0 PASS
+  hits with OTHER explanation: 0 ok
+
+[JSON-PARSE] chocolate_tablets
+  Parse: PASS
+  E476 entries found: 5
+  hits with NEW clause: 5
+  hits with OLD clause: 0 PASS
+  hits with OTHER explanation: 0 ok
+
+[JSON-PARSE] cookies_coffee
+  Parse: PASS
+  E476 entries found: 6
+  [HIT 1] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  [HIT 2] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  [HIT 3] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  [HIT 4] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  [HIT 5] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  [HIT 6] NEITHER new nor old clause -- explanation_he length=73
+    repr: "מחליף לציטין בשוקולד; EFSA ו-JECFA מסווגים כ'לא מוגדר'; ברמות שימוש בטוח."
+  hits with NEW clause: 0
+  hits with OLD clause: 0 PASS
+  hits with OTHER explanation: 6 WARN
+
+[DONE]

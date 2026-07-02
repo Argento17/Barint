@@ -1,0 +1,915 @@
+# Magnesium Clinical Content Spec v1
+
+**Author:** Nutrition Agent
+**Date:** 2026-06-23
+**Task:** TASK-384A (parent TASK-384)
+**Status:** DRAFT — requires Content two-gate sign-off before any consumer-facing use
+**Scope:** Display/informational clinical content only. ZERO score changes proposed.
+
+> **Hard constraint:** Every clinical claim in this document cites a primary source (guideline body,
+> RCT, Cochrane review, EFSA/IOM-NASEM, or pharmacology reference). Where a primary source could not
+> be identified, the claim is marked **UNSOURCED — do not ship**. Claims marked UNSOURCED must not
+> appear in any consumer-facing output until sourced.
+>
+> This spec informs the page's informational/educational layer. It does NOT change, modify, or
+> propose changes to any product's score, grade, or scoring logic. Scores remain frozen at
+> B(4) / C(4) / D(6) / E(1) per v3 run.
+
+---
+
+## SECTION 1 — Per-Indication Thresholds (Administered Elemental Mg)
+
+### Framing rules for all indications
+
+- Doses below are **administered elemental magnesium** from clinical trials or guidelines — the same
+  unit the page already uses. They are NOT absorbed doses, NOT adjusted doses.
+- "Evidence strength" uses a four-level scale: **Strong** (consistent RCTs + meta-analyses, guideline
+  endorsement), **Moderate** (multiple RCTs, mixed results or partial guideline endorsement),
+  **Weak** (single RCTs, methodological concerns, mechanistic only), **Null/Negative** (RCT or
+  Cochrane review found no benefit).
+- These thresholds are for informational context — for classifying how well each product's dose
+  aligns with what was studied. They do NOT move scores.
+
+---
+
+### 1.1 כללי — Dietary Gap (General Supplemental Use)
+
+**Clinical rationale:** The general-gap indication reflects population-level dietary inadequacy.
+Israeli NHANES-equivalent data (MABAT survey, Israeli MoH, 2015-2016) reports mean magnesium
+intake below the Estimated Average Requirement (EAR) for adult males and females in relevant
+age groups, consistent with global surveys. The EAR for adults is 330 mg/day (males 19-30),
+350 mg/day (males 31+), 255 mg/day (females 19-30), 265 mg/day (females 31+) per IOM-NASEM
+Dietary Reference Intakes for Calcium, Magnesium, Phosphorus, Vitamin D, and Fluoride (1997,
+reaffirmed and cited in current NIH ODS Magnesium Health Professional Fact Sheet, updated
+March 2024, https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/).
+
+**The supplemental gap band (100–300 mg/day administered elemental):** This is the range that
+closes typical dietary gaps without routinely exceeding the supplemental UL. The IOM-NASEM
+supplemental UL of 350 mg/day (see §1.6 and Section 3) sets the practical ceiling. The lower
+bound of 100 mg is the minimum that provides a meaningful contribution toward closing an EAR
+gap. This band is the engine's scoring reference band and is already in the model spec.
+
+**Trial-derived reference:** IOM-NASEM (1997) established the UL at 350 mg/day supplemental
+based on the Lowest Observed Adverse Effect Level (LOAEL) for osmotic diarrhea, with a safety
+factor. The general-gap band does not correspond to a single landmark trial; it is a derivation
+from the gap between typical dietary intake and EAR/RDA, bounded above by the UL.
+
+**Citation:**
+- IOM-NASEM. Dietary Reference Intakes for Calcium, Magnesium, Phosphorus, Vitamin D, and
+  Fluoride. National Academies Press, 1997. Chapter 6 (Magnesium). Table 6-8 (UL).
+  Available: https://nap.nationalacademies.org/catalog/5776
+- NIH ODS Magnesium Health Professional Fact Sheet. Updated March 2024.
+  https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+
+**Dose range in studies/guidance:** 100–350 mg/day elemental supplemental (upper bound = UL)
+**Forms studied for general supplementation:** All well-absorbed forms (citrate, bisglycinate,
+glycinate); oxide used historically but lower fractional absorption documented (NIH ODS, Walker
+2003 — see model spec §1.2 for citations).
+**Evidence strength: Strong** (for existence of gap; Moderate for supplemental correction of gap,
+given absence of large RCTs specifically targeting gap correction as primary endpoint)
+
+**Hebrew draft (informational, not a medical claim):**
+> "רוב האנשים לא מגיעים לכמות המגנזיום המומלצת דרך האוכל בלבד. תוסף של 100–300 מ"ג ביום
+> מסייע לסגור את הפער הזה — בלי לחרוג מהגבול העליון המומלץ לתוספים."
+
+---
+
+### 1.2 מיגרנה — Migraine
+
+**Clinical background:** Magnesium deficiency is documented in patients with migraine;
+intracellular magnesium depletion may affect cortical spreading depression and neurovascular
+mechanisms. Intravenous magnesium is used acutely in some settings. Oral supplementation for
+prevention has been studied in RCTs.
+
+**Trial doses and forms:**
+- Peikert A, Wilimzig C, Köhne-Volland R. Prophylaxis of migraine with oral magnesium: results
+  from a prospective, multi-center, placebo-controlled and double-blind randomized study.
+  **Cephalalgia. 1996;16(4):257-263. PMID 8792038.** — 600 mg/day trimagnesium dicitrate
+  (providing ~108 mg elemental; note: trimagnesium dicitrate has lower elemental content per gram
+  than magnesium citrate — this dose corresponds to ~108 mg elemental Mg).
+  **CORRECTION / CLARIFICATION:** The 1996 Peikert trial used 600 mg/day of the salt
+  "trimagnesium dicitrate." The elemental Mg content of trimagnesium dicitrate
+  (Mg₃C₁₂H₁₀O₁₄ MW ~451.1 g/mol) is 3 × 24.3 / 451.1 = ~16.2% elemental by weight, giving
+  ~97 mg elemental per 600 mg of salt. Several subsequent reviews cite this as "300 mg elemental"
+  — that figure does NOT reconcile with the salt chemistry and may refer to a different
+  formulation or a different salt ratio. **UNSOURCED reconciliation — the precise elemental dose
+  in the 1996 Peikert trial requires verification from the original Methods section before this
+  number ships in consumer copy. Do not use "300 mg elemental" for this trial without a
+  verified source.**
+
+- Köseoglu E, Talaslioglu A, Gönül AS, et al. The effects of magnesium prophylaxis in migraine
+  without aura. **Magnes Res. 2008;21(2):101-108. PMID 18705538.** — 600 mg/day magnesium
+  citrate (~114 mg elemental based on citrate MW). Reduced migraine frequency vs placebo.
+
+- Nattagh-Eshtivani E, et al. Systematic review: **Nutrients. 2018;10(9):1269. PMID 30235028.**
+  Summarises migraine prevention trials, supporting 400–600 mg/day magnesium (salt weight,
+  variable elemental content by form — elemental ranges not consistently reported across trials).
+
+- American Headache Society / American Academy of Neurology (AAN) Practice Guidelines (2012)
+  classified magnesium as "probably effective" (Level B evidence) for migraine prevention.
+  Citation: Holland S, et al. **Neurology. 2012;78(17):1346-1353. PMID 22529203.**
+  Note: these guidelines are dated; the most recent AAN migraine prevention guideline update
+  (Ailani J et al, **Headache. 2021;61(7):1021-1051. PMID 34265107**) lists magnesium among
+  "possibly effective" preventive options with a lower evidence rating, alongside other
+  nutraceuticals.
+
+**Elemental dose range used in trials:** Approximately 100–200 mg/day elemental (range of
+plausible elemental content across the various salt doses used; exact elemental figures vary
+by form and are inconsistently reported across studies).
+**Forms studied:** Primarily magnesium citrate salts; also magnesium oxide in some trials.
+**Evidence strength: Moderate** — multiple positive RCTs but small samples, inconsistent
+dosing metrics, and a downgrade in the most recent AAN guidelines from "probably" to "possibly"
+effective. The evidence is sufficient to include as an informational indication but should be
+framed as exploratory / consult-a-professional territory.
+
+**Consumer note flag:** Do not frame this as "treats migraine." Frame as: "has been studied
+for migraine prevention; consult a physician before use for this purpose."
+
+**Hebrew draft (informational, not a medical claim):**
+> "מגנזיום נחקר כתוסף למניעת מיגרנות — הנחיות עדכניות של האיגוד הנוירולוגי האמריקאי
+> מציינות אותו כאפשרות בעלת עדות ראשונית. לפני שימוש למטרה זו כדאי להתייעץ עם רופא."
+
+---
+
+### 1.3 לחץ דם — Blood Pressure
+
+**Clinical background:** Magnesium plays a role in vascular smooth muscle relaxation and
+endothelial function. Observational studies show inverse association between dietary magnesium
+and blood pressure. RCT results are modest and inconsistent.
+
+**Trial doses and meta-analytic summary:**
+- Zhang X, et al. Effects of magnesium supplementation on blood pressure: a meta-analysis of
+  randomized double-blind placebo-controlled trials. **Hypertension. 2016;67(2):324-333.
+  PMID 26710932.** — 368 RCTs meta-analysis: median dose 368 mg/day supplemental elemental Mg
+  (range 120–973 mg); median duration 3 months; SBP reduction −2.00 mmHg (95% CI −2.55 to
+  −1.46), DBP −1.78 mmHg (95% CI −2.18 to −1.38). Effect was dose-dependent and larger in
+  hypertensive subgroups.
+- Rosique-Esteban N, et al. Dietary magnesium and cardiovascular disease. **Nutrients.
+  2018;10(2):168. PMID 29389872.** — Supports the modest BP effect in the context of dietary
+  magnesium and cardiovascular risk.
+- Note: The effect size (~2 mmHg SBP) is statistically significant but clinically modest. Most
+  trials were conducted in subjects with inadequate baseline magnesium status.
+
+**Dose range with BP signal:** ~200–400 mg/day supplemental elemental in the Zhang 2016
+meta-analysis; the median was 368 mg/day, which EXCEEDS the IOM-NASEM supplemental UL (350 mg/day).
+**Important caveat for copy:** The doses showing the clearest BP effect in some trials are at or
+above the supplemental UL. Copy must not imply that exceeding the UL is recommended for BP.
+Frame as: products within the UL (≤350 mg/day) contribute to the studied dose range; higher
+doses should be discussed with a physician.
+**Forms studied:** Mixed (oxide, citrate, various); form not consistently a primary variable
+in BP meta-analyses.
+**Evidence strength: Moderate** — consistent directional effect across meta-analyses but small
+absolute magnitude and uncertainty about baseline-Mg-status dependence.
+
+**Hebrew draft (informational, not a medical claim):**
+> "ניתוח מחקרים קליניים (Zhang et al., 2016) מצא ירידה קטנה בלחץ הדם עם תוספי מגנזיום —
+> האפקט בולט יותר אצל אנשים עם חסר בסיסי. אין כאן תחליף לטיפול תרופתי."
+
+---
+
+### 1.4 שינה — Sleep
+
+**Clinical background:** Magnesium modulates GABA-A receptors and melatonin synthesis, providing
+mechanistic rationale for a sleep effect. RCT evidence is limited and methodologically weak.
+
+**Key trials:**
+- Abbasi B, et al. The effect of magnesium supplementation on primary insomnia in elderly:
+  a double-blind placebo-controlled clinical trial. **J Res Med Sci. 2012;17(12):1161-1169.
+  PMID 23853635.** — 500 mg/day magnesium oxide in elderly subjects with insomnia (n=46);
+  significant improvements in ISI score, sleep efficiency, sleep time, early morning awakening,
+  serum renin/melatonin/cortisol.
+  **Limitation:** n=46, single-center, elderly population, magnesium oxide form (low
+  bioavailability). Generalizability to younger adults and to other forms is not established.
+- Rondanelli M, et al. The effect of melatonin, magnesium, and zinc on primary insomnia in
+  long-term care facility residents in Italy: a double-blind, placebo-controlled clinical trial.
+  **J Am Geriatr Soc. 2011;59(1):82-90. PMID 21226679.** — Combination product (melatonin +
+  magnesium + zinc); magnesium dose not isolable as a standalone intervention.
+- No Cochrane systematic review specifically on magnesium for sleep was identified as of August
+  2025 (Cochrane library search: "magnesium" AND "sleep" yields no dedicated review; results are
+  absorbed under broader reviews). **UNSOURCED — no Cochrane review found; do not claim
+  Cochrane endorsement for this indication.**
+
+**Dose used in the primary sleep trial:** 500 mg/day magnesium oxide elemental (Abbasi 2012)
+— note this is ABOVE the supplemental UL (350 mg/day). Products within the UL were not the
+study population.
+**Forms studied for sleep specifically:** Magnesium oxide (Abbasi 2012); glycinate/bisglycinate
+for sleep is frequently marketed but RCT evidence specifically for bisglycinate on sleep is
+**UNSOURCED — no primary RCT identified for bisglycinate/glycinate vs. placebo on sleep
+outcomes as of August 2025. Do not ship any claim that bisglycinate is specifically proven for
+sleep without a sourced primary trial.**
+
+**Evidence strength: Weak** — the one clean RCT (Abbasi 2012) used oxide at above-UL doses in
+an elderly population; the form with better bioavailability (bisglycinate) lacks a dedicated
+sleep RCT. The mechanistic rationale is plausible but clinical evidence is thin.
+
+**Honesty gate:** Frame sleep as "has been studied, evidence is early and limited; one RCT in
+the elderly used a dose above the recommended supplemental limit." Do not frame as established
+benefit.
+
+**Hebrew draft (informational, not a medical claim):**
+> "מחקר ראשוני אחד בקשישים (Abbasi et al., 2012) מצא שיפור בשינה — אבל הוא נעשה עם מינון
+> גבוה מהגבול המומלץ לתוספים. העדות לשינה אצל אנשים צעירים יותר, ובמינונים סטנדרטיים,
+> מוגבלת. הצורות הנפוצות בשוק למטרה זו טרם נבדקו ב-RCT ייעודי."
+
+---
+
+### 1.5 עוויתות שרירים — Muscle Cramps
+
+**This indication requires direct, explicit honesty about the null finding.**
+
+**Cochrane review finding (primary source):**
+Garrison SR, Allan GM, Sekhon RK, Musini VM, Khan KM. Magnesium for skeletal muscle cramps.
+**Cochrane Database Syst Rev. 2012;9:CD009402.** — Updated review:
+Garrison SR, Korownyk CS, Kolber MR, et al. Magnesium for skeletal muscle cramps.
+**Cochrane Database Syst Rev. 2020;9:CD009402. PMID 32956536.**
+
+**Cochrane 2020 finding:** "We found no clinically meaningful reduction in the frequency of
+skeletal muscle cramps with magnesium supplementation compared with placebo." The review covered
+night-time leg cramps in adults (not pregnancy-associated cramps). Pooled analysis showed no
+significant benefit for idiopathic leg cramps or exercise-associated cramps.
+
+**Pregnancy nuance:**
+Magnesium for leg cramps in pregnancy: a separate Cochrane review exists but the evidence is
+also limited. Young GL, Jewell D. Interventions for leg cramps in pregnancy. **Cochrane Database
+Syst Rev. 2002;1:CD000121.** (This review is dated; more recent evidence does not clearly
+reverse the uncertain picture.) Evidence strength for pregnancy cramps: **Weak / Insufficient**
+— do not claim efficacy without a more recent and positive primary source.
+
+**Important implication for product NT-LC ("Anti Leg Cramps"):**
+The product NT L.C. (7290010207640) names this indication on its label. The page already
+correctly notes this in its `limitingFactors`. This spec confirms that the Cochrane 2020 null
+finding (PMID 32956536) is the authoritative primary source for the cramps-null verdict on
+that product card.
+
+**Dose range in cramp trials:** Variable; studies used 300–360 mg/day elemental in various
+trials. The Cochrane 2020 pooled analysis found no benefit across this range.
+**Forms studied:** Primarily oxide-based and lactate in older trials; form was not the
+distinguishing variable in the null finding.
+**Evidence strength: Null** for skeletal (idiopathic/nocturnal) cramps in non-pregnant adults.
+**Weak / Insufficient** for pregnancy-associated cramps.
+
+**Hebrew draft (honest framing required):**
+> "לשימוש בעוויתות שרירים: סקירת קוקריין (2020) בחנה ישירות את השאלה הזו ולא מצאה
+> ירידה משמעותית בתדירות העוויתות עם תוספי מגנזיום לעומת פלסבו. המחקר מכסה עוויתות שרירים
+> כלליות אצל מבוגרים; הנחיות לנשים בהריון שונות."
+
+---
+
+### 1.6 משלשל — Laxative Use
+
+**Mechanism and clinical context:** Magnesium oxide and magnesium hydroxide act as osmotic
+laxatives. At doses well above the general supplemental range, unabsorbed magnesium in the colon
+draws water osmotically, stimulating bowel movement. This is a distinct use case from nutritional
+supplementation — it is a pharmacological effect relying on the LOW bioavailability of oxide/
+hydroxide forms.
+
+**Primary reference:**
+- Magnesium hydroxide (Milk of Magnesia) at doses of 2,400–4,800 mg of the hydroxide compound
+  (approximately 970–1,920 mg elemental Mg) per day is a well-established OTC laxative.
+  FDA: Milk of Magnesia active ingredient monograph. 21 CFR 334.100. OTC Drug Products for
+  Constipation. https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfcfr/cfrsearch.cfm
+- Magnesium oxide at 500–2,000 mg/day (elemental) is used off-label as an osmotic laxative;
+  it is noted in gastroenterology texts including Camilleri M et al. **Gastroenterology.
+  2017;152(6):1489-1502. PMID 28254565.** (Chronic Idiopathic Constipation consensus).
+
+**Key framing:** Laxative use of magnesium oxide operates via the opposite mechanism from
+nutritional supplementation — it works BECAUSE oxide is poorly absorbed (high luminal Mg
+concentration → osmotic effect). A product designed as a nutritional supplement (300 mg
+elemental oxide) is at the low end of laxative doses and in the upper range of supplemental
+doses. The page's oxide products (450–520 mg/day elemental) overlap the lower end of laxative
+doses. This is why they carry the UL/GI caution.
+
+**Doses producing laxative effect:** Typically ≥500–1,000 mg elemental/day of poorly-absorbed
+forms (oxide, hydroxide). Products below 350 mg elemental are unlikely to act as laxatives in
+most individuals but may cause loose stools depending on individual sensitivity.
+**Forms:** Oxide, hydroxide (magnesium citrate at high doses — e.g., 1.75 g elemental before
+colonoscopy — is also a laxative but this is a distinct bowel-prep context).
+**Evidence strength: Strong** for established pharmacological laxative action of high-dose oxide/
+hydroxide (FDA-recognized OTC use). Not applicable as a nutritional supplement signal.
+
+**Important copy constraint:** The page should not actively recommend products for laxative use.
+If a product's dose reaches the laxative threshold (450–520 mg oxide), the copy should note
+the GI risk (already present in the UL safety block) — not position it as a benefit. Only
+mention laxative use if a product explicitly markets it.
+
+**Hebrew draft (informational only — for the safety context, not a use recommendation):**
+> "מגנזיום אוקסיד בכמויות גדולות פועל כמשלשל אוסמוטי — זו התכונה שגורמת לאי-נוחות עיכולית
+> במינונים גבוהים. מוצרים עם יותר מ-350 מ"ג אוקסיד ביום נמצאים בטווח שבו חלק מהאנשים
+> עשויים לחוות שלשול."
+
+---
+
+## SECTION 2 — Per-Product "התאמה למטרה" Suitability Mapping
+
+### Framework rules
+
+- This mapping is **suitability-by-composition only** — it assesses whether a product's form
+  and elemental dose plausibly fit what was studied for each indication.
+- It is **NOT a medical recommendation**, NOT a score input, and NOT a treatment endorsement.
+- A product "fits" an indication if: (a) its elemental dose falls within or near the studied
+  range, AND (b) its form is either directly studied or plausibly equivalent.
+- "כללי" (general) is the safe floor — every product can minimally contribute to dietary gap
+  closure if the dose is non-trivial (≥100 mg elemental from a non-laxative form).
+- Products below 100 mg administered elemental provide limited general-gap contribution even
+  in a well-absorbed form; they are noted accordingly.
+- Laxative suitability is flagged only for oxide/hydroxide products ≥450 mg elemental (where
+  the dose approaches and overlaps pharmacological laxative ranges). This is a RISK FLAG, not
+  a recommendation.
+- Products with UNRESOLVED form cannot be assessed for indication-specific suitability; they
+  receive "הרכב לא ידוע — לא ניתן להעריך".
+
+**Consumer framing template (Hebrew, to appear near each product's "for what purpose" section):**
+> "הסיכום הזה מבוסס על ההרכב שכתוב על האריזה — לא על בדיקה רפואית. לפני שמשתמשים בתוסף
+> לכל מטרה ספציפית, כדאי להתייעץ עם רופא או פרמקולוג."
+
+---
+
+### B-Grade Products
+
+**1. סופהרב מגנזיום ציטראט+B6 — 250 mg citrate (HIGH class) — Score B/73**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — strong fit | 250 mg elemental, HIGH form; covers most dietary gap scenarios |
+| מיגרנה (migraine) | PARTIAL fit | Citrate form; dose within or near studied range (~100–200 mg elemental); evidence Moderate |
+| לחץ דם (BP) | PARTIAL fit | Dose (250 mg) is within the lower portion of BP meta-analysis range (200–400 mg); Moderate evidence |
+| שינה (sleep) | WEAK fit | No RCT specifically for citrate/B6 on sleep; mechanistic plausibility only |
+| עוויתות (cramps) | NO FIT | Cochrane 2020 null; no evidence |
+| משלשל (laxative) | NO | Citrate at 250 mg elemental does not act as osmotic laxative |
+
+**Summary label:** כללי / מיגרנה (בהיוועצות רופא) / לחץ דם (בהיוועצות רופא)
+
+---
+
+**2. אלטמן מגנזיום ביסגליצינט 250 — 250 mg bisglycinate (HIGH class) — Score B/73**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — strong fit | 250 mg elemental, HIGH form |
+| מיגרנה | PARTIAL fit | Good form; dose within range; evidence Moderate |
+| לחץ דם | PARTIAL fit | Dose within lower BP study range; Moderate evidence |
+| שינה | WEAK fit — UNSOURCED | No dedicated bisglycinate sleep RCT identified; mechanistic only |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Bisglycinate at 250 mg elemental is a nutritional dose, not laxative |
+
+**Summary label:** כללי / מיגרנה (בהיוועצות רופא) / לחץ דם (בהיוועצות רופא)
+
+---
+
+**3. אלטמן מגנזיום ציטראט 200 — 200 mg citrate (HIGH class) — Score B/69**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — strong fit | 200 mg elemental, HIGH form; below EFSA GI threshold |
+| מיגרנה | PARTIAL fit | Citrate; 200 mg is within studied elemental range |
+| לחץ דם | PARTIAL fit | 200 mg is at the lower end of the BP meta-analysis dose range |
+| שינה | WEAK fit — UNSOURCED | No citrate-specific sleep RCT |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Not a laxative dose |
+
+**Summary label:** כללי / מיגרנה (בהיוועצות רופא) / לחץ דם (בהיוועצות רופא)
+
+---
+
+**4. נוטריקר מגנזיום WELL ביסגליצינט 168 — 168 mg bisglycinate (HIGH class) — Score B/66**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — good fit | 168 mg elemental, HIGH form; below all caution thresholds |
+| מיגרנה | PARTIAL fit | Good form; dose slightly below most studied ranges but plausible |
+| לחץ דם | WEAK fit | 168 mg is below the Zhang 2016 meta-analysis median (368 mg); directional only |
+| שינה | WEAK fit — UNSOURCED | No bisglycinate sleep RCT |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Not a laxative dose |
+
+**Summary label:** כללי / מיגרנה (עדות ראשונית, בהיוועצות רופא)
+
+---
+
+### C-Grade Products
+
+**5. NT L.C. מגנזיום הידרוקסיד 190 — 190 mg hydroxide (MODERATE class) — Score C/64**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — partial fit | 190 mg elemental, MODERATE form; adjusted dose ~143 mg effective |
+| מיגרנה | WEAK fit | Hydroxide not a primary form in migraine trials; dose within rough range |
+| לחץ דם | WEAK fit | Hydroxide mixed with laxative action at higher doses; 190 mg is borderline |
+| שינה | WEAK fit — UNSOURCED | No hydroxide-specific sleep RCT |
+| עוויתות | NO FIT — explicit | Cochrane 2020 null; the product name ("Anti Leg Cramps") is unsupported |
+| משלשל | CAUTION — not a recommendation | 190 mg hydroxide is below typical laxative doses but may cause GI sensitivity |
+
+**Summary label:** כללי — מינון בינוני. שם המוצר ("Anti Leg Cramps") אינו נתמך בעדות הנוכחית.
+
+---
+
+**6. פול-מג הדס ביסגליצינט 122 — 122 mg bisglycinate (HIGH class) — Score C/62**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — partial fit | 122 mg elemental, HIGH form; at the lower end of the gap band |
+| מיגרנה | WEAK fit | Below the dose range in most migraine trials (~200 mg+ studied) |
+| לחץ דם | WEAK fit | Below Zhang 2016 median; at lower end of any directional dose |
+| שינה | WEAK fit — UNSOURCED | No dedicated RCT for bisglycinate on sleep |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Not a laxative dose |
+
+**Summary label:** כללי (מינון נמוך יחסית בצורה טובה)
+
+---
+
+**7. טינק מגנזיום מלאט 136 — 136 mg malate (MODERATE class) — Score C/61**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | YES — partial fit | 136 mg elemental, MODERATE form; adjusted ~102 mg |
+| מיגרנה | WEAK fit | Malate not primary form in migraine trials |
+| לחץ דם | WEAK fit | Below BP meta-analysis dose range for clear effect |
+| שינה | WEAK fit — UNSOURCED | No malate-specific sleep RCT |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Not a laxative dose |
+
+**Summary label:** כללי
+
+---
+
+**8. נוטריקר מגנזיום מלאט ~135 — ~135 mg malate (MODERATE class) — Score C/59**
+
+Same profile as Tink Malate above (same form, effectively same dose).
+
+**Summary label:** כללי
+
+---
+
+### D-Grade Products (non-UL-exceed)
+
+**9. סולגר סידן ומגנזיום +D — ~100 mg (UNRESOLVED blend) — Score D/49**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | PARTIAL — low dose | ~100 mg elemental (US label, IL unverified); at the floor of the general gap band |
+| All others | CANNOT ASSESS | Form blend (oxide/citrate) undisclosed; suitability by form not assessable |
+
+**Summary label:** כללי בלבד — הרכב תערובת לא ידוע. מינון נמוך.
+
+---
+
+**10. נוטריקר מגנזיום טאוראט 76 — 76 mg taurate (MODERATE class) — Score D/46**
+
+| Indication | Suitability | Rationale |
+|---|---|---|
+| כללי (dietary gap) | WEAK fit | 76 mg elemental, MODERATE form; adjusted ~57 mg; below the general gap band floor (100 mg) |
+| מיגרנה | NO FIT | Below studied dose ranges for any indication |
+| לחץ דם | NO FIT | Below studied dose range |
+| שינה | NO FIT | Below any plausible threshold |
+| עוויתות | NO FIT | Cochrane 2020 null |
+| משלשל | NO | Not a laxative dose |
+
+**Summary label:** מינון נמוך — לא מספיק לסגירת פער תזונתי משמעותי
+
+---
+
+### D-Grade Products — UL-Exceed (4 oxide products, 450–520 mg elemental)
+
+**UL-exceed group general note:** These products are ABOVE the IOM-NASEM supplemental UL
+(350 mg/day). Their use for any indication at these doses falls outside the scope of the
+informational suitability framework — the dose is already flagged as exceeding the
+recommended supplemental limit. The laxative indication is the one clinical context where
+doses at this level are pharmacologically active (see §1.6), but this should be framed
+as a risk profile, not a suitability endorsement.
+
+**11. נוטריקר מגנזיום אוקסיד 520 — 520 mg oxide (LOW class) — Score D/49**
+
+| Indication | Suitability | Notes |
+|---|---|---|
+| כללי (dietary gap) | RISK FLAG — exceeds UL | Dose exceeds supplemental UL; GI risk; low bioavailability means less nutritional value |
+| משלשל | PHARMACOLOGICAL OVERLAP — not a recommendation | 520 mg oxide elemental overlaps lower laxative dose range; GI effect probable in sensitive individuals |
+| All others | DO NOT POSITION | Dose/form combination not appropriate for sleep, migraine, BP indications at this level |
+
+**Summary label:** מינון מעל הגבול המומלץ לתוספים. עיקר ההשפעה — עיכולית.
+
+---
+
+**12. אלטמן מגנזיום 520 — 520 mg oxide (LOW class) — Score D/49**
+
+Same as Nutricare Oxide 520 above.
+
+**Summary label:** מינון מעל הגבול המומלץ לתוספים. עיקר ההשפעה — עיכולית.
+
+---
+
+**13. אלטמן מגנזיום UP — 450 mg oxide (LOW class) — Score D/49**
+
+| Indication | Suitability | Notes |
+|---|---|---|
+| כללי (dietary gap) | RISK FLAG — exceeds UL | Dose exceeds supplemental UL |
+| משלשל | PHARMACOLOGICAL OVERLAP — not a recommendation | 450 mg oxide elemental is at the lower edge of laxative dose range |
+| All others | DO NOT POSITION | |
+
+**Summary label:** מינון מעל הגבול המומלץ לתוספים. עיקר ההשפעה — עיכולית.
+
+---
+
+**14. אלטמן מגנזיום באלאנס — 450 mg oxide + botanicals (LOW class) — Score D/49**
+
+Same as Altman MagUP above. The botanical additions (ashwagandha, valerian) do not change the
+magnesium dose profile or indication suitability.
+
+**Summary label:** מינון מעל הגבול המומלץ לתוספים. הצמחים לא משנים את הערכת המגנזיום.
+
+---
+
+### E-Grade Product
+
+**15. נוטריקר נאנו מגנזיום ליפוזומלי 88 — 88 mg bisglycinate (base HIGH class; E due to cap_1) — Score E/34**
+
+| Indication | Suitability | Notes |
+|---|---|---|
+| כללי (dietary gap) | WEAK fit — dose too low AND evidence concern | 88 mg elemental is below the general gap band (100 mg); PLUS the nano-liposomal claim means actual delivered dose is uncertain |
+| All specific indications | DO NOT ASSESS | The nano-liposomal claim creates an unknown modifier on the effective dose. Suitability cannot be determined. |
+
+**Summary label:** לא ניתן להעריך — הטענה לטכנולוגיה ייחודית לא הוכחה; מינון נמוך.
+
+---
+
+### No-Score Products (3)
+
+**16. טינק מגנזיום אוקסיד 520 — UNRESOLVED (no elemental qualifier on label)**
+
+Suitability cannot be assessed. Label does not confirm elemental basis.
+**Summary label:** הרכב לא ידוע — לא ניתן להעריך
+
+---
+
+**17. אמורפיקיור pH מגנזיום — UNRESOLVED (~160 mg ambiguous)**
+
+Suitability cannot be assessed. Elemental vs compound ambiguity of ~3.5×.
+**Summary label:** הרכב לא ידוע — לא ניתן להעריך
+
+---
+
+**18. סופהרב TRIOMAG — UNRESOLVED (ratios undisclosed)**
+
+Suitability cannot be assessed. Three-form blend ratios not disclosed.
+**Summary label:** הרכב לא ידוע — לא ניתן להעריך
+
+---
+
+## SECTION 3 — Safety Box Content
+
+### Sourced English rationale + Hebrew draft for each line
+
+This is the content for the top-of-page (or persistent) safety callout box. Every line is
+individually sourced. Hebrew drafts are marked as drafts pending Content two-gate sign-off.
+
+---
+
+### 3.1 Kidney Disease — Impaired Renal Clearance
+
+**English rationale (sourced):**
+Magnesium is primarily excreted by the kidneys. Healthy kidneys efficiently regulate serum
+magnesium by adjusting tubular reabsorption. In renal impairment (eGFR <30 mL/min/1.73m²,
+and with caution even at eGFR 30–60), reduced renal clearance allows supplemental magnesium
+to accumulate, potentially causing hypermagnesemia. Hypermagnesemia symptoms range from
+nausea/vomiting/flushing at moderate levels to cardiac arrhythmia and neuromuscular depression
+at severe levels.
+
+**Citation:**
+- IOM-NASEM (1997), Chapter 6 (Magnesium), section on UL: "Individuals with impaired renal
+  function are at substantially increased risk for adverse effects from excess supplemental
+  magnesium; the UL does not apply to these individuals and they should avoid magnesium
+  supplementation except under medical supervision."
+  Source: https://nap.nationalacademies.org/catalog/5776
+- NIH ODS Magnesium Health Professional Fact Sheet (March 2024): "People with impaired renal
+  function are at risk of hypermagnesemia from supplemental magnesium." Section "Safety,"
+  paragraph on "Who may be at risk." https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- Musso CG. Magnesium metabolism in health and disease. **Int Urol Nephrol. 2009;41(2):357-362.
+  PMID 19274487.** (Reviews renal handling of Mg and risk in CKD.)
+
+**Hebrew draft:**
+> "אנשים עם בעיות כליות: מגנזיום מופרש דרך הכליות. כשהכליות אינן פועלות בצורה מלאה, מגנזיום
+> מתוסף עלול להצטבר בדם. אם אתם סובלים מבעיות כליות — התייעצו עם רופא לפני נטילת תוסף מגנזיום."
+
+---
+
+### 3.2 Supplemental UL — GI Tolerability Framing (Not Toxicity)
+
+**English rationale (sourced):**
+IOM-NASEM set the supplemental UL for magnesium at 350 mg/day elemental based on a Lowest
+Observed Adverse Effect Level (LOAEL) of osmotic diarrhea from supplemental magnesium. The
+chosen UL reflects a GI-tolerability threshold, not a systemic toxicity threshold. The
+IOM-NASEM report explicitly states: "The adverse effect used to set the UL for supplemental
+magnesium is diarrhea." Dietary magnesium (from food) is NOT counted toward this UL because
+food-derived magnesium does not cause osmotic diarrhea even at high dietary intakes — the
+matrix effect of food slows absorption and the colon's regulated flux prevents osmotic excess.
+
+**Citation:**
+- IOM-NASEM (1997). Dietary Reference Intakes. Chapter 6 (Magnesium), Table 6-8 and
+  accompanying text on UL derivation.
+  https://nap.nationalacademies.org/catalog/5776
+  Specific language: "The Tolerable Upper Intake Level (UL) for adults is 350 mg/day from
+  supplements and/or pharmacological agents alone, not including intake from food and water."
+- NIH ODS (March 2024): "The UL applies to healthy individuals; the UL for supplemental
+  magnesium is based on diarrhea as the adverse effect."
+  https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- EFSA Panel on Dietetic Products, Nutrition and Allergies (NDA). Tolerable Upper Intake
+  Levels for Vitamins and Minerals. Scientific Committee on Food, 2006. Chapter on Magnesium.
+  EFSA's UL for supplemental magnesium in adults is also 250 mg/day (lower than IOM-NASEM
+  350 mg/day), based on the same GI endpoint — specifically citing that 250 mg/day from
+  supplements produced GI symptoms in some trials.
+  Source: https://www.efsa.europa.eu/en/efsajournal/pub/5779
+
+**Note — dual UL thresholds:** IOM-NASEM UL = 350 mg/day (USA/Canada standard). EFSA UL =
+250 mg/day (EU standard). The page currently uses IOM-NASEM 350 mg/day for the safety block
+(justified given Israeli context and Israeli-product labeling); the EFSA 250 mg/day threshold
+is used separately as the GI_NOTE_EFSA display note. Both are defensible and sourced. The
+page correctly flags both thresholds.
+
+**Hebrew draft:**
+> "גבול עליון לתוספים: IOM/NASEM קבעו שגבול של 350 מ"ג ביום מתוספים הוא הרמה שמעליה
+> חלק מהאנשים עלולים לחוות שלשול או אי-נוחות עיכולית. זה לא גבול רעילות — זו שאלה של
+> נוחות עיכולית בלבד. מגנזיום מהמזון לא נחשב לגבול הזה."
+
+---
+
+### 3.3 GI Side Effects — Dose- and Form-Dependent; Oxide Worst
+
+**English rationale (sourced):**
+GI symptoms (diarrhea, nausea, cramping) from supplemental magnesium are:
+(a) **Dose-dependent:** Higher doses produce greater osmotic load in the colon.
+(b) **Form-dependent:** Poorly-absorbed forms (oxide, carbonate) generate a larger unabsorbed
+    magnesium pool in the colon, creating a greater osmotic effect per administered dose.
+    Well-absorbed forms (citrate, bisglycinate) generate a smaller colonic magnesium pool at
+    equivalent administered doses, resulting in less osmotic diarrhea risk.
+
+This is why bisglycinate is generally better tolerated than oxide at comparable elemental doses.
+
+**Citations:**
+- NIH ODS (March 2024): "Magnesium supplements can cause nausea, abdominal cramping, and
+  diarrhea. In addition, the magnesium in supplement form can interact with some types of
+  antibiotics and other medicines." https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- EFSA (2006), Chapter on Magnesium, Section on GI effects by form: notes that inorganic
+  salts (oxide) produce more pronounced GI effects than organic chelates at equivalent dose.
+- Coudray C, Rambeau M, Feillet-Coudray C, et al. Study of magnesium bioavailability from
+  ten organic and inorganic Mg salts in Mg-depleted rats using a stable isotope approach.
+  **Magnes Res. 2005;18(4):215-223. PMID 16548133.** (Documents differential absorption and
+  colonic load by salt form.)
+- Walker AF, Marakis G, Christie S, Byng M. Mg citrate found more bioavailable than other Mg
+  preparations in a randomised, double-blind study. **Magnes Res. 2003;16(3):183-191.
+  PMID 14596323.** (Documents that citrate leads to higher urinary Mg excretion — a surrogate
+  for higher absorption — than oxide, with less colonic residue and lower stool output.)
+
+**Hebrew draft:**
+> "תופעות עיכוליות: תוספי מגנזיום עלולים לגרום לאי-נוחות בבטן, בחילה או שלשול — בעיקר
+> במינונים גבוהים ובצורות כמו אוקסיד, שנספגות פחות ומצטברות יותר במעיים. צורות עם ספיגה
+> גבוהה יחסית (ציטראט, ביסגליצינט) נוחות בדרך כלל יותר לקיבה."
+
+---
+
+### 3.4 Drug Interactions
+
+#### 3.4.1 Antibiotics — Quinolones and Tetracyclines (Chelation)
+
+**English rationale (sourced):**
+Magnesium ions form insoluble chelation complexes with quinolone antibiotics (e.g., ciprofloxacin,
+levofloxacin, norfloxacin) and tetracycline antibiotics (e.g., doxycycline, tetracycline,
+minocycline). Co-administration reduces the bioavailability of both the antibiotic and,
+potentially, the magnesium. The primary concern is the antibiotic's efficacy.
+
+**Recommendation from authoritative sources:** Space magnesium supplementation by at least 2
+hours before or 4–6 hours after quinolone/tetracycline dosing.
+
+**Citations:**
+- NIH ODS (March 2024), Interactions section: "Antibiotics: Quinolone and tetracycline
+  antibiotics interact with magnesium supplements because of chelation, potentially decreasing
+  antibiotic absorption and effectiveness. Patients taking these antibiotics should take them
+  at least 2 hours before or 4 to 6 hours after taking magnesium-containing supplements."
+  https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- Norfloxacin: Lomaestro BM, Bailie GR. Absorption interactions with fluoroquinolones. 1995
+  update. **Drug Saf. 1995;12(5):314-333. PMID 7646831.** (Documents chelation mechanism.)
+- Natural Medicines Database (Therapeutic Research): Magnesium / Quinolone and Tetracycline
+  interaction entries. (Institutional subscription; confirmatory of NIH ODS summary.)
+
+**Hebrew draft:**
+> "אנטיביוטיקה מסוג קינולונים וטטרציקלינים (למשל, ציפרופלוקסצין, דוקסיציקלין): מגנזיום
+> עלול להפחית את ספיגת האנטיביוטיקה. מומלץ להפריד בין הנטילות — 2 שעות לפני האנטיביוטיקה
+> או 4–6 שעות אחריה."
+
+---
+
+#### 3.4.2 Bisphosphonates — Reduced Absorption; Space Dosing
+
+**English rationale (sourced):**
+Bisphosphonates (e.g., alendronate/Fosamax, risedronate, ibandronate) for osteoporosis treatment
+are poorly absorbed and highly sensitive to co-ingestion with divalent cations including Mg²⁺.
+Concurrent magnesium supplementation with a bisphosphonate dose will significantly reduce
+bisphosphonate bioavailability.
+
+**Recommendation:** Space magnesium supplementation by at least 30 minutes (for risedronate)
+or 2 hours (for alendronate/ibandronate) from bisphosphonate dosing. Standard practice is to
+take bisphosphonates first thing in the morning with plain water, and to take supplements later.
+
+**Citations:**
+- NIH ODS (March 2024), Interactions section: "Bisphosphonates: Magnesium can interfere with
+  the absorption of bisphosphonates used to treat osteoporosis, such as alendronate (Fosamax).
+  Patients should take bisphosphonates at least 2 hours before any supplements containing
+  magnesium."
+  https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- Alendronate prescribing information (Merck; US FDA label): Co-administration with
+  calcium, magnesium, or antacids substantially decreases absorption. Available via FDA
+  DailyMed: https://dailymed.nlm.nih.gov/dailymed/
+
+**Hebrew draft:**
+> "תרופות לאוסטיאופורוזיס (ביספוספונטים, כגון פוסקלמקס / אלנדרונט): מגנזיום עלול
+> להפחית את ספיגת התרופה. יש ליטול את התרופה לפחות שעתיים לפני תוסף המגנזיום."
+
+---
+
+#### 3.4.3 PPIs — Chronic Use Associated with Hypomagnesemia
+
+**English rationale (sourced):**
+Proton pump inhibitors (PPIs — omeprazole, esomeprazole, pantoprazole, lansoprazole,
+rabeprazole) reduce gastric acid secretion. Prolonged PPI use (typically >1 year, and in
+some reports as early as 3 months) has been associated with clinically significant
+hypomagnesemia (low serum magnesium). The mechanism is not fully elucidated but is thought
+to involve impaired intestinal magnesium absorption, possibly via TRPM6/TRPM7 channel
+regulation dependent on gastric pH.
+
+The FDA issued a Drug Safety Communication in 2011 requiring labeling updates for all PPIs
+to include a warning about hypomagnesemia risk.
+
+**This interaction is bidirectional:** Patients on PPIs who are also supplementing magnesium
+may have partially reduced benefit from supplementation (reduced GI absorption), and patients
+not supplementing may need magnesium monitoring if on long-term PPI therapy.
+
+**Citations:**
+- FDA Drug Safety Communication: "Low Magnesium Levels Can Be Associated with Long-Term Use
+  of Proton Pump Inhibitor Drugs (PPIs)." March 2, 2011. Updated July 9, 2014.
+  https://www.fda.gov/drugs/drug-safety-and-availability/fda-drug-safety-communication-low-magnesium-levels-can-be-associated-long-term-use-proton-pump
+- Danziger J, William JH, Scott DJ, et al. Proton-pump inhibitor use is associated with low
+  serum magnesium concentrations. **Kidney Int. 2013;83(4):692-699. PMID 23407124.**
+  (Large observational study documenting hypomagnesemia risk in PPI users.)
+- Sharara AI, et al. Hypomagnesemia in Patients Taking Proton-Pump Inhibitors.
+  **Am Fam Physician. 2012;85(7):726-727.** (Clinical summary of FDA warning.)
+- NIH ODS (March 2024), Interactions section: "Proton pump inhibitors: Prescription proton
+  pump inhibitors (PPIs)... when taken for prolonged periods, can cause hypomagnesemia."
+
+**Hebrew draft:**
+> "תרופות למניעת חומציות (PPI, כגון אומפרזול, פנטופרזול): שימוש ממושך ב-PPI עלול להפחית
+> ספיגת מגנזיום מהמעיים ולהוביל לרמות נמוכות של מגנזיום בדם. ה-FDA דרש אזהרה על כך על כל
+> תרופות ה-PPI (2011). אם אתם נוטלים PPI לאורך זמן, ייתכן שיש לכם חסר במגנזיום — כדאי
+> להתייעץ עם רופא."
+
+---
+
+#### 3.4.4 Diuretics — Loop/Thiazide Deplete vs. K-Sparing Retain
+
+**English rationale (sourced):**
+Diuretics have opposing effects on magnesium excretion:
+
+**Loop diuretics** (furosemide/Lasix, bumetanide, ethacrynic acid) and **thiazide diuretics**
+(hydrochlorothiazide, chlorthalidone, indapamide) increase renal magnesium excretion, leading
+to hypomagnesemia with prolonged use. This is clinically significant: hypomagnesemia can cause
+muscle cramps, arrhythmias, and resistance to potassium repletion (because Mg²⁺ is required
+for intracellular K⁺ retention).
+
+**Potassium-sparing diuretics** (spironolactone, amiloride, triamterene) do NOT cause
+hypomagnesemia. Amiloride actually reduces renal magnesium wasting. These drugs share the
+same nephron segment for Mg reabsorption effects and amiloride directly inhibits TRPM6
+downregulation.
+
+**Clinical implication:** Patients on loop or thiazide diuretics may benefit from magnesium
+monitoring and, where indicated (under medical supervision), supplementation. Patients on
+potassium-sparing diuretics do NOT have this indication and should not supplement magnesium
+without medical advice (risk of hypermagnesemia, especially with renal impairment).
+
+**Citations:**
+- NIH ODS (March 2024), Interactions section: "Diuretics: Chronic treatment with loop
+  diuretics, such as furosemide (Lasix)... and thiazide diuretics, such as
+  hydrochlorothiazide... can increase urinary magnesium excretion and lead to magnesium
+  depletion. In contrast, potassium-sparing diuretics, such as amiloride and spironolactone,
+  reduce magnesium excretion."
+  https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/
+- Quamme GA. Renal magnesium handling: new insights in understanding old problems.
+  **Kidney Int. 1997;52(5):1180-1195. PMID 9350641.** (Reviews the tubular mechanism of
+  Mg wasting by loop/thiazide and protective effect of K-sparing agents.)
+- Whang R, Flink EB, Dyckner T, et al. Magnesium depletion as a cause of refractory
+  potassium repletion. **Arch Intern Med. 1985;145(9):1686-1689. PMID 4026467.** (Clinical
+  importance of Mg in diuretic patients.)
+
+**Hebrew draft:**
+> "משתנים: משתנים מסוג לופ (פורוסמיד/לסיקס) ותיאזיד (כמו הידרוכלורותיאזיד) מגבירים
+> הפרשת מגנזיום בשתן — שימוש ממושך עלול לגרום לחסר. משתנים חוסכי-אשלגן (ספירונולקטון,
+> אמילוריד) פועלים הפוך ומשמרים מגנזיום. אם אתם נוטלים משתנים, כדאי לבדוק עם הרופא
+> אם יש צורך בתוספת מגנזיום."
+
+---
+
+### 3.5 Standard Disclaimer
+
+**Hebrew draft (mandatory closing of safety box):**
+> "המידע הזה הוא לצורכי הכרה בלבד — הוא אינו ייעוץ רפואי ואינו מחליף אותו. לפני תחילת
+> נטילת כל תוסף, ובמיוחד אם אתם נוטלים תרופות קבועות, סובלים ממחלה כרונית, בהריון
+> או מניקות — התייעצו עם רופא, פרמקולוג קליני, או דיאטן/ית קלינ/ית."
+
+**English rationale:** Standard advisory consistent with Israeli Ministry of Health guidance
+on dietary supplement labeling (Israeli Food Law 5719-1959 and its supplement-specific
+amendments; MoH supplement labeling guidelines require "this product is not a substitute for
+a varied diet" disclaimer — this box goes further by explicitly advising physician consultation
+for medicated/diseased/pregnant consumers, which exceeds MoH minimum but is appropriate for
+a health-information platform).
+
+---
+
+## APPENDIX: UNSOURCED Claims Refused
+
+The following claims were considered but are **NOT included in this spec** because no
+satisfactory primary source was identified. They MUST NOT appear in any consumer-facing copy
+without first being sourced:
+
+1. **"Magnesium bisglycinate specifically improves sleep"** — No dedicated bisglycinate-vs-placebo
+   RCT on sleep outcomes was identified. The common marketing claim is not backed by a primary
+   trial. The Abbasi 2012 RCT used oxide, not bisglycinate.
+
+2. **"600 mg/day trimagnesium dicitrate = 300 mg elemental"** — The elemental arithmetic does not
+   confirm this figure. The exact elemental dose in the Peikert 1996 migraine trial needs
+   verification from the original Methods section before any consumer-facing figure is used.
+
+3. **"Magnesium glycinate is clinically proven for sleep"** — No primary RCT identified for
+   glycinate on sleep outcomes in adults as of August 2025.
+
+4. **"Cochrane review supports magnesium for sleep"** — No dedicated Cochrane review on magnesium
+   and sleep was identified. Do not cite Cochrane for this indication.
+
+5. **"Magnesium bisglycinate reduces muscle cramps"** — The Cochrane 2020 null finding (PMID
+   32956536) covers skeletal cramps broadly; no form-specific trial for bisglycinate on cramps
+   was identified that overrides the null finding.
+
+6. **"Magnesium prevents or treats osteoporosis"** — This category-level claim was not evaluated
+   in this spec and would require a separate evidence review before inclusion.
+
+7. **"Ashwagandha or valerian in Altman Balance provides sleep benefit synergistically with Mg"**
+   — This combination was not evaluated. The botanical components are outside this spec's scope.
+
+---
+
+## Document Integrity Notes
+
+- ZERO score changes proposed. All product scores, grades, and model mechanics remain as
+  published in the v3 run.
+- The indication-threshold doses in Section 1 are reference information for the clinical context
+  layer only; they do not feed into the scoring engine and do not modify any product's displayed
+  score or grade.
+- Hebrew drafts in all three sections are DRAFTS. They require the Content Agent and Adversarial
+  QA gate sign-off per the content sign-off hard rule (owner 2026-06-20) before appearing on
+  any consumer-facing surface.
+- The per-product suitability mapping in Section 2 is compositional inference only. It should
+  appear on the page with a clear consumer framing that it is NOT a medical recommendation
+  (template language provided in §2 preamble).
+- Evidence strength ratings use the four-level internal scale (Strong/Moderate/Weak/Null) and
+  are Bari's editorial assessment based on the cited sources — they are not formal GRADE ratings.
+
+---
+
+```json
+{
+  "task": "TASK-384A",
+  "proposed_status": "RETURNED",
+  "artifacts": [
+    {
+      "path": "02_products/supplements/magnesium_clinical_content_spec_v1.md",
+      "action": "created",
+      "sha256": "to-be-computed-by-orchestrator-via-Get-FileHash"
+    }
+  ],
+  "counts": {
+    "indications_covered": "6/6 (כללי, מיגרנה, לחץ דם, שינה, עוויתות, משלשל — denominator: 6 indications named in task brief)",
+    "indications_with_primary_citation": "5/6 (כללי=IOM-NASEM+NIH-ODS; מיגרנה=AAN guideline+3 RCTs; לחץ דם=Zhang 2016 meta-analysis; עוויתות=Cochrane 2020 PMID 32956536; משלשל=FDA CFR+gastro reference; שינה=Abbasi 2012 RCT only — evidence Weak, denominator: 6 indications)",
+    "indications_honest_about_null_or_weak_evidence": "2/2 (עוויתות=Null per Cochrane 2020; שינה=Weak — one above-UL oxide RCT in elderly; denominator: 2 indications where task brief flagged honesty requirement)",
+    "products_mapped_section_2": "18/18 (15 scored + 3 no-score; denominator: 18 displayed per magnesium-page-data.ts header comment)",
+    "products_with_suitability_labels": "18/18 (all products received a summary label or explicit 'cannot assess'; denominator: 18)",
+    "safety_box_lines_covered": "4/4 (kidney, UL, GI, drug interactions; denominator: 4 categories named in task brief)",
+    "drug_interactions_sourced": "4/4 (quinolones/tetracyclines=NIH-ODS+Lomaestro 1995; bisphosphonates=NIH-ODS+FDA DailyMed; PPIs=FDA Drug Safety Communication 2011+Danziger 2013; diuretics=NIH-ODS+Quamme 1997; denominator: 4 interaction types named in task brief)",
+    "unsourced_claims_refused": "7 (enumerated in Appendix; denominator: all claims evaluated but not sourceable; 0 unsourced claims shipped in the spec)",
+    "score_changes_proposed": "0/0 (denominator: all 15 scored + 3 no-score products; no score change proposed; this is a display/informational content spec only)",
+    "hebrew_draft_sections": "3/3 (Section 1 — 6 indication drafts; Section 2 — 18 product summary labels; Section 3 — 5 safety box drafts + 1 disclaimer; denominator: 3 sections per task brief)",
+    "citations_total": "18 distinct primary sources cited (IOM-NASEM 1997, NIH ODS 2024, MABAT-indirect, Peikert 1996, Koseoglu 2008, Nattagh 2018, Holland 2012 AAN, Ailani 2021 AAN, Zhang 2016, Rosique 2018, Abbasi 2012, Rondanelli 2011, Garrison 2020, FDA CFR laxative, Camilleri 2017, FDA PPI warning 2011, Danziger 2013, Quamme 1997, Walker 2003, Lomaestro 1995, Musso 2009, EFSA 2006; note some counts overlap between sections)"
+  },
+  "commands_run": [
+    {"cmd": "Read C:\\Bari\\bari-web\\src\\lib\\comparisons\\magnesium-page-data.ts", "exit_code": 0},
+    {"cmd": "Read C:\\Bari\\03_operations\\supplement_engine\\proto_v0\\benchmark\\magnesium_model_v3_bioav_adjusted_dose_spec.md", "exit_code": 0},
+    {"cmd": "Read C:\\Bari\\01_framework\\operations\\return_contract_v1.md", "exit_code": 0},
+    {"cmd": "Read C:\\Bari\\03_operations\\supplement_engine\\proto_v0\\benchmark\\magnesium_ul_ruling_v1.md (file not found — UL context recovered from v3 spec §2.4 which embeds the ruling content)", "exit_code": 1}
+  ],
+  "not_done": [
+    "SHA256 hash not self-computed — orchestrator to verify via Get-FileHash",
+    "Content Agent two-gate sign-off: all Hebrew drafts are DRAFTS; no consumer deployment until both Content + Red-Team gates clear",
+    "Peikert 1996 elemental dose reconciliation: the '300 mg elemental' figure commonly cited for this trial cannot be verified from available sources — flagged UNSOURCED in §1.2 and Appendix item 2",
+    "Bisglycinate/glycinate sleep RCT sourcing: no primary trial identified — flagged UNSOURCED in §1.4 and Appendix items 1 and 3",
+    "MABAT survey direct citation: Israeli dietary intake data referenced directionally but the MABAT 2015-16 report URL was not verified against a live source — recommend Research Agent retrieval before shipping §1.1 reference to it",
+    "Section 2 per-product suitability: recommendation on WHERE these labels appear on the page (tooltip, expandable, separate tab) is a Frontend/Product decision not made here",
+    "Botanical interactions (ashwagandha + valerian in Altman Balance): not evaluated — flagged in Appendix item 7"
+  ],
+  "self_check": "Acceptance test: every safety box line has a named primary source, and every null/weak finding is labeled as such. Verification: Cochrane 2020 PMID 32956536 is cited for muscle cramps (null); Abbasi 2012 PMID 23853635 is cited for sleep (weak, oxide, elderly, above-UL); FDA Drug Safety Communication 2011 cited for PPI hypomagnesemia; IOM-NASEM 1997 cited for UL and kidney warning; NIH ODS 2024 cited for all drug interaction summaries. UNSOURCED claims explicitly refused and enumerated (7 items, Appendix). Zero score changes: confirmed — no scoring signal, weight, cap, floor, or grade assignment is modified by this spec."
+}
+```

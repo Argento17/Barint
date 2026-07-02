@@ -1,0 +1,200 @@
+========================================================================
+COMPONENT B MATRIX SIGNAL PROBE v4 — R-1, R-2, SPELT-CONSTRUCT, C-5 FIXES
+Run: 2026-06-25T16:27:37.763489+00:00
+TASK: TASK-395 | Reader: structured_ingredient_reader.py (v4)
+Formula: UNCHANGED from v2/v3. Reading layer fixed only.
+========================================================================
+
+Gold set: 58 products total
+  T1 clear-whole: 17 scored
+  T2 clear-refined: 14 scored
+  T3 hard-mixed: 21 scored
+
+------------------------------------------------------------------------
+UNREADABLE PRODUCT CHECK
+7290013453624: v4_score = None
+Result: PASS
+
+------------------------------------------------------------------------
+GATE B1: ANCHOR CALIBRATION
+Condition: T1 score >= 60; T2 score <= 45  |  Bar: >= 90%
+------------------------------------------------------------------------
+T1 (clear-whole): 16/17 pass (score >= 60)
+  Scores: [54.1, 62.7, 92.0, 92.9, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0]
+T2 (clear-refined): 14/14 pass (score <= 45)
+  Scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 12.2, 12.2, 16.8, 20.0, 36.9]
+COMBINED B1: 30/31 = 96.8%  |  Target >= 90%  |  PASS
+B1 FAILURES (1):
+  7290106571945 tier=T1 v3=55.4 v4=54.1 expected=>= 60
+    whole_markers=['whole_wheat_flour', 'whole_oat', 'whole_oat_flakes', 'oat_flakes_plain', 'barley_malt']
+    refined_markers=['refined_wheat_flour', 'sugar', 'veg_oil_sg', 'dextrin', 'maltodextrin', 'generic_starch']
+
+------------------------------------------------------------------------
+GATE B1 — MC-2: WITH vs WITHOUT SPELT CORRECTIONS
+B1 WITH corrections: 96.8% [30/31]
+B1 WITHOUT correction products: 96.7% [29/30]
+Delta: +0.1%
+
+------------------------------------------------------------------------
+GATE B2: ORDINAL RANKING
+Condition: more-whole product scores higher within pairs  |  Bar: >= 95%
+MC-1: >= 10 T3 pairs required
+------------------------------------------------------------------------
+Total pairs: 12  |  Evaluable: 12
+Correct: 9/12 = 75.0%  |  Target >= 95%  |  FAIL
+MC-1: 12 T3 pairs PASS
+
+All pair results:
+  RP-01 [OK] 6322838 > 7290115205176
+         71.2 > 52.5
+         100% of flour is whole wheat (58% of product) > 30.5% whole wheat
+  RP-02 [OK] 7290018500460 > 7296073659952
+         52.5 > 46.4
+         50% whole of total flour (stated) > 25.5% of 66% blend (~17% effective)
+  RP-03 [FAIL] 7290016883176 > 7290011131371
+         52.5 <= 52.5 — WRONG DIRECTION
+         oats 47% stated > oats 38% stated
+  RP-04 [FAIL] 7290011131975 > 7290011131388
+         52.5 <= 52.5 — WRONG DIRECTION
+         oats 43% in granola 65% (~28% effective) > oats 39%
+  RP-05 [OK] 7290118427858 > 7290107947480
+         75.9 > 35.1
+         43% whole oat (32%+11%) > 1% whole wheat in flakes
+  RP-06 [OK] 379142 > 481180
+         74.6 > 38.0
+         100% of flour whole (56% of product) > 25% of flour whole (15% of product)
+  RP-07 [OK] 8445291638839 > 7296073705550
+         90.0 > 52.5
+         75.3% stated whole grain flours > 25% whole wheat with 26% refined corn grits first
+  RP-08 [FAIL] 7290016883176 > 7290011131388
+         52.5 <= 52.5 — WRONG DIRECTION
+         oats 47% > oats 39%
+  RP-09 [OK] 7290118427858 > 9401790
+         75.9 > 52.5
+         43% stated whole oat vs whole wheat first but no % stated (position-only)
+  RP-10 [OK] 5900020034021 > 7290107947480
+         39.8 > 35.1
+         35% stated whole wheat > 1% whole wheat in flakes
+  RP-11 [OK] 7290112968807 > 481180
+         52.5 > 38.0
+         37% whole flour > 25% whole flour (of total flour, but product-level also higher)
+  RP-12 [OK] 7290011131975 > 7290011131050
+         52.5 > 52.1
+         granola 65% oats 43% stated > granola 75% oats unstated (position only)
+
+------------------------------------------------------------------------
+GATE B3: MARKER COVERAGE (parseable denominator)
+Condition: >= 95% of parseable products fire >= 1 marker
+------------------------------------------------------------------------
+Parseable: 55  |  No markers: 0
+Coverage: 55/55 = 100.0%  |  PASS
+
+------------------------------------------------------------------------
+MC-3: STATED_PCT POPULATION RATE
+Products with >= 1 stated_pct marker: 44/55 = 80.0%
+OK: >= 30%
+
+------------------------------------------------------------------------
+SCORE DISTRIBUTION (gradable scored products)
+N: 52
+Min: 10.0  Max: 95.0  Mean: 54.2  Median: 52.5  Stdev: 32.5
+Most common (rounded): 95 (n=13)
+T1 scores: [54.1, 62.7, 92.0, 92.9, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0]
+T2 scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 12.2, 12.2, 16.8, 20.0, 36.9]
+T3 scores: [19.4, 28.7, 35.1, 38.0, 39.8, 46.4, 52.1, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 71.2, 74.6, 75.9, 90.0]
+
+------------------------------------------------------------------------
+PER-PRODUCT RESULTS TABLE (barcode | tier | v3_score | v4_score | delta | b1 | label)
+------------------------------------------------------------------------
+barcode          tier  v3_score   v4_score   delta    b1     label
+------------------------------------------------------------------------
+16000423534      T1    95.0       95.0       +0.0     True   clear-whole
+16000548404      T1    95.0       95.0       +0.0     True   clear-whole
+16000548503      T1    95.0       95.0       +0.0     True   clear-whole
+7290112199942    T1    95.0       95.0       +0.0     True   clear-whole
+7290112199959    T1    95.0       95.0       +0.0     True   clear-whole
+574615           T1    95.0       95.0       +0.0     True   clear-whole
+7290106571945    T1    55.4       54.1       -1.3     False  clear-whole
+7290013740823    T1    95.0       95.0       +0.0     True   clear-whole
+574141           T1    95.0       95.0       +0.0     True   clear-whole
+7290106771314    T1    92.0       92.0       +0.0     True   clear-whole
+7290017962047    T1    95.0       95.0       +0.0     True   clear-whole
+7290013433107    T1    89.8       92.9       +3.1     True   clear-whole
+7296073705567    T1    62.7       62.7       +0.0     True   clear-whole
+7290017947464    T1    59.3       95.0       +35.7    True   clear-whole
+7290017962023    T1    95.0       95.0       +0.0     True   clear-whole
+7613037012095    T1    95.0       95.0       +0.0     True   clear-whole
+96086000577      T1    95.0       95.0       +0.0     True   clear-whole
+7290119043095    T2    16.8       16.8       +0.0     True   clear-refined
+7290119040568    T2    10.0       10.0       +0.0     True   clear-refined
+7290018500644    T2    10.0       10.0       +0.0     True   clear-refined
+7290116530482    T2    12.2       12.2       +0.0     True   clear-refined
+7290107647731    T2    66.2       36.9       -29.3    True   clear-refined
+7296073431916    T2    10.0       10.0       +0.0     True   clear-refined
+5000396021202    T2    10.0       10.0       +0.0     True   clear-refined
+7622201809188    T2    10.0       10.0       +0.0     True   clear-refined
+7290116537351    T2    54.4       20.0       -34.4    True   clear-refined
+7290017325910    T2    12.2       12.2       +0.0     True   clear-refined
+313184           T2    10.0       10.0       +0.0     True   clear-refined
+7296073398875    T2    10.0       10.0       +0.0     True   clear-refined
+7290119040667    T2    10.0       10.0       +0.0     True   clear-refined
+8710502279010    T2    10.0       10.0       +0.0     True   clear-refined
+7290013453624    UNREADABLE None       None       N/A      N/A    UNREADABLE
+6322838          T3    71.2       71.2       +0.0     N/A    hard-mixed
+7290018500460    T3    52.5       52.5       +0.0     N/A    hard-mixed
+7290115205176    T3    52.5       52.5       +0.0     N/A    hard-mixed
+7296073659952    T3    74.2       46.4       -27.8    N/A    hard-mixed
+7290011131975    T3    52.5       52.5       +0.0     N/A    hard-mixed
+7290011131050    T3    42.4       52.1       +9.7     N/A    hard-mixed
+7290016883176    T3    47.3       52.5       +5.2     N/A    hard-mixed
+7290011131371    T3    54.3       52.5       -1.8     N/A    hard-mixed
+7290011131388    T3    52.5       52.5       +0.0     N/A    hard-mixed
+7290118427858    T3    75.8       75.9       +0.1     N/A    hard-mixed
+7290112968807    T3    52.5       52.5       +0.0     N/A    hard-mixed
+9401790          T3    52.5       52.5       +0.0     N/A    hard-mixed
+5900020034021    T3    39.8       39.8       +0.0     N/A    hard-mixed
+7290107947480    T3    52.5       35.1       -17.4    N/A    hard-mixed
+379142           T3    74.6       74.6       +0.0     N/A    hard-mixed
+8445291638839    T3    90.0       90.0       +0.0     N/A    hard-mixed
+7290112495433    T3    72.1       52.5       -19.6    N/A    hard-mixed
+481180           T3    38.0       38.0       +0.0     N/A    hard-mixed
+7290120870017    T3    19.4       19.4       +0.0     N/A    hard-mixed
+7296073705550    T3    35.8       52.5       +16.7    N/A    hard-mixed
+7290117382868    T3    67.5       28.7       -38.8    N/A    hard-mixed
+9137842          T4    None       None       N/A      N/A    edge-case
+7290011525316    T4    None       None       N/A      N/A    edge-case
+7297488098688    T4    52.5       52.5       +0.0     N/A    edge-case
+5010029000061    T4    93.0       93.0       +0.0     N/A    edge-case
+58449779032      T4    57.2       57.2       +0.0     N/A    edge-case
+
+========================================================================
+RESIDUAL FAILURES ATTRIBUTION
+========================================================================
+B1 failures (1):
+  7290106571945 tier=T1 v4=54.1 — see attribution below
+B2 failures (3):
+  RP-03: 7290016883176 vs 7290011131371 — 52.5 <= 52.5 — WRONG DIRECTION
+  RP-04: 7290011131975 vs 7290011131388 — 52.5 <= 52.5 — WRONG DIRECTION
+  RP-08: 7290016883176 vs 7290011131388 — 52.5 <= 52.5 — WRONG DIRECTION
+
+Attribution key: READING_BUG (which bug) vs FORMULA_GAP (routes to Nutrition)
+DO NOT relabel reading bugs as formula gaps.
+
+Detailed attribution:
+  [Auto-generated from run — see B1/B2 failure details above]
+  Remaining failures: if R-1 fix is applied correctly, RP-03/RP-08 should
+  show: 7290016883176 oats 47% vs 7290011131371 oats 38% with nuts bonus.
+  If still inverted: classify as FORMULA_GAP (non-grain whole markers)
+  over-weighting) — routes to Nutrition.
+
+========================================================================
+OVERALL VERDICT
+========================================================================
+Gate B1 (anchor >= 90%):     PASS  [30/31 = 96.8%]
+Gate B2 (ranking >= 95%):    FAIL  [9/12 = 75.0%]
+Gate B3 (coverage >= 95%):   PASS  [55/55 = 100.0%]
+MC-1 T3 pairs >= 10:         PASS  [12]
+Unreadable returns None:      PASS
+
+VERDICT: FAIL — one or more gates not cleared
+========================================================================

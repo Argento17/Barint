@@ -1,0 +1,198 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><title>Claude Code — Your Workflow Report</title><style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.55 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0b0c10;color:#e8eaf0}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 20px 80px}
+h1{font-size:30px;margin:0 0 4px}.lead{color:#9aa0b5;margin:0 0 26px}
+.card{background:#15171f;border:1px solid #242736;border-radius:14px;padding:22px 24px;margin:18px 0}
+.card h2{font-size:19px;margin:0 0 14px}.sub{color:#8a90a6;margin:-6px 0 16px;font-size:13.5px}
+.kgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:#15171f;border:1px solid #242736;border-radius:12px;padding:16px}
+.kn{font-size:26px;font-weight:700;color:#fff}.kl{color:#8a90a6;font-size:12.5px;margin-top:2px}
+.bar{display:flex;align-items:center;gap:10px;margin:5px 0}
+.bl{width:190px;flex:none;font-size:13px;color:#c7cbdb;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.bt{position:relative;flex:1;background:#1d2030;border-radius:6px;height:22px}
+.bf{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:6px}
+.bv{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:12px;color:#e8eaf0;text-shadow:0 1px 2px #000}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+h3.good{color:#34d399}h3.bad{color:#f59e0b}h3{font-size:15px;margin:0 0 8px}
+ul.ins{margin:0;padding-left:18px}ul.ins li{margin:7px 0;color:#d3d7e6}
+.heat{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 18px}
+.hc{width:42px;height:46px;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hl{font-size:11px;color:#cfd3e3}.hv{font-size:11px;color:#fff;font-weight:600}
+.spark{display:flex;align-items:flex-end;gap:2px;height:124px;border-bottom:1px solid #2a2e40;padding-bottom:0}
+.sb{flex:1;min-width:2px;background:linear-gradient(180deg,#8b5cf6,#6366f1);border-radius:2px 2px 0 0}
+.sparklab{display:flex;justify-content:space-between;color:#8a90a6;font-size:12px;margin-top:6px}
+.rec{display:flex;gap:14px;padding:10px 0;border-top:1px solid #242736}
+.recn{font-weight:700;color:#8b5cf6;width:54px;flex:none}.recd{color:#e8eaf0}.recx{color:#8a90a6;font-size:12.5px;margin-top:4px}
+.tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:600}
+.tag.new{background:rgba(52,211,153,.15);color:#34d399}.tag.exists{background:rgba(245,158,11,.13);color:#f59e0b}
+table.rt{width:100%;border-collapse:collapse;font-size:13.5px}
+.rt th{text-align:left;color:#8a90a6;font-weight:600;border-bottom:1px solid #2a2e40;padding:6px 8px}
+.rt td{padding:7px 8px;border-bottom:1px solid #1c1f2c;vertical-align:top}
+.rt td.cnt{color:#8b5cf6;font-weight:700;white-space:nowrap}
+.foot{color:#6b7088;font-size:12px;margin-top:30px;text-align:center}
+@media(max-width:760px){.kgrid{grid-template-columns:repeat(2,1fr)}.twocol{grid-template-columns:1fr}.bl{width:110px}}
+</style></head><body><div class=wrap><h1>Your Claude Code Workflow — Analyzed</h1><p class=lead>Every conversation on this machine · 2026-05-24 → 2026-06-22 · 274 transcript files · generated 2026-06-22T08:57:13</p><div class=kgrid><div class="kpi"><div class="kn">274</div><div class="kl">conversations</div></div><div class="kpi"><div class="kn">155,308</div><div class="kl">messages</div></div><div class="kpi"><div class="kn">482</div><div class="kl">your prompts</div></div><div class="kpi"><div class="kn">45,092</div><div class="kl">tool calls</div></div><div class="kpi"><div class="kn">1,795</div><div class="kl">sub-agent runs</div></div><div class="kpi"><div class="kn">23.0B</div><div class="kl">tokens</div></div><div class="kpi"><div class="kn">$50,728</div><div class="kl">list-price value*</div></div><div class="kpi"><div class="kn">31m</div><div class="kl">median session</div></div></div><div class="card"><h2>The headline</h2><p class="sub">Auto-derived from your actual usage — not generic advice.</p><div class="twocol"><div><h3 class="good">What's working</h3><ul class="ins"><li>Strong prompt-cache reuse — 97% of all input tokens are cache reads, which keeps cost and latency down.</li><li>Low tool-error rate (4.7% of 45,092 calls) — the workflow rarely thrashes on broken commands.</li><li>Heavy delegation — 1,795 sub-agent dispatches. You lean on the orchestrator/agent model rather than doing everything in one context.</li></ul></div><div><h3 class="bad">Friction / opportunities</h3><ul class="ins"><li>You interrupted the agent mid-action 99 times (vs 482 real prompts). Frequent interrupts usually mean the agent goes too far before checking in — tighter, smaller-scoped asks or a confirm-first habit would reduce wasted work.</li></ul></div></div></div><div class="card"><h2>Activity over time</h2><p class="sub">Each bar = messages on that day.</p><div class="spark"><div class="sb" style="height:3px" title="2026-05-24: 531 msgs"></div><div class="sb" style="height:10px" title="2026-05-25: 1,660 msgs"></div><div class="sb" style="height:2px" title="2026-05-26: 221 msgs"></div><div class="sb" style="height:2px" title="2026-05-27: 186 msgs"></div><div class="sb" style="height:6px" title="2026-05-28: 1,080 msgs"></div><div class="sb" style="height:7px" title="2026-05-29: 1,125 msgs"></div><div class="sb" style="height:28px" title="2026-05-30: 4,513 msgs"></div><div class="sb" style="height:47px" title="2026-05-31: 7,593 msgs"></div><div class="sb" style="height:58px" title="2026-06-01: 9,319 msgs"></div><div class="sb" style="height:28px" title="2026-06-02: 4,585 msgs"></div><div class="sb" style="height:20px" title="2026-06-03: 3,231 msgs"></div><div class="sb" style="height:26px" title="2026-06-04: 4,172 msgs"></div><div class="sb" style="height:26px" title="2026-06-05: 4,283 msgs"></div><div class="sb" style="height:44px" title="2026-06-06: 7,128 msgs"></div><div class="sb" style="height:57px" title="2026-06-07: 9,145 msgs"></div><div class="sb" style="height:19px" title="2026-06-08: 3,176 msgs"></div><div class="sb" style="height:2px" title="2026-06-09: 70 msgs"></div><div class="sb" style="height:31px" title="2026-06-10: 4,954 msgs"></div><div class="sb" style="height:36px" title="2026-06-11: 5,789 msgs"></div><div class="sb" style="height:27px" title="2026-06-12: 4,419 msgs"></div><div class="sb" style="height:66px" title="2026-06-13: 10,495 msgs"></div><div class="sb" style="height:94px" title="2026-06-14: 15,077 msgs"></div><div class="sb" style="height:22px" title="2026-06-15: 3,572 msgs"></div><div class="sb" style="height:84px" title="2026-06-16: 13,453 msgs"></div><div class="sb" style="height:120px" title="2026-06-17: 19,067 msgs"></div><div class="sb" style="height:104px" title="2026-06-18: 16,574 msgs"></div><div class="sb" style="height:59px" title="2026-06-19: 9,484 msgs"></div><div class="sb" style="height:45px" title="2026-06-20: 7,291 msgs"></div><div class="sb" style="height:22px" title="2026-06-21: 3,624 msgs"></div><div class="sb" style="height:2px" title="2026-06-22: 235 msgs"></div></div><div class="sparklab"><span>2026-05-24</span><span>30 active days</span><span>2026-06-22</span></div></div><div class="card"><h2>When you work</h2><p class="sub">Top strip = day of week · bottom strip = hour of day (local of record).</p><div class="heat"><div class="hc" style="background:rgba(99,102,241,0.56)" title="Mon: 17,962"><span class="hl">Mon</span><span class="hv">17,962</span></div><div class="hc" style="background:rgba(99,102,241,0.57)" title="Tue: 18,329"><span class="hl">Tue</span><span class="hv">18,329</span></div><div class="hc" style="background:rgba(99,102,241,0.79)" title="Wed: 27,438"><span class="hl">Wed</span><span class="hv">27,438</span></div><div class="hc" style="background:rgba(99,102,241,0.80)" title="Thu: 27,615"><span class="hl">Thu</span><span class="hv">27,615</span></div><div class="hc" style="background:rgba(99,102,241,0.59)" title="Fri: 19,311"><span class="hl">Fri</span><span class="hv">19,311</span></div><div class="hc" style="background:rgba(99,102,241,0.84)" title="Sat: 29,427"><span class="hl">Sat</span><span class="hv">29,427</span></div><div class="hc" style="background:rgba(99,102,241,1.00)" title="Sun: 35,970"><span class="hl">Sun</span><span class="hv">35,970</span></div></div><div class="heat"><div class="hc" style="background:rgba(99,102,241,0.12)" title="00: 0"><span class="hl">00</span><span class="hv">0</span></div><div class="hc" style="background:rgba(99,102,241,0.12)" title="01: 74"><span class="hl">01</span><span class="hv">74</span></div><div class="hc" style="background:rgba(99,102,241,0.12)" title="02: 0"><span class="hl">02</span><span class="hv">0</span></div><div class="hc" style="background:rgba(99,102,241,0.12)" title="03: 26"><span class="hl">03</span><span class="hv">26</span></div><div class="hc" style="background:rgba(99,102,241,0.70)" title="04: 10,093"><span class="hl">04</span><span class="hv">10,093</span></div><div class="hc" style="background:rgba(99,102,241,1.00)" title="05: 15,237"><span class="hl">05</span><span class="hv">15,237</span></div><div class="hc" style="background:rgba(99,102,241,0.92)" title="06: 13,803"><span class="hl">06</span><span class="hv">13,803</span></div><div class="hc" style="background:rgba(99,102,241,0.80)" title="07: 11,807"><span class="hl">07</span><span class="hv">11,807</span></div><div class="hc" style="background:rgba(99,102,241,0.82)" title="08: 12,156"><span class="hl">08</span><span class="hv">12,156</span></div><div class="hc" style="background:rgba(99,102,241,0.63)" title="09: 8,854"><span class="hl">09</span><span class="hv">8,854</span></div><div class="hc" style="background:rgba(99,102,241,0.69)" title="10: 9,952"><span class="hl">10</span><span class="hv">9,952</span></div><div class="hc" style="background:rgba(99,102,241,0.81)" title="11: 11,995"><span class="hl">11</span><span class="hv">11,995</span></div><div class="hc" style="background:rgba(99,102,241,0.89)" title="12: 13,397"><span class="hl">12</span><span class="hv">13,397</span></div><div class="hc" style="background:rgba(99,102,241,0.73)" title="13: 10,479"><span class="hl">13</span><span class="hv">10,479</span></div><div class="hc" style="background:rgba(99,102,241,0.54)" title="14: 7,302"><span class="hl">14</span><span class="hv">7,302</span></div><div class="hc" style="background:rgba(99,102,241,0.69)" title="15: 9,947"><span class="hl">15</span><span class="hv">9,947</span></div><div class="hc" style="background:rgba(99,102,241,0.96)" title="16: 14,574"><span class="hl">16</span><span class="hv">14,574</span></div><div class="hc" style="background:rgba(99,102,241,0.90)" title="17: 13,533"><span class="hl">17</span><span class="hv">13,533</span></div><div class="hc" style="background:rgba(99,102,241,0.59)" title="18: 8,208"><span class="hl">18</span><span class="hv">8,208</span></div><div class="hc" style="background:rgba(99,102,241,0.33)" title="19: 3,580"><span class="hl">19</span><span class="hv">3,580</span></div><div class="hc" style="background:rgba(99,102,241,0.17)" title="20: 857"><span class="hl">20</span><span class="hv">857</span></div><div class="hc" style="background:rgba(99,102,241,0.13)" title="21: 178"><span class="hl">21</span><span class="hv">178</span></div><div class="hc" style="background:rgba(99,102,241,0.12)" title="22: 0"><span class="hl">22</span><span class="hv">0</span></div><div class="hc" style="background:rgba(99,102,241,0.12)" title="23: 0"><span class="hl">23</span><span class="hv">0</span></div></div></div><div class="card"><h2>Which tools you lean on</h2><p class="sub">How the assistant spends its actions on your behalf.</p><div class="bar"><div class="bl" title="Bash">Bash</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">16,766 (37%)</span></div></div>
+<div class="bar"><div class="bl" title="Read">Read</div><div class="bt"><div class="bf" style="width:50%"></div><span class="bv">8,442 (19%)</span></div></div>
+<div class="bar"><div class="bl" title="Edit">Edit</div><div class="bt"><div class="bf" style="width:46%"></div><span class="bv">7,785 (17%)</span></div></div>
+<div class="bar"><div class="bl" title="Write">Write</div><div class="bt"><div class="bf" style="width:15%"></div><span class="bv">2,636 (6%)</span></div></div>
+<div class="bar"><div class="bl" title="PowerShell">PowerShell</div><div class="bt"><div class="bf" style="width:14%"></div><span class="bv">2,364 (5%)</span></div></div>
+<div class="bar"><div class="bl" title="Agent">Agent</div><div class="bt"><div class="bf" style="width:10%"></div><span class="bv">1,795 (4%)</span></div></div>
+<div class="bar"><div class="bl" title="Glob">Glob</div><div class="bt"><div class="bf" style="width:9%"></div><span class="bv">1,590 (4%)</span></div></div>
+<div class="bar"><div class="bl" title="Grep">Grep</div><div class="bt"><div class="bf" style="width:9%"></div><span class="bv">1,583 (4%)</span></div></div>
+<div class="bar"><div class="bl" title="TodoWrite">TodoWrite</div><div class="bt"><div class="bf" style="width:3%"></div><span class="bv">629 (1%)</span></div></div>
+<div class="bar"><div class="bl" title="WebFetch">WebFetch</div><div class="bt"><div class="bf" style="width:2%"></div><span class="bv">457 (1%)</span></div></div>
+<div class="bar"><div class="bl" title="AskUserQuestion">AskUserQuestion</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">328 (1%)</span></div></div>
+<div class="bar"><div class="bl" title="ToolSearch">ToolSearch</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">301 (1%)</span></div></div>
+<div class="bar"><div class="bl" title="WebSearch">WebSearch</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">150 (0%)</span></div></div>
+<div class="bar"><div class="bl" title="mcp__firecrawl-mcp-server__firecrawl_search">mcp__firecrawl-mcp-server__firecrawl_search</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">85 (0%)</span></div></div>
+<div class="bar"><div class="bl" title="Skill">Skill</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">52 (0%)</span></div></div></div><div class="card"><h2>Slash-commands / skills you already use</h2><div class="bar"><div class="bl" title="compact">compact</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">234</span></div></div>
+<div class="bar"><div class="bl" title="model">model</div><div class="bt"><div class="bf" style="width:22%"></div><span class="bv">53</span></div></div>
+<div class="bar"><div class="bl" title="roadmap">roadmap</div><div class="bt"><div class="bf" style="width:5%"></div><span class="bv">14</span></div></div>
+<div class="bar"><div class="bl" title="orchestrate">orchestrate</div><div class="bt"><div class="bf" style="width:5%"></div><span class="bv">12</span></div></div>
+<div class="bar"><div class="bl" title="cc">cc</div><div class="bt"><div class="bf" style="width:3%"></div><span class="bv">9</span></div></div>
+<div class="bar"><div class="bl" title="cc-agent">cc-agent</div><div class="bt"><div class="bf" style="width:2%"></div><span class="bv">5</span></div></div>
+<div class="bar"><div class="bl" title="plugin">plugin</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">2</span></div></div>
+<div class="bar"><div class="bl" title="reload-plugins">reload-plugins</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">1</span></div></div>
+<div class="bar"><div class="bl" title="schedule">schedule</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">1</span></div></div></div><div class="card"><h2>What you keep asking for (by intent)</h2><p class="sub">How often each action-word shows up across your real prompts — your workflow&#x27;s center of gravity.</p><div class="bar"><div class="bl" title="task">task</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">141 prompts</span></div></div>
+<div class="bar"><div class="bl" title="create">create</div><div class="bt"><div class="bf" style="width:49%"></div><span class="bv">70 prompts</span></div></div>
+<div class="bar"><div class="bl" title="score">score</div><div class="bt"><div class="bf" style="width:47%"></div><span class="bv">67 prompts</span></div></div>
+<div class="bar"><div class="bl" title="scoring">scoring</div><div class="bt"><div class="bf" style="width:38%"></div><span class="bv">54 prompts</span></div></div>
+<div class="bar"><div class="bl" title="page">page</div><div class="bt"><div class="bf" style="width:31%"></div><span class="bv">44 prompts</span></div></div>
+<div class="bar"><div class="bl" title="run">run</div><div class="bt"><div class="bf" style="width:29%"></div><span class="bv">42 prompts</span></div></div>
+<div class="bar"><div class="bl" title="audit">audit</div><div class="bt"><div class="bf" style="width:25%"></div><span class="bv">36 prompts</span></div></div>
+<div class="bar"><div class="bl" title="build">build</div><div class="bt"><div class="bf" style="width:24%"></div><span class="bv">34 prompts</span></div></div>
+<div class="bar"><div class="bl" title="add">add</div><div class="bt"><div class="bf" style="width:24%"></div><span class="bv">34 prompts</span></div></div>
+<div class="bar"><div class="bl" title="read">read</div><div class="bt"><div class="bf" style="width:20%"></div><span class="bv">29 prompts</span></div></div>
+<div class="bar"><div class="bl" title="review">review</div><div class="bt"><div class="bf" style="width:17%"></div><span class="bv">24 prompts</span></div></div>
+<div class="bar"><div class="bl" title="close">close</div><div class="bt"><div class="bf" style="width:16%"></div><span class="bv">23 prompts</span></div></div>
+<div class="bar"><div class="bl" title="update">update</div><div class="bt"><div class="bf" style="width:16%"></div><span class="bv">23 prompts</span></div></div>
+<div class="bar"><div class="bl" title="fix">fix</div><div class="bt"><div class="bf" style="width:15%"></div><span class="bv">22 prompts</span></div></div>
+<div class="bar"><div class="bl" title="corpus">corpus</div><div class="bt"><div class="bf" style="width:14%"></div><span class="bv">21 prompts</span></div></div>
+<div class="bar"><div class="bl" title="report">report</div><div class="bt"><div class="bf" style="width:14%"></div><span class="bv">21 prompts</span></div></div>
+<div class="bar"><div class="bl" title="copy">copy</div><div class="bt"><div class="bf" style="width:12%"></div><span class="bv">17 prompts</span></div></div>
+<div class="bar"><div class="bl" title="clean">clean</div><div class="bt"><div class="bf" style="width:10%"></div><span class="bv">15 prompts</span></div></div></div><div class="card"><h2>Recurring phrasings you type manually</h2><p class="sub">Normalized prompts (SKUs / task-ids / paths masked). Repeated phrasings = automate these.</p><table class='rt'><thead><tr><th>Times</th><th>Representative prompt (recurring pattern)</th></tr></thead><tbody><tr><td class="cnt">4×</td><td>verbose: true</td></tr><tr><td class="cnt">2×</td><td>You are CE Controller 1.
+
+The Bari Comparison Governance Constitution v1 identified a critical finding:
+
+&quot;Purpose divergence is the default condition.&quot;
+
+This finding may have major implications for BSIP and future comparison architecture.
+
+</td></tr><tr><td class="cnt">2×</td><td>You are CE Controller 1.
+
+Working directory:
+C:\Users\Tom Bar-Haim\cv
+
+Source files:
+- CV_A_MA_CorpDev.docx
+- CV_A_Review.md
+- CV_A_Design_Brief.md
+- CV_A_Structure_Challenge.md
+
+Context:
+
+Reviews are complete.
+
+Do NOT perform another revie</td></tr><tr><td class="cnt">2×</td><td>TASK-087B
+
+Objective
+
+Implement the approved TASK-087A category-boundary decision.
+
+Remove all non-spread chickpea products from the Hummus comparison experience.
+
+Products to exclude:
+
+7290018359686  (הקיסר חומוס ענק)
+208428          (חומו</td></tr><tr><td class="cnt">2×</td><td>TASK-087C
+
+Objective
+
+Align the Hummus page hero/featured-card statistics with the rendered comparison experience.
+
+Use display-level framing, not factory-audit framing.
+
+Change visible chips/cards from:
+- 69 products checked
+- 67 scored
+- </td></tr><tr><td class="cnt">2×</td><td>TASK-033
+
+You are Frontend Architect.
+
+Repo:
+C:\Users\HP\bari
+
+Objective:
+
+Implement the approved Maadanim methodology note from TASK-020R.
+
+File:
+
+src/lib/comparisons/maadanim-page-data.ts
+
+Scope:
+
+Add the approved methodology line exactly</td></tr><tr><td class="cnt">2×</td><td>good. approved to apply same for CV_B_CorpDev_CoS.docx and CV_C_Strategy_Ops.docx</td></tr><tr><td class="cnt">2×</td><td>TASK-019R
+
+You are Frontend Architect.
+
+Repo:
+C:\Users\HP\bari
+
+Objective:
+Restart Wave 1 website improvements safely.
+
+Allowed files:
+- src/components/**
+- src/lib/blog/**
+- src/app/**
+- .claude/bari-qa-validate.js
+
+Forbidden files:
+- src/</td></tr><tr><td class="cnt">2×</td><td>TASK-027
+
+You are Frontend Architect.
+
+Repo:
+C:\Bari
+
+Objective:
+
+Execute Hummus Category Factory Stage 2.
+
+Inputs:
+
+- TASK-018 Hummus Stage 0–1
+- TASK-024 Hummus Execution Plan
+- TASK-025 Shelf Mapping
+- TASK-026 Scope Decision
+
+Requiremen</td></tr><tr><td class="cnt">2×</td><td>git diff -- src/components/comparisons/bari-comparison-desktop-page.tsx</td></tr></tbody></table></div><div class="card"><h2>Skills worth creating</h2><p class="sub">Each is a request you repeat enough to package as a /command or skill.</p><div class="rec"><div class="recn">126×</div><div><div class="recd">/dispatch-spec — scaffold the 5-part delegation/TASK spec (objective · context · DoD · lane · return-contract) from a one-line ask, so you stop hand-writing the same structured prompt.</div><div class="recx"><span class="tag new">NEW — your most-repeated manual pattern</span></div></div></div><div class="rec"><div class="recn">67×</div><div><div class="recd">/rescore &lt;category&gt; — flip the scoring switch, re-score, diff vs the committed baseline, emit the movement table.</div><div class="recx"><span class="tag exists">partially covered by bari-bsip2-scoring-governance / spine_flip</span></div></div></div><div class="rec"><div class="recn">44×</div><div><div class="recd">/build-page &lt;category&gt; — run the uniform generate_page path end to end (scoring + copy + render contract).</div><div class="recx"><span class="tag exists">partially covered by bari-category-factory</span></div></div></div><div class="rec"><div class="recn">36×</div><div><div class="recd">/conformance — run conformance.py --all and report which live categories re-flow vs are non-conforming.</div><div class="recx"><span class="tag exists">partially covered by bari-qa-audit</span></div></div></div><div class="rec"><div class="recn">23×</div><div><div class="recd">/close-task &lt;id&gt; — read the DoD, verify each return-block claim at file:line, then set CLOSED with a close_reason.</div><div class="recx"><span class="tag exists">partially covered by /orchestrate (closing authority)</span></div></div></div><div class="rec"><div class="recn">21×</div><div><div class="recd">/corpus &lt;category&gt; — shelf-map → filter → BSIP enrich → QA, end to end on the uniform spine path.</div><div class="recx"><span class="tag exists">partially covered by bari-category-factory</span></div></div></div><div class="rec"><div class="recn">21×</div><div><div class="recd">/telemetry — orchestrator audit: per-lane ledger (tokens/tools/wall/outcome), rework %, error origin-vs-catch.</div><div class="recx"><span class="tag exists">partially covered by /roadmap + orchestrator audit</span></div></div></div></div><div class="card"><h2>Automation candidates</h2><ul class='ins'><li>&quot;score&quot; appears in ~67 prompts → automate: Re-score a corpus and diff against the committed baseline.</li><li>&quot;close&quot; appears in ~23 prompts → automate: Close a TASK after verifying its return-block claims against artifacts.</li><li>&quot;report&quot; appears in ~21 prompts → automate: Generate a status/telemetry report.</li><li>You already use slash-commands (/compact, /model, /roadmap, /orchestrate, /cc, /cc-agent). The recurring manual prompts below that have no slash-command equivalent are the gap to close.</li></ul></div><div class="card"><h2>Models used</h2><div class="bar"><div class="bl" title="claude-opus-4-8">claude-opus-4-8</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">77,276</span></div></div>
+<div class="bar"><div class="bl" title="claude-sonnet-4-6">claude-sonnet-4-6</div><div class="bt"><div class="bf" style="width:31%"></div><span class="bv">24,316</span></div></div>
+<div class="bar"><div class="bl" title="claude-fable-5">claude-fable-5</div><div class="bt"><div class="bf" style="width:2%"></div><span class="bv">1,761</span></div></div>
+<div class="bar"><div class="bl" title="&lt;synthetic&gt;">&lt;synthetic&gt;</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">248</span></div></div></div><div class="card"><h2>Where the work happened (git branches)</h2><div class="bar"><div class="bl" title="master">master</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">46,764</span></div></div>
+<div class="bar"><div class="bl" title="task-275-engine-fixes-abc">task-275-engine-fixes-abc</div><div class="bt"><div class="bf" style="width:89%"></div><span class="bv">42,048</span></div></div>
+<div class="bar"><div class="bl" title="cc-agent-v2">cc-agent-v2</div><div class="bt"><div class="bf" style="width:72%"></div><span class="bv">34,119</span></div></div>
+<div class="bar"><div class="bl" title="HEAD">HEAD</div><div class="bt"><div class="bf" style="width:41%"></div><span class="bv">19,322</span></div></div>
+<div class="bar"><div class="bl" title="task-244-confidence-structural-fix">task-244-confidence-structural-fix</div><div class="bt"><div class="bf" style="width:24%"></div><span class="bv">11,447</span></div></div>
+<div class="bar"><div class="bl" title="task-362-bars-rework">task-362-bars-rework</div><div class="bt"><div class="bf" style="width:21%"></div><span class="bv">10,164</span></div></div>
+<div class="bar"><div class="bl" title="salty-snacks-v4">salty-snacks-v4</div><div class="bt"><div class="bf" style="width:8%"></div><span class="bv">4,178</span></div></div>
+<div class="bar"><div class="bl" title="feature/admin-blog-editor">feature/admin-blog-editor</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">607</span></div></div>
+<div class="bar"><div class="bl" title="rel/yogurts-v4">rel/yogurts-v4</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">472</span></div></div>
+<div class="bar"><div class="bl" title="image-backfill-task-243">image-backfill-task-243</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">395</span></div></div>
+<div class="bar"><div class="bl" title="feature/admin-copy-editor">feature/admin-copy-editor</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">225</span></div></div>
+<div class="bar"><div class="bl" title="frozen-vegetables-preview">frozen-vegetables-preview</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">141</span></div></div></div><div class="card"><h2>Most-touched files</h2><div class="bar"><div class="bl" title="c:\Bari\tasks\DISPATCH_BOARD.md">c:\Bari\tasks\DISPATCH_BOARD.md</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">1,796</span></div></div>
+<div class="bar"><div class="bl" title="C:\Users\HP\.claude\projects\c--Bari\memory\MEMORY.md">C:\Users\HP\.claude\projects\c--Bari\memory\MEMORY.md</div><div class="bt"><div class="bf" style="width:25%"></div><span class="bv">450</span></div></div>
+<div class="bar"><div class="bl" title="C:\Bari\tasks\TASK-197.md">C:\Bari\tasks\TASK-197.md</div><div class="bt"><div class="bf" style="width:13%"></div><span class="bv">251</span></div></div>
+<div class="bar"><div class="bl" title="c:\Bari\03_operations\router\dispatch.py">c:\Bari\03_operations\router\dispatch.py</div><div class="bt"><div class="bf" style="width:13%"></div><span class="bv">246</span></div></div>
+<div class="bar"><div class="bl" title="C:\Bari\tasks\DISPATCH_BOARD.md">C:\Bari\tasks\DISPATCH_BOARD.md</div><div class="bt"><div class="bf" style="width:12%"></div><span class="bv">223</span></div></div>
+<div class="bar"><div class="bl" title="c:\Bari\.claude\commands\orchestrate.md">c:\Bari\.claude\commands\orchestrate.md</div><div class="bt"><div class="bf" style="width:11%"></div><span class="bv">199</span></div></div>
+<div class="bar"><div class="bl" title="c:\Bari\03_operations\bsip2\proto_v0\src\score_engine.py">c:\Bari\03_operations\bsip2\proto_v0\src\score_engine.py</div><div class="bt"><div class="bf" style="width:8%"></div><span class="bv">151</span></div></div>
+<div class="bar"><div class="bl" title="c:\Bari\01_framework\operations\lane_routing_rules_v1.md">c:\Bari\01_framework\operations\lane_routing_rules_v1.md</div><div class="bt"><div class="bf" style="width:7%"></div><span class="bv">137</span></div></div>
+<div class="bar"><div class="bl" title="C:\Bari\01_framework\olive_oil_d5_d6_annotation_spec_v1.md">C:\Bari\01_framework\olive_oil_d5_d6_annotation_spec_v1.md</div><div class="bt"><div class="bf" style="width:7%"></div><span class="bv">127</span></div></div>
+<div class="bar"><div class="bl" title="C:\Bari\03_operations\bsip2\proto_v0\src\score_engine.py">C:\Bari\03_operations\bsip2\proto_v0\src\score_engine.py</div><div class="bt"><div class="bf" style="width:5%"></div><span class="bv">97</span></div></div>
+<div class="bar"><div class="bl" title="c:\Bari\bari-web\src\app\hashvaot\page.tsx">c:\Bari\bari-web\src\app\hashvaot\page.tsx</div><div class="bt"><div class="bf" style="width:5%"></div><span class="bv">92</span></div></div>
+<div class="bar"><div class="bl" title="C:\Bari\05_command_center\generate_dashboard.py">C:\Bari\05_command_center\generate_dashboard.py</div><div class="bt"><div class="bf" style="width:4%"></div><span class="bv">88</span></div></div></div><div class="card"><h2>Token footprint</h2><p class="sub">Estimated cost ≈ $50,727.62 (rough blended public list prices; cache reads ~10% of input).</p><div class="bar"><div class="bl" title="cache read">cache read</div><div class="bt"><div class="bf" style="width:100%"></div><span class="bv">22,276,094,827</span></div></div>
+<div class="bar"><div class="bl" title="input">input</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">16,804,597</span></div></div>
+<div class="bar"><div class="bl" title="cache creation">cache creation</div><div class="bt"><div class="bf" style="width:2%"></div><span class="bv">573,054,510</span></div></div>
+<div class="bar"><div class="bl" title="output">output</div><div class="bt"><div class="bf" style="width:1%"></div><span class="bv">177,624,723</span></div></div></div><p class=foot>* &ldquo;List-price value&rdquo; = what this volume of tokens would cost at public API list prices. On a Claude subscription this is value received, <b>not</b> a bill you paid. Re-run <code>python analyze.py</code> anytime to refresh this report.</p></div></body></html>

@@ -1,0 +1,303 @@
+function clampPercent(value: number) {
+  return Math.min(96, Math.max(4, value));
+}
+
+function SignalRadar({
+  activeSignal,
+  inView,
+  onSignalChange,
+  reduceMotion,
+}: {
+  activeSignal: number;
+  inView: boolean;
+  onSignalChange: (index: number) => void;
+  reduceMotion: boolean;
+}) {
+  const total = radarSignals.length;
+  const productPoints = useMemo(
+    () => radarSignals.map((signal, index) => getPoint(signal.value, index, total)),
+    [total]
+  );
+  const benchmarkPoints = useMemo(
+    () => radarSignals.map((signal, index) => getPoint(signal.benchmark, index, total)),
+    [total]
+  );
+  const activePoint = productPoints[activeSignal];
+  const activeSignalData = radarSignals[activeSignal];
+  const transform = inView ? "scale(1)" : "scale(0.08)";
+  const transition = reduceMotion
+    ? "none"
+    : "transform 1100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 700ms ease-out";
+
+  return (
+    <div className="relative mx-auto w-full max-w-[32rem]">
+      <div
+        className={cn(
+          "absolute inset-6 rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.025] transition-opacity duration-700",
+          inView ? "opacity-100" : "opacity-0"
+        )}
+        aria-hidden
+      />
+      <svg
+        viewBox="0 0 360 360"
+        className="relative z-10 aspect-square w-full overflow-visible"
+        role="img"
+        aria-label="פרופיל רדאר של פרמטרים תזונתיים ורכיביים"
+      >
+        <g className="text-[#111318]/10">
+          {[0.25, 0.5, 0.75, 1].map((level) => (
+            <polygon
+              key={level}
+              points={pointsToString(radarSignals.map((_, index) => getPoint(level * 100, index, total)))}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          ))}
+          {radarSignals.map((_, index) => {
+            const end = getPoint(100, index, total);
+
+            return <line key={index} x1="180" y1="180" x2={end.x} y2={end.y} stroke="currentColor" strokeWidth="1" />;
+          })}
+        </g>
+
+        <g
+          style={{
+            opacity: inView ? 1 : 0,
+            transform,
+            transformOrigin: "180px 180px",
+            transition,
+            transitionDelay: reduceMotion ? "0ms" : "140ms",
+          }}
+        >
+          <polygon
+            points={pointsToString(benchmarkPoints)}
+            fill="rgba(255,255,255,0.035)"
+            stroke="rgba(161,161,170,0.42)"
+            strokeDasharray="4 6"
+            strokeWidth="1.5"
+          />
+        </g>
+
+        <g
+          style={{
+            opacity: inView ? 1 : 0,
+            transform,
+            transformOrigin: "180px 180px",
+            transition,
+            transitionDelay: reduceMotion ? "0ms" : "260ms",
+          }}
+        >
+          <polygon
+            points={pointsToString(productPoints)}
+            fill="rgba(47,174,130,0.06)"
+            stroke="#1F8F6A"
+            strokeLinejoin="round"
+            strokeWidth="2.5"
+          />
+          <polyline
+            points={`${pointsToString(productPoints)} ${productPoints[0].x},${productPoints[0].y}`}
+            fill="none"
+            stroke="rgba(47,174,130,0.06)"
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </g>
+
+        <line
+          x1="180"
+          y1="180"
+          x2={activePoint.x}
+          y2={activePoint.y}
+          stroke="#1F8F6A"
+          strokeWidth="1.5"
+          strokeDasharray="3 5"
+          className="transition-all duration-500 ease-out"
+        />
+
+        {radarSignals.map((signal, index) => {
+          const point = productPoints[index];
+          const labelPoint = getPoint(113, index, total);
+          const isActive = activeSignal === index;
+
+          return (
+            <g
+              key={signal.axis}
+              onMouseEnter={() => onSignalChange(index)}
+              onFocus={() => onSignalChange(index)}
+              tabIndex={0}
+              className="cursor-default outline-none"
+              style={{
+                opacity: inView ? 1 : 0,
+                transition: reduceMotion ? "none" : "opacity 600ms ease-out",
+                transitionDelay: `${360 + index * 70}ms`,
+              }}
+            >
+              <circle
+                cx={point.x}
+                cy={point.y}
+                r={isActive ? 6 : 4}
+                fill={isActive ? "#1F8F6A" : "#2FAE82"}
+                stroke="#F7F7F2"
+                strokeWidth="2"
+                className="transition-all duration-300"
+                style={{
+                  animation:
+                    inView && !reduceMotion
+                      ? `bari-signal-point-pulse 900ms ease-out ${520 + index * 80}ms 1 both`
+                      : "none",
+                  transformOrigin: `${point.x}px ${point.y}px`,
+                }}
+              />
+              <text
+                x={labelPoint.x}
+                y={labelPoint.y}
+                textAnchor={labelPoint.x > 194 ? "start" : labelPoint.x < 166 ? "end" : "middle"}
+                dominantBaseline="middle"
+                className={cn(
+                  "fill-zinc-500 text-[0.62rem] font-bold transition-colors duration-300",
+                  isActive && "fill-[#111318]"
+                )}
+              >
+                {signal.axis}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+
+      <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center">
+        <div className="w-36 rounded-[1.4rem] border border-black/[0.08] bg-[#FFFFFF]/85 px-4 py-3 text-center shadow-sm shadow-slate-900/25 backdrop-blur-md">
+          <div className="text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#1F8F6A]/80">
+            פרמטר מוביל
+          </div>
+          <div className="mt-1 text-sm font-extrabold tracking-[-0.02em] text-[#111318]">
+            {activeSignalData.axis}
+          </div>
+          <div className="mt-1 text-xs font-semibold text-[#5E6560]">{activeSignalData.value}/100</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SignalBenchmarkRow({
+  index,
+  inView,
+  reduceMotion,
+  row,
+}: {
+  index: number;
+  inView: boolean;
+  reduceMotion: boolean;
+  row: (typeof benchmarkRows)[number];
+}) {
+  const delay = 180 + index * 130;
+  const fillDrift = 3 + (index % 2);
+  const markerDrift = 2 + (index % 3);
+  const fillMotion = [
+    `${clampPercent(row.value - fillDrift)}%`,
+    `${clampPercent(row.value + fillDrift)}%`,
+    `${clampPercent(row.value - fillDrift)}%`,
+  ];
+  const markerMotion = [
+    `${clampPercent(row.category - markerDrift)}%`,
+    `${clampPercent(row.category + markerDrift)}%`,
+    `${clampPercent(row.category - markerDrift)}%`,
+  ];
+  const loopDuration = 4.8 + index * 0.35;
+
+  return (
+    <motion.div
+      className="group rounded-2xl border border-black/[0.08] bg-[#FFFFFF]/68 px-4 py-3 shadow-sm shadow-slate-900/20 backdrop-blur-sm transition-[border-color,box-shadow,background-color] duration-500 ease-out hover:border-[#1F8F6A]/20 hover:bg-[#FFFFFF]/82 hover:shadow-md hover:shadow-slate-900/10"
+      whileHover={reduceMotion ? undefined : { y: -2 }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
+    >
+      <div className="mb-2 flex items-center justify-between gap-4">
+        <div>
+          <div className="text-sm font-bold text-[#111318] transition-colors duration-300 group-hover:text-[#1F8F6A]">
+            {row.label}
+          </div>
+          <div className="mt-0.5 text-xs text-[#5E6560] transition-colors duration-300 group-hover:text-[#4E5663]">
+            {row.note}
+          </div>
+        </div>
+        <div className="text-left">
+          <div className="text-sm font-extrabold text-[#1F8F6A]">{row.value}</div>
+          <div className="text-[0.62rem] font-bold uppercase tracking-[0.14em] text-[#4E5663]">Bari</div>
+        </div>
+      </div>
+
+      <div className="relative h-3 overflow-visible rounded-full bg-[#F7F7F2]/75 shadow-inner shadow-slate-900/25">
+        <div className="absolute inset-y-0 end-0 w-full overflow-hidden rounded-full">
+          <motion.div
+            className="h-full rounded-full bg-[#1F8F6A]/60 transition-[width,background-color,box-shadow] ease-out group-hover:bg-[#1F8F6A] group-hover:shadow-[0_0_18px_rgba(47,174,130,0.06)]"
+            initial={false}
+            animate={{ width: inView ? (reduceMotion ? `${row.value}%` : fillMotion) : "0%" }}
+            transition={{
+              delay: reduceMotion ? 0 : delay / 1000,
+              duration: reduceMotion ? 0 : loopDuration,
+              ease: "easeInOut",
+              repeat: inView && !reduceMotion ? Infinity : 0,
+            }}
+          />
+        </div>
+
+        <motion.div
+          className="absolute z-10 size-3 rounded-full border-2 border-[#F7F7F2] bg-[#1F8F6A] shadow-sm shadow-slate-900/10 transition-colors duration-300 group-hover:bg-[#1F8F6A]"
+          initial={false}
+          animate={
+            inView
+              ? {
+                  opacity: 1,
+                  right: reduceMotion ? `${row.category}%` : markerMotion,
+                }
+              : { opacity: 0, right: `${row.category}%` }
+          }
+          transition={
+            inView && !reduceMotion
+              ? {
+                  opacity: { delay: (delay + 420) / 1000, duration: 0.7, ease: "easeOut" },
+                  right: {
+                    delay: (delay + 900) / 1000,
+                    duration: loopDuration,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  },
+                }
+              : { duration: 0 }
+          }
+          style={{
+            top: "50%",
+            marginTop: "-0.375rem",
+          }}
+          aria-hidden
+        />
+      </div>
+
+      <div className="mt-2 flex justify-between text-[0.68rem] font-medium text-[#5E6560]">
+        <span>חלש</span>
+        <span className="transition-colors duration-300 group-hover:text-[#1F8F6A]">קו קטגוריה</span>
+        <span>חזק</span>
+      </div>
+    </motion.div>
+  );
+}
+
+function SignalBenchmarkBars({ inView, reduceMotion }: { inView: boolean; reduceMotion: boolean }) {
+  return (
+    <div className="space-y-4">
+      {benchmarkRows.map((row, index) => (
+        <SignalBenchmarkRow
+          key={row.label}
+          index={index}
+          inView={inView}
+          reduceMotion={reduceMotion}
+          row={row}
+        />
+      ))}
+    </div>
+  );
+}
+

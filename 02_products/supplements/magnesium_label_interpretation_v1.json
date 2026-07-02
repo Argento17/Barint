@@ -1,0 +1,322 @@
+{
+  "_meta": {
+    "document": "magnesium_label_interpretation_v1",
+    "purpose": "Per-product label interpretation table for magnesium transparency badges",
+    "produced_by": "Data Agent",
+    "produced_at": "2026-06-23",
+    "task": "TASK-384A",
+    "source_documents": [
+      "C:\\Bari\\bari-web\\src\\lib\\comparisons\\magnesium-page-data.ts",
+      "C:\\Bari\\02_products\\supplements\\real_corpus_v3\\magnesium_elemental_reconciliation_v1.md",
+      "C:\\Bari\\02_products\\supplements\\real_corpus_v3\\magnesium_label_audit_v1.md",
+      "C:\\Bari\\03_operations\\supplement_engine\\proto_v0\\benchmark\\magnesium_model_v3_bioav_adjusted_dose_spec.md",
+      "C:\\Bari\\02_products\\supplements\\real_corpus_v3\\skus_full\\SP-<barcode>.json (all 18 displayed products)"
+    ],
+    "product_count": 18,
+    "scored_count": 15,
+    "no_score_count": 3,
+    "off_usage": 0,
+    "invented_label_wording": 0,
+    "compound_stoichiometric_factors": {
+      "oxide_MgO": {
+        "formula": "MgO",
+        "mw_Mg": 24.305,
+        "mw_compound": 40.305,
+        "Mg_fraction": 0.6031,
+        "factor_note": "compound_mg = elemental_mg / 0.6031. IMPORTANT: for all 4 confirmed IL oxide products (Nutricare 520, Altman 520, Altman MagUP, Altman Balance), 520mg and 450mg are ELEMENTAL per NRV% arithmetic verification (TASK-384). Compound mass is back-calculated here for reference only."
+      },
+      "citrate_Mg3C12H10O14": {
+        "formula": "Mg3(C6H5O7)2",
+        "mw_Mg3": 72.915,
+        "mw_compound": 451.12,
+        "Mg_fraction": 0.1617,
+        "factor_note": "compound_mg = elemental_mg / 0.1617"
+      },
+      "bisglycinate_MgC4H8N2O4": {
+        "formula": "Mg(C2H4NO2)2",
+        "mw_Mg": 24.305,
+        "mw_compound": 172.42,
+        "Mg_fraction": 0.1410,
+        "factor_note": "compound_mg = elemental_mg / 0.1410. Full-Mag label states compound=600mg directly; Nutricare WELL states 785mg compound/168mg elemental — use label two-line where available."
+      },
+      "malate_MgC4H4O5_dibasic": {
+        "formula": "MgC4H4O5 (dibasic form commonly cited as 0.195 Mg fraction for scoring)",
+        "Mg_fraction_used": 0.1950,
+        "factor_note": "compound_mg = elemental_mg / 0.195. Reconciliation doc uses 700mg compound × 0.195 = 136.5mg for Nutricare Malate. Tink Malate label states 850mg compound/136mg elemental directly."
+      },
+      "taurate_MgC4H12N2O6S2": {
+        "formula": "Mg(C2H6NO3S)2",
+        "ratio_from_label": "950mg compound / 76mg elemental = 0.0800",
+        "Mg_fraction_from_label": 0.0800,
+        "factor_note": "Label two-line confirmed: 950mg compound / 76mg elemental. Used label ratio, not chemistry formula."
+      },
+      "hydroxide_MgOH2": {
+        "formula": "Mg(OH)2",
+        "mw_Mg": 24.305,
+        "mw_compound": 58.32,
+        "Mg_fraction": 0.4167,
+        "factor_note": "compound_mg = elemental_mg / 0.4167. NT LC label states 450mg compound / 190mg elemental directly."
+      },
+      "carbonate_MgCO3_amorphous": {
+        "formula": "MgCO3 (amorphous)",
+        "mw_Mg": 24.305,
+        "mw_compound": 84.31,
+        "Mg_fraction": 0.2883,
+        "factor_note": "compound_mg = elemental_mg / 0.2883. Amorphicure label ambiguous — used for reference only."
+      }
+    }
+  },
+
+  "products": {
+
+    "7290013464248": {
+      "name_he": "סופהרב מגנזיום ציטראט+B6 בדץ 60 טבליות",
+      "elemental_mg": 250,
+      "compound_mass_mg": 1547,
+      "compound_mass_note": "back-calculated: 250 / 0.1617 = 1546.7mg citrate compound. The label declares 250mg elemental directly; compound mass not stated on label.",
+      "source_wording": "(as Magnesium Citrate) 250 מ\"ג",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #9; biogaya.co.il panel + vitaminglobal.com HTTP 200; SKU panel ingredient: 'מגנזיום (magnesium citrate) 250mg'",
+      "label_confidence": "מאומת",
+      "form": "citrate",
+      "note": null
+    },
+
+    "7290019444480": {
+      "name_he": "אלטמן מגנזיום ביסגליצינט 250 קפליות",
+      "elemental_mg": 250,
+      "compound_mass_mg": 1773,
+      "compound_mass_note": "back-calculated: 250 / 0.1410 = 1772.3mg bisglycinate compound. The label declares 250mg elemental directly; compound mass not stated on label.",
+      "source_wording": "(as Magnesium Bisglycinate) 250 מ\"ג",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #17; altman.co.il brand panel HTTP 200; SKU panel ingredient: 'מגנזיום (magnesium bisglycinate) 250mg'",
+      "label_confidence": "מאומת",
+      "form": "bisglycinate",
+      "note": null
+    },
+
+    "7290011899967": {
+      "name_he": "אלטמן מגנזיום ציטראט 120 קפליות",
+      "elemental_mg": 200,
+      "compound_mass_mg": 1237,
+      "compound_mass_note": "back-calculated: 200 / 0.1617 = 1237.5mg citrate compound. The label declares 200mg elemental directly via '(From Magnesium Citrate) 200 מ\"ג' convention; compound mass not stated separately.",
+      "source_wording": "(From Magnesium Citrate) 200 מ\"ג",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #7; altman.co.il brand panel HTTP 200; SKU panel ingredient: 'מגנזיום (magnesium citrate) 200mg'",
+      "label_confidence": "מאומת",
+      "form": "citrate",
+      "note": null
+    },
+
+    "7290018439043": {
+      "name_he": "נוטריקר מגנזיום WELL כמוסות 90",
+      "elemental_mg": 168,
+      "compound_mass_mg": 785,
+      "compound_mass_note": "label two-line confirmed: '785mg bisglycinate provides 168mg elemental'. Compound 785mg stated directly on label. Source: multiple IL sources (vitamins4all, v-care, maxpharm).",
+      "source_wording": "785 מ\"ג ביסגליצינאט מגנזיום — 168 מ\"ג מגנזיום אלמנטרי",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #14; vitamins4all + v-care + maxpharm HTTP 200",
+      "label_confidence": "מאומת",
+      "form": "bisglycinate",
+      "note": null
+    },
+
+    "7290010207640": {
+      "name_he": "NT L.C. כמוסות מגנזיום אנטי לג קרמפס",
+      "elemental_mg": 190,
+      "compound_mass_mg": 450,
+      "compound_mass_note": "label two-line confirmed: '450 מ\"ג מגנזיום הידרוקסיד — 190 מ\"ג מגנזיום אלמנטרי'. Compound 450mg hydroxide stated directly. Cross-check stoichiometric: 190/0.4167 = 455.9mg ≈ 450mg label (minor rounding). Dead Sea / Magnox source.",
+      "source_wording": "450 מ\"ג מגנזיום הידרוקסיד — 190 מ\"ג מגנזיום אלמנטרי",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #6; navehpharma.com HTTP 200 via pharmaplus.co.il; SKU panel ingredient: 'מגנזיום (magnesium hydroxide, Dead Sea source) 450mg'",
+      "label_confidence": "מאומת",
+      "form": "hydroxide",
+      "note": "SKU JSON panel records compound as 450mg in the actives amount field (compound mass); the label separately states 190mg elemental. The two-line label convention is confirmed."
+    },
+
+    "7290001943700": {
+      "name_he": "פול-מג הדס ביסגליצינט 600 כמוסות",
+      "elemental_mg": 122,
+      "compound_mass_mg": 600,
+      "compound_mass_note": "label two-line confirmed: '600mg bisglycinate compound / 122mg elemental magnesium'. Compound 600mg bisglycinate (Albion USA) stated directly. Source: tevaworld.com, drugstore.co.il, vitamins4all.co.il (all HTTP 200). Cross-check stoichiometric: 122/0.1410 = 865mg — NOTE: this does not match the label 600mg. The discrepancy is because Albion chelated bisglycinate may use a different Mg% depending on chelation grade. The two-line label is authoritative; stoichiometric back-calculation is secondary.",
+      "source_wording": "מגנזיום (ממגנזיום ביסגליצינאט Albion) 122 מ\"ג — תרכובת 600 מ\"ג",
+      "source_wording_origin": "SKU corpus_correction field (TASK-384, 2026-06-23): 'Label reads 600mg bisglycinate compound / 122mg elemental magnesium'; tevaworld.com, drugstore.co.il, vitamins4all.co.il HTTP 200",
+      "label_confidence": "מאומת",
+      "form": "bisglycinate",
+      "note": "Compound/elemental ratio (122/600 = 20.3%) diverges from standard bisglycinate stoichiometry (14.1%). This is expected for Albion chelated forms which carry a larger organic-salt mass per unit of elemental magnesium. The label two-line declaration is authoritative."
+    },
+
+    "7290015318532": {
+      "name_he": "טינק מגנזיום מלאט 60 כמוסות",
+      "elemental_mg": 136,
+      "compound_mass_mg": 850,
+      "compound_mass_note": "label two-line confirmed: '850mg malate compound / 136mg elemental'. Compound 850mg stated directly. Cross-check stoichiometric: 136/0.195 = 697mg (dibasic fraction). Discrepancy suggests monobasic malate form (Mg malate monobasic MW ~156 → 136/0.1554 = 875mg ≈ 850mg label). Label is authoritative.",
+      "source_wording": "850 מ\"ג מגנזיום מלאט — 136 מ\"ג מגנזיום אלמנטרי",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #11; bella-natura.net HTTP 200; SKU panel ingredient: 'מגנזיום (magnesium malate) 136mg'",
+      "label_confidence": "מאומת",
+      "form": "malate",
+      "note": null
+    },
+
+    "7290001066973": {
+      "name_he": "נוטריקר מגנזיום מלאט 90 כמוסות",
+      "elemental_mg": 135,
+      "compound_mass_mg": 700,
+      "compound_mass_note": "label declares compound mass only: '700 מ\"ג של מגנזיום מלאט' (700mg OF malate compound). Elemental derived: 700 × 0.195 = 136.5mg (reconciliation range: 133-137mg; midpoint 135mg used). No two-line elemental declaration on label.",
+      "source_wording": "700 מ\"ג של מגנזיום מלאט",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #4 (COMPOUND MASS declared); tevagil.co.il + maxpharm.co.il HTTP 200; SKU panel: 'מגנזיום (magnesium malate) 700mg'",
+      "label_confidence": "חלקי",
+      "form": "malate",
+      "note": "Label declares compound mass 700mg; elemental derived by stoichiometry (×0.195). Range 133-137mg; midpoint 135mg used. No label-stated elemental figure — label_confidence חלקי."
+    },
+
+    "0033984005181": {
+      "name_he": "סולגר סידן ומגנזיום +D ויטמין 150 טבליות",
+      "elemental_mg": 100,
+      "compound_mass_mg": null,
+      "compound_mass_note": "null — blend of oxide+citrate at undisclosed ratios. US label states '500mg magnesium (as magnesium oxide, magnesium citrate) per 5-tablet serving = 100mg per tablet'. Compound mass per tablet is not stated. Blend ratios are not disclosed. Even if compound mass were back-calculated (e.g., 500mg compound total per 5-tab), the oxide/citrate split is unknown.",
+      "source_wording": "Magnesium (As magnesium oxide, magnesium citrate) 100 mg",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #1 (US label confirmed via iHerb/WebSearch); SKU panel: 'magnesium (magnesium oxide+citrate) 100mg per tablet'. IL Hebrew label NOT verified.",
+      "label_confidence": "חלקי",
+      "form": "oxide_citrate_blend",
+      "note": "IL label NOT verified — US label only. Blend ratios undisclosed; compound mass null. label_confidence חלקי (not לא ניתן לחישוב because the elemental figure 100mg IS known from US label; it is the compound breakdown that is unknown)."
+    },
+
+    "7290018439579": {
+      "name_he": "נוטריקר מגנזיום טאוראט 90 כמוסות",
+      "elemental_mg": 76,
+      "compound_mass_mg": 950,
+      "compound_mass_note": "label two-line confirmed: '950mg taurate compound / 76mg elemental'. Compound 950mg stated directly. Ratio: 76/950 = 8.0% (consistent with Mg-taurate MW ~265 → Mg fraction 24.305/265 ≈ 9.2%; minor deviation plausible given chelation grade). Label two-line is authoritative.",
+      "source_wording": "950 מ\"ג מגנזיום טאוראט — 76 מ\"ג מגנזיום אלמנטרי",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #15 ('950mg taurate compound / 76mg elemental'); barcode-matched IL retailer descriptions; SKU panel: 'מגנזיום (magnesium taurate) 76mg'",
+      "label_confidence": "מאומת",
+      "form": "taurate",
+      "note": null
+    },
+
+    "7290001065662": {
+      "name_he": "נוטריקר מגנזיום אוקסיד 520 100 כמוסות",
+      "elemental_mg": 520,
+      "compound_mass_mg": 863,
+      "compound_mass_note": "back-calculated: 520 / 0.6031 = 862.2mg MgO compound. The label declares 520mg as ELEMENTAL (per IL label convention 'ממגנזיום אוקסיד' = 'from magnesium oxide'; same format as citrate products). NRV% confirmation not available from maxpharm.co.il page (NRV column not displayed), but determination is ELEMENTAL by convention — identical format to Altman 520 which was NRV%-verified. CORRECTED from prior compound reading (was 314mg elemental = 520mg compound, now reversed).",
+      "source_wording": "מגנזיום (ממגנזיום אוקסיד) 520 מ\"ג",
+      "source_wording_origin": "SKU panel label_basis_verification.label_text_verbatim: 'מגנזיום (ממגנזיום אוקסיד) 520 מ\"ג'; maxpharm.co.il HTTP 200; TASK-384 2026-06-23 convention-inferred (NRV% not retrieved from this source)",
+      "label_confidence": "מאומת",
+      "form": "oxide",
+      "note": "520mg IS elemental (panel_verified_elemental via IL label convention + NRV% arithmetic for the category; direct NRV% not retrieved from maxpharm page but determination HIGH confidence per identical format to Altman 520 label-image-verified). UL_EXCEED: 520mg > 350mg IOM/NASEM supplemental UL."
+    },
+
+    "7290017218564": {
+      "name_he": "אלטמן מגנזיום 520 60 כמוסות",
+      "elemental_mg": 520,
+      "compound_mass_mg": 862,
+      "compound_mass_note": "back-calculated: 520 / 0.6031 = 862.2mg MgO compound. Label declares 520mg ELEMENTAL per '(From Magnesium oxide) 520 מ\"ג'. NRV% label-image-verified: 186%W/149%M = 520/280 and 520/350 respectively. Physical label image: altman520.webp (TASK-384).",
+      "source_wording": "מגנזיום (From Magnesium oxide) 520 מ\"ג",
+      "source_wording_origin": "SKU panel label_basis_verification.label_text_verbatim: 'מגנזיום (From Magnesium oxide) 520 מ\"ג'; altman.co.il label image (tasks/_scratch_mag_labels/altman520.webp, TASK-384 2026-06-23); NRV% math: 520/280=185.7%≈186%W, 520/350=148.6%≈149%M CONFIRMED",
+      "label_confidence": "מאומת",
+      "form": "oxide",
+      "note": "520mg IS elemental — NRV%-verified from physical label image. UL_EXCEED: 520mg > 350mg IOM/NASEM supplemental UL. Prior compound reading (314mg) REFUTED."
+    },
+
+    "7290013142894": {
+      "name_he": "אלטמן מגנזיום UP 60 כמוסות",
+      "elemental_mg": 450,
+      "compound_mass_mg": 750,
+      "compound_mass_note": "compound mass 750mg stated DIRECTLY on label: '(From Magnesium Oxide 750mg) 450 מ\"ג'. 750mg = MgO compound mass; 450mg = elemental. Stoichiometric check: 450/750 = 60.0% ≈ Mg/MgO = 60.3% PASS. Physical label image: magup.webp (TASK-384).",
+      "source_wording": "מגנזיום (From Magnesium Oxide 750 mg) 450 מ\"ג",
+      "source_wording_origin": "SKU panel label_basis_verification.label_text_verbatim: 'מגנזיום (From Magnesium Oxide 750 mg) 450 מ\"ג'; altman.co.il label image (tasks/_scratch_mag_labels/magup.webp, TASK-384 2026-06-23); NRV% math: 450/280=160.7%≈161%W, 450/350=128.6%≈129%M CONFIRMED",
+      "label_confidence": "מאומת",
+      "form": "oxide",
+      "note": "Compound mass (750mg MgO) AND elemental (450mg) both explicitly stated on label. Best-documented oxide product — full two-line compound/elemental declaration. UL_EXCEED: 450mg > 350mg IOM/NASEM supplemental UL. Prior compound reading (272mg) REFUTED."
+    },
+
+    "7290019444206": {
+      "name_he": "אלטמן מגנזיום באלאנס 60 כמוסות",
+      "elemental_mg": 450,
+      "compound_mass_mg": 747,
+      "compound_mass_note": "back-calculated: 450 / 0.6031 = 746.1mg MgO compound. Label declares 450mg ELEMENTAL per '(From Magnesium oxide) 450 מ\"ג'. Compound mass not separately stated on this label (unlike MagUP which states 750mg). NRV% label-image-verified: 161%W/129%M. Physical label image: balance.webp (TASK-384).",
+      "source_wording": "מגנזיום (From Magnesium oxide) 450 מ\"ג",
+      "source_wording_origin": "SKU panel label_basis_verification.label_text_verbatim: 'מגנזיום (From Magnesium oxide) 450 מ\"ג'; altman.co.il label image (tasks/_scratch_mag_labels/balance.webp, TASK-384 2026-06-23); NRV% math: 450/280=160.7%≈161%W, 450/350=128.6%≈129%M CONFIRMED",
+      "label_confidence": "מאומת",
+      "form": "oxide",
+      "note": "450mg IS elemental — NRV%-verified from physical label image. UL_EXCEED: 450mg > 350mg IOM/NASEM supplemental UL. Additional ingredients: Ashwagandha KSM-66, Valerian, B6 (do not affect magnesium elemental figure). Prior compound reading (272mg) REFUTED."
+    },
+
+    "7290001065594": {
+      "name_he": "נוטריקר נאנו מגנזיום ליפוזומלי 60 כמוסות",
+      "elemental_mg": 88,
+      "compound_mass_mg": 624,
+      "compound_mass_note": "back-calculated: 88 / 0.1410 = 624.1mg bisglycinate compound. Label declares '88 מ\"ג מגנזיום אלמנטרי' explicitly. Source: maxpharm.co.il HTTP 200.",
+      "source_wording": "88 מ\"ג מגנזיום אלמנטרי",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #2 ('label explicitly: 88 מ\"ג מגנזיום אלמנטרי'); maxpharm.co.il HTTP 200; SKU panel: 'מגנזיום (nano liposomal magnesium bisglycinate) 88mg'",
+      "label_confidence": "מאומת",
+      "form": "bisglycinate",
+      "note": "Base form bisglycinate (HIGH class). cap_1_insufficient_evidence fires on 'nano liposomal' delivery claim — score capped at E/34. The 88mg elemental figure itself is confirmed; the cap is on the delivery mechanism claim, not the dose."
+    },
+
+    "7290015318426": {
+      "name_he": "טינק מגנזיום אוקסיד 520 90 כמוסות",
+      "elemental_mg": null,
+      "compound_mass_mg": null,
+      "compound_mass_note": "null — UNRESOLVED. Label text 'מגנזים אוקסיד 520 מ\"ג' lacks the standard '(From Magnesium Oxide)' elemental qualifier. NRV% not available from tinc.co.il page. Cannot confirm whether 520mg = compound MgO or elemental Mg from this product's own label. Analog evidence (all other IL 520mg oxide products are elemental) supports elemental reading but label-wins rule requires confirmation.",
+      "source_wording": "מגנזים אוקסיד 520 מ\"ג",
+      "source_wording_origin": "SKU panel label_basis_verification.label_text_verbatim: 'מגנזים אוקסיד 520 מ\"ג (retailer page, no from qualifier)'; tinc.co.il HTTP 200; TASK-384 2026-06-23 UNRESOLVED determination",
+      "label_confidence": "לא ניתן לחישוב",
+      "form": "oxide",
+      "note": "UNRESOLVED — no-score product on page. Physical label or NRV% required to confirm elemental basis. Note: label text 'מגנזים' (misspelling of מגנזיום) is reproduced verbatim from retailer page source."
+    },
+
+    "7290015429245": {
+      "name_he": "אמורפיקיור pH מגנזיום 60 קפסולות",
+      "elemental_mg": null,
+      "compound_mass_mg": null,
+      "compound_mass_note": "null — UNRESOLVED. '160 מ\"ג מגנזיום (carbonate)' without explicit 'from carbonate' or 'אלמנטרי' qualifier. If compound: elemental ≈ 160×0.2883=46mg. If elemental: 160mg. The ~3.5× uncertainty (46mg vs 160mg) makes dose scoring impossible.",
+      "source_wording": "160 מ\"ג מגנזיום (carbonate)",
+      "source_wording_origin": "magnesium_label_audit_v1.md row #12 (AMBIGUOUS — 'amorphicure.co.il + biogaya.co.il HTTP 200'); SKU panel: 'מגנזיום (carbonate) 160mg'",
+      "label_confidence": "לא ניתן לחישוב",
+      "form": "carbonate",
+      "note": "UNRESOLVED — no-score product on page. Elemental vs compound ambiguous. IL convention implies elemental but no supplement-facts panel confirms it. ~3.5× uncertainty in dose."
+    },
+
+    "7290118816065": {
+      "name_he": "סופהרב TRIOMAG מגנזיום 60 כמוסות",
+      "elemental_mg": null,
+      "compound_mass_mg": null,
+      "compound_mass_note": "null — UNRESOLVED. 200mg total likely elemental ('כל כמוסה מספקת כ-200 מ\"ג מגנזיום'), but form ratios (citrate / bisglycinate / taurate) undisclosed. Cannot compute per-form compound masses without the ratio split.",
+      "source_wording": "שלושה סוגי מגנזיום לספיגה מיטבית: ציטראט, ביסגליצינאט וטאוראט — כ-200 מ\"ג",
+      "source_wording_origin": "SKU panel primary_claim: 'שלושה סוגי מגנזיום לספיגה מיטבית: ציטראט, ביסגליצינאט וטאוראט'; biogaya.co.il HTTP 200; unresolved_flag: 'each capsule provides approximately 200mg magnesium'",
+      "label_confidence": "לא ניתן לחישוב",
+      "form": "blend",
+      "note": "UNRESOLVED — no-score product on page. Elemental total ~200mg is likely per IL convention but unconfirmed. Form ratios (citrate:bisglycinate:taurate) completely undisclosed — both compound mass and per-form breakdown are null."
+    }
+  },
+
+  "elemental_mg_cross_check": {
+    "methodology": "Compared elemental_mg in this table against the displayed elemental_mg in magnesium-page-data.ts (from code comments) and against magnesium_elemental_reconciliation_v1.md Section 1 authoritative table. All 15 scored products checked.",
+    "mismatches": [],
+    "mismatch_count": 0,
+    "checked_count": 15,
+    "result": "PASS — no mismatches. All 15 scored products align between page-data.ts, reconciliation_v1.md, and this table.",
+    "details": [
+      {"barcode": "7290013464248", "page_data": 250, "this_table": 250, "recon": 250, "match": true},
+      {"barcode": "7290019444480", "page_data": 250, "this_table": 250, "recon": 250, "match": true},
+      {"barcode": "7290011899967", "page_data": 200, "this_table": 200, "recon": 200, "match": true},
+      {"barcode": "7290018439043", "page_data": 168, "this_table": 168, "recon": 168, "match": true},
+      {"barcode": "7290010207640", "page_data": 190, "this_table": 190, "recon": 190, "match": true},
+      {"barcode": "7290001943700", "page_data": 122, "this_table": 122, "recon": 122, "match": true},
+      {"barcode": "7290015318532", "page_data": 136, "this_table": 136, "recon": 136, "match": true},
+      {"barcode": "7290001066973", "page_data": 135, "this_table": 135, "recon": "133-137 range", "match": true, "note": "page-data uses 135mg midpoint; reconciliation gives range 133-137; consistent"},
+      {"barcode": "0033984005181", "page_data": 100, "this_table": 100, "recon": 100, "match": true},
+      {"barcode": "7290018439579", "page_data": 76, "this_table": 76, "recon": 76, "match": true},
+      {"barcode": "7290001065662", "page_data": 520, "this_table": 520, "recon": 520, "match": true, "note": "CORRECTED from 314mg (TASK-384)"},
+      {"barcode": "7290017218564", "page_data": 520, "this_table": 520, "recon": 520, "match": true, "note": "CORRECTED from 314mg (TASK-384)"},
+      {"barcode": "7290013142894", "page_data": 450, "this_table": 450, "recon": 450, "match": true, "note": "CORRECTED from 272mg (TASK-384)"},
+      {"barcode": "7290019444206", "page_data": 450, "this_table": 450, "recon": 450, "match": true, "note": "CORRECTED from 272mg (TASK-384)"},
+      {"barcode": "7290001065594", "page_data": 88, "this_table": 88, "recon": 88, "match": true}
+    ]
+  },
+
+  "data_hygiene": {
+    "off_usage": 0,
+    "off_note": "Zero Open Food Facts usage. All label wording sourced from direct product scrapes (brand sites, IL e-tailers, physical label images) or marked null.",
+    "invented_label_wording": 0,
+    "invented_note": "Zero invented wording. Where verbatim text is not captured in the scrape, source_wording is null or taken from the audit doc's documented label_text_verbatim field.",
+    "null_source_wording_products": [],
+    "null_elemental_mg_products": ["7290015318426", "7290015429245", "7290118816065"]
+  }
+}

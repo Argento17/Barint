@@ -51,7 +51,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
         categoryTags="דגני בוקר · שיבולת שועל · קורנפלקס"
         title={CARD_HERO.title}
         description={stripCardDigits(description)}
-        insightLines={INSIGHT_LINES}
+        insightLines={[...INSIGHT_LINES].map(stripCardDigits)}
         stats={[
           { value: cerealsProducts.length, label: "מוצרים נותחו" },
           { value: 38, label: "פרמטרים הושוו" },

@@ -1,0 +1,782 @@
+{
+  "task": "TASK-384",
+  "model": "magnesium_v3",
+  "spec": "benchmark/magnesium_model_v3_bioav_adjusted_dose_spec.md",
+  "generated_at": "2026-06-23T11:45:22.922392Z",
+  "flag": "BARI_MAGNESIUM_V2=1 + BARI_MAGNESIUM_V3=1",
+  "verification_status": "candidate",
+  "edpg_note": "All records candidate. No published score. Page offline. Old engine (run_full.py / SUPP-EV-030) byte-identical. BARI_MAGNESIUM_V2=1 flag isolates this run. TASK-384.",
+  "mvp_scope": "2 bands only: general-gap (100-300mg elemental) + safety gate",
+  "pillar_weights": {
+    "dose_adjusted_elemental": 0.55,
+    "bioavailability_class_evidence": 0.2,
+    "transparency_safety": 0.25
+  },
+  "bav_tier_factors": {
+    "HIGH": 1.0,
+    "MODERATE": 0.75,
+    "LOW": 0.35,
+    "UNRESOLVED": 1.0
+  },
+  "general_gap_band": "100.0-300.0mg elemental",
+  "well_cap1_determination": {
+    "cap_1_fired": false,
+    "determination": "cap_1 NOT fired. Panel primary_claim: 'מגנזיום ביסגליצינאט עם אבץ וויטמין B6' — ingredient description only, no delivery-mechanism claim. form_raw='bisglycinate', proprietary_blend=false. Trade name 'WELL' is Nutricare line branding, not an absorption-mechanism claim. Spec condition: 'A trade name alone does NOT trigger cap_1.' DETERMINATION: standard path (168mg bisglycinate, HIGH class)."
+  },
+  "monotonicity_check": {
+    "grade_separation_pass": true,
+    "within_form_pass": true,
+    "overall_pass": true,
+    "result": "PASS",
+    "grade_sep_violations": [],
+    "grade_sep_violation_count": 0,
+    "within_form_issues": [],
+    "within_form_issue_count": 0,
+    "oxide_products_checked": 5,
+    "premium_200plus_checked": 3,
+    "detail": "  oxide 7290001065662 (Nutricare Oxide 520) 314.0mg admin -> adj=109.9mg -> score 60.0 C\n  oxide 7290015318426 (Tink Oxide 520) 314.0mg admin -> adj=109.9mg -> score 60.0 C\n  oxide 7290017218564 (Altman 520) 314.0mg admin -> adj=109.9mg -> score 60.0 C\n  oxide 7290013142894 (Altman MagUp) 272.0mg admin -> adj=95.2mg -> score 57.6 C\n  oxide 7290019444206 (Altman Balance) 272.0mg admin -> adj=95.2mg -> score 57.6 C\n  premium 7290011899967 (Altman Citrate 120) 200.0mg admin -> adj=200.0mg -> score 68.7 B\n  premium 7290013464248 (Supherb Citrate+B6 Badatz) 250.0mg admin -> adj=250.0mg -> score 72.8 B\n  premium 7290019444480 (Altman Bisglycinate 250) 250.0mg admin -> adj=250.0mg -> score 72.8 B",
+    "note": "v3: oxide must score below all citrate/bisglycinate >= 200mg administered. Cross-form backwards constraint (oxide-270+ vs bisglycinate-88-122) REMOVED per owner 2026-06-23."
+  },
+  "counts": {
+    "total_corpus_skus": 19,
+    "scored": 16,
+    "solgar_exception_path": 1,
+    "unresolved": 2,
+    "discarded": 1
+  },
+  "grade_distribution": {
+    "B": 4,
+    "C": 9,
+    "E": 1,
+    "D": 2
+  },
+  "score_stats": {
+    "n": 16,
+    "min": 34.0,
+    "max": 72.8,
+    "mean": 59.4,
+    "median": 60.0,
+    "stdev": 9.5,
+    "most_common_score": 60.0,
+    "most_common_count": 3
+  },
+  "results": [
+    {
+      "barcode": "7290011899967",
+      "name_short": "Altman Citrate 120",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 200.0,
+      "elemental_range": null,
+      "form": "citrate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 200.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=200.0mg (200.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 85.0,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 85.0,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(citrate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 68.7,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 68.7,
+      "grade": "B",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290013464248",
+      "name_short": "Supherb Citrate+B6 Badatz",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 250.0,
+      "elemental_range": null,
+      "form": "citrate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 250.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=250.0mg (250.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 92.5,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 92.5,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(citrate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 72.8,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 72.8,
+      "grade": "B",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290019444480",
+      "name_short": "Altman Bisglycinate 250",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 250.0,
+      "elemental_range": null,
+      "form": "bisglycinate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 250.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=250.0mg (250.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 92.5,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 92.5,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(bisglycinate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 72.8,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 72.8,
+      "grade": "B",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290001943700",
+      "name_short": "Full-Mag Hadas 600",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 122.0,
+      "elemental_range": null,
+      "form": "bisglycinate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 122.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=122.0mg (122.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 73.3,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 73.3,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(bisglycinate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 62.2,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 62.2,
+      "grade": "C",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290018439043",
+      "name_short": "Nutricare WELL",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 168.0,
+      "elemental_range": null,
+      "form": "bisglycinate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 168.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=168.0mg (168.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 80.2,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 80.2,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(bisglycinate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 66.0,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 66.0,
+      "grade": "B",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": {
+        "cap_1_fired": false,
+        "determination": "cap_1 NOT fired. Panel primary_claim: 'מגנזיום ביסגליצינאט עם אבץ וויטמין B6' — ingredient description only, no delivery-mechanism claim. form_raw='bisglycinate', proprietary_blend=false. Trade name 'WELL' is Nutricare line branding, not an absorption-mechanism claim. Spec condition: 'A trade name alone does NOT trigger cap_1.' DETERMINATION: standard path (168mg bisglycinate, HIGH class)."
+      }
+    },
+    {
+      "barcode": "7290001065594",
+      "name_short": "Nutricare Nano Bisglycinate",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 88.0,
+      "elemental_range": null,
+      "form": "bisglycinate",
+      "bav_class": "HIGH",
+      "bav_class_display": "ספיגה גבוהה יחסית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 88.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "NEAR",
+        "dose_tier_desc": "adj=88.0mg (88.0mg x 1.0) = 88% of lower bound",
+        "dose_sub_score": 62.8,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 62.8,
+        "evidence_class": 72.0,
+        "transparency": 15.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(bisglycinate)",
+          "+5 two_line_label_convention",
+          "-15 cap1_delivery_claim_insufficient_evidence"
+        ]
+      },
+      "blend": 52.7,
+      "caps_fired": [
+        {
+          "mechanism": "cap_1_insufficient_evidence",
+          "ceiling_or_penalty": 34.0
+        }
+      ],
+      "binding_constraint": "cap_1_insufficient_evidence",
+      "final_score": 34.0,
+      "grade": "E",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290018439579",
+      "name_short": "Nutricare Taurate",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 76.0,
+      "elemental_range": null,
+      "form": "taurate",
+      "bav_class": "MODERATE",
+      "bav_class_display": "ספיגה בינונית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 57.0,
+      "bav_tier_factor": 0.75,
+      "dose_band_result": {
+        "dose_tier": "NEAR",
+        "dose_tier_desc": "adj=57.0mg (76.0mg x 0.75) = 57% of lower bound",
+        "dose_sub_score": 44.2,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 44.2,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(taurate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 46.2,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 46.2,
+      "grade": "D",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290001066973",
+      "name_short": "Nutricare Malate 90cp",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 135.0,
+      "elemental_range": "133-137",
+      "form": "malate",
+      "bav_class": "MODERATE",
+      "bav_class_display": "ספיגה בינונית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived_range",
+      "adjusted_dose_mg": 101.2,
+      "bav_tier_factor": 0.75,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=101.2mg (135.0mg x 0.75) >= 100.0mg lower bound",
+        "dose_sub_score": 70.2,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 70.2,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(malate)"
+        ]
+      },
+      "blend": 59.3,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 59.3,
+      "grade": "C",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290001065662",
+      "name_short": "Nutricare Oxide 520",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 314.0,
+      "elemental_range": null,
+      "form": "oxide",
+      "bav_class": "LOW",
+      "bav_class_display": "ספיגה נמוכה יחסית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived",
+      "adjusted_dose_mg": 109.9,
+      "bav_tier_factor": 0.35,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=109.9mg (314.0mg x 0.35) >= 100.0mg lower bound",
+        "dose_sub_score": 71.5,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 71.5,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(oxide)"
+        ]
+      },
+      "blend": 60.0,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 60.0,
+      "grade": "C",
+      "safety_flags": [
+        {
+          "flag": "GI_NOTE_EFSA",
+          "trigger": "314.0mg > 250.0mg EFSA GI-tolerance note",
+          "display_he": "מינון זה עולה על סף הסבילות הגסטרואינטסטינאלית (250 מ\"ג/יום EFSA) — עשוי לגרום לאי-נוחות עיכולית קלה.",
+          "score_impact": "display only, no score deduction (MVP)"
+        }
+      ],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": "521mg compound oxide x 0.603 (stoichiometry) = 314.0mg elemental. Tag: chemistry-derived (for UI disclosure per spec).",
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290015318426",
+      "name_short": "Tink Oxide 520",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 314.0,
+      "elemental_range": null,
+      "form": "oxide",
+      "bav_class": "LOW",
+      "bav_class_display": "ספיגה נמוכה יחסית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived",
+      "adjusted_dose_mg": 109.9,
+      "bav_tier_factor": 0.35,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=109.9mg (314.0mg x 0.35) >= 100.0mg lower bound",
+        "dose_sub_score": 71.5,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 71.5,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(oxide)"
+        ]
+      },
+      "blend": 60.0,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 60.0,
+      "grade": "C",
+      "safety_flags": [
+        {
+          "flag": "GI_NOTE_EFSA",
+          "trigger": "314.0mg > 250.0mg EFSA GI-tolerance note",
+          "display_he": "מינון זה עולה על סף הסבילות הגסטרואינטסטינאלית (250 מ\"ג/יום EFSA) — עשוי לגרום לאי-נוחות עיכולית קלה.",
+          "score_impact": "display only, no score deduction (MVP)"
+        }
+      ],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": "521mg compound oxide x 0.603 (stoichiometry) = 314.0mg elemental. Tag: chemistry-derived (for UI disclosure per spec).",
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290017218564",
+      "name_short": "Altman 520",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 314.0,
+      "elemental_range": null,
+      "form": "oxide",
+      "bav_class": "LOW",
+      "bav_class_display": "ספיגה נמוכה יחסית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived",
+      "adjusted_dose_mg": 109.9,
+      "bav_tier_factor": 0.35,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=109.9mg (314.0mg x 0.35) >= 100.0mg lower bound",
+        "dose_sub_score": 71.5,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 71.5,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(oxide)"
+        ]
+      },
+      "blend": 60.0,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 60.0,
+      "grade": "C",
+      "safety_flags": [
+        {
+          "flag": "GI_NOTE_EFSA",
+          "trigger": "314.0mg > 250.0mg EFSA GI-tolerance note",
+          "display_he": "מינון זה עולה על סף הסבילות הגסטרואינטסטינאלית (250 מ\"ג/יום EFSA) — עשוי לגרום לאי-נוחות עיכולית קלה.",
+          "score_impact": "display only, no score deduction (MVP)"
+        }
+      ],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": "521mg compound oxide x 0.603 (stoichiometry) = 314.0mg elemental. Tag: chemistry-derived (for UI disclosure per spec).",
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290013142894",
+      "name_short": "Altman MagUp",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 272.0,
+      "elemental_range": null,
+      "form": "oxide",
+      "bav_class": "LOW",
+      "bav_class_display": "ספיגה נמוכה יחסית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived",
+      "adjusted_dose_mg": 95.2,
+      "bav_tier_factor": 0.35,
+      "dose_band_result": {
+        "dose_tier": "NEAR",
+        "dose_tier_desc": "adj=95.2mg (272.0mg x 0.35) = 95% of lower bound",
+        "dose_sub_score": 67.1,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 67.1,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(oxide)"
+        ]
+      },
+      "blend": 57.6,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 57.6,
+      "grade": "C",
+      "safety_flags": [
+        {
+          "flag": "GI_NOTE_EFSA",
+          "trigger": "272.0mg > 250.0mg EFSA GI-tolerance note",
+          "display_he": "מינון זה עולה על סף הסבילות הגסטרואינטסטינאלית (250 מ\"ג/יום EFSA) — עשוי לגרום לאי-נוחות עיכולית קלה.",
+          "score_impact": "display only, no score deduction (MVP)"
+        }
+      ],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": "451mg compound oxide x 0.603 (stoichiometry) = 272.0mg elemental. Tag: chemistry-derived (for UI disclosure per spec).",
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290019444206",
+      "name_short": "Altman Balance",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 272.0,
+      "elemental_range": null,
+      "form": "oxide",
+      "bav_class": "LOW",
+      "bav_class_display": "ספיגה נמוכה יחסית",
+      "label_confidence": "High",
+      "label_basis": "chemistry_derived",
+      "adjusted_dose_mg": 95.2,
+      "bav_tier_factor": 0.35,
+      "dose_band_result": {
+        "dose_tier": "NEAR",
+        "dose_tier_desc": "adj=95.2mg (272.0mg x 0.35) = 95% of lower bound",
+        "dose_sub_score": 67.1,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 67.1,
+        "evidence_class": 72.0,
+        "transparency": 25.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(oxide)"
+        ]
+      },
+      "blend": 57.6,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 57.6,
+      "grade": "C",
+      "safety_flags": [
+        {
+          "flag": "GI_NOTE_EFSA",
+          "trigger": "272.0mg > 250.0mg EFSA GI-tolerance note",
+          "display_he": "מינון זה עולה על סף הסבילות הגסטרואינטסטינאלית (250 מ\"ג/יום EFSA) — עשוי לגרום לאי-נוחות עיכולית קלה.",
+          "score_impact": "display only, no score deduction (MVP)"
+        }
+      ],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": "451mg compound oxide x 0.603 (stoichiometry) = 272.0mg elemental. Tag: chemistry-derived (for UI disclosure per spec).",
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290010207640",
+      "name_short": "NT LC Anti Leg Cramps",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 190.0,
+      "elemental_range": null,
+      "form": "hydroxide",
+      "bav_class": "MODERATE",
+      "bav_class_display": "ספיגה בינונית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 142.5,
+      "bav_tier_factor": 0.75,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=142.5mg (190.0mg x 0.75) >= 100.0mg lower bound",
+        "dose_sub_score": 76.4,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 76.4,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(hydroxide)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 63.9,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 63.9,
+      "grade": "C",
+      "safety_flags": [],
+      "cramps_footnote": "ייעוד הפחתת ממולעים: ראיות לא מספיקות (Cochrane 2020, PMID:32956536). המינון (190 מ\"ג) מתחת לטווח המחקרי של הנחיות שנבדקו (300-500 מ\"ג). המוצר נבחן על פרמטר ה-gap הכללי (100-300 מ\"ג); ייעוד ממולעים = הערת תווית בלבד.",
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290015318532",
+      "name_short": "Tink Malate",
+      "disposition": "SCORED",
+      "administered_elemental_mg": 136.0,
+      "elemental_range": null,
+      "form": "malate",
+      "bav_class": "MODERATE",
+      "bav_class_display": "ספיגה בינונית",
+      "label_confidence": "High",
+      "label_basis": "elemental",
+      "adjusted_dose_mg": 102.0,
+      "bav_tier_factor": 0.75,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=102.0mg (136.0mg x 0.75) >= 100.0mg lower bound",
+        "dose_sub_score": 70.3,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 70.3,
+        "evidence_class": 72.0,
+        "transparency": 30.0,
+        "evidence_desc": "base=72.0 (class expressed in adjusted dose)",
+        "transparency_signals": [
+          "+15 elemental_declared",
+          "+10 form_chemical_name(malate)",
+          "+5 two_line_label_convention"
+        ]
+      },
+      "blend": 60.6,
+      "caps_fired": [],
+      "binding_constraint": "blend_dominant",
+      "final_score": 60.6,
+      "grade": "C",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "0033984005181",
+      "name_short": "Solgar Cal-Mag D3",
+      "disposition": "SOLGAR_EXCEPTION",
+      "administered_elemental_mg": 100.0,
+      "elemental_range": null,
+      "form": "oxide_citrate_blend",
+      "bav_class": "UNRESOLVED",
+      "bav_class_display": "הרכב לא פורט — לא ניתן להעריך ספיגה",
+      "label_confidence": "High",
+      "label_basis": "us_label_il_unverified",
+      "adjusted_dose_mg": 100.0,
+      "bav_tier_factor": 1.0,
+      "dose_band_result": {
+        "dose_tier": "MEETS",
+        "dose_tier_desc": "adj=100.0mg (100.0mg x 1.0) >= 100.0mg lower bound",
+        "dose_sub_score": 70.0,
+        "general_gap_band": "100.0-300.0mg"
+      },
+      "sub_scores": {
+        "dose": 70.0,
+        "evidence_class": 52.0,
+        "transparency": 0.0,
+        "evidence_desc": "base=72.0 + UNRESOLVED_penalty=-20.0",
+        "transparency_signals": [
+          "+10 elemental_declared_us_label_only",
+          "-15 blend_undisclosed_ratios"
+        ]
+      },
+      "blend": 48.9,
+      "caps_fired": [
+        {
+          "mechanism": "cap_3_honesty_core",
+          "ceiling_or_penalty": 49.0
+        }
+      ],
+      "binding_constraint": "blend_dominant",
+      "final_score": 48.9,
+      "grade": "D",
+      "safety_flags": [],
+      "cramps_footnote": null,
+      "oxide_chemistry_note": null,
+      "well_cap1_determination": null
+    },
+    {
+      "barcode": "7290015429245",
+      "name_short": "Amorphicure pH Carbonate",
+      "disposition": "UNRESOLVED",
+      "score": null,
+      "grade": null,
+      "score_display": "לא ניתן לדרג — נתוני תווית חסרים",
+      "label_confidence": "לא ברור",
+      "unresolved_reason": "160mg elemental-vs-compound ambiguous (carbonate 0.288 fraction). If elemental: 160mg -> MEETS general gap. If compound: 46mg -> NEAR. ~3.5x uncertainty; physical label required.",
+      "caps_fired": [],
+      "binding_constraint": null
+    },
+    {
+      "barcode": "7290118816065",
+      "name_short": "Supherb TRIOMAG",
+      "disposition": "UNRESOLVED",
+      "score": null,
+      "grade": null,
+      "score_display": "לא ניתן לדרג — נתוני תווית חסרים",
+      "label_confidence": "לא ברור",
+      "unresolved_reason": "200mg likely elemental per IL convention but unconfirmed; form ratios (citrate:bisglycinate:taurate) undisclosed. Cannot assign bioavailability class without per-form ratios.",
+      "caps_fired": [],
+      "binding_constraint": null
+    },
+    {
+      "barcode": "7290118818205",
+      "name_short": "Supherb Max 550",
+      "disposition": "DISCARDED",
+      "score": null,
+      "grade": null,
+      "score_display": "מוצר הוצא מהשוואה",
+      "discard_reason": "oxide:citrate ratio undisclosed on all accessible IL sources. Administered elemental unknowable. Missing-data discard rule (owner-approved).",
+      "caps_fired": [],
+      "binding_constraint": null
+    }
+  ]
+}

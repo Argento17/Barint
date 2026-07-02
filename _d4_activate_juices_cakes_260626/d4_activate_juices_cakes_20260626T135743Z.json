@@ -1,0 +1,2416 @@
+{
+  "run_id": "d4_activate_juices_cakes_20260626T135743Z",
+  "run_ts": "20260626T135743Z",
+  "task": "D4-ACTIVATION-PACKAGE-2026-06-26",
+  "owner_authorization": "2026-06-26",
+  "hard_rules": [
+    "NO deploy",
+    "NO publish",
+    "NO commit",
+    "NO frontend JSON regeneration to live",
+    "OFF-ban enforced: BSIP1 corpus data only",
+    "Regression proof: non-activated shelves unchanged"
+  ],
+  "changes_made": {
+    "constants.py": {
+      "path": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src\\constants.py",
+      "sha256": "b4be1d3957196627d291906c70effb1ec573898f9ffa762cadb041052fd685c5",
+      "change": "E224 match_patterns_he extended: added SO2 form (דו תחמוצת הגופרית), E220-E228 family, named sulphites",
+      "prior_pattern_count": 8,
+      "new_pattern_count": 10
+    },
+    "juices.json": {
+      "path": "C:\\Bari\\03_operations\\page_generator\\configs\\juices.json",
+      "sha256": "54b30c803f320ebdb829a934db8f5ecb862a2730422f387308acb1b34ddf0fa3",
+      "change": "BARI_D4_SCORE_V1 added as 'on' (was absent, now uniform with cookies_coffee/cakes)"
+    },
+    "cakes.json": {
+      "path": "C:\\Bari\\03_operations\\page_generator\\configs\\cakes.json",
+      "sha256": "78bed9ee601d47649ebec47a45f298c0e403668bd736560e028332b97f9bfb43",
+      "change": "No change — BARI_D4_SCORE_V1=on already present from TASK-395"
+    }
+  },
+  "preflight": {
+    "so2_pattern_in_constants": true,
+    "e220_pattern_in_constants": true,
+    "juices_d4_flag": "on",
+    "cakes_d4_flag": "on",
+    "status": "PASS"
+  },
+  "shelf_results": {
+    "juices": {
+      "stats": {
+        "corpus_size": 32,
+        "baseline_size": 17,
+        "baseline_match_d4off": 17,
+        "baseline_mismatch_d4off": 0,
+        "products_changed": 6,
+        "products_changed_in_baseline": 3,
+        "grade_changes": 0,
+        "mean_delta": -2.0,
+        "median_delta": -2.0,
+        "max_drop": -2.0,
+        "stdev_delta": 0.0,
+        "sulphite_only_moves": 5,
+        "other_contested_only_moves": 1,
+        "mixed_moves": 0,
+        "errors_baseline": 0,
+        "errors_activated": 0
+      },
+      "movement": [
+        {
+          "barcode": "7290000136523",
+          "name": "ג'אמפ ענבים 1.5 ליטר",
+          "committed_score": 40.1,
+          "committed_grade": "D",
+          "score_d4_off": 40.1,
+          "grade_d4_off": "D",
+          "score_d4_on": 38.1,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290000272696",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 59.2,
+          "grade_d4_off": "C",
+          "score_d4_on": 57.2,
+          "grade_d4_on": "C",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290019056720",
+          "name": "קריסטל מיץ ענבים 2 ליטר",
+          "committed_score": 41.8,
+          "committed_grade": "D",
+          "score_d4_off": 41.8,
+          "grade_d4_off": "D",
+          "score_d4_on": 39.8,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290019056737",
+          "name": "קריסטל מיץ אשכולית 2 ליטר",
+          "committed_score": 32.3,
+          "committed_grade": "E",
+          "score_d4_off": 32.3,
+          "grade_d4_off": "E",
+          "score_d4_on": 30.3,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290110325893",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 34.7,
+          "grade_d4_off": "E",
+          "score_d4_on": 32.7,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290117034774",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 58.8,
+          "grade_d4_off": "C",
+          "score_d4_on": 56.8,
+          "grade_d4_on": "C",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        }
+      ]
+    },
+    "cakes": {
+      "stats": {
+        "corpus_size": 167,
+        "baseline_size": 65,
+        "baseline_match_d4off": 11,
+        "baseline_mismatch_d4off": 54,
+        "products_changed": 80,
+        "products_changed_in_baseline": 55,
+        "grade_changes": 2,
+        "mean_delta": -3.75,
+        "median_delta": -2.0,
+        "max_drop": -8.0,
+        "stdev_delta": 2.21,
+        "sulphite_only_moves": 6,
+        "other_contested_only_moves": 53,
+        "mixed_moves": 21,
+        "errors_baseline": 0,
+        "errors_activated": 0
+      },
+      "movement": [
+        {
+          "barcode": "2472087",
+          "name": "עוגת פס שוקולד",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 2.0,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E224",
+            "E407",
+            "E466",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E407",
+            "E466",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "4504649",
+          "name": "מיני שטרודל קרם פטיסייר",
+          "committed_score": 12.5,
+          "committed_grade": "E",
+          "score_d4_off": 23.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 15.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "other_contribution_pts": 8,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "4504656",
+          "name": "מיני שטרודל תפוח עץ",
+          "committed_score": 12.5,
+          "committed_grade": "E",
+          "score_d4_off": 23.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 15.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "other_contribution_pts": 8,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "4504670",
+          "name": "מיני שטרודל במילוי שקדים",
+          "committed_score": 18.4,
+          "committed_grade": "E",
+          "score_d4_off": 29.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 21.4,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471",
+            "E171"
+          ],
+          "other_contribution_pts": 8,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290012244032",
+          "name": "עוגת מוס היער השחור",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 2.0,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290016416961",
+          "name": "עוגת מוס גבינה+תות שדה",
+          "committed_score": 9.5,
+          "committed_grade": "E",
+          "score_d4_off": 17.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E124",
+            "E224",
+            "E433"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471",
+            "E124",
+            "E433"
+          ],
+          "other_contribution_pts": 10,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290111534010",
+          "name": "עוגת גבינה שמנת ופירורים",
+          "committed_score": 10.5,
+          "committed_grade": "E",
+          "score_d4_off": 18.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471",
+            "E433"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471",
+            "E433"
+          ],
+          "other_contribution_pts": 8,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290119039746",
+          "name": "עוגת פס דובוש דולצ'ה",
+          "committed_score": 18.1,
+          "committed_grade": "E",
+          "score_d4_off": 26.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 18.1,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E471",
+            "E433",
+            "E466",
+            "E407",
+            "E171"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471",
+            "E433",
+            "E466",
+            "E407",
+            "E171"
+          ],
+          "other_contribution_pts": 10,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290123330280",
+          "name": "עוגת שמרים בטעם שוקולד",
+          "committed_score": 2.5,
+          "committed_grade": "E",
+          "score_d4_off": 10.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 2.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E224",
+            "E471",
+            "E433"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E466",
+            "E471",
+            "E433"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290123330334",
+          "name": "עוגת שמרים בריוש שוקולד",
+          "committed_score": 2.5,
+          "committed_grade": "E",
+          "score_d4_off": 10.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 2.5,
+          "grade_d4_on": "E",
+          "delta": -8.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 8,
+          "contested_additives_fired": [
+            "E466",
+            "E224",
+            "E471",
+            "E433"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E466",
+            "E471",
+            "E433"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "1361177",
+          "name": "עוגת פס דובדבנים",
+          "committed_score": 7.9,
+          "committed_grade": "E",
+          "score_d4_off": 15.9,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.9,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E471",
+            "E433"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E471",
+            "E433"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "2472117",
+          "name": "עוגת פס קפוצ'ינו",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "2472148",
+          "name": "עוגת פס היער השחור",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "4504687",
+          "name": "מיני שטרודל חלבה שוקולד",
+          "committed_score": 12.6,
+          "committed_grade": "E",
+          "score_d4_off": 21.6,
+          "grade_d4_off": "E",
+          "score_d4_on": 15.6,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "5718038",
+          "name": "עוגת שטרודל תפוחי עץ",
+          "committed_score": 17.5,
+          "committed_grade": "E",
+          "score_d4_off": 22.9,
+          "grade_d4_off": "E",
+          "score_d4_on": 16.9,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E224",
+            "E122",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E122",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290006775023",
+          "name": "עוגה אנגלית 450 גרם אחוה",
+          "committed_score": 11.8,
+          "committed_grade": "E",
+          "score_d4_off": 22.8,
+          "grade_d4_off": "E",
+          "score_d4_on": 16.8,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E433",
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290006775085",
+          "name": "עוגת שמרים במילוי קרם בטעם שוקולד 400 גרם אחוה",
+          "committed_score": 6.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E433",
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290006775337",
+          "name": "עוגת שמרים פרג 400 גרם אחוה",
+          "committed_score": 6.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E433",
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290012244056",
+          "name": "עוגת מוס גבינה פרורים",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290013683595",
+          "name": "עוגת פס שביל החלב",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290013927996",
+          "name": "עוגת שמרים קרנאץ' בטעם שוקולד 400 גרם אחוה",
+          "committed_score": 6.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E433",
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290015726528",
+          "name": "עוגת פס מוס טירמיסו",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466",
+            "E407",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290015726535",
+          "name": "עוגת פס מוס בלגי פרווה",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E407",
+            "E466",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E407",
+            "E466",
+            "E471"
+          ],
+          "other_contribution_pts": 6,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "9397697",
+          "name": "חמישיית מאפין שוקו צ'יפס",
+          "committed_score": 4.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 4.0,
+          "grade_d4_on": "E",
+          "delta": -6.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 6,
+          "contested_additives_fired": [
+            "E471",
+            "E466",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471",
+            "E466"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290016162264",
+          "name": "עוגת גבינה רנסנס",
+          "committed_score": 28.0,
+          "committed_grade": "E",
+          "score_d4_off": 32.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 28.0,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E433",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290119040513",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 27.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 23.5,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E224",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119040568",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 34.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 30.0,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E224",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119040605",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 16.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 12.2,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E124",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E124"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119040612",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 27.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 23.5,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E224",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119040650",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 16.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 12.2,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E124",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E124"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119040667",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 27.5,
+          "grade_d4_off": "E",
+          "score_d4_on": 23.5,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E224",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119043897",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 17.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 13.2,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119045013",
+          "name": "עוגת גבינה אפויה",
+          "committed_score": 28.0,
+          "committed_grade": "E",
+          "score_d4_off": 32.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 28.0,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E433",
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E433",
+            "E471"
+          ],
+          "other_contribution_pts": 4,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073132936",
+          "name": "עוגת מאפין שיש",
+          "committed_score": 12.2,
+          "committed_grade": "E",
+          "score_d4_off": 14.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.2,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073132943",
+          "name": "עוגת מאפין בטעם שוקולד",
+          "committed_score": 9.4,
+          "committed_grade": "E",
+          "score_d4_off": 11.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 7.4,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E471",
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073431909",
+          "name": "עוגת מאפין תפוח עץ",
+          "committed_score": 10.4,
+          "committed_grade": "E",
+          "score_d4_off": 12.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 8.4,
+          "grade_d4_on": "E",
+          "delta": -4.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 4,
+          "contested_additives_fired": [
+            "E224",
+            "E471"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "1361207",
+          "name": "עוגת פס אוכמניות",
+          "committed_score": 21.8,
+          "committed_grade": "E",
+          "score_d4_off": 23.8,
+          "grade_d4_off": "E",
+          "score_d4_on": 21.8,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E466"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E466"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "2472223",
+          "name": "עוגת מאפין תפוז — שופרסל",
+          "committed_score": 10.2,
+          "committed_grade": "E",
+          "score_d4_off": 12.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.2,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "2472841",
+          "name": "עוגת סבתא בטעם שוקולד",
+          "committed_score": 9.2,
+          "committed_grade": "E",
+          "score_d4_off": 11.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.2,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "313184",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 35.3,
+          "grade_d4_off": "D",
+          "score_d4_on": 33.3,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": true,
+          "grade_change_str": "D->E",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "4170097",
+          "name": "עוגת קרנץ' בטעם שוקולד",
+          "committed_score": 9.7,
+          "committed_grade": "E",
+          "score_d4_off": 11.7,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.7,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "4170103",
+          "name": "עוגת קרנץ אגוזים וקינמון",
+          "committed_score": 12.1,
+          "committed_grade": "E",
+          "score_d4_off": 14.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 12.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "5317194",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 37.8,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.8,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "5718021",
+          "name": "עוגת שטרודל גבינה",
+          "committed_score": 32.2,
+          "committed_grade": "E",
+          "score_d4_off": 32.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 30.2,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "6983770",
+          "name": "עוגת הבית שיש אסם",
+          "committed_score": 9.1,
+          "committed_grade": "E",
+          "score_d4_off": 11.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "6983787",
+          "name": "עוגת שוקולד צ'יפס",
+          "committed_score": 9.6,
+          "committed_grade": "E",
+          "score_d4_off": 11.6,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.6,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "6983794",
+          "name": "עוגת הבית תפוז",
+          "committed_score": 10.0,
+          "committed_grade": "E",
+          "score_d4_off": 12.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.0,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290006983787",
+          "name": "עוגת הבית שוקולד צ'יפס 400 גרם עוגות הבית",
+          "committed_score": 28.4,
+          "committed_grade": "E",
+          "score_d4_off": 30.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 28.4,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290011489625",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 37.7,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.7,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290011570798",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 25.9,
+          "grade_d4_off": "E",
+          "score_d4_on": 23.9,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290017724171",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 24.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 22.2,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E124"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E124"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290019293804",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 33.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 31.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290019816034",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 29.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 27.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290019816058",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 12.6,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.6,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290019816232",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 15.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 13.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290101111986",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 12.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290106578821",
+          "name": "עוגת שמרים שוקולד",
+          "committed_score": 12.9,
+          "committed_grade": "E",
+          "score_d4_off": 14.9,
+          "grade_d4_off": "E",
+          "score_d4_on": 12.9,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290112495228",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 39.2,
+          "grade_d4_off": "D",
+          "score_d4_on": 37.2,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290118421924",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 21.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 19.4,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290118422617",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 33.7,
+          "grade_d4_off": "E",
+          "score_d4_on": 31.7,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290118423904",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 34.2,
+          "grade_d4_off": "E",
+          "score_d4_on": 32.2,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119030095",
+          "name": "עוגת גבינה אפויה ללת\"ס",
+          "committed_score": 48.5,
+          "committed_grade": "D",
+          "score_d4_off": 50.5,
+          "grade_d4_off": "C",
+          "score_d4_on": 48.5,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": true,
+          "grade_change_str": "C->D",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290119041053",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 37.6,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.6,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119041107",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 37.6,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.6,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119041152",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 37.6,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.6,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290119042302",
+          "name": "עוגת דבש",
+          "committed_score": 15.8,
+          "committed_grade": "E",
+          "score_d4_off": 17.8,
+          "grade_d4_off": "E",
+          "score_d4_on": 15.8,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290123330488",
+          "name": "",
+          "committed_score": null,
+          "committed_grade": null,
+          "score_d4_off": 23.3,
+          "grade_d4_off": "E",
+          "score_d4_on": 21.3,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E224"
+          ],
+          "sulphite_fired": true,
+          "sulphite_contribution_pts": 2,
+          "other_contested": [],
+          "other_contribution_pts": 0,
+          "in_committed_baseline": false
+        },
+        {
+          "barcode": "7290123330884",
+          "name": "עוגה בטעם שוקולד כשל\"פ — קקאו",
+          "committed_score": 9.6,
+          "committed_grade": "E",
+          "score_d4_off": 12.8,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.8,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7290123331034",
+          "name": "עוגה בטעם שוקולד כשל\"פ — נטיפים",
+          "committed_score": 8.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 8.0,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073132950",
+          "name": "עוגת מאפין שוקולד צ'יפס",
+          "committed_score": 9.7,
+          "committed_grade": "E",
+          "score_d4_off": 11.7,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.7,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073140184",
+          "name": "עוגת מאפין תפוז — לה פזואלוס",
+          "committed_score": 11.6,
+          "committed_grade": "E",
+          "score_d4_off": 13.6,
+          "grade_d4_off": "E",
+          "score_d4_on": 11.6,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073346333",
+          "name": "עוגות אישיות קרם חלב",
+          "committed_score": 14.1,
+          "committed_grade": "E",
+          "score_d4_off": 16.1,
+          "grade_d4_off": "E",
+          "score_d4_on": 14.1,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073346340",
+          "name": "עוגות אישיות קרם שוקולד",
+          "committed_score": 35.0,
+          "committed_grade": "D",
+          "score_d4_off": 37.0,
+          "grade_d4_off": "D",
+          "score_d4_on": 35.0,
+          "grade_d4_on": "D",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073431817",
+          "name": "עוגת קרנץ' שוקולד",
+          "committed_score": 9.4,
+          "committed_grade": "E",
+          "score_d4_off": 11.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.4,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073431879",
+          "name": "עוגת מאפין שוקו צ'יפס",
+          "committed_score": 10.0,
+          "committed_grade": "E",
+          "score_d4_off": 12.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.0,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073431893",
+          "name": "עוגת מאפין אגוזים עם ציפוי — שופרסל",
+          "committed_score": 12.4,
+          "committed_grade": "E",
+          "score_d4_off": 14.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 12.4,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073431916",
+          "name": "עוגת מאפין בטעם תפוז",
+          "committed_score": 9.4,
+          "committed_grade": "E",
+          "score_d4_off": 11.4,
+          "grade_d4_off": "E",
+          "score_d4_on": 9.4,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073473664",
+          "name": "עוגת שוקולד ללא גלוטן",
+          "committed_score": 8.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 8.0,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "7296073473688",
+          "name": "עוגת שוקוציפס ללא גלוטן",
+          "committed_score": 8.0,
+          "committed_grade": "E",
+          "score_d4_off": 10.0,
+          "grade_d4_off": "E",
+          "score_d4_on": 8.0,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        },
+        {
+          "barcode": "9397642",
+          "name": "5עוגות מאפין בטעם שוקולד",
+          "committed_score": 10.6,
+          "committed_grade": "E",
+          "score_d4_off": 12.6,
+          "grade_d4_off": "E",
+          "score_d4_on": 10.6,
+          "grade_d4_on": "E",
+          "delta": -2.0,
+          "grade_changed": false,
+          "grade_change_str": "-",
+          "d4_penalty_points": 2,
+          "contested_additives_fired": [
+            "E471"
+          ],
+          "sulphite_fired": false,
+          "sulphite_contribution_pts": 0,
+          "other_contested": [
+            "E471"
+          ],
+          "other_contribution_pts": 2,
+          "in_committed_baseline": true
+        }
+      ]
+    }
+  },
+  "cookies_coffee_expansion_check": {
+    "corpus_size": 209,
+    "baseline_size": 119,
+    "newly_caught": [
+      {
+        "barcode": "2472087",
+        "name": "",
+        "committed_score": null,
+        "new_score": 2.0,
+        "new_grade": "E",
+        "contested_fired": [
+          "E224",
+          "E407",
+          "E466",
+          "E471"
+        ],
+        "ingredient_snippet": "מים, סוכר, שוקולד מריר (16.5%) (סויה), קמח חיטה (גלוטן), שמן צמחי, שמנת מתוקה (חלב), ביצים, מסמיכים (גליצרול, E1414), גל"
+      },
+      {
+        "barcode": "5718021",
+        "name": "",
+        "committed_score": null,
+        "new_score": 30.2,
+        "new_grade": "E",
+        "contested_fired": [
+          "E224"
+        ],
+        "ingredient_snippet": "קמח חיטה (גלוטן), גבינה קשה כחושה (חלב)(22%), מים, מרגרינה (סויה), סוכר, צימוקים (חומר משמר (דו תחמוצת הגופרית E220)), ע"
+      },
+      {
+        "barcode": "5718038",
+        "name": "",
+        "committed_score": null,
+        "new_score": 16.9,
+        "new_grade": "E",
+        "contested_fired": [
+          "E224",
+          "E122",
+          "E471"
+        ],
+        "ingredient_snippet": "מילוי תפוחי עץ (49%)(מלית תפוחי עץ (מים, תפוח עץ (30% במוצר), סוכר, מווסת חומציות (E296), חומרי טעם וריח), צימוקים (חומר"
+      },
+      {
+        "barcode": "7290006775085",
+        "name": "",
+        "committed_score": null,
+        "new_score": 4.0,
+        "new_grade": "E",
+        "contested_fired": [
+          "E433",
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "עוגת שמרים בטעם שוקולד (32%). רכיבים: קמח חיטה (מכיל גלוטן), סוכרים, שמנים ושומנים מן הצומח (דקל, סויה ), מים, עמילן, קמ"
+      },
+      {
+        "barcode": "7290006775337",
+        "name": "",
+        "committed_score": null,
+        "new_score": 4.0,
+        "new_grade": "E",
+        "contested_fired": [
+          "E433",
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "עוגת שמרים במילוי פרג (32%). רכיבים: קמח חיטה (מכיל גלוטן), סוכרים, שמנים ושומנים מן הצומח (דקל, סויה ), מים, תפוחי עץ, "
+      },
+      {
+        "barcode": "7290012244032",
+        "name": "",
+        "committed_score": null,
+        "new_score": 2.0,
+        "new_grade": "E",
+        "contested_fired": [
+          "E466",
+          "E407",
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "מים, סוכר, שמנת מתוקה 42% שומן (חלב), קמח חיטה (גלוטן), שמן צמחי (סויה), מלית דובדבן (12%) (דובדבן (5% במוצר), סוכר, מים"
+      },
+      {
+        "barcode": "7290013927996",
+        "name": "",
+        "committed_score": null,
+        "new_score": 4.0,
+        "new_grade": "E",
+        "contested_fired": [
+          "E433",
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "עוגת שמרים בטעם שוקולד (38%). רכיבים: סוכרים, קמח חיטה (מכיל גלוטן), שמנים ושומנים מן הצומח (דקל, סויה), מים, עמילן, קמח"
+      },
+      {
+        "barcode": "7296073132936",
+        "name": "",
+        "committed_score": null,
+        "new_score": 10.2,
+        "new_grade": "E",
+        "contested_fired": [
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "סוכר לבן, קמח חיטה לבן (מכיל גלוטן), מים, ביצים מפוסטרות, שמן סויה מזוכך, שמן קנולה מזוכך, עמילנים (חיטה, תירס), חומרי ה"
+      },
+      {
+        "barcode": "7296073132943",
+        "name": "",
+        "committed_score": null,
+        "new_score": 7.4,
+        "new_grade": "E",
+        "contested_fired": [
+          "E471",
+          "E224"
+        ],
+        "ingredient_snippet": "סוכר לבן, קמח חיטה לבן (מכיל גלוטן), מים, ביצים מפוסטרות, שמן סויה מזוכך, שמן קנולה מזוכך, עמילנים (חיטה, תירס), חומרי ה"
+      },
+      {
+        "barcode": "7296073431909",
+        "name": "",
+        "committed_score": null,
+        "new_score": 8.4,
+        "new_grade": "E",
+        "contested_fired": [
+          "E224",
+          "E471"
+        ],
+        "ingredient_snippet": "סוכר, קמח חיטה (מכיל גלוטן), ביצים, מחית תפוח עץ (8%)(חומר משמר (דו תחמוצת הגופרית)), מים, שמן סויה מזוכך, שמן קנולה מזו"
+      }
+    ],
+    "prior_matches_unchanged": 20,
+    "errors": [],
+    "note": "newly_caught = products matched by expanded E224 patterns but NOT by the prior 8-pattern set"
+  },
+  "regression_proof": {
+    "bread": {
+      "status": "SKIP_NO_CORPUS"
+    },
+    "snacks": {
+      "status": "SKIP_NO_CORPUS"
+    },
+    "granola": {
+      "status": "SKIP_NO_CORPUS"
+    },
+    "cereals": {
+      "corpus_size": 45,
+      "baseline_size": 20,
+      "sample_size": 10,
+      "max_determinism_delta": 0.0,
+      "d4_key_absent": true,
+      "status": "PASS"
+    }
+  },
+  "summary_counts": {
+    "total_products_changed_juices_cakes": 86,
+    "total_grade_changes": 2,
+    "total_sulphite_only_moves": 11,
+    "cookies_newly_caught": 10,
+    "regression_shelves_pass": true
+  },
+  "denominator_note": "total_products_changed denominator = full corpus size (including exclusions); movement table = only products whose score changes"
+}

@@ -17,9 +17,9 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-  { label: "השוואות", href: "/hashvaot" },
+  { label: "קטלוג המוצרים", href: "/catalog" },
   { label: "בלוג", href: "/blog" },
-  { label: "מדריכים", href: "/#guides" },
+  { label: "השוואות", href: "/hashvaot" },
 ] as const;
 
 export function SiteHeader() {

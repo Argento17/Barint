@@ -1,0 +1,74 @@
+P402 brined-cheeses honesty-sweep copy fixes are applied in `bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json` only. Verification: JSON parses; 0 score/grade/rank/nutrition changes; 0 remaining targeted defects.
+
+## Before / After Summary
+
+### F1 — Stale corpus count (bc-036)
+- **Before:** `…1,628 מ"ג נתרן — הגבוה ביותר מבין 48 המוצרים…`
+- **After:** `…1,628 מ"ג נתרן — הגבוה ביותר במדף…`
+
+### F2 — Ungrounded manufacturer attribution (10 products)
+
+| ID | Before (opening) | After (opening) |
+|---|---|---|
+| **bc-003** | `בולגרית מסורתית 5% של טרה.` | `בולגרית מסורתית 5%.` |
+| **bc-004** | `צפתית 5% של מחלבת המושבה.` | `צפתית 5% מחלבות גד.` |
+| **bc-005** | `צפתית מעודנת 5% של מחלבת המושבה.` | `צפתית מעודנת 5% מחלבות גד.` |
+| **bc-010** | `בולגרית 5% של טרה.` | `בולגרית מעודנת 5%.` |
+| **bc-014** | `בולגרית של פעם 16% של טרה.` | `בולגרית של פעם 16% מחלבת רמת הגולן.` |
+| **bc-018** | `פטה עיזים 16% של טרה.` | `פטה עיזים 16% מחלבות רמת הגולן.` |
+| **bc-024** | `פטה כבשים 20% של טרה.` | `פטה כבשים 20% מחלבת רמת הגולן.` |
+| **bc-025** | `בולגרית מסורתית 16% של טרה.` | `בולגרית מסורתית 16%.` |
+| **bc-027** | `פטה כבשים 20% של טרה.` | `פטה כבשים 20%.` |
+| **bc-041** | `חלומי בקר 24% של טרה.` | `חלומי בקר 24%.` |
+
+### F3 — Ingredient count (bc-038)
+- **Before:** `…חמישה רכיבים ברשימה.`
+- **After:** `…שלושה רכיבים ברשימה.` (matches milk / salt / rennet)
+
+### F4 — Unverifiable interpretive claim (bc-035)
+- **Before:** `…'מלח (27%)' — לפי הבנת ברי, אחוז זה מתייחס לתמיסת המלח…`
+- **After:** `…'מלח (27%)' — הנתרן המדוד על התווית: 1,010 מ"ג…` (label fact only; Bari interpretation removed)
+
+### F5 — Undisclosed missing sugar data (bc-031, bc-037, bc-048)
+- **bc-031:** Added verdict clause + `limitingFactors: ["חסרים נתוני סוכר — לוח התזונה לא מלא"]` (was `null`)
+- **bc-037:** Added verdict clause + limiting factor for missing sugar
+- **bc-048:** Added verdict clause + limiting factor for missing sugar
+
+### F6 — Fragile superlative (bc-007)
+- **Before:** `החלבון הגבוה ביותר בקבוצת ה-A (21 גרם) — עם נתרן גבוה שמאזן.`
+- **After:** `חלבון מהגבוהים בקבוצת ה-A (21 גרם) — עם נתרן גבוה שמאזן.`
+
+---
+
+## Return Contract
+
+```json
+{
+  "task": "P402",
+  "proposed_status": "RETURNED",
+  "artifacts": [
+    {
+      "path": "bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json",
+      "action": "modified",
+      "sha256": "5c2c7d7045ad3639b3f1e5fe4b904dfd4bc4d2ef342b8924a4e884b68a6793cc"
+    }
+  ],
+  "counts": {
+    "fixes_applied_F1-F6": "6/6",
+    "F2_ungrounded_producer_removed": "10/10 (bc-003,004,005,010,014,018,024,025,027,041)",
+    "F5_missing_sugar_disclosed": "3/3 (bc-031,037,048)",
+    "stale_48_references_remaining": "0/36 products",
+    "ungounded_tera_moshav_in_F2_set": "0/10 products",
+    "numeric_fields_changed": "0/36 products"
+  },
+  "commands_run": [
+    {"cmd": "python - json.loads(brined_cheeses_frontend_v2.json)", "exit_code": 0},
+    {"cmd": "python - verification grep for F1-F6 defect patterns", "exit_code": 0},
+    {"cmd": "python - numeric field diff vs git HEAD", "exit_code": 0},
+    {"cmd": "git diff --stat bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json", "exit_code": 0}
+  ],
+  "not_done": [],
+  "self_check": "All six verified defects (F1–F6) fixed in the sole target JSON; JSON parses; 0 score/grade/rank/nutrition changes; 0 remaining '48', 'של טרה', or 'של מחלבת המושבה' in the F2 product set; bc-038 ingredient count matches displayed list (3)."
+}
+```
+[cursor-exit:0]

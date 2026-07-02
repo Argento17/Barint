@@ -12,7 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl(path),
       lastModified,
       changeFrequency: "weekly" as const,
-      priority: path === "/" ? 1 : path.startsWith("/hashvaot") ? 0.8 : 0.6,
+      priority:
+        path === "/"
+          ? 1
+          : path === "/catalog" || path.startsWith("/hashvaot")
+            ? 0.8
+            : 0.6,
     }));
   } catch {
     return [

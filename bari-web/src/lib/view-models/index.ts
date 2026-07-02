@@ -468,3 +468,65 @@ export interface BariCategoryPageVM {
   filters: BariFilterVM[];
   methodology: BariMethodologyVM;
 }
+
+// ─── Inventory Dashboard VMs (TASK-inventory, appended 2026-07-01) ───────────
+// Internal admin cross-category rollup. Display-only. Never a score input.
+// Appended here so the UI has a single import source (@/lib/view-models).
+
+/** Canonical retailer reference used throughout the inventory dashboard. */
+export interface BariRetailerRefVM {
+  id: string;
+  nameHe: string;
+}
+
+/**
+ * One row in the inventory products table — one scored product entity per
+ * category (dedupe unit is the unique `id` within its category).
+ * grade/score come directly from the corpus VM; never recomputed here.
+ * retailer is the normalized canonical ref (never raw string).
+ * sku = the existing per-product `barcode` field cast to string; null when absent.
+ */
+export interface InventoryProductRowVM {
+  id: string;
+  name: string;
+  brand: string | null;
+  categoryId: import("@/lib/comparisons/registry/types").ComparisonCategoryId;
+  categoryNameHe: string;
+  grade: BariGrade | null;
+  score: number | null;
+  confidence: BariConfidence;
+  retailer: BariRetailerRefVM;
+  sku: string | null;
+  imageUrl: string | null;
+  /**
+   * Canonical href to the category comparison page.
+   * Sourced from ComparisonCategoryDefinition.routePath — not hardcoded.
+   * Points to the category page (no per-product anchor exists).
+   * Example: "/hashvaot/hummus", "/hashvaot/breakfast-cereals".
+   */
+  comparisonHref: string;
+}
+
+/**
+ * Cross-category summary payload for the inventory dashboard header / donut.
+ * gradeDistribution counts scored products per grade + unscored (score===null).
+ * topCategories: one entry per category; dominantGrade = modal grade among
+ * scored products (null if no scored products).
+ * _meta.warning is set when "other" retailer share exceeds 5% of totalProducts.
+ */
+export interface InventorySummaryVM {
+  generatedAt: string;
+  totalProducts: number;
+  categoryCount: number;
+  /** Per-retailer product count; drives the donut chart. */
+  retailerBreakdown: Array<BariRetailerRefVM & { count: number }>;
+  /** One entry per registry category. */
+  topCategories: Array<{
+    categoryId: import("@/lib/comparisons/registry/types").ComparisonCategoryId;
+    nameHe: string;
+    count: number;
+    dominantGrade: BariGrade | null;
+  }>;
+  gradeDistribution: Record<BariGrade, number> & { unscored: number };
+  _meta?: { warning?: string };
+}

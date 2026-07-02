@@ -1,0 +1,147 @@
+{
+  "slug": "bread",
+  "generated_at": "2026-06-25T06:27:28+00:00",
+  "task": "TASK-395",
+  "description": "Baseline manifest: identifies the exact BSIP1 corpus dir, flag vector, and engine version that reproduce the committed live frontend JSON.",
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v3.json",
+  "flag_vector": {
+    "BARI_RECAL_P0": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_D4_SCORE_V1": "on"
+  },
+  "shelf_rel": null,
+  "engine_version": "unknown",
+  "score_tolerance": 0.05,
+  "live_product_count": 29,
+  "reproduces": false,
+  "matched_count": 28,
+  "mismatched_count": 1,
+  "unmatched_count": 0,
+  "bsip1_file_hashes": {
+    "1902325": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_1902325.json",
+      "sha256": "65f09708f09863100fb7174af3cd089266a66422e6b59bf47aa4a6a7c9de771e"
+    },
+    "2079033": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_2079033.json",
+      "sha256": "9996ef6d1244c7df8c5577a2409457b2d7a4724a5cf371d09515c2106c30b211"
+    },
+    "2079217": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_2079217.json",
+      "sha256": "61594ef37515ec19d980ebbb2a63d8ce2429f92703a8ddc76fcd435347a75940"
+    },
+    "2079477": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_2079477.json",
+      "sha256": "6c06d700043d19c89de28f458c3ac837a673776dac93eac87d94bfe86f240ebc"
+    },
+    "2079927": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_2079927.json",
+      "sha256": "155bb631e0d80a33c5ac69071c6d1417b678df0b729fe487fbac7c78b5e6ad15"
+    },
+    "2079996": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_2079996.json",
+      "sha256": "4b74c4ae8741a70494c0570c88f2f0646b73537d3efa0bbabd3ffd63ac2fb3a9"
+    },
+    "3054183": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_3054183.json",
+      "sha256": "eb477920d2392c420a00d2385aa40d184ab30f8adfe2a5e9b5fcf6b82197d8ad"
+    },
+    "3268252": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_3268252.json",
+      "sha256": "df36488db18ae4547a676fdeea987d26927fa6bc18d87c9f12ed57e37c8bab39"
+    },
+    "3268429": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_3268429.json",
+      "sha256": "e00f0f031dd79d9a1db2bb1fa7ea63421d9074fcef6fdd924bc2f436faef2cbf"
+    },
+    "4685027": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_4685027.json",
+      "sha256": "bf3b3587c1daaf16179234ece8ac400ff0c41f72ea55318b2c6703c06cfdb96a"
+    },
+    "481197": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_481197.json",
+      "sha256": "4111545e7fa7f2921ff8eb5fabfc227e5064336c1bd31ee671e4522fb6b80a55"
+    },
+    "481203": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_481203.json",
+      "sha256": "6451117948bb999e44bd58f258310d6f8993250770ba537f2cc295682e19ab87"
+    },
+    "497044": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_497044.json",
+      "sha256": "a0e5948ea2d10dfc82d63c2b3cb12222791a751d892e9b150654126d128a6c6d"
+    },
+    "574370": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_574370.json",
+      "sha256": "8d24dda2a95e0842c76797109cd852c1e1e6ba355433834aa3679260c0ff132d"
+    },
+    "6451484": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_6451484.json",
+      "sha256": "d62ae3299e989d32c06f7ffabcfa60af920e044277f6815959e891551c471b56"
+    },
+    "6451507": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_6451507.json",
+      "sha256": "5b0c9c72f07bb24609042aa9b3bc7f35e634c7f1c420c229d41065ebcf2fb522"
+    },
+    "7290014321168": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290014321168.json",
+      "sha256": "81ab4f79bb8e052e3cb048f7c7b7644ab09ff52acf57c0916772fbacf1c3a78e"
+    },
+    "7290016245325": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290016245325.json",
+      "sha256": "415f5311345b306087d1b620ef08d9ce562b12cc8cbe2f521bf1c59a96015a92"
+    },
+    "7290016967074": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290016967074.json",
+      "sha256": "1ae4767e609528d11ac44820036d3c0cfcfe949541c73ddf08fe1ab416b9513f"
+    },
+    "7290018500316": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290018500316.json",
+      "sha256": "7db1730dc4d454f950d6a7150b3bd312a0fc9a4edd32b14d475d503d550c3a72"
+    },
+    "7290018500460": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290018500460.json",
+      "sha256": "602001890d14478e8f2ead6624ba1ddf96c7233e7c809fff10cd50dc1b67f454"
+    },
+    "7290018540329": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7290018540329.json",
+      "sha256": "9be2205522856e06645da82e62d372d3f33ecdc4b0df18e4a6d598e2afd37e0b"
+    },
+    "7296073134442": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7296073134442.json",
+      "sha256": "4d652d72b8ecf9ddf8ae50008d9b745d1658326edd9cd9f89a7749447c977528"
+    },
+    "7296073134459": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_7296073134459.json",
+      "sha256": "6ed32e5461bd40788386427da5a5820cfc828e8924a4db438ccf70ba5b59bf7c"
+    },
+    "74252": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_74252.json",
+      "sha256": "bc39784bedcd4b365a913e24d54dc90b149d6e4d2211873e8f4b808658961ae2"
+    },
+    "8434165658523": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_8434165658523.json",
+      "sha256": "a74a0a98ce36a1a46db93939e54e615d14b5de522aee55e2290697b18862b126"
+    },
+    "9398281": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_9398281.json",
+      "sha256": "02a428a8c47ee67438adaef9833239287cf7203d7d1ebbe99b3496e4873399b3"
+    },
+    "96086000577": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_96086000577.json",
+      "sha256": "f66158e152f1382909fa7c38df70a98bed76db12b20d9b5169fe5d529a38b27f"
+    },
+    "96086000966": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output\\bsip1_96086000966.json",
+      "sha256": "3731232b95d97c6dd57f32fd123ca02f26b28560b0832807f843d807c14fde93"
+    }
+  },
+  "verdict": "RESIDUAL_MOVERS",
+  "verified_at": "2026-06-25T06:27:28+00:00"
+}

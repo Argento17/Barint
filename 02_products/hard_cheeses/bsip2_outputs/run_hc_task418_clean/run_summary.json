@@ -1,0 +1,982 @@
+{
+  "run_id": "run_hc_task418_clean",
+  "generated": "2026-07-01T13:10:04.537584+00:00",
+  "task": "TASK-418",
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_HC002_NOVA1": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "on",
+    "BARI_REDLABEL_V1": "on",
+    "BARI_HC_DAIRY_SATFAT_V1": "on"
+  },
+  "corpus_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_task412",
+  "curated_31": {
+    "found": 31,
+    "grade_distribution": {
+      "A": 1,
+      "B": 26,
+      "C": 4
+    },
+    "stable_table": [
+      {
+        "barcode": "53219",
+        "name": "גבינה צהובה 32%",
+        "score": 62,
+        "grade": "C",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 490.0,
+        "context_flag": null,
+        "live_score": 62.6,
+        "live_grade": "C",
+        "delta": -0.6,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290110323301",
+        "name": "גבינה צהובה טל העמק 32%",
+        "score": 62,
+        "grade": "C",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 550.0,
+        "context_flag": null,
+        "live_score": 62.5,
+        "live_grade": "C",
+        "delta": -0.5,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7296073453482",
+        "name": "גבינה צהובה 32% פרוס",
+        "score": 62,
+        "grade": "C",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 490.0,
+        "context_flag": null,
+        "live_score": 62.4,
+        "live_grade": "C",
+        "delta": -0.4,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "8606608",
+        "name": "גבינת גאודה פסטו אדום32%",
+        "score": 63.0,
+        "grade": "C",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 22.6,
+        "sodium_mg": 880.0,
+        "context_flag": null,
+        "live_score": 63.0,
+        "live_grade": "C",
+        "delta": 0.0,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD",
+          "HP_FAT_SODIUM_COMBO"
+        ]
+      },
+      {
+        "barcode": "7296073735151",
+        "name": "גבינה גרנה פדנו מגורד",
+        "score": 66.8,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.0,
+        "sodium_mg": 600.0,
+        "context_flag": null,
+        "live_score": 66.9,
+        "live_grade": "B",
+        "delta": -0.1,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "3073781199918",
+        "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 16.0,
+        "sodium_mg": 710.0,
+        "context_flag": null,
+        "live_score": 70.0,
+        "live_grade": "B",
+        "delta": -3.0,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "4122270",
+        "name": "גבינה צהובה פרוס 28%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.2,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 62.6,
+        "live_grade": "C",
+        "delta": 4.4,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5079658",
+        "name": "נעם גבינה צהובה28% חריץ",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 16.8,
+        "sodium_mg": 660.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5079665",
+        "name": "נועם גבינה צהובה9% חריץ",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 5.4,
+        "sodium_mg": 620.0,
+        "context_flag": null,
+        "live_score": 70.8,
+        "live_grade": "B",
+        "delta": -3.8,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5079672",
+        "name": "נעם גבינה צהובה22% משקל",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 13.2,
+        "sodium_mg": 670.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5384356",
+        "name": "גבינה חצי קשה אמנטל 28%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 472.0,
+        "context_flag": null,
+        "live_score": 76.1,
+        "live_grade": "B",
+        "delta": -9.1,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290004122195",
+        "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 200 גרם",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 510.0,
+        "context_flag": null,
+        "live_score": 69.9,
+        "live_grade": "B",
+        "delta": -2.9,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290014455245",
+        "name": "גרנה פדנו משולש",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.0,
+        "sodium_mg": 600.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290014760912",
+        "name": "גבינה צהובה 28% מהדרין",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 17.0,
+        "sodium_mg": 510.0,
+        "context_flag": null,
+        "live_score": 68.4,
+        "live_grade": "B",
+        "delta": -1.4,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290017065434",
+        "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 831.0,
+        "context_flag": null,
+        "live_score": 69.7,
+        "live_grade": "B",
+        "delta": -2.7,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290019635192",
+        "name": "גאודה עיזים פרוס 30%שומן",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 659.0,
+        "context_flag": null,
+        "live_score": 71.2,
+        "live_grade": "B",
+        "delta": -4.2,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290020467393",
+        "name": "גאודה מאסדם אמנטל הולנדי",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.5,
+        "sodium_mg": 660.0,
+        "context_flag": null,
+        "live_score": 67.5,
+        "live_grade": "B",
+        "delta": -0.5,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290110320850",
+        "name": "פתיתי עמק 28%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.2,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 62.6,
+        "live_grade": "C",
+        "delta": 4.4,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290114311601",
+        "name": "גאודה נעם 30%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.0,
+        "sodium_mg": 580.0,
+        "context_flag": null,
+        "live_score": 72.8,
+        "live_grade": "B",
+        "delta": -5.8,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290114312813",
+        "name": "אמנטל נועם פתיחה חוזרת",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.0,
+        "sodium_mg": 490.0,
+        "context_flag": null,
+        "live_score": 73.2,
+        "live_grade": "B",
+        "delta": -6.2,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290116931524",
+        "name": "פרוסות גאודה",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.5,
+        "sodium_mg": 540.0,
+        "context_flag": null,
+        "live_score": 73.5,
+        "live_grade": "B",
+        "delta": -6.5,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "8606974",
+        "name": "גבינת גאודה גוסטו 30%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 21.3,
+        "sodium_mg": 680.0,
+        "context_flag": null,
+        "live_score": 63.0,
+        "live_grade": "C",
+        "delta": 4.0,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "8711528211138",
+        "name": "גבינת גאודה עיזים.",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 800.0,
+        "context_flag": null,
+        "live_score": 69.3,
+        "live_grade": "B",
+        "delta": -2.3,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC2_C_CEILING"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "9150162",
+        "name": "גאודה חצי קשה 28% שומן",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 19.0,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 72.2,
+        "live_grade": "B",
+        "delta": -5.2,
+        "grade_moved": false,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7296073731856",
+        "name": "גבינת גאודה פרוסה 28%",
+        "score": 67.8,
+        "grade": "B",
+        "nova_proxy": 3,
+        "confidence_band": null,
+        "binding_cap": 87.0,
+        "fat_saturated_g": 14.0,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 72.2,
+        "live_grade": "B",
+        "delta": -4.4,
+        "grade_moved": false,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD",
+          "HP_FAT_SODIUM_COMBO"
+        ]
+      },
+      {
+        "barcode": "7290117265888",
+        "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+        "score": 70.8,
+        "grade": "B",
+        "nova_proxy": 3,
+        "confidence_band": null,
+        "binding_cap": 87.0,
+        "fat_saturated_g": null,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 74.5,
+        "live_grade": "B",
+        "delta": -3.7,
+        "grade_moved": false,
+        "caps_applied": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD",
+          "HP_FAT_SODIUM_COMBO"
+        ]
+      },
+      {
+        "barcode": "7290014760448",
+        "name": "גבינה צהובה 22%",
+        "score": 71.9,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 14.3,
+        "sodium_mg": 495.0,
+        "context_flag": null,
+        "live_score": 68.8,
+        "live_grade": "B",
+        "delta": 3.1,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "52311",
+        "name": "גבינה צהובה עמק15% פרוס",
+        "score": 73.3,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 9.0,
+        "sodium_mg": 530.0,
+        "context_flag": null,
+        "live_score": 74.9,
+        "live_grade": "B",
+        "delta": -1.6,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "4137311",
+        "name": "גבינה צהובה 9% מופחתת",
+        "score": 76.8,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 5.9,
+        "sodium_mg": 491.0,
+        "context_flag": null,
+        "live_score": 74.8,
+        "live_grade": "B",
+        "delta": 2.0,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290004122348",
+        "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
+        "score": 78.3,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 495.0,
+        "context_flag": null,
+        "live_score": 78.5,
+        "live_grade": "B",
+        "delta": -0.2,
+        "grade_moved": false,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290110324872",
+        "name": "פרוסות גבינת גלבוע 5% 200 גרם",
+        "score": 81.6,
+        "grade": "A",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 491.0,
+        "context_flag": null,
+        "live_score": 93.2,
+        "live_grade": "S",
+        "delta": -11.6,
+        "grade_moved": true,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      }
+    ],
+    "score_movers_count": 30,
+    "grade_movers_count": 7,
+    "grade_movers": [
+      {
+        "barcode": "4122270",
+        "name": "גבינה צהובה פרוס 28%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.2,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 62.6,
+        "live_grade": "C",
+        "delta": 4.4,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5079658",
+        "name": "נעם גבינה צהובה28% חריץ",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 16.8,
+        "sodium_mg": 660.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "5079672",
+        "name": "נעם גבינה צהובה22% משקל",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 13.2,
+        "sodium_mg": 670.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290014455245",
+        "name": "גרנה פדנו משולש",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.0,
+        "sodium_mg": 600.0,
+        "context_flag": null,
+        "live_score": 62.2,
+        "live_grade": "C",
+        "delta": 4.8,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290110320850",
+        "name": "פתיתי עמק 28%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 18.2,
+        "sodium_mg": 640.0,
+        "context_flag": null,
+        "live_score": 62.6,
+        "live_grade": "C",
+        "delta": 4.4,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "8606974",
+        "name": "גבינת גאודה גוסטו 30%",
+        "score": 67.0,
+        "grade": "B",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": 21.3,
+        "sodium_mg": 680.0,
+        "context_flag": null,
+        "live_score": 63.0,
+        "live_grade": "C",
+        "delta": 4.0,
+        "grade_moved": true,
+        "caps_applied": [
+          "EV104_HC3_NA_CAP"
+        ],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      },
+      {
+        "barcode": "7290110324872",
+        "name": "פרוסות גבינת גלבוע 5% 200 גרם",
+        "score": 81.6,
+        "grade": "A",
+        "nova_proxy": 2,
+        "confidence_band": null,
+        "binding_cap": null,
+        "fat_saturated_g": null,
+        "sodium_mg": 491.0,
+        "context_flag": null,
+        "live_score": 93.2,
+        "live_grade": "S",
+        "delta": -11.6,
+        "grade_moved": true,
+        "caps_applied": [],
+        "penalties_applied": [
+          "SODIUM_LOAD_GENERAL_GRAD"
+        ]
+      }
+    ]
+  },
+  "all_products": {
+    "scored": 76,
+    "errors": 0,
+    "grade_distribution": {
+      "A": 1,
+      "B": 70,
+      "C": 5
+    }
+  },
+  "off_skipped": 0,
+  "discarded": [
+    {
+      "barcode": "4122119",
+      "reasons": [
+        "R1_sodium_lt100 (sodium=1.0)"
+      ]
+    },
+    {
+      "barcode": "46020",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "4725426",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "5079290",
+      "reasons": [
+        "R2_sodium_null",
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "5079412",
+      "reasons": [
+        "R2_sodium_null",
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "571119",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "571126",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "571294",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "7290014759985",
+      "reasons": [
+        "R1_sodium_lt100 (sodium=1.0)"
+      ]
+    },
+    {
+      "barcode": "7296073453444",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "7296073453468",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "7296073453703",
+      "reasons": [
+        "R1_sodium_lt100 (sodium=1.0)"
+      ]
+    },
+    {
+      "barcode": "8606639",
+      "reasons": [
+        "R1_sodium_lt100 (sodium=0.0)"
+      ]
+    },
+    {
+      "barcode": "9954364",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "9954388",
+      "reasons": [
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    },
+    {
+      "barcode": "9954395",
+      "reasons": [
+        "R1_sodium_lt100 (sodium=1.0)"
+      ]
+    },
+    {
+      "barcode": "9954531",
+      "reasons": [
+        "R2_sodium_null"
+      ]
+    },
+    {
+      "barcode": "9954562",
+      "reasons": [
+        "R2_sodium_null",
+        "R3_fat_null",
+        "R4_protein_null"
+      ]
+    }
+  ],
+  "error_list": []
+}

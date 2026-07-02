@@ -64,7 +64,7 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
         categoryTags="חומוס · שופרסל"
         title={CARD_HERO.title}
         description={stripCardDigits(cardDescription)}
-        insightLines={insightLines}
+        insightLines={insightLines.map(stripCardDigits)}
         stats={[
           { value: displayedCount, label: "מוצרים בהשוואה" },
           { value: scoredCount, label: "קיבלו ציון" },

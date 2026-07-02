@@ -624,3 +624,25 @@
     }
   }
 }
+
+/* ── Product name link (catalog + admin inventory table) ──────────────────────
+ * Default: looks like plain text (colour inherits from parent span).
+ * Hover: subtle underline + slight shift toward Bari green.
+ * Two independent controls per row: this link navigates; the chevron button expands.
+ */
+.product-name-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.12s ease;
+}
+.product-name-link:hover {
+  color: #167A58;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(22, 122, 88, 0.4);
+}
+.product-name-link:focus-visible {
+  outline: 2px solid #167A58;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

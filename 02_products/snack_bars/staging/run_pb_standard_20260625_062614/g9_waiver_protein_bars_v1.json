@@ -1,0 +1,64 @@
+{
+  "_type": "gate_waiver",
+  "_schema": "bari_gate_waiver_v1",
+  "waiver_id": "GW-001",
+  "evidence_registry_ref": "BEV-088",
+  "task": "TASK-399",
+  "created": "2026-06-25",
+  "gate": "G9",
+  "gate_name": "INVERSION-INVARIANT",
+  "gate_spec": "BARI-INVERSION-TEST-001",
+  "category": "protein_bars",
+  "lens": "BARI_PROTEIN_BAR_V1",
+  "run": "run_pb_standard_20260625_062614",
+  "corpus_size": 33,
+  "display_set_size": 32,
+  "waiver_statement": "G9 INVERSION-INVARIANT fires on cross-category panel comparisons (sugar/satfat) because the BARI_PROTEIN_BAR_V1 lens explicitly reweights protein/fiber architecture as the primary scoring dimension. A higher-protein/higher-fiber bar can outrank a lower-sugar bar when sugar is below the red-label threshold (< 17.5g/100g). This is the intended behavior of the protein-bar sub-lens, not a scoring defect.",
+  "review": {
+    "pairs_reviewed": 47,
+    "defensible": 47,
+    "defects": 0,
+    "review_date": "2026-06-25",
+    "reviewer": "Nutrition Agent",
+    "review_methodology": "Manual pair-by-pair review: for each inversion pair, assessed whether the higher-scored product had meaningfully better protein density or fiber-to-sugar architecture per the lens's evaluative criteria, and whether the sugar/satfat disadvantage was below the Israeli red-label threshold."
+  },
+  "cosigns": {
+    "nutrition_agent": {
+      "decision": "APPROVE-WITH-CONDITIONS",
+      "date": "2026-06-25",
+      "conditions": [
+        "Category caveat must disclose the protein-lens trade-off",
+        "Waiver must be re-reviewed if lens weights change materially (>5pp on protein/fiber dimensions)",
+        "Re-review required if corpus grows beyond 50 products"
+      ]
+    },
+    "product_agent": {
+      "decision": "GO",
+      "date": "2026-06-25"
+    },
+    "owner": {
+      "decision": "SIGNED-OFF",
+      "date": "2026-06-25",
+      "context": "TASK-399 tripwire-1 clearance (Nutrition APPROVE-WITH-CONDITIONS + Product GO)"
+    }
+  },
+  "governance_conditions": [
+    "Applies ONLY when BARI_PROTEIN_BAR_V1 lens is active",
+    "If lens deactivated, G9 must re-run without waiver",
+    "Material scoring weight change (>5pp protein/fiber) requires re-review",
+    "Corpus > 50 products requires fresh 47-pair sample review",
+    "G9 gate still runs and is logged; this waiver makes the fire non-blocking for this category"
+  ],
+  "gate_behavior": {
+    "gate_still_runs": true,
+    "fire_still_logged": true,
+    "blocking": false,
+    "status_in_report": "FAIL (waived per BEV-088 / GW-001)",
+    "future_enhancement": "Add --g9-waiver-ref GW-001 flag to run_gates.py to produce WAIVED status instead of FAIL"
+  },
+  "disclosure_requirement": {
+    "required": true,
+    "location": "categoryNote.body_he",
+    "content": "The scoring lens rewards protein and fiber architecture; a high-protein/high-fiber bar can outrank a lower-sugar bar when sugar is below the red-label threshold. This is a deliberate design choice, not a general nutrition ranking."
+  }
+}

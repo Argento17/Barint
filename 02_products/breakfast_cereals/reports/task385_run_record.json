@@ -1,0 +1,93 @@
+{
+  "_meta": {
+    "task": "TASK-385",
+    "run_date": "2026-06-23",
+    "run_id": "task385_granola_rescore_2026_06_23",
+    "agent": "data-agent",
+    "stage": "BSIP0-diagnosis + BSIP2-rescore (Stages 1-3 of TASK-385 delegated scope)",
+    "status": "RETURNED_for_nutrition_sodium_decision"
+  },
+  "diagnosis": {
+    "fat_collapse_status": "RESOLVED — EV-029 fix already applied in run_cereals_006 (2026-06-05), carried into run_cereals_008 (2026-06-15). Current BSIP1 run_cereals_008 has correct fat for all 22 granola products.",
+    "fat_collapse_in_bsip1_run_cereals_008": 0,
+    "fat_collapse_explanation": "run_cereals_005 (original) had fat_g=0.5 and sodium=10000mg (unit-corrupted) for all products. run_cereals_006 fixed EV-029. run_cereals_008 BSIP1 shows correct fat (e.g., 14.8g for 7290017962047, 34.2g for 7290106773714). Fat collapse is NOT present in the current corpus.",
+    "live_frontend_state": "granola_frontend_v1.json shows correct fat values (10-34g range) — the re-baseline scoring run (commit a147c244a, 2026-06-17) used run_cereals_008 traces which had EV-029 fix. The orchestrator brief's claim about fat=0.5 refers to the pre-fix run_005 state, not the current live state.",
+    "macro_sum_sanity_pass": 22,
+    "macro_sum_sanity_fail": 0,
+    "path_taken": "re-score from existing BSIP1 run_cereals_008 (no re-scrape needed; data is clean)",
+    "products_discarded": 0
+  },
+  "corpus": {
+    "source": "03_operations/bsip1/run_cereals_008/output/ (22 granola products, subtype=granola)",
+    "product_count": 22,
+    "scored_pass_a": 22,
+    "scored_pass_b": 22,
+    "barcodes": [
+      "7290017962047","7290116534619","7290106773714","7290017962023","7290013433244",
+      "7290013433336","7290106771369","7290112498007","7290106771314","7290112497994",
+      "7290106771161","7290011668587","7290013433091","7290014471443","7290013433107",
+      "7613035635845","7613037012095","7290011131050","7290011131968","7613035622623",
+      "7290011131975","1343845"
+    ]
+  },
+  "flags": {
+    "pass_a": {"BARI_SODIUM_CEREAL": "off", "BARI_RECAL_P0": "on", "BARI_FAT_TECH_V1": "on", "BARI_REDLABEL_V1": "off", "BARI_SHELF_RELATIVE_V1": "off"},
+    "pass_b": {"BARI_SODIUM_CEREAL": "on", "BARI_RECAL_P0": "on", "BARI_FAT_TECH_V1": "on", "BARI_REDLABEL_V1": "off", "BARI_SHELF_RELATIVE_V1": "off"}
+  },
+  "grade_distributions": {
+    "live_frontend": {"B": 6, "C": 7, "D": 7, "E": 0, "note": "re-baseline 2026-06-17 scores with older engine version"},
+    "pass_a_clean": {"B": 4, "C": 8, "D": 8, "E": 2},
+    "pass_b_sodium_on": {"B": 4, "C": 8, "D": 8, "E": 2}
+  },
+  "pass_a_vs_live_delta": {
+    "score_movers": 20,
+    "grade_movers": 7,
+    "grade_moves": [
+      {"barcode": "7290106773714", "name": "גרנולה מיקס קראנץ' מלוח", "live_grade": "B", "pass_a_grade": "C", "live_score": 70.0, "pass_a_score": 64.0},
+      {"barcode": "7290013433244", "name": "גרנולה 18% חלבון", "live_grade": "B", "pass_a_grade": "C", "live_score": 67.1, "pass_a_score": 63.0},
+      {"barcode": "7290013433336", "name": "גרנולה 48% סופרפוד", "live_grade": "B", "pass_a_grade": "C", "live_score": 66.4, "pass_a_score": 62.4},
+      {"barcode": "7290011668587", "name": "גרנולה עשירה", "live_grade": "C", "pass_a_grade": "D", "live_score": 57.6, "pass_a_score": 38.0},
+      {"barcode": "7290014471443", "name": "גרנולה אגוזים", "live_grade": "C", "pass_a_grade": "D", "live_score": 51.6, "pass_a_score": 35.5},
+      {"barcode": "7290011131975", "name": "גרנולה פירות", "live_grade": "D", "pass_a_grade": "E", "live_score": 42.0, "pass_a_score": 32.1},
+      {"barcode": "1343845", "name": "גרנולה עם פירות", "live_grade": "D", "pass_a_grade": "E", "live_score": 39.7, "pass_a_score": 31.4}
+    ],
+    "explanation": "Score differences from the live frontend are due to engine evolution between run_cereals_008 (2026-06-15) and today's engine version (e.g., whole_food_integrity scoring change for ingredient complexity, additive_quality change). NOT due to fat collapse — fat values are identical."
+  },
+  "pass_a_vs_pass_b_delta": {
+    "score_movers": 2,
+    "grade_movers": 0,
+    "sodium_affected_products": [
+      {"barcode": "7290106773714", "name": "גרנולה מיקס קראנץ' מלוח", "sodium_mg": 394.0, "score_a": 64.0, "score_b": 59.0, "score_delta": -5.0, "grade_a": "C", "grade_b": "C", "penalty_fired": "SODIUM_LOAD_CEREAL_GRAD=-5 (band 300-449mg)"},
+      {"barcode": "7290011668587", "name": "גרנולה עשירה", "sodium_mg": 195.0, "score_a": 38.0, "score_b": 36.0, "score_delta": -2.0, "grade_a": "D", "grade_b": "D", "penalty_fired": "SODIUM_LOAD_CEREAL_GRAD=-2 (band 150-299mg)"}
+    ]
+  },
+  "hp_fat_sodium_on_clean_data": {
+    "fired_count": 1,
+    "products_that_fired": ["7290106773714 (salted mix, fat_pct=61.1%, sodium=394mg — BOTH conditions met)"],
+    "products_na_300_plus_not_caught": 0,
+    "explanation": "With correct fat, HP_FAT_SODIUM now fires correctly on the ONE high-fat+high-sodium product. All other high-sodium products in this corpus have sodium < 300mg (only 7290011668587 at 195mg crosses 150mg band). The TASK-189 concern about '13/18 high-sodium products not caught by HP_FAT_SODIUM' was based on the OLD CORPUS (63 cereals including cornflakes/muesli). The granola subpool alone has only 2 products with sodium >= 150mg."
+  },
+  "byte_identity": {
+    "test": "BARI_SODIUM_CEREAL=OFF vs ON on products with sodium < 150mg",
+    "result": "PASS",
+    "match": 20,
+    "total": 22,
+    "differs": 2,
+    "differs_explanation": "The 2 products with sodium>=150mg (7290106773714 at 394mg, 7290011668587 at 195mg) correctly differ between OFF and ON. No unexpected differences.",
+    "command": "python 02_products/breakfast_cereals/tmp_byte_identity_v2.py"
+  },
+  "sodium_driver_verdict": {
+    "question": "Does HP_FAT_SODIUM revive on its own with correct fat? Is BARI_SODIUM_CEREAL still needed?",
+    "answer": "PARTIAL REVIVAL — HP_FAT_SODIUM correctly fires on ONE product (7290106773714) with correct fat. However, the granola subpool has only 2 products with sodium >= 150mg. The graduated treatment (BARI_SODIUM_CEREAL=ON) adds a -5pt penalty to the 394mg salted product (no grade move, still C) and -2pt to the 195mg product (already D, no grade move). On CLEAN DATA, BARI_SODIUM_CEREAL has NO grade movers in the granola subpool.",
+    "recommendation": "DO NOT ACTIVATE BARI_SODIUM_CEREAL for the granola subpool at this time. Reasons: (1) 0 grade movers in Pass A→B; (2) HP_FAT_SODIUM already fires correctly on the salted product; (3) the sodium concern was driven by the full cereals corpus (63 products), not granola-only; (4) activating BARI_SODIUM_CEREAL adds 2 small score penalties with no grade impact, adding maintenance cost for no consumer-visible benefit on granola. The flag remains available for the full cereals corpus if the sodium scoring decision is revisited for that pool.",
+    "scope_guard": "BARI_SODIUM_CEREAL is scoped to snack_bar_granola + cereal. This analysis covers ONLY granola. The verdict applies to the granola display page. The full cereals corpus (which has cornflakes at 600mg, muesli at 400mg) may warrant separate D7 review.",
+    "live_page_impact": "The 7 grade movers from Pass A vs live frontend are due to ENGINE EVOLUTION, not the sodium flag. They represent the delta between old engine (2026-06-15 traces) and current engine. These are REAL score moves that must be disclosed to Product Agent before any frontend update."
+  },
+  "artifacts": {
+    "main_report": "02_products/breakfast_cereals/reports/task385_granola_rescore_report.json",
+    "pass_a_traces": "02_products/breakfast_cereals/bsip2_outputs/run_granola_task385_off/products/ (22 traces)",
+    "pass_b_traces": "02_products/breakfast_cereals/bsip2_outputs/run_granola_task385_on/products/ (22 traces)",
+    "runner_script": "02_products/breakfast_cereals/task385_granola_rescore.py",
+    "run_record": "02_products/breakfast_cereals/reports/task385_run_record.json"
+  }
+}

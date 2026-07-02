@@ -1,0 +1,16 @@
+{
+  "schema": "crackers_frontend_discards_v1",
+  "task": "TASK-433",
+  "run_id": "run_crackers_conform_001",
+  "discards": [
+    {
+      "barcode": "7290112968807",
+      "name_he": "קרקר דק פיטנס סלק",
+      "stage": "frontend_packaging",
+      "reason": "insufficient_data: unrecoverable per-serving/per-100g nutrition corruption, discard-rule. Full nutrition block (kcal/protein/carbs/fiber/sodium) was ~1/4.6 of near-identical sibling 'פיטנס' products with no clean unit/parse scaling factor -> nulled at BSIP1 source (TASK-433 FIX2b, missing-data-discard rule) -> engine returns insufficient_data/neutral score -> a gradeless row does not belong on a comparison page. Same rule as the existing BSIP1-stage discard of 5317200 (total data blackout), applied one stage later because this product's corruption was found and nulled during the TASK-433 rework, not at initial scrape.",
+      "decided_by": "orchestrator (within-lane structural finalization, no tripwire)",
+      "recorded_at": "2026-07-01T19:36:05.792528+00:00"
+    }
+  ],
+  "note": "Consult this file at frontend-packaging time: any barcode listed here must be excluded from the displayable products[] array even though it has a valid (insufficient_data) BSIP1/BSIP2 record. Distinct from BSIP1-stage discards (see run_crackers_conform_001/run_record.json 'discarded' list, e.g. 5317200) which never produce a BSIP1 record at all."
+}

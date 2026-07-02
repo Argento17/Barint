@@ -1,0 +1,375 @@
+{
+  "summary": {
+    "canonical": {
+      "flags": {
+        "BARI_SHELF_RELATIVE_V1": "on",
+        "BARI_FAT_TECH_V1": "on",
+        "BARI_RECAL_P0": "on",
+        "BARI_HC002_NOVA1": "off",
+        "BARI_DAIRY_SAT_FAT_INFER": "on",
+        "BARI_REDLABEL_V1": "on",
+        "BARI_HC_DAIRY_SATFAT_V1": "on"
+      },
+      "shelf_rel": {
+        "nutrient": "fat_saturated_g",
+        "median": 18.0,
+        "scale": 1.4,
+        "scale_type": "iqr"
+      },
+      "corpus_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_task412",
+      "baseline": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v4.json",
+      "glassbox_w4_forced_on": true,
+      "rt4_fix_constant_expected": 67.0
+    },
+    "published_count": 31,
+    "reproduced_pm0.1": 31,
+    "drift": 0,
+    "grade_moves": 0,
+    "missing_from_corpus": 0,
+    "errors": 0,
+    "PASS": true
+  },
+  "rows": [
+    {
+      "bc": "7290110324872",
+      "status": "REPRO",
+      "pub": 81.6,
+      "engine": 81.6,
+      "drift": 0.0,
+      "pub_g": "A",
+      "engine_g": "A",
+      "grade_move": false,
+      "name": "פרוסות גבינת גלבוע 5% 200 גרם"
+    },
+    {
+      "bc": "7290004122348",
+      "status": "REPRO",
+      "pub": 78.3,
+      "engine": 78.3,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם"
+    },
+    {
+      "bc": "4137311",
+      "status": "REPRO",
+      "pub": 76.8,
+      "engine": 76.8,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה צהובה 9% מופחתת"
+    },
+    {
+      "bc": "52311",
+      "status": "REPRO",
+      "pub": 73.3,
+      "engine": 73.3,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה צהובה עמק15% פרוס"
+    },
+    {
+      "bc": "7290014760448",
+      "status": "REPRO",
+      "pub": 71.9,
+      "engine": 71.9,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה צהובה 22%"
+    },
+    {
+      "bc": "7290117265888",
+      "status": "REPRO",
+      "pub": 70.8,
+      "engine": 70.8,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם"
+    },
+    {
+      "bc": "7296073731856",
+      "status": "REPRO",
+      "pub": 67.8,
+      "engine": 67.8,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינת גאודה פרוסה 28%"
+    },
+    {
+      "bc": "5384356",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה חצי קשה אמנטל 28%"
+    },
+    {
+      "bc": "9150162",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גאודה חצי קשה 28% שומן"
+    },
+    {
+      "bc": "7290116931524",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "פרוסות גאודה"
+    },
+    {
+      "bc": "3073781199918",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם"
+    },
+    {
+      "bc": "5079658",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "נעם גבינה צהובה28% חריץ"
+    },
+    {
+      "bc": "5079665",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "נועם גבינה צהובה9% חריץ"
+    },
+    {
+      "bc": "5079672",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "נעם גבינה צהובה22% משקל"
+    },
+    {
+      "bc": "7290004122195",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 200 גרם"
+    },
+    {
+      "bc": "7290014455245",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גרנה פדנו משולש"
+    },
+    {
+      "bc": "7290017065434",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם"
+    },
+    {
+      "bc": "7290019635192",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גאודה עיזים פרוס 30%שומן"
+    },
+    {
+      "bc": "7290020467393",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גאודה מאסדם אמנטל הולנדי"
+    },
+    {
+      "bc": "7290114311601",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גאודה נעם 30%"
+    },
+    {
+      "bc": "7290114312813",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "אמנטל נועם פתיחה חוזרת"
+    },
+    {
+      "bc": "8606974",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינת גאודה גוסטו 30%"
+    },
+    {
+      "bc": "8711528211138",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינת גאודה עיזים."
+    },
+    {
+      "bc": "7290014760912",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה צהובה 28% מהדרין"
+    },
+    {
+      "bc": "4122270",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה צהובה פרוס 28%"
+    },
+    {
+      "bc": "7290110320850",
+      "status": "REPRO",
+      "pub": 67.0,
+      "engine": 67.0,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "פתיתי עמק 28%"
+    },
+    {
+      "bc": "7296073735151",
+      "status": "REPRO",
+      "pub": 66.8,
+      "engine": 66.8,
+      "drift": 0.0,
+      "pub_g": "B",
+      "engine_g": "B",
+      "grade_move": false,
+      "name": "גבינה גרנה פדנו מגורד"
+    },
+    {
+      "bc": "8606608",
+      "status": "REPRO",
+      "pub": 63.0,
+      "engine": 63.0,
+      "drift": 0.0,
+      "pub_g": "C",
+      "engine_g": "C",
+      "grade_move": false,
+      "name": "גבינת גאודה פסטו אדום32%"
+    },
+    {
+      "bc": "53219",
+      "status": "REPRO",
+      "pub": 62,
+      "engine": 62,
+      "drift": 0,
+      "pub_g": "C",
+      "engine_g": "C",
+      "grade_move": false,
+      "name": "גבינה צהובה 32%"
+    },
+    {
+      "bc": "7290110323301",
+      "status": "REPRO",
+      "pub": 62,
+      "engine": 62,
+      "drift": 0,
+      "pub_g": "C",
+      "engine_g": "C",
+      "grade_move": false,
+      "name": "גבינה צהובה טל העמק 32%"
+    },
+    {
+      "bc": "7296073453482",
+      "status": "REPRO",
+      "pub": 62,
+      "engine": 62,
+      "drift": 0,
+      "pub_g": "C",
+      "engine_g": "C",
+      "grade_move": false,
+      "name": "גבינה צהובה 32% פרוס"
+    }
+  ]
+}

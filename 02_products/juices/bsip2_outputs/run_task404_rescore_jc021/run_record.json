@@ -1,0 +1,59 @@
+{
+  "run_id": "run_task404_rescore_jc021",
+  "task": "TASK-404",
+  "generated": "2026-06-26T05:57:53.367682Z",
+  "scope": "single product jc-021 barcode 7290001247891 only",
+  "correction": {
+    "field": "sugars_g",
+    "old_value": 2.25,
+    "new_value": 9.4,
+    "old_score": 37.4,
+    "old_grade": "D",
+    "new_score": 35.3,
+    "new_grade": "D",
+    "delta": -2.1,
+    "grade_moved": false
+  },
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+  },
+  "runtime_module_checks": {
+    "signal_extractor.TASK144_FIXES_ON": false,
+    "score_engine.TASK144_FIXES_ON": false,
+    "score_engine.RECAL_P0_ON": true
+  },
+  "shelf_stats": {
+    "nutrient": "sugars_g",
+    "median": 9.5,
+    "scale": 2.82,
+    "scale_type": "iqr",
+    "n": 65
+  },
+  "plausibility_audit": {
+    "full_corpus_audited": "juices_frontend_v3.json 20 products",
+    "implausible_count": 1,
+    "implausible_product": "jc-021",
+    "all_others_ok": true,
+    "gate_used": "sugar*4/kcal < 40% in empty-macro drink"
+  },
+  "scrape_attempts": {
+    "shufersal": "no result for barcode",
+    "victory": "no result for barcode",
+    "rami_levy": "DNS failure (blocked from sandbox)",
+    "yochananof": "TLS cert failure (blocked from sandbox)",
+    "conclusion": "SCRAPE_FAILED_ALL_RETAILERS — correction derived from sibling products"
+  },
+  "other_products_changed": false,
+  "trace_sha256": {
+    "products\\bsip1_juice_7290001247891\\bsip2_trace.json": "837befa35e935764fb46a4fa60d7f50996bc89f5aa48f561e5b40e7d0ed06bf5"
+  },
+  "off_used": false
+}

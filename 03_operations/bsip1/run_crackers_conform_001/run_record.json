@@ -1,0 +1,39 @@
+{
+  "run_id": "run_crackers_conform_001",
+  "task": "TASK-433",
+  "generated_at": "2026-07-01T19:25:39.374606Z",
+  "bsip0_source": "C:\\Bari\\02_products\\bread_retail_003\\real_bread_retail_003_v1_20260525T194532_bsip0_raw.json",
+  "output_dir": "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output",
+  "included_candidates": 21,
+  "records_written": 20,
+  "discarded": [
+    {
+      "barcode": "5317200",
+      "reason": "BSIP0 raw + one-shot targeted re-scrape (Shufersal P_5317200) both confirm no nutrition table / ingredients list on the retailer page — total data blackout, discard per missing-data-discard rule (never punish/cap, never over-invest re-sourcing)."
+    }
+  ],
+  "missing_from_bsip0": [],
+  "brand_hits": [
+    {
+      "barcode": "74252",
+      "brand": "אסם",
+      "name": "קרקר שומשום אסם"
+    },
+    {
+      "barcode": "74375",
+      "brand": "אסם",
+      "name": "קרקר זהב אסם"
+    }
+  ],
+  "enrichment_version": "bsip1_enrichment_v1",
+  "off_sources": 0,
+  "note": "Crackers category split (Crackers Category Constitution v1) — OFF ban absolute; nutrition + ingredients from direct Shufersal scrape only; brand from deterministic name-literal-match only. UPDATE (TASK-433 orchestrator directive): 7290112968807 was BSIP1/BSIP2-scored (insufficient_data after FIX2b nulled its corrupted nutrition block) but is excluded from the DISPLAYABLE frontend set -- see frontend_stage_discards. Net displayable count: 19 (21 candidates -> 20 BSIP1-scored [1 discarded: 5317200] -> 19 displayable [1 more discarded: 7290112968807]).",
+  "frontend_stage_discards": [
+    {
+      "barcode": "7290112968807",
+      "stage": "frontend_packaging (post-TASK-433-rescore)",
+      "reason": "insufficient_data: unrecoverable per-serving/per-100g nutrition corruption, discard-rule. Full nutrition block (kcal/protein/carbs/fiber/sodium) was ~1/4.6 of near-identical sibling 'פיטנס' products with no clean unit/parse scaling factor -> nulled at BSIP1 source (TASK-433 FIX2b, missing-data-discard rule) -> engine returns insufficient_data/neutral score -> a gradeless row does not belong on a comparison page. Same rule as the existing BSIP1-stage discard of 5317200 (total data blackout), applied one stage later because this product's corruption was found and nulled during the TASK-433 rework, not at initial scrape.",
+      "recorded_at": "2026-07-01T19:36:05.791941+00:00"
+    }
+  ]
+}

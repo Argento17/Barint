@@ -1,0 +1,39 @@
+{
+  "_comment": "STAGING CONFIG — protein_bars standard pipeline rebuild. Run ID: pb_standard_staging_20260625_062614. DO NOT deploy. Corpus: protein_combined_corpus_task365_33_20260621_fix.json (33 products). Scoring flags: BARI_PROTEIN_BAR_V1=on, all others off.",
+  "category": "protein_bars",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\bsip1_corpus"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\bsip2_products\\products",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_bars_frontend_v1.json",
+  "retailer_scope": [
+    "shufersal"
+  ],
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_PROTEIN_BAR_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_FAT_TECH_V1": "off",
+      "BARI_GLASSBOX_W4": "off",
+      "BARI_FIBER_FERMENT_V1": "off"
+    },
+    "_source": "run_protein_bars_standard_pipeline.py (staging, run_id=pb_standard_staging_20260625_062614)",
+    "_corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+    "_corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3"
+  },
+  "exclusions": [],
+  "extension_fields": [],
+  "render_fields": [],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
+}

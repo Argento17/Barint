@@ -1,0 +1,740 @@
+{
+  "schema_version": "matrix_gold_set_v1",
+  "task": "TASK-395",
+  "condition": "C-N1-1",
+  "created_at": "2026-06-25",
+  "status": "LOCKED — owner approved proceeding without per-label review",
+  "description": "Authoritative gold set for Component B v2 re-validation. Finalized from matrix_gold_set_candidates_v1.json with one correction: barcode 7290013453624 moved to UNREADABLE/held-out (ingredient field is a marketing paragraph, not a real ingredient list). Spelt-pita corrections locked as truth (white spelt = refined / T2).",
+  "total_products": 58,
+  "gradable_products": 57,
+  "unreadable_held_out": 1,
+  "unreadable_note": "7290013453624 (עוגיות שוקולד צ'יפס כשלפ) — ingredient field is a marketing paragraph, not a real ingredient list. Formula must return None on it. NOT graded as whole/refined.",
+  "tier_counts": {
+    "T1_clear_whole": 17,
+    "T2_clear_refined": 14,
+    "T3_hard_mixed": 21,
+    "T4_edge_case": 5,
+    "UNREADABLE": 1
+  },
+  "spelt_pita_correction_note": "כוסמין לבן = refined spelt flour (T2). כוסמין מלא = whole spelt (T1). Locked truth from redesign_v2.md §4.3.",
+  "ranking_pairs_T3": [
+    {
+      "id": "RP-01",
+      "higher": "6322838",
+      "lower": "7290115205176",
+      "reason": "100% of flour is whole wheat (58% of product) > 30.5% whole wheat"
+    },
+    {
+      "id": "RP-02",
+      "higher": "7290018500460",
+      "lower": "7296073659952",
+      "reason": "50% whole of total flour (stated) > 25.5% of 66% blend (~17% effective)"
+    },
+    {
+      "id": "RP-03",
+      "higher": "7290016883176",
+      "lower": "7290011131371",
+      "reason": "oats 47% stated > oats 38% stated"
+    },
+    {
+      "id": "RP-04",
+      "higher": "7290011131975",
+      "lower": "7290011131388",
+      "reason": "oats 43% in granola 65% (~28% effective) > oats 39%"
+    },
+    {
+      "id": "RP-05",
+      "higher": "7290118427858",
+      "lower": "7290107947480",
+      "reason": "43% whole oat (32%+11%) > 1% whole wheat in flakes"
+    },
+    {
+      "id": "RP-06",
+      "higher": "379142",
+      "lower": "481180",
+      "reason": "100% of flour whole (56% of product) > 25% of flour whole (15% of product)"
+    },
+    {
+      "id": "RP-07",
+      "higher": "8445291638839",
+      "lower": "7296073705550",
+      "reason": "75.3% stated whole grain flours > 25% whole wheat with 26% refined corn grits first"
+    },
+    {
+      "id": "RP-08",
+      "higher": "7290016883176",
+      "lower": "7290011131388",
+      "reason": "oats 47% > oats 39%"
+    },
+    {
+      "id": "RP-09",
+      "higher": "7290118427858",
+      "lower": "9401790",
+      "reason": "43% stated whole oat vs whole wheat first but no % stated (position-only)"
+    },
+    {
+      "id": "RP-10",
+      "higher": "5900020034021",
+      "lower": "7290107947480",
+      "reason": "35% stated whole wheat > 1% whole wheat in flakes"
+    },
+    {
+      "id": "RP-11",
+      "higher": "7290112968807",
+      "lower": "481180",
+      "reason": "37% whole flour > 25% whole flour (of total flour, but product-level also higher)"
+    },
+    {
+      "id": "RP-12",
+      "higher": "7290011131975",
+      "lower": "7290011131050",
+      "reason": "granola 65% oats 43% stated > granola 75% oats unstated (position only)"
+    }
+  ],
+  "products": [
+    {
+      "barcode": "16000423534",
+      "name_he": "קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דבש, מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט), חומר טעם וריח.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "16000548404",
+      "name_he": "קראנצ'י חטיף שיבולת שועל עם דבש חמישייה",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, דבש (3%), מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט).",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "16000548503",
+      "name_he": "קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, סירופ מייפל (2%), דבש, חומר טעם וריח, מלח, מתחלב (לציטין), חומר תפיחה (סודיום ביקרבונט), מולסה.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290112199942",
+      "name_he": "גרנולה תותים ללת\"ס",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן), סיבי עולש, קמח חיטה, פתיתים פריכים מחיטה-תירס (קמח חיטה, גריסי תירס, סמולינה מתירס), חתיכות תפוחות מחיטה-תירס (קמח חיטה, גריסי תירס, סמולינה מתירס, מלח), תותים מיובשים בהקפאה (1.5%), ממתיק [Truvia] ממתיקים (אריתריתול, גליקוזידים של סטיביול), חומרי טעם וריח.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290112199959",
+      "name_he": "גרנולה פירות ללת\"ס",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן), סיבי עולש, קמח חיטה, פתיתים פריכים מחיטה-תירס (קמח חיטה, גריסי תירס, סמולינה מתירס), חתיכות תפוחות מחיטה-תירס (קמח חיטה, גריסי תירס, סמולינה מתירס, מלח), תותים מיובשים בהקפאה (1.5%), ממתיקים (אריתריתול, גליקוזידים של סטיביול), חומרי טעם וריח.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "574615",
+      "name_he": "כוסמין מלא 100%",
+      "category": "bread",
+      "ingredients_text_he": "קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם), מים, גלוטן חיטה, שמרים, מלח, לתת שעורה (מכיל גלוטן), חומרים משמרים (קלציום פרופיונט, פוטסיום סורבט), חומר מתחלב (E481), קמח סויה, סיבים תזונתיים, חומר מווסת חומציות (חומצה ציטרית), חומר לטיפול בקמח (חומצה אסקורבית).",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290106571945",
+      "name_he": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "דגנים (קמח חיטה מלא (41%) (קמח חיטה, סובין, נבט) (מכיל גלוטן), פתיתי שיבולת שועל מלאים (4.5%)), סוכר, שמן צמחי, נטיפי שוקולד מריר מעולה (8.5%) (מכיל סויה), סובין שיבולת שועל, אבקת קקאו (4.5%), גלוטן חיטה, מלטודקסטרין, תמצית לתת שעורה, עמילן, חומרי תפיחה (E503, E450, E500), מלח, מתחלב (לציטין סויה).",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290013740823",
+      "name_he": "קרקר כוסמין טבעי",
+      "category": "bread",
+      "ingredients_text_he": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, גרעיני חמניות, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, גרעיני דלעת, מלח ים אטלנטי.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "574141",
+      "name_he": "לחם חיטה מלא",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח, 62.2% מהלחם), מים, דגנים 3% (שיבולת שועל (גלוטן), לתת שעורה (גלוטן)), שמרים, גרעיני פשתן, גלוטן חיטה, מלח, גרעיני חמניות, מתחלב (E481).",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290106771314",
+      "name_he": "גרנולה אגוזים חמוציות",
+      "category": "cereals_granola",
+      "ingredients_text_he": "שיבולת שועל מלאה (54%) (גלוטן), אגוזים (11.5%) (קשיו, לוז, שקדים), סיבים תזונתיים (עולש) (10%), גרעיני חמנייה, גרעיני דלעת, סילאן טבעי, חמוציות (4.5%) (חמוציות, רכז תפוחים, שמן חמניות), שמן קוקוס, קינמון.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290017962047",
+      "name_he": "גרנולה חמוציות ושקדים",
+      "category": "cereals_granola",
+      "ingredients_text_he": "שיבולת שועל (מכיל גלוטן), סיבים תזונתיים (עולש), רכז תפוחים, שקדים (5%), חמוציות ברכז תפוחים (5%), גרעיני חמנייה, קוקוס, גרעיני פשתן, אוכמניות, שומשום מלא, זרעי צ'יה, קינמון.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290013433107",
+      "name_he": "גרנולה חלבה תמר קשיו",
+      "category": "cereals_granola",
+      "ingredients_text_he": "שיבולת שועל (מכיל גלוטן) 50%, גרעינים 13% (פשתן, טחינה, שומשום, גרעיני חמנייה, גרעיני דלעת, צ'יה), תמרים 12%, חלבה 11% (טחינה משומשום, מלטיטול, שומן צמחי, תמצית שורש ספונירה, חומצת לימון, ונילין), פצפוצי אורז, טחינה 4%, קשיו 3%, שומן צמחי, לציטין סויה.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7296073705567",
+      "name_he": "טבעות דגנים בטעם דבש",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קמח חיטה מלא 36% (מכיל גלוטן), קמח שיבולת שועל 26% (מכיל גלוטן), סוכר לבן, עמילן חיטה (מכיל גלוטן), דבש 2%, סירופ גלוקוז-פרוקטוז, מולסה, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם וריח טבעי, תערובת ויטמינים.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290017947464",
+      "name_he": "מארז פיתות כוסמין (מלא)",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים, 58% מהמוצר), מים, גלוטן חיטה, סוכר, שמרים, מלח, חומר משמר (קלציום פרופיונט), אנזימים.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290017962023",
+      "name_he": "גרנולה מייפל תמר פקאן",
+      "category": "cereals_granola",
+      "ingredients_text_he": "שיבולת שועל (מכיל גלוטן), סירופ מייפל קנדי (8%), גרעיני חמניות, אוכמניות (5%), אגוזי פקאן (5%), קוקוס, סיבים תזונתיים (עולש), גרעיני פשתן, זרעי צ'יה, שומשום מלא, ממתיק: מונק פרוט.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7613037012095",
+      "name_he": "גרנולה שוקולד קינואה",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאה (מכיל גלוטן) (40.8%), סוכר, קמח חיטה מלא (מכיל גלוטן)(9%), שמן חמניות, קמח שיבולת שועל מלא (8.7%), סירופ גלוקוז מיובש, נטיפי שוקולד מריר (4.8%) (מכיל חומר מתחלב: לציטין סויה), שקדים (4.7%), קינואה מלאה תפוחה (2.9%), סירופ סוכר.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "96086000577",
+      "name_he": "קרקר כוסמין אורגני",
+      "category": "bread",
+      "ingredients_text_he": "קמח כוסמין מלא אורגני (98%) (מכיל גלוטן), מים, מלח, סוכרים הנמצאים באופן טבעי בחומרי הגלם.",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290119043095",
+      "name_he": "עוגיות שיבולת שועל",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "קמח חיטה לבן (מכיל גלוטן)(37%), שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), אבקת אפיה (1%) (חומרים מתפיחים E500ii, E450i), קינמון (0.4%), מלח (0.5%), סודה לשתייה (0.3%), חומרי טעם וריח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290119040568",
+      "name_he": "עוגת קראנץ אגוזים",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "קמח חיטה לבן (מכיל גלוטן), מים, מרגרינה (חומר משמר (חומצה סורבית), מתחלב (לציטין סויה)), סוכר, מילוי בטעם שוקולד (10%) (ממרח בטעם שוקולד, סוכר, שמן סויה, קמח סויה, אבקת קקאו, מתחלב (לציטין סויה), שמן דקלים, חומר טעם וריח, מלח), גלוקוז, שמרים, חומרי הלחה (E422), תערובת תפיחה (עמילן תירס, דקסטרוז, קמח סויה), גלוטן חיטה, מלח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290018500644",
+      "name_he": "מארז פיתות כוסמין לבן",
+      "category": "bread",
+      "ingredients_text_he": "קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר), מים, סוכר, שמרים, מלח, גלוטן חיטה, חומר משמר (קלציום פרופיונט), סיבים תזונתיים, אנזימים.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": true,
+      "gradable": true
+    },
+    {
+      "barcode": "7290116530482",
+      "name_he": "מארז קורנפלקס של אלופים",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קמח תירס (89%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), ויטמינים (B3 (ניאצין), B2, B6 (ריבופלאבין), B1 (תיאמין), חומצה פולית, B12), ברזל.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290107647731",
+      "name_he": "דגני בוקר קוקומן חום לבן",
+      "category": "cereals_granola",
+      "ingredients_text_he": "דגנים (71%) (קמח חיטה (מכיל גלוטן), קמח חיטה מלא, קמח לתת שעורה (מכיל גלוטן)), סוכר, עמילן חיטה, אבקת קקאו, מלח, חומרי טעם וריח, תערובת ויטמינים ומינרלים, מתחלב (לציטין סויה).",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7296073431916",
+      "name_he": "עוגת מאפין בטעם תפוז",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "סוכר, קמח חיטה (מכיל גלוטן), ביצים, שמן קנולה מזוכך, מים, עמילן חיטה, מרגרינה (סויה) (חומר משמר (E202)), מתפיחים (E450i, E500ii, E500iii), מתחלבים (E471, E481), גלוטן חיטה, מלח, דקסטרוזה, עמילן תירס, חומרי טעם וריח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "5000396021202",
+      "name_he": "קרקר (Jacob's Cream Crackers)",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), שמן חמניות, סוכר, סירופ גלוקוז-פרוקטוז, חומרי התפחה (קלציום פוספט, אמוניום קרבונט, סודיום קרבונט, פוטסיום קרבונט), מלח, קמח שעורה (מכיל גלוטן).",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7622201809188",
+      "name_he": "ביסקוויט מילקה",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), סוכר, חמאת קקאו, שמן דקל, אבקת חלב דל שומן, אבקת מי גבינה, עיסת קקאו, שומן חלב, מתפיחים (E450, E500, E503), מתחלבים (סויה לציטין, E476), מלח, חומרי טעם וריח, מווסת חומציות (חומצה ציטרית).",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290116537351",
+      "name_he": "כריות נוגט",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קרם נוגט (48%) (סוכר, שמן צמחי, אגוזי לוז (8.2%), אבקת קקאו, מלטודקסטרין, שמן צמחי מוקשה, מתחלב (E322)), דגנים (40%) (קמח חיטה (מכיל גלוטן), גריסי תירס, קמח תירס, קמח חיטה מלא), סוכר, מלטודקסטרין, אבקת קקאו, שמן צמחי, מלח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290017325910",
+      "name_he": "קורנפלקס אורגני הרדוף",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קמח תירס אורגני (94%), קמח לתת שעורה אורגני (5%), מלח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "313184",
+      "name_he": "עוגיות גן חיות טעם וניל",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "קמח חיטה (מכיל גלוטן), סוכר, שמנים צמחיים, סוכר אינברטי, חומרי תפיחה (E500, E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, מעכב חמצון (מיצוי רוזמרין), חומר לטיפול בקמח (סולפיט).",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7296073398875",
+      "name_he": "קרם קרקר",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה, עמילן תירס, שמנים צמחיים (דקל, חמניות), סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה, מלח, שמרים, מתחלב: לציטין סויה, חומרי תפיחה: נתרן ואמוניום קרבונטים, מעכב חמצון: תמצית רוזמרין.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290119040667",
+      "name_he": "עוגת קראנץ פרג",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "קמח חיטה לבן (מכיל גלוטן), מים, מרגרינה (חומר משמר (חומצה סורבית), מתחלב (לציטין סויה)), סוכר, מילוי בטעם שוקולד (10%) (ממרח בטעם שוקולד, סוכר, שמן סויה, קמח סויה, אבקת קקאו, מתחלב (לציטין סויה), שמן דקלים, חומר טעם וריח, מלח), גלוקוז, שמרים, חומרי הלחה (E422), תערובת תפיחה, גלוטן חיטה, מלח.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "8710502279010",
+      "name_he": "עוגיות שוקולד צ'יפס מצופות",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "סוכר, קמח חיטה (מכיל גלוטן), שמנים צמחיים (דקלים, חמניות), מסת קקאו, חמאת קקאו, אבקת חלב מלא, מתחלב: לציטין (סויה, חמניות), סירופ גלוקוזה, חומרי התפחה (E450, E500), מלח, חומר טעם טבעי.",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290013453624",
+      "name_he": "עוגיות שוקולד צ'יפס (כשלפ)",
+      "category": "cakes_hard_cookies",
+      "ingredients_text_he": "חיטה. אנחנו מאמינים שאפשר לאכול אוכל בריא ומזין שהוא גם טעים ומפנק! כדי לעמוד באתגר, חומרי הגלם הקלאסיים של קונדיטוריה: קמח לבן, מרגרינה, חמאה, ביצים ושמנת - יצאו לחלוטין מתהליך האפייה. בכדי לתת עושר תזונתי למוצרינו, יש שימוש גורף בקמח שקדים וקמח אורז מלא, ממתיקים טבעיים (מייפל, אגבה, רכז תפוחים ועוד).",
+      "tier": "UNREADABLE",
+      "expected_label": "UNREADABLE",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": false,
+      "unreadable_reason": "Marketing paragraph, not a real ingredient list. Formula must return None. Held out from all gate calculations."
+    },
+    {
+      "barcode": "6322838",
+      "name_he": "לחם קמח מלא 100%",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (100% ממשקל הקמחים, 58% ממשקל הלחם) (מכיל גלוטן), מים, חלבון צמחי (מכיל גלוטן), מלח שולחן, שמן צמחי, שמרים, לתת שעורה (מכיל גלוטן), חומרים משמרים: קלציום פרופיונט ופוטסיום סורבט, חומר מתחלב E481, חומר לטיפול בקמח: חומצה אסקורבית (ויטמין C), מווסת חומציות: חומצת לימון, אנזימים.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290018500460",
+      "name_he": "לחם אנג'ל חצי מלא",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן) (50% ממשקל הקמחים, 34% ממשקל הלחם), קמח חיטה לבן (50% ממשקל הקמחים, 34% ממשקל הלחם), מים, גלוטן חיטה, שמרים, מלח, חומרים משמרים (E282, E202), מתחלב (E481), סיבים תזונתיים, חומר מעכב חמצון (E300), אנזימים.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290115205176",
+      "name_he": "קרקר דק כפרי פיטנס",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (30.5%) (מכיל גלוטן), קמח אורז (25.5%), קמח חיטה (17%), שמן חמניות, קמח אורז מלא (6.8%), גלוטן חיטה, עמילן אורז, קינואה אדומה מיובשת (2.7%), שומשום (2.7%), שמרים, קצח (1.3%), מלח ים, סוכר, שום מיובש.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7296073659952",
+      "name_he": "קרקר דק כפרי",
+      "category": "bread",
+      "ingredients_text_he": "תערובת קמחים 66% (קמח חיטה מלאה 25.5% (קמח חיטה, סובין, נבט), אורז 21%, חיטה 14%, אורז מלא 5.5%), שמן חמניות, שמן דקל, גלוטן חיטה, שומשום 3%, קינואה אדומה 2.5%, קצח 2%, עמילן תירס, מלח, שום, סוכר, שמרים.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290011131975",
+      "name_he": "גרנולה פירות",
+      "category": "cereals_granola",
+      "ingredients_text_he": "גרנולה 65% (פתיתי שיבולת שועל 43% (מכיל גלוטן), קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעורה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת קקאו, קינמון, צבע מאכל: קרמל), חטיפי דגנים 16% (פתיתי שיבולת שועל 6% (מכיל גלוטן), קמח חיטה (מכיל גלוטן)).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290011131050",
+      "name_he": "גרנולה פקאן",
+      "category": "cereals_granola",
+      "ingredients_text_he": "גרנולה 75% (פתיתי שיבולת שועל (מכיל גלוטן), קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעורה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת קקאו, קינמון, צבע מאכל: קרמל), חטיפי דגנים 19% (פתיתי שיבולת שועל (מכיל גלוטן), קמח חיטה (מכיל גלוטן)).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290016883176",
+      "name_he": "מוזלי 47% דגנים מלאים",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל (מכיל גלוטן) 47%, אורז תפוח 10% (אורז, סוכר), סוכר חום, שמן צמחי (דקלים), סירופ גלוקוז, קמח חיטה (מכיל גלוטן), קוקוס 5%, שוקולד מריר 4% (סוכר, עיסת קקאו, חמאת קקאו, מתחלב (E322)), אבקת קקאו, מתחלב (E322), חומרי טעם וריח, מלח.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290011131371",
+      "name_he": "מוזלי קראנצ'י בוטנ+שקדים",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל 38% (מכיל גלוטן), שמן צמחי (דקלים), סוכר חום מקנה סוכר, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), אגוזים 4.7% (בוטנים 2.7%, אגוזי לוז 1%, שקדים 1%), קוקוס, גרעיני חמניות, אבקת קקאו, מלח, מתחלב לציטין סויה, חומר טעם.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290011131388",
+      "name_he": "מוזלי קראנצי תפוח קינמון",
+      "category": "cereals_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל (מכיל גלוטן) 39%, שמן צמחי (דקלים), סוכר חום מקני סוכר, סירופ גלוקוזה, קמח חיטה (מכיל גלוטן), צימוקים, תפוחי עץ מיובשים (2%), גרעיני חמניות (1.5%), אבקת קקאו, מלח, קינמון (0.2%), מתחלב: לציטין סויה, חומר טעם.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290118427858",
+      "name_he": "פיטנס בר גרנולה שוקולד מריר",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "פתיתי שיבולת שועל מלאים (32%) (מכיל גלוטן), סוכר, נטיפי שוקולד מריר (13%) (מכיל מתחלב (לציטין סויה)), קמח שיבולת שועל מלא (11%), קמח חיטה (10%), שמן חמניות, מרגרינה (שמן צ'יה, שמן קוקוס, מים, מלח, מתחלב (E471)), קמח אורז (4.5%), סובין שיבולת שועל, דקסטרין, סיבים תזונתיים (אינולין), דבש, אבקת קקאו.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290112968807",
+      "name_he": "קרקר דק פיטנס סלק",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23%), קמח חיטה (15.5%), שמנים צמחיים, אבקת סלק (7.5%), קמח אורז מלא (6%), גלוטן חיטה, עמילן אורז, סוכר, שמרים, מלח ים, בצל מיובש (0.9%), שומשום.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "9401790",
+      "name_he": "מארז פיתות קמח מלא",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא, מים, קמח חיטה לבן, סוכר, שמרים, מלח, גלוטן חיטה, אנזימים, מתחלב.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "5900020034021",
+      "name_he": "חטיפי דגנים פיטנס שוקולד בננה שישייה",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "חיטה מלאה (21.1%) (מכיל גלוטן), קמח חיטה מלא (13.9%), סירופ גלוקוז, אורז (11.9%), סוכר, שבבי שוקולד חלב (7%) (מכיל מוצקי חלב, חומר מתחלב: לציטין סויה), חומרי הלחה (גליצרול, סורביטול), סירופ סוכר אינברטי.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290107947480",
+      "name_he": "חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה",
+      "category": "snack_bar_granola",
+      "ingredients_text_he": "פתיתי דגנים 32% (אורז 26%, סוכר לבן, קמח תירס 2%, חיטה מלאה-גלוטן 1%, תמצית לתת שעורה-גלוטן, מלח), שוקולד חלב מעולה 32%, סירופ גלוקוז, סיבים תזונתיים (אינולין), חומרי הלחה (גליצרול, סורביטול), שברי אגוזים 10.2% (שקדים, לוז).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "379142",
+      "name_he": "לחם עינן פרוס וארוז",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן) (71% ממשקל הקמחים, 56% ממשקל הלחם), מים, חיטה מלאה טרום נבוטה (29% ממשקל הקמחים, 20% ממשקל הלחם), שמרים, גלוטן חיטה, מלח, חומר משמר (E282), שמן צמחי, מתחלבים (E472e, E481).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "8445291638839",
+      "name_he": "צ'יריוס בטעם דבש ושקדים",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קמח שיבולת שועל מלא (מכיל גלוטן) (30.1%), קמח חיטה מלא (מכיל גלוטן) (28%), סוכר, קמח שעורה מלא (מכיל גלוטן) (17.2%), קמח חיטה (6.6%), דבש (2.4%), סירופ סוכר אינברטי, מינרלים (סידן), ברזל, שמן צמחי, מלח.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290112495433",
+      "name_he": "דגני בוקר דליפקאן",
+      "category": "cereals_granola",
+      "ingredients_text_he": "דגנים (63%) (קמח חיטה מלא (35%) (מכיל גלוטן), קמח אורז, שיבולת שועל מלאה (6%) (מכיל גלוטן), תמצית לתת שעורה (מכיל גלוטן), גריסי תירס, קמח שיפון (מכיל גלוטן)), סוכר, אגוזי פקאן מקורמלים (13%) (אגוזי פקאן (8.5%), סוכר, סירופ גלוקוז), דבש.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "481180",
+      "name_he": "לחם מחמצת שאור",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטה לבן (מכיל גלוטן) (75% מהקמח, 40% מהלחם), מים, מחמצת חיטה לבן 18% (קמח חיטה לבן (מכיל גלוטן), מים), קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (25% מסך הקמחים, 15% מהלחם), מלח, גלוטן חיטה, חומר משמר (E282).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290120870017",
+      "name_he": "קרקר כוסמין דק רוזמרין",
+      "category": "bread",
+      "ingredients_text_he": "קמח חיטת כוסמין בהיר (70% מתכולת הגרעין — 38% מהמוצר הסופי — מכיל גלוטן), קמח אורז (22%), שמנים מהצומח (חמניות, דקל), גלוטן (חיטה), קמח אורז מלא (5.5%), שומשום (3%), קינואה אדומה (2.5%), קצח (2.5%), עמילן תירס, מלח.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7296073705550",
+      "name_he": "כדורי דגנים טעם שוקו",
+      "category": "cereals_granola",
+      "ingredients_text_he": "גריסי תירס 26%, קמח חיטה מלאה (מכיל גלוטן) 25%, קמח חיטה (מכיל גלוטן), סוכר לבן, סירופ גלוקוז-פרוקטוז, אבקת קקאו, קמח שיבולת שועל (מכיל גלוטן), דקסטרוז, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם וריח.",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "7290117382868",
+      "name_he": "טורטיה כוסמין",
+      "category": "bread",
+      "ingredients_text_he": "תערובת קמחים (מכיל גלוטן) {קמח חיטה (46%), קמח כוסמין מלא (5%)}, מים, שומן מהצומח, פתיתי שיבולת שועל (מכיל גלוטן) (3%), סובין חיטה (מכיל גלוטן) (3%), מתחלב (E471), מווסת חומציות (חומצה מלית), משמרים (סודיום פרופיונט).",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": true
+    },
+    {
+      "barcode": "9137842",
+      "name_he": "מארז לחמניות כוסמין",
+      "category": "bread",
+      "ingredients_text_he": "בקיצור, היא עפה על עצמה ויש לה סיבה טובה: היא טעימה, איכותית וגם בריאה! פרגנו לעצמכם מארז של חמש מיוחסות לכל המשפחה, ולא תצטערו. זו הבטחה.",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "expected_behavior": "score=None (marketing blurb, no markers fire)",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": false
+    },
+    {
+      "barcode": "7290011525316",
+      "name_he": "סנסיטיב שיבולת שועל",
+      "category": "cereals_granola",
+      "ingredients_text_he": "Water (Aqua), Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ethylhexyl Palmitate, Glycerin, Cetearyl Glucoside, Helianthus Annuus (Sunflower) Seed Oil, Avena Sativa (Oat) Kernel Extract, Panthenol, Tocopheryl Acetate, Caprylyl Glycol, Parfum (Fragrance), Allantoin, Tocopherol, Carbomer, Potassium Hydroxide, Phenoxyethanol.",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "expected_behavior": "score=None (English INCI cosmetic text, not food)",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": false
+    },
+    {
+      "barcode": "7297488098688",
+      "name_he": "פצפוצי אורז ללת\"ס",
+      "category": "cereals_granola",
+      "ingredients_text_he": "100% אורז מלא (ללא תוספת סוכר ומלח).",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "expected_behavior": "score >= 70 (whole rice 100%, v2 lexicon adds אורז מלא as whole marker)",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": false
+    },
+    {
+      "barcode": "5010029000061",
+      "name_he": "דגני בוקר ויטביקס",
+      "category": "cereals_granola",
+      "ingredients_text_he": "חיטה (מכיל גלוטן) (95%), מיצוי לתת שעורה, סוכר, מלח, ויטמינים ומינרלים (ניאצין, ריבואפלאבין, תיאמין, חומצה פולית, ברזל).",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "expected_behavior": "score >= 70 (חיטה 95% at position 1 with stated pct triggers bare-wheat-first rule)",
+      "confidence": "C",
+      "spelt_correction": false,
+      "gradable": false
+    },
+    {
+      "barcode": "58449779032",
+      "name_he": "דגני טבעות תירס ואורז אורגני",
+      "category": "cereals_granola",
+      "ingredients_text_he": "קמח מאורז מלא אורגני (50%), קמח תירס אורגני (40%), סוכר קנים אורגני, תרכיז מיץ רימונים אורגני (5%), מלח ים.",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "expected_behavior": "score 45-65 (whole rice 50% vs refined corn flour 40% — genuinely mixed)",
+      "confidence": "B",
+      "spelt_correction": false,
+      "gradable": false
+    }
+  ]
+}

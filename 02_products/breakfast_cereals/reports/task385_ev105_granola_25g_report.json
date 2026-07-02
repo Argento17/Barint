@@ -1,0 +1,368 @@
+{
+  "_meta": {
+    "task": "TASK-385",
+    "ev": "EV-105",
+    "flag": "BARI_GRAN_SUGAR_25G_V1",
+    "generated": "2026-06-23T17:33:45.067541+00:00",
+    "run_id": "run_granola_task385_25g",
+    "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+    "granola_product_count": 22,
+    "flags": {
+      "BARI_GRAN_SUGAR_25G_V1": "on",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_RECAL_P0": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SHELF_RELATIVE_V1": "off"
+    }
+  },
+  "target_barcode_actual": {
+    "barcode": "7290011668587",
+    "actual_score": 33.0,
+    "actual_grade": "E",
+    "projected_score": 33.0,
+    "projected_grade": "E",
+    "projection_matches": true,
+    "binding_cap": 50,
+    "caps_applied": [
+      "HIGH_SUGAR_25G_PLUS",
+      "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+      "SNACK_BAR_RED_SUGAR_LABEL",
+      "ISRAELI_RED_LABEL_1_SUGAR",
+      "NOVA_PROXY_3_PROCESSED"
+    ],
+    "HIGH_SUGAR_25G_GRANOLA_SEVERE_fired": true
+  },
+  "grade_distribution": {
+    "E": 3,
+    "D": 7,
+    "C": 8,
+    "B": 4
+  },
+  "verification": {
+    "v1_target_barcode": {
+      "barcode": "7290011668587",
+      "actual_score": 33.0,
+      "actual_grade": "E",
+      "projected_score": 33.0,
+      "projected_grade": "E",
+      "projection_matches": true,
+      "binding_cap": 50,
+      "caps_applied": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "HIGH_SUGAR_25G_GRANOLA_SEVERE_fired": true
+    },
+    "v2_exactly_1_mover": {
+      "pass": true,
+      "movers": [
+        {
+          "barcode": "7290011668587",
+          "score_off": 38.0,
+          "grade_off": "D",
+          "score_on": 33.0,
+          "grade_on": "E",
+          "score_delta": -5.0,
+          "grade_moved": true
+        }
+      ],
+      "grade_movers": [
+        {
+          "barcode": "7290011668587",
+          "score_off": 38.0,
+          "grade_off": "D",
+          "score_on": 33.0,
+          "grade_on": "E",
+          "score_delta": -5.0,
+          "grade_moved": true
+        }
+      ],
+      "byte_identical_count": 21
+    },
+    "v3_off_byte_identical": {
+      "pass": true,
+      "non_target_identical": 21,
+      "mismatches": []
+    },
+    "v4_cross_category_isolation": {
+      "result": "SKIPPED — bread BSIP1 dir not found; scope-guard code inspection only"
+    }
+  },
+  "full_22_row_table": [
+    {
+      "rank": 1,
+      "barcode": "7290017962047",
+      "score": 69.7,
+      "grade": "B",
+      "sugar_g": 9.6,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 2,
+      "barcode": "7290116534619",
+      "score": 69.3,
+      "grade": "B",
+      "sugar_g": 8.0,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 3,
+      "barcode": "7290017962023",
+      "score": 67.4,
+      "grade": "B",
+      "sugar_g": 11.9,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 4,
+      "barcode": "7290106771369",
+      "score": 65.0,
+      "grade": "B",
+      "sugar_g": 9.5,
+      "binding_cap": 70,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 5,
+      "barcode": "7290106773714",
+      "score": 64.0,
+      "grade": "C",
+      "sugar_g": 4.8,
+      "binding_cap": 70,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 6,
+      "barcode": "7290112498007",
+      "score": 63.1,
+      "grade": "C",
+      "sugar_g": 8.8,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 7,
+      "barcode": "7290013433244",
+      "score": 63.0,
+      "grade": "C",
+      "sugar_g": 13.2,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 8,
+      "barcode": "7290013433336",
+      "score": 62.4,
+      "grade": "C",
+      "sugar_g": 13.5,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 9,
+      "barcode": "7290106771314",
+      "score": 61.3,
+      "grade": "C",
+      "sugar_g": 9.9,
+      "binding_cap": 70,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 10,
+      "barcode": "7290112497994",
+      "score": 61.0,
+      "grade": "C",
+      "sugar_g": 9.0,
+      "binding_cap": 70,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 11,
+      "barcode": "7290106771161",
+      "score": 54.3,
+      "grade": "C",
+      "sugar_g": 15.6,
+      "binding_cap": 70,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 12,
+      "barcode": "7290013433091",
+      "score": 51.9,
+      "grade": "C",
+      "sugar_g": 13.4,
+      "binding_cap": 94.8,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 13,
+      "barcode": "7290013433107",
+      "score": 47.0,
+      "grade": "D",
+      "sugar_g": 9.3,
+      "binding_cap": 68.0,
+      "caps_fired": [
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_4_ULTRA_PROCESSED",
+        "ADDITIVE_MARKERS_3_PLUS"
+      ]
+    },
+    {
+      "rank": 14,
+      "barcode": "7290011131050",
+      "score": 40.2,
+      "grade": "D",
+      "sugar_g": 17.0,
+      "binding_cap": 68.0,
+      "caps_fired": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "rank": 15,
+      "barcode": "7613035635845",
+      "score": 39.8,
+      "grade": "D",
+      "sugar_g": 17.7,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 16,
+      "barcode": "7613037012095",
+      "score": 39.8,
+      "grade": "D",
+      "sugar_g": 17.9,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "SNACK_BAR_HIGH_CAL",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 17,
+      "barcode": "7613035622623",
+      "score": 39.2,
+      "grade": "D",
+      "sugar_g": 17.9,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "rank": 18,
+      "barcode": "7290011131968",
+      "score": 38.3,
+      "grade": "D",
+      "sugar_g": 18.0,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "rank": 19,
+      "barcode": "7290014471443",
+      "score": 35.5,
+      "grade": "D",
+      "sugar_g": 20.0,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED"
+      ]
+    },
+    {
+      "rank": 20,
+      "barcode": "7290011668587",
+      "score": 33.0,
+      "grade": "E",
+      "sugar_g": 25.0,
+      "binding_cap": 50,
+      "caps_fired": [
+        "HIGH_SUGAR_25G_PLUS",
+        "HIGH_SUGAR_25G_GRANOLA_SEVERE",
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_3_PROCESSED"
+      ]
+    },
+    {
+      "rank": 21,
+      "barcode": "7290011131975",
+      "score": 32.1,
+      "grade": "E",
+      "sugar_g": 21.0,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED",
+        "ADDITIVE_MARKERS_3_PLUS"
+      ]
+    },
+    {
+      "rank": 22,
+      "barcode": "1343845",
+      "score": 31.4,
+      "grade": "E",
+      "sugar_g": 21.0,
+      "binding_cap": 55,
+      "caps_fired": [
+        "SNACK_BAR_RED_SUGAR_LABEL",
+        "ISRAELI_RED_LABEL_1_SUGAR",
+        "NOVA_PROXY_4_ULTRA_PROCESSED",
+        "ADDITIVE_MARKERS_5_PLUS"
+      ]
+    }
+  ]
+}

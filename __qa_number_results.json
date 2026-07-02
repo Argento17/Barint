@@ -1,0 +1,348 @@
+{
+  "total_findings": 26,
+  "critical": [
+    {
+      "severity": "CRITICAL",
+      "pid": "jc-017",
+      "field": "rowVerdict",
+      "claim": "הפרש של 60 נקודות",
+      "actual": "actual gap = 35.9",
+      "note": "Stated gap of 60 points is false; actual A(85) - jc-017(49.1) = 35.9 pts"
+    },
+    {
+      "severity": "CRITICAL",
+      "pid": "jc-017",
+      "field": "expansion.comparisonContext",
+      "claim": "הפרש של 60 נקודות",
+      "actual": "actual gap = 35.9",
+      "note": "Stated gap of 60 points is false in comparisonContext too"
+    }
+  ],
+  "high": [
+    {
+      "severity": "HIGH",
+      "pid": "jc-011",
+      "field": "rowVerdict",
+      "claim": "44 קלוריות",
+      "actual": "actual kcal=44",
+      "note": "Panel number (44 kcal) recited in rowVerdict - residual from old copy"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-024",
+      "field": "rowVerdict",
+      "claim": "score 35.4 cited in prose",
+      "actual": "actual score=35.4",
+      "note": "Bari score recited in rowVerdict prose - de-recite rule violation"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-027",
+      "field": "rowVerdict",
+      "claim": "score 28.5 cited in prose",
+      "actual": "actual score=28.5",
+      "note": "Bari score recited in rowVerdict prose - de-recite rule violation"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-018",
+      "field": "expansion.comparisonContext",
+      "claim": "ציון 41.8",
+      "actual": "actual score=39.8",
+      "note": "comparisonContext cites wrong score 41.8, actual is 39.8"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-020",
+      "field": "expansion.comparisonContext",
+      "claim": "ציון 40.1",
+      "actual": "actual score=38.1",
+      "note": "comparisonContext cites wrong score 40.1, actual is 38.1"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-018",
+      "field": "expansion.comparisonContext",
+      "claim": "ציון 41.8 in context",
+      "actual": "actual score=39.8",
+      "note": "comparisonContext self-cites wrong score: 41.8 vs actual 39.8"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-020",
+      "field": "expansion.comparisonContext",
+      "claim": "ציון 40.1 in context",
+      "actual": "actual score=38.1",
+      "note": "comparisonContext self-cites wrong score: 40.1 vs actual 38.1"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "METADATA",
+      "field": "juicesComparisonMetadata.description",
+      "claim": "השוואת 65 מיצים ומשקאות פירות",
+      "actual": "actual product_count=17 (17 displayed)",
+      "note": "Description says 65 products; JSON has 17. This appears in page SEO metadata."
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-011",
+      "field": "rowVerdict",
+      "claim": "44 קלוריות",
+      "actual": "actual=44",
+      "note": "Panel kcal number cited in rowVerdict (de-recite instruction not executed)"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-022",
+      "field": "expansion.comparisonContext",
+      "claim": "כ-38% פרי",
+      "actual": "14+12+8.5+3+2.5=40%",
+      "note": "comparisonContext claims ~38% fruit but ingredients sum to 40%: 14+12+8.5+3+2.5=40. Should be ~40%."
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-022",
+      "field": "rowVerdict",
+      "claim": "כ-38% פרי",
+      "actual": "actual sum=40%",
+      "note": "rowVerdict claims ~38% fruit but ingredients sum to 40%"
+    },
+    {
+      "severity": "HIGH",
+      "pid": "jc-023",
+      "field": "expansion.limitingFactors",
+      "claim": "תשעה עשר מהבקבוק הם מים, סוכר ותחליפים",
+      "actual": "11% fruit => 89% non-fruit = 89, not 19",
+      "note": "Typo: 'תשעה עשר' (19) should be 'תשעים ואחד' (89%) or similar. 11% fruit = 89% non-fruit."
+    }
+  ],
+  "medium": [
+    {
+      "severity": "MEDIUM",
+      "pid": "jc-017",
+      "field": "expansion.comparisonContext",
+      "claim": "score 49.1 in text",
+      "actual": "actual=49.1",
+      "note": "Score recited in comparisonContext (expansion shown to user)"
+    },
+    {
+      "severity": "MEDIUM",
+      "pid": "jc-026",
+      "field": "expansion.comparisonContext",
+      "claim": "score 33.3 in text",
+      "actual": "actual=33.3",
+      "note": "Score recited in comparisonContext (expansion shown to user)"
+    },
+    {
+      "severity": "MEDIUM",
+      "pid": "jc-027",
+      "field": "expansion.comparisonContext",
+      "claim": "score 28.5 in text",
+      "actual": "actual=28.5",
+      "note": "Score recited in comparisonContext (expansion shown to user)"
+    },
+    {
+      "severity": "MEDIUM",
+      "pid": "jc-020",
+      "field": "rowVerdict",
+      "claim": "כמעט פי עשרה מקריסטל מיץ ענבים",
+      "actual": "17%/2%=8.5x",
+      "note": "Approximately true (8.5x rounds to 'almost 10x'). Borderline but defensible. Monitor."
+    }
+  ],
+  "info": [
+    {
+      "severity": "INFO",
+      "pid": "jc-006",
+      "field": "rowVerdict",
+      "claim": "highest sugar among A (12.6)",
+      "actual": "max A sugar = 12.6",
+      "note": "TRUE - jc-006 has highest sugar (12.6) among all A products"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-021",
+      "field": "rowVerdict",
+      "claim": "40% fruit, highest among D",
+      "actual": "jc-021=40%(31.5+8.5), jc-022~38%, jc-017=25%, jc-019=25%, jc-024=25%, jc-020=17%, jc-018=2%",
+      "note": "NEED_VERIFY: jc-022 tut banana is ~38% (14+12+8.5+3+2.5), so jc-021 at 40% IS highest. TRUE."
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-021",
+      "field": "insightLine",
+      "claim": "40% פרי",
+      "actual": "31.5+8.5=40%",
+      "note": "TRUE"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-006",
+      "field": "insightLine/rowVerdict",
+      "claim": "claims single ingredient",
+      "actual": "ingredients: מיץ רימונים",
+      "note": "TRUE - single ingredient confirmed"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-005",
+      "field": "insightLine/rowVerdict",
+      "claim": "claims single ingredient",
+      "actual": "ingredients: מיץ רימונים",
+      "note": "TRUE - single ingredient confirmed"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-011",
+      "field": "insightLine/rowVerdict",
+      "claim": "claims single ingredient",
+      "actual": "ingredients: מיץ קלמנטינות",
+      "note": "TRUE - single ingredient confirmed"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-002",
+      "field": "insightLine/rowVerdict",
+      "claim": "claims single ingredient",
+      "actual": "ingredients: מיץ תפוזים",
+      "note": "TRUE - single ingredient confirmed"
+    },
+    {
+      "severity": "INFO",
+      "pid": "jc-017",
+      "field": "insightLine",
+      "claim": "שלושה רבעי הבקבוק הם לא פרי",
+      "actual": "25% fruit confirmed",
+      "note": "TRUE - 25% fruit means 75% non-fruit. Correct."
+    }
+  ],
+  "grade_distribution": {
+    "meta_A": 6,
+    "meta_D": 7,
+    "meta_E": 4,
+    "actual_A": 6,
+    "actual_D": 7,
+    "actual_E": 4
+  },
+  "score_table": [
+    {
+      "id": "jc-003",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": 8.7,
+      "kcal": 43
+    },
+    {
+      "id": "jc-006",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": 12.6,
+      "kcal": 54
+    },
+    {
+      "id": "jc-001",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": 8.2,
+      "kcal": 47
+    },
+    {
+      "id": "jc-005",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": null,
+      "kcal": 54
+    },
+    {
+      "id": "jc-011",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": null,
+      "kcal": 44
+    },
+    {
+      "id": "jc-002",
+      "grade": "A",
+      "score": 85.0,
+      "sugar": 8.6,
+      "kcal": 43
+    },
+    {
+      "id": "jc-017",
+      "grade": "D",
+      "score": 49.1,
+      "sugar": 11.4,
+      "kcal": 49
+    },
+    {
+      "id": "jc-019",
+      "grade": "D",
+      "score": 39.9,
+      "sugar": 1.2,
+      "kcal": 9
+    },
+    {
+      "id": "jc-018",
+      "grade": "D",
+      "score": 39.8,
+      "sugar": 4.7,
+      "kcal": 20
+    },
+    {
+      "id": "jc-020",
+      "grade": "D",
+      "score": 38.1,
+      "sugar": 4.5,
+      "kcal": 20
+    },
+    {
+      "id": "jc-021",
+      "grade": "D",
+      "score": 37.4,
+      "sugar": 2.25,
+      "kcal": 40
+    },
+    {
+      "id": "jc-022",
+      "grade": "D",
+      "score": 36.9,
+      "sugar": 9.4,
+      "kcal": 41
+    },
+    {
+      "id": "jc-024",
+      "grade": "D",
+      "score": 35.4,
+      "sugar": 9.0,
+      "kcal": 40
+    },
+    {
+      "id": "jc-025",
+      "grade": "E",
+      "score": 33.4,
+      "sugar": 4.4,
+      "kcal": 20
+    },
+    {
+      "id": "jc-026",
+      "grade": "E",
+      "score": 33.3,
+      "sugar": 9.5,
+      "kcal": 40
+    },
+    {
+      "id": "jc-023",
+      "grade": "E",
+      "score": 30.3,
+      "sugar": 4.5,
+      "kcal": 20
+    },
+    {
+      "id": "jc-027",
+      "grade": "E",
+      "score": 28.5,
+      "sugar": 9.3,
+      "kcal": 39
+    }
+  ]
+}

@@ -42,10 +42,10 @@ export function FeaturedBreadIntelligenceCardLite({ href, description }: Props) 
     >
       <ComparisonIntelligenceHero
         badge="דוח חדש"
-        categoryTags="לחם · פיתה · קרקרים"
+        categoryTags="לחם · פיתה"
         title={CARD_HERO.title}
         description={stripCardDigits(description)}
-        insightLines={BREAD_INSIGHT_LINES}
+        insightLines={[...BREAD_INSIGHT_LINES].map(stripCardDigits)}
         stats={[
           { value: BREAD_REPORT_STATS.scanned, label: "מוצרים נסרקו" },
           { value: BREAD_REPORT_STATS.sufficient, label: "עם נתונים מספיקים" },

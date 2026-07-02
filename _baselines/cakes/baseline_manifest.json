@@ -1,0 +1,296 @@
+{
+  "slug": "cakes",
+  "generated_at": "2026-06-25T06:27:28+00:00",
+  "task": "TASK-395",
+  "description": "Baseline manifest: identifies the exact BSIP1 corpus dir, flag vector, and engine version that reproduce the committed live frontend JSON.",
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cakes_hard_cookies_frontend_v1.json",
+  "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_D4_SCORE_V1": "on"
+  },
+  "shelf_rel": {
+    "nutrient": "sugars_g",
+    "median": 29.0,
+    "scale": 9.044,
+    "scale_type": "iqr"
+  },
+  "engine_version": "unknown",
+  "score_tolerance": 0.05,
+  "live_product_count": 65,
+  "reproduces": false,
+  "matched_count": 62,
+  "mismatched_count": 3,
+  "unmatched_count": 0,
+  "bsip1_file_hashes": {
+    "1361177": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_1361177.json",
+      "sha256": "4bbc41179ebcf3fadf4e1197c46089db5bec10b608d19d853975da57ee5182e9"
+    },
+    "1361207": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_1361207.json",
+      "sha256": "f3657c73bc0cc5392d49095c4432ce9091fb99a02f2caa0e0308781ec5aa97e1"
+    },
+    "2472087": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472087.json",
+      "sha256": "088acc8f36dec912a4ccb8545fc3985fe7448383105a69351eefc14fcdce81da"
+    },
+    "2472117": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472117.json",
+      "sha256": "36ed116d4f81251c30d2970dd1003f47baf0e285e9074174fe554a6dc784815f"
+    },
+    "2472148": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472148.json",
+      "sha256": "c0b7323f44d322da820719a04696783e57575b9700804385a324c78d1ed9cf9d"
+    },
+    "2472186": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472186.json",
+      "sha256": "26fe4bcac08efc563531a1a68dd996222b91010272a8cc4b07594b4df3f3a973"
+    },
+    "2472193": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472193.json",
+      "sha256": "cd074b8bb618154dae6fd7b58de3ad5b00df6621ec8340c20702cd941e97aa2a"
+    },
+    "2472223": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472223.json",
+      "sha256": "d998617084ffaaed8d424f85eb87e044e2288b764e86d540ba9ac71b970c5d74"
+    },
+    "2472254": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472254.json",
+      "sha256": "e198cd6edb11509ab9af4b4b9f9683d6eb1ce2a4aff9659b9de742b3c0766b3d"
+    },
+    "2472261": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472261.json",
+      "sha256": "4d42d488dddb85828a3c263109426a830a62087c08efbdc31a746a3cc4b7d3db"
+    },
+    "2472841": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_2472841.json",
+      "sha256": "aaccba14ccb6aadcc41f83b3a5edddbd1643a6c45bb920867002318e49a6ddbb"
+    },
+    "4170097": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4170097.json",
+      "sha256": "d842f873124cb49367f6b74ec44e4d9714b1854773bc4a7e5006f380b640b35b"
+    },
+    "4170103": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4170103.json",
+      "sha256": "c53dcc31bb6a4f62934a634d3f9dff5c1ca2f5f26c7f07dce7d3f7676ddcf1b5"
+    },
+    "4504649": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4504649.json",
+      "sha256": "d9a3b46869ed698fc934218acd5c21e09c60769cb2348c68d0239195cb66efbe"
+    },
+    "4504656": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4504656.json",
+      "sha256": "745cebc75bb84c95d2b4d2962ed13bad05afcec1e933228f62d0321a0793b069"
+    },
+    "4504670": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4504670.json",
+      "sha256": "3f72afae38c623cd4a8bb1350094f2c385ca1a3bbe0d77490bd63de7d62a76be"
+    },
+    "4504687": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_4504687.json",
+      "sha256": "cea96efffcc2ff1a4e4f295eb02983676bb6a0eecbfaf706393adf875bc452b9"
+    },
+    "5431913": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_5431913.json",
+      "sha256": "32550bd432721e2ed8221c89d75fe1b83f24eb37c05cd8c084e9751dc1909e29"
+    },
+    "5431920": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_5431920.json",
+      "sha256": "f67e657ebed0fd742738f30a0ffdbedc6524b9c81e677ef24cbec8e8b570110c"
+    },
+    "5718021": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_5718021.json",
+      "sha256": "ec73684b0cf0d708e71a635b0f6896bc9a250ea50dd0df286b9beca5bce8beb9"
+    },
+    "5718038": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_5718038.json",
+      "sha256": "8983a945cb0880487cc6ee84a91680f5be89e68d7185ac8921535204bf36a5c4"
+    },
+    "6983770": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_6983770.json",
+      "sha256": "06f0340ae9629e586720db3def0c8f94bb8a212f604c76a64682d58d68968568"
+    },
+    "6983787": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_6983787.json",
+      "sha256": "974a002d0671a252c79c99b8a9957f721719eccb42a2a9b8970644c0ef4a3f04"
+    },
+    "6983794": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_6983794.json",
+      "sha256": "b7b1151f268307d5ef59db89f7ae6039b434d1b8d90da5f87e891c7418ddf890"
+    },
+    "7290006775023": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290006775023.json",
+      "sha256": "b3e2bb3efe8e40380276443a80049400ca412fa1f742b30e3b06f57dca6917c7"
+    },
+    "7290006775085": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290006775085.json",
+      "sha256": "2fa27a7de5ffede3ce1e4eeb7b8a4217c014a0f4d393f7f2fc0979ada00d11fb"
+    },
+    "7290006775337": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290006775337.json",
+      "sha256": "55605a0f9eae06f6b33a81bdffbbf5cf0516e36d38a7034fcf5da92773711ece"
+    },
+    "7290006983787": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290006983787.json",
+      "sha256": "a0f742b51bb2f2fdd2f2b7a4242c5d42c2bee4e69024537a77f896a4d1f8fc74"
+    },
+    "7290012244032": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290012244032.json",
+      "sha256": "3b5ffafd2423dd9b6e6fedc19f6e50adc809d445efbf58d03f916e25dc1681c1"
+    },
+    "7290012244056": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290012244056.json",
+      "sha256": "6eb5a57a7c8bdf5afeb6200bc20c24ad3e4aa8a6eaee7ec88d42dab8720ab93d"
+    },
+    "7290013683595": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290013683595.json",
+      "sha256": "6f77af7d3375378743e3ba1b70bb43745df85c7b3a07201889ed5e1db0a852b1"
+    },
+    "7290013927996": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290013927996.json",
+      "sha256": "99d53c6bf4db1dbb033f372787831f4bed4489fad26fa14244e031c97b6d03b1"
+    },
+    "7290015726528": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290015726528.json",
+      "sha256": "0b838e3f983d986323517a8b5fb18d3cbbe4f29a38472da392e89949e84b8117"
+    },
+    "7290015726535": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290015726535.json",
+      "sha256": "7f2bf4bfb797bf0f1937df517c226b1cb652dc775f65772e02a5de18743e9dd0"
+    },
+    "7290016162264": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290016162264.json",
+      "sha256": "cf380d2ca7718adb3d63ca15295083ca665fe882b8867506640f11f4e323398c"
+    },
+    "7290016416961": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290016416961.json",
+      "sha256": "142b977fb0a7e6b88d245416596d566e5e41ed7e29520c75d149e33b3ad7df90"
+    },
+    "7290018893487": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290018893487.json",
+      "sha256": "1db4ee5301ea54c64535e51da4b0a18b8b1db4cc4265592718db67700e35abfe"
+    },
+    "7290018893661": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290018893661.json",
+      "sha256": "4acf9b423970e0b1c56db9a9dab556bbc7f45f0374ae6efa353438ffcfbd5a8a"
+    },
+    "7290105692498": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290105692498.json",
+      "sha256": "6dbe88b67bb88594cc2da2d0e64bdc4db75fb2b494b462053712b67934439524"
+    },
+    "7290106578821": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290106578821.json",
+      "sha256": "68a2d9ac624515468a411a897bcde47e5c085de77fe3a6b3bddf6832ec5f606e"
+    },
+    "7290111534010": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290111534010.json",
+      "sha256": "4d777fb49c1bb7edad4b1ac514fdb472adce4c7242f75e85dbcae0815996d979"
+    },
+    "7290119030095": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290119030095.json",
+      "sha256": "75832934a75b504e888c607da5c075de8afd64b9daf8261869d8b297070e26db"
+    },
+    "7290119039746": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290119039746.json",
+      "sha256": "0966e8000ea866c4c1748909b4e916fc919ee3e84f71ef566518c63339ccd192"
+    },
+    "7290119042302": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290119042302.json",
+      "sha256": "0c6c8856b93e9c718587a04f87f3f8730a6ac6b774a4eef43e015f55eca7bf13"
+    },
+    "7290119045013": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290119045013.json",
+      "sha256": "daaa01a0f97318a40e61761eddef41541a04177ea53e80015951bb9a98405cc7"
+    },
+    "7290123330280": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290123330280.json",
+      "sha256": "326a4681900d75873933c04ab8ddd7cd907ac7b01c54c3261f7e5a108a4d8b09"
+    },
+    "7290123330334": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290123330334.json",
+      "sha256": "508f28618cd42d013e47c7ed1bb9c02be7c6e346a03f6180853951b43ca53fb5"
+    },
+    "7290123330884": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290123330884.json",
+      "sha256": "c30bc6c58f2b6a57f338fb7da5005da0ea29dfe7e96717561b78519a195e9805"
+    },
+    "7290123331034": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7290123331034.json",
+      "sha256": "33a1ecf3abac03b72ee7537c490475f4e46a77664ba23249ddc3ef655206a5dd"
+    },
+    "7296073132936": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073132936.json",
+      "sha256": "024d8fead550df25a4624021b3a9fa0e75e87f1c973530f28d579529f0bfc32d"
+    },
+    "7296073132943": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073132943.json",
+      "sha256": "629373cf8770d85c9ccde6250823626b7085be2583a33ab32c84a71ac9c5d3c0"
+    },
+    "7296073132950": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073132950.json",
+      "sha256": "3dfa8bc4612b72ce22f3bfb690035eb233cade5092f9cd4d114b3a39fb0c09d8"
+    },
+    "7296073140184": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073140184.json",
+      "sha256": "8fc38a76051e3763cab7cd51c31939c70eb27ca8b0b16b630ef7f43b6d28edfc"
+    },
+    "7296073346333": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073346333.json",
+      "sha256": "f514871c3cd470a61533bea3dffeb059d6a4d3b403cd76f54954127c9d8296f5"
+    },
+    "7296073346340": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073346340.json",
+      "sha256": "9c6b2562308daf11a1fe3594b3b62b1098c75840b565747a28c040aa8d08d98c"
+    },
+    "7296073431817": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073431817.json",
+      "sha256": "1660a215384987fbfbee2f7e167c519a8e41bb87d7eeebb01a6504767b8e438a"
+    },
+    "7296073431879": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073431879.json",
+      "sha256": "587c21c9b8bf66bed2c3d3051e95e71daf6ea5503a2188c2ded281da86235c51"
+    },
+    "7296073431893": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073431893.json",
+      "sha256": "f8cb74073ac44697effd1e8643dc78de8d78d19d39cbb7410e1a17a8d3437549"
+    },
+    "7296073431909": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073431909.json",
+      "sha256": "4855fd0474f44fcda2924726d4946d4b18ba06e3ad826caabc3c20c5a15eef31"
+    },
+    "7296073431916": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073431916.json",
+      "sha256": "7a1a6713fb4b9f5a3ee1c2554728367f21bf1ca7f04dc9c1e6f8712efe9e829c"
+    },
+    "7296073473664": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073473664.json",
+      "sha256": "87a53f6424ab23f44a409f31c8ad57f4d370dfddac78031468a9f806b2d7bc1b"
+    },
+    "7296073473688": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_7296073473688.json",
+      "sha256": "97aa92160c00133e59eff66b0fd3c9862dd6fc6617f586132bab0f3199e7df45"
+    },
+    "9397642": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_9397642.json",
+      "sha256": "686615912a74673e9f3958bd121d40d88c59c5a7ac3e43f159005e968be6cd61"
+    },
+    "9397697": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_9397697.json",
+      "sha256": "6c676fc38849e10f749c9433d58c1811f1ecc5e1d744bdd891134f24d1daa416"
+    },
+    "9399288": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cakes_001\\output\\bsip1_cakes_9399288.json",
+      "sha256": "ee4afb73aa35de46349efc28d8541909813736bf8dae85bb20e65f8c2b18e18d"
+    }
+  },
+  "verdict": "RESIDUAL_MOVERS",
+  "verified_at": "2026-06-25T06:27:28+00:00"
+}

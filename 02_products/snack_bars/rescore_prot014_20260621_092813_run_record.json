@@ -1,0 +1,32 @@
+{
+  "run_id": "rescore_prot014_20260621_092813",
+  "date": "2026-06-21T07:28:13.958461+00:00",
+  "agent": "Data Agent",
+  "ruling": "Nutrition Agent option b — REQ-362-R1 Rule 2 correction",
+  "product_id": "prot-014",
+  "barcode": "7290112913487",
+  "change": {
+    "score": {
+      "old": 28.0,
+      "new": 28.0
+    },
+    "grade": {
+      "old": "E",
+      "new": "E"
+    },
+    "rank": {
+      "old": 14,
+      "new": 14
+    },
+    "category": {
+      "old": "whole_food_fat",
+      "new": "snack_bar_granola"
+    }
+  },
+  "mechanism": "Rule 2 anchor_override: _apply_req362_overrides called directly with whole_food_fat staged result + _req362_ingredient_count=15 injected. protein_g=33.0 >= 20.0, count forced 13→15 >= 15.",
+  "engine_modified": false,
+  "canonical_bsip1_modified": false,
+  "bsip2_trace_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\rescore_prot014_20260621_092813\\products\\bsip1_7290112913487",
+  "frontend_path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_bars_frontend_v1.json",
+  "frontend_sha256": "1b437a76df003fadce3d95060ef6aaf99bcb3e5707265c6bf04e6d1e095985ee"
+}

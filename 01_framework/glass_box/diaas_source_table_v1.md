@@ -49,7 +49,7 @@ created_at: 2026-06-04
 
 **Evidence:**
 - Brouns et al. (2022) / Mathai et al. (2017, BJN): WPI consistently shows DIAAS > 100; leucine content is exceptionally high, supporting the "excellent" classification. The 2017 BJN paper (PMID 28382889) directly measured SID of all IAAs in pigs and confirmed WPI and WPC well above the completeness threshold.
-- Bandegan et al. (2017), Nosworthy et al. (2023, JSFA, PMID 37357639): Whey protein isolate DIAAS ≥ 100 held across multiple thermal processing conditions; heat-treated whey maintained DIAAS ≥ 100.
+- Bandegan et al. (2017), Bailey et al. (2023, JSFA, PMID 37357639): Whey protein isolate DIAAS ≥ 100 held across multiple thermal processing conditions; heat-treated whey maintained DIAAS ≥ 100.
 - FAO/WHO (2013) illustrative calculations: WPI cited as an example of an excellent-quality reference protein.
 
 **Evidence tier: Strong.** Multiple independent pig-model and human studies; consistent results; FAO/WHO 2013 confirms.

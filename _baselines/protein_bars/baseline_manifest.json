@@ -1,0 +1,49 @@
+{
+  "slug": "protein_bars",
+  "generated_at": "2026-06-25T00:00:00Z",
+  "task": "TASK-365",
+  "description": "Baseline manifest for protein_bars. 33-product corpus scored via BARI_PROTEIN_BAR_V1 lens using batch_run_protein_bars_task365.py. No standard BSIP1 pipeline run — scoring was done inline from corpus JSON directly. Live page (v1) was hand-curated to 16 products before spine onboarding. Corpus sha256 verified: 469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3. OFF check PASS. 2 products discarded per missing_data_discard_rule (7290015130271, 7290015130288).",
+  "bsip1_dir": null,
+  "corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+  "corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
+  "corpus_product_count": 33,
+  "run_record": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\protein_bars_task365\\run_record.json",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_bars_frontend_v1.json",
+  "baseline_sha256": "ab52b18cd889a51c41d49ded01cf0da1d8ed20db7b4d0717644d370ce74b2811",
+  "flag_vector": {
+    "BARI_PROTEIN_BAR_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_FAT_TECH_V1": "off",
+    "BARI_GLASSBOX_W4": "off",
+    "BARI_FIBER_FERMENT_V1": "off"
+  },
+  "shelf_rel": null,
+  "engine_version": "proto_v0 (score_engine.py) + BARI_PROTEIN_BAR_V1 lens",
+  "live_product_count": 16,
+  "corpus_product_count_scored": 33,
+  "score_distribution": {
+    "mean": 53.0,
+    "median": 50,
+    "min": 45,
+    "max": 70,
+    "B": 2,
+    "C": 26,
+    "D": 5
+  },
+  "verdict": "QUARANTINE - no standard BSIP1 trace dir; scoring done via batch_run_protein_bars_task365.py from corpus JSON directly",
+  "notes": [
+    "BARI_PROTEIN_BAR_V1 is a lens flag controlling scoring logic, not a standard MANAGED_BARI_VAR flag.",
+    "No BSIP1 trace directory exists — the batch script scored inline from the corpus JSON.",
+    "The live v1 frontend (16 products) was hand-curated before spine onboarding; 17 corpus products are CORPUS_NOT_DISPLAYED.",
+    "v1_diff: 14 products show score differences between the v1 live page (older engine) and the task365 run. See run_record.json v1_diff for details.",
+    "All 33 products sourced from Shufersal (shufersal_code present on all); OFF check PASS.",
+    "2 products discarded at corpus finalization (7290015130271, 7290015130288) — truncated ingredient lists, no protein source token detected."
+  ],
+  "verified_at": "2026-06-25T00:00:00Z"
+}

@@ -1,0 +1,251 @@
+{
+  "task": "TASK-378 Phase 3",
+  "description": "Confirmatory re-scrape from Shufersal and restaging rescore for 9 products with genuinely-absent sugar on Yohananof panels",
+  "generated_at": "2026-06-22",
+  "run_flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off"
+  },
+  "published_scores_changed": 0,
+  "products": [
+    {
+      "barcode": "7290013153395",
+      "name_he": "סחוט רימונים 1L",
+      "category": "juices",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290013153395",
+      "shufersal_sugar_row_found": true,
+      "real_sugar_g": 12.6,
+      "sugar_source": "Shufersal label — confirmed literal row: מתוך פחמימות סוכרים 12.6g/100ml",
+      "plausibility_check": "PASS — 12.6g <= carbs 12.6g; consistent (carbs = sugars, 100% juice)",
+      "phase2_usda_estimate": 10.5,
+      "published_score": 85.0,
+      "published_grade": "A",
+      "published_run": "run_juices_shelfrel_001",
+      "staged_score": 85.0,
+      "staged_grade": "A",
+      "delta_score": 0.0,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": [
+        "EV-091 juice ceiling (max 62 when sugars>=12.2g) fires: 12.6 >= 12.2, score_after_penalty reduced to 60.88",
+        "BUT: NOVA-1 single-ingredient floor (SRC-01, =85) fires at Stage 8 because has_class_b_cap=False",
+        "NOVA-1 floor overrides EV-091 ceiling; final score = 85/A regardless of real sugar value",
+        "field-name bug: BSIP1 stores juice_subpool (no underscore), engine reads juice_sub_pool (underscore); EV-091 silently never fires in current golive run — but this is moot because NOVA-1 floor is the binding constraint anyway"
+      ]
+    },
+    {
+      "barcode": "7290110114886",
+      "name_he": "סחוט קלמנטינה 2L",
+      "category": "juices",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290110114886",
+      "shufersal_sugar_row_found": true,
+      "real_sugar_g": 9.8,
+      "sugar_source": "Shufersal label — confirmed literal row: מתוך פחמימות סוכרים 9.8g/100ml",
+      "plausibility_check": "PASS — 9.8g <= carbs 9.8g",
+      "phase2_usda_estimate": 8.9,
+      "published_score": 85.0,
+      "published_grade": "A",
+      "published_run": "run_juices_shelfrel_001",
+      "staged_score": 85.0,
+      "staged_grade": "A",
+      "delta_score": 0.0,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": [
+        "9.8g < EV-091 threshold (12.2g) so juice ceiling does NOT fire",
+        "NOVA-1 single-ingredient floor (=85) fires regardless; final score = 85/A"
+      ]
+    },
+    {
+      "barcode": "7290119043149",
+      "name_he": "עוגיות בטעם חמאה",
+      "category": "cakes_hard_cookies",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290119043149",
+      "shufersal_sugar_row_found": false,
+      "real_sugar_g": null,
+      "sugar_source": "GENUINELY_ABSENT — Shufersal label does not include 'מתוך פחמימות סוכרים' row (original BSIP0 also scraped from Shufersal with empty sugar_raw; cross-confirmed)",
+      "plausibility_check": "N/A — no value found",
+      "published_score": 55.0,
+      "published_grade": "C",
+      "published_run": "run_cookies_001 / run_cakes_001",
+      "staged_score": null,
+      "staged_grade": null,
+      "delta_score": null,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": [
+        "Sugar genuinely absent from Israeli retail label on Shufersal; original BSIP0 also pulled from Shufersal with empty sugar_raw",
+        "No staging — missing-data discard rule: field stays null, no estimation"
+      ]
+    },
+    {
+      "barcode": "7290017962139",
+      "name_he": "עוגיות פירות יער כשל\"פ",
+      "category": "cakes_hard_cookies",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290017962139",
+      "shufersal_sugar_row_found": true,
+      "real_sugar_g": 3.5,
+      "sugar_source": "Shufersal label — sugar row 3.5g/100g confirmed",
+      "plausibility_check": "PASS — 3.5g << carbs 48.1g; original BSIP0 also from Shufersal but had empty sugar_raw (scrape timing/session difference)",
+      "published_score": 54.9,
+      "published_grade": "C",
+      "published_run": "run_cakes_001",
+      "staged_score": 64.9,
+      "staged_grade": "C",
+      "delta_score": 10.0,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": [
+        "Engine current (sugar=null) = 65.6/B — differs from published 54.9/C because run_cakes_001 was on an older engine build",
+        "With sugar=3.5g staged: 64.9/C — grade C in both null and staged cases",
+        "Glycemic dimension with 3.5g sugar: 90 - penalty(8.8) + fiber(12.6) + wg(0) = 93.8 (fiber bonus dominates)",
+        "No grade move from null→3.5g sugar on current HEAD engine; published 54.9/C unaffected"
+      ]
+    },
+    {
+      "barcode": "7290013453068",
+      "name_he": "עוגיות כוסמין פירות יער",
+      "category": "cakes_hard_cookies",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290013453068",
+      "shufersal_name_on_page": "עוגיות כוסמין פירות יער ללת\"ס",
+      "shufersal_sugar_row_found": false,
+      "real_sugar_g": null,
+      "sugar_source": "GENUINELY_ABSENT — Shufersal label does not include sugar row",
+      "plausibility_check": "N/A",
+      "published_score": 52.0,
+      "published_grade": "C",
+      "published_run": "run_cakes_001",
+      "staged_score": null,
+      "staged_grade": null,
+      "delta_score": null,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": ["Sugar genuinely absent from Shufersal label; no staging"]
+    },
+    {
+      "barcode": "7296073453840",
+      "name_he": "קוקיס שבבי שוקולד חלבי",
+      "category": "cakes_hard_cookies",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7296073453840",
+      "shufersal_sugar_row_found": false,
+      "real_sugar_g": null,
+      "sugar_source": "GENUINELY_ABSENT — Shufersal label does not include sugar row",
+      "plausibility_check": "N/A",
+      "published_score": 33.1,
+      "published_grade": "E",
+      "published_run": "run_cakes_001",
+      "staged_score": null,
+      "staged_grade": null,
+      "delta_score": null,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": ["Sugar genuinely absent from Shufersal label; no staging"]
+    },
+    {
+      "barcode": "7296073453857",
+      "name_he": "קוקיס שוקולד לבן חלבי",
+      "category": "cakes_hard_cookies",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7296073453857",
+      "shufersal_sugar_row_found": false,
+      "real_sugar_g": null,
+      "sugar_source": "GENUINELY_ABSENT — Shufersal label does not include sugar row",
+      "plausibility_check": "N/A",
+      "published_score": 32.7,
+      "published_grade": "E",
+      "published_run": "run_cakes_001",
+      "staged_score": null,
+      "staged_grade": null,
+      "delta_score": null,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": ["Sugar genuinely absent from Shufersal label; no staging"]
+    },
+    {
+      "barcode": "7290014760141",
+      "name_he": "משקה שקדים",
+      "category": "milk_and_alternatives",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290014760141",
+      "shufersal_sugar_row_found": true,
+      "real_sugar_g": 6.0,
+      "sugar_source": "Shufersal label — sugar row 6.0g/100ml confirmed",
+      "plausibility_check": "PASS — 6.0g consistent with sweetened almond milk (contains 'סוכר' as 2nd ingredient); Phase 2 guessed 3.0g, real value is 2x",
+      "phase2_usda_estimate": 3.0,
+      "published_score": 51.5,
+      "published_grade": "C",
+      "published_run": "run_005_headpin",
+      "staged_score": 49.7,
+      "staged_grade": "D",
+      "delta_score": -1.8,
+      "grade_moved": true,
+      "grade_mover_confirmed": true,
+      "engine_notes": [
+        "BSIP1 source: C:/Bari/03_operations/bsip1/run_milk_002/output/bsip1_7290014760141.json",
+        "Engine current (sugar=null) = 51.5/C — matches run_005_headpin published exactly",
+        "With sugar=6.0g: score_after_penalty=49.74 → 49.7/D",
+        "No floors applied (not NOVA-1 single-ingredient eligible; ingredient_count=11, nova_level=3)",
+        "Glycemic with 6.0g sugar: 90 - penalty(15.0) + fiber(0) + wg(0) = 75.0",
+        "Grade moves C→D — CONFIRMED GRADE MOVER"
+      ]
+    },
+    {
+      "barcode": "7290110325619",
+      "name_he": "משקה שיבולת שועל",
+      "category": "milk_and_alternatives",
+      "shufersal_url": "https://www.shufersal.co.il/online/he/p/P_7290110325619",
+      "shufersal_sugar_row_found": false,
+      "real_sugar_g": null,
+      "sugar_source": "GENUINELY_ABSENT — Shufersal label does not include sugar row for oat milk",
+      "plausibility_check": "N/A",
+      "published_score": 47.6,
+      "published_grade": "D",
+      "published_run": "run_005_headpin",
+      "staged_score": null,
+      "staged_grade": null,
+      "delta_score": null,
+      "grade_moved": false,
+      "grade_mover_confirmed": false,
+      "engine_notes": [
+        "Engine current (sugar=null) = 47.6/D — matches run_005_headpin published exactly",
+        "Sugar genuinely absent from Shufersal label; no staging per missing-data discard rule"
+      ]
+    }
+  ],
+  "summary": {
+    "products_re-scraped": 9,
+    "sugar_found_on_shufersal": 3,
+    "sugar_genuinely_absent_on_shufersal": 6,
+    "products_staged": 3,
+    "confirmed_grade_movers": 1,
+    "grade_movers": [
+      {
+        "barcode": "7290014760141",
+        "name_he": "משקה שקדים",
+        "published_grade": "C",
+        "staged_grade": "D",
+        "real_sugar_g": 6.0,
+        "delta_score": -1.8
+      }
+    ],
+    "no_grade_move_confirmed": [
+      {"barcode": "7290013153395", "reason": "NOVA-1 floor (85) overrides EV-091 ceiling; sugar=12.6g irrelevant to final score"},
+      {"barcode": "7290110114886", "reason": "NOVA-1 floor (85) fires; sugar=9.8g below EV-091 threshold anyway"},
+      {"barcode": "7290017962139", "reason": "Engine C at null and C with 3.5g sugar; no grade move"}
+    ],
+    "sugar_absent_no_action": [
+      "7290119043149", "7290013453068", "7296073453840", "7296073453857", "7290110325619"
+    ],
+    "key_finding_pomegranate": "Real label sugar (12.6g) does NOT produce an A→B move. The NOVA-1 single-ingredient floor (SRC-01, =85) applies after any EV-091 ceiling suppression because no Class B physiological cap fires (sugar 12.6g < 25g threshold; kcal 54 << 500 threshold). Pomegranate stays 85/A with real label sugar.",
+    "key_finding_almond_milk": "Phase 2 USDA guess (3.0g) was half the real value. Real label sugar is 6.0g (sweetened product, 'סוכר' is 2nd ingredient). This triggers a C→D grade move.",
+    "off_used": false,
+    "published_scores_changed": 0
+  },
+  "field_name_bug_note": {
+    "bug": "BSIP1 files store 'juice_subpool' (concatenated); score engine reads 'juice_sub_pool' (with underscore at line 3520). EV-091 silently never fires in golive run_juices_shelfrel_001.",
+    "impact_on_current_scores": "NONE — pomegranate stays 85/A either way because NOVA-1 floor is the binding constraint",
+    "recommended_action": "Fix field name inconsistency in BSIP1 schema; this is a latent defect but does not affect any published score today"
+  }
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
@@ -23,15 +24,30 @@ export default function HashvaotIndexPage() {
       )}
     >
       <HomeContainer className="py-14 md:py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">
-          Bari comparisons
-        </p>
-        <h1 className="mt-3 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
-          השוואות מהמדף
-        </h1>
-        <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663]">
-          בארי בודקת מוצרים אמיתיים מהסופרמרקט ובתי המרקחת כדי לתת לכם חווית השוואה אינטראקטיבית בין מוצרים. כל דף השוואה בוחן מוצרים דומים לפי פרמטרים מוגדרים מראש על ידי אלגוריתם מכונה לומדת ומציג חסרונות ויתרונות בהקשר הנכון.
-        </p>
+        <div className="flex items-start justify-between gap-6">
+          <div className="min-w-0">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
+              Bari comparisons
+            </p>
+            <h1 className="mt-2 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
+              השוואות מהמדף
+            </h1>
+            <p className="mt-4 max-w-2xl text-pretty text-lg leading-relaxed text-[#4E5663]">
+              בארי בודקת מוצרים אמיתיים מהסופרמרקט ובתי המרקחת כדי לתת לכם חווית השוואה אינטראקטיבית בין מוצרים. כל דף השוואה בוחן מוצרים דומים לפי פרמטרים מוגדרים מראש על ידי אלגוריתם מכונה לומדת ומציג חסרונות ויתרונות בהקשר הנכון.
+            </p>
+          </div>
+
+          {/* LUMO — the leaf, Bari's Investigator. Decorative. */}
+          <Image
+            src="/mascots/mascot-leaf.png"
+            alt=""
+            width={848}
+            height={932}
+            aria-hidden
+            className="pointer-events-none -mt-2 hidden h-[9.375rem] w-auto shrink-0 select-none md:block"
+            priority
+          />
+        </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {HASHVAOT_CATEGORIES.map((cat) => (

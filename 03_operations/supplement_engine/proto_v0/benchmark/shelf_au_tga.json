@@ -1,0 +1,36 @@
+{
+  "region": "AU",
+  "source": "TGA ARTG",
+  "status": "BLOCKED",
+  "captured": null,
+  "n": 0,
+  "products": [],
+  "block_reason": {
+    "summary": "www.tga.gov.au is not reachable from this environment — TCP connection times out (DNS resolves to 82.102.152.169 but HTTP traffic stalls). Tried on 2026-06-20.",
+    "hosts_tried": [
+      {"host": "www.tga.gov.au", "dns": "OK (82.102.152.169)", "tcp": "TIMEOUT", "note": "main TGA site — all data download URLs here"},
+      {"host": "www.ebs.tga.gov.au", "dns": "OK (163.127.3.13)", "tcp": "200", "note": "reachable but no ARTG data endpoints — all paths 404"},
+      {"host": "search.tga.gov.au", "dns": "FAIL", "tcp": null, "note": "DNS not found"},
+      {"host": "api.tga.gov.au", "dns": "FAIL", "tcp": null, "note": "DNS not found"},
+      {"host": "health.gov.au", "dns": "OK (82.102.152.219)", "tcp": "TIMEOUT", "note": "alternative health portal also blocked"},
+      {"host": "healthdirect.gov.au", "dns": "OK", "tcp": "301", "note": "no ARTG medicine ingredient API"},
+      {"host": "data.gov.au (CKAN)", "dns": "OK", "tcp": "200", "note": "zero TGA datasets indexed in CKAN"}
+    ],
+    "paths_tried_on_ebs": [
+      "/ebs/artg/artg.nsf/search",
+      "/ebs/artg/artg.nsf/PublicSearch",
+      "/ebs/artg/artg.nsf/ByIngredient",
+      "/ebs/artg/artg.nsf/artg_public_extract.csv",
+      "/ebs/artg/artg.nsf/artg_public_extract.json",
+      "/ebs/artg/artg.nsf/artg_extract.xlsx"
+    ],
+    "paths_tried_on_tga_gov_au": [
+      "/resources/artg/data/artg_public_extract.xlsx (timeout)",
+      "/resources/artg/data/artg_extract_listed.csv (timeout)",
+      "/sites/default/files/artg-extract-listed-medicines.xlsx (timeout)",
+      "/api/v1/artg/search.json (timeout)"
+    ],
+    "off_used": false,
+    "unblock_path": "Download quarterly ARTG public extract (Excel/CSV) from https://www.tga.gov.au/resources/artg from a reachable environment; parse with openpyxl; filter Type=L + ingredient=Magnesium; map to this file's schema. See integrations/clients/tga.py for full implementation notes and elemental conversion fractions."
+  }
+}

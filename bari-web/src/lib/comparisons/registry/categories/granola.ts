@@ -8,6 +8,7 @@ import {
 export const granolaCategoryDefinition: ComparisonCategoryDefinition = {
   id: "granola",
   routePath: "/hashvaot/granola",
+  nameHe: "גרנולה ומוזלי",
   metadata: granolaComparisonMetadata,
   getPageData: getGranolaPageData,
   getCorpusPayload: getGranolaCorpusPayload,

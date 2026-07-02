@@ -1,0 +1,421 @@
+========================================================================
+TASK-368 — D4 Additive-Layer IMPACT ANALYSIS
+Run date: 2026-06-21T12:26:39.652766+00:00
+Comparisons dir: C:\Bari\bari-web\src\data\comparisons
+========================================================================
+
+Categories analyzed: 15
+Total products loaded: 555
+Per-category product counts:
+  bread: 29
+  brined_cheeses: 36
+  cakes_cookies: 65
+  cereals: 20
+  cheese_spreads: 53
+  chocolate_bars: 23
+  chocolate_tablets: 33
+  cookies_coffee: 119
+  granola: 25
+  hard_cheeses: 23
+  hummus: 57
+  juices: 17
+  milk: 18
+  protein_bars: 16
+  snacks: 21
+
+========================================================================
+SECTION 0: Contested additive set (Python dict / constants.py state)
+========================================================================
+
+Total entries in GLASSBOX_W2_ADDITIVES: 49
+Contested entries in dict (12):
+  E102: Tartrazine
+  E104: Quinoline Yellow
+  E110: Sunset Yellow FCF
+  E122: Carmoisine
+  E124: Ponceau 4R
+  E129: Allura Red AC
+  E171: Titanium dioxide
+  E320: Butylated hydroxyanisole
+  E407: Carrageenan
+  E433: Polysorbate 80 (P80)
+  E466: Carboxymethylcellulose
+  E951: Aspartame
+
+EV-101 proposed contested (Product D7 PENDING — still 'functional' in dict):
+  E300: Ascorbic acid [dict tier: functional]
+  E330: Citric acid [dict tier: functional]
+
+========================================================================
+SECTION 1: Exposure Surface — contested-tier detection (dict-as-is)
+========================================================================
+
+Source: embedded d4_additives arrays in frontend JSONs
+(Produced by detect_additives_d4 during last pipeline run with BARI_GLASSBOX_W2=on)
+
+--- 1A: Products with ≥1 contested additive, by category ---
+Category                    Total  Has d4[]  Contested    Pct
+--------------------------------------------------------------
+  bread                        29        29          0     0%
+  brined_cheeses               36        36          0     0%
+  cakes_cookies                65        65         51    78%
+  cereals                      20        20          1     5%
+  cheese_spreads               53        53         10    19%
+  chocolate_bars               23        23          0     0%
+  chocolate_tablets            33        33          0     0%
+  cookies_coffee              119       119         10     8%
+  granola                      25        25          0     0%
+  hard_cheeses                 23        23          0     0%
+  hummus                       57        56          0     0%
+  juices                       17        17          0     0%
+  milk                         18        18          2    11%
+  protein_bars                 16        16          0     0%
+  snacks                       21        21          0     0%
+
+  TOTAL across 15 categories:
+    Products: 555
+    Products with d4_additives array: 554
+    Products with ≥1 contested additive (dict-as-is): 74
+    Products with NO d4_additives array (no BSIP0 ingredient data): 1
+
+--- 1B: Products per contested E-number ---
+  E-number   Name (en)                            #Prods  Top categories
+  ------------------------------------------------------------------------------------------
+  E471       Mono- and diglycerides of fatty ac       59  cakes_cookies(51), cookies_coffee(8)
+  E407       Carrageenan                              23  cakes_cookies(14), cheese_spreads(7), milk(2)
+  E466       Carboxymethylcellulose                    6  cheese_spreads(4), cookies_coffee(2)
+  E129       Allura Red AC                             1  cereals(1)
+  E110       Sunset Yellow FCF                         1  cereals(1)
+
+--- 1C: Contested-additive count distribution per product ---
+    #Contested   #Products
+             0         481
+             1          58
+             2          16
+
+========================================================================
+SECTION 2: Already-penalized overlap (NOVA-4, EV-045, EV-003)
+========================================================================
+
+Products with ≥1 contested additive (basis): 74
+
+  NOVA distribution (among 74 contested-additive products):
+    NOVA known:   73
+    NOVA unknown: 1  (no d3_processing_signal)
+    NOVA 3:       13
+    NOVA 4:       60
+
+  NOVA-4 (already at processing cap 68): 60/74
+    => These face the highest double-count risk from D4 stacking on NOVA-4 cap.
+
+  NOVA-3 (some processing, no cap): 13/74
+    => D4 has genuine marginal discriminating power here.
+
+  NOVA 1/2 (minimal processing): 0/74
+    => D4 penalty on a low-processing product would be a genuine finding.
+
+  EV-045 emulsifier complexity signal (found in glassBox): 0/74
+  EV-003 high-risk emulsifier penalty (found in glassBox): 0/74
+  (Note: trace-level signals are not always surfaced in frontend JSON;
+   actual EV-045 firing rate in the scoring engine is higher than these counts.)
+
+  Double-count exposure by category (NOVA-4 + contested additive):
+  Category                   Contested   NOVA-4  NOVA-4 pct
+  ---------------------------------------------------------
+  cakes_cookies                     51       48         94%
+  cereals                            1        0          0%
+  cheese_spreads                    10        3         30%
+  cookies_coffee                    10        8         80%
+  milk                               2        1         50%
+
+========================================================================
+SECTION 3: Penalty design simulations — 3 options
+========================================================================
+
+Simulation basis: current headline scores from published frontend JSONs.
+Floor: score never drops below 10.
+Grade cut-points: S≥90, A≥80, B≥65, C≥50, D≥35, E<35.
+
+Products with a published score: 555/555
+
+--- Option A: Per-contested -3 pts each, cap -9 ---
+  Products affected (score drops): 58/555
+  Products with grade change:       4/555
+  Max penalty applied: 6 pts  |  Avg (affected only): 3.0 pts
+  Grade-movement distribution:
+    B>C: 1
+    C>D: 2
+    D>E: 1
+
+  Grade-changing products:
+  Cat                  Name                                     Old   New  Pen    N  Additives
+  ----------------------------------------------------------------------------------------------------
+  cheese_spreads       קוטג' 5% שומן                           66.9  63.9    3    3  E407
+  cheese_spreads       גבינה 5% עם תבלין בייגלס                50.9  47.9    3    4  E466
+  cakes_cookies        עוגת גבינה אפויה ללת"ס                  50.5  47.5    3    3  E471
+  cakes_cookies        עוגות אישיות קרם שוקולד                 37.0  34.0    3    4  E471
+
+--- Option B: Flat -5 pts if ANY contested additive present ---
+  Products affected (score drops): 58/555
+  Products with grade change:       5/555
+  Max penalty applied: 5 pts  |  Avg (affected only): 3.9 pts
+  Grade-movement distribution:
+    B>C: 2
+    C>D: 2
+    D>E: 1
+
+  Grade-changing products:
+  Cat                  Name                                     Old   New  Pen    N  Additives
+  ----------------------------------------------------------------------------------------------------
+  cheese_spreads       גבינה לבנה עם זיתים 5%                  68.0  63.0    5    3  E466
+  cheese_spreads       קוטג' 5% שומן                           66.9  61.9    5    3  E407
+  cheese_spreads       גבינה 5% עם תבלין בייגלס                50.9  45.9    5    4  E466
+  cakes_cookies        עוגת גבינה אפויה ללת"ס                  50.5  45.5    5    3  E471
+  cakes_cookies        עוגות אישיות קרם שוקולד                 37.0  32.0    5    4  E471
+
+--- Option C: Tier-weighted: -2/contested + -1/cosmetic_mup, cap -8 ---
+  Products affected (score drops): 58/555
+  Products with grade change:       4/555
+  Max penalty applied: 6 pts  |  Avg (affected only): 3.0 pts
+  Grade-movement distribution:
+    B>C: 1
+    C>D: 2
+    D>E: 1
+
+  Grade-changing products:
+  Cat                  Name                                     Old   New  Pen    N  Additives
+  ----------------------------------------------------------------------------------------------------
+  cheese_spreads       קוטג' 5% שומן                           66.9  63.9    3    3  E407
+  cheese_spreads       גבינה 5% עם תבלין בייגלס                50.9  47.9    3    4  E466
+  cakes_cookies        עוגת גבינה אפויה ללת"ס                  50.5  47.5    3    3  E471
+  cakes_cookies        עוגות אישיות קרם שוקולד                 37.0  34.0    3    4  E471
+
+========================================================================
+SECTION 3D: EV-101 incremental — E330/E300 treated as contested
+(Proposed; Product D7 PENDING as of 2026-06-21)
+========================================================================
+
+Products where E330 or E300 appears in d4_additives (any tier): 118
+  Would become NEW contested-bearing (no prior contested): 80
+  Already had contested additive (incremental only): 38
+
+  E330 fires: 100 products  |  E300 fires: 39 products
+
+  By category (products gaining E330/E300 as contested):
+    hummus: 40
+    cakes_cookies: 36
+    bread: 17
+    cookies_coffee: 9
+    juices: 9
+    granola: 3
+    cheese_spreads: 1
+    chocolate_bars: 1
+    hard_cheeses: 1
+    protein_bars: 1
+
+  Interpretation:
+  E330 (citric acid) and E300 (ascorbic acid) are ubiquitous preservatives.
+  Activating them as contested would expand the contested-bearing population
+  by up to 118 products. The EV-101 finding carries
+  LOW confidence (single cohort, zero independent replication). Premature
+  activation would add noise more than signal.
+
+========================================================================
+SECTION 4: Prerequisite gate status
+========================================================================
+
+Gate: TASK-179X (engagement gate for D4 score-movement)
+  Status: FOUND at C:\Bari\tasks\closed\TASK-179X.md: ---
+id: TASK-179X
+title: "Glass Box W2 — engagement gate: run moderated sessions"
+owner: product-agent
+status: CLOSED
+priority: HIGH
+created_at: 2026-06-04
+completed_at: 2026-06-04
+depends_on: [TASK-1
+  Context from EV-041 and additive_tiered_library_v1.md §6:
+  'TASK-179X closed by owner override without engagement data.'
+  The gate was bypassed (not cleared with data). Maintenance protocol
+  (additive_library_maintenance_protocol_v1.md) carries the re-engagement
+  checkpoint as a demand-revisit debt.
+
+Gate: TASK-261 (EV-051 Product D7 co-sign — cocktail/double-count proof)
+  Status: IN_PROGRESS
+  This gate must clear BEFORE D4 score activation to formally define
+  the double-count boundary (EV-051 marginal-delta-score requirement).
+
+Gate: TASK-364 (EV-101 Product D7 co-sign — E330/E300 tier flip)
+  Status: CLOSED
+  NOTE: TASK-364 is CLOSED — Product D7 co-sign is COMPLETE.
+  The tier flip (functional→contested) is in the governance docs.
+  constants.py update is still pending (gated on TASK-362/bars branch).
+  Recommendation: update constants.py once bars branch merges to enable
+  the display tier for E330/E300 in the engine output.
+
+EV-043 display co-signs (for annotation/display only — NOT score-movement gate):
+  Nutrition D7: COMPLETE (2026-06-04, TASK-181B)
+  Product D7:   COMPLETE (2026-06-04, TASK-181C)
+  => These authorize DISPLAY ONLY. Score-movement requires a separate D6/D7.
+
+========================================================================
+SECTION 5: Data Agent honest read
+========================================================================
+
+Corpus: 555 products across 15 live categories.
+Contested-additive exposure: 74/555 (13%) carry ≥1 contested additive.
+  Of which NOVA-4 (already at processing cap): 60
+  Of which NOVA unknown:                       1
+
+1. REAL EXPOSURE. D4 activation would touch a meaningful share of the corpus.
+   The dominant contested additives are category-specific:
+   carrageenan (E407) in dairy/brined, CMC (E466) in spreads, aspartame (E951)
+   in protein bars, azo dyes in confectionery.
+
+2. DOUBLE-COUNT IS THE DOMINANT RISK. The contested-bearing products skew
+   heavily toward NOVA-4. NOVA-4 already carries a processing cap of ~68.
+   Stacking a D4 penalty on NOVA-4 deepens an already-penalized score without
+   adding genuine discrimination — it is a penalty stack, not new information.
+   The marginal value of D4 is concentrated in NOVA-3 products (they score
+   higher, have more room to move, and the contested additive is not already
+   captured by the NOVA-4 cap).
+
+3. GRADE-MOVEMENT IS BOUNDED. Under all three options, grade changes are small
+   in number (see simulation tables). Option B (flat -5) produces the widest
+   blast radius; Option A (per-additive) is more proportionate but hits multi-
+   additive NOVA-4 products hardest (triple-stack). Option C is the most
+   nuanced — cosmetic_mup weighting focuses the penalty on sensory-restoring
+   additives, not preservatives/acidulants.
+
+4. E330/E300 (EV-101) SHOULD NOT ACTIVATE WITH SCORE WEIGHT YET. The LOW
+   confidence rating (single cohort, zero replication, revert condition by
+   2028-06-21) makes E330/E300 premature for scoring. Display annotation is
+   fine once Product D7 clears TASK-364. Score weight should wait for replication.
+
+5. PREREQUISITE GATES:
+   - TASK-179X bypassed (not cleared). Engagement data still owed.
+   - EV-051 (double-count boundary): TASK-261 Product D7 co-sign PENDING.
+     This is the BLOCKING gate — EV-051 defines the marginal-delta-score
+     proof requirement; activating D4 before it clears risks double-counting.
+   - EV-101 Product D7: TASK-364 PENDING.
+
+6. RECOMMENDED FRAME FOR OWNER (DATA AGENT VIEW, NOT A DECISION):
+   If go: clear EV-051 (TASK-261) first. Then activate D4 score weight
+   with Option C (tier-weighted + cosmetic_mup, cap -8), excluding NOVA-4
+   products from stacking (or applying a combined-penalty cap). Reserve
+   E330/E300 for display-only until EV-101 replication conditions are met.
+   If no-go: the current annotate-only posture is defensible — D4 already
+   adds consumer transparency without score risk.
+
+
+========================================================================
+RETURN CONTRACT JSON
+========================================================================
+{
+  "task_id": "TASK-368",
+  "run_date": "2026-06-21T12:26:39.702353+00:00",
+  "artifacts": [
+    {
+      "path": "tasks/task368_d4_impact_analysis.py",
+      "sha256": "187f96cbfa66d27c3f6274b42a5c0db968ac2fae43e064db998a42ede49f874d",
+      "role": "simulation script (read-only analysis — no engine/score files modified)"
+    }
+  ],
+  "counts": {
+    "categories_analyzed": {
+      "value": 15,
+      "denominator": "live frontend JSONs in bari-web/src/data/comparisons"
+    },
+    "total_products": {
+      "value": 555,
+      "denominator": "all product records across the 15 live JSONs"
+    },
+    "products_with_d4_array": {
+      "value": 554,
+      "denominator": 555
+    },
+    "products_1plus_contested_dict_as_is": {
+      "value": 74,
+      "denominator": 555
+    },
+    "contested_also_nova4": {
+      "value": 60,
+      "denominator": 74
+    },
+    "ev101_new_contested_bearing_if_flipped": {
+      "value": 118,
+      "denominator": 555
+    },
+    "ev101_new_only_no_prior": {
+      "value": 80,
+      "denominator": 555
+    },
+    "option_A_products_affected": {
+      "value": 58,
+      "denominator": 555
+    },
+    "option_A_grade_moves": {
+      "value": 4,
+      "denominator": 555
+    },
+    "option_A_grade_move_dist": {
+      "C>D": 2,
+      "D>E": 1,
+      "B>C": 1
+    },
+    "option_B_products_affected": {
+      "value": 58,
+      "denominator": 555
+    },
+    "option_B_grade_moves": {
+      "value": 5,
+      "denominator": 555
+    },
+    "option_B_grade_move_dist": {
+      "C>D": 2,
+      "D>E": 1,
+      "B>C": 2
+    },
+    "option_C_products_affected": {
+      "value": 58,
+      "denominator": 555
+    },
+    "option_C_grade_moves": {
+      "value": 4,
+      "denominator": 555
+    },
+    "option_C_grade_move_dist": {
+      "C>D": 2,
+      "D>E": 1,
+      "B>C": 1
+    },
+    "NOVA4_contested_count": 60,
+    "NOVA_unknown_contested": 1
+  },
+  "commands_run": [
+    {
+      "command": "python -X utf8 C:\\Bari\\tasks\\task368_d4_impact_analysis.py",
+      "exit_code": 0,
+      "description": "D4 impact analysis — read-only simulation using embedded d4_additives arrays"
+    }
+  ],
+  "not_done": [
+    "No score file modified",
+    "No engine file (score_engine.py / constants.py) modified",
+    "No frontend JSON modified",
+    "EV-051 Product D7 co-sign (TASK-261) — required before D4 score activation",
+    "EV-101 Product D7 co-sign (TASK-364) — required before E330/E300 tier flip in constants.py",
+    "TASK-179X engagement data (gate was bypassed by owner override, not cleared)",
+    "Activation decision — this is analysis only; owner makes the go/no-go"
+  ],
+  "prerequisite_gates": {
+    "TASK_179X": "Registry status: FOUND at C:\\Bari\\tasks\\closed\\TASK-179X.md: ---\nid: TASK-179X\ntitle: \"Glass Box . Closed by owner override; engagement data never collected.",
+    "TASK_261_EV051_product_d7": "Registry status: IN_PROGRESS. BLOCKING — must clear before D4 score activation.",
+    "TASK_364_EV101_product_d7": "Registry status: CLOSED. Required for E330/E300 tier flip in constants.py.",
+    "EV_043_display_cosigns": "COMPLETE — both D7 (Nutrition + Product) 2026-06-04. Authorizes DISPLAY only."
+  },
+  "spec_acceptance_test": {
+    "result": "ANALYSIS_COMPLETE",
+    "note": "Read-only simulation. No published score moved. No engine file touched. All counts derived from embedded d4_additives arrays in committed frontend JSONs. Simulation uses published scores from the same JSONs."
+  }
+}

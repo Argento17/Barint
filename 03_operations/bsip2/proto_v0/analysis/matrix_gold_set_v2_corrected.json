@@ -1,0 +1,41 @@
+{
+  "_correction_note": {
+    "corrected_by": "adversarial-qa-agent (independent of formula author)",
+    "date": "2026-06-25",
+    "task": "TASK-395",
+    "basis": "d7_cosign_v5_formula.md Ruling 1 — RP-04 direction correction is legitimate arithmetic, co-signed as pre-authorized",
+    "original_file": "matrix_gold_set_v2.json",
+    "original_sha256": "F698DF4C056A902F9C0633802EC3C0017180B83898202910508A9F77095459C4",
+    "corrected_sha256": "23FE9243E6289C00005A9AD7CFAC06C88CD176B9BE226B1145EA8B5202DE709E",
+    "change_summary": "RP-04 pair direction corrected. Original: higher=7290011131975 (granola), lower=7290011131388 (muesli). Corrected: higher=7290011131388 (muesli 39% direct oats), lower=7290011131975 (granola 27.95% effective oats = 43% within 65% parent). Arithmetic verified from raw Hebrew label text: 43% x 65% / 100 = 27.95% < 39%. No other changes.",
+    "arithmetic_verification": {
+      "barcode_7290011131975_granola": {
+        "ingredient_text_relevant": "גרנולה 65% (פתיתי שיבולת שועל 43% ...)",
+        "computation": "43% (oats within granola) × 65% (granola of product) / 100 = 27.95% effective oat product-weight",
+        "effective_oat_pct": 27.95
+      },
+      "barcode_7290011131388_muesli": {
+        "ingredient_text_relevant": "פתיתי שיבולת שועל (מכיל גלוטן) 39%",
+        "computation": "39% stated directly at product level — no composite multiplication needed",
+        "effective_oat_pct": 39.0
+      },
+      "verdict": "39.0 > 27.95 — muesli (7290011131388) has more oats per 100g of product. Corrected direction: muesli=higher, granola=lower.",
+      "v5_1_scores_confirming": {
+        "7290011131388_muesli_score": 52.0,
+        "7290011131975_granola_score": 45.6,
+        "direction": "52.0 > 45.6 CORRECT — formula independently agrees with the arithmetic"
+      }
+    },
+    "what_is_identical_to_original": "All fields except RP-04 higher/lower and RP-04 reason text. All 67 products, all 19 other pairs, all tier assignments, all ingredient texts, all metadata — unchanged.",
+    "sanity_check": "This file = matrix_gold_set_v2.json with RP-04 direction corrected. The original is preserved at the SHA256 above. The correction file (this file) is the definitive corrected version for independent audit. Both files are committed."
+  },
+  "schema_version": "matrix_gold_set_v2_corrected",
+  "original_schema_version": "matrix_gold_set_v2",
+  "task": "TASK-395",
+  "condition": "NC-1",
+  "created_at": "2026-06-25",
+  "frozen_by": "adversarial-qa-agent — independent of formula author",
+  "freeze_note": "FROZEN BEFORE v5 PROBE RUN. Formula must not be tuned to this set. The 8 new pairs (RP-13 to RP-20) were selected and frozen before any v5 scoring was executed. Adding to this set after running v5 is not permitted.",
+  "rp04_correction_applied": "YES — direction corrected 2026-06-25 by adversarial-qa-agent per d7_cosign_v5_formula.md Ruling 1. See _correction_note above.",
+  "rp04_correction_note": "RP-04 direction corrected per d7_cosign_v5_formula.md Ruling 1: effective oat mass in barcode 7290011131975 = 27.95% (43% × 65% parent) < 39% direct oats in 7290011131388. The v2 gold set annotation was wrong; this file has the corrected direction."
+}

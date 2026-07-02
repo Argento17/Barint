@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bari — Founder's Tech Handbook</title>
+<style>
+  :root{
+    --ink:#1c1c1a; --ink-soft:#46463f; --muted:#7b7b73;
+    --canvas:#F7F7F2; --card:#ffffff; --line:#e4e3da;
+    --green:#1f5c43; --green-soft:#e7efe9;
+    --amber:#c0852a; --amber-soft:#f7eedb;
+    --red:#9b3b32; --red-soft:#f3e3e1;
+    --blue:#2c5a73; --blue-soft:#eef3f6; --slate:#54606b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--canvas);color:var(--ink);
+    font-family:"Georgia","Times New Roman",serif;font-size:16px;line-height:1.6;}
+  .sans,h1,h2,h3,h4,.kicker,nav,.chip,.term-h,.cheat,.say-h{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px 80px 22px;}
+
+  /* header */
+  header.hero{background:var(--ink);color:#f3f2ea;padding:54px 22px 46px 22px;}
+  header.hero .inner{max-width:920px;margin:0 auto;}
+  header.hero .mark{font-family:"Segoe UI",sans-serif;font-weight:700;letter-spacing:.5px;color:#cfcec3;font-size:15px;}
+  header.hero h1{font-family:"Segoe UI",sans-serif;font-size:40px;line-height:1.07;margin:14px 0 8px 0;color:#fff;}
+  header.hero p{color:#bcbbb0;font-size:18px;max-width:640px;margin:0;}
+  header.hero .rule{height:3px;width:64px;background:var(--green);border:0;margin:22px 0;}
+
+  .howto{background:var(--green-soft);border:1px solid #c5dccd;border-radius:12px;padding:16px 20px;margin:30px 0;}
+  .howto b{font-family:"Segoe UI",sans-serif;}
+
+  /* nav / toc */
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:26px 0;}
+  nav.toc h4{margin:0 0 10px 0;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);}
+  nav.toc ol{margin:0;padding-left:20px;columns:2;column-gap:34px;}
+  nav.toc li{margin-bottom:7px;font-family:"Segoe UI",sans-serif;font-size:14px;}
+  nav.toc a{color:var(--ink);text-decoration:none;}
+  nav.toc a:hover{color:var(--green);text-decoration:underline;}
+
+  h2.section{font-family:"Segoe UI",sans-serif;font-size:25px;margin:54px 0 4px 0;padding-top:14px;border-top:2px solid var(--ink);}
+  .section-sub{color:var(--muted);font-size:16px;margin:0 0 22px 0;}
+  .sec-num{display:inline-block;background:var(--green);color:#fff;font-family:"Segoe UI",sans-serif;font-size:13px;font-weight:700;width:26px;height:26px;line-height:26px;text-align:center;border-radius:7px;margin-right:9px;vertical-align:middle;}
+
+  /* term card */
+  .term{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;}
+  .term-h{font-size:18px;font-weight:700;color:var(--ink);margin:0 0 2px 0;}
+  .term-h .pron{font-weight:400;color:var(--muted);font-size:13px;font-style:italic;margin-left:8px;}
+  .term .def{margin:8px 0;}
+  .term .row{display:flex;gap:10px;margin:7px 0;align-items:baseline;}
+  .term .lab{flex:0 0 96px;font-family:"Segoe UI",sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--green);padding-top:2px;}
+  .term .lab.analogy{color:var(--amber);}
+  .term .lab.say{color:var(--blue);}
+  .term .val{flex:1;font-size:15px;}
+  .term .val.say{background:var(--blue-soft);border-radius:8px;padding:8px 12px;font-style:italic;}
+  .term .val.analogy{font-style:italic;color:var(--ink-soft);}
+  code{font-family:"Consolas","SF Mono",monospace;background:#eeede5;padding:1px 6px;border-radius:4px;font-size:.88em;}
+  pre{background:#1c1c1a;color:#e9e8df;border-radius:10px;padding:14px 16px;overflow-x:auto;font-family:"Consolas",monospace;font-size:13px;line-height:1.5;}
+  pre .k{color:#8fc7a8;} pre .s{color:#e0b070;} pre .c{color:#7e7d74;}
+
+  .figure{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin:22px 0;}
+  .figcap{font-family:"Segoe UI",sans-serif;font-size:13px;color:var(--muted);text-align:center;margin-top:8px;}
+
+  /* cheat sheet */
+  table.cheat{width:100%;border-collapse:collapse;font-family:"Segoe UI",sans-serif;font-size:14px;margin:10px 0;}
+  table.cheat th{background:var(--ink);color:#f3f2ea;text-align:left;padding:9px 11px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
+  table.cheat td{padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.cheat tr:nth-child(even) td{background:#fbfbf7;}
+  table.cheat td:first-child{font-weight:700;color:var(--green);white-space:nowrap;}
+
+  .callout{border-left:4px solid var(--amber);background:var(--amber-soft);border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0;}
+  .callout.green{border-color:var(--green);background:var(--green-soft);}
+  .callout.red{border-color:var(--red);background:var(--red-soft);}
+  .callout b{font-family:"Segoe UI",sans-serif;}
+  .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .chip{font-size:12px;background:#eceadf;color:var(--ink-soft);padding:4px 11px;border-radius:20px;}
+  .back{font-family:"Segoe UI",sans-serif;font-size:12px;color:var(--muted);text-decoration:none;float:right;margin-top:6px;}
+  .back:hover{color:var(--green);}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-family:"Segoe UI",sans-serif;}
+  @media print{nav.toc ol{columns:2;} .term,.figure{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <div class="mark">BARI&nbsp;&nbsp;·&nbsp;&nbsp;ברי</div>
+    <h1>The Founder's<br>Tech Handbook</h1>
+    <hr class="rule">
+    <p>Every programming concept in Bari's stack — in plain language, with analogies, diagrams, and a “say it like this” line for when you're in the room.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="howto">
+    <b>How to use this.</b> You don't need to memorise it. Skim the <b>five mental models</b> first — they're the foundation everything else hangs on. Then keep this open during the meeting and <b>Ctrl-F</b> any word the engineer uses. Each entry tells you what it <i>is</i>, a real-world <b>analogy</b>, how it's used <b>in Bari</b>, and — where it matters — exactly how to <b>say it</b> so you sound fluent without overclaiming.
+  </div>
+
+  <nav class="toc">
+    <h4>Contents</h4>
+    <ol>
+      <li><a href="#models">Five mental models (start here)</a></li>
+      <li><a href="#data">Data &amp; how it's stored</a></li>
+      <li><a href="#backend">The backend — making the data</a></li>
+      <li><a href="#trust">Testing &amp; trust</a></li>
+      <li><a href="#frontend">The frontend — the website</a></li>
+      <li><a href="#ai">AI &amp; language models</a></li>
+      <li><a href="#glue">Engineering glue &amp; practices</a></li>
+      <li><a href="#bari">Bari's own vocabulary</a></li>
+      <li><a href="#cheat">One-page cheat sheet</a></li>
+      <li><a href="#fluent">Sound fluent · avoid these slips</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============ 1 MENTAL MODELS ============ -->
+  <h2 class="section" id="models"><span class="sec-num">1</span>Five mental models</h2>
+  <p class="section-sub">Get these five and you can reason about almost any technical question, even ones you've never heard.</p>
+
+  <div class="figure">
+    <svg width="100%" viewBox="0 0 880 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+      <defs><marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1f5c43"/></marker></defs>
+      <text x="170" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#1f5c43">BACKEND (the workshop)</text>
+      <text x="710" y="24" text-anchor="middle" font-size="13" font-weight="700" fill="#2c5a73">FRONTEND (the shop window)</text>
+      <rect x="20" y="40" width="150" height="60" rx="9" fill="#fff" stroke="#cfd8d2"/><text x="95" y="68" text-anchor="middle" font-size="12" font-weight="700">Scrapers</text><text x="95" y="86" text-anchor="middle" font-size="10" fill="#7b7b73">Python · Playwright</text>
+      <rect x="195" y="40" width="150" height="60" rx="9" fill="#fff" stroke="#cfd8d2"/><text x="270" y="68" text-anchor="middle" font-size="12" font-weight="700">Scoring engine</text><text x="270" y="86" text-anchor="middle" font-size="10" fill="#7b7b73">Python · rules</text>
+      <rect x="365" y="40" width="150" height="60" rx="9" fill="#1c1c1a"/><text x="440" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">JSON files</text><text x="440" y="84" text-anchor="middle" font-size="10" fill="#bcd6c6">the “seam”</text>
+      <rect x="535" y="40" width="150" height="60" rx="9" fill="#fff" stroke="#bcd0db"/><text x="610" y="68" text-anchor="middle" font-size="12" font-weight="700">Next.js site</text><text x="610" y="86" text-anchor="middle" font-size="10" fill="#7b7b73">React · TypeScript</text>
+      <rect x="710" y="40" width="150" height="60" rx="9" fill="#fff" stroke="#bcd0db"/><text x="785" y="68" text-anchor="middle" font-size="12" font-weight="700">Shopper's phone</text><text x="785" y="86" text-anchor="middle" font-size="10" fill="#7b7b73">the browser</text>
+      <line x1="170" y1="70" x2="193" y2="70" stroke="#1f5c43" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="345" y1="70" x2="363" y2="70" stroke="#1f5c43" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="515" y1="70" x2="533" y2="70" stroke="#54606b" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="685" y1="70" x2="708" y2="70" stroke="#54606b" stroke-width="2" marker-end="url(#a)"/>
+      <rect x="20" y="140" width="495" height="56" rx="9" fill="#e7efe9"/><text x="34" y="162" font-size="12" font-weight="700" fill="#1f5c43">All the thinking happens here, then freezes into files.</text><text x="34" y="182" font-size="11" fill="#3d6b54">Built once, checked, version-controlled. The hard part of Bari.</text>
+      <rect x="535" y="140" width="325" height="56" rx="9" fill="#eef3f6"/><text x="549" y="162" font-size="12" font-weight="700" fill="#2c5a73">This half only displays the files.</text><text x="549" y="182" font-size="11" fill="#3f6478">It never re-calculates a score.</text>
+    </svg>
+    <div class="figcap">Figure A — The single most important picture: two halves joined only by JSON files. Memorise this and most questions answer themselves.</div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">1 · Backend vs. Frontend</div>
+    <div class="def">The <b>backend</b> is everything the user never sees — the data collection, the scoring, the logic. The <b>frontend</b> is what they <i>do</i> see — the website on their phone.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A restaurant: the kitchen (backend) cooks; the dining room (frontend) serves. Diners only see the plate.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Backend = the Python pipeline that scores 500 products. Frontend = the Next.js website. They never mix.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">2 · Deterministic vs. Probabilistic</div>
+    <div class="def"><b>Deterministic</b> = same input always gives the exact same output. <b>Probabilistic</b> = the output can vary, like an AI that answers slightly differently each time.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A calculator is deterministic (2+2 is always 4). Asking a person “rate this 1–10” is probabilistic (you'll get 7, then 6).</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The scoring engine is deterministic — this is your single biggest credibility claim. A score reproduces exactly, every time.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Deterministic means same product in, same score out — every time. No AI mood swings.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">3 · Traceable vs. Black box</div>
+    <div class="def"><b>Traceable</b> = you can see exactly <i>why</i> it produced an answer. A <b>black box</b> gives an answer with no explanation.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Every score writes a “trace” — a record of which rules fired. It's deterministic <i>and</i> traceable; the two are different properties (reproducible vs. explainable) and we have both because it's rule-based code, not a model.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Deterministic is about reproducibility; traceable is about explainability. We have both — because it's code, not a guess.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">4 · Rule-based vs. Machine Learning (ML)</div>
+    <div class="def"><b>Rule-based</b> = a human wrote explicit logic (“if sugar &gt; X, then…”). <b>ML</b> = a model learned patterns from data and you can't fully see its reasoning.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">Rule-based is a recipe you can read line by line. ML is a chef who “just knows” — great food, but can't always explain the dish.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The scoring is rule-based on purpose. That choice is what buys you both determinism and traceability at once.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">5 · Pipeline</div>
+    <div class="def">A series of stages where each one's output is the next one's input — like an assembly line for data.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A factory line: raw material → cut → assemble → paint → box. Each station does one job and passes it on.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val"><code>Scrape → Extract → Understand → Score → Build → Website.</code> Each stage hands a file to the next.</div></div>
+  </div>
+
+  <!-- ============ 2 DATA ============ -->
+  <h2 class="section" id="data"><span class="sec-num">2</span>Data &amp; how it's stored<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">How information is shaped and saved so software can use it.</p>
+
+  <div class="figure">
+    <svg width="100%" viewBox="0 0 880 230" xmlns="http://www.w3.org/2000/svg" font-family="Consolas,monospace">
+      <rect x="20" y="14" width="840" height="202" rx="10" fill="#1c1c1a"/>
+      <text x="44" y="46" font-size="15" fill="#e9e8df">{</text>
+      <text x="74" y="46" font-size="15" fill="#8fc7a8">"name"</text><text x="150" y="46" font-size="15" fill="#e9e8df">:</text><text x="164" y="46" font-size="15" fill="#e0b070">"Cottage 5%"</text><text x="320" y="46" font-size="15" fill="#e9e8df">,</text>
+      <text x="540" y="46" font-size="12" fill="#7e7d74">← a “key” and its “value”, in quotes = text</text>
+      <text x="74" y="78" font-size="15" fill="#8fc7a8">"score"</text><text x="150" y="78" font-size="15" fill="#e9e8df">:</text><text x="164" y="78" font-size="15" fill="#a9c7e0">72</text><text x="320" y="78" font-size="15" fill="#e9e8df">,</text>
+      <text x="540" y="78" font-size="12" fill="#7e7d74">← a number (no quotes)</text>
+      <text x="74" y="110" font-size="15" fill="#8fc7a8">"grade"</text><text x="150" y="110" font-size="15" fill="#e9e8df">:</text><text x="164" y="110" font-size="15" fill="#e0b070">"B"</text><text x="320" y="110" font-size="15" fill="#e9e8df">,</text>
+      <text x="74" y="142" font-size="15" fill="#8fc7a8">"sodium_mg"</text><text x="190" y="142" font-size="15" fill="#e9e8df">:</text><text x="204" y="142" font-size="15" fill="#c98aa0">null</text><text x="320" y="142" font-size="15" fill="#e9e8df">,</text>
+      <text x="540" y="142" font-size="12" fill="#7e7d74">← “null” = we don't have this value</text>
+      <text x="74" y="174" font-size="15" fill="#8fc7a8">"tags"</text><text x="150" y="174" font-size="15" fill="#e9e8df">:</text><text x="164" y="174" font-size="15" fill="#e9e8df">[</text><text x="178" y="174" font-size="15" fill="#e0b070">"high-protein"</text><text x="318" y="174" font-size="15" fill="#e9e8df">,</text><text x="330" y="174" font-size="15" fill="#e0b070">"dairy"</text><text x="404" y="174" font-size="15" fill="#e9e8df">]</text>
+      <text x="540" y="174" font-size="12" fill="#7e7d74">← a “list” = several values in [ ]</text>
+      <text x="44" y="206" font-size="15" fill="#e9e8df">}</text>
+    </svg>
+    <div class="figcap">Figure B — The anatomy of a JSON file. It's just labelled boxes of data. This is exactly what one Bari product looks like.</div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">JSON <span class="pron">“JAY-son”</span></div>
+    <div class="def">The universal text format for storing and passing structured data. It's just <b>labels and values</b> wrapped in brackets (see Figure B). Every system can read it.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A filled-in form: each field has a label (“Name:”) and a value (“Cottage 5%”).</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Every product, every score, every page is a JSON file. It's <b>the seam</b> — the one format where the backend hands data to the website.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Each product is a JSON record — that's the single interface between our engine and our site.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Key / Value · Field</div>
+    <div class="def">A <b>key</b> is the label (<code>"score"</code>); its <b>value</b> is the data (<code>72</code>). One key+value is a <b>field</b>. It's how all structured data is organised.</div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">NULL <span class="pron">“null”</span></div>
+    <div class="def">A deliberate marker meaning “there is no value here.” Different from zero — zero is a number; null means <i>unknown / not captured</i>.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Core to your integrity story: if a value wasn't scraped, the field is <code>null</code> and the page says “data could not be retrieved.” You never replace null with a guess.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Missing data stays null — we'd rather show a gap than invent a number.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Schema</div>
+    <div class="def">The agreed shape of your data — which fields exist and what type each is. A contract that keeps every record consistent.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A blank form template: everyone fills in the same fields in the same order.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Database vs. Files (and SQLite)</div>
+    <div class="def">A <b>database</b> is specialised software for storing/querying lots of data (e.g. PostgreSQL, MySQL). <b>File-based</b> means storing data as plain files instead. <b>SQLite</b> is a tiny database that lives in a single file.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Bari is mostly <b>file-based</b> (JSON) on purpose — so every result is reproducible and trackable in version control. A small SQLite file just records run lineage (which scrape produced which score).</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“We chose a versioned file pipeline over a database — auditability matters more to us than query speed at this stage.”</div></div>
+  </div>
+
+  <!-- ============ 3 BACKEND ============ -->
+  <h2 class="section" id="backend"><span class="sec-num">3</span>The backend — making the data<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">The tools that gather and judge the product data.</p>
+
+  <div class="term">
+    <div class="term-h">Python</div>
+    <div class="def">A popular, readable programming language — the standard choice for data, science and automation work.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The entire backend — scrapers, the Hebrew parser, the scoring engine — is Python. Chosen because the data and scientific tooling live there.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Web scraping</div>
+    <div class="def">Automatically collecting data from websites by programmatically loading their pages and reading the content.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">How product data enters the system — scraping up to four Israeli retail chains directly. (No crowd databases, ever.)</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Headless browser · Playwright</div>
+    <div class="def">A <b>headless browser</b> is a real web browser running with no window, controlled by code. <b>Playwright</b> is the popular tool for driving one.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A robot that opens the retailer's website exactly like a shopper would — but reads and saves the page automatically.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Our scrapers use Playwright so we see what a real customer sees, including pages that only load with a full browser.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">OCR <span class="pron">“optical character recognition”</span> · Azure</div>
+    <div class="def"><b>OCR</b> turns a photo of text into actual text a computer can read. <b>Azure</b> is Microsoft's cloud, where we run that OCR.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">For reading nutrition values off photographs of physical product labels when they aren't on the website.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Parsing · Enrichment</div>
+    <div class="def"><b>Parsing</b> = reading messy raw text and pulling out the meaningful parts. <b>Enrichment</b> = adding derived insight on top (e.g. “this flour is whole-grain”).</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The “Understand” stage: a Hebrew ingredient parser detects flour type, additives, fermentation and protein source, then enriches the record before scoring.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Script · Batch job</div>
+    <div class="def">A <b>script</b> is a small program that does one task. A <b>batch job</b> runs a task over many items at once.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Each category is scored by a batch run — one command processes the whole shelf and writes every product's result.</div></div>
+  </div>
+
+  <!-- ============ 4 TRUST ============ -->
+  <h2 class="section" id="trust"><span class="sec-num">4</span>Testing &amp; trust<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">How engineers make sure a change doesn't silently break something — your strongest “we're serious” signals.</p>
+
+  <div class="term">
+    <div class="term-h">Unit test · pytest</div>
+    <div class="def">A <b>unit test</b> is a small automated check that one piece of code does what it should. <b>pytest</b> is the standard tool for running them in Python.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The Hebrew label-reader alone has 64 automated checks. If a change breaks one, you know instantly.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Regression test · Baseline · Diff</div>
+    <div class="def">A <b>regression</b> is when a new change accidentally breaks old behaviour. A <b>baseline</b> is a saved “known-good” result. A <b>diff</b> shows exactly what changed between two versions.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">Re-photographing every product after a change and laying it next to the old photo to spot anything that moved.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Change a rule → re-run all ~500 products → diff every score against the committed baseline. If something moved that shouldn't have, the gate fails. No eyeballing.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Every rule change re-runs all 500 products and diffs against a baseline before it's allowed to count.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Version control · Git · Commit</div>
+    <div class="def"><b>Git</b> records every change to the code/data over time, so you can see history and undo anything. A <b>commit</b> is one saved snapshot.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">Track Changes for an entire project — every edit, who made it, and a button to roll back.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Because the data is files, every score is in version control — you can prove how any number came to be, historically.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Reproducibility</div>
+    <div class="def">The property that anyone, anytime, can re-run the process and get the identical result. The gold standard for anything making a claim.</div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Reproducibility is the whole game for a system that makes health-adjacent claims — and ours has it by design.”</div></div>
+  </div>
+
+  <!-- ============ 5 FRONTEND ============ -->
+  <h2 class="section" id="frontend"><span class="sec-num">5</span>The frontend — the website<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">The technology that turns your JSON into the page a shopper sees.</p>
+
+  <div class="figure">
+    <svg width="100%" viewBox="0 0 880 150" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+      <defs><marker id="b" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2c5a73"/></marker></defs>
+      <rect x="30" y="50" width="180" height="56" rx="9" fill="#fff" stroke="#bcd0db"/><text x="120" y="74" text-anchor="middle" font-size="13" font-weight="700">Shopper taps a link</text><text x="120" y="92" text-anchor="middle" font-size="11" fill="#7b7b73">the browser asks…</text>
+      <rect x="350" y="50" width="180" height="56" rx="9" fill="#eef3f6" stroke="#bcd0db"/><text x="440" y="74" text-anchor="middle" font-size="13" font-weight="700">Server / Next.js</text><text x="440" y="92" text-anchor="middle" font-size="11" fill="#7b7b73">reads the JSON, builds page</text>
+      <rect x="670" y="50" width="180" height="56" rx="9" fill="#fff" stroke="#bcd0db"/><text x="760" y="74" text-anchor="middle" font-size="13" font-weight="700">Page appears</text><text x="760" y="92" text-anchor="middle" font-size="11" fill="#7b7b73">rendered on the phone</text>
+      <line x1="210" y1="78" x2="346" y2="78" stroke="#2c5a73" stroke-width="2" marker-end="url(#b)"/><text x="278" y="68" text-anchor="middle" font-size="10" fill="#54606b">request</text>
+      <line x1="530" y1="78" x2="666" y2="78" stroke="#2c5a73" stroke-width="2" marker-end="url(#b)"/><text x="598" y="68" text-anchor="middle" font-size="10" fill="#54606b">response</text>
+    </svg>
+    <div class="figcap">Figure C — How a web page loads: the browser sends a <b>request</b>; the server sends back a <b>response</b> it then <b>renders</b>.</div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Next.js <span class="pron">“next J-S”</span></div>
+    <div class="def">A leading framework for building fast, modern websites. It's the structure the whole Bari site is built on.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A pre-built chassis for a car — you don't forge the frame from scratch; you build on a proven one.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The site is Next.js. It reads the finished JSON and displays it — it never recalculates a score.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">React · Component</div>
+    <div class="def"><b>React</b> is the most popular tool for building interactive interfaces. A <b>component</b> is a reusable building block (a button, a card, a comparison row).</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">LEGO bricks — build one “product card” once, reuse it for every product.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Every page is assembled from a small set of shared components — which is why all pages look consistent.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">TypeScript</div>
+    <div class="def">JavaScript (the language of the web) plus <b>type safety</b> — it catches whole classes of mistakes before the code ever runs.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A form that rejects letters in a phone-number box — it stops bad data before it causes a problem.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The website is TypeScript, so the shape of every JSON field is checked — the site can't accidentally misread a score.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Tailwind (CSS)</div>
+    <div class="def"><b>CSS</b> is what styles a web page (colours, spacing, fonts). <b>Tailwind</b> is a popular, consistent way of writing it.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Keeps the visual design uniform across every page, via shared design tokens.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">RTL <span class="pron">“right-to-left”</span></div>
+    <div class="def">Layout for languages that read right-to-left, like Hebrew and Arabic. Harder than it sounds — everything mirrors.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">The whole site is built RTL-correct for Hebrew — a real piece of engineering and part of your local moat.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Rendering · DOM · Responsive</div>
+    <div class="def"><b>Rendering</b> = turning code/data into the visible page. The <b>DOM</b> is the page's live structure in the browser. <b>Responsive</b> = the layout adapts to any screen size.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Pages are mobile-first and responsive — the target is a shopper understanding the shelf in 15–20 seconds on a phone.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Server-side / Static rendering (SSR / SSG)</div>
+    <div class="def">Two ways to build a page: <b>SSR</b> builds it fresh on the server per visit; <b>SSG</b> builds it once ahead of time so it loads instantly. Most sites mix both.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Comparison pages can be pre-built from the JSON, so they're fast and cheap to serve.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Deploy · Vercel</div>
+    <div class="def"><b>Deploying</b> = publishing the website so the public can reach it. <b>Vercel</b> is the hosting service built for Next.js sites.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">“Re-publishing” a category = regenerate its JSON, then redeploy the site. No hand-editing of live pages.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Accessibility · WCAG · Contrast</div>
+    <div class="def">Making a site usable by everyone, including low-vision users. <b>WCAG</b> is the standard; <b>contrast</b> is whether text is readable against its background.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">A design reviewer checks every page for contrast and accessibility before it ships.</div></div>
+  </div>
+
+  <!-- ============ 6 AI ============ -->
+  <h2 class="section" id="ai"><span class="sec-num">6</span>AI &amp; language models<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">Where AI sits in Bari — and, just as importantly, where it does not.</p>
+
+  <div class="callout green"><b>The line that wins the room:</b> AI in Bari does two narrow jobs — helping <i>read</i> messy Hebrew labels, and helping <i>draft</i> consumer copy. It <b>never</b> sets a nutrition value or a score. The verdict is deterministic code. That's what separates you from an “AI nutrition app.”</div>
+
+  <div class="term">
+    <div class="term-h">LLM <span class="pron">“large language model”</span> · Model</div>
+    <div class="def">An AI trained on huge amounts of text that can read and write language (ChatGPT, Claude, etc.). A <b>model</b> is the trained system itself.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Used for language tasks (parsing help, copywriting) — outside the scoring path, always checked downstream.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Prompt</div>
+    <div class="def">The instruction you give an AI model to get an output.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">The brief you hand a freelancer — the clearer the brief, the better the result.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Hallucination</div>
+    <div class="def">When an AI confidently states something false. The core reason you can't let an LLM produce nutrition facts or scores.</div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“We never let a model invent a number — that's exactly where AI hallucinates. Numbers come from the scrape and deterministic code.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Agent · Orchestration</div>
+    <div class="def">An <b>agent</b> is an AI given a job and some tools to do it. <b>Orchestration</b> is coordinating several agents/roles toward one outcome.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Production runs as a coordinated set of specialist roles (data, research, content, QA) with one lead checking each result against evidence before it counts.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Training vs. Inference</div>
+    <div class="def"><b>Training</b> = teaching a model from data (slow, expensive, one-time). <b>Inference</b> = using the finished model to get an answer (fast).</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Useful to know if the engineer asks. Today Bari doesn't train its own model; the future “personalisation engine” is where ML/training could enter — and even then, it sits beside the deterministic score, not inside it.</div></div>
+  </div>
+
+  <!-- ============ 7 GLUE ============ -->
+  <h2 class="section" id="glue"><span class="sec-num">7</span>Engineering glue &amp; practices<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">The connective concepts that come up in any technical conversation.</p>
+
+  <div class="term">
+    <div class="term-h">API <span class="pron">“application programming interface”</span></div>
+    <div class="def">A defined way for two systems to talk to each other — one program asks, another answers, in an agreed format.</div>
+    <div class="row"><div class="lab analogy">Analogy</div><div class="val analogy">A restaurant menu: a fixed list of things you can order and what you'll get back. You don't go into the kitchen.</div></div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Relevant to the plan: selling the scored data to a health fund could mean exposing it through an API their app calls.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Repository (“repo”) · Monorepo</div>
+    <div class="def">A <b>repo</b> is the project's folder of code, tracked by Git. A <b>monorepo</b> keeps several related projects in one repo.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Bari is a monorepo: the data/scoring workspace and the website live together but stay cleanly separated.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Feature flag · Rollback</div>
+    <div class="def">A <b>feature flag</b> is an on/off switch for a change, so you can release it safely or turn it off instantly. A <b>rollback</b> undoes a change.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">New scoring rules ship behind a flag (default off) with a defined rollback — so nothing changes published scores by accident.</div></div>
+    <div class="row"><div class="lab say say">Say it</div><div class="val say">“Every scoring change is behind a flag with a rollback — we never let an experiment touch live scores silently.”</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Gate · Conformance check</div>
+    <div class="def">A <b>gate</b> is an automated checkpoint that blocks a change unless it passes. A <b>conformance check</b> verifies something still follows the required structure.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">Before a category goes live it must pass gates (data integrity, no regressions, the red-team review). A conformance check confirms every category will still re-flow when the engine changes.</div></div>
+  </div>
+
+  <div class="term">
+    <div class="term-h">Edge case</div>
+    <div class="def">An unusual input that breaks normal assumptions — the thing that exposes weak software.</div>
+    <div class="row"><div class="lab">In Bari</div><div class="val">e.g. a product with a missing panel, or a whole-food fat like almonds that's calorie-dense but healthy. The engine has deliberate handling (floors) for these.</div></div>
+  </div>
+
+  <!-- ============ 8 BARI VOCAB ============ -->
+  <h2 class="section" id="bari"><span class="sec-num">8</span>Bari's own vocabulary<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">Internal terms — mainly for <i>your</i> understanding. Most of these stay in-house; don't lead with them to outsiders.</p>
+
+  <div class="term">
+    <div class="term-h">Trace</div>
+    <div class="def">The full record a score writes — every rule that fired, every cap, every dimension's contribution. The source of “traceability.”</div>
+  </div>
+  <div class="term">
+    <div class="term-h">Dimension</div>
+    <div class="def">One of the ten angles the engine scores a product on (processing, nutrient density, etc.), each 0–100.</div>
+  </div>
+  <div class="term">
+    <div class="term-h">Cap · Floor</div>
+    <div class="def">A <b>cap</b> is a hard ceiling on the score (serious problems can't be outweighed). A <b>floor</b> is a protective minimum (whole foods aren't punished for natural traits). These do the heavy lifting at the extremes — more than the weights.</div>
+  </div>
+  <div class="term">
+    <div class="term-h">Score · Grade</div>
+    <div class="def">The <b>score</b> is the 0–100 number; the <b>grade</b> (S–E) is the band it falls into. The grade is for the shopper; the score drives the ranking.</div>
+  </div>
+  <div class="term">
+    <div class="term-h">BSIP <span class="pron">internal — keep in-house</span></div>
+    <div class="def">Your internal name for the pipeline's three stages (extraction → enrichment → scoring). Useful shorthand internally; to outsiders just say “our pipeline.”</div>
+  </div>
+
+  <!-- ============ 9 CHEAT SHEET ============ -->
+  <h2 class="section" id="cheat"><span class="sec-num">9</span>One-page cheat sheet<a class="back" href="#models">↑ top</a></h2>
+  <p class="section-sub">Fast scan — every term in one line.</p>
+
+  <table class="cheat">
+    <tr><th>Term</th><th>In one line</th></tr>
+    <tr><td>Backend</td><td>The hidden half — data &amp; scoring (Python).</td></tr>
+    <tr><td>Frontend</td><td>The visible half — the website (Next.js).</td></tr>
+    <tr><td>Deterministic</td><td>Same input → same output, always.</td></tr>
+    <tr><td>Traceable</td><td>You can see exactly why it gave that answer.</td></tr>
+    <tr><td>Rule-based</td><td>Explicit human-written logic, not a learned model.</td></tr>
+    <tr><td>Pipeline</td><td>An assembly line of data stages.</td></tr>
+    <tr><td>JSON</td><td>The universal “labelled boxes” text format for data.</td></tr>
+    <tr><td>Null</td><td>“No value” — we never guess to fill it.</td></tr>
+    <tr><td>Schema</td><td>The agreed shape every record follows.</td></tr>
+    <tr><td>Python</td><td>The language of the backend.</td></tr>
+    <tr><td>Scraping</td><td>Collecting data from websites automatically.</td></tr>
+    <tr><td>Playwright</td><td>A robot browser that loads pages like a shopper.</td></tr>
+    <tr><td>OCR</td><td>Turning a photo of text into readable text.</td></tr>
+    <tr><td>Unit test / pytest</td><td>Automated checks that code works.</td></tr>
+    <tr><td>Regression test</td><td>Re-run everything; flag anything that moved.</td></tr>
+    <tr><td>Baseline / diff</td><td>Known-good result; the change between versions.</td></tr>
+    <tr><td>Git</td><td>Track-changes for the whole project.</td></tr>
+    <tr><td>Reproducibility</td><td>Anyone can re-run it and get the same result.</td></tr>
+    <tr><td>Next.js</td><td>The framework the website is built on.</td></tr>
+    <tr><td>React / Component</td><td>Interface tool / a reusable building block.</td></tr>
+    <tr><td>TypeScript</td><td>Web language with mistake-catching built in.</td></tr>
+    <tr><td>Tailwind</td><td>Consistent way to style the pages.</td></tr>
+    <tr><td>RTL</td><td>Right-to-left layout (Hebrew).</td></tr>
+    <tr><td>Render / DOM</td><td>Turning data into the visible page / its live structure.</td></tr>
+    <tr><td>SSR / SSG</td><td>Build a page per-visit / build it ahead of time.</td></tr>
+    <tr><td>Deploy / Vercel</td><td>Publish the site / the host it runs on.</td></tr>
+    <tr><td>LLM / Model</td><td>An AI that reads &amp; writes language.</td></tr>
+    <tr><td>Hallucination</td><td>When AI confidently says something false.</td></tr>
+    <tr><td>Agent / Orchestration</td><td>An AI with a job / coordinating several of them.</td></tr>
+    <tr><td>API</td><td>A defined way for two systems to talk.</td></tr>
+    <tr><td>Monorepo</td><td>Several projects in one tracked folder.</td></tr>
+    <tr><td>Feature flag / Rollback</td><td>On-off switch for a change / undo it.</td></tr>
+    <tr><td>Gate / Conformance</td><td>Automated checkpoint that blocks bad changes.</td></tr>
+  </table>
+
+  <!-- ============ 10 FLUENT ============ -->
+  <h2 class="section" id="fluent"><span class="sec-num">10</span>Sound fluent · avoid these slips<a class="back" href="#models">↑ top</a></h2>
+
+  <div class="callout green">
+    <b>Three sentences that signal you know your architecture:</b>
+    <div class="pillrow" style="margin-top:10px;">
+      <span class="chip">“It's deterministic — same input, same score, with a full trace.”</span>
+      <span class="chip">“The engine and the site meet only through generated JSON.”</span>
+      <span class="chip">“Every rule change is regression-gated against all 500 products.”</span>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <b>Don't say / watch for:</b>
+    <ul style="margin:8px 0 0 0;padding-left:20px;">
+      <li><b>Don't</b> call the scoring “AI” or “the algorithm learns” — it's rule-based and doesn't learn. Saying otherwise undercuts your whole credibility story.</li>
+      <li><b>Don't</b> collapse “deterministic” and “traceable” into one word — they're two different claims (reproducible vs. explainable). You have both; say both.</li>
+      <li><b>Don't</b> overclaim productionization. The honest line: “the engine and pipeline run end-to-end and are proven; hardening it into a clean service is exactly what a technical partner would own.”</li>
+      <li><b>Don't</b> guess a number you don't know. “I'd have to check the exact figure” beats a confident wrong answer — every engineer respects that more.</li>
+    </ul>
+  </div>
+
+  <footer>
+    Bari — Founder's Tech Handbook · prepared 21 June 2026 · keep open during the meeting and Ctrl-F any term.
+  </footer>
+
+</div>
+</body>
+</html>

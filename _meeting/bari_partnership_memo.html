@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bari — Strategic Briefing</title>
+<style>
+  :root{
+    --ink:#1c1c1a; --ink-soft:#4a4a45; --muted:#7b7b73;
+    --canvas:#F7F7F2; --card:#ffffff; --line:#e2e1d8;
+    --green:#1f5c43; --green-soft:#e7efe9;
+    --amber:#c0852a; --amber-soft:#f6ecd9;
+    --red:#9b3b32; --red-soft:#f3e3e1;
+    --blue:#2c5a73; --blue-soft:#eef3f6; --slate:#54606b;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:"Georgia","Times New Roman",serif;color:var(--ink);background:var(--canvas);
+    font-size:11pt;line-height:1.5;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .sans,h1,h2,h3,h4,.kicker,.label{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;}
+  .page{width:210mm;min-height:297mm;padding:19mm 18mm 16mm 18mm;margin:0 auto;background:var(--canvas);position:relative;page-break-after:always;overflow:hidden;}
+  .page:last-child{page-break-after:auto;}
+  @page{size:A4;margin:0;}
+
+  .cover{background:var(--ink);color:#f3f2ea;display:flex;flex-direction:column;justify-content:space-between;}
+  .cover .mark{font-family:"Segoe UI",sans-serif;font-weight:700;letter-spacing:.5px;font-size:13pt;color:#cfcec3;}
+  .cover .big{font-family:"Segoe UI",sans-serif;font-weight:700;font-size:44pt;line-height:1.05;margin:0;color:#fff;}
+  .cover .sub{font-size:14.5pt;color:#bcbbb0;margin-top:14px;max-width:140mm;line-height:1.5;}
+  .cover .rule{height:3px;width:70px;background:var(--green);margin:24px 0;border:0;}
+  .cover-meta{font-family:"Segoe UI",sans-serif;font-size:9.5pt;color:#9b9a90;line-height:1.8;}
+  .cover-meta b{color:#e6e5db;font-weight:600;}
+  .cover-badges{display:flex;gap:9px;margin-top:18px;flex-wrap:wrap;}
+  .cover-badge{font-family:"Segoe UI",sans-serif;font-size:8.5pt;border:1px solid #44443d;color:#cfcec3;padding:5px 11px;border-radius:30px;}
+
+  .kicker{font-size:8.5pt;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:6px;}
+  h2.sec{font-size:21pt;font-weight:700;margin:0 0 4px 0;line-height:1.1;}
+  .sec-lead{font-size:11pt;color:var(--ink-soft);margin:0 0 16px 0;max-width:165mm;}
+  h3{font-size:12.5pt;margin:20px 0 7px 0;}
+  h4{font-size:9pt;margin:0 0 5px 0;color:var(--green);letter-spacing:.3px;text-transform:uppercase;}
+  p{margin:0 0 9px 0;}
+  .muted{color:var(--muted);} .small{font-size:9.5pt;} .tiny{font-size:8.3pt;}
+  code{font-family:"Consolas",monospace;font-size:9pt;background:#efeee6;padding:1px 4px;border-radius:3px;}
+
+  .foot{position:absolute;bottom:9mm;left:18mm;right:18mm;display:flex;justify-content:space-between;font-family:"Segoe UI",sans-serif;font-size:8pt;color:var(--muted);border-top:1px solid var(--line);padding-top:5px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:13px 15px;}
+  .card.flat{background:transparent;}
+  .card h4{margin-top:0;}
+
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:13px;text-align:center;}
+  .stat .n{font-family:"Segoe UI",sans-serif;font-weight:700;font-size:22pt;color:var(--green);line-height:1;}
+  .stat .l{font-family:"Segoe UI",sans-serif;font-size:7.7pt;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-top:7px;}
+
+  .callout{border-left:4px solid var(--blue);background:var(--blue-soft);border-radius:0 8px 8px 0;padding:11px 14px;margin:13px 0;}
+  .callout .tag{font-family:"Segoe UI",sans-serif;font-size:8pt;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);}
+  .callout.green{border-color:var(--green);background:var(--green-soft);}.callout.green .tag{color:var(--green);}
+  .callout.amber{border-color:var(--amber);background:var(--amber-soft);}.callout.amber .tag{color:var(--amber);}
+  .callout.red{border-color:var(--red);background:var(--red-soft);}.callout.red .tag{color:var(--red);}
+  .callout p{margin:5px 0 0 0;font-size:9.7pt;}
+
+  table.t{width:100%;border-collapse:collapse;font-family:"Segoe UI",sans-serif;font-size:8.8pt;margin:8px 0;}
+  table.t th{background:var(--ink);color:#f3f2ea;text-align:left;padding:6px 8px;font-weight:600;font-size:8.3pt;text-transform:uppercase;letter-spacing:.4px;}
+  table.t td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.t tr:nth-child(even) td{background:#fbfbf7;}
+  table.t .em{font-weight:700;color:var(--green);}
+
+  ul.clean{margin:5px 0 10px 0;padding-left:0;list-style:none;}
+  ul.clean li{position:relative;padding-left:17px;margin-bottom:6px;font-size:9.6pt;}
+  ul.clean li:before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;background:var(--green);border-radius:2px;}
+  ul.clean.amber li:before{background:var(--amber);}
+  ul.clean.blue li:before{background:var(--blue);}
+
+  .pill{display:inline-block;font-family:"Segoe UI",sans-serif;font-size:7.3pt;font-weight:600;padding:2px 8px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;}
+  .pill.live{background:var(--green-soft);color:var(--green);border:1px solid #bcd6c6;}
+  .pill.build{background:var(--amber-soft);color:var(--amber);border:1px solid #e6cf9e;}
+
+  .tocrow{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:8px 2px;font-family:"Segoe UI",sans-serif;font-size:10pt;}
+  .tocrow .n{color:var(--green);font-weight:700;width:26px;}.tocrow .t{flex:1;}.tocrow .p{color:var(--muted);}
+
+  .figcap{font-family:"Segoe UI",sans-serif;font-size:7.8pt;color:var(--muted);text-align:center;margin-top:5px;letter-spacing:.2px;}
+  .src{font-family:"Segoe UI",sans-serif;font-size:7.3pt;color:#9b9a90;margin-top:10px;line-height:1.5;}
+  svg{display:block;}
+  .phase{display:flex;gap:13px;margin-bottom:11px;}
+  .phase .num{flex:0 0 40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-family:"Segoe UI",sans-serif;font-weight:700;font-size:15pt;display:flex;align-items:center;justify-content:center;}
+  .phase .body{flex:1;}
+  .phase .body h4{color:var(--ink);font-size:11pt;text-transform:none;letter-spacing:0;margin-bottom:3px;}
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<section class="page cover">
+  <div><div class="mark">BARI&nbsp;&nbsp;·&nbsp;&nbsp;ברי</div></div>
+  <div>
+    <div class="kicker" style="color:#6fae8e;">Strategic Briefing — Confidential</div>
+    <h1 class="big">The trustworthy<br>shelf for food &amp;<br>supplements.</h1>
+    <hr class="rule">
+    <div class="sub">An evidence-graded comparison platform for the Israeli consumer — a deterministic scoring engine, a disciplined data pipeline, and the go-to-market to turn it into a trusted national reference.</div>
+    <div class="cover-badges">
+      <span class="cover-badge">499 products scored</span>
+      <span class="cover-badge">13 live categories</span>
+      <span class="cover-badge">Deterministic engine</span>
+      <span class="cover-badge">Only verified data</span>
+    </div>
+  </div>
+  <div class="cover-meta">
+    <b>Prepared by:</b> Tom Bar Haim — Founder &amp; Owner, Bari<br>
+    <b>Date:</b> 21 June 2026 &nbsp;·&nbsp; <b>Inside:</b> Product · Engine · Data integrity · The team · Market · Go-to-market
+  </div>
+</section>
+
+<!-- ===== CONTENTS ===== -->
+<section class="page">
+  <div class="kicker">Contents</div>
+  <h2 class="sec">What's in this briefing</h2>
+  <p class="sec-lead">A complete picture of Bari today and where it is going — the product, how it actually works, why the numbers can be trusted, the team that produces it, the market, and a phased plan to become a national reference.</p>
+
+  <div class="tocrow"><span class="n">01</span><span class="t">Executive summary — what Bari is &amp; why it's different</span><span class="p">3</span></div>
+  <div class="tocrow"><span class="n">02</span><span class="t">The product — what's live, and what it tells a shopper</span><span class="p">4</span></div>
+  <div class="tocrow"><span class="n">03</span><span class="t">How a product becomes a score — the pipeline</span><span class="p">5</span></div>
+  <div class="tocrow"><span class="n">04</span><span class="t">The engine — how a score is computed (and why it doesn't double-count)</span><span class="p">6</span></div>
+  <div class="tocrow"><span class="n">05</span><span class="t">Why the numbers can be trusted</span><span class="p">7</span></div>
+  <div class="tocrow"><span class="n">06</span><span class="t">How it's built</span><span class="p">8</span></div>
+  <div class="tocrow"><span class="n">07</span><span class="t">The team that produces it</span><span class="p">9</span></div>
+  <div class="tocrow"><span class="n">08</span><span class="t">The market &amp; why now</span><span class="p">10</span></div>
+  <div class="tocrow"><span class="n">09</span><span class="t">Where we are — done · doing · going</span><span class="p">11</span></div>
+  <div class="tocrow"><span class="n">10</span><span class="t">Go-to-market — the five-phase plan</span><span class="p">12–13</span></div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>Confidential</span></div>
+</section>
+
+<!-- ===== 01 EXEC ===== -->
+<section class="page">
+  <div class="kicker">01 — Executive Summary</div>
+  <h2 class="sec">What Bari is, in one breath</h2>
+  <p class="sec-lead">Bari turns the noise of a supermarket shelf into a single, defensible verdict. For any food or supplement category it answers the only question a shopper actually has: <em>“of the things in front of me, which is genuinely better — and why?”</em></p>
+
+  <div class="grid4" style="margin-bottom:15px;">
+    <div class="stat"><div class="n">499</div><div class="l">Products scored</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">Live categories</div></div>
+    <div class="stat"><div class="n">10</div><div class="l">Scoring dimensions</div></div>
+    <div class="stat"><div class="n">100%</div><div class="l">Directly verified data</div></div>
+  </div>
+
+  <h3>The gap we close</h3>
+  <p>A shopper today has two bad options. Public databases and crowd apps are <strong>unreliable</strong> — wrong barcodes, missing fields, contributed errors. Brand marketing is, by design, <strong>not neutral</strong>. Israel's own government decided this matters: since 2020 it has mandated red warning labels on high-sugar, -salt and -fat products. But that signal is <strong>binary</strong> — a product either has a red label or it doesn't. Nobody tells an Israeli shopper, in Hebrew, <em>which</em> of two products is better and by how much. That continuous, explained, category-relative verdict is the whole of what Bari does.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Why it's credible</h4>
+      <ul class="clean">
+        <li><b>Deterministic engine.</b> Scores come from auditable code, not an AI guessing — every score reproduces exactly from its own record.</li>
+        <li><b>Only verified data.</b> If a value wasn't read directly off the real product, the field is left empty and the page says so. We never fill gaps with guesses.</li>
+        <li><b>It isn't generous.</b> Across 499 products only 6% earn an A or better and 56% land at D or E. The engine grades honestly — it is not a marketing tool.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Why it scales</h4>
+      <ul class="clean amber">
+        <li><b>A factory, not a craft.</b> Each category is the output of one repeatable pipeline — not a hand-built page.</li>
+        <li><b>One engine, every category.</b> Improve a rule once and all categories re-flow through the same machinery.</li>
+        <li><b>Hebrew-native.</b> The whole stack reasons over Hebrew ingredient text — a real, defensible moat in this market.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">Positioning</span>
+    <p>“Bari is the <strong>category-relative, evidence-graded shelf</strong> for Israeli food and supplements — the only place a shopper gets an honest verdict, with the reason shown, in their own language.”</p>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>01 — Executive Summary · 3</span></div>
+</section>
+
+<!-- ===== 02 PRODUCT ===== -->
+<section class="page">
+  <div class="kicker">02 — The Product</div>
+  <h2 class="sec">What's live, and what it tells a shopper</h2>
+  <p class="sec-lead">Bari is a working Hebrew web platform built around <strong>comparison pages</strong>. Each one takes a real shelf, scores <em>every product individually</em>, and ranks them so a shopper understands the shelf in 15–20 seconds on a phone.</p>
+
+  <div class="grid2" style="align-items:start;">
+    <div>
+      <h4 style="margin-bottom:8px;">13 categories shipped · 499 products</h4>
+      <table class="t">
+        <tr><th>Category</th><th>n</th><th>Status</th></tr>
+        <tr><td>Bread</td><td>29</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Cheeses (yellow / hard / brined)</td><td>112</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Milk &amp; alternatives</td><td>18</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Hummus &amp; spreads</td><td>57</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Juices</td><td>17</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Cereals · Granola</td><td>45</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Cookies · Cakes · Salty snacks</td><td>205</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Protein &amp; snack bars</td><td>16</td><td><span class="pill live">Live</span></td></tr>
+        <tr><td>Supplements (magnesium pilot)</td><td>—</td><td><span class="pill build">Build</span></td></tr>
+      </table>
+      <p class="tiny muted">Grouped rows are broken into individual categories in Figure 2 (p.7). All live categories pass a structural conformance check — a change to the scoring engine re-flows cleanly through every one of them.</p>
+    </div>
+    <div>
+      <h4 style="margin-bottom:8px;">The engine grades honestly — full corpus</h4>
+      <!-- grade distribution bar -->
+      <svg width="100%" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+        <g>
+          <!-- baseline -->
+          <line x1="40" y1="170" x2="350" y2="170" stroke="#e2e1d8"/>
+          <!-- bars: S2 A29 B92 C96 D105 E175 ; scale max 175 -> 140px -->
+          <!-- x positions -->
+          <g text-anchor="middle" font-size="9" font-weight="700">
+            <rect x="48"  y="168" width="36" height="2"  fill="#1f5c43"/><text x="66"  y="184" fill="#1c1c1a">S</text><text x="66"  y="160" font-size="8" fill="#7b7b73">2</text>
+            <rect x="100" y="147" width="36" height="23" fill="#1f5c43"/><text x="118" y="184" fill="#1c1c1a">A</text><text x="118" y="140" font-size="8" fill="#7b7b73">29</text>
+            <rect x="152" y="96"  width="36" height="74" fill="#3f8060"/><text x="170" y="184" fill="#1c1c1a">B</text><text x="170" y="89"  font-size="8" fill="#7b7b73">92</text>
+            <rect x="204" y="93"  width="36" height="77" fill="#c0852a"/><text x="222" y="184" fill="#1c1c1a">C</text><text x="222" y="86"  font-size="8" fill="#7b7b73">96</text>
+            <rect x="256" y="86"  width="36" height="84" fill="#b5662f"/><text x="274" y="184" fill="#1c1c1a">D</text><text x="274" y="79"  font-size="8" fill="#7b7b73">105</text>
+            <rect x="308" y="30"  width="36" height="140" fill="#9b3b32"/><text x="326" y="184" fill="#1c1c1a">E</text><text x="326" y="23"  font-size="8" fill="#7b7b73">175</text>
+          </g>
+          <text x="195" y="208" text-anchor="middle" font-size="8" fill="#7b7b73">Only 6% score A or better · 56% land at D–E</text>
+        </g>
+      </svg>
+      <p class="tiny muted" style="text-align:center;">Grade distribution across all 499 scored products (live corpus, June 2026).</p>
+    </div>
+  </div>
+
+  <h3>What a comparison page gives the shopper</h3>
+  <div class="grid3">
+    <div class="card flat" style="border-style:dashed;"><h4>The verdict</h4><p class="small">A score (0–100) and grade (S–E) for <em>each</em> product, ranked within its category — no vague verbal labels layered on top of the number.</p></div>
+    <div class="card flat" style="border-style:dashed;"><h4>The reason</h4><p class="small">A two-line human verdict per product — where it stands, why, and the catch. The real driver is named (calorie density, sodium, fat source…).</p></div>
+    <div class="card flat" style="border-style:dashed;"><h4>The honesty</h4><p class="small">A category caveat, a confidence state when data is thin, and an explicit “data could not be retrieved” instead of a guessed value.</p></div>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>02 — The Product · 4</span></div>
+</section>
+
+<!-- ===== 03 PIPELINE ===== -->
+<section class="page">
+  <div class="kicker">03 — How It Works</div>
+  <h2 class="sec">How a product becomes a score</h2>
+  <p class="sec-lead">Every product moves through three stages — <strong>extract → understand → judge</strong>. Real retail data in; an individual, defensible verdict out. The judging stage never sees an outside database; it only sees what was directly captured.</p>
+
+  <svg width="100%" viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" style="margin:4px 0;">
+    <defs><marker id="arr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1f5c43"/></marker></defs>
+    <g font-family="Segoe UI,sans-serif">
+      <rect x="6" y="80" width="120" height="90" rx="9" fill="#fff" stroke="#e2e1d8"/>
+      <text x="66" y="112" text-anchor="middle" font-size="12" font-weight="700">Retail</text>
+      <text x="66" y="128" text-anchor="middle" font-size="12" font-weight="700">scrape</text>
+      <text x="66" y="150" text-anchor="middle" font-size="8.5" fill="#7b7b73">4 major chains</text>
+
+      <rect x="196" y="70" width="150" height="110" rx="9" fill="#1c1c1a"/>
+      <text x="271" y="97" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">EXTRACT</text>
+      <text x="271" y="115" text-anchor="middle" font-size="9" fill="#cfcec3">web data + label OCR</text>
+      <text x="271" y="140" text-anchor="middle" font-size="8.5" fill="#9b9a90">raw observations</text>
+      <text x="271" y="156" text-anchor="middle" font-size="8.5" fill="#9b9a90">missing = left empty</text>
+
+      <rect x="416" y="70" width="150" height="110" rx="9" fill="#1f5c43"/>
+      <text x="491" y="97" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">UNDERSTAND</text>
+      <text x="491" y="115" text-anchor="middle" font-size="9" fill="#d6e6dc">read the Hebrew label</text>
+      <text x="491" y="140" text-anchor="middle" font-size="8.5" fill="#bcd6c6">flour type · additives</text>
+      <text x="491" y="156" text-anchor="middle" font-size="8.5" fill="#bcd6c6">→ one clean record</text>
+
+      <rect x="636" y="70" width="150" height="110" rx="9" fill="#2c5a73"/>
+      <text x="711" y="97" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">JUDGE</text>
+      <text x="711" y="115" text-anchor="middle" font-size="9" fill="#cfe0e8">the scoring engine</text>
+      <text x="711" y="140" text-anchor="middle" font-size="8.5" fill="#b6cdd8">10 dimensions</text>
+      <text x="711" y="156" text-anchor="middle" font-size="8.5" fill="#b6cdd8">→ score + grade + record</text>
+
+      <rect x="836" y="80" width="58" height="90" rx="9" fill="#fff" stroke="#e2e1d8"/>
+      <text x="865" y="120" text-anchor="middle" font-size="10" font-weight="700">Page</text>
+      <text x="865" y="136" text-anchor="middle" font-size="8" fill="#7b7b73">live</text>
+
+      <line x1="128" y1="125" x2="192" y2="125" stroke="#1f5c43" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="348" y1="125" x2="412" y2="125" stroke="#1f5c43" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="568" y1="125" x2="632" y2="125" stroke="#1f5c43" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="788" y1="125" x2="832" y2="125" stroke="#1f5c43" stroke-width="2" marker-end="url(#arr)"/>
+
+      <rect x="196" y="200" width="590" height="32" rx="7" fill="#f6ecd9" stroke="#e6cf9e"/>
+      <text x="491" y="220" text-anchor="middle" font-size="9.3" font-weight="700" fill="#c0852a">A quality gate runs between every stage — implausible or missing data is rejected, never invented</text>
+    </g>
+  </svg>
+  <div class="figcap">Figure 1 — The pipeline. The engine never reads an external database; it only sees what the scrape captured.</div>
+
+  <div class="grid3" style="margin-top:12px;">
+    <div class="card"><h4>Extract</h4><p class="small">A four-step scraper pulls product pages from up to four Israeli chains; an OCR step reads physical label photos. The output is raw, per-product observations. If a field isn't found, it stays empty — there is no imputation anywhere in the system.</p></div>
+    <div class="card"><h4>Understand</h4><p class="small">Software reads the Hebrew ingredient list — white vs. whole-grain flour, fermentation, additives and how many, the protein source, the food structure — and writes one clean, canonical record per product, tagged with how confident it is.</p></div>
+    <div class="card"><h4>Judge</h4><p class="small">The scoring engine turns that record into a score and grade and writes a full reasoning record alongside it. The website only ever displays this output, so the number on screen always traces back to the record that produced it.</p></div>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">The important separation</span>
+    <p>AI helps <em>read</em> messy Hebrew labels and <em>write</em> the consumer copy. It never sets a nutrition value or a score — that is done by deterministic code. This is exactly what makes Bari's output reproducible and defensible, where an “AI nutrition app” is not.</p>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>03 — The Pipeline · 5</span></div>
+</section>
+
+<!-- ===== 04 ENGINE ===== -->
+<section class="page">
+  <div class="kicker">04 — The Engine</div>
+  <h2 class="sec">How a score is computed</h2>
+  <p class="sec-lead">The engine reads a product across <strong>ten dimensions</strong>, then runs four discipline steps whose entire job is to make sure no single problem is counted twice. It is plain, deterministic code — same product, same score, every time.</p>
+
+  <div class="grid2">
+    <div>
+      <h4 style="margin-bottom:6px;">The ten dimensions (each 0–100)</h4>
+      <table class="t">
+        <tr><th>Dimension</th><th>Weight</th></tr>
+        <tr><td class="em">Processing quality</td><td>15%</td></tr>
+        <tr><td class="em">Nutrient density</td><td>15%</td></tr>
+        <tr><td class="em">Calorie density</td><td>15%</td></tr>
+        <tr><td class="em">Glycemic quality</td><td>12%</td></tr>
+        <tr><td class="em">Protein quality</td><td>10%</td></tr>
+        <tr><td class="em">Additive quality</td><td>10%</td></tr>
+        <tr><td class="em">Fat quality</td><td>8%</td></tr>
+        <tr><td class="em">Satiety support</td><td>6%</td></tr>
+        <tr><td class="em">Regulatory quality (red labels)</td><td>5%</td></tr>
+        <tr><td class="em">Whole-food integrity</td><td>4%</td></tr>
+      </table>
+    </div>
+    <div>
+      <h4 style="margin-bottom:6px;">Then four discipline steps</h4>
+      <svg width="100%" viewBox="0 0 360 270" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+        <g>
+          <rect x="8" y="6" width="344" height="40" rx="7" fill="#f6ecd9" stroke="#e6cf9e"/>
+          <text x="22" y="24" font-size="10" font-weight="700" fill="#c0852a">Guardrails</text>
+          <text x="22" y="38" font-size="8.3" fill="#9b7327">hard ceilings for serious problems (e.g. trans fat)</text>
+          <rect x="8" y="52" width="344" height="40" rx="7" fill="#f6ecd9" stroke="#e6cf9e"/>
+          <text x="22" y="70" font-size="10" font-weight="700" fill="#c0852a">Hyper-palatability check</text>
+          <text x="22" y="84" font-size="8.3" fill="#9b7327">flags engineered fat-sugar / fat-salt combinations</text>
+          <rect x="8" y="98" width="344" height="40" rx="7" fill="#eef3f6" stroke="#b8cdd8"/>
+          <text x="22" y="116" font-size="10" font-weight="700" fill="#2c5a73">De-duplication step</text>
+          <text x="22" y="130" font-size="8.3" fill="#3f6478">stops one root problem penalising the score twice</text>
+          <rect x="8" y="144" width="344" height="40" rx="7" fill="#e7efe9" stroke="#bcd6c6"/>
+          <text x="22" y="162" font-size="10" font-weight="700" fill="#1f5c43">Confidence ceiling</text>
+          <text x="22" y="176" font-size="8.3" fill="#3d6b54">caps the score when the data is thin</text>
+          <rect x="8" y="196" width="344" height="34" rx="7" fill="#1c1c1a"/>
+          <text x="180" y="217" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">final score 0–100 · grade S–E</text>
+          <text x="180" y="252" text-anchor="middle" font-size="8" fill="#7b7b73">grades reflect the real spread, not an arbitrary curve</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="tag">“Don't ten dimensions double-count?” — the most important question, answered</span>
+    <p>It's the right thing to ask: a red label is <em>triggered</em> by sugar, salt or fat — which also live in the glycemic, regulatory and fat dimensions. Two deliberate design choices prevent double-counting. <b>First, weighting:</b> the overlapping dimensions are intentionally light — regulatory quality is only 5%, whole-food integrity 4% — so they nudge, they don't dominate. <b>Second, a de-duplication step</b> exists for exactly this: when several rules trace back to one root cause, the engine keeps the primary signal at full weight and demotes the echoes, with a cap per root cause. <b>Worked example:</b> a sugary cereal loses points on glycemic quality — its primary flaw — and would <em>also</em> trip the red-label dimension. The de-duplication step recognises both trace to sugar, keeps the glycemic penalty in full, and shrinks the regulatory echo to a fraction. Sugar is paid for once, not twice. (We're happy to walk a technical partner through the implementation under NDA.)</p>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">Every product gets its own score — and they genuinely differ</span>
+    <p>Scoring is per-product, not per-category. The chart on the next page shows it: within a single category, products span a wide range — yellow cheeses run from 23 to 87, milks from 34 to 85. The engine separates the genuinely better product from the worse one on the same shelf; it does not hand a category one verdict.</p>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>04 — The Engine · 6</span></div>
+</section>
+
+<!-- ===== 05 TRUST ===== -->
+<section class="page">
+  <div class="kicker">05 — Why It Can Be Trusted</div>
+  <h2 class="sec">Why the numbers can be trusted</h2>
+  <p class="sec-lead">A score is only as good as the discipline behind it. Three rules exist so that any verdict can be defended publicly — to a shopper, a brand, a regulator, or a journalist. And the proof is in the spread: the engine differentiates, and it isn't generous.</p>
+
+  <div class="grid3" style="margin-bottom:6px;">
+    <div class="card"><h4>1 · Only verified data</h4><p class="small">The only source is the product itself, read directly. Crowd-sourced databases are never used — not for nutrition, ingredients, names, or images. If we didn't capture it, the page says “data could not be retrieved.” Unknown is acceptable; a guess is not.</p></div>
+    <div class="card"><h4>2 · Every claim is sourced</h4><p class="small">Every scoring rule and every consumer claim is tied to a recorded source. Rules can't quietly accumulate — each must be justified, scoped, and reversible. Vague provenance is rejected before anything ships.</p></div>
+    <div class="card"><h4>3 · Nothing invented</h4><p class="small">The system never fabricates a product, a nutrition value, or an ingredient. A product with missing data is dropped, not guessed. Honesty over coverage — a smaller true shelf beats a larger fake one.</p></div>
+  </div>
+
+  <h3>The proof: real spread within every category</h3>
+  <svg width="100%" viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+    <line x1="250" y1="6" x2="250" y2="288" stroke="#eeede4"/>
+    <line x1="540" y1="6" x2="540" y2="288" stroke="#eeede4"/>
+    <line x1="830" y1="6" x2="830" y2="288" stroke="#eeede4"/>
+    <text x="250" y="298" text-anchor="middle" font-size="7.5" fill="#9b9a90">0</text>
+    <text x="540" y="298" text-anchor="middle" font-size="7.5" fill="#9b9a90">50</text>
+    <text x="828" y="298" text-anchor="end" font-size="7.5" fill="#9b9a90">100</text>
+    <g>
+<text x="240" y="26" text-anchor="end" font-size="8.6" fill="#1c1c1a">Bread</text>
+<line x1="585" y1="23" x2="800" y2="23" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="585" y1="23" x2="699" y2="23" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="699" cy="23" r="4.5" fill="#1f5c43"/>
+<text x="581" y="26" text-anchor="end" font-size="7.4" fill="#7b7b73">58</text>
+<text x="805" y="26" font-size="7.4" fill="#7b7b73">95</text>
+<text x="699" y="16" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">77</text>
+<text x="240" y="47" text-anchor="end" font-size="8.6" fill="#1c1c1a">Brined cheeses</text>
+<line x1="517" y1="44" x2="733" y2="44" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="517" y1="44" x2="663" y2="44" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="663" cy="44" r="4.5" fill="#1f5c43"/>
+<text x="513" y="47" text-anchor="end" font-size="7.4" fill="#7b7b73">46</text>
+<text x="738" y="47" font-size="7.4" fill="#7b7b73">83</text>
+<text x="663" y="37" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">71</text>
+<text x="240" y="68" text-anchor="end" font-size="8.6" fill="#1c1c1a">Hard cheeses</text>
+<line x1="465" y1="65" x2="701" y2="65" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="465" y1="65" x2="653" y2="65" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="653" cy="65" r="4.5" fill="#1f5c43"/>
+<text x="461" y="68" text-anchor="end" font-size="7.4" fill="#7b7b73">37</text>
+<text x="706" y="68" font-size="7.4" fill="#7b7b73">78</text>
+<text x="653" y="58" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">69</text>
+<text x="240" y="89" text-anchor="end" font-size="8.6" fill="#1c1c1a">Yellow cheese</text>
+<line x1="385" y1="86" x2="752" y2="86" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="385" y1="86" x2="587" y2="86" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="587" cy="86" r="4.5" fill="#1f5c43"/>
+<text x="381" y="89" text-anchor="end" font-size="7.4" fill="#7b7b73">23</text>
+<text x="757" y="89" font-size="7.4" fill="#7b7b73">87</text>
+<text x="587" y="79" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">58</text>
+<text x="240" y="110" text-anchor="end" font-size="8.6" fill="#1c1c1a">Granola</text>
+<line x1="480" y1="107" x2="689" y2="107" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="480" y1="107" x2="586" y2="107" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="586" cy="107" r="4.5" fill="#1f5c43"/>
+<text x="476" y="110" text-anchor="end" font-size="7.4" fill="#7b7b73">40</text>
+<text x="694" y="110" font-size="7.4" fill="#7b7b73">76</text>
+<text x="586" y="100" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">58</text>
+<text x="240" y="131" text-anchor="end" font-size="8.6" fill="#1c1c1a">Milk</text>
+<line x1="444" y1="128" x2="743" y2="128" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="444" y1="128" x2="580" y2="128" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="580" cy="128" r="4.5" fill="#1f5c43"/>
+<text x="440" y="131" text-anchor="end" font-size="7.4" fill="#7b7b73">34</text>
+<text x="748" y="131" font-size="7.4" fill="#7b7b73">85</text>
+<text x="580" y="121" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">57</text>
+<text x="240" y="152" text-anchor="end" font-size="8.6" fill="#1c1c1a">Juices</text>
+<line x1="415" y1="149" x2="743" y2="149" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="415" y1="149" x2="563" y2="149" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="563" cy="149" r="4.5" fill="#1f5c43"/>
+<text x="411" y="152" text-anchor="end" font-size="7.4" fill="#7b7b73">28</text>
+<text x="748" y="152" font-size="7.4" fill="#7b7b73">85</text>
+<text x="563" y="142" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">54</text>
+<text x="240" y="173" text-anchor="end" font-size="8.6" fill="#1c1c1a">Hummus</text>
+<line x1="434" y1="170" x2="659" y2="170" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="434" y1="170" x2="556" y2="170" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="556" cy="170" r="4.5" fill="#1f5c43"/>
+<text x="430" y="173" text-anchor="end" font-size="7.4" fill="#7b7b73">32</text>
+<text x="664" y="173" font-size="7.4" fill="#7b7b73">71</text>
+<text x="556" y="163" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">53</text>
+<text x="240" y="194" text-anchor="end" font-size="8.6" fill="#1c1c1a">Cereals</text>
+<line x1="437" y1="191" x2="683" y2="191" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="437" y1="191" x2="539" y2="191" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="539" cy="191" r="4.5" fill="#1f5c43"/>
+<text x="433" y="194" text-anchor="end" font-size="7.4" fill="#7b7b73">32</text>
+<text x="688" y="194" font-size="7.4" fill="#7b7b73">75</text>
+<text x="539" y="184" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">50</text>
+<text x="240" y="215" text-anchor="end" font-size="8.6" fill="#1c1c1a">Protein bars</text>
+<line x1="387" y1="212" x2="665" y2="212" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="387" y1="212" x2="501" y2="212" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="501" cy="212" r="4.5" fill="#1f5c43"/>
+<text x="383" y="215" text-anchor="end" font-size="7.4" fill="#7b7b73">24</text>
+<text x="670" y="215" font-size="7.4" fill="#7b7b73">72</text>
+<text x="501" y="205" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">43</text>
+<text x="240" y="236" text-anchor="end" font-size="8.6" fill="#1c1c1a">Salty snacks</text>
+<line x1="336" y1="233" x2="637" y2="233" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="336" y1="233" x2="432" y2="233" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="432" cy="233" r="4.5" fill="#1f5c43"/>
+<text x="332" y="236" text-anchor="end" font-size="7.4" fill="#7b7b73">15</text>
+<text x="642" y="236" font-size="7.4" fill="#7b7b73">67</text>
+<text x="432" y="226" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">31</text>
+<text x="240" y="257" text-anchor="end" font-size="8.6" fill="#1c1c1a">Cookies</text>
+<line x1="308" y1="254" x2="597" y2="254" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="308" y1="254" x2="409" y2="254" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="409" cy="254" r="4.5" fill="#1f5c43"/>
+<text x="304" y="257" text-anchor="end" font-size="7.4" fill="#7b7b73">10</text>
+<text x="602" y="257" font-size="7.4" fill="#7b7b73">60</text>
+<text x="409" y="247" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">27</text>
+<text x="240" y="278" text-anchor="end" font-size="8.6" fill="#1c1c1a">Cakes</text>
+<line x1="308" y1="275" x2="543" y2="275" stroke="#cfd8d2" stroke-width="6" stroke-linecap="round"/>
+<line x1="308" y1="275" x2="348" y2="275" stroke="#1f5c43" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+<circle cx="348" cy="275" r="4.5" fill="#1f5c43"/>
+<text x="304" y="278" text-anchor="end" font-size="7.4" fill="#7b7b73">10</text>
+<text x="548" y="278" font-size="7.4" fill="#7b7b73">50</text>
+<text x="348" y="268" text-anchor="middle" font-size="7.4" font-weight="700" fill="#1f5c43">17</text>
+    </g>
+  </svg>
+  <div class="figcap">Figure 2 — Min–mean–max score per category (real corpus). Wide bars = the engine separates products; low means in cookies/cakes/snacks = it refuses to flatter junk.</div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>05 — Trust · 7</span></div>
+</section>
+
+<!-- ===== 06 BUILT ===== -->
+<section class="page">
+  <div class="kicker">06 — How It's Built</div>
+  <h2 class="sec">How it's built</h2>
+  <p class="sec-lead">Bari is two clean halves that meet at one place. A <strong>data &amp; scoring workshop</strong> does all the thinking and produces finished, frozen results; a <strong>website</strong> simply displays them. Because the two only meet through finished files, the published number can never drift from the reasoning that produced it.</p>
+
+  <div class="grid2" style="margin-bottom:4px;">
+    <div class="card">
+      <h4>The workshop — where the thinking happens</h4>
+      <p class="small">A collection of automated tools that gather and judge product data. In order:</p>
+      <ul class="clean">
+        <li><b>Collectors</b> visit retailer websites and read product pages; a second tool reads photographs of physical labels.</li>
+        <li><b>A Hebrew-label reader</b> interprets the ingredient list — flour type, additives, fermentation, protein source.</li>
+        <li><b>The scoring engine</b> applies the ten dimensions and discipline steps and writes a finished result for each product.</li>
+        <li><b>Automatic tests</b> re-check the work so a change can't quietly break a past result.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>The website — where shoppers see it</h4>
+      <p class="small">A fast, modern, mobile-first Hebrew site built right-to-left. It is deliberately “simple-minded”:</p>
+      <ul class="clean blue">
+        <li>It reads the finished results and <b>displays</b> them — nothing more.</li>
+        <li>It never re-calculates, re-sorts or re-interprets a score; the ranking is decided upstream.</li>
+        <li>Every page follows one shared visual template, checked for contrast and Hebrew correctness.</li>
+        <li>Adding or updating a category means re-running the workshop, not editing pages by hand.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">Why this design is the asset</span>
+    <p>Because all the intelligence is finished and frozen <em>before</em> the website sees it, three things follow: the site can never show a number that disagrees with its own reasoning; the engine and the website can be improved independently; and a whole category re-generates with a single command, not by re-doing work. That is what makes Bari a <strong>platform</strong>, not a pile of pages — and what makes new categories cheap to add.</p>
+  </div>
+
+  <p class="small muted">Under the hood, for completeness: the workshop is Python; the website is a modern React/Next.js application in TypeScript. The two communicate through generated data files — the single, deliberate seam between them.</p>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>06 — How It's Built · 8</span></div>
+</section>
+
+<!-- ===== 07 TEAM ===== -->
+<section class="page">
+  <div class="kicker">07 — The Team</div>
+  <h2 class="sec">The team that produces it</h2>
+  <p class="sec-lead">Bari runs as a small <strong>studio of specialists</strong> — a set of focused roles, each owning one job, coordinated by a single lead and held to account by an independent challenger. Data collection, research, content and frontend work are AI-assisted, which is how a lean operation produces a national-scale catalogue — <em>but the scoring logic itself is deterministic code, not an AI judgment.</em></p>
+
+  <div class="grid2">
+    <div class="card"><h4>Data</h4><p class="small">Runs the collection and scoring pipeline — scrapes the shelves, manages the corpus, produces the scored results for each category.</p></div>
+    <div class="card"><h4>Nutrition</h4><p class="small">Owns the scoring philosophy and food-science reasoning — what each dimension means, how categories are interpreted, why a product scores as it does.</p></div>
+    <div class="card"><h4>Research</h4><p class="small">Gathers the evidence behind every rule and claim — scientific literature, supplement evidence, competitor and market analysis. Produces facts; doesn't decide.</p></div>
+    <div class="card"><h4>Product</h4><p class="small">Makes the strategic calls — what to build, what to cut, which category is next, and the final go / no-go before a category goes live.</p></div>
+    <div class="card"><h4>Content</h4><p class="small">Writes the consumer-facing words — the verdicts and explanations — in a consistent, honest, human Hebrew voice.</p></div>
+    <div class="card"><h4>Frontend &amp; Design</h4><p class="small">Builds and visually polices the website — implementing pages and enforcing one consistent, accessible, correct Hebrew layout.</p></div>
+    <div class="card"><h4>Marketing</h4><p class="small">Owns growth once a category is live — search visibility, content, audience and distribution. (The engine of the go-to-market plan.)</p></div>
+    <div class="card" style="border-color:#d9b9b5;background:var(--red-soft);"><h4 style="color:var(--red);">Independent QA / Challenger</h4><p class="small">The independent challenger. Tries to break every score and every claim before launch — can a verdict be defended in public? It raises problems; it cannot approve its own fixes.</p></div>
+  </div>
+
+  <div class="grid2" style="margin-top:6px;">
+    <div class="callout green" style="margin:0;">
+      <span class="tag">Lead / Coordinator</span>
+      <p>The founder's operational role: coordinates all of the above off a single shared task list — assigns the work, checks each result against the actual evidence, and is the only role that can mark a job “done.” No “trust me, it's finished.”</p>
+    </div>
+    <div class="callout amber" style="margin:0;">
+      <span class="tag">The rule that protects trust</span>
+      <p>Nothing a shopper will read ships without <b>two</b> independent sign-offs — the Content role <em>and</em> the independent challenger. Every consumer sentence, every category, every time.</p>
+    </div>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>07 — The Team · 9</span></div>
+</section>
+
+<!-- ===== 08 MARKET ===== -->
+<section class="page">
+  <div class="kicker">08 — Market &amp; Timing</div>
+  <h2 class="sec">The market &amp; why now</h2>
+  <p class="sec-lead">Three forces line up behind Bari: a government that has already made nutrition transparency the law, a fast-growing health-and-supplements market, and a shift in how people find trustworthy answers online. Bari is built precisely for this moment.</p>
+
+  <div class="grid3" style="margin-bottom:6px;">
+    <div class="stat"><div class="n">~2,200</div><div class="l">Deaths/yr the red-label reform aims to prevent</div></div>
+    <div class="stat"><div class="n">₪600M</div><div class="l">Annual healthcare cost it aims to save</div></div>
+    <div class="stat"><div class="n">~$0.5B</div><div class="l">Israel vitamins &amp; minerals market by 2029</div></div>
+  </div>
+
+  <div class="grid2" style="margin-top:4px;">
+    <div class="card">
+      <h4>1 · The state already validated the problem</h4>
+      <p class="small">Since 2020 Israel mandates red warning labels on products high in sugar, salt or saturated fat — a policy the Health Ministry projects will cut consumption ~30%, prevent ~2,200 deaths a year and save ~₪600M annually. The state has decided point-of-purchase nutrition guidance matters. But its signal is <b>binary</b>. <b>Bari is the continuous, comparative layer on top of it</b> — not “does this have a red label,” but “which of these is actually better, and by how much.”</p>
+    </div>
+    <div class="card">
+      <h4>2 · A growing, health-conscious market</h4>
+      <p class="small">Supplements are the second-largest over-the-counter category in Israel after painkillers, and the vitamins &amp; minerals market alone is projected to approach <b>US$0.5 billion by 2029</b>, growing ~5% a year. Consumers are actively shifting to health-conscious buying — and increasingly shopping online, where a comparison layer is most useful.</p>
+    </div>
+  </div>
+
+  <div class="callout amber">
+    <span class="tag">3 · The search shift — why credibility wins now</span>
+    <p>In 2026, AI-generated answers sit above search results and absorb the clicks. The sites that still win are the ones AI <em>cites</em> — and citation now flows to <b>original data</b> and <b>credentialed authorship</b> (the E-E-A-T signals search engines now reward). Bari is exactly that profile: a proprietary 499-product dataset, plain honest verdicts, and — with the right partner — a licensed clinical authority behind the methodology. The integrity discipline isn't overhead; in this search era it <em>is</em> the growth strategy.</p>
+  </div>
+
+  <div class="src">
+    Sources: Israel Ministry of Health / EfshariBari front-of-package reform — the ~30% / ~2,200-deaths / ~₪600M figures are the MoH's <em>pre-reform projections</em> (2019–20), not measured outcomes. · Euromonitor / Statista — Dietary Supplements &amp; Vitamins-and-Minerals, Israel. · Search Engine Land &amp; 2026 SEO benchmark studies (AI-Overview citation &amp; E-E-A-T authorship). Figures are directional market indicators, not a Bari forecast.
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>08 — Market &amp; Timing · 10</span></div>
+</section>
+
+<!-- ===== 09 ROADMAP ===== -->
+<section class="page">
+  <div class="kicker">09 — Where We Are</div>
+  <h2 class="sec">Done · doing · going</h2>
+  <p class="sec-lead">The hard, defensible part — a trustworthy engine and a repeatable factory — is built. What remains is breadth, audience and revenue: the phase where the right partner adds the most.</p>
+
+  <svg width="100%" viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+    <line x1="20" y1="40" x2="860" y2="40" stroke="#e2e1d8" stroke-width="2"/>
+    <circle cx="150" cy="40" r="7" fill="#1f5c43"/><text x="150" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1f5c43">DONE</text>
+    <circle cx="450" cy="40" r="7" fill="#c0852a"/><text x="450" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="#c0852a">DOING</text>
+    <circle cx="760" cy="40" r="7" fill="#54606b"/><text x="760" y="26" text-anchor="middle" font-size="9.5" font-weight="700" fill="#54606b">GOING</text>
+    <g font-size="8.7" fill="#4a4a45">
+      <rect x="20" y="64" width="260" height="160" rx="8" fill="#e7efe9"/>
+      <text x="34" y="86" font-size="9.5" font-weight="700" fill="#1f5c43">Built &amp; live</text>
+      <text x="34" y="106">• Deterministic 10-dimension engine</text>
+      <text x="34" y="124">• 499 products, 13 categories live</text>
+      <text x="34" y="142">• Verified-only data pipeline</text>
+      <text x="34" y="160">• Independent red-team gate</text>
+      <text x="34" y="178">• One category factory (13 food cats)</text>
+      <text x="34" y="196">• One-command re-score, all categories</text>
+      <text x="34" y="214">• A consistent comparison-page template</text>
+
+      <rect x="320" y="64" width="260" height="160" rx="8" fill="#f6ecd9"/>
+      <text x="334" y="86" font-size="9.5" font-weight="700" fill="#c0852a">In flight now</text>
+      <text x="334" y="106">• Supplements program (magnesium</text>
+      <text x="334" y="120">&nbsp;&nbsp;pilot, worldwide benchmark)</text>
+      <text x="334" y="140">• Consumer voice &amp; content system</text>
+      <text x="334" y="160">• Marketing / SEO foundation</text>
+      <text x="334" y="180">• Deeper nutrition methods</text>
+      <text x="334" y="200">• Publishing / deploy consolidation</text>
+
+      <rect x="620" y="64" width="240" height="160" rx="8" fill="#eceef0"/>
+      <text x="634" y="86" font-size="9.5" font-weight="700" fill="#54606b">Where we're going</text>
+      <text x="634" y="106">• Breadth: 30+ categories</text>
+      <text x="634" y="124">• Audience &amp; SEO traffic engine</text>
+      <text x="634" y="142">• Personalisation engine at scale</text>
+      <text x="634" y="160">• Become the trusted database</text>
+      <text x="634" y="180">• Institutional partners (health</text>
+      <text x="634" y="194">&nbsp;&nbsp;funds, gov, retail)</text>
+      <text x="634" y="214">• Funding → abroad → e-commerce</text>
+    </g>
+  </svg>
+  <div class="figcap">Figure 3 — The engine and factory are done; focus shifts to breadth, audience and revenue.</div>
+
+  <div class="grid3">
+    <div class="stat"><div class="n">13→30+</div><div class="l">Category target</div></div>
+    <div class="stat"><div class="n">1-button</div><div class="l">Re-score, all categories</div></div>
+    <div class="stat"><div class="n">Phase 1</div><div class="l">Audience &amp; traction next</div></div>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>09 — Where We Are · 11</span></div>
+</section>
+
+<!-- ===== 10 GTM (a) ===== -->
+<section class="page">
+  <div class="kicker">10 — Go-To-Market</div>
+  <h2 class="sec">The plan: five phases</h2>
+  <p class="sec-lead">A deliberate sequence. Each phase earns the right to the next: trust builds audience, audience builds an irreplaceable dataset, the dataset opens institutional doors, institutions justify funding, and funding opens new markets and models. Revenue stays modest and clean early — credibility is the asset we are compounding.</p>
+
+  <div class="phase">
+    <div class="num">1</div>
+    <div class="body">
+      <h4>Audience, traction &amp; credibility</h4>
+      <p class="small">Win attention and trust. Comparison pages are durable assets that answer “which X is healthier” for years. The 2026 playbook: rank by being <b>cite-worthy</b> — original data and a credentialed authority — so AI answers reference Bari; own the Hebrew long-tail of category questions; build a newsletter as a direct, owned audience; grow on YouTube/Reddit-style channels where AI citations concentrate. Monetisation here is light and non-intrusive: modest referral and sponsorship, never over the top, never touching a score. <b>In parallel, in the pipeline:</b> begin a personalised consumer engine that turns the scored catalogue into “best for <em>you</em>” given goals and restrictions — the feature that converts visitors into a returning, logged-in audience.</p>
+    </div>
+  </div>
+  <div class="phase">
+    <div class="num">2</div>
+    <div class="body">
+      <h4>Become <em>the</em> trusted database — and sell it where it's needed</h4>
+      <p class="small">The audience phase produces the real moat: a clean, verified, continuously-scored national food &amp; supplement dataset. That asset is valuable to the institutions that lack it. <b>Health funds (Kupot Holim):</b> all four run advanced member apps — several already with nutrition and healthy-lifestyle features — and serve the whole population. Bari can power an embedded “what should I actually buy” layer inside those apps (e.g. a Clalit or Maccabi member scanning a shelf and getting a trusted verdict). <b>Government &amp; public health:</b> a natural complement to the red-label reform — the continuous, comparative data the binary label can't provide. <b>Retail chains:</b> private-label benchmarking and a healthier-shelf signal. This is where meaningful, defensible B2B revenue begins.</p>
+    </div>
+  </div>
+
+  <div class="callout green">
+    <span class="tag">Why phases 1 → 2 are one motion</span>
+    <p>You can't sell a “trusted national database” to a health fund until the public already treats you as trustworthy. Phase 1 manufactures exactly the credibility and the dataset that make Phase 2 a credible conversation. They are not two businesses — they are one compounding loop.</p>
+  </div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>10 — Go-To-Market · 12</span></div>
+</section>
+
+<!-- ===== 10 GTM (b) ===== -->
+<section class="page">
+  <div class="kicker">10 — Go-To-Market (cont.)</div>
+  <h2 class="sec">Phases 3–5, and the flywheel</h2>
+
+  <div class="phase">
+    <div class="num">3</div>
+    <div class="body">
+      <h4>Clinical legitimacy — the licensed-professional path</h4>
+      <p class="small">Dietitians in Israel are a regulated, licensed profession (Ministry of Health registration and exam). Evaluating Bari's fit with a licensed clinical authority — for methodology sign-off and professional-facing tools — converts trust into formal credibility. It strengthens the institutional sale in Phase 2, satisfies the “credentialed author” signal that wins modern search, and opens a professional channel (clinics, dietitians citing and using Bari). <b>This is the most direct point of overlap with a nutritionist partner.</b></p>
+    </div>
+  </div>
+  <div class="phase">
+    <div class="num">4</div>
+    <div class="body">
+      <h4>Funding &amp; international expansion</h4>
+      <p class="small">With audience, an institutional dataset business, and clinical legitimacy, Bari is fundable. The same engine is country-agnostic — the moat is the <em>local</em> label data and language, exactly the part Bari already proved it can build. Capital funds replication into new markets, starting where regulatory tailwinds (front-of-pack labelling) and health-conscious demand mirror Israel's.</p>
+    </div>
+  </div>
+  <div class="phase">
+    <div class="num">5</div>
+    <div class="body">
+      <h4>Diversify into commerce</h4>
+      <p class="small">Once Bari is where people decide <em>what</em> to buy, helping them buy it is the natural next step — contextual, opt-in commerce: “add the better option to your cart,” healthier-basket building, and curated marketplace links, all kept strictly downstream of and walled off from the score. A monetisation of intent, not of influence.</p>
+    </div>
+  </div>
+
+  <h3>The flywheel that ties it together</h3>
+  <svg width="100%" viewBox="0 0 880 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,sans-serif">
+    <defs><marker id="fw" markerWidth="11" markerHeight="11" refX="6.5" refY="3.2" orient="auto"><path d="M0,0 L7,3.2 L0,6.4 Z" fill="#1f5c43"/></marker></defs>
+    <!-- 4 nodes around center (440,125), ring radius 90 -->
+    <circle cx="440" cy="40"  r="48" fill="#e7efe9" stroke="#1f5c43" stroke-width="1.5"/>
+    <text x="440" y="36" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">Trust &amp;</text>
+    <text x="440" y="49" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">credibility</text>
+
+    <circle cx="700" cy="125" r="48" fill="#f6ecd9" stroke="#c0852a" stroke-width="1.5"/>
+    <text x="700" y="121" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">Audience</text>
+    <text x="700" y="134" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">&amp; data</text>
+
+    <circle cx="440" cy="210" r="48" fill="#eef3f6" stroke="#2c5a73" stroke-width="1.5"/>
+    <text x="440" y="206" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">Institutional</text>
+    <text x="440" y="219" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">revenue</text>
+
+    <circle cx="180" cy="125" r="48" fill="#f0efe8" stroke="#54606b" stroke-width="1.5"/>
+    <text x="180" y="121" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">Reinvest:</text>
+    <text x="180" y="134" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1c1c1a">more categories</text>
+
+    <!-- clockwise arrows along the ring -->
+    <path d="M 487,73 A 92 92 0 0 1 667,92"  fill="none" stroke="#1f5c43" stroke-width="2.2" marker-end="url(#fw)"/>
+    <path d="M 667,158 A 92 92 0 0 1 487,177" fill="none" stroke="#1f5c43" stroke-width="2.2" marker-end="url(#fw)"/>
+    <path d="M 393,177 A 92 92 0 0 1 213,158" fill="none" stroke="#1f5c43" stroke-width="2.2" marker-end="url(#fw)"/>
+    <path d="M 213,92  A 92 92 0 0 1 393,73"  fill="none" stroke="#1f5c43" stroke-width="2.2" marker-end="url(#fw)"/>
+  </svg>
+  <div class="figcap">Figure 4 — Trust earns audience; audience builds the dataset and revenue; revenue funds more categories, which deepen trust. The factory makes the loop cheap to spin.</div>
+
+  <div class="src">Channel research: Israeli HMO digital-app landscape (Clalit, Maccabi, Meuhedet, Leumit); MoH dietitian licensing; 2026 SEO / newsletter / contextual-commerce practice. See Section 08 sources.</div>
+
+  <div class="foot"><span>BARI · Strategic Briefing</span><span>10 — Go-To-Market · 13</span></div>
+</section>
+
+<!-- ===== CLOSING ===== -->
+<section class="page" style="background:var(--ink);color:#f3f2ea;display:flex;flex-direction:column;justify-content:center;">
+  <div class="kicker" style="color:#6fae8e;">In one sentence</div>
+  <h2 style="font-family:'Segoe UI',sans-serif;font-size:28pt;line-height:1.2;color:#fff;margin:6px 0 18px 0;max-width:165mm;">
+    The engine and the factory are built, honest, and live. The opportunity now is trust → audience → an irreplaceable national dataset → institutions, funding and new markets.
+  </h2>
+  <hr style="height:3px;width:70px;background:var(--green);border:0;margin:0 0 22px 0;">
+  <div class="sans" style="font-size:10pt;color:#bcbbb0;line-height:1.9;">
+    <b style="color:#fff;">Tom Bar Haim</b> — Founder &amp; Owner, Bari<br>
+    tbarhaim@gmail.com<br>
+    Prepared 21 June 2026 · Confidential
+  </div>
+</section>
+
+</body>
+</html>

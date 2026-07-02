@@ -1,0 +1,175 @@
+
+===========================================================================
+TASK-378 PHASE 2 — ANALYTIC RESCORE SIMULATION
+Method: trace-derived glycemic delta + juice shelf-relative formula
+Stage only. N published scores changed = 0. BARI_SUGAR_NULL_GUARD=OFF.
+===========================================================================
+
+7290013153395 | סחוט רימונים
+  Category:      juices
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    10.5g  [USDA FDC #168153 pomegranate juice 100% = 10.5g/100ml]
+  Published:     85.0/A (rank 1)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   63.8
+  Juice SR delta:    -6.0  (above_median: r=0.35 → penalty=6.0)
+  Total delta:       -9.9
+  Staged:            75.1/B
+  Grade moved:       YES ***
+  TRIPWIRE:          YES *** OWNER ESCALATION
+
+7290110114886 | סחוט קלמנטינה
+  Category:      juices
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    8.9g  [USDA FDC clementine juice ~8.9g/100ml; carbs panel=9.8g consistent]
+  Published:     85.0/A (rank 1)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   67.8
+  Juice SR delta:    +0.0  (below_median but within 0.5 scale: r=-0.21 → no_relief)
+  Total delta:       -3.3
+  Staged:            81.7/A
+  Grade moved:       no
+  TRIPWIRE:          no
+
+7290119043149 | עוגיות בטעם חמאה
+  Category:      biscuit
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [GENUINELY_ABSENT_from_panel; biscuit without sugar row — content unknown]
+  Published:     55.0/C (rank 2)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7290017962139 | עוגיות פירות יער
+  Category:      biscuit
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [GENUINELY_ABSENT_from_panel]
+  Published:     54.9/C (rank 4)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7290013453068 | בסקביט
+  Category:      biscuit
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [GENUINELY_ABSENT_from_panel]
+  Published:     52.0/C (rank 8)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7296073453840 | ביסקוויט קפה
+  Category:      biscuit
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [GENUINELY_ABSENT_from_panel]
+  Published:     33.1/E (rank 37)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7296073453857 | ביסקוויט קרם
+  Category:      biscuit
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [GENUINELY_ABSENT_from_panel]
+  Published:     32.7/E (rank 38)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7290000051352 | חלב מלא 3.4%
+  Category:      dairy_protein
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    4.7g  [Lactose in whole milk: USDA FDC #746782 = 4.61g/100ml; rounded 4.7g]
+  Published:     85.0/A (rank 1)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   78.2
+  Total delta:       -1.8
+  Staged:            83.2/A
+  Grade moved:       no
+  TRIPWIRE:          no
+
+5411188124689 | אלפרו שיבולת שועל ללא סוכר
+  Category:      dairy_protein
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    0.0g  [EU label declares 0g sugar; product name ללא סוכר (no added sugar)]
+  Published:     49.7/D (rank 13)
+  Glycemic (null=0): 92.4
+  Glycemic (real):   92.4
+  Total delta:       +0.0
+  Staged:            49.7/D
+  Grade moved:       no
+  TRIPWIRE:          no
+
+7290014760141 | משקה שקדים
+  Category:      dairy_protein
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [UNCERTAIN — unsweetened almond milk ~0.5g, sweetened ~7g; cannot confirm without re-scrape]
+  Published:     51.5/C (rank 8)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7290110325619 | משקה שיבולת שועל
+  Category:      dairy_protein
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [UNCERTAIN — oat milk range 3-7g; cannot confirm without re-scrape]
+  Published:     47.6/D (rank 15)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+6666307 | סלט חומוס
+  Category:      hummus
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    1.8g  [USDA FDC #174286 hummus = 1.85g/100g]
+  Published:     67.7/B (rank 2)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   85.5
+  Total delta:       -0.7
+  Staged:            67.0/B
+  Grade moved:       no
+  TRIPWIRE:          no
+
+6666444 | סלט מטבוחה
+  Category:      hummus
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    4.0g  [Matbucha (cooked tomato/pepper): USDA tomato sauce ~3.5g; 4.0g estimate]
+  Published:     58.0/C (rank 5)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   80.0
+  Total delta:       -1.5
+  Staged:            56.5/C
+  Grade moved:       no
+  TRIPWIRE:          no
+
+369617 | כדורי פטה בשמן
+  Category:      dairy_fat
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    0.5g  [USDA FDC #173420 feta = 0.49g/100g]
+  Published:     48.5/D (rank 35)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   88.8
+  Total delta:       -0.2
+  Staged:            48.3/D
+  Grade moved:       no
+  TRIPWIRE:          no
+
+5431920 | עוגת גבינה פירורים לייט
+  Category:      dessert
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    Noneg  [UNCERTAIN — 13g carbs; cheesecake sugar fraction ~50% = 6.5g is estimate only]
+  Published:     30.6/E (rank 4)
+  Simulation:    SKIP — sugar_absent_no_reference
+
+7297488098688 | פצפוצי אורז ללת"ס
+  Category:      cereal
+  Panel:         GENUINELY_ABSENT
+  Real sugar:    0.5g  [Rice puffs no-added-sugar: USDA FDC puffed rice = 0.39g/100g; 0.5g estimate]
+  Published:     67.3/B (rank 2)
+  Glycemic (null=0): 90.0
+  Glycemic (real):   88.8
+  Total delta:       -0.2
+  Staged:            67.1/B
+  Grade moved:       no
+  TRIPWIRE:          no
+
+===========================================================================
+CONSOLIDATED GRADE-MOVERS
+===========================================================================
+  7290013153395 סחוט רימונים: A → B (score 85.0 → 75.1, delta=-9.9)
+
+===========================================================================
+OWNER TRIPWIRES (grade moves requiring owner approval)
+===========================================================================
+  TRIPWIRE: 7290013153395 סחוט רימונים: A → B (delta=-9.9)
+
+Simulated: 8  |  Skipped: 8
+N published scores changed = 0
+M grade-movers flagged for owner = 1
+Owner tripwires = 1

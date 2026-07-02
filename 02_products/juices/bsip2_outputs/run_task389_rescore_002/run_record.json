@@ -1,0 +1,412 @@
+{
+  "run_id": "run_task389_rescore_002",
+  "task": "TASK-389",
+  "generated": "2026-06-24T09:23:28.851510+00:00",
+  "run_start": "2026-06-24T09:23:28.768777+00:00",
+  "note": "Clean re-run. env-before-import verified: BARI_TASK144_FIXES=off confirmed at os.environ level AND at module attribute level before any product scored. Replaces contaminated run_task389_rescore_001 traces (where TASK144=on was active at import time, stripping single-ingredient list -> nova_proxy=2 -> no nova1 floor -> 55/C instead of 85/A for single-ingredient juices).",
+  "engine_files": {
+    "score_engine": "03_operations/bsip2/proto_v0/src/score_engine.py",
+    "signal_extractor": "03_operations/bsip2/proto_v0/src/signal_extractor.py",
+    "nova_proxy": "03_operations/bsip2/proto_v0/src/nova_proxy.py",
+    "constants": "03_operations/bsip2/proto_v0/src/constants.py"
+  },
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+  },
+  "runtime_module_checks": {
+    "signal_extractor.TASK144_FIXES_ON": false,
+    "score_engine.TASK144_FIXES_ON": false,
+    "score_engine.RECAL_P0_ON": true
+  },
+  "shelf_stats": {
+    "nutrient": "sugars_g",
+    "median": 9.5,
+    "scale": 2.82,
+    "scale_type": "iqr",
+    "source": "juices.json + EV-091 + run_task389_rescore_001 run_record confirmed"
+  },
+  "live_run_id": "run_juices_shelfrel_001",
+  "corpus": {
+    "bsip1_dir": "C:\\Bari\\02_products\\juices\\bsip1_outputs",
+    "display_barcodes": [
+      "7290000136523",
+      "7290000525969",
+      "7290001247723",
+      "7290001247730",
+      "7290001247891",
+      "7290003009640",
+      "7290004030100",
+      "7290006822192",
+      "7290008690713",
+      "7290013153395",
+      "7290013153418",
+      "7290013608260",
+      "7290019056355",
+      "7290019056591",
+      "7290019056720",
+      "7290019056737",
+      "7290110114886"
+    ],
+    "products_scored": 17,
+    "errors": 0
+  },
+  "live_grade_distribution": {
+    "A": 6,
+    "D": 7,
+    "E": 4
+  },
+  "fresh_grade_distribution": {
+    "A": 6,
+    "D": 7,
+    "E": 4
+  },
+  "score_movers_count": 3,
+  "grade_movers_count": 0,
+  "grade_movers": [],
+  "score_movers": [
+    {
+      "barcode": "7290000136523",
+      "id": "jc-020",
+      "live_score": 38.1,
+      "fresh_score": 40.1,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290019056720",
+      "id": "jc-018",
+      "live_score": 39.8,
+      "fresh_score": 41.8,
+      "delta": 2.0
+    },
+    {
+      "barcode": "7290019056737",
+      "id": "jc-023",
+      "live_score": 30.3,
+      "fresh_score": 32.3,
+      "delta": 2.0
+    }
+  ],
+  "acceptance_check": {
+    "single_ingredient_barcodes": [
+      "7290000525969",
+      "7290003009640",
+      "7290004030100",
+      "7290013153395",
+      "7290013608260",
+      "7290110114886"
+    ],
+    "pass": true,
+    "required": "nova_proxy=1 AND floor:nova1_single_ingredient AND score=85 AND grade=A"
+  },
+  "results": [
+    {
+      "barcode": "7290000525969",
+      "id": "jc-001",
+      "name": "מיץ תפוזים סחוט 1 ליטר",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 57.9,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290003009640",
+      "id": "jc-002",
+      "name": "סחוט תפוז 1 ליטר",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 63.78,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290004030100",
+      "id": "jc-003",
+      "name": "100% מיץ תפוזים ולנסיה סחוט 1 ליטר פריני",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 60.31,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290013153395",
+      "id": "jc-005",
+      "name": "סחוט 1 ליטר רימונים",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 64.66,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290013608260",
+      "id": "jc-006",
+      "name": "מיץ רימונים 100%מיץ סחוט טרי מצונן 1ליט",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 54.88,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290110114886",
+      "id": "jc-011",
+      "name": "סחוט קלמנטינה 2 ליטר",
+      "live_score": 85.0,
+      "live_grade": "A",
+      "fresh_score": 85,
+      "fresh_grade": "A",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 1,
+      "floors_applied": [
+        {
+          "floor_type": "nova1_single_ingredient",
+          "floor_value": 85,
+          "pre_floor": 65.87,
+          "note": "SRC-01: no Class B physiological caps fired → full floor applies"
+        }
+      ],
+      "driver": "floor:nova1_single_ingredient"
+    },
+    {
+      "barcode": "7290008690713",
+      "id": "jc-017",
+      "name": "מיץ חמוציות 1 ליטר",
+      "live_score": 49.1,
+      "live_grade": "D",
+      "fresh_score": 49.1,
+      "fresh_grade": "D",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 3,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290019056720",
+      "id": "jc-018",
+      "name": "קריסטל מיץ ענבים 2 ליטר",
+      "live_score": 39.8,
+      "live_grade": "D",
+      "fresh_score": 41.8,
+      "fresh_grade": "D",
+      "delta": 2.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290000136523",
+      "id": "jc-020",
+      "name": "ג'אמפ ענבים 1.5 ליטר",
+      "live_score": 38.1,
+      "live_grade": "D",
+      "fresh_score": 40.1,
+      "fresh_grade": "D",
+      "delta": 2.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290006822192",
+      "id": "jc-019",
+      "name": "מיץ חמוציות דיאט 1 ליטר",
+      "live_score": 39.9,
+      "live_grade": "D",
+      "fresh_score": 39.9,
+      "fresh_grade": "D",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 3,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290001247891",
+      "id": "jc-021",
+      "name": "ספרינג נקטר אפרסקים פחית 330 מ\"ל",
+      "live_score": 37.4,
+      "live_grade": "D",
+      "fresh_score": 37.4,
+      "fresh_grade": "D",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290001247723",
+      "id": "jc-022",
+      "name": "ספרינג נקטר תות בננה פחית 330 מ\"ל",
+      "live_score": 36.9,
+      "live_grade": "D",
+      "fresh_score": 36.9,
+      "fresh_grade": "D",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290001247730",
+      "id": "jc-024",
+      "name": "ספרינג נקטר מנגו פחית 330 מ\"ל",
+      "live_score": 35.4,
+      "live_grade": "D",
+      "fresh_score": 35.4,
+      "fresh_grade": "D",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290019056355",
+      "id": "jc-025",
+      "name": "תפוזינה לימונענע 1.5 ליטר",
+      "live_score": 33.4,
+      "live_grade": "E",
+      "fresh_score": 33.4,
+      "fresh_grade": "E",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290019056591",
+      "id": "jc-026",
+      "name": "ספרינג ענבים 1.5 ליטר",
+      "live_score": 33.3,
+      "live_grade": "E",
+      "fresh_score": 33.3,
+      "fresh_grade": "E",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290019056737",
+      "id": "jc-023",
+      "name": "קריסטל מיץ אשכולית 2 ליטר",
+      "live_score": 30.3,
+      "live_grade": "E",
+      "fresh_score": 32.3,
+      "fresh_grade": "E",
+      "delta": 2.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    },
+    {
+      "barcode": "7290013153418",
+      "id": "jc-027",
+      "name": "סחוט לימונענע 1 ליטר",
+      "live_score": 28.5,
+      "live_grade": "E",
+      "fresh_score": 28.5,
+      "fresh_grade": "E",
+      "delta": 0.0,
+      "grade_moved": false,
+      "nova_proxy": 4,
+      "floors_applied": [],
+      "driver": "weighted_dims_only"
+    }
+  ],
+  "trace_sha256": {
+    "products\\bsip1_juice_7290000136523\\bsip2_trace.json": "78ac33b587506d25a592ec56fe4a99c10f8c3ede5e1099d7922de9b9930fd9be",
+    "products\\bsip1_juice_7290000525969\\bsip2_trace.json": "b5d2c7c3e7fa9f38c7b760b2a8f9eb20960779095f513022f0f2d1726695d513",
+    "products\\bsip1_juice_7290001247723\\bsip2_trace.json": "81911a36bdcb8897ab850cdc24656e95d1c1a675c471009326e748ed228cdba5",
+    "products\\bsip1_juice_7290001247730\\bsip2_trace.json": "d297f12a6be0d51cfbf5b021bc5eaf1c743691caa63de2e84fed04da0ab2ecc0",
+    "products\\bsip1_juice_7290001247891\\bsip2_trace.json": "4b0af114dc40849ed78ea7fbb11f1bd0c9e273be090ae606ec1a2965c72542ed",
+    "products\\bsip1_juice_7290003009640\\bsip2_trace.json": "1ac4817eb3137391da1fdcb54922b8dcc55444d03f94e2ea0f078e1b042e1e35",
+    "products\\bsip1_juice_7290004030100\\bsip2_trace.json": "2223391f5ad93fd1f07e62331e74df7b168ce7773f73ff3883c435ea80cb2494",
+    "products\\bsip1_juice_7290006822192\\bsip2_trace.json": "6b73564fd782ebb1c3132cd3e925a4f31f75f402a743cc6984619afe1eef557a",
+    "products\\bsip1_juice_7290008690713\\bsip2_trace.json": "7f3e1d8767b94367547ffc334724f7b9f51fa5c1f5dc628044b97ff222ff355f",
+    "products\\bsip1_juice_7290013153395\\bsip2_trace.json": "df8a9cb3c84317d974c3164d8b5939154ff407c806cdaaacec5afd06411a3f3d",
+    "products\\bsip1_juice_7290013153418\\bsip2_trace.json": "8c2fd272a7abfc41b89d6f3d525314c59314b5c8faf7587fc2db6e5ed4b8cf6d",
+    "products\\bsip1_juice_7290013608260\\bsip2_trace.json": "0c27fecf740031db7c2b1acb0a8ba9f137c73729db3759b519f657577dc8242b",
+    "products\\bsip1_juice_7290019056355\\bsip2_trace.json": "6f1d431cbdea3557bd07d7ecd893c4e0347f27d63e2b2e6d3222a9dd6d819e6f",
+    "products\\bsip1_juice_7290019056591\\bsip2_trace.json": "d8ade2550f3a6de87ae7f8d926cc365124b73c528111891af279df64b21c8457",
+    "products\\bsip1_juice_7290019056720\\bsip2_trace.json": "f6e2380de5f8d3cbeabf30eb12fa05e71951a2c4cce7efadf0f68bd8daa02259",
+    "products\\bsip1_juice_7290019056737\\bsip2_trace.json": "173682db28cba60a09648bef9292365295fff6a51ecdf3c3c5a6f70ae7265efa",
+    "products\\bsip1_juice_7290110114886\\bsip2_trace.json": "fc0be201d7d02da743890cbe2d0c7f3e185b7a62bbe6bfa6ca91888436ddbaca"
+  },
+  "errors": [],
+  "off_used": false
+}

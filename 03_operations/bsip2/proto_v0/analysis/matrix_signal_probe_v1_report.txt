@@ -1,0 +1,1188 @@
+========================================================================
+COMPONENT B MATRIX SIGNAL PROBE — VALIDATION REPORT v1
+Run: 2026-06-25T11:04:52.002810Z
+========================================================================
+
+TASK: TASK-395 de-chain program — Component B label-derivability validation
+CONDITION TO CLEAR: C-N1-1 >= 90% accuracy before NOVA lookup deactivation
+
+CORPUS TOTAL: 520 products with Hebrew ingredient text
+
+────────────────────────────────────────────────────────────────────────
+ACCURACY RESULTS
+────────────────────────────────────────────────────────────────────────
+
+Ground-truth basis: rule-based heuristic from product name + category.
+HIGH-confidence = strong name signal (e.g. 'מלא', 'גרנולה', 'עוגיות שוקולד').
+MEDIUM-confidence = category default with weaker corroboration.
+NOT a gold standard — requires Hebrew reader spot-check of failure cases.
+
+HIGH-confidence subset: 189 products
+  Correct: 118 | Wrong: 71
+  Accuracy: 62.4%
+
+MEDIUM-confidence subset: 208 products
+  Correct: 169 | Wrong: 39
+  Accuracy: 81.2%
+
+MIXED (genuinely ambiguous, both classes expected): 123
+EXPECTATION-UNKNOWN (low-confidence heuristic): 0
+
+COMBINED accuracy (HIGH + MEDIUM): 72.3%  [287/397]
+
+TARGET: >= 90%
+VERDICT: FAIL (72.3% combined, 62.4% high-conf)
+
+GAP TO TARGET: 17.7% — 70 additional
+  correct classifications needed to clear C-N1-1.
+
+────────────────────────────────────────────────────────────────────────
+CATEGORY BREAKDOWN
+────────────────────────────────────────────────────────────────────────
+  cakes_hard_cookies           total=194  no_markers= 2  mixed= 0  H:48%[13/27] M:95%[159/167] 
+  bread                        total=181  no_markers= 2  mixed=91  H:76%[68/90] 
+  cereals_granola              total= 96  no_markers= 4  mixed= 0  H:60%[33/55] M:24%[10/41] 
+  snack_bar_granola            total= 49  no_markers= 0  mixed=32  H:24%[4/17] 
+
+────────────────────────────────────────────────────────────────────────
+NO-MARKER-FIRE ANALYSIS (critical failure class)
+────────────────────────────────────────────────────────────────────────
+Products where ZERO markers fired: 8 / 520 (1.5%)
+
+Sample no-marker products (first 15):
+  [cakes_hard_cookies] 7290017898926 עוגיות שוקולד צ'יפס
+    TEXT: המשובחים ביותר כדי להביא לכם טעם ואיכות מושלמים. •עוגיות שוקולד צ'יפס- פריכות שמתמזגת עם קרמיות שוקו
+  [cakes_hard_cookies] 7296073078586 דבש טבעי מפרחי שדה
+    TEXT: דבש טהור 100% עלול להכיל עקבות של חלב ערכים תזונתיים 100 גרם 332 קל אנרגיה 0 גרם חלבונים 83 גרם פחמי
+  [bread] 9137842 מארז לחמניות כוסמין
+    TEXT: . בקיצור, היא עפה על עצמה ויש לה סיבה טובה: היא טעימה, איכותית וגם בריאה! פרגנו לעצמכם מארז של חמש מ
+  [bread] 7290013121103 רביעיית שליש באגט לל"ג
+    TEXT: מצוין עג האריזה מאפיינים נוספים ללא חיטה,
+  [cereals_granola] 5010029000061 דגני בוקר ויטביקס
+    TEXT: חיטה (מכיל גלוטן) (95%),מיצוי לתת שעורה,סוכר,מלח,ויטמינים ומינרלים, (ניאצין,ריבואפלאבין,תיאמין,ח' פו
+  [cereals_granola] 7290011525316 סנסיטיב שיבולת שועל
+    TEXT: Water (Aqua), Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ethylhexyl Palmitate,nGlycerin, Cetear
+  [cereals_granola] 7290015129749 פסטה שיבולת שועל נודלס
+    TEXT: מים, אבקת שיבולת שואל(4%), קנג'אק(2.9%), מגביר חוזק(E527) ערכים תזונתיים 100 גרם 3 גרם סיבים תזונתיי
+  [cereals_granola] 9137842 מארז לחמניות כוסמין
+    TEXT: . בקיצור, היא עפה על עצמה ויש לה סיבה טובה: היא טעימה, איכותית וגם בריאה! פרגנו לעצמכם מארז של חמש מ
+
+────────────────────────────────────────────────────────────────────────
+FAILURE MODE DISTRIBUTION
+────────────────────────────────────────────────────────────────────────
+  OK                                        287 (55.2%)
+  GENUINELY_MIXED                           122 (23.5%)
+  MIXED_MARKERS_WRONG_DIRECTION              88 (16.9%)
+  MISSED_WHOLE_FOOD_MARKERS                  13 (2.5%)
+  NO_MARKERS_FIRED                            8 (1.5%)
+  MISSED_REFINED_MARKERS                      2 (0.4%)
+
+────────────────────────────────────────────────────────────────────────
+INFERRED CLASS DISTRIBUTION
+────────────────────────────────────────────────────────────────────────
+  RD               334 (64.2%)
+  WFP              147 (28.3%)
+  AMBIGUOUS         31 (6.0%)
+  UNKNOWN            8 (1.5%)
+
+────────────────────────────────────────────────────────────────────────
+TOP REFINED-STARCH MARKERS (by frequency)
+────────────────────────────────────────────────────────────────────────
+  [SPEC    ] sugar                                389 (74.8%)
+  [SPEC    ] plain_flour                          353 (67.9%)
+  [SPEC    ] refined_wheat_flour                  282 (54.2%)
+  [SPEC    ] unspecified_vegetable_oil_sg          90 (17.3%)
+  [EXTENDED] glucose_syrup                         84 (16.2%)
+  [EXTENDED] plain_starch                          73 (14.0%)
+  [SPEC    ] corn_starch                           70 (13.5%)
+  [SPEC    ] rice_flour_refined                    60 (11.5%)
+  [SPEC    ] unspecified_vegetable_oils_pl         48 (9.2%)
+  [SPEC    ] wheat_starch                          40 (7.7%)
+  [EXTENDED] hydrogenated_veg_fat                  39 (7.5%)
+  [EXTENDED] glucose_syrup_alt                     30 (5.8%)
+  [SPEC    ] palm_oil                              27 (5.2%)
+  [EXTENDED] modified_starch                       27 (5.2%)
+  [SPEC    ] coconut_oil                           15 (2.9%)
+
+────────────────────────────────────────────────────────────────────────
+TOP WHOLE-FOOD MARKERS (by frequency)
+────────────────────────────────────────────────────────────────────────
+  [EXTENDED] whole_wheat_flour                     90 (17.3%)
+  [EXTENDED] oat_flakes_plain                      89 (17.1%)
+  [SPEC    ] nuts                                  75 (14.4%)
+  [SPEC    ] whole_grain_generic                   70 (13.5%)
+  [EXTENDED] sesame_seeds                          59 (11.3%)
+  [SPEC    ] sourdough_starter                     55 (10.6%)
+  [EXTENDED] live_cultures                         55 (10.6%)
+  [EXTENDED] spelt                                 44 (8.5%)
+  [SPEC    ] whole_wheat                           38 (7.3%)
+  [SPEC    ] whole_rye                             38 (7.3%)
+  [SPEC    ] whole_oat                             35 (6.7%)
+  [EXTENDED] flax_seeds                            34 (6.5%)
+  [SPEC    ] seeds_generic                         33 (6.3%)
+  [SPEC    ] almonds                               30 (5.8%)
+  [SPEC    ] dates                                 25 (4.8%)
+
+────────────────────────────────────────────────────────────────────────
+EXTENDED LEXICON USAGE
+────────────────────────────────────────────────────────────────────────
+Products using EXTENDED refined markers: 180 / 520
+Products using EXTENDED whole-food markers: 267 / 520
+
+EXTENDED markers are additions beyond spec Section 2.2.
+They require Nutrition Agent ratification before engine implementation.
+
+EXTENDED refined markers used:
+  glucose_syrup                         84
+  plain_starch                          73
+  hydrogenated_veg_fat                  39
+  glucose_syrup_alt                     30
+  modified_starch                       27
+  palm_oil_alt                          14
+  glucose_fructose_syrup                13
+
+EXTENDED whole-food markers used:
+  whole_wheat_flour                     90
+  oat_flakes_plain                      89
+  sesame_seeds                          59
+  live_cultures                         55
+  spelt                                 44
+  flax_seeds                            34
+  whole_rice                            18
+  oat_flour                             15
+  berries_dried                         14
+  peanuts                               14
+  olive_oil                             11
+  tahini                                10
+  cashews                               10
+  paprika_spice                          8
+  chia_seeds                             8
+  quinoa                                 8
+  buckwheat                              4
+
+────────────────────────────────────────────────────────────────────────
+WRONG-CLASSIFICATION TABLE (for manual audit)
+────────────────────────────────────────────────────────────────────────
+Total wrong classifications (high + medium confidence): 110
+
+WRONG-001 [cakes_hard_cookies] barcode=4504670 conf=HIGH
+  Name: מיני שטרודל במילוי שקדים
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'coconut_oil']
+  n_whole=0   whole=[]
+  matrix_score=10  balance=-5
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח חיטה (גלוטן), מרגרינה (סויה)(צבע מאכל (בטא קרוטן)), מים, גבינה קשה כחושה (12%)(חלב), שמנת חמוצה, שמנת צמחית (מים, סוכר, שומן דקל ים מוקשה, מלח, חומרי טעם וריח, מייצבים (E466, E461, E410, E407), מת
+
+WRONG-002 [cakes_hard_cookies] barcode=7290019293804 conf=HIGH
+  Name: קראנץ אגוזי לוז
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'hydrogenated_veg_fat']
+  n_whole=1   whole=['nuts']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: ציפוי שוקולד לבן וחטיפי אורז תפוח עם קקאו (33%) ‏{רכיבים: שוקולד לבן (31%) [מכיל חומרים מתחלבים (לציטין סויה, E476)], חטיפי אורז תפו ח (2%) (רכיבים: אורז, סוכר, אבקת קקאו (0.1%), מלח)}, מים, ממרח אגוז
+
+WRONG-003 [cakes_hard_cookies] barcode=7290119040575 conf=HIGH
+  Name: עוגיות מלבני שקדים
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar']
+  n_whole=1   whole=['almonds']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים: קמח חיטה לבן(מכיל גלוטן), סוכר, מרגרינה{חומר משמר (חומצה סורבית), צבע מאכל(E160aii)}(מכיל סויה), שקדים (8.3%), ביצים מפוסטרו ת, גרידת לימון, מלח, מווסת חומציות (E500(ii)), אבקת אפיה{חומרי התפח
+
+WRONG-004 [cakes_hard_cookies] barcode=7296073162001 conf=HIGH
+  Name: עוגיות במילוי קרם אגוזים
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'plain_starch', 'glucose_syrup']
+  n_whole=2   whole=['nuts', 'butter_dairy']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה (מכיל גלוטן), סוכר, שמנים ושומנים מהצומח, מחית אגוז לוז (6.5%), אבקת חלב מלא, סירופ גלוקוז, ביצים, אבקת קקאו שמן, עמילן חיט ה (מכיל גלוטן), עמילן תירס, חמאה, מתחלב (לציטין סויה), מלח, חומרי ת
+
+WRONG-005 [cakes_hard_cookies] barcode=7290013453624 conf=HIGH
+  Name: עוגיות שוקולד צ'יפס כשלפ
+  Expected: RD | Inferred: WFP
+  n_refined=1 refined=['plain_flour']
+  n_whole=3   whole=['almonds', 'butter_dairy', 'whole_rice']
+  matrix_score=74  balance=2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: חיטה. אנחנו מאמינים שאפשר לאכול אוכל בריא ומזין שהוא גם טעים ומפנק! כדי לעמוד באתגר, חומרי הגלם הקלאסיים של קונדיטוריה: קמח לבן, מרגרינה, חמאה, ביצים ושמנת - יצאו לחלוטין מתהליך האפייה. בכדי לתת עושר 
+
+WRONG-006 [cakes_hard_cookies] barcode=7290017898926 conf=HIGH
+  Name: עוגיות שוקולד צ'יפס
+  Expected: RD | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: המשובחים ביותר כדי להביא לכם טעם ואיכות מושלמים. •עוגיות שוקולד צ'יפס- פריכות שמתמזגת עם קרמיות שוקולדית.
+
+WRONG-007 [cakes_hard_cookies] barcode=7290112961754 conf=HIGH
+  Name: עוגיות שוקוציפס קרם אגוז
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['nuts']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: סוכר, קמח חיטה (מכיל גלוטן), שמנים צמחיים, נטיפי שוקולד מריר (מכיל סויה) (8%), עמילן תירס, קמח סויה, סיבי במבוק, חומרי טעם וריח, מתח לב (לציטין סויה), אגוזי לוז, מלח, חומרי תפיחה (E503, E500), מווסת ח
+
+WRONG-008 [cakes_hard_cookies] barcode=2472254 conf=HIGH
+  Name: עוגת מאפין אגוזים
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'unspecified_vegetable_oil_sg', 'hydrogenated_veg_fat']
+  n_whole=1   whole=['nuts']
+  matrix_score=10  balance=-5
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: סוכר, קמח חיטה, ביצים, שמן צמחי, מים, אגוזי מלך, גלוקוזה, עמילן תירס מעובד, שומן צמחי מוקשה, מרגרינה, אבקת קקאו, חומרי טעם וריח, מלח , מתפיחים, מתחלבים, , מונע התגיישות, מווסת חומציות , עמילן תירס, קמ
+
+WRONG-009 [cakes_hard_cookies] barcode=7290119040629 conf=HIGH
+  Name: עוגיות שוקולד ואגוז לוז
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar']
+  n_whole=1   whole=['nuts']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים: קמח חיטה (מכיל גלוטן), סוכר, שבבי שוקולד מריר, מרגרינה{חומר משמר (E200), צבע מאכל(E160aii)}(מכיל סויה), ביצים מפוסטרות, ממרח  נוגט (7%){אגוזי לוז(48%), סוכר, שמן סויה, חומר מתחלב: לציטין, וניל
+
+WRONG-010 [cakes_hard_cookies] barcode=7290119043095 conf=HIGH
+  Name: עוגיות שיבולת שועל
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'hydrogenated_veg_fat']
+  n_whole=1   whole=['oat_flakes_plain']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה לבן (מכיל גלוטן)(37%),שומן צמחי מדקלים, סוכר, אבקת סוכר, שיבולת שועל (מכיל גלוטן)(8%), מים, קמח סויה (1%), שמן סויה (1%), א בקת אפיה (1%)(חומרים מתפיחים E500ll,E450l)), קינמון (0.4%), מלח (0.
+
+WRONG-011 [cakes_hard_cookies] barcode=7290119040568 conf=HIGH
+  Name: עוגת קראנץ אגוזים
+  Expected: WFP | Inferred: RD
+  n_refined=7 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'palm_oil', 'plain_starch', 'palm_oil_alt']
+  n_whole=0   whole=[]
+  matrix_score=10  balance=-7
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח חיטה לבן (מכיל גלוטן),מים, מרגרינה (חומר משמר (חומצה סורבית), מתחלב (לציטין סויה), סוכר, מילוי בטעם שוקולד (10%)(ממרח בטעם שוקול ד, סוכר, שמן סויה, קמח סויה, אבקת קקאו, מתחלב(לציטין סויה), שמן דקל
+
+WRONG-012 [cakes_hard_cookies] barcode=4170103 conf=HIGH
+  Name: עוגת קרנץ אגוזים וקינמון
+  Expected: WFP | Inferred: RD
+  n_refined=7 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'corn_starch', 'sugar', 'modified_starch', 'plain_starch']
+  n_whole=2   whole=['nuts', 'sesame_seeds']
+  matrix_score=10  balance=-5
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה (מכיל גלוטן), מלית אגוזי לוז (30%)(סוכר, שמן סויה מזוכך, מחית אגוזי לוז (3%), עמילן מעובד (E1442), שומן דקל מוקשה, קמח אורז , אבקת קקאו דל שומן, מתחלב (לציטין), חומרי טעם וריח, מלח), מרגרינה 
+
+WRONG-013 [cakes_hard_cookies] barcode=7296073431893 conf=HIGH
+  Name: עוגת מאפין אגוזים
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'hydrogenated_veg_fat']
+  n_whole=1   whole=['nuts']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: סוכר, קמח חיטה (מכיל גלוטן), ביצים, שמן קנולה מזוכך, מים, עמילנים (חיטה, תירס), רבעי אגוזי מלך, מתחלבים (E481, E471), חומרי תפיחה (E 450i, E500ii, E500iii), מזרה בטעם שוקולד (סוכר, שומן צמחי מוקשה מגר
+
+WRONG-014 [cakes_hard_cookies] barcode=7290106571945 conf=HIGH
+  Name: עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס 180 גרם פ
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'plain_starch']
+  n_whole=3   whole=['whole_grain_generic', 'whole_wheat_flour', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: דגנים (קמח חיטה מלא (41%) (קמח חיטה, סובין, נבט) (מכיל גלוטן), פתיתי שיבולת שועל מלאים (4.5%)), סוכר, שמן צמחי, נטיפי שוקולד מריר מעולה (8.5%) (מכיל סויה), סובין שיבולת שועל, אבקת קקאו (4.5%), גלוטן ח
+
+WRONG-015 [bread] barcode=7290115205176 conf=HIGH
+  Name: קרקר דק כפרי פיטנס
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'plain_starch']
+  n_whole=5   whole=['whole_grain_generic', 'sesame_seeds', 'quinoa', 'whole_rice', 'whole_wheat_flour']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים : קמח חיטה מלא (30.5%) (מכיל גלוטן), קמח אורז (25.5%), קמח חיטה (17%), שמן חמניות, קמח אורז מלא (6.8%), גלוטן חיטה, עמילן אור ז, קינואה אדומה מיובשת (2.7%), שומשום (2.7%), שמרים, קצח (1.3%), מל
+
+WRONG-016 [bread] barcode=6451521 conf=HIGH
+  Name: לחם מחמצת שיפון
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch']
+  n_whole=3   whole=['whole_rye', 'sourdough_starter', 'live_cultures']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: מים, קמח שיפון מלא (מכיל גלוטן)(70% מסך הקמחים), קמח חיטה לבן (מכיל גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גל וטן), מלח, עמילן חיטה, מווסת חומציות (E-260)), סולת חיטה (מכיל גלוט
+
+WRONG-017 [bread] barcode=7290018500644 conf=HIGH
+  Name: מארז פיתות כוסמין לבן
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=1   whole=['spelt']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח כוסמין לבן (גלוטן) (100% מהקמחים, 64% מהמוצר), מים, סוכר, שמרים, מלח, גלוטן חיטה, חומר משמר (קלציום פרופיונט), סיבים תזונתיים, א נזימים. מכיל גלוטן חיטה,
+
+WRONG-018 [bread] barcode=6322838 conf=HIGH
+  Name: לחם קמח מלא 100%
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['unspecified_vegetable_oil_sg']
+  n_whole=1   whole=['whole_wheat_flour']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (100% ממשקל הקמחים, 58% ממשקל הלחם) (מכיל גלוטן), מים, חלבון צמחי (מכיל גלוטן), מלח שולחן, שמן צמחי, שמרים, לתת שעורה ( מכיל גלוטן), חומרים משמרים: קלציום פרופיונט ופוטסיום סורבט, חומר מת
+
+WRONG-019 [bread] barcode=6451477 conf=HIGH
+  Name: לחם מחמצת צרפתי
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch']
+  n_whole=3   whole=['whole_rye', 'sourdough_starter', 'live_cultures']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה לבן (גלוטן), מים, קמח שיפון מלא (גלוטן), סולת חיטה (גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גלוטן), מ  לח, עמילן חיטה, מווסת חומציות (E260)), משפר אפייה (קמח חיטה לבן, ג
+
+WRONG-020 [bread] barcode=7296073659952 conf=HIGH
+  Name: קרקר דק כפרי
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'corn_starch', 'sugar', 'palm_oil']
+  n_whole=4   whole=['whole_wheat', 'quinoa', 'whole_rice', 'whole_wheat_flour']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: תערובת קמחים 66% (קמח חיטה מלאה 25.5% (קמח חיטה, סובין, נבט), אורז 21%, חיטה 14%, אורז מלא 5.5%), שמן חמניות, שמן דקל, גלוטן חיטה, ש ומשום 3%, קינואה אדומה 2.5%, קצח 2%, עמילן תירס, מלח, שום, סוכר, שמ
+
+WRONG-021 [bread] barcode=7296073134442 conf=HIGH
+  Name: קרקר פריך עם קמח שיפון
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['plain_flour', 'sugar', 'plain_starch']
+  n_whole=1   whole=['whole_wheat_flour']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (70%)(מכיל גלוטן), גריסי תירס, קמח שיפון (4.9%)(מכיל גלוטן), עמילן תפוח אדמה, סוכר, מלח. מכיל גלוטן שיפון,
+
+WRONG-022 [bread] barcode=7290017947464 conf=HIGH
+  Name: מארז פיתות כוסמין
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=2   whole=['seeds_generic', 'spelt']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים , 58% מהמוצר), מים, גלוטן חיטה, סוכר, שמרים, מלח,חומר משמ ר (קלציום פרופיונט), אנזימים. מכיל גלוטן חיטה,
+
+WRONG-023 [bread] barcode=3993 conf=HIGH
+  Name: באגט כפרי
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=2   whole=['whole_wheat', 'whole_wheat_flour']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה לבן (מכיל גלוטן), מים, קמח חיטה מלאה (מכיל גלוטן), שמרים, סובין חיטה, מלח, גלוטן חיטה, לתת שעורה (מכיל גלוטן), מרגרינה (חומ ר משמר E-202), משפר אפיה (מתחלב (E-472e), לתת שעורה (מכיל גלוטן), ד
+
+WRONG-024 [bread] barcode=4685447 conf=HIGH
+  Name: לחמניות כוסמין 6יח בשקית
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['plain_flour', 'sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=1   whole=['spelt']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח כוסמין (מכיל גלוטן, 100% מסך הקמחים 55% ממשקל המוצר), מים, גלוטן חיטה, שמן צמחי (סויה), שמרים, סוכר לבן, מלח שולחן, חומר מתחלב ( E481), לתת שעורה (מכיל גלוטן), חומר משמר (E282), מעכב חמצון (E300),
+
+WRONG-025 [bread] barcode=6451507 conf=HIGH
+  Name: לחם מחמצת מכוסמין
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch']
+  n_whole=3   whole=['sourdough_starter', 'spelt', 'live_cultures']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: מים, קמח כוסמין מלא (מכיל גלוטן)(70% מסך הקמחים), קמח חיטה לבן (מכיל גלוטן), סולת חיטה (מכיל גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גלוטן), מלח, עמילן חיטה, מווסת חומציות (E-260
+
+WRONG-026 [bread] barcode=7290015161589 conf=HIGH
+  Name: קרקר פריך ירקות אורגני
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=1   whole=['whole_rice']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח אורז מלא, קמח תירס, קמח אפונה מלא,  בצל יבש, תערובת ירקות 1% (גזר לבן, גזר, פטרוזיליה, עירית), שבבי תפוח אדמה, מלח יםnרכיבים מג ידול אורגני מאפיינים נוספים ללא תוספת סוכר,
+
+WRONG-027 [bread] barcode=9137842 conf=HIGH
+  Name: מארז לחמניות כוסמין
+  Expected: WFP | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: . בקיצור, היא עפה על עצמה ויש לה סיבה טובה: היא טעימה, איכותית וגם בריאה! פרגנו לעצמכם מארז של חמש מיוחסות לכל המשפחה, ולא תצטערו. זו הבטחה.
+
+WRONG-028 [bread] barcode=7290117382868 conf=HIGH
+  Name: טורטיה כוסמין
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=2   whole=['spelt', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: תערובת קמחים(מכיל גלוטן){קמח חיטה (46%), קמח כוסמין מלא(5 %)}, מים, שומן מהצומח, פתיתי שיבולת שועל(מכיל גלוטן)(3%), סובין חיטה(מכיל גלוטן)(3 %), מתחלב(E471), מווסת חומציות(חומצה מלית), משמרים( סודיום 
+
+WRONG-029 [bread] barcode=574615 conf=HIGH
+  Name: כוסמין מלא 100%
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=2   whole=['seeds_generic', 'spelt']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם), מים, גלוטן חיטה, שמרים, מלח, לתת שעורה (מכיל גלו טן), חומרים משמרים (קלציום פרופיונט, פוטסיום סורבט), חומר מתחלב (E48
+
+WRONG-030 [bread] barcode=9401790 conf=HIGH
+  Name: מארז פיתות קמח מלא
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=2   whole=['nuts', 'whole_wheat_flour']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא, מים, קמח חיטה לבן, סוכר, שמרים, מלח גלוטן חיטה, אנזימים, מתחלב מכיל גלוטן חיטה עלול להכיל אגוזי לוז,
+
+WRONG-031 [bread] barcode=7296073612759 conf=HIGH
+  Name: לחם מחמצת צרפתי
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch']
+  n_whole=3   whole=['whole_rye', 'sourdough_starter', 'live_cultures']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה לבן (גלוטן), מים, קמח שיפון מלא (גלוטן), סולת חיטה (גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גלוטן), מ לח, עמילן חיטה, מווסת חומציות (E260)), משפר אפייה (קמח חיטה לבן, גל
+
+WRONG-032 [bread] barcode=7296073134459 conf=HIGH
+  Name: קרקר פריך בסגנון שוודי
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'plain_starch']
+  n_whole=1   whole=['whole_wheat_flour']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (33.5%)(מכיל גלוטן), גריסים מחיטה, גריסי תירס, עמילן תפוח אדמה, לתתי שעורה (מכיל גלוטן), זרעי קימל, מלח, סוכר. מכיל גלוטן חיטה,
+
+WRONG-033 [bread] barcode=7290018500460 conf=HIGH
+  Name: לחם אנג'ל חצי מלא
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['refined_wheat_flour', 'plain_flour']
+  n_whole=2   whole=['seeds_generic', 'whole_wheat_flour']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן) (50% ממשקל הקמחים, 34% ממשקל הלחם), קמח חיטה לבן (50% ממשקל הקמחים, 34% ממשקל הלחם) , מים, גלוטן חיטה, שמרים, מלח, חומרים משמרים (E282, E202), מתחלב (E
+
+WRONG-034 [bread] barcode=7290017947495 conf=HIGH
+  Name: לחמניות כוסמין אנג'ל 6יח
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=2   whole=['seeds_generic', 'spelt']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו) (גלוטן) (100% ממשקל הקמחים, 57.7% ממשקל המוצר), מים, גלוטן חיטה, סוכר, שמרים, שמן צמחי, צלח, סיבים תזונתיים, חומר משמר (E282) מתחלב (E472), לתת שעורה,
+
+WRONG-035 [bread] barcode=7296073641605 conf=HIGH
+  Name: לחם מחמצת צרפתי פרוס
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch']
+  n_whole=3   whole=['whole_rye', 'sourdough_starter', 'live_cultures']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה לבן (גלוטן), מים, קמח שיפון מלא (גלוטן), סולת חיטה (גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גלוטן), מ לח, עמילן חיטה, מווסת חומציות (E260)), משפר אפייה (קמח חיטה לבן, גל
+
+WRONG-036 [bread] barcode=6983176 conf=HIGH
+  Name: לחמית שיפון אסם
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=3   whole=['whole_rye', 'sesame_seeds', 'whole_wheat_flour']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (72%) (קמח חיטה, סובין, נבט) (מכיל גלוטן),  קמח שיפון מלא (12%), סוכר, סובין חיטה, שמן צמחי, גלוטן חיטה, סיבים תזותיים (אינולין), שומשום (2.5%), מלח, סוכר קרמל, חומר תפיחה (E503), מתחלב (
+
+WRONG-037 [cereals_granola] barcode=1343845 conf=HIGH
+  Name: גרנולה עם פירות
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['sugar', 'coconut_oil', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=2   whole=['raisins', 'oat_flakes_plain']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גרנולה 83% (פתיתי שיבולת שועל (מכיל גלוטן) 70%, סוכר חום, שמן צמחי (דקלים), סירופ גלוקוז, דבש, מתחלב (E322) חומרי טעם וריח) פירות יב שים ומסוכרים  17% (פפאיה מסוכרת (פפאיה, סוכר, מווסת חומציות (E300),
+
+WRONG-038 [cereals_granola] barcode=7290016883176 conf=HIGH
+  Name: מוזלי 47% דגנים מלאים
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=1   whole=['oat_flakes_plain']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מכיל גלוטן), 47%,אורז תפוח 10% (אורז סוכר),סוכר חום,שמן צמחי (דקלים),סירופ גלוקוז,קמח חיטה (מכיל גלוטן),קוקוס 5%, שוקולד מריר 4% (סוכר,עיסת קקאו,חמאת קקאו,מתחלב (E322),אבקת קקאו,מתח
+
+WRONG-039 [cereals_granola] barcode=7290014455467 conf=HIGH
+  Name: מעדן שיבולת שועל
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'plain_starch']
+  n_whole=1   whole=['oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: חלב (50.4%), מים, שיבולת שועל (גלוטן) (6.7%), ממתיקים (אריטריטול, סטיביול גליקוזיד מצמח הסטיביה), סיבים תזונתיים (אינולין), עמילן מע ובד (E1422), חלמון ביצה מיובש (ביצים), מייצב (קרגינן), מלח, חומרי ט
+
+WRONG-040 [cereals_granola] barcode=7290011131975 conf=HIGH
+  Name: גרנולה פירות
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=4   whole=['dates', 'raisins', 'oat_flakes_plain', 'berries_dried']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גרנולה 65% (פתיתי שיבולת שועל 43% (מכיל גלוטן) , קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים),סוכר , קמח תירס, סירופ תמרים, תמצית לתת שעו רה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב: לציטין סויה, א
+
+WRONG-041 [cereals_granola] barcode=7290017947464 conf=HIGH
+  Name: מארז פיתות כוסמין
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=2   whole=['seeds_generic', 'spelt']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטת כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו)(גלוטן)(100% מהקמחים , 58% מהמוצר), מים, גלוטן חיטה, סוכר, שמרים, מלח,חומר משמ ר (קלציום פרופיונט), אנזימים. מכיל גלוטן חיטה,
+
+WRONG-042 [cereals_granola] barcode=7290011525316 conf=HIGH
+  Name: סנסיטיב שיבולת שועל
+  Expected: WFP | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: Water (Aqua), Cetearyl Alcohol, Caprylic/Capric Triglyceride, Ethylhexyl Palmitate,nGlycerin, Cetearyl Glucoside, Helianthus Annuu s (Sunflower) Seed Oil, Avena Sativa (Oat) KernelnExtract, Panthenol,
+
+WRONG-043 [cereals_granola] barcode=7290011131050 conf=HIGH
+  Name: גרנולה פקאן
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=4   whole=['nuts', 'dates', 'raisins', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גרנולה 75% (פתיתי שיבולת שועל(מכיל גלוטן) , קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעורה (מ כיל גלוטן), סוכר חום,  סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת 
+
+WRONG-044 [cereals_granola] barcode=7290015129749 conf=HIGH
+  Name: פסטה שיבולת שועל נודלס
+  Expected: WFP | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: מים, אבקת שיבולת שואל(4%), קנג'אק(2.9%), מגביר חוזק(E527) ערכים תזונתיים 100 גרם 3 גרם סיבים תזונתיים 29 קל אנרגיה 0 גרם חלבונים 6 גרם פחמימות הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפיר
+
+WRONG-045 [cereals_granola] barcode=7290112199942 conf=HIGH
+  Name: גרנולה תותים ללת"ס
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים: פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן), סיבי nעולש, קמח חיטה, פתיתים פריכים מחיטה-תירס (קמח חיטה, nגריסי תירס, סמולינה מתירס), חתיכות תפוחות מחיטה-תירס n(קמח חיטה, גריסי תירס, סמולינה מתירס
+
+WRONG-046 [cereals_granola] barcode=7290016883183 conf=HIGH
+  Name: מוזלי 47% דגנים מלאים
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=3   whole=['nuts', 'oat_flakes_plain', 'peanuts']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מכיל גלוטן), 47%,אורז תפוח 9% (אורז,בוכר,),סוכר חום,שמן צמחי (דקלים),סירופ גלוקוז,קמח חיטה (מכיל גלוטן),בוטנים 2% ,אגוזי לוז 2%,קוקוס,אבקת קקאו, מתחלב (E322),חומרי טעם וריח, מלח.n מ
+
+WRONG-047 [cereals_granola] barcode=7290011131388 conf=HIGH
+  Name: מוזלי קראנצי תפוח קינמון
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup', 'glucose_syrup_alt']
+  n_whole=2   whole=['raisins', 'oat_flakes_plain']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מכיל גלוטן)  39% , שמן צמחי (דקלים)סוכר חום מקני סוכר , סירופ גלוקוזה, קמח חיטה (מכיל גלוטן)   צימוקים, תפוחי עץ מיובשים (2%) גרעיני חמניות (1.5%) אבקת קקאו, מלח, קינמון (0.2%) מתחל
+
+WRONG-048 [cereals_granola] barcode=9137842 conf=HIGH
+  Name: מארז לחמניות כוסמין
+  Expected: WFP | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: . בקיצור, היא עפה על עצמה ויש לה סיבה טובה: היא טעימה, איכותית וגם בריאה! פרגנו לעצמכם מארז של חמש מיוחסות לכל המשפחה, ולא תצטערו. זו הבטחה.
+
+WRONG-049 [cereals_granola] barcode=7290011131371 conf=HIGH
+  Name: מוזלי קראנצ'י בוטנ+שקדים
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=4   whole=['nuts', 'almonds', 'oat_flakes_plain', 'peanuts']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל 38% (מכיל גלוטן) , שמן צמחי (דקלים),  סוכר חום מקנה סוכר, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), אגוזים 4.7% (בוטנים  2.7%, אגוזי לוז 1%, שקדים 1%), קוקוס, גרעיני חמניות, אבקת קקאו, מל
+
+WRONG-050 [cereals_granola] barcode=7290011131968 conf=HIGH
+  Name: גרנולה אגוזים
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=5   whole=['nuts', 'almonds', 'dates', 'raisins', 'oat_flakes_plain']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גרנולה 71% (פתיתי שיבולת שועל 46% (מכיל גלוטן), קמח חיטה (מכיל גלוטן) , שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעו רה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב:לציטין סויה , א
+
+WRONG-051 [cereals_granola] barcode=7290014471436 conf=HIGH
+  Name: מוזלי צימוק תפוח וקינמון
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=2   whole=['raisins', 'oat_flakes_plain']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מכיל גלוטן) 39%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן), צימוקים 4%, תפוח עץ מיובש 2% (מכיל חומר משמר (דו תחמוצת הגפרית E220) גרעיני חמנייה 1.5%, אבקת 
+
+WRONG-052 [cereals_granola] barcode=7290112199966 conf=HIGH
+  Name: גרנולה קוקוס שוקולד ללתס
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים: פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן), סיבי nעולש, קמח חיטה, פתיתים פריכים מחיטה-תירס (קמח חיטה, nגריסי תירס, סמולינה מתירס), חתיכות תפוחות מחיטה-תירס n(קמח חיטה, גריסי תירס, סמולינה מתירס
+
+WRONG-053 [cereals_granola] barcode=7290011131395 conf=HIGH
+  Name: מוזלי 30% פירות
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['sugar', 'coconut_oil', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=3   whole=['dates', 'raisins', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל 40% (מכיל גלוטן) , פירות מיובשים 30% ((צימוקים 16%, אננס מסוכר 9% (אננס, סוכר, מווסת חומציות (E330), חומר משמר גור פית דו - חמצנית (E220)), תמרים 3%, שבבי בננה מסוכרת 2% (בננה, סוכר,
+
+WRONG-054 [cereals_granola] barcode=7290014471412 conf=HIGH
+  Name: מוזלי בוטנים, לוז, שקדים
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=4   whole=['nuts', 'almonds', 'oat_flakes_plain', 'peanuts']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מכיל גלוטן) 38%, שמן צמחי (דקלים), סוכר קנים חום, סירופ גלוקוז, קמח חיטה (מכיל גלוטן) בוטנים 2.7%, אגוזי לוז 1%, שקדים 1%, קוקוס, גרעיני חמנייה, אבקת קקאו, מלח, מתלב (E322), חומרי ט
+
+WRONG-055 [cereals_granola] barcode=7290014471429 conf=HIGH
+  Name: מוזלי פירות יבשים
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['sugar', 'coconut_oil', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=3   whole=['dates', 'raisins', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל (מעל גלוטן) 27%, פירות מיובשים ומסוכרים 30% (צימוקים 16%, אננס מסוכר 9% (אננס, סוכר, מווסת חומציות E330, חומר משמר  (דו תחמוצת  הגפרית E220, תמרים 3%, שבבי בננה מסוכרת 2% (בננה, שמן 
+
+WRONG-056 [cereals_granola] barcode=7290017894089 conf=HIGH
+  Name: קמח שיבולת שועל
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['sugar']
+  n_whole=1   whole=['oat_flakes_plain']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: שיבולת שועל מאפיינים נוספים ללא תוספת סוכר עלול להכיל סויה,
+
+WRONG-057 [cereals_granola] barcode=7290112199959 conf=HIGH
+  Name: גרנולה פירות ללת"ס
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: רכיבים: פתיתי שיבולת שועל מלאה (53%) (מכיל גלוטן), סיבי nעולש, קמח חיטה, פתיתים פריכים מחיטה-תירס (קמח חיטה, nגריסי תירס, סמולינה מתירס), חתיכות תפוחות מחיטה-תירס n(קמח חיטה, גריסי תירס, סמולינה מתירס
+
+WRONG-058 [cereals_granola] barcode=574615 conf=HIGH
+  Name: כוסמין מלא 100%
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=2   whole=['seeds_generic', 'spelt']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח כוסמין מלא (נטחן מגרעין הכוסמין בשלמותו) (מכיל גלוטן) (100% מהקמח, 60% מהלחם), מים, גלוטן חיטה, שמרים, מלח, לתת שעורה (מכיל גלו טן), חומרים משמרים (קלציום פרופיונט, פוטסיום סורבט), חומר מתחלב (E48
+
+WRONG-059 [snack_bar_granola] barcode=16000423534 conf=HIGH
+  Name: קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישיה
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאה (54%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דבש, מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט), חומר 
+
+WRONG-060 [snack_bar_granola] barcode=16000548404 conf=HIGH
+  Name: קראנצ'י חטיף שיבולת שועל עם דבש חמישייה
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, דבש (3%), מלח, מולסה, מתחלבים (לציטין), חומר תפיחה (סודיום ביקרבונט).
+
+WRONG-061 [snack_bar_granola] barcode=16000548503 conf=HIGH
+  Name: קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאה (60%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, מים, סירופ מייפל (2%), דבש, חומר טעם וריח, מלח, מתחלב (לציטין), חומר תפיחה (סודיום ביקרבונט), מולסה.
+
+WRONG-062 [snack_bar_granola] barcode=16000548909 conf=HIGH
+  Name: קראנצ'י חטיף שיבולת שועל מיקס חמישייה
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: חטיף שיבולת שועל מלאה עם שוקולד מריר פתיתי שיבולת שועל מלאה (56%) (מכיל גלוטן), סוכר לבן, שמנים צמחיים, שבבי שוקולד מריר מעולה (7%) (סויה), מים, אבקת קקאו מופחת שומן, דבש, מלח, מולסה, מתחלבים (לציטין)
+
+WRONG-063 [snack_bar_granola] barcode=4011800629519 conf=HIGH
+  Name: חטיף דגנים עם אגוזים
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'glucose_syrup']
+  n_whole=3   whole=['nuts', 'whole_grain_generic', 'oat_flakes_plain']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי דגנים מלאים קלויים (27%)(שיבולת שועל(מכיל גלוטן), שעורה (מכיל גלוטן), חיטה (מכיל גלוטן)), סירופ גלוקטוז-פרוקטוז, פתיתי דגנים (11%)(קמח חיטה(מכיל גלוטן), סוכר לבן, קמח תירס, קמח אורז, לתת שעורה (
+
+WRONG-064 [snack_bar_granola] barcode=7290107947480 conf=HIGH
+  Name: חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=3   whole=['nuts', 'almonds', 'whole_wheat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי דגנים 32% (אורז 26%, סוכר לבן, קמח תירס 2%, חיטה מלאה- גלוטן 1%, תמצית לתת שעורה- גלוטן, מלח), שוקולד חלב מעולה 32%, סירופ גלוקוז, סיבים תזונתיים (אינולין), חומרי הלחה (גליצרול, סורביטול), שברי 
+
+WRONG-065 [snack_bar_granola] barcode=7290110563851 conf=HIGH
+  Name: חטיף דגנים עם שברי אגוזים ושוקולד חלב בטר שישייה
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=3   whole=['nuts', 'almonds', 'whole_wheat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי דגנים 37% (אורז 30%, סוכר לבן, קמח תירס 2%, חיטה מלאה- גלוטן 1%, תמצית לתת שעורה- גלוטן, מלח), שוקולד חלב מעולה 15%, סירופ גלוקוז, שברי אגוזים 10.2% (שקדים, לוז), סיבים תזונתיים (אינולין), חומרי
+
+WRONG-066 [snack_bar_granola] barcode=7290118427858 conf=HIGH
+  Name: פיטנס בר גרנולה שוקולד מריר
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'coconut_oil']
+  n_whole=3   whole=['whole_grain_generic', 'oat_flour', 'oat_flakes_plain']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאים (32%) (מכיל גלוטן), סוכר, נטיפי שוקולד מריר (13%) (מכיל מתחלב (לציטין סויה)), קמח שיבולת שועל מלא (11%), קמח חיטה (10%), שמן חמניות, מרגרינה (שמן צי'ה, שמן קוקוס, מים, מלח, מתח
+
+WRONG-067 [snack_bar_granola] barcode=7290118427896 conf=HIGH
+  Name: חטיפי פיטנס שיבולת שועל דבש 5*38 גרם
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'coconut_oil']
+  n_whole=3   whole=['whole_grain_generic', 'oat_flour', 'oat_flakes_plain']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאים (35%) (מכיל גלוטן), קמח שיבולת שועל מלא (12%), קמח חיטה (12%), סוכר, קמח אורז (8%), מרגרינה (שמן צי''ה, שמן קוקוס, מים, מלח, מתחלב (E471)), דבש (5%), שמן חמניות, סובין שיבולת ש
+
+WRONG-068 [snack_bar_granola] barcode=8410076602251 conf=HIGH
+  Name: קראנצ'י חטיף שיבולת שועל עם חתיכות בטעם שוקולד חמישייה.
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oils_pl']
+  n_whole=1   whole=['whole_oat']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: פתיתי שיבולת שועל מלאה (מכיל גלוטן) (54.8%), סוכר לבן, שמנים צמחיים מזוככים, חתיכות בטעם שוקולד (8%) [סוכר לבן, חמאת קקאו, עיסת קקאו, אבקת גרעיני חמנייה, מתחלב (לציטין), חומרי טעם וריח], מולסה, מלח, ח
+
+WRONG-069 [snack_bar_granola] barcode=8410076610508 conf=HIGH
+  Name: נייצ'ר וואלי צ'ואי שוקולד מריר בוטנים ושקדים חמישייה
+  Expected: WFP | Inferred: RD
+  n_refined=7 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup', 'glucose_syrup_alt']
+  n_whole=3   whole=['almonds', 'whole_oat', 'peanuts']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: בוטנים קלויים [בוטנים (18.7%), שמן צמחי], פתיתי שיבולת שועל מלאה (14.1%) (מכיל גלוטן), סירופ גלוקוזה, שבבי שוקולד מריר מעולה (9.3%), סיבים תזונתיים (אינולין מעולש) (7.5%), שמנים ושומנים צמחיים, סוכר, 
+
+WRONG-070 [snack_bar_granola] barcode=8423207206488 conf=HIGH
+  Name: חטיף דגנים מלאים מצופה שוקולד חלב
+  Expected: WFP | Inferred: RD
+  n_refined=7 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'plain_starch', 'glucose_syrup', 'glucose_syrup_alt']
+  n_whole=3   whole=['whole_wheat', 'butter_dairy', 'whole_wheat_flour']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: שוקולד חלב74%: סוכר, חמאת קקאו, עיסת קקאו, אבקת חלב רזה, חמאה נטולת מים, מתחלב: לציטין סויה, חומרי טעם(, דגנים ) 24% ( )קמח חיטה מלאה )מכיל גלוטן( ) 16% (, קמח תירס(, דקסטרין, מלח, פרוקטוז, ויטמינים B
+
+WRONG-071 [snack_bar_granola] barcode=8423207210928 conf=HIGH
+  Name: מרבה סלים טופינג אגוזי לוז
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'rice_flour_refined', 'corn_starch', 'sugar']
+  n_whole=2   whole=['nuts', 'butter_dairy']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: שוקולד חלב (68%) (סוכר, מסת קקאו, חמאת קקאו, אבקת חלב רזה, חמאה נטולת מים, מתחלב: לציטין סויה, חומרי טעם), דגנים (21%) (קמח תירס, קמח אורז), סיבים תזונתיים (סיבי אפונה ירוקה, סיבי שיטה), נבט תירס קלוי
+
+WRONG-072 [cakes_hard_cookies] barcode=7613038451954 conf=MEDIUM
+  Name: קראנץ שוקולד מופחת סוכר
+  Expected: RD | Inferred: WFP
+  n_refined=0 refined=[]
+  n_whole=1   whole=['whole_wheat']
+  matrix_score=62  balance=1
+  failure_mode: MISSED_REFINED_MARKERS
+  TEXT: מס' 1 מכיל חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל וויטמינים מקבוצת B • ללא צבעי מאכל, ללא חומרים משמרים לארוחת בוקר ניתן להוסיף : חלב, פרי טרי, מים.
+
+WRONG-073 [cakes_hard_cookies] barcode=7290017962139 conf=MEDIUM
+  Name: עוגיות פירות יער כשל"פ
+  Expected: RD | Inferred: WFP
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=3   whole=['almonds', 'whole_rice', 'berries_dried']
+  matrix_score=62  balance=1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: שקדים (18%), קמח אורז מלא, סוכר קנים אורגני, רסק תפוחים, שמן קנולה, טפיוקה, חמוציות ברכז תפוחים (8%), סיבים תזונתיים (עולש), חומר תפ יחה: אבקת אפיה (סודיום ביקרבונט, פירופוספט), קינמון. מאפיינים נוספי
+
+WRONG-074 [cakes_hard_cookies] barcode=7290123330488 conf=MEDIUM
+  Name: עוגיות בוטנים כשל"פ
+  Expected: RD | Inferred: WFP
+  n_refined=1 refined=['sugar']
+  n_whole=2   whole=['dates', 'peanuts']
+  matrix_score=62  balance=1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: בוטנים ) 58% (, סוכר, מים, חלבון ביצים מפוסטרות, קוקוס טחון,nסירופ ]סוכר, גלוקוזה )סולפיט(, מים, מווסת חומציות ) E330 (, צבעnמאכל קרמל ) E150d , סולפיט (, חומרי טעם וריח[, ממרח תמריםn]תמרים ) 65% (, ס
+
+WRONG-075 [cakes_hard_cookies] barcode=7296073745372 conf=MEDIUM
+  Name: עוגיות ממולאות שוקולד
+  Expected: RD | Inferred: WFP
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=4   whole=['nuts', 'almonds', 'peanuts', 'tahini']
+  matrix_score=62  balance=1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה (מכיל גלוטן), שמנים ושומנים מן הצומח, סוכר לבן, קמח סויה, אבקת קקאו (2.8% במוצר(, חומרי טעם וריח, מלח שולחן, מעכב חמצון )מי צוי רוזמרין), מתחלבים (לציטין סויה , 471E), חומר תפיחה (E-450ii,E-5
+
+WRONG-076 [cakes_hard_cookies] barcode=5900020034991 conf=MEDIUM
+  Name: קראנץ צדפים בטעם שוקולד
+  Expected: RD | Inferred: WFP
+  n_refined=0 refined=[]
+  n_whole=1   whole=['whole_wheat']
+  matrix_score=62  balance=1
+  failure_mode: MISSED_REFINED_MARKERS
+  TEXT: מס' 1 חיטה מלאה • 9 ויטמינים ומינרלים • מקור לברזל, סידן וויטמינים מקבוצת B לארוחת בוקר ניתן להוסיף : חלב, פרי טרי, מים.
+
+WRONG-077 [cakes_hard_cookies] barcode=7296073078586 conf=MEDIUM
+  Name: דבש טבעי מפרחי שדה
+  Expected: RD | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: דבש טהור 100% עלול להכיל עקבות של חלב ערכים תזונתיים 100 גרם 332 קל אנרגיה 0 גרם חלבונים 83 גרם פחמימות 0 גרם שומנים 0 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, 
+
+WRONG-078 [cakes_hard_cookies] barcode=7290106571921 conf=MEDIUM
+  Name: עוגיות פיטנס חמוציות 180 גרם פיטנס | 180 גרם ‏12.90 ‏₪ ‏7.17
+  Expected: RD | Inferred: AMBIGUOUS
+  n_refined=4 refined=['refined_wheat_flour', 'sugar', 'unspecified_vegetable_oils_pl', 'plain_starch']
+  n_whole=4   whole=['whole_grain_generic', 'whole_wheat_flour', 'oat_flakes_plain', 'berries_dried']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: דגנים ( קמח חיטה מלא (55%) (קמח חיטה, סובין, נבט) (מכיל גלוטן), פתיתי שיבולת שועל מלאים (2.5%)), סוכר, שמנים צמחיים, חמוציות (6.5%), גלוטן חיטה, מלטודקסטרין, תמצית לתת שעורה, חומרי תפיחה (E503 ,E450 ,
+
+WRONG-079 [cakes_hard_cookies] barcode=7290020030184 conf=MEDIUM
+  Name: עוגיות מזרחיות עם זעתר 400 גרם אחוה | 400 גרם 2 יח' ב- ‏18 ₪
+  Expected: RD | Inferred: AMBIGUOUS
+  n_refined=2 refined=['refined_wheat_flour', 'plain_flour']
+  n_whole=2   whole=['sesame_seeds', 'olive_oil']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה (מכיל גלוטן), מים, שמנים ושומנים צמחיים (חמניות, סויה), מתחלב (E491), שומשום, מלח שולחן, תערובת זעתר 1% (תבלינים, זעתר 25%, מלח, שמן זית), שמרים, מעכב חמצון (מיצוי רוזמרין טבעי).
+
+WRONG-080 [cereals_granola] barcode=7296073705567 conf=MEDIUM
+  Name: טבעות דגנים בטעם דבש
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['wheat_starch', 'sugar', 'glucose_syrup', 'glucose_fructose_syrup']
+  n_whole=3   whole=['whole_wheat_flour', 'oat_flour', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא 36% (מכיל גלוטן), קמח שיבולת שועל 26% (מכיל גלוטן), סוכר לבן, עמילן חיטה (מכיל גלוטן), דבש 2%, סירופ גלוקוז-פרוקטוז, מו לסה, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם וריח טבעי, תערובת 
+
+WRONG-081 [cereals_granola] barcode=7296073705550 conf=MEDIUM
+  Name: כדורי דגנים טעם שוקו
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'glucose_syrup', 'glucose_fructose_syrup']
+  n_whole=4   whole=['whole_wheat', 'whole_wheat_flour', 'oat_flour', 'oat_flakes_plain']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גריסי תירס 26%, קמח חיטה מלאה (מכיל גלוטן) 25%, קמח חיטה (מכיל גלוטן), סוכר לבן, סירופ גלוקוז-פרוקטוז, אבקת קקאו, קמח שיבולת שועל (מ כיל גלוטן), דקסטרוז, שמן לפתית, מלח, מתחלב סויה לציטין, חומר טעם ור
+
+WRONG-082 [cereals_granola] barcode=7290107647731 conf=MEDIUM
+  Name: דגני בוקר קוקומן חום לבן
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'plain_flour', 'wheat_starch', 'sugar']
+  n_whole=1   whole=['whole_wheat_flour']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: דגנים (71%) (קמח חיטה (מכיל גלוטן), קמח חיטה מלא, קמח לתת שעורה (מכיל גלוטן)), סוכר, עמילן חיטה, אבקת קקאו,  מלח, חומרי טעם וריח, תע רובת ויטמינים ומינרלים, מתחלב (לציטין סויה). מאפיינים נוספים ללא צב
+
+WRONG-083 [cereals_granola] barcode=7290107647854 conf=MEDIUM
+  Name: דגני בוקר שוגי
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=0   whole=[]
+  matrix_score=26  balance=-2
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח תירס (82%), סוכר (12%), תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמנים ומינרלים. מאפיינים נוספים ללא צבעי מאכל,
+
+WRONG-084 [cereals_granola] barcode=7290116537351 conf=MEDIUM
+  Name: כריות נוגט
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=2   whole=['nuts', 'whole_wheat_flour']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קרם נוגט (48%) (סוכר, שמן צמחי, אגוזי לוז (8.2%), אבקת קקאו, מלטודקסטרין, שמן צמחי מוקשה, מתחלב (E322)), דגנים (40%) (קמח חיטה (מכיל  גלוטן), גריסי תירס, קמח תירס, קמח חיטה מלא), סוכר, מלטודקסטרין, אב
+
+WRONG-085 [cereals_granola] barcode=8445290964595 conf=MEDIUM
+  Name: דגני בוקר קיטקט
+  Expected: WFP | Inferred: RD
+  n_refined=5 refined=['refined_wheat_flour', 'plain_flour', 'sugar', 'unspecified_vegetable_oils_pl', 'glucose_syrup']
+  n_whole=2   whole=['whole_grain_generic', 'whole_wheat_flour']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (מכיל גלוטן) (31.4%), גריסי תירס (21.7%), סוכר, דקסטרוז, שמנים צמחיים, קמח חיטה (6.1%), אבקת קקאו*, סירופ גלוקוז, עמילן  חיטה, שוקולד חלב (2%), אבקת חלב כחוש, מינרלים (סידן (קלציום קרבונט
+
+WRONG-086 [cereals_granola] barcode=5010029000061 conf=MEDIUM
+  Name: דגני בוקר ויטביקס
+  Expected: WFP | Inferred: UNKNOWN
+  n_refined=0 refined=[]
+  n_whole=0   whole=[]
+  matrix_score=50  balance=0
+  failure_mode: NO_MARKERS_FIRED
+  TEXT: חיטה (מכיל גלוטן) (95%),מיצוי לתת שעורה,סוכר,מלח,ויטמינים ומינרלים, (ניאצין,ריבואפלאבין,תיאמין,ח' פולית,ברזל). מכיל גלוטן חיטה,
+
+WRONG-087 [cereals_granola] barcode=5082979 conf=MEDIUM
+  Name: חלה דגנים קלועה
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=3 refined=['refined_wheat_flour', 'plain_flour', 'sugar']
+  n_whole=3   whole=['whole_wheat', 'whole_wheat_flour', 'oat_flakes_plain']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה (גלוטן), מים, קמח חיטה מלאה (גלוטן), סוכר, שמרים, דקסטרוז, סובין חיטה, שיבולת שועל (גלוטן), משפר אפיה (גלוטן חיטה, דקסטרוז,  מתחלב (E-472e), קמח סויה, מעכב חמצון (E-300), אנזימים), מלח, מרגרי
+
+WRONG-088 [cereals_granola] barcode=7290017325910 conf=MEDIUM
+  Name: קורנפלקס אורגני הרדוף
+  Expected: WFP | Inferred: RD
+  n_refined=1 refined=['plain_flour']
+  n_whole=0   whole=[]
+  matrix_score=38  balance=-1
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח תירס אורגני (%94 ,(קמח nלתת שעורה אורגני (%5 ,(מלח. מאפיינים נוספים ללא צבעי מאכל,
+
+WRONG-089 [cereals_granola] barcode=884912129512 conf=MEDIUM
+  Name: דגני בוקר קוקו פבלס
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=0   whole=[]
+  matrix_score=26  balance=-2
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: אורז, סוכר, שמן צמחי מוקשה, קקאו, מלח, צבע (קרמל) חומרי טעם וריח, מונע חימצון הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על 
+
+WRONG-090 [cereals_granola] barcode=7297488098688 conf=MEDIUM
+  Name: פצפוצי אורז ללת"ס
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['sugar']
+  n_whole=1   whole=['whole_rice']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: 100% אורז מלא (ללא תוספת סוכר ומלח) מאפיינים נוספים ללא תוספת סוכר,
+
+WRONG-091 [cereals_granola] barcode=7290112495228 conf=MEDIUM
+  Name: קורנפלקס דבש
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=1   whole=['nuts']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח תירס (79%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, דבש (0.7%), מתחלב (E471), סירופ סוכר שרוף, תערובת ויטמינים, ברזל, חומרי טעם  וריח. מאפיינים נוספים ללא צבע וללא משמר מכיל גלוטן שעורה עלול להכי
+
+WRONG-092 [cereals_granola] barcode=7296073516033 conf=MEDIUM
+  Name: קורנפלקס בציפוי שוק' לבן
+  Expected: WFP | Inferred: RD
+  n_refined=1 refined=['sugar']
+  n_whole=0   whole=[]
+  matrix_score=38  balance=-1
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: שוקולד לבן מעולה (75%)(סויה), פתיתי תירס (24.5%)(גריסי תירס, סוכר לבן, מלח), מייצב (אקציה גאם), סוכר לבן.nכלל מוצרי קקאו בשוקולד-  31% מינימום. מכיל חלב,
+
+WRONG-093 [cereals_granola] barcode=7290116535388 conf=MEDIUM
+  Name: קורנפלקס בטעם דבש כשל"פ
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=1   whole=['nuts']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח תירס (86%), סוכר, מלח, חומר טעם וריח.n מאפיינים נוספים ללא צבע וללא משמר עלול להכיל אגוזי לוז,
+
+WRONG-094 [cereals_granola] barcode=7290107649605 conf=MEDIUM
+  Name: קליק קורנפלקס ופצפוצים
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'wheat_starch', 'sugar', 'unspecified_vegetable_oil_sg']
+  n_whole=2   whole=['oat_flour', 'oat_flakes_plain']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: סוכר, אבקות חלב (מלא, רזה), חמאת קקאו, פתיתי תירס (10%) (קמח תירס (9%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), חומרי  טעם וריח), עיסת קקאו, פצפוצי דגנים (5%) (דגנים (3.5%) (קמח אורז, ק
+
+WRONG-095 [cereals_granola] barcode=7290112494313 conf=MEDIUM
+  Name: קליק קורנפלקס
+  Expected: WFP | Inferred: RD
+  n_refined=1 refined=['sugar']
+  n_whole=0   whole=[]
+  matrix_score=38  balance=-1
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: שוקולד חלב (73%), פתיתי תירס (26%) (קמח תירס (23.1%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), תערובת ויטמינים ומינרלי ם), מים, מייצב (אקציה גאם), סוכר. מכיל גלוטן שעורה,
+
+WRONG-096 [cereals_granola] barcode=7290116530482 conf=MEDIUM
+  Name: מארז קורנפלקס של אלופים
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=0   whole=[]
+  matrix_score=26  balance=-2
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח תירס (89%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), ויטמינים (B3 (ניאצין),B2, B6(ריבופלאבין),B1(תיאמין), חומצה פו לית, B12), ברזל. מאפיינים נוספים ללא צבעי מאכל,
+
+WRONG-097 [cereals_granola] barcode=7290019939238 conf=MEDIUM
+  Name: מיקס קורנפלקס ללא גלוטן
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['sugar', 'glucose_syrup', 'glucose_syrup_alt']
+  n_whole=0   whole=[]
+  matrix_score=14  balance=-3
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: שוקולד חלב (72%) (סוכר, חמאת קקאו, אבקת חלב, עיסת קקאו, מתחלבים (לציטין לפתית, E476)), קורנפלקס (27%) (תירס, סוכר, מלח, מווסת חומצית  (סודיום פוספט) (0.11%)), מים, מייצב (גומי ערבי), סירופ גלוקוזה (סו
+
+WRONG-098 [cereals_granola] barcode=7290019816416 conf=MEDIUM
+  Name: קראנץ' מיני קורנפלקס
+  Expected: WFP | Inferred: RD
+  n_refined=3 refined=['sugar', 'glucose_syrup', 'hydrogenated_veg_fat']
+  n_whole=0   whole=[]
+  matrix_score=14  balance=-3
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: ציפוי שוקולד לבן ופתיתי תירס קלויים (34%) ‏{רכיבים: שוקולד לבן (31%) [מכיל חומרים מתחלבים (לציטין סויה, E476)], פתיתי תירס קלויים (3 %) [רכיבים: פתיתי תירס, סוכר, מלח, מווסת חומציות (E339)]}, מים, סוכ
+
+WRONG-099 [cereals_granola] barcode=3387390525960 conf=MEDIUM
+  Name: דגני בוקר קראנץ'
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['plain_flour', 'rice_flour_refined', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup', 'glucose_syrup_alt']
+  n_whole=3   whole=['nuts', 'whole_grain_generic', 'whole_wheat']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: חיטה מלאה (מכיל גלוטן) (31.5% ), קמח אורז (22.7%), סוכר, סמולינת תירס (8.4%), סירופ גלוקוזה, אבקת קקאו מופחת שומן, שמן צמחי, עיסת קק או, סירופ סוכר אינברטי, מינרלים (סידן (קלציום קרבונט), ברזל), חומר 
+
+WRONG-100 [cereals_granola] barcode=7290018978047 conf=MEDIUM
+  Name: דגני בוקר קראנצ'י נוגט
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'rice_flour_refined', 'corn_starch', 'sugar']
+  n_whole=1   whole=['nuts']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קרם בטעם נוגט 48% [סוכר, שמן סויה, קמח אורז, עמילן תירס, קמח סויה, שומן דקל, מחית אגוזי לוז (1%), אבקת קקאו, מתחלב (לציטין סויה), חו מרי טעם ורים, מלח], קמח אורז, קמח תירס, סוכר, סיבים תזונתיים (חומר 
+
+WRONG-101 [cereals_granola] barcode=7290112494351 conf=MEDIUM
+  Name: קורנפלקס של אלופים בד"ץ
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=0   whole=[]
+  matrix_score=26  balance=-2
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח תירס (89%), סוכר, תמצית לתת שעורה (מכיל גלוטן), מלח, מתחלב (E471), ויטמינים (B3 (ניאצין),B2, B6(ריבופלאבין),  B1(תיאמין), חומצה פולית, B12), ברזל. מאפיינים נוספים ללא צבעי מאכל,
+
+WRONG-102 [cereals_granola] barcode=7613030979647 conf=MEDIUM
+  Name: טריקס דגנים בטעם פירות
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'sugar', 'unspecified_vegetable_oil_sg', 'glucose_syrup']
+  n_whole=2   whole=['nuts', 'whole_grain_generic']
+  matrix_score=26  balance=-2
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח תירס מלא (35.1%), סמולינת תירס (33.7%), סוכר, סירופ גלוקוז, שמן צמחי, חומר מייצב (גאם-ארביק), מינרלים (סידן (קלציום קרבונט), אבץ , ברזל), חומרי תפיחה (E341iii ,E341), מלח, מווסתי חומציות (E331, E3
+
+WRONG-103 [cereals_granola] barcode=7296073642022 conf=MEDIUM
+  Name: דגני בוקר טבעות דבש לל"ג
+  Expected: WFP | Inferred: RD
+  n_refined=4 refined=['plain_flour', 'rice_flour_refined', 'sugar', 'glucose_syrup']
+  n_whole=1   whole=['nuts']
+  matrix_score=14  balance=-3
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גריסי תירס (65%), סוכר, קמח אורז (4%), דבש (4%), סירופ גלוקוז פרוקטוז, שמן לפתית מזוכך, אבקת דקסטרוז, מלח, סירופ תירס, מתחלב (לציטין  סויה) מכיל סויה עלול להכיל אגוזי לוז,
+
+WRONG-104 [cereals_granola] barcode=7296073732426 conf=MEDIUM
+  Name: קוואקר דק מהיר הכנה
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['sugar']
+  n_whole=1   whole=['oat_flakes_plain']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: שיבולת שועל (מכיל גלוטן) מכיל גלוטן שיבולת שועל ערכים תזונתיים ל-100 גרם לפני בישול 9 גרם סיבים תזונתיים 1 גרם סוכרים מתוך פחמימות 366 קל אנרגיה 12 גרם חלבונים 56 גרם פחמימות 8.4 גרם שומנים 6 מג נתרן 
+
+WRONG-105 [cereals_granola] barcode=7290122781663 conf=MEDIUM
+  Name: פתיתים ללא גלוטן
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'rice_flour_refined']
+  n_whole=0   whole=[]
+  matrix_score=26  balance=-2
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: קמח תירס (60%), קמח אורז (39.5%), מתחלב (E471). עלול להכיל ביצים,
+
+WRONG-106 [cereals_granola] barcode=7290116535371 conf=MEDIUM
+  Name: קורנפלקס לל"ג כשל"פ
+  Expected: WFP | Inferred: RD
+  n_refined=2 refined=['plain_flour', 'sugar']
+  n_whole=1   whole=['whole_grain_generic']
+  matrix_score=38  balance=-1
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח תירס (92%), סוכר, מלח. מאפיינים נוספים עשיר בדגנים מלאים,
+
+WRONG-107 [cereals_granola] barcode=7290118424956 conf=MEDIUM
+  Name: פיטנס THIN רוזמרין
+  Expected: WFP | Inferred: RD
+  n_refined=6 refined=['refined_wheat_flour', 'plain_flour', 'rice_flour_refined', 'sugar', 'unspecified_vegetable_oils_pl', 'plain_starch']
+  n_whole=2   whole=['whole_rice', 'whole_wheat_flour']
+  matrix_score=10  balance=-4
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (26%), קמח חיטה (22%), שמנים צמחיים, קמח אורז מלא (7%), גלוטן חיטה, עמילן אורז, שמרים, קינ ואה אדומה מיובשת, רוזמרין מיובש (1%), מלח ים, סוכר, שום מיובש (0.7%
+
+WRONG-108 [cereals_granola] barcode=7290112351104 conf=MEDIUM
+  Name: שוקולד חלב+פצפוצי אורז
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['sugar']
+  n_whole=1   whole=['nuts']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: סוכר לבן, אבקת חלב, חמאת קקאו, עיסת קקאו, פצפוצי אורז 5% (אורז תפוח, סוכר לבן, מלח), שומן חלב, מתחלבים (לציטין לפתית, E-476), ונילין . מכיל אגוזי לוז,
+
+WRONG-109 [cereals_granola] barcode=7297488199590 conf=MEDIUM
+  Name: פצפוצי אורז תפוח
+  Expected: WFP | Inferred: RD
+  n_refined=1 refined=['sugar']
+  n_whole=0   whole=[]
+  matrix_score=38  balance=-1
+  failure_mode: MISSED_WHOLE_FOOD_MARKERS
+  TEXT: אורז לבן (95%), סוכר, מלח ערכים תזונתיים 100 גרם 0.8 גרם סיבים תזונתיים 3.8 גרם סוכרים מתוך פחמימות 351 קל אנרגיה 7 גרם חלבונים 78 גרם פחמימות 1 גרם שומנים 390 מג נתרן 1 מתוכם סוכר מוסף הנתונים המדויק
+
+WRONG-110 [cereals_granola] barcode=7296073642046 conf=MEDIUM
+  Name: קורנפלקס ללא גלוטן
+  Expected: WFP | Inferred: AMBIGUOUS
+  n_refined=1 refined=['sugar']
+  n_whole=1   whole=['peanuts']
+  matrix_score=50  balance=0
+  failure_mode: MIXED_MARKERS_WRONG_DIRECTION
+  TEXT: גריסי תירס (89%), סוכר, מלח, מתחלב (E471). עלול להכיל בוטנים,
+
+
+────────────────────────────────────────────────────────────────────────
+VERDICT AND GAP ANALYSIS
+────────────────────────────────────────────────────────────────────────
+Combined accuracy: 72.3%
+High-confidence accuracy: 62.4%
+Target: >= 90%
+Result: FAIL
+
+HONEST LIMITATION: The heuristic ground-truth is imperfect.
+  - HIGH-confidence cases (name-signal-derived) are the most
+    trustworthy accuracy signal. Low-confidence and MIXED cases
+    should NOT be counted toward the 90% bar.
+  - This probe cannot catch cases where both inferred and expected
+    are wrong (e.g. an edge case with unusual Hebrew spelling).
+  - The owner should audit the wrong-classification table above
+    before treating the high-confidence accuracy as validated.
+
+PRIMARY GAPS IDENTIFIED:
+  - MIXED_MARKERS_WRONG_DIRECTION: 88 products
+  - MISSED_WHOLE_FOOD_MARKERS: 13 products
+  - NO_MARKERS_FIRED: 8 products
+  - MISSED_REFINED_MARKERS: 2 products
+
+CLOSABILITY ASSESSMENT:
+  - 2 products where refined class expected but no refined  markers fired. Review the wrong-classification table — likely caused by  ingredient text using uncommon synonyms for flour/starch/sugar.
+  - 13 products where whole-food class expected but no whole  markers fired. Likely unusual whole-food terms not in lexicon.
+
+========================================================================
+END OF REPORT
+========================================================================

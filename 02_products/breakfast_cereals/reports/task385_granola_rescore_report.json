@@ -1,0 +1,866 @@
+{
+  "_meta": {
+    "task": "TASK-385",
+    "generated": "2026-06-23T12:51:35.037752+00:00",
+    "run_id_pass_a": "run_granola_task385_off",
+    "run_id_pass_b": "run_granola_task385_on",
+    "bsip1_source": "C:\\Bari\\03_operations\\bsip1\\run_cereals_008\\output",
+    "granola_product_count": 22,
+    "scored_pass_a": 22,
+    "scored_pass_b": 22,
+    "fat_collapse_in_bsip1": 0,
+    "flags_pass_a": {
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_RECAL_P0": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_REDLABEL_V1": "off"
+    },
+    "flags_pass_b": {
+      "BARI_SODIUM_CEREAL": "on",
+      "BARI_RECAL_P0": "on",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_REDLABEL_V1": "off"
+    }
+  },
+  "grade_distribution_pass_a": {
+    "B": 4,
+    "C": 8,
+    "D": 8,
+    "E": 2
+  },
+  "grade_distribution_pass_b": {
+    "B": 4,
+    "C": 8,
+    "D": 8,
+    "E": 2
+  },
+  "score_movers": 2,
+  "grade_movers": [],
+  "byte_identity_pass_a": {
+    "result": "FAIL",
+    "match": 20,
+    "total": 22,
+    "mismatches": [
+      {
+        "bc": "7290106773714",
+        "score_a": 64.0,
+        "score_008": 60.0,
+        "grade_a": "C",
+        "grade_008": "C"
+      },
+      {
+        "bc": "7290017962023",
+        "score_a": 67.4,
+        "score_008": 65.9,
+        "grade_a": "B",
+        "grade_008": "B"
+      }
+    ]
+  },
+  "products": [
+    {
+      "barcode": "1343845",
+      "name": "גרנולה עם פירות",
+      "pass_a": {
+        "score": 31.4,
+        "grade": "E",
+        "fat_g": 11.5,
+        "fat_pct_kcal": 28.43,
+        "sodium_mg": 20.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_5_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 31.4,
+        "grade": "E",
+        "fat_g": 11.5,
+        "fat_pct_kcal": 28.43,
+        "sodium_mg": 20.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_5_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "E",
+        "grade_b": "E"
+      }
+    },
+    {
+      "barcode": "7290011131050",
+      "name": "גרנולה פקאן",
+      "pass_a": {
+        "score": 40.2,
+        "grade": "D",
+        "fat_g": 12.0,
+        "fat_pct_kcal": 26.09,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 40.2,
+        "grade": "D",
+        "fat_g": 12.0,
+        "fat_pct_kcal": 26.09,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7290011131968",
+      "name": "גרנולה אגוזים",
+      "pass_a": {
+        "score": 38.3,
+        "grade": "D",
+        "fat_g": 13.0,
+        "fat_pct_kcal": 28.19,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 38.3,
+        "grade": "D",
+        "fat_g": 13.0,
+        "fat_pct_kcal": 28.19,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7290011131975",
+      "name": "גרנולה פירות",
+      "pass_a": {
+        "score": 32.1,
+        "grade": "E",
+        "fat_g": 10.0,
+        "fat_pct_kcal": 22.73,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 32.1,
+        "grade": "E",
+        "fat_g": 10.0,
+        "fat_pct_kcal": 22.73,
+        "sodium_mg": 40.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "E",
+        "grade_b": "E"
+      }
+    },
+    {
+      "barcode": "7290011668587",
+      "name": "גרנולה עשירה",
+      "pass_a": {
+        "score": 38.0,
+        "grade": "D",
+        "fat_g": 17.2,
+        "fat_pct_kcal": 36.6,
+        "sodium_mg": 195.0,
+        "caps_fired": [
+          "HIGH_SUGAR_25G_PLUS",
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 36.0,
+        "grade": "D",
+        "fat_g": 17.2,
+        "fat_pct_kcal": 36.6,
+        "sodium_mg": 195.0,
+        "caps_fired": [
+          "HIGH_SUGAR_25G_PLUS",
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 2
+      },
+      "delta": {
+        "score": -2.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7290013433091",
+      "name": "גרנולה 8% שוקולד מריר",
+      "pass_a": {
+        "score": 51.9,
+        "grade": "C",
+        "fat_g": 14.0,
+        "fat_pct_kcal": 30.29,
+        "sodium_mg": 99.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 51.9,
+        "grade": "C",
+        "fat_g": 14.0,
+        "fat_pct_kcal": 30.29,
+        "sodium_mg": 99.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290013433107",
+      "name": "גרנולה חלבה תמר קשיו",
+      "pass_a": {
+        "score": 47.0,
+        "grade": "D",
+        "fat_g": 19.2,
+        "fat_pct_kcal": 40.0,
+        "sodium_mg": 16.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 47.0,
+        "grade": "D",
+        "fat_g": 19.2,
+        "fat_pct_kcal": 40.0,
+        "sodium_mg": 16.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_4_ULTRA_PROCESSED",
+          "ADDITIVE_MARKERS_3_PLUS"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7290013433244",
+      "name": "גרנולה 18% חלבון",
+      "pass_a": {
+        "score": 63.0,
+        "grade": "C",
+        "fat_g": 12.7,
+        "fat_pct_kcal": 28.5,
+        "sodium_mg": 15.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 63.0,
+        "grade": "C",
+        "fat_g": 12.7,
+        "fat_pct_kcal": 28.5,
+        "sodium_mg": 15.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290013433336",
+      "name": "גרנולה 48% סופרפוד",
+      "pass_a": {
+        "score": 62.4,
+        "grade": "C",
+        "fat_g": 17.2,
+        "fat_pct_kcal": 37.76,
+        "sodium_mg": 69.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 62.4,
+        "grade": "C",
+        "fat_g": 17.2,
+        "fat_pct_kcal": 37.76,
+        "sodium_mg": 69.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290014471443",
+      "name": "גרנולה אגוזים",
+      "pass_a": {
+        "score": 35.5,
+        "grade": "D",
+        "fat_g": 13.1,
+        "fat_pct_kcal": 31.78,
+        "sodium_mg": 20.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 35.5,
+        "grade": "D",
+        "fat_g": 13.1,
+        "fat_pct_kcal": 31.78,
+        "sodium_mg": 20.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7290017962023",
+      "name": "גרנולה מייפל תמר פקאן",
+      "pass_a": {
+        "score": 67.4,
+        "grade": "B",
+        "fat_g": 17.3,
+        "fat_pct_kcal": 37.61,
+        "sodium_mg": 7.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 67.4,
+        "grade": "B",
+        "fat_g": 17.3,
+        "fat_pct_kcal": 37.61,
+        "sodium_mg": 7.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "B",
+        "grade_b": "B"
+      }
+    },
+    {
+      "barcode": "7290017962047",
+      "name": "גרנולה חמוציות ושקדים",
+      "pass_a": {
+        "score": 69.7,
+        "grade": "B",
+        "fat_g": 14.8,
+        "fat_pct_kcal": 34.51,
+        "sodium_mg": 10.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 69.7,
+        "grade": "B",
+        "fat_g": 14.8,
+        "fat_pct_kcal": 34.51,
+        "sodium_mg": 10.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "B",
+        "grade_b": "B"
+      }
+    },
+    {
+      "barcode": "7290106771161",
+      "name": "גרנולה מייפל פקאן",
+      "pass_a": {
+        "score": 54.3,
+        "grade": "C",
+        "fat_g": 19.7,
+        "fat_pct_kcal": 39.31,
+        "sodium_mg": 8.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 54.3,
+        "grade": "C",
+        "fat_g": 19.7,
+        "fat_pct_kcal": 39.31,
+        "sodium_mg": 8.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290106771314",
+      "name": "גרנולה אגוזים חמוציות",
+      "pass_a": {
+        "score": 61.3,
+        "grade": "C",
+        "fat_g": 19.3,
+        "fat_pct_kcal": 39.48,
+        "sodium_mg": 9.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 61.3,
+        "grade": "C",
+        "fat_g": 19.3,
+        "fat_pct_kcal": 39.48,
+        "sodium_mg": 9.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290106771369",
+      "name": "גרנולה לוז וקינמון",
+      "pass_a": {
+        "score": 65.0,
+        "grade": "B",
+        "fat_g": 20.0,
+        "fat_pct_kcal": 39.91,
+        "sodium_mg": 6.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 65.0,
+        "grade": "B",
+        "fat_g": 20.0,
+        "fat_pct_kcal": 39.91,
+        "sodium_mg": 6.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "B",
+        "grade_b": "B"
+      }
+    },
+    {
+      "barcode": "7290106773714",
+      "name": "גרנולה מיקס קראנץ' מלוח",
+      "pass_a": {
+        "score": 64.0,
+        "grade": "C",
+        "fat_g": 34.2,
+        "fat_pct_kcal": 61.07,
+        "sodium_mg": 394.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": true,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 59.0,
+        "grade": "C",
+        "fat_g": 34.2,
+        "fat_pct_kcal": 61.07,
+        "sodium_mg": 394.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": true,
+        "sodium_grad_penalty": 5
+      },
+      "delta": {
+        "score": -5.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290112497994",
+      "name": "גרנולה פרוטאין+אגוזים",
+      "pass_a": {
+        "score": 61.0,
+        "grade": "C",
+        "fat_g": 12.7,
+        "fat_pct_kcal": 26.52,
+        "sodium_mg": 65.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 61.0,
+        "grade": "C",
+        "fat_g": 12.7,
+        "fat_pct_kcal": 26.52,
+        "sodium_mg": 65.0,
+        "caps_fired": [
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290112498007",
+      "name": "גרנולה חלבון שקד+חמוציות",
+      "pass_a": {
+        "score": 63.1,
+        "grade": "C",
+        "fat_g": 11.5,
+        "fat_pct_kcal": 25.18,
+        "sodium_mg": 56.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 63.1,
+        "grade": "C",
+        "fat_g": 11.5,
+        "fat_pct_kcal": 25.18,
+        "sodium_mg": 56.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "C",
+        "grade_b": "C"
+      }
+    },
+    {
+      "barcode": "7290116534619",
+      "name": "גרנולה פרוטאין+שוקולד",
+      "pass_a": {
+        "score": 69.3,
+        "grade": "B",
+        "fat_g": 11.4,
+        "fat_pct_kcal": 24.96,
+        "sodium_mg": 71.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 69.3,
+        "grade": "B",
+        "fat_g": 11.4,
+        "fat_pct_kcal": 24.96,
+        "sodium_mg": 71.0,
+        "caps_fired": [
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "B",
+        "grade_b": "B"
+      }
+    },
+    {
+      "barcode": "7613035622623",
+      "name": "גרנולה דבש",
+      "pass_a": {
+        "score": 39.2,
+        "grade": "D",
+        "fat_g": 13.2,
+        "fat_pct_kcal": 27.76,
+        "sodium_mg": 89.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 39.2,
+        "grade": "D",
+        "fat_g": 13.2,
+        "fat_pct_kcal": 27.76,
+        "sodium_mg": 89.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "NOVA_PROXY_4_ULTRA_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7613035635845",
+      "name": "גרנולה שוקולד פיטנס",
+      "pass_a": {
+        "score": 39.8,
+        "grade": "D",
+        "fat_g": 14.8,
+        "fat_pct_kcal": 30.62,
+        "sodium_mg": 77.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 39.8,
+        "grade": "D",
+        "fat_g": 14.8,
+        "fat_pct_kcal": 30.62,
+        "sodium_mg": 77.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    },
+    {
+      "barcode": "7613037012095",
+      "name": "גרנולה שוקולד קינואה",
+      "pass_a": {
+        "score": 39.8,
+        "grade": "D",
+        "fat_g": 16.4,
+        "fat_pct_kcal": 33.32,
+        "sodium_mg": 89.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": null
+      },
+      "pass_b": {
+        "score": 39.8,
+        "grade": "D",
+        "fat_g": 16.4,
+        "fat_pct_kcal": 33.32,
+        "sodium_mg": 89.0,
+        "caps_fired": [
+          "SNACK_BAR_RED_SUGAR_LABEL",
+          "ISRAELI_RED_LABEL_1_SUGAR",
+          "SNACK_BAR_HIGH_CAL",
+          "NOVA_PROXY_3_PROCESSED"
+        ],
+        "hp_fat_sodium": false,
+        "sodium_grad_penalty": 0
+      },
+      "delta": {
+        "score": 0.0,
+        "grade_moved": false,
+        "grade_a": "D",
+        "grade_b": "D"
+      }
+    }
+  ]
+}

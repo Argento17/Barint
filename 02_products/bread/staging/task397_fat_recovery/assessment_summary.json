@@ -1,0 +1,25 @@
+{
+  "task": "TASK-397",
+  "assessment_date": "2026-06-25",
+  "run_id_assessed": "run_bread_conform_001",
+  "sentinel_value": 0.25,
+  "sentinel_field": "normalized_nutrition_per_100g.fat_g",
+  "sentinel_count_in_bsip1": 22,
+  "sentinel_count_in_live_page": 22,
+  "total_bsip1_products": 31,
+  "live_page_products": 29,
+  "root_cause": "Shufersal shows fat_raw=less_than_0.5 for these products; BSIP1 enricher stored midpoint 0.25",
+  "fat_enters_score_via": "fat_quality dimension (weight=0.08) via _score_fat_quality_sprint1; fat<0.5 triggers R3 leanness path giving score=90.5",
+  "all_22_source": "shufersal_direct_scrape_only",
+  "group_A_plausible_count": 13,
+  "group_B_implausible_count": 9,
+  "recoverable_count": 0,
+  "unrecoverable_count": 22,
+  "max_score_impact_group_A": 0.12,
+  "max_score_impact_group_B": 3.24,
+  "grade_change_candidates": [
+    "7290016967074",
+    "96086000966"
+  ],
+  "verdict": "Label artifact not fabrication. 13 plausible negligible impact. 9 implausible data quality risk."
+}

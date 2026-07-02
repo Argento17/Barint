@@ -1,0 +1,26 @@
+{
+  "run_id": "run_juices_d4_rescore",
+  "run_ts": "2026-06-26T17:02:50.422082+00:00",
+  "flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_D4_SCORE_V1": "on",
+    "BARI_GLASSBOX_W2": "on"
+  },
+  "products_scored": 28,
+  "errors": 1,
+  "d4_movers": 0,
+  "error_list": [
+    {
+      "product_id": "unknown",
+      "error": "unsupported operand type(s) for /: 'WindowsPath' and 'NoneType'"
+    }
+  ]
+}

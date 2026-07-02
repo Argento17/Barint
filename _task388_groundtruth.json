@@ -1,0 +1,108 @@
+{
+  "corpus_total": 480,
+  "matched_to_ingredients": 464,
+  "unmatched_no_ingredient_text": 16,
+  "phosphate_engine_faithful": 107,
+  "phosphate_hebrew_word_match": 35,
+  "phosphate_only_via_enumber_MISSED_by_prior_pass": 72,
+  "grade_movers_count": 6,
+  "baseline_grade_dist": {
+    "A": 29,
+    "B": 87,
+    "C": 91,
+    "D": 96,
+    "E": 175,
+    "S": 2
+  },
+  "phosphate_minus1_grade_dist": {
+    "A": 29,
+    "B": 87,
+    "C": 90,
+    "D": 92,
+    "E": 180,
+    "S": 2
+  },
+  "phosphate_by_category": {
+    "bread": "0/29",
+    "breakfast-cereals": "0/20",
+    "brined_cheeses": "0/36",
+    "cakes": "43/65",
+    "cheese-spreads": "11/53",
+    "cookies_coffee": "46/119",
+    "granola": "0/22",
+    "hard_cheeses": "0/23",
+    "hummus": "0/57",
+    "juices": "0/17",
+    "milk": "7/18",
+    "snacks": "0/21"
+  },
+  "grade_movers": [
+    {
+      "barcode": "7296073346340",
+      "name": "עוגות אישיות קרם שוקולד",
+      "category": "cakes",
+      "score_off": 35.0,
+      "grade_off": "D",
+      "score_on": 34.0,
+      "grade_on": "E",
+      "match_source": "e_number",
+      "grade_change": true
+    },
+    {
+      "barcode": "5317194",
+      "name": "ביסקוויט בטעם וניל הדר — הדר",
+      "category": "cookies_coffee",
+      "score_off": 35.8,
+      "grade_off": "D",
+      "score_on": 34.8,
+      "grade_on": "E",
+      "match_source": "name_he",
+      "grade_change": true
+    },
+    {
+      "barcode": "7290119041152",
+      "name": "עוגיות ריפ'את — VOILA",
+      "category": "cookies_coffee",
+      "score_off": 35.6,
+      "grade_off": "D",
+      "score_on": 34.6,
+      "grade_on": "E",
+      "match_source": "e_number",
+      "grade_change": true
+    },
+    {
+      "barcode": "7290119041107",
+      "name": "עוגיות מרוקאיות עגול — VOILA",
+      "category": "cookies_coffee",
+      "score_off": 35.6,
+      "grade_off": "D",
+      "score_on": 34.6,
+      "grade_on": "E",
+      "match_source": "e_number",
+      "grade_change": true
+    },
+    {
+      "barcode": "7290119041053",
+      "name": "עוגיות סגנון מרוקאי — VOILA",
+      "category": "cookies_coffee",
+      "score_off": 35.6,
+      "grade_off": "D",
+      "score_on": 34.6,
+      "grade_on": "E",
+      "match_source": "e_number",
+      "grade_change": true
+    },
+    {
+      "barcode": "7394376620904",
+      "name": "משקה שיבולת שועל ללא סוכר",
+      "category": "milk",
+      "score_off": 50.5,
+      "grade_off": "C",
+      "score_on": 49.5,
+      "grade_on": "D",
+      "match_source": "name_he",
+      "grade_change": true
+    }
+  ],
+  "all_phosphate_rows_count": 107
+}

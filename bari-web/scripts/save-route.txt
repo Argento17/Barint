@@ -1,0 +1,162 @@
+import { NextResponse } from "next/server";
+
+import { isAuthed } from "@/lib/admin/auth";
+import { getSiteContentEntry, PAGE_CHROME_FILE } from "@/lib/admin/content-registry";
+import { applyEdits, LIVE_COMPARISON_FILES } from "@/lib/admin/fields";
+import { applySiteEdits, extractPageChromeFields, extractSiteFields } from "@/lib/admin/site-fields";
+import {
+  getComparisonFile,
+  getSiteContentFile,
+  githubConfigured,
+  putComparisonFile,
+  putSiteContentFile,
+} from "@/lib/admin/github";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function POST(request: Request) {
+  if (!(await isAuthed())) {
+    return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
+  }
+  if (!githubConfigured()) {
+    return NextResponse.json({ ok: false, error: "github_not_configured" }, { status: 503 });
+  }
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
+  }
+
+  if (!body || typeof body !== "object") {
+    return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
+  }
+
+  const { type, slug, id, edits } = body as {
+    type?: unknown;
+    slug?: unknown;
+    id?: unknown;
+    edits?: unknown;
+  };
+
+  const saveType = typeof type === "string" ? type : "products";
+
+  if (saveType === "site") {
+    if (typeof id !== "string" || !getSiteContentEntry(id)) {
+      return NextResponse.json({ ok: false, error: "unknown_site_id" }, { status: 404 });
+    }
+    if (!edits || typeof edits !== "object") {
+      return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
+    }
+    const entry = getSiteContentEntry(id)!;
+    let data: Record<string, unknown>;
+    let sha: string;
+    try {
+      ({ data, sha } = await getSiteContentFile(entry.file));
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+    }
+    const allowed = new Set(extractSiteFields(data).map((f) => f.path));
+    const result = applySiteEdits(data, edits as Record<string, unknown>, allowed);
+    if (result.applied === 0) {
+      return NextResponse.json({ ok: false, error: "no_valid_edits", rejected: result.rejected }, { status: 400 });
+    }
+    const message = `Admin site edit: ${id} — ${result.applied} field(s)`;
+    try {
+      const { commitSha } = await putSiteContentFile(entry.file, data, sha, message);
+      return NextResponse.json({ ok: true, applied: result.applied, rejected: result.rejected, commitSha });
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });
+    }
+  }
+
+  if (saveType === "page_chrome") {
+    if (typeof slug !== "string" || !slug) {
+      return NextResponse.json({ ok: false, error: "unknown_slug" }, { status: 404 });
+    }
+    if (!edits || typeof edits !== "object") {
+      return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
+    }
+    let data: Record<string, unknown>;
+    let sha: string;
+    try {
+      ({ data, sha } = await getSiteContentFile(PAGE_CHROME_FILE));
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+    }
+    const pages = data as Record<string, Record<string, unknown>>;
+    const chrome = pages[slug];
+    if (!chrome) {
+      return NextResponse.json({ ok: false, error: "unknown_slug" }, { status: 404 });
+    }
+    const allowed = new Set(extractPageChromeFields(chrome).map((f) => f.path));
+    const result = applySiteEdits(chrome, edits as Record<string, unknown>, allowed);
+    if (result.applied === 0) {
+      return NextResponse.json({ ok: false, error: "no_valid_edits", rejected: result.rejected }, { status: 400 });
+    }
+    pages[slug] = chrome;
+    const message = `Admin page chrome edit: ${slug} — ${result.applied} field(s)`;
+    try {
+      const { commitSha } = await putSiteContentFile(PAGE_CHROME_FILE, data, sha, message);
+      return NextResponse.json({ ok: true, applied: result.applied, rejected: result.rejected, commitSha });
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });
+    }
+  }
+
+  if (typeof slug !== "string" || !LIVE_COMPARISON_FILES[slug]) {
+    return NextResponse.json({ ok: false, error: "unknown_category" }, { status: 404 });
+  }
+  if (!edits || typeof edits !== "object") {
+    return NextResponse.json({ ok: false, error: "no_edits" }, { status: 400 });
+  }
+
+  const file = LIVE_COMPARISON_FILES[slug];
+  let data: Awaited<ReturnType<typeof getComparisonFile>>["data"];
+  let sha: string;
+  try {
+    ({ data, sha } = await getComparisonFile(file));
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+  }
+
+  const products = data.products ?? [];
+  const index = new Map<string, Record<string, unknown>>();
+  for (const p of products) {
+    index.set(String(p.id ?? p.barcode ?? ""), p);
+  }
+
+  let applied = 0;
+  let productsTouched = 0;
+  const rejected: string[] = [];
+
+  for (const [productId, rawFieldEdits] of Object.entries(edits as Record<string, unknown>)) {
+    const product = index.get(productId);
+    if (!product) {
+      rejected.push(`product:${productId}`);
+      continue;
+    }
+    if (!rawFieldEdits || typeof rawFieldEdits !== "object") {
+      rejected.push(`product:${productId}:bad_shape`);
+      continue;
+    }
+    const result = applyEdits(product, rawFieldEdits as Record<string, unknown>);
+    applied += result.applied;
+    rejected.push(...result.rejected.map((path) => `${productId}:${path}`));
+    if (result.applied > 0) productsTouched += 1;
+  }
+
+  if (applied === 0) {
+    return NextResponse.json({ ok: false, error: "no_valid_edits", rejected }, { status: 400 });
+  }
+
+  const message = `Admin copy edit: ${slug} — ${applied} field(s) across ${productsTouched} product(s)`;
+  try {
+    const { commitSha } = await putComparisonFile(file, data, sha, message);
+    return NextResponse.json({ ok: true, applied, productsTouched, rejected, commitSha });
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "commit_failed", detail: String(err) }, { status: 502 });
+  }
+}

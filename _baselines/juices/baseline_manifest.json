@@ -1,0 +1,38 @@
+{
+  "slug": "juices",
+  "generated_at": "2026-06-25T06:30:00+00:00",
+  "task": "TASK-395",
+  "phase": "Phase 0 - Canonical Baseline Lock",
+  "description": "Canonical baseline manifest for juices. 17/17 products reproduce within ±0.05 score tolerance.",
+  "bsip1_dir": "C:\\Bari\\02_products\\juices\\bsip1_outputs",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\juices_frontend_v3.json",
+  "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_D4_SCORE_V1": "on"
+  },
+  "shelf_rel": {
+    "nutrient": "sugars_g",
+    "median": 9.5,
+    "scale": 2.82,
+    "scale_type": "iqr"
+  },
+  "engine_version": "proto_v0 (score_engine.py)",
+  "score_tolerance": 0.05,
+  "live_product_count": 17,
+  "scored_count": 17,
+  "error_count": 0,
+  "matched_count": 17,
+  "mismatched_count": 0,
+  "reproduces": true,
+  "verdict": "REPRODUCES",
+  "per_product": "see baseline_json for full product list",
+  "verified_at": "2026-06-25T06:30:00+00:00"
+}

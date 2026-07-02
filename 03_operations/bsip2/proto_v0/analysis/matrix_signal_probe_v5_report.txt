@@ -1,0 +1,234 @@
+================================================================================
+COMPONENT B MATRIX SIGNAL PROBE v5
+Formula changes: M-1 anchor nudge 0.15->0.05 | M-2 grain-context 0.5x penalty
+Run: 2026-06-25T17:14:25.275465+00:00
+TASK: TASK-395 | Reader: structured_ingredient_reader.py (v4, unchanged)
+Gold set: matrix_gold_set_v2.json (67 products, 20 T3 pairs)
+Frozen by: adversarial-qa-agent — independent of formula author
+RP-04 direction: CORRECTED (per d7_cosign_v5_formula.md Ruling 1)
+================================================================================
+
+--------------------------------------------------------------------------------
+UNREADABLE PRODUCT CHECK
+7290013453624 (marketing paragraph, not ingredient list): v5_score = None
+Result: PASS
+
+--------------------------------------------------------------------------------
+GATE B1: ANCHOR CALIBRATION
+Condition: T1 score >= 60; T2 score <= 45  |  Bar: >= 90%
+--------------------------------------------------------------------------------
+T1 (clear-whole): 16/17 pass (score >= 60)
+  Scores: [54.1, 62.7, 91.2, 92.2, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0]
+T2 (clear-refined): 14/14 pass (score <= 45)
+  Scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 12.2, 12.2, 16.8, 18.5, 36.9]
+COMBINED B1: 30/31 = 96.8%  |  Target >= 90%  |  PASS
+B1 FAILURES (1):
+  7290106571945 (עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס) tier=T1 v4=54.1 v5=54.1 expected=>= 60
+    whole_markers: ['whole_wheat_flour', 'whole_oat', 'whole_oat_flakes', 'oat_flakes_plain', 'barley_malt']
+    refined_markers: ['refined_wheat_flour', 'sugar', 'veg_oil_sg', 'dextrin', 'maltodextrin', 'generic_starch']
+    KNOWN: v4 reader scores 54.1 (below T1 threshold of 60) due to composite-without-parent_pct gap. Known B1 failure, deferred per d7_cosign_v5_formula.md Ruling 4 and NC-3.
+
+--------------------------------------------------------------------------------
+GATE B1 — MC-2: WITH vs WITHOUT SPELT CORRECTIONS
+B1 WITH spelt corrections: 96.8% [30/31]
+B1 WITHOUT correction products: 96.7% [29/30]
+Delta: +0.1%
+
+--------------------------------------------------------------------------------
+GATE B2: ORDINAL RANKING — ALL 20 T3 PAIRS
+Condition: more-whole product scores higher  |  Bar: >= 95% = 19/20
+NC-1: >= 20 T3 pairs required  |  Have: 20
+--------------------------------------------------------------------------------
+Total pairs: 20  |  Evaluable: 20
+Correct: 19/20 = 95.0%  |  Target >= 95%  |  PASS
+NC-1 check: 20 T3 pairs PASS (>= 20)
+
+Pair     Higher BC          Lower BC           H_score   L_score   Margin    Pass  
+--------------------------------------------------------------------------------
+RP-01    6322838            7290115205176      71.2      49.9      +21.3     OK
+RP-02    7290018500460      7296073659952      52.5      45.6      +6.9      OK
+RP-03    7290016883176      7290011131371      52.5      49.5      +3.0      OK
+RP-04    7290011131975      7290011131388      45.6      52.0      -6.4      FAIL
+RP-05    7290118427858      7290107947480      75.7      27.6      +48.1     OK
+RP-06    379142             481180             74.6      32.4      +42.2     OK
+RP-07    8445291638839      7296073705550      90.0      52.5      +37.5     OK
+RP-08    7290016883176      7290011131388      52.5      52.0      +0.5      OK
+RP-09    7290118427858      9401790            75.7      52.4      +23.3     OK
+RP-10    5900020034021      7290107947480      39.8      27.6      +12.2     OK
+RP-11    7290112968807      481180             46.8      32.4      +14.4     OK
+RP-12    7290011131975      7290011131050      45.6      41.2      +4.4      OK
+RP-13    5900020039590      5900020015174      52.5      50.8      +1.7      OK
+RP-14    7290106771369      7290011131371      89.3      49.5      +39.8     OK
+RP-15    7613035622623      7296073705550      92.5      52.5      +40.0     OK
+RP-16    6451521            481180             63.5      32.4      +31.1     OK
+RP-17    6451507            9401790            64.7      52.4      +12.3     OK
+RP-18    6983176            7290115205176      93.7      49.9      +43.8     OK
+RP-19    5900020039620      5900020015174      52.5      50.8      +1.7      OK
+RP-20    7290011131388      7290011131968      52.0      42.4      +9.6      OK
+
+KNIFE-EDGE MARGINS (<= 1.0 pt) — 1 pair(s):
+  RP-08: margin=+0.5
+    oats 47% > oats 39%
+
+FAILING PAIRS (1):
+  RP-04: 7290011131975 vs 7290011131388
+    45.6 <= 52.0  margin=-6.4  WRONG DIRECTION
+    Reason: oats 43% in granola 65% (~28% effective product-weight) > oats 39% direct. CORRECTED from v1: v1 had direction inverted due to broken composite reader. Correction co-signed as legitimate in d7_cosign_v5_formula.md Ruling 1.
+
+--------------------------------------------------------------------------------
+GATE B3: MARKER COVERAGE (parseable denominator)
+Condition: >= 95% of parseable products fire >= 1 marker
+--------------------------------------------------------------------------------
+Parseable: 64  |  No markers: 0
+Coverage: 64/64 = 100.0%  |  PASS
+
+--------------------------------------------------------------------------------
+MC-3: STATED_PCT POPULATION RATE
+Products with >= 1 stated_pct marker: 51/64 = 79.7%
+Bar: >= 50%  |  PASS
+
+--------------------------------------------------------------------------------
+NC-2: REGRESSION CHECK — non-grain whole > grain whole before penalty
+Products where non-grain whole effective_weight EXCEEDS grain whole
+effective_weight BEFORE the 0.5x penalty is applied (potential inversion risk).
+--------------------------------------------------------------------------------
+NC-2 triggered products: 2
+
+  7290107947480 (חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה)
+    tier=T3
+    grain_whole_w=0.0690  non_grain_whole_before=0.2067  non_grain_whole_after=0.1033
+    v4_score=35.1  v5_score=27.6  v4_grade=D  v5_grade=F
+    grade_boundary_crossed: True  *** FLAG FOR NUTRITION REVIEW ***
+    penalized: nuts  base_w=0.1020 -> eff_w=0.0510
+    penalized: almonds  base_w=0.1047 -> eff_w=0.0524
+  481180 (לחם מחמצת שאור)
+    tier=T3
+    grain_whole_w=0.1500  non_grain_whole_before=0.1800  non_grain_whole_after=0.0900
+    v4_score=38.0  v5_score=32.4  v4_grade=D  v5_grade=F
+    grade_boundary_crossed: True  *** FLAG FOR NUTRITION REVIEW ***
+    penalized: sourdough_starter  base_w=0.1800 -> eff_w=0.0900
+
+sourdough_starter as primary/secondary marker (position <= 2): 0 products
+
+--------------------------------------------------------------------------------
+RP-04 EVIDENCE (D7 co-sign condition: label text + effective oat %)
+Independent QA must confirm: 28g oats per 100g granola vs 39g oats per 100g muesli.
+--------------------------------------------------------------------------------
+RP-04 HIGHER (corrected): 7290011131388 — מוזלי קראנצי תפוח קינמון
+  Ingredient text (verbatim): פתיתי שיבולת שועל (מכיל גלוטן) 39%, שמן צמחי (דקלים), סוכר חום מקני סוכר, סירופ גלוקוזה, קמח חיטה (מכיל גלוטן), צימוקים, תפוחי עץ מיובשים (2%), גרעיני חמניות (1.5%), אבקת קקאו, מלח, קינמון (0.2%), מתחלב: לציטין סויה, חומר טעם.
+  Oat effective_pct from reader: 39.0%  (direct stated)
+  v5_score: 52.0
+RP-04 LOWER (corrected): 7290011131975 — גרנולה פירות
+  Ingredient text (verbatim): גרנולה 65% (פתיתי שיבולת שועל 43% (מכיל גלוטן), קמח חיטה (מכיל גלוטן), שמן צמחי (דקלים), סוכר, קמח תירס, סירופ תמרים, תמצית לתת שעורה (מכיל גלוטן), סוכר חום, סירופ גלוקוז, דבש, מתחלב: לציטין סויה, אבקת קקאו, קינמון, צבע מאכל: קרמל), חטיפי דגנים 16% (פתיתי שיבולת שועל 6% (מכיל גלוטן), קמח חיטה (מכיל גלוטן)).
+  Oat effective_pct from reader: 27.95%  (43% x 65% composite = 27.95% effective)
+  v5_score: 45.6
+  RP-04 pair result: 45.6 <= 52.0  margin=-6.4  WRONG DIRECTION
+
+--------------------------------------------------------------------------------
+SCORE DISTRIBUTION (gradable scored products)
+--------------------------------------------------------------------------------
+N: 61
+Min: 10.0  Max: 95.0  Mean: 55.3  Median: 52.5  Stdev: 31.5
+Most common (rounded): 95 (n=13)
+T1 scores: [54.1, 62.7, 91.2, 92.2, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0]
+T2 scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 12.2, 12.2, 16.8, 18.5, 36.9]
+T3 scores: [18.2, 27.6, 28.7, 32.4, 39.8, 41.2, 42.4, 45.6, 45.6, 46.8, 49.5, 49.8, 49.9, 50.8, 52.0, 52.4, 52.5, 52.5, 52.5, 52.5, 52.5, 63.5, 64.7, 71.2, 74.6, 75.7, 89.3, 90.0, 92.5, 93.7]
+
+--------------------------------------------------------------------------------
+PER-PRODUCT TABLE
+barcode            tier      v4     v5   delta  v4G  v5G     b1 label
+--------------------------------------------------------------------------------
+16000423534        T1      95.0   95.0    +0.0    A    A   True clear-whole
+16000548404        T1      95.0   95.0    +0.0    A    A   True clear-whole
+16000548503        T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290112199942      T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290112199959      T1      95.0   95.0    +0.0    A    A   True clear-whole
+574615             T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290106571945      T1      54.1   54.1    +0.0    C    C  False clear-whole
+7290013740823      T1      95.0   95.0    +0.0    A    A   True clear-whole
+574141             T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290106771314      T1      92.0   91.2    -0.8    A    A   True clear-whole
+7290017962047      T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290013433107      T1      92.9   92.2    -0.7    A    A   True clear-whole
+7296073705567      T1      62.7   62.7    +0.0    C    C   True clear-whole
+7290017947464      T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290017962023      T1      95.0   95.0    +0.0    A    A   True clear-whole
+7613037012095      T1      95.0   95.0    +0.0    A    A   True clear-whole
+96086000577        T1      95.0   95.0    +0.0    A    A   True clear-whole
+7290119043095      T2      16.8   16.8    +0.0    F    F   True clear-refined
+7290119040568      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7290018500644      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7290116530482      T2      12.2   12.2    +0.0    F    F   True clear-refined
+7290107647731      T2      36.9   36.9    +0.0    D    D   True clear-refined
+7296073431916      T2      10.0   10.0    +0.0    F    F   True clear-refined
+5000396021202      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7622201809188      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7290116537351      T2      20.0   18.5    -1.5    F    F   True clear-refined
+7290017325910      T2      12.2   12.2    +0.0    F    F   True clear-refined
+313184             T2      10.0   10.0    +0.0    F    F   True clear-refined
+7296073398875      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7290119040667      T2      10.0   10.0    +0.0    F    F   True clear-refined
+8710502279010      T2      10.0   10.0    +0.0    F    F   True clear-refined
+7290013453624      UNREADABLE   None   None     N/A  N/A  N/A    N/A UNREADABLE
+6322838            T3      71.2   71.2    +0.0    B    B    N/A hard-mixed
+7290018500460      T3      52.5   52.5    +0.0    C    C    N/A hard-mixed
+7290115205176      T3      52.5   49.9    -2.6    C    D    N/A hard-mixed
+7296073659952      T3      46.4   45.6    -0.8    D    D    N/A hard-mixed
+7290011131975      T3      52.5   45.6    -6.9    C    D    N/A hard-mixed
+7290011131050      T3      52.1   41.2   -10.9    C    D    N/A hard-mixed
+7290016883176      T3      52.5   52.5    +0.0    C    C    N/A hard-mixed
+7290011131371      T3      52.5   49.5    -3.0    C    D    N/A hard-mixed
+7290011131388      T3      52.5   52.0    -0.5    C    C    N/A hard-mixed
+7290118427858      T3      75.9   75.7    -0.2    B    B    N/A hard-mixed
+7290112968807      T3      52.5   46.8    -5.7    C    D    N/A hard-mixed
+9401790            T3      52.5   52.4    -0.1    C    C    N/A hard-mixed
+5900020034021      T3      39.8   39.8    +0.0    D    D    N/A hard-mixed
+7290107947480      T3      35.1   27.6    -7.5    D    F    N/A hard-mixed NC2!
+379142             T3      74.6   74.6    +0.0    B    B    N/A hard-mixed
+8445291638839      T3      90.0   90.0    +0.0    A    A    N/A hard-mixed
+7290112495433      T3      52.5   49.8    -2.7    C    D    N/A hard-mixed
+481180             T3      38.0   32.4    -5.6    D    F    N/A hard-mixed NC2!
+7290120870017      T3      19.4   18.2    -1.2    F    F    N/A hard-mixed
+7296073705550      T3      52.5   52.5    +0.0    C    C    N/A hard-mixed
+7290117382868      T3      28.7   28.7    +0.0    F    F    N/A hard-mixed
+5900020039590      T3      None   52.5     N/A  N/A    C    N/A hard-mixed
+5900020015174      T3      None   50.8     N/A  N/A    C    N/A hard-mixed
+7290106771369      T3      None   89.3     N/A  N/A    A    N/A hard-mixed
+7613035622623      T3      None   92.5     N/A  N/A    A    N/A hard-mixed
+6451521            T3      None   63.5     N/A  N/A    C    N/A hard-mixed
+6451507            T3      None   64.7     N/A  N/A    C    N/A hard-mixed
+6983176            T3      None   93.7     N/A  N/A    A    N/A hard-mixed
+5900020039620      T3      None   52.5     N/A  N/A    C    N/A hard-mixed
+7290011131968      T3      None   42.4     N/A  N/A    D    N/A hard-mixed
+9137842            T4      None   None     N/A  N/A  N/A    N/A edge-case
+7290011525316      T4      None   None     N/A  N/A  N/A    N/A edge-case
+7297488098688      T4      52.5   52.5    +0.0    C    C    N/A edge-case
+5010029000061      T4      93.0   93.0    +0.0    A    A    N/A edge-case
+58449779032        T4      57.2   57.2    +0.0    C    C    N/A edge-case
+
+================================================================================
+NC-3 ACKNOWLEDGMENT
+================================================================================
+Barcode 7290106571945 (עוגיות קקאו דגנים מלאים / Fitness cookies): known B1 failure.
+Cause: composite-without-parent_pct gap — 'דגנים' parent has no stated_pct; sub-ingredient
+pcts (41%, 4.5%) are product-weight but cannot participate in effective_pct multiplication.
+Formula correctly scores 54.1 (below T1 threshold 60). This is a reading design gap, not
+a formula error. Deferred per d7_cosign_v5_formula.md Ruling 4 (NC-3 = registry task).
+B1 clears at 96.8% without this product — above the 90% bar. Deferral is acceptable.
+
+================================================================================
+OVERALL VERDICT
+================================================================================
+Gate B1 (anchor >= 90%):     PASS  [30/31 = 96.8%]
+Gate B2 (ranking >= 95%):    PASS  [19/20 = 95.0%]  (bar = 19/20)
+Gate B3 (coverage >= 95%):   PASS  [64/64 = 100.0%]
+NC-1 T3 pairs >= 20:         PASS  [20]
+MC-3 stated_pct >= 50%:      PASS  [79.7%]
+NC-2 grade boundary movers:  2 of 2 NC-2-triggered products
+Unreadable returns None:     PASS
+Knife-edge pairs (<= 1.0pt): 1
+
+VERDICT: PASS
+All three gates pass. NC-2 and RP-04 label check must be reviewed by
+independent QA and C3 before promotion to score_engine.py.
+================================================================================

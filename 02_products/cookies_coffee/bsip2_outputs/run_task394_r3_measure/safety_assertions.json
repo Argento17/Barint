@@ -1,0 +1,50 @@
+{
+  "SA1_no_chocolate_shelf_movers": {
+    "pass": true,
+    "description": "ZERO genuine-chocolate products (chocolate_tablets/chocolate_bars shelves) change category/score/grade",
+    "choc_movers_found": 0,
+    "detail": []
+  },
+  "SA2_only_biscuit_anchor_flavor_descriptors_move": {
+    "pass": true,
+    "description": "All 14 movers verified as biscuit-anchor flavor-descriptor products — all moved from snack_bar_granola (OFF) to biscuit (ON), all on cookies_coffee shelf only, zero movements on any other shelf.",
+    "inline_check_bug_note": "The inline SA2 check in the measurement script erroneously reported false (violations=14) because req362_override_trace is not stored in the lightweight score_shelf result dict. The actual verification was done via separate external scripts (_t394_anchor_verify.py and _t394_ing_verify.py) which prove all 14 are correctly classified.",
+    "external_verification": {
+      "all_14_have_biscuit_hard_anchor": true,
+      "anchor_confidences": "0.85 (12x via 'עוגיות') and 0.93 (2x via 'פתי בר' / 'פתי בר')",
+      "anchor_evidence": "BC=7622201401900: biscuit(0.85) | BC=7290106656727: biscuit(0.85) | BC=4017100364112: biscuit(0.85) | BC=46214731552: biscuit(0.85) | BC=5901414200411: biscuit(0.85) | BC=8710502139017: biscuit(0.85) | BC=7290018893036: biscuit(0.85) | BC=313160: biscuit(0.85) | BC=4823077633317: biscuit(0.85) | BC=80083665: biscuit(0.85) | BC=8410376075915: biscuit(0.85) | BC=8410376037784: biscuit(0.85) | BC=2986065: biscuit(0.93) | BC=7290017894317: biscuit(0.85)",
+      "all_14_no_confectionery_ingredient_signal": true,
+      "confectionery_signals_checked": [
+        "ציפוי שוקולד", "מצופה שוקולד", "שוקולד ציפוי", "שוקולד מריר", "שוקולד חלב", "שוקולד לבן", "שוקולד לגנאש"
+      ],
+      "ingredient_analysis": "All 14 use cocoa powder (אבקת קקאו) as a minor flavoring, or chocolate chips/bits (שבבי/נטיפי שוקולד) as inclusions — no chocolate coating, no chocolate as a leading block ingredient. R3 guard correctly yields for all 14.",
+      "violations_found": 0
+    }
+  },
+  "SA3_specific_cookies": {
+    "barcode_2986065": {
+      "name": "פתי בר בטעם שוקולד",
+      "description": "Petit Beurre chocolate FLAVOR — hard biscuit anchor 0.93 (term: 'פתי בר'), ingredients: cocoa powder only (no coating/confectionery signal). Expected: OFF=snack_bar_granola/E, ON=biscuit/D.",
+      "off_cat": "snack_bar_granola",
+      "off_score": 32.1,
+      "off_grade": "E",
+      "on_cat": "biscuit",
+      "on_score": 35.8,
+      "on_grade": "D",
+      "moved": true,
+      "verdict": "CORRECT — returns to biscuit category with grade D as expected. The D grade reflects the product's actual nutrition profile under the biscuit lens (not E which was an artifact of the stricter snack_bar_granola lens). The butter Petit Beurre (2986065 identity sibling) stays at biscuit/D under both OFF and ON — now they are aligned."
+    },
+    "barcode_7290017894317": {
+      "name": "עוגיות כוסמין מלא שוקולד",
+      "description": "Whole-spelt cookie w/ 10% chocolate chips — hard biscuit anchor 0.85 (term: 'עוגיות'), ingredients: chocolate chips 10% as inclusion (not coating/leading ingredient). Expected: OFF=snack_bar_granola/E, report ON honestly.",
+      "off_cat": "snack_bar_granola",
+      "off_score": 34.6,
+      "off_grade": "E",
+      "on_cat": "biscuit",
+      "on_score": 36.1,
+      "on_grade": "D",
+      "moved": true,
+      "verdict": "RETURNS TO biscuit/D under ON. Nutrition said E is defensible on merits even under biscuit — under the biscuit lens, the engine scores it at 36.1/D. The E under OFF was from the snack_bar_granola lens (stricter cap). A D under the biscuit lens is the honest result given whole-spelt flour and 10% chips as a minor inclusion. This is a marginal product either way — the R3 guard correctly identifies it as a biscuit (not a chocolate confection), and the biscuit score is the more accurate representation."
+    }
+  }
+}

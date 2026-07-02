@@ -1,0 +1,4521 @@
+{
+  "_meta": {
+    "baseline_run_id": "run_cookies_005+run_cakes_001_cookies",
+    "bsip1_sources": [
+      "03_operations/bsip1/run_cookies_001/output",
+      "03_operations/bsip1/run_cakes_001/output"
+    ],
+    "category": "cookies_coffee",
+    "copy_status": "PENDING_COPY — not authored; carry-over from baseline where available",
+    "d4_penalty_note": "trace_writer does not copy d4_score_penalty from score_result to trace; penalties above are sourced directly from score_engine.score_product() output",
+    "deploy_status": "NOT_DEPLOYED — staging measurement only",
+    "flags_applied": {
+      "BARI_D4_SCORE_V1": "on",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_RECAL_P0": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off"
+    },
+    "generated": "2026-06-26T12:13:08+00:00",
+    "off_used": false,
+    "product_count": 119,
+    "run_id": "task393_rescore_d4on",
+    "stage": "SCORING_MEASUREMENT_ONLY",
+    "task": "TASK-393"
+  },
+  "products": [
+    {
+      "_binding_cap": 70,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013453693",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 100
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 67.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "C",
+      "insightLine": "שקדים ואורז מלא ראשונים ברשימה — ממתיק אגבה, אפס תווית אדומה.",
+      "name": "עוגיות גרידת לימון ללת\"ס",
+      "rowVerdict": "עוגיות גרידת הלימון של דני וגלית בנויות על שקדים וקמח אורז מלא, עם אגבה כממתיק — מבנה יוצא דופן לקטגוריה. הסוכר הכולל נמוך מאוד לעוגייה, השומן הרווי מתון. שמן הקנולה ברשימה הוא הסייג הקטן. הציון הגבוה ביותר במדף.",
+      "score": 59.8
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 2,
+      "barcode": "7290119043149",
+      "bariInterpretation": [
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 64.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 100.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 23.9
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 25.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 50.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 94.4
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 51.2
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 25.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 60.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שומן רווי (8 גרם ל-100 גרם) הוא הגורם הבלעדי שמגביל את הציון. אין תוספים נוספים.",
+          "label_he": "",
+          "score": 85.0
+        }
+      ],
+      "consumerTakeaway": "עוגיות עם פרופיל נקי ושמן מוקשה כמגביל הבלעדי — השומן הרווי מכריע כאן, הסוכר בסדר.",
+      "grade": "C",
+      "insightLine": "עוגיית חמאה פשוטה — שמן צמחי מוקשה הוא המגביל הבלעדי.",
+      "name": "עוגיות בטעם חמאה",
+      "rowVerdict": "עוגיות בטעם החמאה האלה מגיעות ל-C. הרשימה קצרה. שמנים ושומנים מהצומח (חלקם מוקשים) הם מקור השומן הרווי — זה המגביל הבלעדי. אין סוכר גבוה, אין חומרי שימור, אין צבעי מאכל. חומרי תפיחה (E450, E500) ברשימה.",
+      "score": 55.0
+    },
+    {
+      "_binding_cap": 60,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 2,
+      "barcode": "80083764",
+      "bariInterpretation": [
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 64.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 100.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 47.5
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 43.5
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 25.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 64.5
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 93.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 47.6
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 95.0
+        },
+        {
+          "dimension": "",
+          "explanation_he": "שיבולת שועל 35% וקמח חיטה מלאה — בסיס דגן שלם. 6 גרם סיבים ו-8.7 גרם חלבון. 471 קלוריות ל-100 גרם הגורם המגביל.",
+          "label_he": "",
+          "score": 85.0
+        }
+      ],
+      "consumerTakeaway": "עוגיית דגנים עם שיבולת שועל כרכיב ראשון — בסיס דגן שלם שנדיר בקטגוריה הזאת.",
+      "grade": "C",
+      "insightLine": "35% שיבולת שועל וקמח חיטה מלאה — בסיס דגן מלא נדיר לקטגוריה.",
+      "name": "עוגיות דגנים עם ש.שועל",
+      "rowVerdict": "עוגיות הדגנים האלה מגיעות ל-C. שיבולת שועל כרכיב ראשון, קמח חיטה מלאה כשני — שילוב שלא נפוץ במדף הזה. הסיבים גבוהים לקטגוריה, השומן הרווי מתון. רשימת הרכיבים חלקית בנתונים — לא ניתן לאשר את מעמד התוספים מתוך הנתון הזמין. C בשדה שבו רוב הדגן הוא קמח לבן.",
+      "score": 55.0
+    },
+    {
+      "_binding_cap": 94.8,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290017962139",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 100
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "C",
+      "insightLine": "שקדים 18% עם חמוציות — שומן רווי נמוך, נתון הסוכר לא אומת.",
+      "name": "עוגיות פירות יער כשל\"פ",
+      "rowVerdict": "עוגיות פירות היער של דני וגלית מגיעות ל-C עם שקדים 18% כרכיב מוביל וחמוציות ברשימה. שמן הקנולה כמקור שומן והשומן הרווי נמוך מאוד לקטגוריה. נתון הסוכר לא אומת מהמקור הישיר — ברי מציגה את מה שאומת. פרופיל הידוע שלו מוצדק ל-C.",
+      "score": 54.9
+    },
+    {
+      "_binding_cap": 60,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290020030184",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "קמח חיטה, שמרים ושומשום — פשוט יחסית. E491 הוא מתחלב תעשייתי שאינו נחוץ בעוגייה עם שישה רכיבים.",
+          "label_he": "איכות עיבוד",
+          "score": 55
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "אפס סוכר — הדגל הירוק הבודד. קמח לבן הוא עדיין פחמימן זמין, אבל ללא תוספת סוכר הציון טוב.",
+          "label_he": "עומס גליקמי",
+          "score": 90
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E491 משמש לייצוב מרקם; אין עדות לנזק, אבל אין לו מקום בעוגייה פשוטה.",
+          "label_he": "תוספים",
+          "score": 45
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "צפיפות קלורית בינונית לקטגוריה — הנתרן הוא הגורם המגביל יותר מהקלוריות.",
+          "label_he": "צפיפות קלורית",
+          "score": 50
+        }
+      ],
+      "consumerTakeaway": "עוגיות ללא סוכר עם נתרן גבוה ומתחלב תעשייתי.",
+      "grade": "C",
+      "insightLine": "עוגיית זעתר ללא סוכר — נתרן גבוה במיוחד, יוצאת דופן בקטגוריה.",
+      "name": "עוגיות מזרחיות עם זעתר 400 גרם אחוה | 400 גרם 2 יח' ב- ‏18 ₪",
+      "rowVerdict": "עוגיות הזעתר של אחוה מגיעות ל-C בזכות אפס סוכר ושומן רווי מתון — שני הגורמים שמושכים מרבית המדף כלפי מטה. המגבלה: נתרן גבוה מאוד ביחס לביסקוויט מתוק — יוצא הדופן היחיד בקטגוריה מבחינת נתרן. מתחלב E491 ברשימה. עדיין C בשדה שרובו E.",
+      "score": 54.0
+    },
+    {
+      "_binding_cap": 72,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290122781359",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "61% קמח מלא כרכיב ראשון. גלוטן מוסף ושלושה חומרי תפיחה מורידים את הציון.",
+          "label_he": "איכות עיבוד",
+          "score": 58
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "5 גרם סוכר — נמוך מאוד לעוגייה. שיבולת שועל וסיבים מוסיפים להאטת הספיגה.",
+          "label_he": "עומס גליקמי",
+          "score": 72
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "שלושה חומרי תפיחה, לציטין סויה ועמילן — יותר תוספים ממה שמצופה בפרופיל זה.",
+          "label_he": "תוספים",
+          "score": 42
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "נתוני הקלוריות חסרים; שומן רווי 0 גרם מסמן צפיפות נמוכה יחסית לקטגוריה.",
+          "label_he": "צפיפות קלורית",
+          "score": 50
+        }
+      ],
+      "consumerTakeaway": "קמח מלא כרכיב עיקרי, סוכר נמוך מאוד, שומן רווי מינימלי.",
+      "grade": "C",
+      "insightLine": "61% קמח מלא — שומן רווי נמוך מאוד, גלוטן מוסף ועיבוד תעשייתי.",
+      "name": "מיני עוגיות קלאסי פיטנס 80 גרם פיטנס | 80 גרם ‏5.90 ‏₪ ‏7.38",
+      "rowVerdict": "מיני עוגיות פיטנס קלאסי מגיעות ל-C בזכות 61% קמח חיטה מלא וסוכר נמוך יחסית למדף. השומן הרווי הנמוך מאוד הוא יתרון אמיתי. גלוטן חיטה מוסף ברשימה מסמן ייצור תעשייתי, עדיין רחוק מאפייה פשוטה.",
+      "score": 53.4
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740113",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 61.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "C",
+      "insightLine": "עוגייה מרוקאית מסורתית — שומן רווי חוצה את הסף בשוליים.",
+      "name": "עוגיות מרוקאיות",
+      "rowVerdict": "העוגיות המרוקאיות של קופסת העוגיות של רחלי מגיעות ל-C. הסוכר מתון ורשימת הרכיבים קצרה — קמח, מים, שמן צמחי, קוקוס, שומשום. השומן הרווי חוצה את הסף בשוליים — זה מה שמחזיק אותן בתחתית ה-C.",
+      "score": 52.9
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013453068",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "כוסמין מלא, שיבולת שועל ופירות יער עם ממתיקים טבעיים (אגבה, מונק פרוט). מעובד אך לא תעשייתי קיצוני.",
+          "label_he": "איכות עיבוד",
+          "score": 60
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "ממתיקים אגבה ומונק פרוט מגיעים עם אינדקס גליקמי נמוך יותר מסוכר. נתון הסוכר חסר לאימות מלא.",
+          "label_he": "עומס גליקמי",
+          "score": 65
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "רשימת רכיבים נקייה יחסית — ללא מתחלבים תעשייתיים מיותרים.",
+          "label_he": "תוספים",
+          "score": 55
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "24 גרם שומן כולל עם שומן רווי 6 גרם מעלים את הצפיפות הקלורית.",
+          "label_he": "צפיפות קלורית",
+          "score": 42
+        }
+      ],
+      "consumerTakeaway": "כוסמין מלא ופירות יער אמיתיים, שומן רווי גבוה יחסית.",
+      "grade": "C",
+      "insightLine": "34% כוסמין מלא עם פירות יער אמיתיים — שומן רווי חוצה את הסף.",
+      "name": "עוגיות כוסמין פירות יער",
+      "rowVerdict": "עוגיות הכוסמין פירות יער מגיעות ל-C עם כוסמין מלא ופירות יער אמיתיים ברשימה. שמן קנולה כמקור שומן ראשי הוא בחירה סבירה. השומן הרווי גבוה יחסית לפרופיל הכולל — זה הגורם שמחזיק אותן ב-C ולא מעלה. נתון הסוכר לא אומת מהמקור הישיר.",
+      "score": 52.0
+    },
+    {
+      "_binding_cap": 70,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "540160",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 96.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 85.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "C",
+      "insightLine": "47% קמח מלא, ממתיק מלטיטול — מתחת לכל סף תווית אדומה.",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "rowVerdict": "עוגיות האחים מקמח מלא הן ביסקוויט שלא חוצה אף סף: אפס סוכר, שומן רווי נמוך, ורשימה שמתחילה ב-47% קמח חיטה מלאה. מלטיטול כממתיק — פוליאול שעלול לגרום לאי נוחות עיכולית בכמויות. C בקטגוריה שרובה E.",
+      "score": 51.5
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740137",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 66.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "C",
+      "insightLine": "אוזן פיל עם ביצים — שומן רווי גבוה הוא המכריע.",
+      "name": "עוגיות אוזן פיל",
+      "rowVerdict": "עוגיות אוזן הפיל של קופסת העוגיות של רחלי עומדות בתחתית ה-C. ביצים ברשימה — רכיב אמיתי שלא מופיע בכל ביסקוויט. הסוכר מתון. השומן הרווי הגבוה הוא הגורם שחוצה את הסף ומשאיר אותן ב-C.",
+      "score": 50.4
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119043743",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 57.5
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "עוגייה מרוקאית עם שומן דקל — שומן רווי חוצה את הסף, סוכר מתון.",
+      "name": "עוגיות מרוקאיות",
+      "rowVerdict": "העוגיות המרוקאיות של לה פזואלוס מגיעות ל-D. שומן דקל כמקור שומן ראשי; הסוכר מתון. השומן הרווי חוצה את הסף וכולל רק מגביל אחד — לכן D.",
+      "score": 48.7
+    },
+    {
+      "_binding_cap": 94.8,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740557",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 53.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "רייפעת עם שמן קנולה וביצים — סוכר בדיוק על קו ה-D/C.",
+      "name": "עוגיות רייפעת",
+      "rowVerdict": "עוגיות הרייפעת של קופסת העוגיות של רחלי מגיעות ל-D עם שמן קנולה כמקור שומן — בחירה סבירה — וביצים ברשימה. הסוכר קרוב לסף התווית האדומה ומחזיק את הציון ב-D. השומן הרווי נמוך מאוד לקטגוריה.",
+      "score": 48.5
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740229",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 63.4
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "שומן רווי גבוה מאוד — שקדים ברשימה, הסוכר מתון.",
+      "name": "עוגיות פרסות שקדים",
+      "rowVerdict": "עוגיות פרסות השקדים של קופסת העוגיות של רחלי מגיעות ל-D. השומן הרווי גבוה מאוד לקטגוריה — זה המגביל המכריע. שקדים ברשימה הם רכיב אמיתי, והסוכר מתון; אלה לא מספיקים כדי לקזז את פרופיל השומן הרווי.",
+      "score": 46.1
+    },
+    {
+      "_binding_cap": 60,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=3 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "960860015432",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 100
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "63% קמח מלא, ממתיקים מרובים — עיבוד מוגבר מגביל ל-D.",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "rowVerdict": "עוגיות קמח המלא ללת\"ס של אביבה מגיעות ל-D עם 63% קמח מלא ואפס סוכר. השומן הרווי נמוך מאוד. המגביל כאן הוא רמת העיבוד: מלטיטול, איזומלט, פולידקסטרוז וסוכרלוז ברשימה. השמטת הסוכר לוותה בעיבוד מוגבר יותר.",
+      "score": 46.0
+    },
+    {
+      "_binding_cap": 68.0,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=3 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "311463",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 100
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 15.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "49% קמח מלא עם ממתיקים מלאכותיים וסיבים גבוהים — D מצד רמת עיבוד.",
+      "name": "עוגיות חמאה ללת\"ס",
+      "rowVerdict": "עוגיות החמאה ללת\"ס של מן מגיעות ל-D עם קמח חיטה מלאה וסיבים גבוהים לקטגוריה. השומן הרווי נמוך. הממתיקים — מלטיטול וסוכרלוז — מוסיפים רמת עיבוד שמסמנת D. ממתיקים מלאכותיים אינם שיפור מוחלט על סוכר.",
+      "score": 45.2
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740052",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 59.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "עוגיית ריבה עם שומן צמחי גבוה — השומן הרווי הוא המכריע.",
+      "name": "עוגיות פרחי ריבה",
+      "rowVerdict": "עוגיות פרחי הריבה של קופסת העוגיות של רחלי מגיעות ל-D. הסוכר מתון. השומן הרווי גבוה וחוצה את הסף — זה הסיפור. מוצר שמגלם את הפרופיל האופייני לעוגיית ריבה מסורתית.",
+      "score": 44.7
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740540",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 92.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 85.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "מרגרינה ושומן רווי גבוה — ללא תוספת סוכר, אך הסרת הסוכר לא שינתה את מקור השומן.",
+      "name": "עוגיות אוזן פיל ללת\"ס",
+      "rowVerdict": "עוגיות אוזן הפיל ללת\"ס של קופסת העוגיות של רחלי מגיעות ל-D. מרגרינה כמקור שומן ראשי — שומן רווי גבוה. הסרת תוספת הסוכר לא שינתה את סוג השומן או כמותו.",
+      "score": 44.7
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=1 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=45.6 post_d4=43.6 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 3,
+      "barcode": "7290013740472",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 16.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "מושלגות — ציפוי אבקת סוכר מסביר את הסוכר הגבוה, שומן רווי נמוך.",
+      "name": "עוגיות מושלגות",
+      "rowVerdict": "העוגיות המושלגות של קופסת העוגיות של רחלי מגיעות ל-D. שמן קנולה ברשימה — מקור שומן סביר — והשומן הרווי נמוך. הסוכר הגבוה, שחלקו מגיע מציפוי אבקת הסוכר, הוא הגורם שמושך את הציון ל-D. שוני בפרופיל מרוב עוגיות הקופסה — שם השומן המכריע.",
+      "score": 43.6
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290013453501",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 48.5
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 67.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 65.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "כוסמין מלא עם שוקולד 6% ופירות מיובשים — סוכר חוצה את הסף.",
+      "name": "ביסקוטי כוסמין שוקולד",
+      "rowVerdict": "ביסקוטי הכוסמין עם שוקולד של דני וגלית מגיע ל-D. כוסמין כרכיב מוביל, אגוזי לוז 6%, שוקולד מריר 6% ופירות מיובשים 8% — רשימה יוצאת דופן לקטגוריה. הסוכר חוצה את הסף — זה המגביל הבודד. שומן הרווי מינימלי.",
+      "score": 43.3
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740465",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 48.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "שושנים עם שומן צמחי גבוה — שומן רווי חוצה את הסף, סוכר על הגבול.",
+      "name": "עוגיות שושנים",
+      "rowVerdict": "עוגיות השושנים של קופסת העוגיות של רחלי מגיעות ל-D. השומן הרווי חוצה את הסף — הוא המגביל. הסוכר קרוב לסף אך לא חצה. נתרן גבוה ביחס לעוגייה מתוקה — יוצא דופן בתוך הקופסה.",
+      "score": 43.3
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740342",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 92.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 85.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "פרחי ריבה ללא תוספת סוכר — שומן רווי נשאר גבוה.",
+      "name": "עוגיות פרחי ריבה ללת\"ס",
+      "rowVerdict": "עוגיות פרחי הריבה ללת\"ס של קופסת העוגיות של רחלי מגיעות ל-D. הסוכר מאופס — בניגוד לגרסה הרגילה. השומן הרווי גבוה ומשמש כמגביל; הוא לא השתנה בין הגרסאות. ללת\"ס מסירה את הסוכר — השומן נשאר.",
+      "score": 42.9
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290013156921",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה כרכיב שני — שומן תעשייתי מוקשה. E965, E450, E500 — רמת עיבוד גבוהה.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "אפס סוכר — יתרון מדיד. מלטיטול מגיע עם אינדקס גליקמי נמוך יותר מסוכר.",
+          "label_he": "עומס גליקמי",
+          "score": 70
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E965 (מלטיטול), E450, E500. מלטיטול במינון גבוה ידוע בתופעות עיכול.",
+          "label_he": "תוספים",
+          "score": 35
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שומן רווי 10 גרם מסמן צפיפות קלורית גבוהה — מרגרינה צפופה כמו חמאה.",
+          "label_he": "צפיפות קלורית",
+          "score": 30
+        }
+      ],
+      "consumerTakeaway": "הסרת סוכר הוסיפה מרגרינה — הציון משקף את העסקה הזו.",
+      "grade": "D",
+      "insightLine": "ללא סוכר עם מרגרינה — שומן רווי גבוה שמבטל את יתרון הסוכר.",
+      "name": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם ג'ייקוב אנד אס",
+      "rowVerdict": "עוגיות גאקובס ללא סוכר מגיעות ל-D. הסרת הסוכר היא צעד חיובי; מרגרינה כרכיב שני ושומן רווי גבוה מחקו את התועלת. ממתיק המלטיטול עלול לגרום לאי נוחות עיכולית בכמויות גדולות.",
+      "score": 40.0
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290017898506",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "ביסקוטי עם קשיו 20% ומחמאה (שומנים מוקשים) — סוכר חוצה את הסף.",
+      "name": "ביסקוטי",
+      "rowVerdict": "הביסקוטי של החוש השישי מגיע ל-D עם קשיו 20% כרכיב בולט ברשימה. הסוכר חוצה את הסף — הוא המגביל העיקרי. המחמאה ברשימה מכילה שומנים מוקשים מן הצומח — גורם לאיכות השומן מעבר לכמותו. שומן הרווי עצמו מתון.",
+      "score": 38.3
+    },
+    {
+      "_binding_cap": 68.0,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290000061245",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר כרכיב ראשון; E500, E503, לציטין סויה — מוצר ייצור מסיבי.",
+          "label_he": "איכות עיבוד",
+          "score": 32
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "סוכר ראשון ועמילנים ברשימה — עומס גליקמי גבוה גם אם הנתון ליחידה נראה נמוך.",
+          "label_he": "עומס גליקמי",
+          "score": 40
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500 ו-E503, לציטין כמתחלב — מסמן עיבוד תעשייתי.",
+          "label_he": "תוספים",
+          "score": 42
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "נתוני 100 גרם לא אומתו; 97 קק\"ל ליחידה מסמן צפיפות לא נמוכה.",
+          "label_he": "צפיפות קלורית",
+          "score": 40
+        }
+      ],
+      "consumerTakeaway": "סוכר כרכיב ראשון; 36% מילוי; נתוני תזונה ליחידה.",
+      "grade": "D",
+      "insightLine": "סוכר לפני קמח ברשימה — 36% מילוי, שני ספים חצויים.",
+      "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם אסם | 220 גרם 2 יח' ב- ‏16",
+      "rowVerdict": "עוגיות שוקוצ'יפס הממולאות של אסם מגיעות ל-D. סוכר מופיע ראשון ברשימת הרכיבים — לפני הקמח. 36% מהמוצר הוא מילוי. הנתרן נמוך — יתרון לקטגוריה.",
+      "score": 37.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290013740014",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "קמח חיטה, ביצים ושוקולד מריר — רכיבים מוכרים ורשימה קצרה יחסית.",
+          "label_he": "איכות עיבוד",
+          "score": 40
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "24 גרם סוכר ל-100 גרם גבוה. קמח לבן כבסיס מחמיר את הפרופיל.",
+          "label_he": "עומס גליקמי",
+          "score": 35
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "רשימה קצרה יחסית ללא מתחלבים מרובים.",
+          "label_he": "תוספים",
+          "score": 55
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "10 גרם שומן רווי מסמן עושר קלורי גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 35
+        }
+      ],
+      "consumerTakeaway": "שוקולד מריר 11% אמיתי, אבל סוכר ושומן רווי גבוהים.",
+      "grade": "D",
+      "insightLine": "11% שוקולד מריר — גם סוכר וגם שומן רווי חוצים את הסף.",
+      "name": "עוגיות שוקוצ'יפס",
+      "rowVerdict": "עוגיות שוקוצ'יפס האלה מגיעות ל-D. שוקולד מריר 11% ברשימה הוא רכיב אמיתי. שני מגבילים פועלים יחד: סוכר גבוה ושומן רווי גבוה — שניהם חוצים את הסף. D מאושר.",
+      "score": 37.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290013156006",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה כרכיב שני — שומן צמחי מוקשה שעבר עיבוד תעשייתי.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "18 גרם סוכר ל-100 גרם — חוצה את הסף. קמח לבן כבסיס.",
+          "label_he": "עומס גליקמי",
+          "score": 38
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450 ו-E500 — חומרי תפיחה נפוצים. מאפיינים ייצור תעשייתי.",
+          "label_he": "תוספים",
+          "score": 38
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "מרגרינה ושומן רווי 9 גרם מסמנים צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 35
+        }
+      ],
+      "consumerTakeaway": "מרגרינה כרכיב שני, סוכר גבוה — עוגייה מרוקאית תעשייתית.",
+      "grade": "D",
+      "insightLine": "מרגרינה כרכיב שני — שני ספים חצויים, עוגייה מרוקאית תעשייתית.",
+      "name": "עוגיות מיני מרוקאיות 350 גרם בבקה | 350 גרם ‏16.90 ‏₪ ‏4.83",
+      "rowVerdict": "עוגיות המיני מרוקאיות של בבקה מגיעות ל-D. מרגרינה מופיעה לפני הביצים ברשימה. גם סוכר וגם שומן רווי חוצים את הסף — שני מגבילים פועלים יחד, ולכן D ולא פחות מזה.",
+      "score": 36.2
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290017894317",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 44.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "57% כוסמין מלא עם 10% שבבי שוקולד — בסיס דגן שלם יוצא דופן לקטגוריה.",
+      "name": "עוגיות כוסמין מלא שוקולד",
+      "rowVerdict": "עוגיות הכוסמין המלא של גנדולה בנויות על 57% כוסמין מלא — בסיס יוצא דופן למדף — עם 10% שבבי שוקולד ושמן חמניות כמקור שומן. הסוכר, כולל סירופ תירס ברשימה, חוצה את הסף. ממרח אגוזי לוז ברשימה. שומן הרווי מתון.",
+      "score": 36.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "2986065",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.5
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "ביסקוויט בטעם קקאו — שומן דקל ברשימה, שומן רווי מתון.",
+      "name": "פתי בר בטעם שוקולד",
+      "rowVerdict": "פתי בר השוקולד של גטניו הוא ביסקוויט בטעם קקאו — אבקת קקאו, לא שוקולד או ציפוי. שמן סויה ושומן דקל ברשימה; השומן הרווי עצמו מתון. הסוכר חוצה את הסף — הוא המגביל.",
+      "score": 35.8
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=2 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=37.8 post_d4=35.8 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "5317194",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "ביסקוויט וניל — שמן צמחי, סוכר חוצה את הסף.",
+      "name": "ביסקוויט בטעם וניל הדר",
+      "rowVerdict": "ביסקוויט הוניל של הדר מגיע ל-D עם שמן צמחי כמקור שומן וסוכר שחוצה את הסף. השומן הרווי מתחת לסף — מגביל אחד. סולפיט ברשימה כחומר לטיפול בקמח.",
+      "score": 35.8
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=1 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=37.7 post_d4=35.7 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290011489625",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "ביסקוויט שוקו — אבקת קקאו 2%, סוכר חוצה את הסף.",
+      "name": "ביסקוויט בטעם שוקו",
+      "rowVerdict": "ביסקוויט השוקו של הדר מגיע ל-D עם שמן צמחי, סוכר שחוצה את הסף ואבקת קקאו 2% ברשימה. השומן הרווי מתחת לסף — מגביל אחד. פרופיל זהה לגרסת הוניל של אותו מותג. סולפיט ברשימה.",
+      "score": 35.7
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=6 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=37.6 post_d4=35.6 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290119041053",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 59.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 12.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "עוגייה בסגנון מרוקאי עם מרגרינה — שומן רווי חוצה את הסף.",
+      "name": "עוגיות סגנון מרוקאי",
+      "rowVerdict": "עוגיות הסגנון המרוקאי של VOILA מגיעות ל-D עם שומן רווי שחוצה את הסף ומגביל מתון. המרגרינה ברשימה היא מקור השומן התעשייתי. הסוכר לא חצה. אותה פורמולה כמו גרסאות VOILA האחרות.",
+      "score": 35.6
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=6 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=37.6 post_d4=35.6 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290119041107",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 59.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 12.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "עוגייה מרוקאית עגולה עם מרגרינה — שומן רווי גבוה, סוכר מתון.",
+      "name": "עוגיות מרוקאיות עגול",
+      "rowVerdict": "העוגיות המרוקאיות העגולות של VOILA מגיעות ל-D. הסוכר לא חצה את הסף. המרגרינה ברשימה מעלה את השומן הרווי מעבר לסף — זה הבלם. אותה נוסחה כמו גרסאות VOILA הנוספות.",
+      "score": 35.6
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=6 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=37.6 post_d4=35.6 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290119041152",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 59.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 12.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "ריפ'את עם מרגרינה — שומן רווי חוצה את הסף, סוכר מתון.",
+      "name": "עוגיות ריפ'את",
+      "rowVerdict": "עוגיות הריפ'את של VOILA מגיעות ל-D. הסוכר לא חצה את הסף — המרגרינה ברשימה היא שמעלה את השומן הרווי מעבר לסף. מגביל אחד, מקורו בסוג השומן. שלוש עוגיות VOILA חולקות נוסחה דומה.",
+      "score": 35.6
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "2986058",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.3
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "D",
+      "insightLine": "פתי בר וניל — סוכר חוצה את הסף, שומן דקל ושומן רווי מתון.",
+      "name": "פתי בר וניל",
+      "rowVerdict": "פתי בר הוניל של גטניו מגיע ל-D. שמן סויה ושומן דקל ברשימה; השומן הרווי עצמו מתון ולא חצה את הסף. הסוכר הוא הגורם שחוצה — הוא הסיבה ל-D.",
+      "score": 35.5
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=2 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=36.4 post_d4=34.4 grade_change=yes",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290018893845",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 44.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שמן חמניות בלבד — שומן רווי נמוך, אך סולפיט ברשימה, אלרגן מוצהר, מוריד ל-E.",
+      "name": "פתי בר בטעם חמאה",
+      "rowVerdict": "פתי בר בטעם חמאה של צ'וקטה הוא ביסקוויט ששמנו שמן חמניות — אין חמאה ברשימה. השומן הרווי נמוך מאוד לקטגוריה, ובכל זאת הציון נחת על E. הסיבה: סולפיט ברשימה (מעכב חמצון) — אלרגן מוצהר שעלול לעורר רגישות, שבארי מסמנת כבעייתי. הסוכר חוצה את הסף, וסירופ גלוקוז-פרוקטוז ברשימה. סיבי אפונה הם נגיעה חיובית שלא מספיקה לשנות את התמונה.",
+      "score": 34.4
+    },
+    {
+      "_binding_cap": 72,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=1 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=35.3 post_d4=33.3 grade_change=yes",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "313184",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמנים צמחיים לא מפורטים, סוכר אינברטי, מיצוי רוזמרין כאנטי-חמצון, סולפיט — פרופיל תעשייתי מובהק.",
+          "label_he": "איכות עיבוד",
+          "score": 30
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "18 גרם סוכר ל-100 גרם — על הגבול. שילוב סוכר רגיל וסוכר אינברטי מגביר את העומס הגליקמי.",
+          "label_he": "עומס גליקמי",
+          "score": 38
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500, E503, לציטין, מיצוי רוזמרין וסולפיט — חמישה תוספים. הסולפיט מסומן כאלרגן.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמנים צמחיים ושומן רווי 3 גרם — צפיפות קלורית בינונית.",
+          "label_he": "צפיפות קלורית",
+          "score": 40
+        }
+      ],
+      "consumerTakeaway": "עוגיות ילדים עם סוכר מתון ושומן רווי נמוך — אבל סולפיט ברשימה, אלרגן מוצהר שבארי מסמנת כבעייתי, הוא מה שמוריד אותן ל-E.",
+      "grade": "E",
+      "insightLine": "עוגיות ילדים עם פרופיל מתון — סולפיט ברשימה, אלרגן מוצהר, מוריד ל-E.",
+      "name": "עוגיות גן חיות טעם וניל",
+      "rowVerdict": "עוגיות גן חיות בצורות חיות הן ביסקוויט ילדים פשוט. הסוכר מתון ולא חוצה אף סף, והשומן הרווי נמוך לקטגוריה — פרופיל בסיסי שלא היה אמור להגיע ל-E. מה ששקל את הכף הוא סולפיט ברשימה (חומר לטיפול בקמח): אלרגן מוצהר שעלול לעורר רגישות, שבארי מסמנת כבעייתי. שמנים צמחיים כלליים ברשימה ללא פירוט.",
+      "score": 33.3
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7296073453840",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה עם E200, E202 לצד חמאה. ביצים מיובשות במקום ביצים טריות. E500 ו-E470 בחומרי תפיחה.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "נתון הסוכר לא אומת מנתון ל-100 גרם. סוכרים ברשימה — גורם מגביל.",
+          "label_he": "עומס גליקמי",
+          "score": 35
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E200, E202 במרגרינה, E500, E470 — ריבוי תוספים לקוקיס.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "14 גרם שומן רווי ל-100 גרם — גבוה מאוד. שוקולד חלב 19% מוסיף.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "חמאה ומרגרינה יחד ברשימה, שוקולד חלב אמיתי — אבל שומן רווי גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "שוקולד חלב כמעט 20% — חמאה ומרגרינה יחד, שומן רווי גבוה מאוד.",
+      "name": "קוקיס שבבי שוקולד חלבי",
+      "rowVerdict": "קוקיס שבבי שוקולד חלבי מגיע ל-E. חמאה ומרגרינה מופיעות יחד ברשימה — שני מקורות שומן שונים, האחד איכותי והשני תעשייתי — לצד חומרי שימור במרגרינה. שומן הרווי גבוה מאוד. נתרן גבוה לעוגייה מתוקה.",
+      "score": 33.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7296073453857",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה עם E202, E200, ביצים מיובשות, E500, E470. שוקולד לבן 20% — רכיב עשיר בסוכר ושומן.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "נתון הסוכר לא אומת ל-100 גרם. שוקולד לבן ו'סוכרים' ברשימה מסמנים עומס גליקמי גבוה.",
+          "label_he": "עומס גליקמי",
+          "score": 30
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E202, E200 במרגרינה, E500, E470 — ריבוי תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שומן רווי 10 גרם ל-100 גרם — גבוה מאוד לקוקיס.",
+          "label_he": "צפיפות קלורית",
+          "score": 22
+        }
+      ],
+      "consumerTakeaway": "שוקולד לבן 20% ומרגרינה — שני מקורות שומן תעשייתיים.",
+      "grade": "E",
+      "insightLine": "שוקולד לבן כמעט 20% עם מרגרינה — שומן רווי גבוה, סוכר לא אומת.",
+      "name": "קוקיס שוקולד לבן חלבי",
+      "rowVerdict": "קוקיס שוקולד לבן מגיע ל-E. שוקולד לבן ומרגרינה יחד ברשימה — שני מקורות שומן, עם חומרי שימור. שומן הרווי גבוה בהתאם. נתון הסוכר לא אומת מהמקור הישיר.",
+      "score": 32.7
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290106571945",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "41% קמח מלא ו-8% שוקולד מריר הם יתרון. מלטודקסטרין, E503, E450, E500 מורידים.",
+          "label_he": "איכות עיבוד",
+          "score": 35
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "21 גרם סוכר ל-100 גרם — גבוה. מלטודקסטרין מוסיף לעומס הגליקמי למרות שאינו 'סוכר'.",
+          "label_he": "עומס גליקמי",
+          "score": 30
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מלטודקסטרין, E503, E450, E500, לציטין סויה — חמישה תוספים בפרופיל שמציג את עצמו כבריאותי.",
+          "label_he": "תוספים",
+          "score": 32
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן צמחי ושוקולד 8% — צפיפות קלורית בינונית לגבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 42
+        }
+      ],
+      "consumerTakeaway": "קמח מלא בבסיס, אבל סוכר גבוה ומלטודקסטרין מפחיתים את היתרון.",
+      "grade": "E",
+      "insightLine": "41% קמח מלא ושיבולת שועל — סוכר גבוה ורמת עיבוד מוחקים את היתרון.",
+      "name": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס 180 גרם פ",
+      "rowVerdict": "עוגיות הקקאו דגנים מלאים של פיטנס מגיעות ל-E. בסיס הדגן המלא הוא יתרון אמיתי. הבעיה: סוכר גבוה שחוצה את הסף, ורשימת חומרי עיבוד שמסמנת ייצור תעשייתי מלא. 'פיטנס' בשם — הציון מסביר למה.",
+      "score": 32.2
+    },
+    {
+      "_binding_cap": 68.0,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=3 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=34.2 post_d4=32.2 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290118423904",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "45% קרם תעשייתי עם E503, E500, E450, E471, לציטין סויה. הרכיב הראשי הוא מוצר מעובד בתוך מוצר מעובד.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "נתוני הסוכר ליחידה (6 גרם) לא מתורגמים ל-100 גרם — הפרופיל הגליקמי האמיתי לא אומת.",
+          "label_he": "עומס גליקמי",
+          "score": 35
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, E450, E471, לציטין סויה — חמישה תוספים בקרם בלבד, ועוד בחלק הביסקוויט.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "94 קק\"ל ליחידה מסמן מוצר עשיר. שמנים צמחיים בקרם ובביסקוויט.",
+          "label_he": "צפיפות קלורית",
+          "score": 38
+        }
+      ],
+      "consumerTakeaway": "45% קרם תעשייתי מעובד עם עוגיות — שוקו וניל כתיוג בלבד.",
+      "grade": "E",
+      "insightLine": "45% קרם וניל תעשייתי — הביסקוויט הוא המיעוט.",
+      "name": "קרמוגית קראנץ שוקו וניל עוגיות 200 גרם קרמוגית | 200 גרם 2 י",
+      "rowVerdict": "קרמוגית קראנץ שוקו וניל מגיעה ל-E. יותר ממחצית המוצר הוא קרם תעשייתי — שמנים צמחיים, חומרי תפיחה ומתחלבים — עם שברי עוגיות. אבקת קקאו מסבירה את 'שוקו' בשם. פרופיל E ללא תחרות.",
+      "score": 32.2
+    },
+    {
+      "_binding_cap": 68.0,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=3 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=33.7 post_d4=31.7 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290118422617",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "45% קרם תעשייתי. E450, E471, E500, לציטין — זהה לגרסת השוקו.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "נתוני הסוכר ליחידה (6 גרם) לא מתורגמים ל-100 גרם. הפרופיל הגליקמי לא אומת במלואו.",
+          "label_he": "עומס גליקמי",
+          "score": 35
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E471, E500, לציטין — זהה לגרסת השוקו וניל.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "94 קק\"ל ליחידה עם שמנים צמחיים — זהה לגרסת השוקו.",
+          "label_he": "צפיפות קלורית",
+          "score": 38
+        }
+      ],
+      "consumerTakeaway": "גרסת וניל טהור של קרמוגית — פרופיל תעשייתי מלא.",
+      "grade": "E",
+      "insightLine": "45% קרם וניל — זהה לגרסת השוקו ללא קקאו.",
+      "name": "קרמוגית קראנץ קרם וניל עוגיות 200 גרם קרמוגית | 200 גרם 2 יח",
+      "rowVerdict": "קרמוגית קראנץ קרם וניל מגיעה ל-E. המבנה זהה לגרסת השוקו: קרם תעשייתי עם שמנים צמחיים ומתחלבים שמהווים רוב המוצר, ושברי עוגיות. ההבדל היחידי: אין קקאו.",
+      "score": 31.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=4 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=33.1 post_d4=31.1 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 3,
+      "barcode": "7290019293804",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "ציפוי שוקולד לבן עם E476, שומן צמחי, E471, גואר גאם — מוצר מרובד בתוספים. ממרח אגוזי לוז 14% לא מציל.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "33 גרם סוכר ל-100 גרם — גבוה מאוד. שוקולד לבן מורכב בעיקרו מסוכר ולחמאת קקאו.",
+          "label_he": "עומס גליקמי",
+          "score": 20
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E476 (פוליגליצרול) בציפוי — תוסף שנוי-במחלוקת. E471 וגואר גאם מוסיפים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "16 גרם שומן רווי ל-100 גרם — גבוה מאוד לכל קנה מידה.",
+          "label_he": "צפיפות קלורית",
+          "score": 25
+        }
+      ],
+      "consumerTakeaway": "33% ציפוי שוקולד לבן הוא הגורם לסוכר ושומן רווי גבוהים.",
+      "grade": "E",
+      "insightLine": "31% ציפוי שוקולד לבן עם שמן קוקוס — שומן רווי גבוה מאוד וסוכר גבוה.",
+      "name": "קראנץ אגוזי לוז",
+      "rowVerdict": "קראנץ אגוזי הלוז מגיע ל-E. שוקולד לבן ציפוי 31% עם שמן קוקוס — לא חמאת קקאו. פסטת אגוזי לוז 1.8% ברשימה — נוכחת אבל מינורית. סוכר גבוה מאוד. מתחלב פוליגליצרול בציפוי.",
+      "score": 31.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "8410376037784",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל כרכיב שלישי, E965, E322, זיגוג חלב — מוצר מרובד עם תוספים.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "E965 (מלטיטול) מספק אינדקס גליקמי נמוך יחסית — אבל 5 גרם סוכר ליחידה לא תורגמו ל-100 גרם.",
+          "label_he": "עומס גליקמי",
+          "score": 42
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E965, E322, E500, E503 — ריבוי תוספים. מלטיטול עלול לגרום לאי-נוחות עיכולית.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן דקל ושומן רווי 6 גרם — צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 35
+        }
+      ],
+      "consumerTakeaway": "ממתיק במקום סוכר — שומן רווי גבוה ושמן דקל נשארים ברשימה.",
+      "grade": "E",
+      "insightLine": "ממתיק מלטיטול במקום סוכר, אבל שמן דקל ושומן רווי גבוה נשארים — וזה מה שקובע.",
+      "name": "עוגיות סנדוויץ' שוקולד גולון | 250 גרם ‏13.00 ‏₪ ‏5.20 ‏₪ /",
+      "rowVerdict": "עוגיות הסנדוויץ שוקולד של גולון מגיעות ל-E. מלטיטול כממתיק עיקרי — פוליאול שעלול לגרום לאי נוחות עיכולית — לצד שמן דקל כמקור שומן. שומן הרווי גבוה. קקאו 12% בקרם.",
+      "score": 30.1
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290013740694",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 46.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "עוגיית אלפחורס עם ריבת חלב — מרגרינה במילוי, שני ספים חצויים.",
+      "name": "עוגיות אלפחורס",
+      "rowVerdict": "עוגיות האלפחורס של קופסת העוגיות של רחלי מגיעות ל-E. שני הספים חצויים: סוכר גבוה ושומן רווי גבוה. ריבת החלב שבמילוי מכילה מרגרינה — מקור שומן תעשייתי שתורם לשומן הרווי ולעיבוד.",
+      "score": 29.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290018371923",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 62.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "קמח מלא אורגני 66% — שני ספים חצויים.",
+      "name": "פתי בר קמח מלא אורגני",
+      "rowVerdict": "פתי בר קמח המלא האורגני של השדה מגיע ל-E. 66% קמח מלא הוא יתרון אמיתי. שני המגבילים — שומן רווי וסוכר — חוצים את הסף. 'אורגני' ו'קמח מלא' הן תכונות ממשיות שלא מבטלות פרופיל שומן וסוכר גבוה.",
+      "score": 29.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290018371930",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 50.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 84.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "כוסמין אורגני 65% — שני ספים חצויים, 'אורגני' לא משנה את הפרופיל.",
+      "name": "פתי בר קמח כוסמין אורגני",
+      "rowVerdict": "פתי בר הכוסמין האורגני של השדה מגיע ל-E. כוסמין מלא כרכיב מוביל הוא יתרון. שני מגבילים פועלים: שומן רווי וסוכר — שניהם חוצים את הסף. 'אורגני' מתאר את שיטת הגידול; פרופיל השומן והסוכר נשאר בעיה.",
+      "score": 29.0
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290106571921",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "55% קמח מלא, שיבולת שועל, חמוציות 6% — בסיס טוב. מלטודקסטרין ושלושה חומרי תפיחה.",
+          "label_he": "איכות עיבוד",
+          "score": 38
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "22 גרם סוכר ל-100 גרם — גבוה. מלטודקסטרין מוסיף עומס גליקמי נסתר.",
+          "label_he": "עומס גליקמי",
+          "score": 27
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מלטודקסטרין, E503, E450, E500, לציטין — אותם תוספים כמו גרסת הקקאו.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמנים צמחיים ושומן רווי 4 גרם — בינוני לגבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 38
+        }
+      ],
+      "consumerTakeaway": "חמוציות וקמח מלא בבסיס — הסוכר גבוה ומלטודקסטרין ברשימה.",
+      "grade": "E",
+      "insightLine": "55% קמח מלא וחמוציות 6.5% — סוכר גבוה שולח ל-E.",
+      "name": "עוגיות פיטנס חמוציות 180 גרם פיטנס | 180 גרם ‏12.90 ‏₪ ‏7.17",
+      "rowVerdict": "עוגיות הפיטנס חמוציות מגיעות ל-E. חמוציות אמיתיות ו-55% קמח מלא — יתרונות ממשיים. המגבלה: סוכר גבוה שחוצה את הסף, ורמת עיבוד גבוהה. היתרון החלקי לא מסיר את ה-E.",
+      "score": 28.0
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "8410376075915",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "קמח אורז, קמח תירס, שמן חמנייה — בסיס נסבל. אוליגופרוקטוז, E500, E503 ולציטין מסמנים עיבוד תעשייתי.",
+          "label_he": "איכות עיבוד",
+          "score": 32
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "19 גרם סוכר ל-100 גרם. קמח אורז ותירס הם פחמימות זמינות — עומס גליקמי גבוה.",
+          "label_he": "עומס גליקמי",
+          "score": 30
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "אוליגופרוקטוז (פרה-ביוטי — פלוס קטן), E500, E503, לציטין — בינוני.",
+          "label_he": "תוספים",
+          "score": 35
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן חמנייה 14% ושבבי שוקולד 22% — צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 38
+        }
+      ],
+      "consumerTakeaway": "ללא גלוטן לא מסמל פרופיל בריא — סוכר גבוה ועיבוד מוגבר הם הסיפור האמיתי.",
+      "grade": "E",
+      "insightLine": "ללא גלוטן — שמן חמנייה, עיבוד גבוה, סוכר גבוה.",
+      "name": "עוגיות+שבבי שוקולד לל\"ג",
+      "rowVerdict": "עוגיות שבבי שוקולד ללא גלוטן מגיעות ל-E. שמן חמנייה כמקור שומן הוא סביר יחסית. הסרת הגלוטן לא שיפרה את הפרופיל: סוכר גבוה, קמח אורז וקמח תירס כבסיס, ייצור תעשייתי. 'ללא גלוטן' מגדיר אלרגן — פרופיל הדגן משתנה; פרופיל הסוכר והשומן נשאר.",
+      "score": 27.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=4 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=29.1 post_d4=27.1 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 3,
+      "barcode": "7290019816034",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "ציפוי שוקולד לבן עם E476, שומן צמחי, E471, גואר גאם — מוצר מעובד מרובד.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "30 גרם סוכר ל-100 גרם — גבוה מאוד. שוקולד לבן מורכב בעיקרו מסוכר.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E476 בציפוי, E471, גואר גאם — שלושה תוספים עיקריים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "14 גרם שומן רווי ל-100 גרם — גבוה מאוד. שמן קוקוס כמקור עיקרי.",
+          "label_he": "צפיפות קלורית",
+          "score": 25
+        }
+      ],
+      "consumerTakeaway": "שוקולד לבן בציפוי עם חומר מתחלב — שומן רווי גבוה מאוד וסוכר גבוה.",
+      "grade": "E",
+      "insightLine": "33% ציפוי שוקולד לבן עם שמן קוקוס — סוכר גבוה מאוד.",
+      "name": "מאגדת מיני קראנץ עוגיות",
+      "rowVerdict": "מאגדת מיני קראנץ מגיעת ל-E. שוקולד לבן ציפוי 33% עם שמן קוקוס — לא חמאת קקאו. סוכר גבוה מאוד. מתחלב פוליגליצרול בציפוי. שמן הקוקוס ברשימה מוקשה.",
+      "score": 27.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=3 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290118426615",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "56% קמח מלא, שיבולת שועל 2% ושוקולד מריר 8% — בסיס טוב. מלטודקסטרין ושלושה חומרי תפיחה מורידים.",
+          "label_he": "איכות עיבוד",
+          "score": 38
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "22 גרם סוכר ל-100 גרם. מלטודקסטרין מוסיף עומס גליקמי שלא מסווג כ'סוכר'.",
+          "label_he": "עומס גליקמי",
+          "score": 28
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מלטודקסטרין, E503, E500, E450, לציטין — חמישה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן צמחי ושוקולד 8% — צפיפות קלורית בינונית.",
+          "label_he": "צפיפות קלורית",
+          "score": 38
+        }
+      ],
+      "consumerTakeaway": "קמח מלא 56% לא מפצה על סוכר גבוה ומלטודקסטרין.",
+      "grade": "E",
+      "insightLine": "56% קמח מלא ושוקולד מריר 8% — סוכר גבוה ועיבוד תעשייתי שולחים ל-E.",
+      "name": "עוגיות מיני שוקולד",
+      "rowVerdict": "עוגיות המיני שוקולד האלה מגיעות ל-E. 56% קמח מלא ושוקולד מריר אמיתי — שני מאפיינים שלא נפוצים במדף הזה. הבעיה: סוכר גבוה שחוצה את הסף, גלוטן מוסף ורשימת חומרי עיבוד ארוכה שמגיעה ל-E על אף הבסיס הטוב.",
+      "score": 27.1
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290018371947",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 48.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 84.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "כוסמין אורגני 66% — שני ספים חצויים, זהה לגרסת הכוסמין האורגני.",
+      "name": "פתי בר כוסמין",
+      "rowVerdict": "פתי בר הכוסמין של השדה מגיע ל-E. 66% כוסמין מלא כרכיב מוביל. שני המגבילים — שומן רווי וסוכר — חוצים את הסף. הפרופיל דומה מאוד לגרסת הכוסמין האורגני של אותו מותג.",
+      "score": 27.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119043798",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 43.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 28.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "עוגיית אוזניות עם מרגרינה — שני ספים חצויים.",
+      "name": "עוגיות אוזניות",
+      "rowVerdict": "עוגיות האוזניות של לה פזואלוס מגיעות ל-E. שני ספים חצויים: שומן רווי גבוה ממרגרינה, וסוכר גבוה. מרגרינה כרכיב שני ברשימה עם חומרי שימור.",
+      "score": 26.7
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "80083665",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 37.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שוקולד ציפס 12% עם שמן חמניות — סוכר גבוה שמביא ל-E.",
+      "name": "עוגיות אורגניות+שוקולד",
+      "rowVerdict": "עוגיות גנדולה האורגניות עם שוקולד מגיעות ל-E עם סוכר גבוה שחוצה את הסף. השומן הרווי עומד בדיוק על גבול הסף. 'אורגני' מתאר את שיטת הגידול; הסוכר הגבוה מכריע את הציון.",
+      "score": 26.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290019870470",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שומן דקל כרכיב שלישי, עמילן חיטה, מלטודקסטרין, קרמל כצבע מאכל, לציטין חמניות.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "29 גרם סוכר ל-100 גרם — גבוה מאוד. עמילן חיטה ומלטודקסטרין מוסיפים.",
+          "label_he": "עומס גליקמי",
+          "score": 25
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "קרמל כצבע מאכל, מלטודקסטרין, לציטין חמניות, מתפיחים — בינוני.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן דקל ושומן רווי 9 גרם — צפיפות גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שלישי, סוכר גבוה, קקאו מינימלי.",
+      "grade": "E",
+      "insightLine": "קקאו 3.5% בשמן דקל — הקרם 'שוקו' מבוסס שמן ולא שוקולד.",
+      "name": "עוגיות סנדוויץ עם קרם בטעם שוקו צ'וקטה 176 גרם צ'וקטה | 176",
+      "rowVerdict": "עוגיות הסנדוויץ שוקו של צ'וקטה מגיעות ל-E. שמן דקל כמקור הקרם, סוכר גבוה ושומן רווי גבוה. קקאו 3.5% — פחות ממה שהמוח קושר למילה 'שוקו'. השם מוכר שוקולד; המרשם נשען על קרם שמן-סוכר.",
+      "score": 26.1
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4823077614699",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 44.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 66.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "ביסקוויט 'בטעם חמאה' עם שמן דקל — שני ספים חצויים.",
+      "name": "ביסקוויט לקפה בטעם חמאה",
+      "rowVerdict": "ביסקוויט הקפה בטעם חמאה של ROSHEN מגיע ל-E. שמן דקל לא מוקשה כמקור שומן. שומן הרווי גבוה וסוכר גבוה — שני הספים חצויים. 'טעם חמאה' הוא חומר טעם וריח.",
+      "score": 26.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4823077633317",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל ושמן זרעי דקל בשבבי השוקולד, E503, E500, לציטין סויה. ריבוי מקורות שומן עם עיבוד גבוה.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "36 גרם סוכר ל-100 גרם — גבוה מאוד. שוקולד בצד הנמוך של מוצקי הקקאו.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, דיסודיום דיפוספט, לציטין סויה — בינוני לגבוה.",
+          "label_he": "תוספים",
+          "score": 32
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "14 גרם שומן רווי — גבוה מאוד. שמן דקל הוא שומן רווי ביחס גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "שמן דקל גם בבסיס וגם בשבבים — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "שמן דקל בתוך שבבי השוקולד עצמם — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "name": "עוגיות LOVITA שוקולד",
+      "rowVerdict": "LOVITA שוקולד מגיעה ל-E. שמן דקל ושמן זרעי דקל מופיעים בתוך שבבי השוקולד — לא רק בבסיס. סוכר גבוה מאוד ושומן רווי גבוה. בקטגוריה שרובה E, LOVITA נמצאת בתחתית.",
+      "score": 24.3
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4820180816576",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 34.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שבבי קוקוס אמיתיים עם מרגרינה — שני ספים חצויים.",
+      "name": "עוגיות עם שבבי קוקוס",
+      "rowVerdict": "עוגיות שבבי הקוקוס של PASTICERE מגיעות ל-E. שבבי קוקוס ברשימה — רכיב אמיתי. מרגרינה כרכיב מוביל מסביר את השומן הרווי הגבוה. סוכר גבוה. שני הספים חצויים בבירור.",
+      "score": 24.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4820180816590",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 24.5
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "מרגרינה כרכיב בסיסי — שני ספים חצויים; גרעיני חמנייה 2.4% נוכחים.",
+      "name": "עוגיות עם גרעיני חמנייה",
+      "rowVerdict": "עוגיות גרעיני החמנייה של PASTICERE מגיעות ל-E. מרגרינה כרכיב בסיסי מכריעה את הפרופיל — שני ספים חצויים: שומן רווי גבוה וסוכר גבוה. גרעיני חמנייה, שומשום וזרעי פשתן נוכחים ברשימה בכמות שאינה משנה את התמונה.",
+      "score": 24.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "311708",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 57.5
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 46.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "חיטה מלאה 55% — שומן רווי גבוה וסוכר גבוה שולחים ל-E.",
+      "name": "עוגיות מחיטה מלאה מן",
+      "rowVerdict": "עוגיות החיטה המלאה של מן מגיעות ל-E למרות הכיתוב. שומן הרווי גבוה וסוכר גבוה — שני הספים חצויים. חיטה מלאה כרכיב לא מבטלת פרופיל שומן וסוכר גבוה.",
+      "score": 23.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "8008698037171",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 43.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 100
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "חמאה 30% ללא גלוטן — שומן רווי גבוה מאוד.",
+      "name": "עוגיות חמאה ללא גלוטן",
+      "rowVerdict": "עוגיות החמאה ללא גלוטן של שר מגיעות ל-E. חמאה 30% ברשימה — זו הסיבה לשומן הרווי הגבוה מאוד. שני ספים חצויים: שומן רווי וסוכר. 'ללא גלוטן' אינו 'פחות שמן' — בדיוק מה שמוצג כאן.",
+      "score": 22.8
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E124'] cosmetic_mup=5 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=24.2 post_d4=22.2 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290017724171",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה בבצק, יותר מעשרה תוספים במילוי הריבה — רמת עיבוד חריגה גם לפי תקני הקטגוריה.",
+          "label_he": "איכות עיבוד",
+          "score": 18
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "1 גרם סוכר — נמוך. מלטיטול וסורביטול עם אינדקס גליקמי נמוך יחסית, אך עלולים לגרום לאי-נוחות עיכולית.",
+          "label_he": "עומס גליקמי",
+          "score": 48
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E440, E330, E124, E150d, E202, E341, E450, מלטיטול, סורביטול, לציטין — רשימה ארוכה במיוחד.",
+          "label_he": "תוספים",
+          "score": 12
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "מרגרינה ושומן רווי 6 גרם — צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 32
+        }
+      ],
+      "consumerTakeaway": "ריבה ללא סוכר עם עשרה תוספים; מרגרינה בבצק.",
+      "grade": "E",
+      "insightLine": "ללא סוכר עם מרגרינה ומילוי ריבה עמוס חומרי עיבוד.",
+      "name": "מארז עוגיות אקלר סנדוויץ ריבה ללא סוכר הללס | 250 גרם ‏23.90",
+      "rowVerdict": "אקלר הסנדוויץ ריבה ללת\"ס של הללס מגיע ל-E. הסרת הסוכר הוחלפה בפוליאולים ובמרגרינה. המילוי עשיר ברשימת חומרי ייצוב, חומצה, צבעי מאכל ומשמרים. שומן הרווי גבוה.",
+      "score": 22.2
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "313160",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 35.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 66.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "עוגיית שוקולד קלאסית — סוכר חוצה את הסף, שומן רווי מתחתיו.",
+      "name": "עוגיות שוקולד זהבה",
+      "rowVerdict": "עוגיות שוקולד זהבה של אסם מגיעות ל-E. אבקת קקאו 3.3% ברשימה. הסוכר חוצה את הסף — הוא המגביל. השומן הרווי לא חצה את הסף. ביסקוויט שוקולד קלאסי שמגיע לאותו ציון E שרוב המדף מגיע אליו.",
+      "score": 22.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4006529002170",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "קמח חיטה, שמן דקל, סוכר, ביצים, מלח, חומרי טעם — רשימה קצרה יחסית. שמן דקל כמקור שומן ראשי.",
+          "label_he": "איכות עיבוד",
+          "score": 30
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "23 גרם סוכר ל-100 גרם — גבוה. קמח לבן כבסיס.",
+          "label_he": "עומס גליקמי",
+          "score": 28
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "רשימה קצרה — חומרי טעם בלבד. פחות תוספים מרוב הקטגוריה.",
+          "label_he": "תוספים",
+          "score": 45
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "541 קק\"ל ל-100 גרם — הגבוה ביותר שנמדד. שמן דקל ו-15 גרם שומן רווי.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שני, שומן רווי גבוה מאוד — רשימת רכיבים קצרה מאוד.",
+      "grade": "E",
+      "insightLine": "שמן דקל כרכיב שני, שני ספים חצויים — סוכר גבוה ושומן רווי גבוה.",
+      "name": "עוגיות גולד רינג 400 גרם ללא מיתוג | 400 גרם ‏10.90 ‏₪ ‏2.73",
+      "rowVerdict": "עוגיות גולד רינג מגיעות ל-E. שמן דקל מופיע שני ברשימה; שומן הרווי גבוה בהתאם. גם הסוכר גבוה. שני הספים חצויים — פרופיל E ברשימה קצרה.",
+      "score": 21.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119041206",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 36.4
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "קוואקר עם שמן דקל — פרופיל E למרות שיבולת שועל.",
+      "name": "עוגיות קוואקר",
+      "rowVerdict": "עוגיות הקוואקר של VOILA מגיעות ל-E. שמן דקל כמקור שומן ראשי, שני ספים חצויים. שיבולת שועל 8% ברשימה — נוכחת אבל מינורית על רקע הפרופיל.",
+      "score": 21.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119041350",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 36.4
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שמן דקל ושני מקורות סוכר ברשימה — למרות שם 'ללא תוספת סוכר'.",
+      "name": "עוגיות קוואקר ללת\"ס",
+      "rowVerdict": "עוגיות הקוואקר ללת\"ס של VOILA מגיעות ל-E. שמן דקל כמקור שומן ראשי. סוכר ואבקת סוכר מופיעים שניהם ברשימה — בניגוד לשם המוצר. שיבולת שועל 8% נוכחת. שני ספים חצויים: שומן רווי וסוכר.",
+      "score": 21.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119043095",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 36.4
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שיבולת שועל 8% עם שמן דקל — שומן רווי וסוכר גבוהים.",
+      "name": "עוגיות שיבולת שועל",
+      "rowVerdict": "עוגיות שיבולת השועל של לה פזואלוס מגיעות ל-E. שמן דקל כמקור שומן ראשי. שני ספים חצויים. שיבולת שועל 8% ברשימה — נוכחת אבל מינורית על רקע הפרופיל.",
+      "score": 21.5
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "74184",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 35.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 30.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "פתי בר ישראלי קלאסי — סוכר חוצה את הסף, שמן צמחי.",
+      "name": "פתי בר קלאסי",
+      "rowVerdict": "פתי בר הקלאסי של אסם מגיע ל-E. שמנים צמחיים לא מפורטים כמקור שומן; השומן הרווי עצמו נמוך יחסית. הסוכר חוצה את הסף — הוא הגורם המכריע. סולפיט ברשימה.",
+      "score": 21.4
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E224'] cosmetic_mup=1 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=23.3 post_d4=21.3 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290123330488",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 13.8
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 10.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "58% בוטנים — חלבון גבוה מהבוטנים, סוכר גבוה מאוד עם 19 רכיבים.",
+      "name": "עוגיות בוטנים כשל\"פ",
+      "rowVerdict": "עוגיות הבוטנים של לה פזואלוס מכילות 58% בוטנים כרכיב מוביל — מקור החלבון הגבוה יחסית. הסוכר גבוה מאוד. הרשימה מגיעה ל-19 רכיבים עם חומרי טעם וצבע קרמל. חלבון מבוטנים הוא עובדה — הוא לא מבטל את הסוכר ורמת העיבוד.",
+      "score": 21.3
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7296073162001",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "40% קרם תעשייתי עם שמנים ושומנים, סירופ גלוקוז, חמאה, אבקת חלב, לציטין. E500, E503 בבסיס.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "30 גרם סוכר ל-100 גרם. סירופ גלוקוז ברשימה מוסיף לעומס הגליקמי.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500, E503 בבסיס, לציטין סויה בקרם — בינוני.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "540 קק\"ל ל-100 גרם — גבוה מאוד. שמנים ושומנים בקרם הם הגורם העיקרי.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "40% קרם אגוזים תעשייתי — סוכר גבוה ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "40% קרם תעשייתי עם מחית אגוז לוז 6.5% — סוכר ושומן רווי גבוהים.",
+      "name": "עוגיות במילוי קרם אגוזים",
+      "rowVerdict": "עוגיות הקרם אגוזים מגיעות ל-E. 40% מהמוצר קרם תעשייתי עשיר בסוכר ובשמן. מחית אגוז לוז 6.5% ברשימה — נוכחת, אך לא מספיק כדי לשנות פרופיל שבו שומן הרווי וסוכר גבוהים מאוד.",
+      "score": 20.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119040803",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 43.6
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 30.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "מרגרינה כרכיב שני עם קינמון — שני ספים חצויים.",
+      "name": "עוגיות קינמון מסוכרות",
+      "rowVerdict": "עוגיות הקינמון המסוכרות של לה פזואלוס מגיעות ל-E. מרגרינה כרכיב שני מסביר את השומן הרווי הגבוה. שני ספים חצויים: שומן רווי וסוכר. רמת העיבוד גבוהה.",
+      "score": 19.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290119040858",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה כרכיב שלישי — שומן מוקשה תעשייתי. E450, E500 בחומרי תפיחה.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "20 גרם סוכר ל-100 גרם — חוצה את הסף. קמח לבן כבסיס.",
+          "label_he": "עומס גליקמי",
+          "score": 30
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500 — חומרי תפיחה נפוצים. מרגרינה עצמה מכילה תוספים.",
+          "label_he": "תוספים",
+          "score": 35
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "מרגרינה ושומן רווי 10 גרם — צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "מרגרינה כרכיב שלישי — שומן רווי גבוה וסוכר גבוה.",
+      "grade": "E",
+      "insightLine": "'מקלות עלים' עם מרגרינה ושמן דקל — שני ספים חצויים.",
+      "name": "עוגיות מקלות עלים",
+      "rowVerdict": "עוגיות מקלות עלים מגיעות ל-E. מרגרינה ברשימה וסוכר ושומן הרווי שניהם חוצים את הסף. הממרח בטעם שוקולד שבהן מכיל שמן דקל נוסף. 'מקלות עלים' מרמז על בצק ספוג — כאן הספיגה היא בשמן תעשייתי.",
+      "score": 19.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290018893036",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל, גלוקוז-פרוקטוז, מלטודקסטרין, לציטין חמניות — מוצר תעשייתי מובהק.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "33 גרם סוכר ל-100 גרם. גלוקוז-פרוקטוז ומלטודקסטרין — שלושה מקורות פחמימה מהירה.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "לציטין חמניות — תוסף נסבל. מלטודקסטרין, גלוקוז-פרוקטוז — לא תוספים בהגדרה, אבל מסמנים עיבוד.",
+          "label_he": "תוספים",
+          "score": 35
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן דקל ושומן רווי 10 גרם — צפיפות גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "שמן דקל, סירופ גלוקוז-פרוקטוז, ממתיק המלטודקסטרין — סוכר גבוה מאוד ועיבוד כבד.",
+      "grade": "E",
+      "insightLine": "שומן דקל שלישי ברשימה — קקאו 5%, גלוקוז-פרוקטוז ומלטודקסטרין, נתרן גבוה.",
+      "name": "עוגיות סנדוויץ' שוקולד",
+      "rowVerdict": "עוגיות הסנדוויץ שוקולד האלה מגיעות ל-E. קמח הוא הרכיב הראשון; שומן הדקל מגיע שלישי — אחרי הסוכר. קקאו 5%, גלוקוז-פרוקטוז ומלטודקסטרין ברשימה. נתרן גבוה.",
+      "score": 19.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "5410126006049",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "לוטוס קרמל — סוכר גבוה מאוד, שמן דקל.",
+      "name": "ביסקוויט לוטוס טעם קרמל",
+      "rowVerdict": "ביסקוויט לוטוס בטעם קרמל מגיע ל-E. סוכר גבוה מאוד ושומן הרווי גבוה. שמן דקל ברשימה. כל גרסאות לוטוס במדף מגיעות לאותו ציון.",
+      "score": 18.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "5410126116168",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "לוטוס קרמל — פרופיל זהה לסדרה, סוכר גבוה מאוד.",
+      "name": "ביסקוויט בטעם קרמל",
+      "rowVerdict": "ביסקוויט לוטוס בטעם קרמל (גרסה נוספת) מגיע ל-E. אותו פרופיל: סוכר גבוה מאוד ושומן הרווי גבוה. שמן דקל ברשימה. הציון זהה לכל גרסאות הסדרה.",
+      "score": 18.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "5410126726244",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "לוטוס קרמל — ארבע גרסאות, פרופיל אחיד.",
+      "name": "ביסקוויט קרמל",
+      "rowVerdict": "ביסקוויט לוטוס קרמל מגיע ל-E. סוכר גבוה מאוד ושומן הרווי גבוה — פרופיל אחיד בכל גרסאות לוטוס. הציון משקף את המבנה הבסיסי של המוצר.",
+      "score": 18.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "5410126806250",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 82.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "לוטוס — ארכיטיפ מלווה קפה, פרופיל E אחיד.",
+      "name": "עוגיות לוטוס",
+      "rowVerdict": "עוגיות לוטוס מגיעות ל-E. סוכר גבוה מאוד ושומן הרווי גבוה — אחיד בכל ארבע גרסאות הסדרה. שמן דקל ושמן קנולה ברשימה. הפופולריות לא קשורה לפרופיל התזונתי.",
+      "score": 18.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7290105364784",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שוקולד לבן ושוקולד חלב כציפוי כפול, שמנים, קמח סויה, עיסת קקאו, לציטין. ביסקוויט כ-18% בלבד.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "47 גרם סוכר ל-100 גרם — גבוה מאוד. שוקולד לבן מורכב בעיקרו מסוכר.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "לציטין לפתית כמתחלב — תוסף נסבל. שאר הרכיבים הם רכיבי מזון, לא תוספים.",
+          "label_he": "תוספים",
+          "score": 35
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "562 קק\"ל ל-100 גרם ו-17 גרם שומן רווי — גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 12
+        }
+      ],
+      "consumerTakeaway": "ביסקוויט בציפוי כפול שוקולד — סוכר גבוה מאוד, שומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "ציפוי כפול — שוקולד לבן ושוקולד חלב — עם מחית אגוז לוז 10%.",
+      "name": "פרה קראנץ' שוקולד לבן פרה | 100 גרם ‏8.50 ‏₪ ‏8.50 ‏₪ / 100",
+      "rowVerdict": "פרה קראנץ שוקולד לבן מגיעה ל-E. ציפוי כפול של שוקולד לבן ושוקולד חלב מעל ביסקוויט. מחית אגוזי לוז 10% ברשימה. סוכר ושומן הרווי מהגבוהים ביותר שנמדדו בקטגוריה.",
+      "score": 18.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "8710502139017",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן דקל כרכיבים הראשיים. E450, E500, לציטין סויה. מרכיבי הקאקאו אמיתיים אבל מינוריים.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "36 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר ראשון ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, לציטין סויה — שלושה תוספים נפוצים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "13 גרם שומן רווי. שמן דקל כרכיב שני.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "טריפל שוקולד אמיתי, אבל סוכר ושמן דקל קודמים לו ברשימה.",
+      "grade": "E",
+      "insightLine": "'טריפל שוקולד' עם עיסת קקאו — סוכר ראשון, שמן דקל שלישי ברשימה.",
+      "name": "מרבה עוגיות טריפל שוקולד ציפס מרבה | 180 גרם במבצע ‏7.90 ₪ ‏",
+      "rowVerdict": "מרבה טריפל שוקולד מגיעה ל-E. סוכר הוא הרכיב הראשון; שמן הדקל מגיע שלישי אחרי הקמח. רכיבי קקאו נוכחים, אבל הפרופיל נקבע על-ידי סוכר ושומן גבוהים. השם 'טריפל' שייך לחוויה; הציון שייך לרשימת הרכיבים.",
+      "score": 18.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "311128",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 35.1
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 46.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שמן דקל ברשימה, שומן רווי לא אומת — סוכר גבוה מסביר את ה-E.",
+      "name": "עוגיות בטעם חמאה",
+      "rowVerdict": "עוגיות החמאה של מן מגיעות ל-E. שמן דקל כמקור שומן. נתון השומן הרווי לא אומת מהמקור הישיר. הסוכר הגבוה הוא מה שמסביר את הציון. ברי מציגה את מה שנמצא ואומת.",
+      "score": 18.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "8710502279010",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן דקל+חמניות ראשונים. E450, E500, לציטין סויה וחמניות.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "38 גרם סוכר ל-100 גרם — גבוה מאוד.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, לציטין סויה וחמניות — שלושה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "525 קק\"ל ל-100 גרם, 15 גרם שומן רווי — גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "סוכר ראשון, שמן דקל שני — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "סוכר ראשון, שמן דקל שלישי ברשימה — ציפוי מוסיף שומן ואינו מפחית.",
+      "name": "עוג. שוקולד צ'יפס מצופות",
+      "rowVerdict": "עוגיות שוקולד צ'יפס מצופות מגיעות ל-E. סוכר הוא הרכיב הראשון; שמן הדקל מגיע שלישי, אחרי הקמח. מסת קקאו וחמאת קקאו נוכחות בתוך בסיס מתוק ושומני. הציפוי מוסיף שכבה של שומן וסוכר מבלי לשפר את הפרופיל.",
+      "score": 17.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "4823077614675",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 44.2
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 30.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "ביסקוויט קפה בטעם חלב עם שמן דקל — שני ספים חצויים.",
+      "name": "ביסקוויט לקפה בטעם חלב",
+      "rowVerdict": "ביסקוויט הקפה בטעם חלב של ROSHEN מגיע ל-E. שמן דקל לא מוקשה כמקור שומן. שני הספים חצויים: שומן הרווי וסוכר. ביסקוויט קפה קלאסי עם פרופיל שמשקף את מבנהו.",
+      "score": 17.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "8710502405204",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן דקל כשני הרכיבים הראשיים. E450, E500, לציטין סויה. שיבולת שועל כרכיב מינורי.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "40 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר כרכיב ראשון.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, לציטין סויה — שלושה תוספים נפוצים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "516 קק\"ל ל-100 גרם. שמן דקל ו-13 גרם שומן רווי.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "סוכר כרכיב ראשון, שמן דקל שני — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "סוכר כרכיב ראשון, שמן דקל שני — ממולאת עם סוכר גבוה מאוד.",
+      "name": "מרבה עוגיות ממולאות קרם שוקולד מרבה | 225 גרם במבצע ‏7.90 ₪",
+      "rowVerdict": "מרבה ממולאות קרם שוקולד מגיעה ל-E. הסדר ברשימה מדבר: סוכר ראשון, שמן דקל שני — לפני הקמח. סוכר גבוה מאוד ושומן הרווי גבוה. שיבולת שועל ברשימה בכמות שלא מאזנת.",
+      "score": 17.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290112961754",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ראשון, שמנים צמחיים, עמילן תירס, קמח סויה, לציטין, E503, E500 — מוצר תעשייתי.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "36 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר ראשון ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, לציטין סויה — שלושה תוספים. עמילן תירס וקמח סויה כממלאים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "508 קק\"ל ל-100 גרם, 9 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "מילוי קרם אגוז תעשייתי ב-36% מהמוצר — סוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "36% מילוי קרם — שוקולד מריר 8%, סוכר גבוה מאוד.",
+      "name": "עוגיות שוקוציפס קרם אגוז",
+      "rowVerdict": "שוקוציפס קרם אגוז מגיע ל-E. 36% מהמוצר מילוי קרם תעשייתי עם עמילן, קמח סויה ולציטין. שוקולד מריר 8% ברשימה. אגוזי לוז נוכחים — בלי כמות שמחזיקה את השם. הקרם הוא הסיפור.",
+      "score": 17.3
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "99804",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 64.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "שוקולד לבן כמעט 20% עם חמטה ומרגרינה — שומן הרווי גבוה מאוד.",
+      "name": "עוגיות שוקולד לבן חלבי",
+      "rowVerdict": "עוגיות שוקולד לבן חלבי של שופרסל מגיעות ל-E. שברי שוקולד לבן כמעט 20%, חמטה ומרגרינה ברשימה יחד — שני מקורות שומן, אחד עם חומרי שימור. שומן הרווי גבוה מאוד. סוכר גבוה. שני ספים חצויים בפער.",
+      "score": 16.9
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "46214731552",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן צמחי ראשונים. E500, E450, לציטין סויה. עיסת קקאו מינורית.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "38 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר כרכיב ראשון.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500, E450, לציטין סויה — שלושה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "503 קק\"ל ו-16 גרם שומן רווי — גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "סוכר ושמן צמחי ראשונים ברשימה — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "סוכר ראשון, שמן צמחי שלישי ברשימה — קקאו אמיתי, שומן רווי גבוה.",
+      "name": "עוגיות שוקולד צ'יפס",
+      "rowVerdict": "עוגיות שוקולד צ'יפס האלה מגיעות ל-E. סוכר הוא הרכיב הראשון; שמן צמחי מגיע שלישי אחרי הקמח. עיסת קקאו וחמאת קקאו — קקאו אמיתי. גם שיבולת שועל ברשימה. אלה לא מאזנים פרופיל סוכר ושומן גבוה.",
+      "score": 16.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7296073529019",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה עם E200, E202, ביצים מיובשות, E500, E470. שוקולד מריר 19% — נקודה חיובית.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "36 גרם סוכר ל-100 גרם — גבוה מאוד. 'סוכרים' ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E200, E202 במרגרינה, E500, E470 — ארבעה תוספים עיקריים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "חמאה ומרגרינה יחד — 13 גרם שומן רווי. גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "שוקולד מריר אמיתי עם חמאה ומרגרינה — סוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "שוקולד מריר 19% — חמאה ומרגרינה יחד מסבירים את שומן הרווי.",
+      "name": "קוקיס שוקולד מריר חלבי",
+      "rowVerdict": "קוקיס שוקולד מריר מגיע ל-E. שוקולד מריר 19% הוא יתרון אמיתי לקטגוריה. חמאה ומרגרינה מופיעות יחד — מקורות שומן שונים, האחד איכותי, השני תעשייתי. ה'מריר' מוסיף עומק בטעם; הסוכר הגבוה והשומן הרווי מכריעים את הציון.",
+      "score": 16.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "7296073529026",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה עם E200, E202, ביצים מיובשות, E500, E470 — זהה לגרסת השוקולד המריר.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "39 גרם סוכר ל-100 גרם — גבוה מהגרסה המריר.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E200, E202 במרגרינה, E500, E470 — זהה לגרסה המריר.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "14 גרם שומן רווי — גבוה מאוד. זהה לגרסה המריר.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "קקאו לא שינה את הנוסחה — חמאה ומרגרינה יחד, וסוכר גבוה מאוד מכריעים את התמונה.",
+      "grade": "E",
+      "insightLine": "חמאה ומרגרינה יחד, שוקולד מריר 14% — גרסת קקאו של הקוקיס.",
+      "name": "קוקיס שוקו+שבבי שוקולד",
+      "rowVerdict": "קוקיס שוקו ושבבי שוקולד מגיע ל-E. אותה נוסחה כמו גרסת השוקולד המריר — חמאה ומרגרינה ברשימה עם חומרי שימור, סוכר גבוה ושומן הרווי גבוה. הוספת קקאו לא שינתה את הפרופיל.",
+      "score": 16.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "4017100364112",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל כרכיב שלישי, גלוקוז-פרוקטוז, מי גבינה, E503, E500 — פרופיל תעשייתי מובהק.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "29 גרם סוכר ל-100 גרם — גבוה. גלוקוז-פרוקטוז מוסיף לעומס.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, חומצה ציטרית, לציטין — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "17 גרם שומן רווי — גבוה מאוד. שמן דקל כמקור ראשי.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "שמן דקל, שומן רווי גבוה מאוד — ונתרן גבוה יוצא דופן לקטגוריה.",
+      "grade": "E",
+      "insightLine": "שמן דקל עם נתרן גבוה מאוד — שתי מגבלות יוצאות דופן יחד.",
+      "name": "עוגיות היט בטעם שוקולד 220 גרם בלזן | 220 גרם ‏10.90 ‏₪ ‏4.9",
+      "rowVerdict": "היט שוקולד בלזן מגיע ל-E. שמן דקל כרכיב שלישי, שומן הרווי גבוה מאוד. נתרן גבוה במיוחד — יוצא דופן אפילו לביסקוויט מתוק. שני גורמים שבדרך כלל לא מופיעים יחד בעוגייה מתוקה.",
+      "score": 16.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 3,
+      "barcode": "4820180816552",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 56.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 46.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "מרגרינה כרכיב ראשי, שני ספים חצויים — שיבולת שועל 10.6% וקוקוס נוכחים.",
+      "name": "עוגיות עם ש.שועל קוקוס",
+      "rowVerdict": "עוגיות שיבולת השועל והקוקוס של PASTICERE מגיעות ל-E. מרגרינה כרכיב ראשי — שני ספים חצויים: שומן הרווי גבוה וסוכר גבוה מאוד. שיבולת שועל 10.6% וקוקוס ברשימה אינם מספיקים כדי לקזז את פרופיל השומן והסוכר.",
+      "score": 16.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622300489427",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "ציפוי שוקולד לבן עם E492, E476, שמן דקל+שיאה+לפתית — מרובד ומורכב. בסיס אוראו עם E500, E503.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "49 גרם סוכר ל-100 גרם — הגבוה ביותר בקטגוריה. שוקולד לבן מורכב בעיקרו מסוכר.",
+          "label_he": "עומס גליקמי",
+          "score": 10
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E492, E476 בציפוי, E500, E503 בבסיס, לקטוז, לציטין — ריבוי תוספים.",
+          "label_he": "תוספים",
+          "score": 20
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "שמן דקל ושומן רווי 11 גרם — גבוה. ציפוי כפול מוסיף צפיפות.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "ציפוי שוקולד לבן הכפיל את הסוכר — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "אוראו בציפוי שוקולד לבן — סוכר הגבוה ביותר שנמדד בקטגוריה.",
+      "name": "עוגיות אוראו בציפוי שוקולד לבן 246 גרם אוראו | 246 גרם במבצע",
+      "rowVerdict": "אוראו בציפוי שוקולד לבן מגיע ל-E. ציפוי שוקולד לבן על אוראו קלאסי הוסיף שכבת סוכר על פרופיל שכבר היה גבוה — הסוכר הגבוה ביותר שנמדד בקטגוריה. שמן דקל ממספר מקורות. מתחלבי פוליגליצרול בציפוי.",
+      "score": 16.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "8000500366073",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "40% ממרח עם סוכר ושמן צמחי ראשונים, לציטין, מתחלבים. קמח חיטה, שמנים, לקטוז, סובין בביסקוויט.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "36 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר הוא הרכיב הראשון בממרח.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "לציטין סויה, מתחלבים, חומרי תפיחה מרובים, מתחלבים בממרח — ריבוי תוספים.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "515 קק\"ל ו-12 גרם שומן רווי ל-100 גרם — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "40% ממרח נוטלה במילוי — אבל סוכר ושמן צמחי קודמים לאגוזים.",
+      "grade": "E",
+      "insightLine": "40% ממרח קקאו עם אגוזי לוז 13% — סוכר כרכיב ראשון בממרח.",
+      "name": "ביסקוויט נוטלה",
+      "rowVerdict": "ביסקוויט נוטלה מגיע ל-E. 40% מהמוצר ממרח קקאו. ברשימת הממרח: סוכר ראשון, שמן צמחי שני. אגוזי לוז 13% בממרח — נוכחים. דבש ברשימה. סוכר ושומן הרווי גבוהים.",
+      "score": 16.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622210137234",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן דקל+גרעיני דקל ראשונים. E450, E500, E503, מתחלבים — מוצר תעשייתי מובהק.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "43 גרם סוכר ל-100 גרם — גבוה מאוד. קרם כפול כמות סוכר כפולה.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, E503, לציטין חמניות, לציטין סויה, מתחלבים — ריבוי תוספים.",
+          "label_he": "תוספים",
+          "score": 22
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "500 קק\"ל ו-12 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "קרם כפול עם שמן דקל ושמן גרעיני דקל — סוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "קרם כפול — שמן דקל ושמן גרעיני דקל בציפוי.",
+      "name": "עוגיות אוראו דאבל קרם וניל אוראו | 170 גרם 2 יח' ב- ‏18 ₪ ‏1",
+      "rowVerdict": "אוראו דאבל קרם וניל מגיע ל-E. 'דאבל' מתאר כמות קרם כפולה — ישירות מסביר את הסוכר הגבוה. שמן דקל ושמן גרעיני דקל בציפוי. רשימת חומרי תפיחה ומתחלבים.",
+      "score": 16.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "46214930207",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שישה צבעי מאכל בציפוי, E903 כחומר הזגה, גאם ערביק, E450, E500, לציטין — מוצר מורכב.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "41 גרם סוכר ל-100 גרם — גבוה מאוד. גלוקוז-פרוקטוז ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "שישה צבעי מאכל, E903 (ווקס קרנבורה), גאם ערביק, E450, E500, לציטין — ריבוי תוספים חריג.",
+          "label_he": "תוספים",
+          "score": 18
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "12 גרם שומן רווי ו-496 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "שישה צבעי מאכל בציפוי הסוכר הצבעוני — סוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "ציפוי סוכר צבעוני עם שישה צבעי מאכל — שוקולד חלב ומריר נוכחים.",
+      "name": "עוגיות שוקולד צ'יפס",
+      "rowVerdict": "עוגיות שוקולד צ'יפס עם ציפוי צבעוני מגיעות ל-E. ציפוי הסוכר הצבעוני מוסיף שישה צבעי מאכל שונים וחומר הזגה. שמן דקל ברשימה. שוקולד חלב 22% ושוקולד מריר 14% — קקאו אמיתי. סוכר גבוה מאוד ושומן הרווי גבוה.",
+      "score": 15.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "5901414200411",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל שני, סירופ סוכר אינוורטי, מי גבינה, דיסודיום דיפוספט, E503, לציטין.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "28 גרם סוכר ל-100 גרם. סירופ סוכר אינוורטי מוסיף לעומס.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "דיסודיום דיפוספט, E503, חומצה ציטרית, לציטין — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "503 קק\"ל ו-15 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שני — שומן רווי גבוה מאוד וסוכר גבוה.",
+      "grade": "E",
+      "insightLine": "שומן דקל שלישי ברשימה, שומן הרווי גבוה מאוד — עיסת קקאו וחמאת קקאו נוכחות.",
+      "name": "עוגיות היט מיניס עם שוקולד 130 גרם בלזן | 130 גרם ‏8.90 ‏₪ ‏",
+      "rowVerdict": "היט מיניס עם שוקולד של בלזן מגיע ל-E. קמח הוא הרכיב הראשון, סוכר השני; שומן הדקל מגיע שלישי. שומן הרווי גבוה מאוד. עיסת קקאו וחמאת קקאו — קקאו אמיתי בכמות שלא מאזנת. נתרן גבוה לעוגייה מתוקה.",
+      "score": 15.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622300356767",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "קמח חיטה 34%, שמן דקל שלישי, ביצים, אבקת חלב — נגיעות טובות. E450, E500, לציטין.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "34 גרם סוכר ל-100 גרם — גבוה מאוד. סירופ גלוקוז ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, לציטין סויה — שלושה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "13 גרם שומן רווי ו-494 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "ביצים ואבקת חלב מלא בצד שמן דקל — נגיעות איכות שלא מספיקות מול סוכר גבוה.",
+      "grade": "E",
+      "insightLine": "ביצים ואבקת חלב מלא ברשימה — שמן דקל שלישי, נתרן גבוה במיוחד.",
+      "name": "עוגיות שוקולד צ'יפס",
+      "rowVerdict": "עוגיות שוקולד צ'יפס של מונדלז מגיעות ל-E. ביצים ואבקת חלב מלא ברשימה — נגיעות של איכות. שמן דקל כרכיב שלישי, עיסת קקאו וחמאת קקאו. סוכר ושומן הרווי גבוהים. נתרן גבוה מאוד לעוגייה מתוקה.",
+      "score": 15.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7296073161981",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "40% קרם עם שמנים ושומנים, מחית אגוז לוז, אבקת חלב, עיסת קקאו. E500, E503 בבסיס, לציטין בקרם.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "30 גרם סוכר ל-100 גרם. גלוקוז ברשימה מוסיף לעומס.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500, E503, לציטין סויה — שלושה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "544 קק\"ל ו-14 גרם שומן רווי — גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 15
+        }
+      ],
+      "consumerTakeaway": "40% קרם שוקולד עם שמנים צמחיים — סוכר גבוה וצפיפות קלורית גבוהה.",
+      "grade": "E",
+      "insightLine": "40% קרם שוקולד תעשייתי — קקאו אמיתי וחמאה נוכחים, שומן הרווי גבוה.",
+      "name": "עוגיות במילוי קרם שוקולד",
+      "rowVerdict": "עוגיות קרם שוקולד מגיעות ל-E. 40% מהמוצר קרם תעשייתי. מחית אגוז לוז, חמאה ושוקולד מריר 1% — נגיעות אמיתיות. שומן הרווי גבוה מאוד וסוכר גבוה — הפרופיל הכולל הוא E.",
+      "score": 15.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "61245",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 44.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 10.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 48.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "36% מילוי, שוקולד מריר 8% — סוכר גבוה מאוד ושומן הרווי גבוה.",
+      "name": "עוגיות שוקוציפס+שוקולד",
+      "rowVerdict": "עוגיות שוקוציפס עם שוקולד של אסם מגיעות ל-E. 36% מהמוצר מילוי. שוקולד מריר 8% — אמיתי. גם אגוזי לוז ואגוזי מלך ברשימה. שני ספים חצויים בפתיחה גדולה.",
+      "score": 15.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=0 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "4017100198151",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל שני, אבקת מי גבינה, אמוניום קרבונט, E503, חומצה ציטרית, חומרי טעם — מוצר תעשייתי.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "31 גרם סוכר ל-100 גרם — גבוה. סירופ סוכר אינוורטי ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "אמוניום קרבונט, E503, חומצה ציטרית — שלושה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "17 גרם שומן רווי ו-508 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שני — שומן רווי גבוה מאוד וסוכר גבוה.",
+      "grade": "E",
+      "insightLine": "שומן דקל שלישי ברשימה, שומן הרווי גבוה מאוד — 'וניל' הוא חומר טעם.",
+      "name": "עוגיות היט בטעם וניל 220 גרם בלזן | 220 גרם ‏10.90 ‏₪ ‏4.95",
+      "rowVerdict": "עוגיות היט בטעם וניל של בלזן מגיעות ל-E. קמח הוא הרכיב הראשון, סוכר השני; שומן הדקל מגיע שלישי. שומן הרווי גבוה מאוד. 'בטעם וניל' מבוסס על חומר טעם וריח; אבקת חלב ומי גבינה נוכחים.",
+      "score": 15.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "8710502470028",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "סוכר ושמן צמחי ראשונים. חמאה, אגוזי מלך — נגיעות איכות. E450, E500, לציטין.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "40 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר החלב ברשימה מוסיף.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, לציטין סויה — שלושה תוספים. רשימה יחסית קצרה.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "513 קק\"ל ו-13 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "חמאה ואגוזי מלך אמיתיים ברשימה — אבל שמן צמחי קודם ברשימה והסוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "סוכר גבוה מאוד ושמן צמחי ראשי — חמאה ואגוזי מלך 2% נוכחים.",
+      "name": "עוגיות שוקוצ'יפס נוגטלי",
+      "rowVerdict": "שוקוציפס נוגטלי מגיע ל-E. שמן צמחי הוא הרכיב הראשי, הסוכר גבוה מאוד, השומן הרווי גבוה — אלה מכריעים את הציון. חמאה ואגוזי מלך 2.4% נוכחים ברשימה.",
+      "score": 15.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290106656727",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שלושה סוגי סוכר, שמנים ושומנים צמחיים כלליים, מייצב (צלולוזה), עמילן תירס, לציטין, E500, E503.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "40 גרם סוכר ל-100 גרם — גבוה מאוד. שלושה מקורות סוכר.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מייצב (צלולוזה), לציטין סויה, E500, E503 — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 28
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "11 גרם שומן רווי ו-497 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "שלושה סוגי סוכר ברשימה — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "שלושה מקורות סוכר ברשימה — אבקת קקאו 2.4%, שומן הרווי גבוה.",
+      "name": "עוגיות חיוכים שוקולד",
+      "rowVerdict": "עוגיות חיוכים שוקולד מגיעות ל-E. 'סוכרים' כוללים שלושה מקורות שונים — סוכר לבן, דקסטרוזה וסוכר אינברטי. שמנים ושומנים צמחיים לא מפורטים. שומן הרווי גבוה. סוכר גבוה מאוד בסך הכל.",
+      "score": 15.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622300489434",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "ציפוי שוקולד חלב עם שמן דקל, לקטוז, שומן חלב. E500, E503, E501, E322 — מוצר מורכב.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "47 גרם סוכר ל-100 גרם — גבוה מאוד. סירופ גלוקוז-פרוקטוז ברשימה.",
+          "label_he": "עומס גליקמי",
+          "score": 10
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E500, E503, E501 כחומרי תפיחה, E322 כמתחלב — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 22
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "14 גרם שומן רווי ו-510 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "ציפוי שוקולד חלב על אוראו — סוכר גבוה מאוד ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "ציפוי שוקולד חלב על אוראו — סוכר גבוה מאוד.",
+      "name": "עוגיות אוראו בציפוי שוקולד חלב 246 גרם אוראו | 246 גרם במבצע",
+      "rowVerdict": "אוראו בציפוי שוקולד חלב מגיע ל-E. ציפוי שוקולד חלב הוסיף שכבת סוכר על פרופיל שכבר היה גבוה. שמן דקל. חמאת קקאו ועיסת קקאו — קקאו אמיתי. שומן הרווי גבוה.",
+      "score": 15.3
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290019870463",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל שני, עמילן חיטה, מלטודקסטרין, צבע מאכל קרמל, לציטין חמניות.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "32 גרם סוכר ל-100 גרם. מלטודקסטרין מוסיף עומס גליקמי שלא מסווג כ'סוכר'.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מלטודקסטרין, צבע מאכל קרמל, לציטין חמניות, מתפיחים — ארבעה.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "9 גרם שומן רווי ו-456 קק\"ל — בינוני לגבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שני, מלטודקסטרין — סוכר גבוה ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "שומן דקל שלישי ברשימה, קרם מלטודקסטרין — 'קרם וניל' מחומרי טעם.",
+      "name": "עוגיות סנדוויץ עם קרם בטעם וניל צ'וקטה 176 גרם צ'וקטה | 176",
+      "rowVerdict": "עוגיות הסנדוויץ קרם וניל של צ'וקטה מגיעות ל-E. קמח הוא הרכיב הראשון, סוכר השני; שומן הדקל מגיע שלישי. מלטודקסטרין וצבע קרמל בקרם. הוניל — חומרי טעם וריח. שומן הרווי גבוה.",
+      "score": 15.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7296073659969",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל שני, שלושה מקורות סוכר, מסמיך צלולוז, עמילן, לציטין, גלוטן חיטה מוסף.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "21 גרם סוכר ל-100 גרם. שלושה מקורות סוכר — סוכר, דקסטרוז, פרוקטוז.",
+          "label_he": "עומס גליקמי",
+          "score": 28
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "מסמיך (צלולוז), לציטין סויה, חומרי תפיחה, מעכב חמצון (תמצית רוזמרין) — ארבעה.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "9 גרם שומן רווי ו-494 קק\"ל. שמן דקל כמקור עיקרי.",
+          "label_he": "צפיפות קלורית",
+          "score": 22
+        }
+      ],
+      "consumerTakeaway": "שמן דקל כרכיב שני, שלושה סוגי סוכר — קקאו מינימלי.",
+      "grade": "E",
+      "insightLine": "שמן דקל ושלושה מקורות סוכר — עוגיות חיות שוקו עם קקאו מינימלי.",
+      "name": "עוגיות חיות שוקו",
+      "rowVerdict": "עוגיות חיות שוקו מגיעות ל-E. שמן דקל כרכיב שני. שלושה מקורות סוכר ברשימה: סוכר, דקסטרוז ופרוקטוז. אבקת קקאו בכמות קטנה. נתרן חסר מהמקור הישיר.",
+      "score": 15.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622201401900",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שלושה שמנים, שומן חלב, E450, E500, E503, לציטין סויה, לקטוז. עיסת קקאו וחמאת קקאו — נגיעות חיוביות.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "38 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר כרכיב ראשון.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E450, E500, E503, לציטין סויה, לקטוז — חמישה תוספים.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "514 קק\"ל ו-10 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "שלושה שמנים צמחיים ברשימה — חמניות, לפתית ודקל — סוכר גבוה מאוד.",
+      "grade": "E",
+      "insightLine": "שלושה שמנים צמחיים — חמניות, לפתית ודקל — עם קקאו אמיתי בכמות קטנה.",
+      "name": "עוגיות מילקה סנסיישן אוראו 156 גרם מילקה | 156 גרם 2 יח' ב-",
+      "rowVerdict": "עוגיות מילקה סנסיישן אוראו מגיעות ל-E. שלושה שמנים צמחיים ברשימה. עיסת קקאו וחמאת קקאו — קקאו אמיתי בכמות שלא מאזנת. סוכר גבוה ושומן הרווי גבוה.",
+      "score": 15.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=2 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290112340276",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמנים ושומנים צמחיים שניים, לציטין סויה, E450, E500, מעכב חמצון (רוזמרין).",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "30 גרם סוכר ל-100 גרם — גבוה.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "לציטין סויה, E450, E500, מעכב חמצון — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "523 קק\"ל ו-15 גרם שומן רווי — גבוה מאוד.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "קפה 1% לא משנה את הפרופיל — שמן צמחי ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "קפה נמס 0.6% — שמנים ושומנים צמחיים כרכיב שני, שומן הרווי גבוה מאוד.",
+      "name": "עוגיות קרם קפה נמס 200 גרם עלית | 200 גרם ‏13.50 ‏₪ ‏6.75 ‏₪",
+      "rowVerdict": "עוגיות קרם קפה נמס של עלית מגיעות ל-E. שמנים ושומנים צמחיים כרכיב שני; שומן הרווי גבוה מאוד. קפה נמס 0.6% — כמות שמספיקה לניחוח, לא לאפיון קפה ממשי. שבבי שוקולד מריר 5.2% ברשימה.",
+      "score": 15.1
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290115206333",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שוקולד מריר 22% עם 44% קקאו — נוכח. שמן צמחי לא-מפורט, E503, E500, לציטין.",
+          "label_he": "איכות עיבוד",
+          "score": 28
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "31 גרם סוכר ל-100 גרם. שוקולד מריר 22% מוסיף אבל לא שולט.",
+          "label_he": "עומס גליקמי",
+          "score": 20
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, לציטין סויה, חומצת לימון — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "12 גרם שומן רווי ו-501 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "22% שוקולד מריר עם קקאו איכותי — אבל סוכר גבוה ושמן צמחי לא-מפורט.",
+      "grade": "E",
+      "insightLine": "שוקולד מריר 22% — סוכר גבוה ושומן הרווי גבוה שולחים ל-E.",
+      "name": "עוגיות מיני שוקוצ'יפס",
+      "rowVerdict": "עוגיות מיני שוקוציפס מגיעות ל-E. שוקולד מריר 22% עם מוצקי קקאו גבוהים — גבוה לקטגוריה. שמן צמחי לא מפורט. סוכר ושומן הרווי שניהם גבוהים. הקקאו האיכותי לא מוציא מ-E.",
+      "score": 14.8
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7290000075143",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שוקולד מריר 30% כרכיב ראשון — יוצא דופן חיובי. שמנים צמחיים לא מפורטים, E503, E500, לציטין.",
+          "label_he": "איכות עיבוד",
+          "score": 30
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "34 גרם סוכר ל-100 גרם — גבוה. שוקולד מריר מכיל סוכר גם הוא.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E503, E500, לציטין סויה, חומצת לימון — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 30
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "13 גרם שומן רווי ו-514 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "30% שוקולד מריר אמיתי — אבל סוכר גבוה ושמן צמחי לא-מפורט.",
+      "grade": "E",
+      "insightLine": "נטיפי שוקולד מריר 30% — הגבוה ביותר בקטגוריה, עדיין E.",
+      "name": "עוגיות שוקוצ'יפס קלאסי 200 גרם אסם | 200 גרם 2 יח' ב- ‏16 ₪",
+      "rowVerdict": "שוקוציפס קלאסי של אסם מגיע ל-E. נטיפי שוקולד מריר 30% — אחוז שוקולד הגבוה ביותר בקטגוריה זו. יתרון ממשי. שמנים צמחיים לא מפורטים. סוכר ושומן הרווי גבוהים. הקקאו האיכותי לא מסיר את ה-E.",
+      "score": 14.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=3 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622201809188",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן דקל שני, E476 ולציטין סויה כמתחלבים כפולים, E450, E500, E503, חומצה ציטרית.",
+          "label_he": "איכות עיבוד",
+          "score": 25
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "41 גרם סוכר ל-100 גרם — גבוה מאוד. סוכר כרכיב ראשון.",
+          "label_he": "עומס גליקמי",
+          "score": 12
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E476, לציטין סויה, E450, E500, E503, חומצה ציטרית — שישה תוספים.",
+          "label_he": "תוספים",
+          "score": 22
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "12 גרם שומן רווי ו-488 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 20
+        }
+      ],
+      "consumerTakeaway": "שמן דקל, חמאת קקאו ועיסת קקאו — סוכר גבוה מאוד, חומר מתחלב.",
+      "grade": "E",
+      "insightLine": "שמן דקל רביעי ברשימה, חמאת קקאו ועיסת קקאו — E על אף נגיעות קקאו אמיתי.",
+      "name": "ביסקוויט מילקה",
+      "rowVerdict": "ביסקוויט מילקה מגיע ל-E. קמח הוא הרכיב הראשון, סוכר השני, חמאת קקאו השלישית — ושמן הדקל מגיע רביעי. קקאו אמיתי נוכח. מתחלב פוליגליצרול ברשימה. סוכר גבוה ושומן הרווי גבוה. ה-E נשאר.",
+      "score": 14.0
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=2['E471', 'E224'] cosmetic_mup=7 base=4 raw_cap=4 ecs_spent=0 combined_budget=12 net=4 | pre_d4=17.4 post_d4=13.4 grade_change=no",
+      "_d4_score_penalty": 4,
+      "_nova_proxy": 4,
+      "barcode": "7290119043897",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מרגרינה, קצפת צמחית עם עשרה תוספים, ריבה שקופה עם חמישה תוספים — רמת עיבוד חריגה.",
+          "label_he": "איכות עיבוד",
+          "score": 15
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "19 גרם סוכר ל-100 גרם — גבוה. ממרח תמרים 20% עם סוכר טבעי גבוה.",
+          "label_he": "עומס גליקמי",
+          "score": 25
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E415, E464, E322, E481, E471, E477, E435, E475, E331, E339, E202, E160, E450, E500 — רשימה חריגה באורכה.",
+          "label_he": "תוספים",
+          "score": 10
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "מרגרינה ו-10 גרם שומן רווי — צפיפות קלורית גבוהה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "ממרח תמרים 20% אמיתי — מרגרינה ומעל עשרה תוספים מסביבו.",
+      "grade": "E",
+      "insightLine": "מרגרינה ומעל עשרה חומרי עיבוד — ממרח תמרים 20%, ריבה וקצפת.",
+      "name": "עוגיות רולדה תמרים",
+      "rowVerdict": "עוגיות רולדה תמרים מגיעות ל-E. מרגרינה כרכיב שני. ממרח תמרים 20%, קצפת צמחית וריבה שקופה — כל אחד מהם עם שורת חומרי עיבוד ומשמרים נפרדת. שומן הרווי גבוה וסוכר גבוה.",
+      "score": 13.4
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=4 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=15.1 post_d4=13.1 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290019816232",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "E476, E471, לציטין סויה, גואר גאם, גאם גרעיני חרובים — ריבוי ממייצבים. חלב רזה משוחזר בסיס.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "25 גרם סוכר ל-100 גרם. סירופ גלוקוז ברשימה. חטיפי אורז תפוח מוסיפים פחמימות מהירות.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E476, E471, לציטין סויה, גואר גאם, גאם גרעיני חרובים — חמישה מייצבים.",
+          "label_he": "תוספים",
+          "score": 20
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "287 קק\"ל ל-100 גרם — נמוך יחסית לקטגוריה. 9 גרם שומן רווי.",
+          "label_he": "צפיפות קלורית",
+          "score": 45
+        }
+      ],
+      "consumerTakeaway": "ביסקוויט בתוך ציפוי שוקולד חלב — שני חומרים מתחלבים ברשימה, שומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "ביסקוויטים 18% בתוך ציפוי ורכיבים מרובים — שמן קוקוס וחומרי עיבוד.",
+      "name": "קראנץ סנדויץ שוקולד",
+      "rowVerdict": "קראנץ סנדוויץ שוקולד מגיע ל-E. מבנה מרובד: ביסקוויטים 18%, ציפוי שוקולד חלב, חטיפי אורז, שמן קוקוס, חמאת קקאו ופסטת אגוזים — עם מתחלבי E476 ו-E471 ומייצבים. שומן הרווי גבוה.",
+      "score": 13.1
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=2['E124', 'E224'] cosmetic_mup=3 base=4 raw_cap=4 ecs_spent=0 combined_budget=12 net=4 | pre_d4=15.2 post_d4=11.2 grade_change=no",
+      "_d4_score_penalty": 4,
+      "_nova_proxy": 4,
+      "barcode": "7290119040605",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מילוי עם 65% סוכר ושישה תוספים, ריבה שקופה עם חמישה תוספים, שמן דקל בבצק — זהה לגרסת המיקס.",
+          "label_he": "איכות עיבוד",
+          "score": 18
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "מילוי עם 65% סוכר. 23 גרם סוכר ל-100 גרם בפרופיל הכולל.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E300, E440, E202, E150D, E124 במילוי + E440, E330, E202, E900 בריבה — ריבוי תוספים.",
+          "label_he": "תוספים",
+          "score": 15
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "11 גרם שומן רווי ו-434 קק\"ל — זהה לגרסת המיקס.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "מילוי תות 65% סוכר, שישה תוספים — גרסת תות של נסיכה.",
+      "grade": "E",
+      "insightLine": "מילוי תות שדה 38% — זהה לגרסת המיקס, שמן דקל, שומן הרווי גבוה.",
+      "name": "עוגיות נסיכה בטעם תות",
+      "rowVerdict": "עוגיות נסיכה בטעם תות מגיעות ל-E. זהה לגרסת המיקס — מילוי שבו הסוכר הוא הרכיב הדומיננטי. שמן דקל בבצק, שורת חומרי עיבוד ומשמרים במילוי. שומן הרווי גבוה.",
+      "score": 11.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=2['E124', 'E224'] cosmetic_mup=3 base=4 raw_cap=4 ecs_spent=0 combined_budget=12 net=4 | pre_d4=15.2 post_d4=11.2 grade_change=no",
+      "_d4_score_penalty": 4,
+      "_nova_proxy": 4,
+      "barcode": "7290119040650",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "מילוי עם 65% סוכר ושישה תוספים, ריבה שקופה עם חמישה תוספים, שמן דקל בבצק. רמת עיבוד חריגה.",
+          "label_he": "איכות עיבוד",
+          "score": 18
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "מילוי עם 65% סוכר — גבוה מאוד. 23 גרם סוכר ל-100 גרם בפרופיל הכולל.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E300, E440, E202, E150D, E124 במילוי + E440, E330, E202, E900 בריבה — ריבוי תוספים חריג.",
+          "label_he": "תוספים",
+          "score": 15
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "11 גרם שומן רווי ו-434 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 28
+        }
+      ],
+      "consumerTakeaway": "מילוי תות ב-38% מהמוצר — רובו סוכר, שישה תוספים.",
+      "grade": "E",
+      "insightLine": "מילוי תות שדה 38% שהרכיב הדומיננטי בו הוא סוכר — שמן דקל בבצק.",
+      "name": "עוגיות נסיכה מיקס",
+      "rowVerdict": "עוגיות נסיכה מיקס מגיעות ל-E. המילוי מתואר כ'תות שדה' אך הרכיב הדומיננטי בו הוא סוכר (65%); תפוח עץ מוסיף את הגוף. שמן דקל בבצק. ריבה שקופה נוספת עם שורת חומרי עיבוד. שומן הרווי גבוה.",
+      "score": 11.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=1 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "8710502064814",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "גליצרין (E422) וסירופ סורביטול כחומרי לחות — מה שמסביר את המרקם. שמן דקל+חמניות, E450, E500.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "30 גרם סוכר ל-100 גרם. סירופ גלוקוז, דקסטרוז ברשימה — שלושה מקורות פחמימה מהירה.",
+          "label_he": "עומס גליקמי",
+          "score": 20
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "גליצרין, סורביטול, E450, E500 — ארבעה תוספים.",
+          "label_he": "תוספים",
+          "score": 25
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "481 קק\"ל ו-11 גרם שומן רווי — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 25
+        }
+      ],
+      "consumerTakeaway": "גליצרין וסורביטול לרכות מלאכותית, שמן דקל — סוכר גבוה ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "גליצרין וסורביטול יוצרים מרקם רך — שמן דקל וסוכר גבוה.",
+      "name": "עוגיות שוקוצ'יפס מרקם רך",
+      "rowVerdict": "שוקוציפס מרקם רך מגיע ל-E. הרכות נוצרת על ידי חומרי לחות — גליצרין וסורביטול. שמן דקל כמקור שומן. סוכר ושומן הרווי גבוהים. צימוקים — נגיעת פרי בפרופיל תעשייתי.",
+      "score": 11.2
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=6 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=12.6 post_d4=10.6 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290019816058",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שוקולד לבן עם E476, ריבת חלב עם E202, E471, גואר גאם, גאם גרעיני חרובים, E-476, יותר מעשרה צבעי מאכל.",
+          "label_he": "איכות עיבוד",
+          "score": 18
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "32 גרם סוכר ל-100 גרם. שוקולד לבן מורכב בעיקרו מסוכר. ריבת חלב מוסיפה.",
+          "label_he": "עומס גליקמי",
+          "score": 18
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E476, E202, E500 בריבה, E471, גואר גאם, גאם חרובים, צבעי מאכל מרובים — רשימה ארוכה.",
+          "label_he": "תוספים",
+          "score": 15
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "351 קק\"ל ל-100 גרם — בינוני. 12 גרם שומן רווי.",
+          "label_he": "צפיפות קלורית",
+          "score": 30
+        }
+      ],
+      "consumerTakeaway": "ציפוי שוקולד לבן עם חומר מתחלב וריבת חלב — סוכר גבוה ושומן רווי גבוה.",
+      "grade": "E",
+      "insightLine": "ציפוי שוקולד לבן 32% עם ריבת חלב — שמן דקל, רשימת תוספים ארוכה מאוד.",
+      "name": "קראנץ מיני אלפחורס",
+      "rowVerdict": "קראנץ מיני אלפחורס מגיע ל-E. שוקולד לבן ציפוי 32% עשיר בחומרי עיבוד. ריבת חלב בפנים עם חומרי ייצוב. מתחלב פוליגליצרול, שמן דקל. כמות תוספים גבוהה מאוד. סוכר ושומן הרווי גבוהים.",
+      "score": 10.6
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=0[] cosmetic_mup=4 base=0 raw_cap=0 ecs_spent=0 combined_budget=12 net=0",
+      "_d4_score_penalty": 0,
+      "_nova_proxy": 4,
+      "barcode": "7622210453327",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "E1414 (עמילן מטופל), E450, E500, E503, לציטין, צבע מאכל E160a. שומן חלב, עיסת קקאו.",
+          "label_he": "איכות עיבוד",
+          "score": 22
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "39 גרם סוכר ל-100 גרם — גבוה מאוד. E1414 מוסיף לעומס.",
+          "label_he": "עומס גליקמי",
+          "score": 15
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E1414, E450, E500, E503, לציטין, E160a — שישה תוספים.",
+          "label_he": "תוספים",
+          "score": 22
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "9 גרם שומן רווי ו-510 קק\"ל — גבוה.",
+          "label_he": "צפיפות קלורית",
+          "score": 18
+        }
+      ],
+      "consumerTakeaway": "עמילן מסמיך ברשימה — סוכר גבוה מאוד ונתרן גבוה יחסית לקטגוריה.",
+      "grade": "E",
+      "insightLine": "עמילן מטופל ונתרן גבוה מאוד — עיסת קקאו וחמאת קקאו נוכחות.",
+      "name": "עוגיות מילקה סנסיישן 156 גרם מילקה | 156 גרם 2 יח' ב- ‏28 ₪",
+      "rowVerdict": "עוגיות מילקה סנסיישן מגיעות ל-E. עמילן מעובד ברשימה. שומן חלב, עיסת קקאו וחמאת קקאו — קקאו אמיתי. נתרן גבוה מאוד לעוגייה מתוקה. סוכר גבוה ושומן הרווי גבוה.",
+      "score": 10.5
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E471'] cosmetic_mup=4 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=12.1 post_d4=10.1 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290101111986",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "explanation_he": "שמן קוקוס מוקשה וקוקוס מוקשה בקרם, E471, E410, E412 כמייצבים. ביסקוויט עם E503, E500.",
+          "label_he": "איכות עיבוד",
+          "score": 20
+        },
+        {
+          "dimension": "glycemic_quality",
+          "explanation_he": "25 גרם סוכר ל-100 גרם. 'סוכרים' כרכיב שלישי בביסקוויט.",
+          "label_he": "עומס גליקמי",
+          "score": 22
+        },
+        {
+          "dimension": "additive_quality",
+          "explanation_he": "E471, E410, E412 בקרם + E503, E500, לציטין בביסקוויט — שישה תוספים.",
+          "label_he": "תוספים",
+          "score": 20
+        },
+        {
+          "dimension": "calorie_density",
+          "explanation_he": "281 קק\"ל ל-100 גרם — בינוני בגלל תכולת מים בקרם. 9 גרם שומן רווי.",
+          "label_he": "צפיפות קלורית",
+          "score": 40
+        }
+      ],
+      "consumerTakeaway": "ביסקוויט בקרם עם שמן קוקוס מוקשה — שומן רווי גבוה מאוד וסוכר גבוה מכריעים את הציון.",
+      "grade": "E",
+      "insightLine": "ביסקוויט שוקולד 41% בתוך קרם עם שמן קוקוס מוקשה.",
+      "name": "עינוגים קוקיס עוגיות",
+      "rowVerdict": "עינוגים קוקיס מגיעות ל-E. ביסקוויטים 41% מוטבעים בקרם שמכיל שמן קוקוס מוקשה — לא שמן קוקוס כתית. חמאה ושומן חלב ברשימה. שומן הרווי גבוה וסוכר גבוה.",
+      "score": 10.1
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E466'] cosmetic_mup=4 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=10.7 post_d4=8.7 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290109354996",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 40.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 50.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "ללא גלוטן שוקו — עמילן ושמן דקל במקום קמח, סוכר גבוה.",
+      "name": "פתי בר ללא גלוטן שוקו",
+      "rowVerdict": "פתי בר ללא גלוטן שוקו של אסם מגיע ל-E. עמילן ושמן דקל כמרכיבים ראשיים. סוכר גבוה. רמת עיבוד גבוהה. ה'שוקו' הוא אבקת קקאו — לא שוקולד. פרופיל קרוב לגרסת הקלאסי.",
+      "score": 8.7
+    },
+    {
+      "_binding_cap": 45,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=2['E224', 'E124'] cosmetic_mup=5 base=4 raw_cap=4 ecs_spent=0 combined_budget=12 net=4 | pre_d4=12.5 post_d4=8.5 grade_change=no",
+      "_d4_score_penalty": 4,
+      "_nova_proxy": 4,
+      "barcode": "7290119040179",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 12.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "מרגרינה, ממרח תות שדה עם סוכר 68% — שומן הרווי גבוה.",
+      "name": "עוגיות פרח עם ריבת תות",
+      "rowVerdict": "עוגיות הפרח עם ריבת תות של VOILA מגיעות ל-E. ממרח התות שבמילוי: 68% ממנו סוכר. מרגרינה בבצק. שומן הרווי גבוה. סוכר הגבוה מאוד נובע בעיקר מהמילוי.",
+      "score": 8.5
+    },
+    {
+      "_binding_cap": 55,
+      "_d4_score_note": "D4_SCORE v1: contested_eligible=1['E466'] cosmetic_mup=3 base=2 raw_cap=2 ecs_spent=0 combined_budget=12 net=2 | pre_d4=10 post_d4=8 grade_change=no",
+      "_d4_score_penalty": 2,
+      "_nova_proxy": 4,
+      "barcode": "7290109354972",
+      "bariInterpretation": [
+        {
+          "dimension": "processing_quality",
+          "label_he": "איכות עיבוד",
+          "score": 35.0
+        },
+        {
+          "dimension": "glycemic_quality",
+          "label_he": "עומס גליקמי",
+          "score": 35.0
+        },
+        {
+          "dimension": "additive_quality",
+          "label_he": "תוספים",
+          "score": 9.0
+        },
+        {
+          "dimension": "calorie_density",
+          "label_he": "צפיפות קלורית",
+          "score": 35.0
+        }
+      ],
+      "consumerTakeaway": "PENDING_COPY",
+      "grade": "E",
+      "insightLine": "ללא גלוטן קלאסי — עמילן ושמן דקל, הציון הנמוך ביותר בקטגוריה.",
+      "name": "פתי בר ללא גלוטן קלאסי",
+      "rowVerdict": "פתי בר ללא גלוטן קלאסי של אסם מגיע לציון הנמוך ביותר בקטגוריה. עמילן ושמן דקל כמרכיבים ראשיים; קמח אינו ברשימה. סוכר גבוה. 'ללא גלוטן' מסיר אלרגן; פרופיל השומן והסוכר נשאר בעייתי.",
+      "score": 8
+    }
+  ]
+}

@@ -1,0 +1,1845 @@
+{
+  "probe": "matrix_signal_probe_v3",
+  "reader": "structured_ingredient_reader.py",
+  "formula": "unchanged from v2 — no tuning",
+  "run_at": "2026-06-25T16:28:57.364861+00:00",
+  "task": "TASK-395",
+  "gold_set_file": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\analysis\\matrix_gold_set_v1.json",
+  "total_products": 58,
+  "gate_B1": {
+    "verdict": "FAIL",
+    "pass_rate": 0.871,
+    "pass_count": 27,
+    "total": 31,
+    "t1_pass": "15/17",
+    "t2_pass": "12/14",
+    "t1_scores": [
+      55.4,
+      59.3,
+      62.7,
+      92.0,
+      92.9,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0
+    ],
+    "t2_scores": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      12.2,
+      12.2,
+      16.8,
+      54.4,
+      66.2
+    ],
+    "failures": [
+      {
+        "barcode": "7290106571945",
+        "name": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס",
+        "score": 55.4,
+        "tier": "T1",
+        "whole": [
+          "whole_wheat_flour",
+          "whole_oat",
+          "whole_oat_flakes",
+          "oat_flakes_plain",
+          "barley_malt"
+        ],
+        "refined": [
+          "refined_wheat_flour",
+          "sugar",
+          "veg_oil_sg",
+          "dextrin",
+          "maltodextrin",
+          "generic_starch"
+        ]
+      },
+      {
+        "barcode": "7290017947464",
+        "name": "מארז פיתות כוסמין (מלא)",
+        "score": 59.3,
+        "tier": "T1",
+        "whole": [
+          "whole_spelt_grain"
+        ],
+        "refined": [
+          "sugar"
+        ]
+      },
+      {
+        "barcode": "7290107647731",
+        "name": "דגני בוקר קוקומן חום לבן",
+        "score": 66.2,
+        "tier": "T2",
+        "whole": [
+          "whole_wheat_flour",
+          "barley_malt"
+        ],
+        "refined": [
+          "refined_wheat_flour",
+          "sugar",
+          "wheat_starch"
+        ]
+      },
+      {
+        "barcode": "7290116537351",
+        "name": "כריות נוגט",
+        "score": 54.4,
+        "tier": "T2",
+        "whole": [
+          "nuts",
+          "whole_wheat_flour"
+        ],
+        "refined": [
+          "dextrin",
+          "maltodextrin",
+          "veg_oil_sg",
+          "sugar",
+          "refined_wheat_flour",
+          "corn_grits",
+          "corn_flour_refined"
+        ]
+      }
+    ]
+  },
+  "gate_B1_MC2": {
+    "with_corrections": 0.871,
+    "without_corrections": 0.8667
+  },
+  "gate_B2": {
+    "verdict": "FAIL",
+    "pass_rate": 0.5833,
+    "pass_count": 7,
+    "evaluable_pairs": 12,
+    "t3_pair_count": 12,
+    "mc1_pass": true,
+    "pair_results": [
+      {
+        "pair_id": "RP-01",
+        "higher_barcode": "6322838",
+        "lower_barcode": "7290115205176",
+        "higher_score": 71.2,
+        "lower_score": 52.5,
+        "pass": true,
+        "pair_reason": "100% of flour is whole wheat (58% of product) > 30.5% whole wheat",
+        "eval_note": "71.2 > 52.5"
+      },
+      {
+        "pair_id": "RP-02",
+        "higher_barcode": "7290018500460",
+        "lower_barcode": "7296073659952",
+        "higher_score": 52.5,
+        "lower_score": 74.2,
+        "pass": false,
+        "pair_reason": "50% whole of total flour (stated) > 25.5% of 66% blend (~17% effective)",
+        "eval_note": "52.5 <= 74.2 — WRONG DIRECTION"
+      },
+      {
+        "pair_id": "RP-03",
+        "higher_barcode": "7290016883176",
+        "lower_barcode": "7290011131371",
+        "higher_score": 52.5,
+        "lower_score": 54.3,
+        "pass": false,
+        "pair_reason": "oats 47% stated > oats 38% stated",
+        "eval_note": "52.5 <= 54.3 — WRONG DIRECTION"
+      },
+      {
+        "pair_id": "RP-04",
+        "higher_barcode": "7290011131975",
+        "lower_barcode": "7290011131388",
+        "higher_score": 52.5,
+        "lower_score": 52.5,
+        "pass": false,
+        "pair_reason": "oats 43% in granola 65% (~28% effective) > oats 39%",
+        "eval_note": "52.5 <= 52.5 — WRONG DIRECTION"
+      },
+      {
+        "pair_id": "RP-05",
+        "higher_barcode": "7290118427858",
+        "lower_barcode": "7290107947480",
+        "higher_score": 75.8,
+        "lower_score": 52.5,
+        "pass": true,
+        "pair_reason": "43% whole oat (32%+11%) > 1% whole wheat in flakes",
+        "eval_note": "75.8 > 52.5"
+      },
+      {
+        "pair_id": "RP-06",
+        "higher_barcode": "379142",
+        "lower_barcode": "481180",
+        "higher_score": 74.6,
+        "lower_score": 38.0,
+        "pass": true,
+        "pair_reason": "100% of flour whole (56% of product) > 25% of flour whole (15% of product)",
+        "eval_note": "74.6 > 38.0"
+      },
+      {
+        "pair_id": "RP-07",
+        "higher_barcode": "8445291638839",
+        "lower_barcode": "7296073705550",
+        "higher_score": 90.0,
+        "lower_score": 52.5,
+        "pass": true,
+        "pair_reason": "75.3% stated whole grain flours > 25% whole wheat with 26% refined corn grits first",
+        "eval_note": "90.0 > 52.5"
+      },
+      {
+        "pair_id": "RP-08",
+        "higher_barcode": "7290016883176",
+        "lower_barcode": "7290011131388",
+        "higher_score": 52.5,
+        "lower_score": 52.5,
+        "pass": false,
+        "pair_reason": "oats 47% > oats 39%",
+        "eval_note": "52.5 <= 52.5 — WRONG DIRECTION"
+      },
+      {
+        "pair_id": "RP-09",
+        "higher_barcode": "7290118427858",
+        "lower_barcode": "9401790",
+        "higher_score": 75.8,
+        "lower_score": 52.5,
+        "pass": true,
+        "pair_reason": "43% stated whole oat vs whole wheat first but no % stated (position-only)",
+        "eval_note": "75.8 > 52.5"
+      },
+      {
+        "pair_id": "RP-10",
+        "higher_barcode": "5900020034021",
+        "lower_barcode": "7290107947480",
+        "higher_score": 39.8,
+        "lower_score": 52.5,
+        "pass": false,
+        "pair_reason": "35% stated whole wheat > 1% whole wheat in flakes",
+        "eval_note": "39.8 <= 52.5 — WRONG DIRECTION"
+      },
+      {
+        "pair_id": "RP-11",
+        "higher_barcode": "7290112968807",
+        "lower_barcode": "481180",
+        "higher_score": 52.5,
+        "lower_score": 38.0,
+        "pass": true,
+        "pair_reason": "37% whole flour > 25% whole flour (of total flour, but product-level also higher)",
+        "eval_note": "52.5 > 38.0"
+      },
+      {
+        "pair_id": "RP-12",
+        "higher_barcode": "7290011131975",
+        "lower_barcode": "7290011131050",
+        "higher_score": 52.5,
+        "lower_score": 42.4,
+        "pass": true,
+        "pair_reason": "granola 65% oats 43% stated > granola 75% oats unstated (position only)",
+        "eval_note": "52.5 > 42.4"
+      }
+    ]
+  },
+  "gate_B3": {
+    "verdict": "PASS",
+    "coverage_rate": 1.0,
+    "parseable_count": 55,
+    "no_marker_count": 0,
+    "no_marker_barcodes": []
+  },
+  "mc3_stated_pct": {
+    "parseable_count": 55,
+    "with_stated_pct": 45,
+    "rate": 0.8182,
+    "risk_flag": false
+  },
+  "score_distribution": {
+    "n_scored": 52,
+    "min": 10.0,
+    "max": 95.0,
+    "mean": 56.65,
+    "median": 54.349999999999994,
+    "stdev": 31.48,
+    "most_common_score": 95,
+    "most_common_count": 12,
+    "t1_scores": [
+      55.4,
+      59.3,
+      62.7,
+      92.0,
+      92.9,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0,
+      95.0
+    ],
+    "t2_scores": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      12.2,
+      12.2,
+      16.8,
+      54.4,
+      66.2
+    ],
+    "t3_scores": [
+      19.4,
+      38.0,
+      39.8,
+      42.4,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      52.5,
+      54.3,
+      67.5,
+      71.2,
+      72.1,
+      74.2,
+      74.6,
+      75.8,
+      90.0
+    ]
+  },
+  "overall_verdict": "FAIL — one or more gates not cleared",
+  "all_gates_pass": false,
+  "products": [
+    {
+      "barcode": "16000423534",
+      "name_he": "קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמישייה",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 2,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes"
+      ],
+      "refined_markers": [
+        "sugar",
+        "veg_oils_pl"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "16000548404",
+      "name_he": "קראנצ'י חטיף שיבולת שועל עם דבש חמישייה",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 9,
+      "n_whole_markers": 2,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes"
+      ],
+      "refined_markers": [
+        "sugar",
+        "veg_oils_pl"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "16000548503",
+      "name_he": "קראנצ'י חטיף שיבולת שועל עם מייפל קנדי חמישייה",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 2,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes"
+      ],
+      "refined_markers": [
+        "sugar",
+        "veg_oils_pl"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290112199942",
+      "name_he": "גרנולה תותים ללת\"ס",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 17,
+      "n_whole_markers": 2,
+      "n_refined_markers": 3,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "corn_grits",
+        "semolina"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290112199959",
+      "name_he": "גרנולה פירות ללת\"ס",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 17,
+      "n_whole_markers": 2,
+      "n_refined_markers": 3,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "corn_grits",
+        "semolina"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "574615",
+      "name_he": "כוסמין מלא 100%",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 14,
+      "n_whole_markers": 3,
+      "n_refined_markers": 0,
+      "whole_markers": [
+        "whole_spelt_flour",
+        "whole_spelt_grain",
+        "barley_malt"
+      ],
+      "refined_markers": [],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290106571945",
+      "name_he": "עוגיות קקאו דגנים מלאים עם נטיפי שוקולד מריר פיטנס",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 55.4,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 5,
+      "n_refined_markers": 6,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_oat",
+        "whole_oat_flakes",
+        "oat_flakes_plain",
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar",
+        "veg_oil_sg",
+        "dextrin",
+        "maltodextrin",
+        "generic_starch"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": false,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290013740823",
+      "name_he": "קרקר כוסמין טבעי",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 7,
+      "n_refined_markers": 0,
+      "whole_markers": [
+        "whole_spelt_flour",
+        "whole_spelt_grain",
+        "olive_oil",
+        "sesame_seeds",
+        "chia_seeds",
+        "seeds_specific",
+        "flax_seeds"
+      ],
+      "refined_markers": [],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "574141",
+      "name_he": "לחם חיטה מלא",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 5,
+      "n_refined_markers": 0,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "oat_flakes_plain",
+        "barley_malt",
+        "seeds_specific",
+        "flax_seeds"
+      ],
+      "refined_markers": [],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290106771314",
+      "name_he": "גרנולה אגוזים חמוציות",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 92.0,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 5,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_oat",
+        "nuts",
+        "almonds",
+        "cashews",
+        "seeds_specific"
+      ],
+      "refined_markers": [
+        "coconut_oil"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290017962047",
+      "name_he": "גרנולה חמוציות ושקדים",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 6,
+      "n_refined_markers": 0,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "almonds",
+        "seeds_specific",
+        "flax_seeds",
+        "sesame_seeds",
+        "chia_seeds"
+      ],
+      "refined_markers": [],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290013433107",
+      "name_he": "גרנולה חלבה תמר קשיו",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 92.9,
+      "parseable": true,
+      "n_records": 21,
+      "n_whole_markers": 9,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "seeds_specific",
+        "seeds_generic",
+        "sesame_seeds",
+        "chia_seeds",
+        "flax_seeds",
+        "tahini",
+        "dates",
+        "cashews"
+      ],
+      "refined_markers": [
+        "hydrogenated_veg_fat"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7296073705567",
+      "name_he": "טבעות דגנים בטעם דבש",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 62.7,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 2,
+      "n_refined_markers": 5,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "sugar",
+        "wheat_starch",
+        "glucose_syrup",
+        "glucose",
+        "fructose"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290017947464",
+      "name_he": "מארז פיתות כוסמין (מלא)",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 59.3,
+      "parseable": true,
+      "n_records": 8,
+      "n_whole_markers": 1,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_spelt_grain"
+      ],
+      "refined_markers": [
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": false,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290017962023",
+      "name_he": "גרנולה מייפל תמר פקאן",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 6,
+      "n_refined_markers": 0,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "nuts",
+        "seeds_specific",
+        "flax_seeds",
+        "chia_seeds",
+        "sesame_seeds"
+      ],
+      "refined_markers": [],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7613037012095",
+      "name_he": "גרנולה שוקולד קינואה",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 10,
+      "n_whole_markers": 6,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes",
+        "whole_wheat_flour",
+        "whole_oat_flour",
+        "almonds",
+        "quinoa"
+      ],
+      "refined_markers": [
+        "sugar",
+        "glucose_syrup"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "96086000577",
+      "name_he": "קרקר כוסמין אורגני",
+      "tier": "T1",
+      "expected_label": "clear-whole",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 95.0,
+      "parseable": true,
+      "n_records": 4,
+      "n_whole_markers": 2,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_spelt_flour",
+        "whole_spelt_grain"
+      ],
+      "refined_markers": [
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": ">= 60"
+    },
+    {
+      "barcode": "7290119043095",
+      "name_he": "עוגיות שיבולת שועל",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 16.8,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 1,
+      "n_refined_markers": 3,
+      "whole_markers": [
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "hydrogenated_veg_fat",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290119040568",
+      "name_he": "עוגת קראנץ אגוזים",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 25,
+      "n_whole_markers": 0,
+      "n_refined_markers": 7,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "margarine",
+        "sugar",
+        "palm_oil_pl",
+        "glucose",
+        "corn_starch",
+        "dextrose"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290018500644",
+      "name_he": "מארז פיתות כוסמין לבן",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": true,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 9,
+      "n_whole_markers": 0,
+      "n_refined_markers": 2,
+      "whole_markers": [],
+      "refined_markers": [
+        "white_spelt_flour",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290116530482",
+      "name_he": "מארז קורנפלקס של אלופים",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 12.2,
+      "parseable": true,
+      "n_records": 13,
+      "n_whole_markers": 1,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "corn_flour_refined",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290107647731",
+      "name_he": "דגני בוקר קוקומן חום לבן",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 66.2,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 2,
+      "n_refined_markers": 3,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar",
+        "wheat_starch"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": false,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7296073431916",
+      "name_he": "עוגת מאפין בטעם תפוז",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 14,
+      "n_whole_markers": 0,
+      "n_refined_markers": 6,
+      "whole_markers": [],
+      "refined_markers": [
+        "sugar",
+        "refined_wheat_flour",
+        "wheat_starch",
+        "margarine",
+        "dextrose",
+        "corn_starch"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "5000396021202",
+      "name_he": "קרקר (Jacob's Cream Crackers)",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 0,
+      "n_refined_markers": 5,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar",
+        "glucose_syrup",
+        "glucose",
+        "fructose"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7622201809188",
+      "name_he": "ביסקוויט מילקה",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 0,
+      "n_refined_markers": 3,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar",
+        "palm_oil"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290116537351",
+      "name_he": "כריות נוגט",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 54.4,
+      "parseable": true,
+      "n_records": 18,
+      "n_whole_markers": 2,
+      "n_refined_markers": 7,
+      "whole_markers": [
+        "nuts",
+        "whole_wheat_flour"
+      ],
+      "refined_markers": [
+        "dextrin",
+        "maltodextrin",
+        "veg_oil_sg",
+        "sugar",
+        "refined_wheat_flour",
+        "corn_grits",
+        "corn_flour_refined"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": false,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290017325910",
+      "name_he": "קורנפלקס אורגני הרדוף",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 12.2,
+      "parseable": true,
+      "n_records": 3,
+      "n_whole_markers": 1,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "corn_flour_refined"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "313184",
+      "name_he": "עוגיות גן חיות טעם וניל",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 10,
+      "n_whole_markers": 0,
+      "n_refined_markers": 4,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar",
+        "veg_oils_pl",
+        "inverted_sugar"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7296073398875",
+      "name_he": "קרם קרקר",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 14,
+      "n_whole_markers": 0,
+      "n_refined_markers": 6,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "corn_starch",
+        "veg_oils_pl",
+        "sugar",
+        "dextrose",
+        "fructose"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290119040667",
+      "name_he": "עוגת קראנץ פרג",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 22,
+      "n_whole_markers": 0,
+      "n_refined_markers": 5,
+      "whole_markers": [],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "margarine",
+        "sugar",
+        "palm_oil_pl",
+        "glucose"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "8710502279010",
+      "name_he": "עוגיות שוקולד צ'יפס מצופות",
+      "tier": "T2",
+      "expected_label": "clear-refined",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 10.0,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 0,
+      "n_refined_markers": 4,
+      "whole_markers": [],
+      "refined_markers": [
+        "sugar",
+        "refined_wheat_flour",
+        "veg_oils_pl",
+        "glucose_syrup"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": true,
+      "b1_pass": true,
+      "b1_expected_zone": "<= 45"
+    },
+    {
+      "barcode": "7290013453624",
+      "name_he": "עוגיות שוקולד צ'יפס (כשלפ)",
+      "tier": "UNREADABLE",
+      "expected_label": "UNREADABLE",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": null,
+      "parseable": false,
+      "n_records": 0,
+      "n_whole_markers": 0,
+      "n_refined_markers": 0,
+      "whole_markers": [],
+      "refined_markers": [],
+      "has_stated_pct": false,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "6322838",
+      "name_he": "לחם קמח מלא 100%",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 71.2,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 2,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "veg_oil_sg"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290018500460",
+      "name_he": "לחם אנג'ל חצי מלא",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 1,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_wheat_flour"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290115205176",
+      "name_he": "קרקר דק כפרי פיטנס",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 14,
+      "n_whole_markers": 4,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_rice",
+        "quinoa",
+        "sesame_seeds"
+      ],
+      "refined_markers": [
+        "rice_flour_refined",
+        "refined_wheat_flour",
+        "rice_starch",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7296073659952",
+      "name_he": "קרקר דק כפרי",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 74.2,
+      "parseable": true,
+      "n_records": 16,
+      "n_whole_markers": 5,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_wheat_grain",
+        "whole_rice",
+        "sesame_seeds",
+        "quinoa"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "palm_oil",
+        "corn_starch",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290011131975",
+      "name_he": "גרנולה פירות",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 18,
+      "n_whole_markers": 3,
+      "n_refined_markers": 6,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "barley_malt",
+        "dates"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "corn_flour_refined",
+        "sugar",
+        "glucose_syrup",
+        "glucose",
+        "veg_oil_sg"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290011131050",
+      "name_he": "גרנולה פקאן",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 42.4,
+      "parseable": true,
+      "n_records": 18,
+      "n_whole_markers": 3,
+      "n_refined_markers": 6,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "barley_malt",
+        "dates"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "corn_flour_refined",
+        "sugar",
+        "glucose_syrup",
+        "glucose",
+        "veg_oil_sg"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290016883176",
+      "name_he": "מוזלי 47% דגנים מלאים",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 18,
+      "n_whole_markers": 1,
+      "n_refined_markers": 5,
+      "whole_markers": [
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "sugar",
+        "veg_oil_sg",
+        "glucose_syrup",
+        "glucose",
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290011131371",
+      "name_he": "מוזלי קראנצ'י בוטנ+שקדים",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 54.3,
+      "parseable": true,
+      "n_records": 15,
+      "n_whole_markers": 4,
+      "n_refined_markers": 5,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "nuts",
+        "almonds",
+        "peanuts"
+      ],
+      "refined_markers": [
+        "veg_oil_sg",
+        "sugar",
+        "glucose_syrup",
+        "glucose",
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290011131388",
+      "name_he": "מוזלי קראנצי תפוח קינמון",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 13,
+      "n_whole_markers": 2,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "oat_flakes_plain",
+        "raisins"
+      ],
+      "refined_markers": [
+        "veg_oil_sg",
+        "sugar",
+        "glucose_syrup",
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290118427858",
+      "name_he": "פיטנס בר גרנולה שוקולד מריר",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 75.8,
+      "parseable": true,
+      "n_records": 18,
+      "n_whole_markers": 5,
+      "n_refined_markers": 6,
+      "whole_markers": [
+        "whole_oat",
+        "whole_oat_flakes",
+        "whole_oat_flour",
+        "chia_seeds",
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "sugar",
+        "refined_wheat_flour",
+        "margarine",
+        "coconut_oil",
+        "rice_flour_refined",
+        "dextrin"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290112968807",
+      "name_he": "קרקר דק פיטנס סלק",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 13,
+      "n_whole_markers": 3,
+      "n_refined_markers": 5,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_rice",
+        "sesame_seeds"
+      ],
+      "refined_markers": [
+        "rice_flour_refined",
+        "refined_wheat_flour",
+        "veg_oils_pl",
+        "rice_starch",
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "9401790",
+      "name_he": "מארז פיתות קמח מלא",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 9,
+      "n_whole_markers": 1,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_wheat_flour"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour",
+        "sugar"
+      ],
+      "has_stated_pct": false,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "5900020034021",
+      "name_he": "חטיפי דגנים פיטנס שוקולד בננה שישייה",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 39.8,
+      "parseable": true,
+      "n_records": 10,
+      "n_whole_markers": 2,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "whole_wheat_grain",
+        "whole_wheat_flour"
+      ],
+      "refined_markers": [
+        "glucose_syrup",
+        "glucose",
+        "sugar",
+        "inverted_sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290107947480",
+      "name_he": "חטיף דגנים מצופה שוקולד חלב עם שברי אגוזים שישייה",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 16,
+      "n_whole_markers": 4,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "whole_wheat_grain",
+        "barley_malt",
+        "nuts",
+        "almonds"
+      ],
+      "refined_markers": [
+        "corn_flour_refined",
+        "sugar",
+        "glucose_syrup",
+        "glucose"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "379142",
+      "name_he": "לחם עינן פרוס וארוז",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 74.6,
+      "parseable": true,
+      "n_records": 9,
+      "n_whole_markers": 2,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_wheat_grain"
+      ],
+      "refined_markers": [
+        "veg_oil_sg"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "8445291638839",
+      "name_he": "צ'יריוס בטעם דבש ושקדים",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 90.0,
+      "parseable": true,
+      "n_records": 11,
+      "n_whole_markers": 4,
+      "n_refined_markers": 4,
+      "whole_markers": [
+        "whole_oat_flour",
+        "whole_oat",
+        "whole_wheat_flour",
+        "whole_barley_flour"
+      ],
+      "refined_markers": [
+        "sugar",
+        "refined_wheat_flour",
+        "inverted_sugar",
+        "veg_oil_sg"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290112495433",
+      "name_he": "דגני בוקר דליפקאן",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 72.1,
+      "parseable": true,
+      "n_records": 13,
+      "n_whole_markers": 4,
+      "n_refined_markers": 5,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_oat",
+        "barley_malt",
+        "nuts"
+      ],
+      "refined_markers": [
+        "corn_grits",
+        "rice_flour_refined",
+        "sugar",
+        "glucose_syrup",
+        "glucose"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "481180",
+      "name_he": "לחם מחמצת שאור",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 38.0,
+      "parseable": true,
+      "n_records": 9,
+      "n_whole_markers": 2,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "sourdough_starter",
+        "whole_wheat_flour"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290120870017",
+      "name_he": "קרקר כוסמין דק רוזמרין",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 19.4,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 3,
+      "n_refined_markers": 2,
+      "whole_markers": [
+        "whole_rice",
+        "sesame_seeds",
+        "quinoa"
+      ],
+      "refined_markers": [
+        "rice_flour_refined",
+        "corn_starch"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7296073705550",
+      "name_he": "כדורי דגנים טעם שוקו",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 12,
+      "n_whole_markers": 3,
+      "n_refined_markers": 7,
+      "whole_markers": [
+        "whole_wheat_flour",
+        "whole_wheat_grain",
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "corn_grits",
+        "refined_wheat_flour",
+        "sugar",
+        "glucose_syrup",
+        "glucose",
+        "fructose",
+        "dextrose"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290117382868",
+      "name_he": "טורטיה כוסמין",
+      "tier": "T3",
+      "expected_label": "hard-mixed",
+      "gradable": true,
+      "spelt_correction": false,
+      "v3_score": 67.5,
+      "parseable": true,
+      "n_records": 10,
+      "n_whole_markers": 3,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_spelt_flour",
+        "whole_spelt_grain",
+        "oat_flakes_plain"
+      ],
+      "refined_markers": [
+        "refined_wheat_flour"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "9137842",
+      "name_he": "מארז לחמניות כוסמין",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": null,
+      "parseable": false,
+      "n_records": 0,
+      "n_whole_markers": 0,
+      "n_refined_markers": 0,
+      "whole_markers": [],
+      "refined_markers": [],
+      "has_stated_pct": false,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7290011525316",
+      "name_he": "סנסיטיב שיבולת שועל",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": null,
+      "parseable": false,
+      "n_records": 0,
+      "n_whole_markers": 0,
+      "n_refined_markers": 0,
+      "whole_markers": [],
+      "refined_markers": [],
+      "has_stated_pct": false,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "7297488098688",
+      "name_he": "פצפוצי אורז ללת\"ס",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": 52.5,
+      "parseable": true,
+      "n_records": 1,
+      "n_whole_markers": 1,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_rice"
+      ],
+      "refined_markers": [
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "5010029000061",
+      "name_he": "דגני בוקר ויטביקס",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": 93.0,
+      "parseable": true,
+      "n_records": 10,
+      "n_whole_markers": 2,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "bare_wheat_first_80pct",
+        "barley_malt"
+      ],
+      "refined_markers": [
+        "sugar"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    },
+    {
+      "barcode": "58449779032",
+      "name_he": "דגני טבעות תירס ואורז אורגני",
+      "tier": "T4",
+      "expected_label": "edge-case",
+      "gradable": false,
+      "spelt_correction": false,
+      "v3_score": 57.2,
+      "parseable": true,
+      "n_records": 5,
+      "n_whole_markers": 1,
+      "n_refined_markers": 1,
+      "whole_markers": [
+        "whole_rice"
+      ],
+      "refined_markers": [
+        "corn_flour_refined"
+      ],
+      "has_stated_pct": true,
+      "b1_applicable": false,
+      "b1_pass": null,
+      "b1_expected_zone": "N/A"
+    }
+  ]
+}

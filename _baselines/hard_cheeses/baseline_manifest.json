@@ -1,0 +1,468 @@
+{
+  "slug": "hard_cheeses",
+  "generated_at": "2026-06-25T05:31:08.641568+00:00",
+  "task": "TASK-395",
+  "phase": "Phase 0 - Method Proof (re-verification with BARI_HC002_NOVA1=on)",
+  "description": "Re-verification correcting the prior QUARANTINE verdict. Prior run did NOT set BARI_HC002_NOVA1=on — the HC-002 dairy NOVA-1 fast-path was inactive, leaving 8 products at NOVA-2 instead of NOVA-1, depressing scores. This run uses the FULL authoritative flag vector from batch_run_hc_redlabel_v2_001.py. Result: 23/23 reproduce within ±0.05.",
+  "bsip1_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v2.json",
+  "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_REDLABEL_V1": "on",
+    "BARI_HC002_NOVA1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off"
+  },
+  "shelf_rel": {
+    "nutrient": "fat_saturated_g",
+    "median": 18.0,
+    "scale": 1.4,
+    "scale_type": "iqr",
+    "source": "constants.py FATSAT_SHELF_REL_HARDCHEESE_* (EV-090 locked params)"
+  },
+  "engine_version": "proto_v0 (score_engine.py)",
+  "score_tolerance": 0.05,
+  "live_product_count": 23,
+  "scored_count": 23,
+  "error_count": 0,
+  "matched_count": 23,
+  "mismatched_count": 0,
+  "reproduces": true,
+  "verdict": "REPRODUCES",
+  "quarantine_reason": null,
+  "prior_quarantine_corrected": true,
+  "prior_quarantine_reason": "Prior Phase-0 run (2026-06-25T04:44:39+00:00) did NOT set BARI_HC002_NOVA1=on. The HC-002 dairy NOVA-1 fast-path (nova_proxy.py:22) was inactive, producing NOVA-2 for 8 short-ingredient dairy products instead of NOVA-1. NOVA-1 → NOVA-2 shift depresses processing_quality and whole_food_integrity dimensions, explaining the score gap. Setting HC002_NOVA1=on closes the gap.",
+  "per_product": [
+    {
+      "barcode": "3073781199918",
+      "name": "גבינה חצי קשה 24% בייבי בל 5*20 גרם",
+      "canonical_score": 71.4,
+      "canonical_grade": "B",
+      "live_score": 71.4,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290000057088",
+      "name": "פרוסות גבינת עמק דק 28% 200 גרם",
+      "canonical_score": 66.0,
+      "canonical_grade": "B",
+      "live_score": 66.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290004122348",
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
+      "canonical_score": 72.3,
+      "canonical_grade": "B",
+      "live_score": 72.3,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290004122683",
+      "name": "אצבעות גבינת עמק 28% 172 גרם",
+      "canonical_score": 66.0,
+      "canonical_grade": "B",
+      "live_score": 66.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290004125776",
+      "name": "פרוסות גבינת עמק 28% בקופסא 400 גרם",
+      "canonical_score": 66.0,
+      "canonical_grade": "B",
+      "live_score": 66.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290004137311",
+      "name": "פרוסות גבינת עמק מופחתת שומן 9% בקופסא 400 גרם",
+      "canonical_score": 72.3,
+      "canonical_grade": "B",
+      "live_score": 72.3,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290014760912",
+      "name": "פרוסות גבינה חצי קשה גוש חלב 28% מהדרין 400 גרם",
+      "canonical_score": 68.1,
+      "canonical_grade": "B",
+      "live_score": 68.1,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290014763395",
+      "name": "פרוסות גבינת עמק 28% 600 גרם",
+      "canonical_score": 66.0,
+      "canonical_grade": "B",
+      "live_score": 66.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290017065434",
+      "name": "פרוסות גבינת גאודה הולנדית 30% 200 גרם",
+      "canonical_score": 70.7,
+      "canonical_grade": "B",
+      "live_score": 70.7,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290019635192",
+      "name": "פרוסות גאודה עיזים",
+      "canonical_score": 76.9,
+      "canonical_grade": "B",
+      "live_score": 76.9,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290102394463",
+      "name": "פרוסות גבינה צהובה חצי קשה 28% נעם 500 גרם",
+      "canonical_score": 69.9,
+      "canonical_grade": "B",
+      "live_score": 69.9,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290102396672",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 9% נעם 360 גרם",
+      "canonical_score": 74.2,
+      "canonical_grade": "B",
+      "live_score": 74.2,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290102397204",
+      "name": "פרוסות גבינה צהובה חצי קשה דקה 22% נעם 200 גרם",
+      "canonical_score": 71.0,
+      "canonical_grade": "B",
+      "live_score": 71.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290108501346",
+      "name": "גבינת גאודה מגורדת 28% יורו צ'יז 500 גרם",
+      "canonical_score": 70.4,
+      "canonical_grade": "B",
+      "live_score": 70.4,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 3,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290108502725",
+      "name": "פרוסות גבינת גאודה 28% יורו צ'יז 400 גרם",
+      "canonical_score": 77.8,
+      "canonical_grade": "B",
+      "live_score": 77.8,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290108503999",
+      "name": "פרוסות גבינה מותכת 13% בטעם גאודה יורו צ'יז 150 גרם",
+      "canonical_score": 37.0,
+      "canonical_grade": "D",
+      "live_score": 37.0,
+      "live_grade": "D",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 4,
+      "caps_fired": [
+        "NOVA_PROXY_4_ULTRA_PROCESSED",
+        "ADDITIVE_MARKERS_3_PLUS"
+      ],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290110320867",
+      "name": "גבינת עמק מגורדת 28% 500 גרם",
+      "canonical_score": 66.0,
+      "canonical_grade": "B",
+      "live_score": 66.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290110323301",
+      "name": "פרוסות גבינת טל העמק 32% בסגנון אמנטל 200 גרם",
+      "canonical_score": 74.0,
+      "canonical_grade": "B",
+      "live_score": 74.0,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290110324872",
+      "name": "פרוסות גבינת גלבוע 5% 200 גרם",
+      "canonical_score": 75.6,
+      "canonical_grade": "B",
+      "live_score": 75.6,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290116931524",
+      "name": "פרוסות גאודה עמק 200 גרם",
+      "canonical_score": 73.7,
+      "canonical_grade": "B",
+      "live_score": 73.7,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 2,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290117265888",
+      "name": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+      "canonical_score": 70.1,
+      "canonical_grade": "B",
+      "live_score": 70.1,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 3,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "7290117265918",
+      "name": "גבינת גאודה פרוסות יוחננוף 400 גרם",
+      "canonical_score": 70.1,
+      "canonical_grade": "B",
+      "live_score": 70.1,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 3,
+      "caps_fired": [
+        "NOVA_PROXY_3_PROCESSED"
+      ],
+      "evaluation_status": "standard"
+    },
+    {
+      "barcode": "8711528211138",
+      "name": "גבינת גאודה עיזים.",
+      "canonical_score": 72.5,
+      "canonical_grade": "B",
+      "live_score": 72.5,
+      "live_grade": "B",
+      "diff": 0.0,
+      "match": true,
+      "grade_match": true,
+      "nova_level": 1,
+      "caps_fired": [],
+      "evaluation_status": "standard"
+    }
+  ],
+  "errors": [],
+  "bsip1_file_hashes": {
+    "3073781199918": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_3073781199918.json",
+      "sha256": "51a7b877f2d55e9e6d463ab1b7e0c8a0d090df996fdc9679347fdfd5e27fff51"
+    },
+    "7290000057088": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290000057088.json",
+      "sha256": "0962fe9377ed53fb724f034cbb785831b063915ad7203f64ab331f4eb80dfd14"
+    },
+    "7290004122348": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290004122348.json",
+      "sha256": "29f9bcd62515fdaa1d352e5774dd596be000799f09460d8388e4363dd2d998bd"
+    },
+    "7290004122683": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290004122683.json",
+      "sha256": "e4408fae3e9d0722040da36880de41f6e56b83c44071a726aac52c55a753b476"
+    },
+    "7290004125776": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290004125776.json",
+      "sha256": "8042fde1bc7c2aa85f4df7ca1676f30f83975db0f72645a67f61443855066a4b"
+    },
+    "7290004137311": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290004137311.json",
+      "sha256": "ee4f2c55c914256cef414a4bc586e9856ba64e4c6acf25bba5520c7e9d8a6468"
+    },
+    "7290014760912": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290014760912.json",
+      "sha256": "e226a57befe1a7bef4173732b6233a6437dcf9e2047852e1b04ba9f5ddafa57c"
+    },
+    "7290014763395": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290014763395.json",
+      "sha256": "a8d498bfc1ca7491bfef474b37af6a319c4e51640dd70440a5e42f4c8adb8c6e"
+    },
+    "7290017065434": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290017065434.json",
+      "sha256": "c9de72e8dafb695a049f1ff8de1934f8453e705294697b19c6fc3c4739c7f2ec"
+    },
+    "7290019635192": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290019635192.json",
+      "sha256": "ad036c08ab0f5a411dec5d5dcc5e71021c0906e2b877f3c325abdb67c6d9d02d"
+    },
+    "7290102394463": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290102394463.json",
+      "sha256": "da82eb6d0d7adf847a1e97e3b5a838e7ca7402c194ab1246f5026c03ab9d8ec4"
+    },
+    "7290102396672": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290102396672.json",
+      "sha256": "85afecbaa15474df71593e1899a1bd47722209cc668efcb4ba88abc3c5664922"
+    },
+    "7290102397204": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290102397204.json",
+      "sha256": "6ef5091997b5310c2710e0f2f6e1701bd111008892c2f18ca95065c0a88d094e"
+    },
+    "7290108501346": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290108501346.json",
+      "sha256": "f30fda7998993fc0c989de117e571efb53012bf54edcd8b106dbb5ecf526f12c"
+    },
+    "7290108502725": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290108502725.json",
+      "sha256": "b5d9b5da0affb3887f9964242bec4c8eee09c729ff7dc0949d1c5742b8a74d46"
+    },
+    "7290108503999": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290108503999.json",
+      "sha256": "b16bd42ee2f31991e1aa4fd9ee02124731276240899e5f6d2a83b8227e5ff16e"
+    },
+    "7290110320867": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290110320867.json",
+      "sha256": "075455964815e5acd1420ce10a64295d393358a1e04229e7c444758664d150f6"
+    },
+    "7290110323301": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290110323301.json",
+      "sha256": "62c1c283c43bc6d49d8c8aaa466e73a07d891853bd73a860cb3797d67dd2eb83"
+    },
+    "7290110324872": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290110324872.json",
+      "sha256": "28a0fb11c1a4ec67b77d709a06ea002a445634fa8b0375f24be7415fdc263d46"
+    },
+    "7290116931524": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290116931524.json",
+      "sha256": "79dd6e0e0b1fa26fd81a517fae7ad58276fcef08eb1ebc702cdbdb8ee1139f24"
+    },
+    "7290117265888": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290117265888.json",
+      "sha256": "96a340771b2d408d0ba609d45e6933b3aeb3b9ce9e9ea7216ecd6a911b00a4e5"
+    },
+    "7290117265918": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_7290117265918.json",
+      "sha256": "3c211ea6c4923e19d4a770338b7c34424ebf8ec16ea02e9480a1b280e089a81d"
+    },
+    "8711528211138": {
+      "path": "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs\\bsip1_hardcheese_8711528211138.json",
+      "sha256": "007f91c02b5b26c4701ba2e0a45ea47f62781713f766f548cb80186d6eadff60"
+    }
+  },
+  "verified_at": "2026-06-25T05:31:08.641599+00:00"
+}

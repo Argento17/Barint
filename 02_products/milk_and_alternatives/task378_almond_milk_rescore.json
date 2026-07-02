@@ -1,0 +1,43 @@
+{
+  "task": "TASK-378",
+  "phase": "phase_4_rescore",
+  "run_at": "2026-06-22T18:01:47.966338+00:00",
+  "barcode": "7290014760141",
+  "product_name_he": "משקה שקדים",
+  "patch": {
+    "field": "sugars_g",
+    "old_value": null,
+    "new_value": 6.0,
+    "source": "Shufersal label Phase-3 verified (TASK-378)"
+  },
+  "old_score": 51.5,
+  "old_grade": "C",
+  "new_score": 49.7,
+  "new_grade": "D",
+  "weighted_dimension_score": 49.74,
+  "glycemic_quality_new": 75.0,
+  "glycemic_quality_old": 90.0,
+  "glycemic_note": "90 - sugar_penalty(15.0) + fiber(0.0) + wg(0) = 75.0",
+  "caps_applied": [
+    {
+      "rule": "NOVA_PROXY_3_PROCESSED",
+      "cap": 94.8
+    }
+  ],
+  "penalties_applied": [],
+  "verification": {
+    "expected_score": 49.7,
+    "expected_grade": "D",
+    "pass": true
+  },
+  "engine_flags": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_DAIRY_SAT_FAT_INFER": "off"
+  },
+  "off_used": false,
+  "other_products_changed": 0,
+  "note": "Single-product point correction only. No other milk products re-scored."
+}

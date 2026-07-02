@@ -1,0 +1,40 @@
+===== 1164266  #1 75.7/B silan =====
+ glycemic_quality: 100
+ sugar_context_class: SC-5
+ data_sufficiency: "sufficient"
+ confidence_band: high | confidence_score: 90
+ confidence_reductions: [{"factor": "nova_confidence=low", "reduction": -10}]
+ unresolved_flags: ["LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"]
+ final_score_estimate: 76.0 grade: B
+ glycemic note: "90 - sugar_penalty(0.0) + fiber(20.0) + wg(0) = 110.0"
+
+===== 1164273  #8 65.8/B =====
+ glycemic_quality: 100
+ sugar_context_class: SC-5
+ data_sufficiency: "sufficient"
+ confidence_band: high | confidence_score: 90
+ confidence_reductions: [{"factor": "nova_confidence=low", "reduction": -10}]
+ unresolved_flags: ["LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"]
+ final_score_estimate: 65.8 grade: B
+ glycemic note: "90 - sugar_penalty(0.0) + fiber(16.0) + wg(0) = 106.0"
+
+===== 6582751  #20 47.1/D =====
+ glycemic_quality: 90.0
+ sugar_context_class: SC-5
+ data_sufficiency: "sufficient"
+ confidence_band: high | confidence_score: 85
+ confidence_reductions: [{"factor": "missing: dietary_fiber_g", "reduction": -5}, {"factor": "nova_confidence=medium", "reduction": -5}, {"factor": "d3_nonmaterial_gap (peripheral unresolved term; processing read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; max-combined with D5)", "reduction": -5}]
+ unresolved_flags: []
+ final_score_estimate: 47.0 grade: D
+ glycemic note: "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0"
+
+===== 7290017962047  CONTROL has-sugar? =====
+ glycemic_quality: 86.0
+ sugar_context_class: SC-4
+ data_sufficiency: "sufficient"
+ confidence_band: high | confidence_score: 90
+ confidence_reductions: [{"factor": "nova_confidence=low", "reduction": -10}]
+ unresolved_flags: ["LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"]
+ final_score_estimate: 69.7 grade: B
+ glycemic note: "90 - sugar_penalty(24.0) + fiber(20.0) + wg(0) = 86.0"
+

@@ -1,0 +1,222 @@
+========================================================================
+COMPONENT B MATRIX SIGNAL PROBE v2 — VALIDATION REPORT
+Run: 2026-06-25T11:59:38.259198+00:00
+TASK: TASK-395 | Condition: C-N1-1 | Gold set: matrix_gold_set_v1.json
+========================================================================
+
+Gold set: 58 products total
+  Gradable: 57 (58 total minus 1 UNREADABLE)
+  UNREADABLE held-out: 7290013453624 (marketing paragraph)
+  T1 clear-whole: 17 scored
+  T2 clear-refined: 13 scored
+  T3 hard-mixed: 19 scored
+  T4 edge-case: not graded (behavior tests)
+
+────────────────────────────────────────────────────────────────────────
+UNREADABLE PRODUCT CHECK
+────────────────────────────────────────────────────────────────────────
+7290013453624: v2_score = None
+Expected: None (marketing blurb must return None)
+Result: PASS — formula returns None as required
+
+────────────────────────────────────────────────────────────────────────
+GATE B1: ANCHOR CALIBRATION
+Condition: T1 products score >= 60; T2 products score <= 45
+Bar: >= 90% of anchor-class products pass
+────────────────────────────────────────────────────────────────────────
+T1 (clear-whole): 8/17 pass (score >= 60)
+  Scores: [10.0, 10.0, 10.0, 10.0, 10.0, 95.0, 38.9, 95.0, 95.0, 70.7, 95.0, 95.0, 62.7, 10.0, 95.0, 10.0, 10.0]
+  Min=10.0  Max=95.0
+T2 (clear-refined): 13/13 pass (score <= 45)
+  Scores: [10.0, 10.0, 10.0, 34.9, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+  Min=10.0  Max=34.9
+
+COMBINED B1: 21/30 = 70.0%
+Target: >= 90.0%  |  Result: FAIL
+B1 FAILURES (9):
+  16000423534 קראנצ'י חטיף שיבולת שועל ושוקולד מריר חמ tier=T1 score=10.0 expected=>= 60
+  16000548404 קראנצ'י חטיף שיבולת שועל עם דבש חמישייה tier=T1 score=10.0 expected=>= 60
+  16000548503 קראנצ'י חטיף שיבולת שועל עם מייפל קנדי ח tier=T1 score=10.0 expected=>= 60
+  7290112199942 גרנולה תותים ללת"ס tier=T1 score=10.0 expected=>= 60
+  7290112199959 גרנולה פירות ללת"ס tier=T1 score=10.0 expected=>= 60
+  7290106571945 עוגיות קקאו דגנים מלאים עם נטיפי שוקולד  tier=T1 score=38.9 expected=>= 60
+  7290017947464 מארז פיתות כוסמין (מלא) tier=T1 score=10.0 expected=>= 60
+  7613037012095 גרנולה שוקולד קינואה tier=T1 score=10.0 expected=>= 60
+  96086000577 קרקר כוסמין אורגני tier=T1 score=10.0 expected=>= 60
+
+────────────────────────────────────────────────────────────────────────
+GATE B1 — MC-2: WITH vs WITHOUT SPELT-PITA CORRECTIONS
+────────────────────────────────────────────────────────────────────────
+Spelt-pita corrected products: 1
+  Barcodes: ['7290018500644']
+B1 rate WITH corrections (all T1+T2): 70.0%  [21/30]
+B1 rate WITHOUT correction products: 69.0%  [20/29]
+Delta from corrections: +1.0%
+
+────────────────────────────────────────────────────────────────────────
+GATE B2: ORDINAL RANKING
+Condition: within ranked pairs, more-whole product scores higher
+Bar: >= 95% of evaluable pairs correct
+MC-1: must include >= 10 T3 pairs
+────────────────────────────────────────────────────────────────────────
+Total pairs in gold set: 12
+T3-anchored pairs (MC-1 count): 12
+Evaluable pairs: 11
+Correct: 3/11 = 27.3%
+Target: >= 95.0%  |  Result: FAIL
+MC-1 check: 12 T3 pairs >= 10 required: PASS
+
+All pair results:
+  RP-01 [OK] 6322838 > 7290115205176
+         30.5 > 10.0
+         Reason: 100% of flour is whole wheat (58% of product) > 30.5% whole wheat
+  RP-02 [N/A] 7290018500460 > 7296073659952
+         score unavailable for one product
+         Reason: 50% whole of total flour (stated) > 25.5% of 66% blend (~17% effective)
+  RP-03 [FAIL] 7290016883176 > 7290011131371
+         52.5 <= 52.5 — WRONG DIRECTION
+         Reason: oats 47% stated > oats 38% stated
+  RP-04 [OK] 7290011131975 > 7290011131388
+         95.0 > 52.5
+         Reason: oats 43% in granola 65% (~28% effective) > oats 39%
+  RP-05 [FAIL] 7290118427858 > 7290107947480
+         29.5 <= 34.9 — WRONG DIRECTION
+         Reason: 43% whole oat (32%+11%) > 1% whole wheat in flakes
+  RP-06 [FAIL] 379142 > 481180
+         10.0 <= 52.5 — WRONG DIRECTION
+         Reason: 100% of flour whole (56% of product) > 25% of flour whole (15% of product)
+  RP-07 [FAIL] 8445291638839 > 7296073705550
+         10.0 <= 52.5 — WRONG DIRECTION
+         Reason: 75.3% stated whole grain flours > 25% whole wheat with 26% refined corn grits first
+  RP-08 [FAIL] 7290016883176 > 7290011131388
+         52.5 <= 52.5 — WRONG DIRECTION
+         Reason: oats 47% > oats 39%
+  RP-09 [FAIL] 7290118427858 > 9401790
+         29.5 <= 52.5 — WRONG DIRECTION
+         Reason: 43% stated whole oat vs whole wheat first but no % stated (position-only)
+  RP-10 [FAIL] 5900020034021 > 7290107947480
+         10.0 <= 34.9 — WRONG DIRECTION
+         Reason: 35% stated whole wheat > 1% whole wheat in flakes
+  RP-11 [FAIL] 7290112968807 > 481180
+         16.7 <= 52.5 — WRONG DIRECTION
+         Reason: 37% whole flour > 25% whole flour (of total flour, but product-level also higher)
+  RP-12 [OK] 7290011131975 > 7290011131050
+         95.0 > 47.8
+         Reason: granola 65% oats 43% stated > granola 75% oats unstated (position only)
+
+────────────────────────────────────────────────────────────────────────
+GATE B3: MARKER COVERAGE (MC-4: parseable text denominator)
+Condition: >= 95% of parseable-text products fire >= 1 marker
+────────────────────────────────────────────────────────────────────────
+Total products in gold set: 58
+Parseable (denominator): 55
+No markers fired: 4
+Coverage: 51/55 = 92.7%
+Target: >= 95.0%  |  Result: FAIL
+No-marker products:
+  7290017325910 קורנפלקס אורגני הרדוף
+  7290018500460 לחם אנג'ל חצי מלא
+  7290117382868 טורטיה כוסמין
+  58449779032 דגני טבעות תירס ואורז אורגני
+
+────────────────────────────────────────────────────────────────────────
+MC-3: STATED_PCT FIELD POPULATION RATE
+────────────────────────────────────────────────────────────────────────
+Parseable products: 55
+Products with >= 1 stated_pct marker: 14
+Rate: 25.5%
+MC-3 threshold: 30%  |  RISK FLAG: below 30% — B1 calibration relies on position inference
+
+────────────────────────────────────────────────────────────────────────
+SCORE DISTRIBUTION (gradable products)
+────────────────────────────────────────────────────────────────────────
+N scored: 49
+Min: 10.0  Max: 95.0  Mean: 33.7  Median: 10.0  Stdev: 30.9
+Most common score (rounded): 10 (n=26)
+T1 scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 38.9, 62.7, 70.7, 95.0, 95.0, 95.0, 95.0, 95.0, 95.0]
+T2 scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 34.9]
+T3 scores: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 16.7, 29.5, 30.5, 34.9, 43.3, 47.8, 52.5, 52.5, 52.5, 52.5, 52.5, 52.5, 95.0]
+
+────────────────────────────────────────────────────────────────────────
+PER-PRODUCT RESULTS TABLE
+barcode         tier  v2_score  b1_pass  label
+────────────────────────────────────────────────────────────────────────
+16000423534     T1    10.0      False    clear-whole
+16000548404     T1    10.0      False    clear-whole
+16000548503     T1    10.0      False    clear-whole
+7290112199942   T1    10.0      False    clear-whole
+7290112199959   T1    10.0      False    clear-whole
+574615          T1    95.0      True     clear-whole
+7290106571945   T1    38.9      False    clear-whole
+7290013740823   T1    95.0      True     clear-whole
+574141          T1    95.0      True     clear-whole
+7290106771314   T1    70.7      True     clear-whole
+7290017962047   T1    95.0      True     clear-whole
+7290013433107   T1    95.0      True     clear-whole
+7296073705567   T1    62.7      True     clear-whole
+7290017947464   T1    10.0      False    clear-whole
+7290017962023   T1    95.0      True     clear-whole
+7613037012095   T1    10.0      False    clear-whole
+96086000577     T1    10.0      False    clear-whole
+7290119043095   T2    10.0      True     clear-refined
+7290119040568   T2    10.0      True     clear-refined
+7290018500644   T2    10.0      True     clear-refined
+7290116530482   T2    34.9      True     clear-refined
+7290107647731   T2    10.0      True     clear-refined
+7296073431916   T2    10.0      True     clear-refined
+5000396021202   T2    10.0      True     clear-refined
+7622201809188   T2    10.0      True     clear-refined
+7290116537351   T2    10.0      True     clear-refined
+7290017325910   T2    None      None     clear-refined
+313184          T2    10.0      True     clear-refined
+7296073398875   T2    10.0      True     clear-refined
+7290119040667   T2    10.0      True     clear-refined
+8710502279010   T2    10.0      True     clear-refined
+7290013453624   UNREADABLE None      N/A      UNREADABLE
+6322838         T3    30.5      N/A      hard-mixed
+7290018500460   T3    None      N/A      hard-mixed
+7290115205176   T3    10.0      N/A      hard-mixed
+7296073659952   T3    43.3      N/A      hard-mixed
+7290011131975   T3    95.0      N/A      hard-mixed
+7290011131050   T3    47.8      N/A      hard-mixed
+7290016883176   T3    52.5      N/A      hard-mixed
+7290011131371   T3    52.5      N/A      hard-mixed
+7290011131388   T3    52.5      N/A      hard-mixed
+7290118427858   T3    29.5      N/A      hard-mixed
+7290112968807   T3    16.7      N/A      hard-mixed
+9401790         T3    52.5      N/A      hard-mixed
+5900020034021   T3    10.0      N/A      hard-mixed
+7290107947480   T3    34.9      N/A      hard-mixed
+379142          T3    10.0      N/A      hard-mixed
+8445291638839   T3    10.0      N/A      hard-mixed
+7290112495433   T3    10.0      N/A      hard-mixed
+481180          T3    52.5      N/A      hard-mixed
+7290120870017   T3    10.0      N/A      hard-mixed
+7296073705550   T3    52.5      N/A      hard-mixed
+7290117382868   T3    None      N/A      hard-mixed
+9137842         T4    None      N/A      edge-case
+7290011525316   T4    None      N/A      edge-case
+7297488098688   T4    52.5      N/A      edge-case
+5010029000061   T4    42.0      N/A      edge-case
+58449779032     T4    None      N/A      edge-case
+
+========================================================================
+OVERALL VERDICT
+========================================================================
+Gate B1 (anchor calibration >= 90%): FAIL  [21/30 = 70.0%]
+Gate B2 (ordinal ranking >= 95%):    FAIL  [3/11 = 27.3%]
+Gate B3 (coverage >= 95%):           FAIL  [51/55 = 92.7%]
+MC-1 T3 pairs >= 10:                 PASS  [12]
+Unreadable → None:                   PASS
+
+VERDICT: FAIL — one or more gates not cleared
+
+HONEST LIMITATIONS:
+  - This probe uses regex marker extraction, not an NLP parser.
+  - Position numbers are inferred from comma-split; nested composites
+    may produce slightly different effective positions than a real parser.
+  - T3 B2 ranking pairs were constructed from the gold set; a larger
+    independently-sourced pair set would be stronger evidence.
+  - stated_pct extraction relies on regex; non-standard label formats
+    (e.g. percentages without parentheses) may be missed.
+========================================================================

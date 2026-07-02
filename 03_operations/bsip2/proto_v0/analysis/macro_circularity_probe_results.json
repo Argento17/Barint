@@ -1,0 +1,468 @@
+{
+  "q5_coverage": {
+    "total_food": 1276,
+    "total_supplements": 83,
+    "per_field": {
+      "energy_kcal": {
+        "present": 1071,
+        "total": 1276,
+        "pct": 83.9
+      },
+      "fat_g": {
+        "present": 842,
+        "total": 1276,
+        "pct": 66.0
+      },
+      "fat_sat_g": {
+        "present": 716,
+        "total": 1276,
+        "pct": 56.1
+      },
+      "sodium_mg": {
+        "present": 1037,
+        "total": 1276,
+        "pct": 81.3
+      },
+      "carbs_g": {
+        "present": 1053,
+        "total": 1276,
+        "pct": 82.5
+      },
+      "sugar_g": {
+        "present": 717,
+        "total": 1276,
+        "pct": 56.2
+      },
+      "fiber_g": {
+        "present": 552,
+        "total": 1276,
+        "pct": 43.3
+      },
+      "protein_g": {
+        "present": 1042,
+        "total": 1276,
+        "pct": 81.7
+      }
+    },
+    "core_complete_sugar_fat_sodium": {
+      "count": 664,
+      "pct": 52.0
+    },
+    "full_complete_plus_energy": {
+      "count": 664,
+      "pct": 52.0
+    }
+  },
+  "q1_labeled_subset": {
+    "total_products": 1359,
+    "high_confidence": 645,
+    "order_only": 318,
+    "no_ingredients": 280,
+    "high_pct": 47.5,
+    "order_pct": 23.4,
+    "none_pct": 20.6,
+    "by_category": {
+      "bread": {
+        "high": 99,
+        "order": 81,
+        "none": 78,
+        "total": 258
+      },
+      "bread_light": {
+        "high": 54,
+        "order": 28,
+        "none": 28,
+        "total": 110
+      },
+      "breakfast_cereals": {
+        "high": 80,
+        "order": 14,
+        "none": 11,
+        "total": 105
+      },
+      "brined_cheeses": {
+        "high": 19,
+        "order": 37,
+        "none": 38,
+        "total": 94
+      },
+      "cakes_cookies": {
+        "high": 138,
+        "order": 55,
+        "none": 11,
+        "total": 204
+      },
+      "cheese_spreads": {
+        "high": 48,
+        "order": 52,
+        "none": 17,
+        "total": 117
+      },
+      "chocolate": {
+        "high": 115,
+        "order": 27,
+        "none": 4,
+        "total": 146
+      },
+      "cookies_coffee": {
+        "high": 80,
+        "order": 42,
+        "none": 7,
+        "total": 129
+      },
+      "hard_cheeses": {
+        "high": 6,
+        "order": 60,
+        "none": 2,
+        "total": 68
+      },
+      "juices": {
+        "high": 20,
+        "order": 12,
+        "none": 1,
+        "total": 33
+      },
+      "snack_bars": {
+        "high": 10,
+        "order": 2,
+        "none": 0,
+        "total": 12
+      },
+      "supplements": {
+        "high": 0,
+        "order": 0,
+        "none": 83,
+        "total": 83
+      }
+    }
+  },
+  "q2_regression": {
+    "by_category": {
+      "breakfast_cereals": {
+        "n": 68,
+        "r2": 0.665,
+        "mae": 13.99,
+        "status": "ok"
+      },
+      "brined_cheeses": {
+        "n": 15,
+        "r2": 0.5052,
+        "mae": 13.37,
+        "status": "ok"
+      },
+      "cakes_cookies": {
+        "n": 119,
+        "r2": 0.2449,
+        "mae": 9.4,
+        "status": "ok"
+      },
+      "cheese_spreads": {
+        "n": 37,
+        "r2": 0.3872,
+        "mae": 14.72,
+        "status": "ok"
+      },
+      "chocolate": {
+        "n": 110,
+        "r2": 0.4894,
+        "mae": 12.08,
+        "status": "ok"
+      },
+      "cookies_coffee": {
+        "n": 69,
+        "r2": 0.6115,
+        "mae": 14.27,
+        "status": "ok"
+      },
+      "hard_cheeses": {
+        "n": 4,
+        "status": "insufficient_data"
+      },
+      "snack_bars": {
+        "n": 9,
+        "r2": 0.991,
+        "mae": 2.01,
+        "status": "ok"
+      }
+    },
+    "pooled": {
+      "n": 431,
+      "r2": 0.488,
+      "mae": 14.63
+    }
+  },
+  "q3_redundancy": {
+    "n": 431,
+    "per_macro_r": {
+      "energy_kcal": 0.1149,
+      "fat_g": 0.0595,
+      "fat_sat_g": -0.1276,
+      "sodium_mg": -0.1836,
+      "sugar_g": -0.2148,
+      "protein_g": 0.3526,
+      "fiber_g": 0.6135
+    },
+    "max_single_macro_abs_r": 0.6135,
+    "multi_macro_r_predicted_vs_true": 0.8108,
+    "verdict": "PARTIALLY REDUNDANT — moderate macro-composition correlation (r 0.55-0.80). Some independent signal exists but mixed-label products (macro-twins) expose the structural floor."
+  },
+  "q4_macro_twins": {
+    "band_rel_pct": 10,
+    "score_diff_floor": 20.0,
+    "twin_pairs": 23,
+    "unique_products_in_pairs": 34,
+    "pool_n": 431,
+    "twin_frac_of_labeled_pool": 0.0789,
+    "twin_pct_of_labeled_pool": 7.9,
+    "examples": [
+      {
+        "b1": "7290011668587",
+        "cat1": "breakfast_cereals",
+        "b2": "4170103",
+        "cat2": "cakes_cookies",
+        "score1": 81.9,
+        "score2": 41.1,
+        "score_diff": 40.8,
+        "macros1": {
+          "sugar_g": 25.0,
+          "fat_g": 17.2,
+          "sodium_mg": 195.0,
+          "energy_kcal": 423.0
+        },
+        "macros2": {
+          "sugar_g": 25.6,
+          "fat_g": 19.0,
+          "sodium_mg": 188.0,
+          "energy_kcal": 409.0
+        }
+      },
+      {
+        "b1": "7290011668587",
+        "cat1": "breakfast_cereals",
+        "b2": "7290006775023",
+        "cat2": "cakes_cookies",
+        "score1": 81.9,
+        "score2": 10.0,
+        "score_diff": 71.9,
+        "macros1": {
+          "sugar_g": 25.0,
+          "fat_g": 17.2,
+          "sodium_mg": 195.0,
+          "energy_kcal": 423.0
+        },
+        "macros2": {
+          "sugar_g": 25.0,
+          "fat_g": 18.0,
+          "sodium_mg": 214.0,
+          "energy_kcal": 417.0
+        }
+      },
+      {
+        "b1": "5992575",
+        "cat1": "brined_cheeses",
+        "b2": "7290019635116",
+        "cat2": "cheese_spreads",
+        "score1": 10.0,
+        "score2": 44.4,
+        "score_diff": 34.4,
+        "macros1": {
+          "sugar_g": 3.8,
+          "fat_g": 5.0,
+          "sodium_mg": 400.0,
+          "energy_kcal": 106.0
+        },
+        "macros2": {
+          "sugar_g": 3.8,
+          "fat_g": 5.0,
+          "sodium_mg": 400.0,
+          "energy_kcal": 96.0
+        }
+      },
+      {
+        "b1": "7622300270506",
+        "cat1": "cookies_coffee",
+        "b2": "5901414200411",
+        "cat2": "cakes_cookies",
+        "score1": 39.2,
+        "score2": 10.0,
+        "score_diff": 29.2,
+        "macros1": {
+          "sugar_g": 30.0,
+          "fat_g": 24.0,
+          "sodium_mg": 320.0,
+          "energy_kcal": 500.0
+        },
+        "macros2": {
+          "sugar_g": 28.0,
+          "fat_g": 24.0,
+          "sodium_mg": 300.0,
+          "energy_kcal": 503.0
+        }
+      },
+      {
+        "b1": "8000500366073",
+        "cat1": "cookies_coffee",
+        "b2": "7290000075143",
+        "cat2": "cakes_cookies",
+        "score1": 49.6,
+        "score2": 10.0,
+        "score_diff": 39.6,
+        "macros1": {
+          "sugar_g": 35.8,
+          "fat_g": 24.8,
+          "sodium_mg": 220.0,
+          "energy_kcal": 515.0
+        },
+        "macros2": {
+          "sugar_g": 34.0,
+          "fat_g": 26.0,
+          "sodium_mg": 220.0,
+          "energy_kcal": 514.0
+        }
+      },
+      {
+        "b1": "313160",
+        "cat1": "cookies_coffee",
+        "b2": "7290118426615",
+        "cat2": "cakes_cookies",
+        "score1": 10.0,
+        "score2": 62.4,
+        "score_diff": 52.4,
+        "macros1": {
+          "sugar_g": 22.0,
+          "fat_g": 17.0,
+          "sodium_mg": 250.0,
+          "energy_kcal": 470.0
+        },
+        "macros2": {
+          "sugar_g": 22.0,
+          "fat_g": 18.0,
+          "sodium_mg": 260.0,
+          "energy_kcal": 466.0
+        }
+      },
+      {
+        "b1": "313160",
+        "cat1": "cookies_coffee",
+        "b2": "7290106571921",
+        "cat2": "cakes_cookies",
+        "score1": 10.0,
+        "score2": 54.3,
+        "score_diff": 44.3,
+        "macros1": {
+          "sugar_g": 22.0,
+          "fat_g": 17.0,
+          "sodium_mg": 250.0,
+          "energy_kcal": 470.0
+        },
+        "macros2": {
+          "sugar_g": 22.4,
+          "fat_g": 17.0,
+          "sodium_mg": 255.0,
+          "energy_kcal": 467.0
+        }
+      },
+      {
+        "b1": "7290112494221",
+        "cat1": "cookies_coffee",
+        "b2": "7290116531748",
+        "cat2": "chocolate",
+        "score1": 10.0,
+        "score2": 34.6,
+        "score_diff": 24.6,
+        "macros1": {
+          "sugar_g": 48.0,
+          "fat_g": 25.0,
+          "sodium_mg": 125.0,
+          "energy_kcal": 520.0
+        },
+        "macros2": {
+          "sugar_g": 50.3,
+          "fat_g": 24.1,
+          "sodium_mg": 124.0,
+          "energy_kcal": 503.0
+        }
+      },
+      {
+        "b1": "16000423534",
+        "cat1": "snack_bars",
+        "b2": "7622300503079",
+        "cat2": "chocolate",
+        "score1": 95.0,
+        "score2": 11.0,
+        "score_diff": 84.0,
+        "macros1": {
+          "sugar_g": 26.8,
+          "fat_g": 19.8,
+          "sodium_mg": 259.0,
+          "energy_kcal": 473.0
+        },
+        "macros2": {
+          "sugar_g": 28.0,
+          "fat_g": 21.0,
+          "sodium_mg": 270.0,
+          "energy_kcal": 494.0
+        }
+      },
+      {
+        "b1": "7296073431817",
+        "cat1": "cakes_cookies",
+        "b2": "4170103",
+        "cat2": "cakes_cookies",
+        "score1": 10.0,
+        "score2": 41.1,
+        "score_diff": 31.1,
+        "macros1": {
+          "sugar_g": 24.9,
+          "fat_g": 19.4,
+          "sodium_mg": 175.0,
+          "energy_kcal": 419.0
+        },
+        "macros2": {
+          "sugar_g": 25.6,
+          "fat_g": 19.0,
+          "sodium_mg": 188.0,
+          "energy_kcal": 409.0
+        }
+      }
+    ]
+  },
+  "q6_us_sample_feasibility": {
+    "verdict": "NOT_FEASIBLE",
+    "reason": "US food labels do not mandate ingredient %s; FDC/branded has <15% %s stated; Israel already has higher %-label coverage than US. An American training set would add macro data only — which we already have — and would not provide the stated-% ground truth needed to train a composition estimator.",
+    "sources_surveyed": [
+      "USDA_FDC_foundation",
+      "USDA_FDC_branded",
+      "DSLD",
+      "USDA_NNDB"
+    ],
+    "off_excluded": true
+  },
+  "final_verdict": {
+    "verdict": "CIRCULAR / INSUFFICIENT — DO NOT IMPLEMENT",
+    "max_macro_composition_r": 0.6135,
+    "pooled_r2": 0.488,
+    "recommendation": "Use real stated %s (high conf) + order signal (order conf, capped) + dominant nutrition weighting. Do NOT infer composition from macros."
+  },
+  "run_metadata": {
+    "probe": "macro_circularity_probe",
+    "run_at": "2026-06-26T05:41:34.627876+00:00",
+    "task": "TASK-395-forum",
+    "total_products_loaded": 1359,
+    "bsip0_sources": [
+      "C:\\Bari\\02_products\\bread_retail_003\\real_bread_retail_003_v1_20260525T194532_bsip0_raw.json",
+      "C:\\Bari\\02_products\\bread_retail_002\\real_bread_retail_002_v2_20260525T165557_bsip0_raw.json",
+      "C:\\Bari\\02_products\\breakfast_cereals\\bsip0_outputs\\cereals_bsip0_raw_20260605T154620.json",
+      "C:\\Bari\\02_products\\brined_cheeses\\bsip0_outputs\\brined_cheese_bsip0_raw_20260613T065721.json",
+      "C:\\Bari\\02_products\\cookies_coffee\\bsip0_outputs\\cookies_coffee_bsip0_raw_20260613T163431.json",
+      "C:\\Bari\\02_products\\snack_bars\\bsip0_outputs\\bars_bsip0_raw_20260620T121558.json",
+      "C:\\Bari\\02_products\\cheese_spreads\\bsip0_outputs\\cheese_bsip0_raw_20260602T054843.json",
+      "C:\\Bari\\02_products\\cakes_hard_cookies\\bsip0_outputs\\cakes_merged_bsip0_raw.json",
+      "C:\\Bari\\02_products\\chocolate\\bsip0_outputs\\choc_bsip0_raw_20260621T093256.json"
+    ],
+    "bsip1_dirs": [
+      "C:\\Bari\\02_products\\hard_cheeses\\bsip1_outputs",
+      "C:\\Bari\\02_products\\juices\\bsip1_outputs"
+    ]
+  }
+}

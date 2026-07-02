@@ -1,0 +1,56 @@
+P403 complete. Hebrew copy is in place for all 32 products plus `categoryNote.body_he` in the candidate JSON only. Scores, grades, ranks, and nutrition are unchanged.
+
+### 3-line sample (rank 1 — פנגיאה אגוזי לוז, 68.6/B)
+
+**insightLine:** היחיד ב-B במדף — חלבון וסיבים יחד, בלי עומס שומן רווי
+
+**rowVerdict:** הוא מוביל כאן בזכות צפיפות חלבון וסיבים יחד עם שומן רווי נמוך יחסית — פרופיל שקשה למצוא בחטיפי חלבון. הסוכר לא נמוך; זה מה שמונע ממנו לעלות עוד.
+
+**comparisonContext:** מדורג ראשון ב-32 חטיפי חלבון — הציון היחיד ב-B, בעיקר בזכות 27 גרם חלבון ו-13 גרם סיבים עם שומן רווי נמוך.
+
+---
+
+### Nayture verdicts (hard condition)
+
+**נייטשר פרוטאין שוקולד** (8410076610379, 55/C)
+
+- **insightLine:** חלבון וסיבים טובים — אבל 17 גרם סוכר, לא חטיף דל-סוכר
+- **rowVerdict:** 25 גרם חלבון ו-11 גרם סיבים מרימים אותו ל-C ב-55 — אבל **17.2 גרם סוכר ל-100 גרם** זה הרבה, וגם הקלוריות גבוהות. אל תקראו C כאילו הסוכר נמוך.
+
+**נייטשר פרוטאין קרמל מלוח** (8410076610386, 55/C)
+
+- **insightLine:** 16 גרם סוכר — חלבון טוב, אבל לא מותר לשכוח את הסוכר
+- **rowVerdict:** 26 גרם חלבון ו-10.8 גרם סיבים נותנים C ב-55, למרות **16.1 גרם סוכר ל-100 גרם**. הסוכר הגבוה הוא התנאי — לא חטיף לבחירה אם מחפשים דל-סוכר.
+
+---
+
+```json
+{
+  "task": "P403",
+  "proposed_status": "RETURNED",
+  "artifacts": [
+    {
+      "path": "02_products/snack_bars/staging/run_pb_standard_20260625_062614/protein_bars_frontend_v2_candidate.json",
+      "action": "modified",
+      "sha256": "51390c7977aef139849619f8b65390479a361508f86e05362d26c3eba2719fd9"
+    }
+  ],
+  "counts": {
+    "products_copy_filled": "32/32 (protein_bars_frontend_v2_candidate.json products[].insightLine+rowVerdict+expansion)",
+    "pending_copy_in_scope": "0/32 (insightLine, rowVerdict, comparisonContext, positiveSignals, limitingFactors, categoryNote.body_he)",
+    "grade_dist": "B:1, C:26, D:5 (32 products)",
+    "score_min_max_median_stdev": "45.0 / 68.6 / 50.0 / 4.56 (32 products)",
+    "most_common_score": "50.0(12/32)",
+    "nayture_sugar_named": "2/2 (8410076610379=17.2g, 8410076610386=16.1g in rowVerdict/limitingFactors)",
+    "category_note_disclosures": "2/2 (protein-lens trade-off + ingredient-data gap)",
+    "banned_phrases_in_copy": "0/6 checked (חלבון נמוך, נתרן גבוה, מרכיבים רבים, NOVA, BSIP, pillar)"
+  },
+  "commands_run": [
+    {"cmd": "PYTHONIOENCODING=utf-8 python /c/bari_pb_copy/_apply_pb_copy.py", "exit_code": 0},
+    {"cmd": "PYTHONIOENCODING=utf-8 python (in-scope PENDING_COPY + banned-phrase + grade/score verification)", "exit_code": 0}
+  ],
+  "not_done": [],
+  "self_check": "JSON parses; 0 PENDING_COPY in 32 products' copy fields + categoryNote.body_he; 0 score/grade/nutrition changes (apply-script snapshot check); Nayture bars name 17.2g/16.1g sugar; categoryNote covers protein-lens trade-off (a) + ingredient gap (b); 0 banned phrases in authored copy fields — all PASS"
+}
+```
+[cursor-exit:0]

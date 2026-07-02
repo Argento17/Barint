@@ -27,32 +27,24 @@ export const PERSONAL_CARE_COMING_SOON_SUBTEXT =
 
 export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
   {
-    id: "supermarket",
-    title: "מה שכתוב על האריזה — ומה שכתוב ברכיבים",
-    status: "live",
-    countLabel: "16 השוואות",
-    href: "/hashvaot/supermarket",
-    description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
-    accent: "#BC6A33",
-    heroStat: { value: "השוואות פעילות", label: "מוצרי סופרמרקט" },
-  },
-  {
     id: "supplements",
     title: "תוספי תזונה — ספיגה ואפקטיביות, לא רק מה שעל הקפסולה",
     status: "live",
     countLabel: "1 השוואה",
     href: "/hashvaot/supplements",
     description: "תוספי תזונה מנותחים באופן שונה ממוצרי מזון — ספיגה, אפקטיביות ועוד",
-    accent: "#4A7B8C",
+    accent: "#1F8F6A",
     heroStat: { value: "השוואות פעילות", label: "תוספי תזונה" },
   },
   {
-    id: "raw-foods",
-    title: "מזון גולמי",
-    status: "building",
-    href: "/hashvaot/raw-foods",
-    comingSoonSubtext: RAW_FOODS_COMING_SOON_SUBTEXT,
-    accent: "#7A8C5E",
+    id: "supermarket",
+    title: "מה שכתוב על האריזה — ומה שכתוב ברכיבים",
+    status: "live",
+    countLabel: "16 השוואות",
+    href: "/hashvaot/supermarket",
+    description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
+    accent: "#A63F2A",
+    heroStat: { value: "השוואות פעילות", label: "מוצרי סופרמרקט" },
   },
   {
     id: "personal-care",
@@ -61,6 +53,14 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     href: "/hashvaot/personal-care",
     comingSoonSubtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
     accent: "#8B7BA8",
+  },
+  {
+    id: "raw-foods",
+    title: "מזון גולמי",
+    status: "building",
+    href: "/hashvaot/raw-foods",
+    comingSoonSubtext: RAW_FOODS_COMING_SOON_SUBTEXT,
+    accent: "#7A8C5E",
   },
 ];
 

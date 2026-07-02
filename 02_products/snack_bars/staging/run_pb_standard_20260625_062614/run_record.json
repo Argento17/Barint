@@ -1,0 +1,541 @@
+{
+  "run_id": "pb_standard_staging_20260625_062614",
+  "run_type": "staging_standard_pipeline_rebuild",
+  "generated_at": "2026-06-25T06:26:15.433921Z",
+  "task": "TASK-374 (standard pipeline rebuild, co-sign packet)",
+  "lens": "BARI_PROTEIN_BAR_V1",
+  "lens_active": true,
+  "recal_p0_on": false,
+  "corpus_path": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
+  "corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
+  "corpus_product_count": 33,
+  "scored_count": 33,
+  "error_count": 0,
+  "trace_write_errors": [],
+  "generate_page_exit_code": 0,
+  "generate_page_ok": true,
+  "staging_output": "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\staging_protein_bars_frontend.json",
+  "bsip1_dir": "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\bsip1_corpus",
+  "bsip2_dir": "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\bsip2_products",
+  "live_v1_path": "C:\\Bari\\bari-web\\src\\data\\comparisons\\protein_bars_frontend_v1.json",
+  "live_v1_product_count": 16,
+  "staging_product_count": 33,
+  "roundtrip_check": {
+    "status": "PASS",
+    "pass": 33,
+    "fail": 0,
+    "total": 33,
+    "details": [
+      {
+        "barcode": "7290112915382",
+        "status": "PASS",
+        "score": 45
+      },
+      {
+        "barcode": "7290017516295",
+        "status": "PASS",
+        "score": 68.6
+      },
+      {
+        "barcode": "7290117384572",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290121166850",
+        "status": "PASS",
+        "score": 56.9
+      },
+      {
+        "barcode": "7290117384589",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290121161886",
+        "status": "PASS",
+        "score": 61.9
+      },
+      {
+        "barcode": "7290117384596",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290119371112",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290121160582",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290121161916",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290112913487",
+        "status": "PASS",
+        "score": 45
+      },
+      {
+        "barcode": "7290121161930",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290112915351",
+        "status": "PASS",
+        "score": 45
+      },
+      {
+        "barcode": "7290019766018",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290019401018",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290019401049",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "8410076610379",
+        "status": "PASS",
+        "score": 55
+      },
+      {
+        "barcode": "8410076610386",
+        "status": "PASS",
+        "score": 55
+      },
+      {
+        "barcode": "7290112497994",
+        "status": "PASS",
+        "score": 70
+      },
+      {
+        "barcode": "7290018703304",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290018703076",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290018043899",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290018043134",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290019766025",
+        "status": "PASS",
+        "score": 55
+      },
+      {
+        "barcode": "7290019310235",
+        "status": "PASS",
+        "score": 50
+      },
+      {
+        "barcode": "7290015130028",
+        "status": "PASS",
+        "score": 51.5
+      },
+      {
+        "barcode": "7290015130035",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290015130042",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290019401544",
+        "status": "PASS",
+        "score": 49.7
+      },
+      {
+        "barcode": "7290018703991",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290018703984",
+        "status": "PASS",
+        "score": 54
+      },
+      {
+        "barcode": "7290119371129",
+        "status": "PASS",
+        "score": 55
+      },
+      {
+        "barcode": "7290019766230",
+        "status": "PASS",
+        "score": 49.8
+      }
+    ]
+  },
+  "diff_summary": {
+    "overlap_count": 14,
+    "orphan_live_count": 2,
+    "corpus_not_live_count": 19,
+    "grade_movers_up": 9,
+    "grade_movers_down": 0,
+    "grade_movers_flat": 5,
+    "mean_delta": 9.47,
+    "median_delta": 7.95,
+    "min_delta": -2.9,
+    "max_delta": 21.4
+  },
+  "grade_distribution": {
+    "live_v1": {
+      "B": 1,
+      "C": 4,
+      "D": 8,
+      "E": 3
+    },
+    "staging": {
+      "B": 2,
+      "C": 26,
+      "D": 5
+    }
+  },
+  "diff_table": [
+    {
+      "barcode": "7290112915382",
+      "name": "חטיף חלבון שוקולד דובאי",
+      "v1_score": 23.6,
+      "v1_grade": "E",
+      "v2_score": 45,
+      "v2_grade": "D",
+      "delta": 21.4,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "8410076610379",
+      "name": "נייטשר פרוטאין שוקולד",
+      "v1_score": 35.0,
+      "v1_grade": "D",
+      "v2_score": 55,
+      "v2_grade": "C",
+      "delta": 20.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290112915351",
+      "name": "חטיף חלבון קרמל מלוח · מקס ברנר",
+      "v1_score": 25.6,
+      "v1_grade": "E",
+      "v2_score": 45,
+      "v2_grade": "D",
+      "delta": 19.4,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "8410076610386",
+      "name": "נייטשר פרוטאין קרמל מלוח",
+      "v1_score": 37.0,
+      "v1_grade": "D",
+      "v2_score": 55,
+      "v2_grade": "C",
+      "delta": 18.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290112913487",
+      "name": "חטיף חלבון קרם אגוזים",
+      "v1_score": 28.0,
+      "v1_grade": "E",
+      "v2_score": 45,
+      "v2_grade": "D",
+      "delta": 17.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290119371112",
+      "name": "חטיף חלבון קרמל ואגוזים",
+      "v1_score": 41.0,
+      "v1_grade": "D",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "delta": 13.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290121161886",
+      "name": "חטיף חלבון בננה שוקולד",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v2_score": 61.9,
+      "v2_grade": "C",
+      "delta": 11.9,
+      "grade_move": 0,
+      "direction": "FLAT"
+    },
+    {
+      "barcode": "7290121160582",
+      "name": "חטיף חלבון חמאת בוטנים",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "delta": 4.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290121161916",
+      "name": "חטיף חלבון טריפל שוקולד",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "delta": 4.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290121161930",
+      "name": "חטיף חלבון טעם בננה טופי",
+      "v1_score": 46.0,
+      "v1_grade": "D",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "delta": 4.0,
+      "grade_move": 1,
+      "direction": "UP"
+    },
+    {
+      "barcode": "7290121166850",
+      "name": "חטיף חלבון וניל קראנץ'",
+      "v1_score": 54.1,
+      "v1_grade": "C",
+      "v2_score": 56.9,
+      "v2_grade": "C",
+      "delta": 2.8,
+      "grade_move": 0,
+      "direction": "FLAT"
+    },
+    {
+      "barcode": "7290117384589",
+      "name": "חטיף חלבון קרמל מלוח · טודיי",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "delta": 0.0,
+      "grade_move": 0,
+      "direction": "FLAT"
+    },
+    {
+      "barcode": "7290117384596",
+      "name": "חטיף חלבון פאי קינמון",
+      "v1_score": 50.0,
+      "v1_grade": "C",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "delta": 0.0,
+      "grade_move": 0,
+      "direction": "FLAT"
+    },
+    {
+      "barcode": "7290017516295",
+      "name": "חטיף חלבון אגוזי לוז",
+      "v1_score": 71.5,
+      "v1_grade": "B",
+      "v2_score": 68.6,
+      "v2_grade": "B",
+      "delta": -2.9,
+      "grade_move": 0,
+      "direction": "FLAT"
+    }
+  ],
+  "staging_json_sha256": "8d73a63bbe9d26e8f27c5cba495e9dd5350392a008c701ed15cc15241337accc",
+  "live_v1_sha256": "ab52b18cd889a51c41d49ded01cf0da1d8ed20db7b4d0717644d370ce74b2811",
+  "live_v1_untouched": true,
+  "orphan_live": [
+    {
+      "barcode": "7290119383153",
+      "name": "פרו חטיף חלבון שקד וקשיו",
+      "v1_score": 47.0,
+      "v1_grade": "D"
+    },
+    {
+      "barcode": "7290119383160",
+      "name": "פרו חטיף חלבון שוקו קרמל",
+      "v1_score": 41.0,
+      "v1_grade": "D"
+    }
+  ],
+  "corpus_not_live": [
+    {
+      "barcode": "7290015130028",
+      "name": "WIN חטיף חלבון קרם חלב",
+      "v2_score": 51.5,
+      "v2_grade": "C",
+      "brand": "חטיף חלב WIN"
+    },
+    {
+      "barcode": "7290015130035",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "חטיף חלב WIN"
+    },
+    {
+      "barcode": "7290015130042",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "חטיף חלב WIN"
+    },
+    {
+      "barcode": "7290018043134",
+      "name": "אול אין שוק.לבן עוגיות",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290018043899",
+      "name": "אול אין בוטנים קרמל",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290018703076",
+      "name": "אול אין דאבל שוקולד",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290018703304",
+      "name": "אול אין קרם עוגיות",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290018703984",
+      "name": "עוגיית חלבון שוקולד צ'יפ",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290018703991",
+      "name": "עוגיית חלבון דאבל שוקולד",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290019310235",
+      "name": "אול אין ונילה קראנץ",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290019401018",
+      "name": "חטיף פרוטאין קרם עוגיות",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "פרוטאין"
+    },
+    {
+      "barcode": "7290019401049",
+      "name": "חטיף פרוטאין שוקולד קרמל",
+      "v2_score": 54,
+      "v2_grade": "C",
+      "brand": "פרוטאין"
+    },
+    {
+      "barcode": "7290019401544",
+      "name": "חטיף פרוטאין עוגיות טופי",
+      "v2_score": 49.7,
+      "v2_grade": "D",
+      "brand": "פרוטאין"
+    },
+    {
+      "barcode": "7290019766018",
+      "name": "אול איןחלבון סופט עוגיות",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290019766025",
+      "name": "אול אין סופט פיסטוק",
+      "v2_score": 55,
+      "v2_grade": "C",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290019766230",
+      "name": "חטיף חלבון אסטרה סופט",
+      "v2_score": 49.8,
+      "v2_grade": "D",
+      "brand": "all in"
+    },
+    {
+      "barcode": "7290112497994",
+      "name": "גרנולה פרוטאין+אגוזים",
+      "v2_score": 70,
+      "v2_grade": "B",
+      "brand": "תלמה"
+    },
+    {
+      "barcode": "7290117384572",
+      "name": "חטיף חלבון קרם עוגיות",
+      "v2_score": 50,
+      "v2_grade": "C",
+      "brand": "טודיי"
+    },
+    {
+      "barcode": "7290119371129",
+      "name": "חטיף חלבון שוקולד עוגיות",
+      "v2_score": 55,
+      "v2_grade": "C",
+      "brand": "פרו שטראוס"
+    }
+  ],
+  "gate_summary": {
+    "G1_SCHEMA": "PASS",
+    "G2_COVERAGE": "PASS",
+    "G3_SCOPE": "PASS",
+    "G4_OFF": "PASS",
+    "G5_GRADE_INTEGRITY": "PASS",
+    "G6_COPY_SAFETY": "PASS",
+    "G7_PARITY": "PASS",
+    "G8_DATA_SANITY": "PASS",
+    "G9_INVERSION_INVARIANT": "FAIL_47_pairs",
+    "_note": "G9 FAIL is expected for a sub-lens category: protein_bar weights intentionally rank protein-profile quality higher than cross-category sugar/satfat comparisons. This is a finding for the co-sign packet, not a scoring defect."
+  }
+}

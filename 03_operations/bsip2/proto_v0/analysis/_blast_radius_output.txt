@@ -1,0 +1,47 @@
+=== DEDUP INVERSION SCAN ===
+Pattern: sub-record wins dedup race over top-level stated_pct record
+Gold set: 67 products
+
+AFFECTED: 7290013433107 (גרנולה חלבה תמר קשיו) tier=T1
+  Label: tahini
+    WINNER: pos=3 stated=None ew=0.6800 is_sub=True
+    LOSER (top-level with stated_pct): pos=6 stated=4.0 ew=0.0400
+    Effect: position-weight 0.6800 used instead of stated 0.0400
+    Winner record: טחינה
+AFFECTED: 481180 (לחם מחמצת שאור) tier=T3
+  Label: refined_wheat_flour
+    WINNER: pos=3 stated=None ew=0.6800 is_sub=True
+    LOSER (top-level with stated_pct): pos=1 stated=40.0 ew=0.4000
+    Effect: position-weight 0.6800 used instead of stated 0.4000
+    Winner record: קמח חיטה לבן (מכיל גלוטן)
+
+Total affected in gold set (67): 2
+
+=== BROADER BREAD CORPUS SCAN ===
+  real_bread_retail_003_v1_20260525T194532_bsip0_raw.json: 258 products
+
+Total affected in broader bread corpus: 0
+
+=== GATE-PAIR IMPACT CHECK ===
+  GATE PAIR AFFECTED: 481180 (לחם מחמצת שאור) in pair RP-06
+    pair: 379142 vs 481180
+    reason: 100% of flour whole (56% of product) > 25% of flour whole (15% of product)
+  GATE PAIR AFFECTED: 481180 (לחם מחמצת שאור) in pair RP-11
+    pair: 7290112968807 vs 481180
+    reason: 37% whole flour > 25% whole flour (of total flour, but product-level also higher
+  GATE PAIR AFFECTED: 481180 (לחם מחמצת שאור) in pair RP-16
+    pair: 6451521 vs 481180
+    reason: קמח שיפון מלא 70% of total flour (declared) > קמח חיטה לבן 75% of total flour (d
+
+=== PROPOSED FIX (description only — not implemented) ===
+The dedup comparator in extract_all_markers_v4() uses effective_weight:
+  ew = stated_pct/100 if stated_pct else pos_weight(position)
+This means pos_weight(3)=0.68 beats stated_pct=40%=0.40.
+The fix: stated_pct records should ALWAYS beat position-weight records,
+regardless of relative numeric magnitude.
+Corrected dedup rule:
+  1. If only one has stated_pct -> that wins unconditionally
+  2. If both have stated_pct -> higher stated_pct wins
+  3. If neither has stated_pct -> higher pos_weight wins
+This preserves the original intent (use stated_pct when available)
+and prevents sub-records from displacing parent top-level stated_pcts.

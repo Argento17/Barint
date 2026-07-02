@@ -8,6 +8,7 @@ import {
 export const cheeseCategoryDefinition: ComparisonCategoryDefinition = {
   id: "cheese",
   routePath: "/hashvaot/cheese",
+  nameHe: "גבינות",
   metadata: cheeseComparisonMetadata,
   getPageData: getCheesePageData,
   getCorpusPayload: getCheeseCorpusPayload,

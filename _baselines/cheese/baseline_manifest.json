@@ -1,0 +1,248 @@
+{
+  "slug": "cheese",
+  "generated_at": "2026-06-25T06:27:29+00:00",
+  "task": "TASK-395",
+  "description": "Baseline manifest: identifies the exact BSIP1 corpus dir, flag vector, and engine version that reproduce the committed live frontend JSON.",
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\cheese_frontend_v4.json",
+  "flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_D4_SCORE_V1": "on"
+  },
+  "shelf_rel": {
+    "nutrient": "fat_saturated_g",
+    "median": 16.05,
+    "scale": 2.0756,
+    "scale_type": "iqr"
+  },
+  "engine_version": "unknown",
+  "score_tolerance": 0.05,
+  "live_product_count": 53,
+  "reproduces": true,
+  "matched_count": 53,
+  "mismatched_count": 0,
+  "unmatched_count": 0,
+  "bsip1_file_hashes": {
+    "2824183": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_2824183.json",
+      "sha256": "f50f13c0cf3f357854f5df81d8e93349b16501992074eca08eda19ab83f425a0"
+    },
+    "2824640": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_2824640.json",
+      "sha256": "61bbdfad1ecfda530a40eb1a20768564feb8b96fc15c25025f0d699fc0a88035"
+    },
+    "2868996": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_2868996.json",
+      "sha256": "2dec522e627ffd1c22c8b2051f4df86088169c65355ed0d595e8f2fe902c72cc"
+    },
+    "3075850": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_3075850.json",
+      "sha256": "a1e00f194790869ca3e09c70240a47534df62c7e71f16f4f94d099419e033994"
+    },
+    "3523230065467": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_3523230065467.json",
+      "sha256": "45c7697110a0e2afc7af37ad1d2cfbe815dc53fe4d25dd246603dc765d9b3a17"
+    },
+    "4127077": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4127077.json",
+      "sha256": "888a898b6c72a92e6c0e2972ac4288d56fe4cad40e1e40e850fd6b8fcf9004d6"
+    },
+    "4127329": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4127329.json",
+      "sha256": "38e3f938cb2bc8f046cd0d67d64b08a971c7cc667f2d026ec52a9b4c1dea45bc"
+    },
+    "4127336": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4127336.json",
+      "sha256": "7313b4246e27b1d4ede8bd274c8206ed3c0dd6c5395aaa9f77b6b85cb820d2f4"
+    },
+    "4129101": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4129101.json",
+      "sha256": "9a88fbbac0786e0c12d99c336cd3185cec20ddfa0c1c19f211dd8c209d15aa47"
+    },
+    "4129118": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4129118.json",
+      "sha256": "8a65111eb8f07cea44823141f4c5e8ffb0e3cf55085b809196e2190dff3d00e3"
+    },
+    "4129156": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_4129156.json",
+      "sha256": "ade619d19bf1b86008ceedfae563cdf239513013d5aca6619b93a002d35f84fd"
+    },
+    "41445": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_41445.json",
+      "sha256": "5d7158154817bc98009f2afb10f5c8b2e49cec7efb70ba5da483c72d538adb4d"
+    },
+    "41452": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_41452.json",
+      "sha256": "d81143cf57b9848da51957ab833078f74242108334bbe33aafddd43448f4dd24"
+    },
+    "474502": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_474502.json",
+      "sha256": "58957d2787c1882dfef49c56a29b1b3158d18944969a1e9b89101552328a0492"
+    },
+    "554969": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_554969.json",
+      "sha256": "4a72232b547d8328f612b698f31fbf330f711c28d02c26046bb5be23309cac30"
+    },
+    "554976": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_554976.json",
+      "sha256": "ec93a922e1cff739d4cfd9455cd41a53ae82c73ffcf55266a4f64259a99258b7"
+    },
+    "554983": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_554983.json",
+      "sha256": "1a238bcf84be5aad2ffbaffeacfcedc852851fc5dd51b9c1c01de65a03b859a9"
+    },
+    "56272": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_56272.json",
+      "sha256": "baca7f683bd3612281fcc86e83e92ca8b2b3bd4fbe0ce62cc7371aa9a2fe9037"
+    },
+    "5992889": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_5992889.json",
+      "sha256": "9bff657472ea21c940f6555a7ba1be141ecc23c089503c5f8e8dc5721f80add0"
+    },
+    "6040619": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_6040619.json",
+      "sha256": "29a777cd2c6cada1fd8bddfc75369e09200f1629fe6f52510a472b506705fcec"
+    },
+    "6492852": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_6492852.json",
+      "sha256": "8a68d0e4d737a7a3dec79d41d7c2f1a95ad71d0c8e43c5768e4ef06ce8788b60"
+    },
+    "7290010945481": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290010945481.json",
+      "sha256": "7ecddbd19f37088745ea7107264f84c1dfb233c9da59334ac161c3d5533c9208"
+    },
+    "7290011194246": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290011194246.json",
+      "sha256": "dd51f2a18cc4580d9bc0310cb221bb1a3a468e7eff0bf28fa2f677292339fe46"
+    },
+    "7290011499624": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290011499624.json",
+      "sha256": "92f693d8f0a12adcf0d729454db0fc2505af0518b33ea014a4409dd3c15e0d9d"
+    },
+    "7290014758681": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290014758681.json",
+      "sha256": "2bbb5cefa818dc9efff20a11150b86722a68cd0a039cf48ceb33f88b4ad6951f"
+    },
+    "7290014759084": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290014759084.json",
+      "sha256": "f8fde1dc80eb9576f42bf6a82478c486357b819a611033d6201ce4ccfb9a36aa"
+    },
+    "7290014762831": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290014762831.json",
+      "sha256": "38bbf45fe8543b26f806ba7f8a5f070449e0983601bb26045c5b4f0fe33c2c93"
+    },
+    "7290019635116": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290019635116.json",
+      "sha256": "5c136f4791550bd03c7c93e9b1b56b3f960b690073ade720fb177d111d5dc21f"
+    },
+    "7290019635369": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290019635369.json",
+      "sha256": "df93cb9a2673e4db0e53a58675b5fe1a7a9462b645a073a205a00ca4338a580a"
+    },
+    "7290019635376": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290019635376.json",
+      "sha256": "76e3aad6bbf4c8e8098b5f68deececc0341c81ce379ca4e566968f5cd64d5c51"
+    },
+    "7290019635383": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290019635383.json",
+      "sha256": "bfffc6e00604a46ffa8accde51e14ac864869e70bc7e5f5313288c900d939dfd"
+    },
+    "7290019635581": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290019635581.json",
+      "sha256": "228c9530b6b152611a4e26516f2bbfdf33e6be152d0251db58a625eb62ec24c9"
+    },
+    "7290102393268": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290102393268.json",
+      "sha256": "b0e4a54977a5dffa4d3185dc848b7348c8ab050d7a3af7b9caf81206a084840e"
+    },
+    "7290108502541": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290108502541.json",
+      "sha256": "bf48d40c3044ece413fc3f3006ae7c635963b4709b5904bbae08f4d151e33033"
+    },
+    "7290108504378": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290108504378.json",
+      "sha256": "300eff617f499d5c9313a271685368bd1ea969cf932db966a529d9e3f7dc6ee5"
+    },
+    "7290108506624": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290108506624.json",
+      "sha256": "20f403d621dc29cbbb9ec800599217fd5090d34b4e6c9aea3505194cb38ab4c5"
+    },
+    "7290110321277": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290110321277.json",
+      "sha256": "d2625fa809c3ba22fbad4b76e0cfc4313a997ba201a7da2c5a240350768f71cd"
+    },
+    "7290112342102": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290112342102.json",
+      "sha256": "04a252a4316a0de72904b508a357669018986eab18036a233107a064769c8003"
+    },
+    "7290114310918": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290114310918.json",
+      "sha256": "b0ffa73e4e43c7324cf7503edbd545a3c0773166fcc6dcac0409e2c51c2a98a3"
+    },
+    "7290114311472": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290114311472.json",
+      "sha256": "719c75808e286d3beb34b0fd23effc13d7dfca08132ef7b2a2cd2aec292d907f"
+    },
+    "7290116931241": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116931241.json",
+      "sha256": "895d3994e824a3e62af0b0716528bbb9e13c697e1485557dda5490c5dbc3ca7e"
+    },
+    "7290116931982": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116931982.json",
+      "sha256": "63f3c9f2c36f5876f371a2a047a4acd11787f4650bef07dc653ae0a34db2cbbc"
+    },
+    "7290116932644": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116932644.json",
+      "sha256": "739d66487687cd4c32bddc72b9e019eab877a5001023ab3c702be1e4c772da9e"
+    },
+    "7290116933078": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116933078.json",
+      "sha256": "1ff0e9af80e4dca3bc90692b87e185bbba611421c7e9949435b8501fcce6ec34"
+    },
+    "7290116934280": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116934280.json",
+      "sha256": "383c5d675e42e4683ca240f7273ba6186fd1e4118051adfebbf364500e35c623"
+    },
+    "7290116934365": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116934365.json",
+      "sha256": "869ff1b12710ba2d9ff2ae933281b735b2e5449fa3ab4581664dd44b6251002f"
+    },
+    "7290116935409": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116935409.json",
+      "sha256": "d35987b481e76f61eece57d44155977edc8a4a2dbc36cfcaae67f0aefbda9b0f"
+    },
+    "7290116936604": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290116936604.json",
+      "sha256": "dff20d367177ff710fb3b5c8685d4812089afa3650cb3312c068ba1ca3222112"
+    },
+    "7290119375219": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7290119375219.json",
+      "sha256": "9a6c9fcbfd519199a145a90d69db7a2278da775b48283dfa16c25e82af8f2a85"
+    },
+    "7296073453123": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7296073453123.json",
+      "sha256": "1b61d819a2b32197c6bc8af84195365c14a459408bebaf902989766c35dacb79"
+    },
+    "7622201139278": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7622201139278.json",
+      "sha256": "3ce4e574ce72f30b00c70599dc95862f427dc9d4c2979b8a6f24641aa24dc2d0"
+    },
+    "7622201521493": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7622201521493.json",
+      "sha256": "9503a37aa027c3a6b6102e81afc4c265c3dcfd36a4329316ce9a37216855d1fd"
+    },
+    "7622201798154": {
+      "path": "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output\\bsip1_7622201798154.json",
+      "sha256": "aade8b6320f37af59e61cabb8f27c855e45aff7d3626d91b1f060e26f41192a2"
+    }
+  },
+  "verdict": "REPRODUCES",
+  "verified_at": "2026-06-25T06:27:29+00:00"
+}

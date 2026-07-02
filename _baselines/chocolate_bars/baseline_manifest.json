@@ -1,0 +1,49 @@
+{
+  "slug": "chocolate_bars",
+  "generated_at": "2026-06-25T00:00:00Z",
+  "task": "TASK-391",
+  "description": "Baseline manifest for chocolate_bars (countlines). Shared BSIP0/BSIP1/BSIP2 corpus with chocolate_tablets — both come from choc_bsip0_raw_20260621T093256.json (146 raw, Shufersal), run through fresh_rescore_task391.py to produce 121 scored products. The chocolate_bar subpool (29 products) is selected by classify_chocolate() on product name: countline brand patterns (Snickers/Twix/KitKat/Pausa/Click/Kit-Kat). Live page displays 23/29 bars; 6 not displayed (corpus_not_displayed). BSIP0 sha256: f2bf44c08c57c77e4b6c1ef7ab0c0cecda453ac871b22b8ae5085a938f025929. OFF check PASS.",
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\fresh_rescore_task391_20260624_113405\\output",
+  "bsip2_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\fresh_rescore_task391_20260624_113405\\products",
+  "bsip0_raw": "C:\\Bari\\02_products\\chocolate\\bsip0_outputs\\choc_bsip0_raw_20260621T093256.json",
+  "bsip0_sha256": "f2bf44c08c57c77e4b6c1ef7ab0c0cecda453ac871b22b8ae5085a938f025929",
+  "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\chocolate_bars_frontend_v1.json",
+  "baseline_sha256": "65be964121ba13ab833ebdc418e65a6f3a41b98d6d70b3020affd64a6cfc8731",
+  "flag_vector": {
+    "BARI_GLASSBOX_W4": "on",
+    "BARI_FIBER_FERMENT_V1": "on",
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_RECAL_P0": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_PROTEIN_BAR_V1": "off"
+  },
+  "shelf_rel": null,
+  "engine_version": "proto_v0 (score_engine.py) v0.4.1",
+  "subpool": "chocolate_bar",
+  "subpool_classifier": "classify_chocolate() in plausibility_gate.py — countline brand detection on name_he",
+  "total_run_scored": 121,
+  "subpool_product_count": 29,
+  "live_product_count": 23,
+  "corpus_not_displayed": [
+    "5000159561945",
+    "5000159560498",
+    "7290112494221",
+    "7290116532028",
+    "5000159557689",
+    "5000159559461"
+  ],
+  "verdict": "PASS",
+  "notes": [
+    "Shared BSIP1/BSIP2 run with chocolate_tablets (run_id: fresh_rescore_task391_20260624_113405).",
+    "Bar/tablet split determined by classify_chocolate() on name_he — NOT a field in BSIP1 files.",
+    "6 bars in corpus not displayed on live page (CORPUS_NOT_DISPLAYED); reason not recorded in run manifest.",
+    "All products sourced from Shufersal direct scrape; OFF check PASS.",
+    "BARI_SHELF_RELATIVE_V1=on but shelf_rel calibration block is null — enrollment is by engine constants scope, not this flag alone."
+  ],
+  "verified_at": "2026-06-25T00:00:00Z"
+}

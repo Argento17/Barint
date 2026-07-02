@@ -1,0 +1,2028 @@
+{
+  "_meta": {
+    "version": "protein-bars_frontend_v2_candidate",
+    "category": "protein-bars",
+    "product_count": 32,
+    "generated": "2026-06-25T06:49:26.022357+00:00",
+    "copy_status": "COMPLETE",
+    "engine_unchanged": true,
+    "off_check": "PASS - no Open Food Facts",
+    "source_run": "run_pb_standard_20260625_062614",
+    "source_staging": "C:\\Bari\\02_products\\snack_bars\\staging\\run_pb_standard_20260625_062614\\staging_protein_bars_frontend.json",
+    "excluded_barcodes": [
+      "7290112497994"
+    ],
+    "exclusion_reason": "7290112497994 (תלמה גרנולה) excluded: category=snack_bar_granola but product form is a granola tub, not a protein bar; included in 33-corpus only via 'פרוטאין' in name; Product co-sign = scope interloper",
+    "schema_version": "v1-compat",
+    "confidence_note": "All 32 products confidence=partial. Ingredient lists not extracted (ingredient_list=[] on all 33 corpus products). רמת עיבוד is proxy-only. Scores reflect verified nutrition panel.",
+    "lens": "BARI_PROTEIN_BAR_V1",
+    "task": "TASK-399",
+    "approvals": {
+      "nutrition_agent": "APPROVE-WITH-CONDITIONS 2026-06-25",
+      "product_agent": "GO 2026-06-25",
+      "owner": "SIGNED_OFF 2026-06-25"
+    }
+  },
+  "categoryNote": {
+    "status": "COMPLETE",
+    "type": "category_caveat",
+    "label_he": "הערת קטגוריה",
+    "body_he": [
+      "בקטגוריה זו הציון נמדד דרך עדשת חלבון: חלבון וסיבים מרימים ציון, ולכן חטיף עם חלבון וסיבים גבוהים יכול לעקוף חטיף עם פחות סוכר — כל עוד הסוכר לא חורג מסף האזהרה. זו עדשה מכוונת, לא דירוג תזונה כללי. רוב החטיפים כאן בנויים דומה מאוד, ולכן חלקם נוחתים על אותו ציון בדיוק — הפירוט מצביע על ההבדל הקטן שכן קיים בכל אחד.",
+      "רשימות הרכיבים מוצגות בפירוט המוצר, אך ניתוח רמת העיבוד מבוסס על הערכה בלבד ולא על ניתוח מבני מלא — לכן רמת הביטחון חלקית לכל 32 המוצרים. הציון משקף את תווית התזונה שאומתה."
+    ],
+    "_content_lane_note": "Content Agent to fill both body_he entries. Disclosure (a) = protein-lens trade-off. Disclosure (b) = ingredient data gap + medium confidence implication.",
+    "_governance_ref": "TASK-399 G9 waiver + BARI_PROTEIN_BAR_V1 sub-lens"
+  },
+  "products": [
+    {
+      "id": "prot-001",
+      "barcode": "7290017516295",
+      "name": "חטיף חלבון אגוזי לוז",
+      "name_he": "חטיף חלבון אגוזי לוז",
+      "brand": "פנגיאה",
+      "score": 68.6,
+      "grade": "B",
+      "rank": 1,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHG54_Z_P_7290017516295_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHG54_Z_P_7290017516295_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 369.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 1.8,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 29.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 17.0,
+        "dietary_fiber_g": 13.0,
+        "protein_g": 27.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "היחיד ב-B במדף — חלבון וסיבים יחד, בלי עומס שומן רווי",
+      "rowVerdict": "הוא מוביל כאן בזכות צפיפות חלבון וסיבים יחד עם שומן רווי נמוך יחסית — פרופיל שקשה למצוא בחטיפי חלבון. הסוכר לא נמוך; זה מה שמונע ממנו לעלות עוד.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 27.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 369.0,
+          "protein": 27.0,
+          "sugar": 17.0,
+          "fat": 17.0,
+          "fiber": 13.0,
+          "sodium": 29.0
+        },
+        "ingredients": "סירופ סיבי עולש, חלבון אפונה (33%), אגוזי לוז טחונים (51%), תמרים, אבקת קקאו (8.4%), חומר הלחה (גליצרול), מווסת חומציות (חומצה ציטרית), חומר משמר (פוטסיום סורבט). מאפיינים נוספים ללא ממתיקים, ללא תוספת פוספט, עשיר בחלבונים מכיל אגוזי לוז עלול להכיל בוטנים, שקדים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "מדורג ראשון ב-32 חטיפי חלבון — הציון היחיד ב-B, בעיקר בזכות 27 גרם חלבון ו-13 גרם סיבים עם שומן רווי נמוך.",
+        "positiveSignals": [
+          "יחס חלבון-סיבים חזק — שני הצירים שהעדשה מעדיפה",
+          "שומן רווי נמוך יחסית לקטגוריה",
+          "נתרן נמוך — 29 מ\"ג ל-100 גרם"
+        ],
+        "limitingFactors": [
+          {
+            "text": "17 גרם סוכר ל-100 גרם — לא נמוך, וזה מה שמגביל את הציון",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-002",
+      "barcode": "7290121161886",
+      "name": "חטיף חלבון בננה שוקולד",
+      "name_he": "חטיף חלבון בננה שוקולד",
+      "brand": "טודיי",
+      "score": 61.9,
+      "grade": "C",
+      "rank": 2,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RED52_Z_P_7290121161886_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RED52_Z_P_7290121161886_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 362.0,
+        "fat_g": 6.2,
+        "fat_saturated_g": 4.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 387.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 12.0,
+        "dietary_fiber_g": 19.0,
+        "protein_g": 36.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "חלבון וסיבים ברמה של מוביל — אבל הנתרן בולט",
+      "rowVerdict": "36 גרם חלבון ו-19 גרם סיבים — שילוב נדיר במדף, ולכן הוא שני למרות C. המחיר: נתרן של 387 מ\"ג ל-100 גרם, גבוה מהרבה חטיפים כאן.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 36.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 362.0,
+          "protein": 36.0,
+          "sugar": 12.0,
+          "fat": 6.2,
+          "fiber": 19.0,
+          "sodium": 387.0
+        },
+        "ingredients": "תערובת חלבונים (41%) [חלבון סויה מבודד, חלבון חלב מרוכז, חלבון מי גבינה מבודד (חלב) (2.1%), חלבון מי גבינה מרוכז (חלב) (1.9%), חלבון אורז], חומר מילוי (פולידקסטרוז), חומר הלחה (גליצרול), ציפוי בטעם שוקולד מריר (9%) [סוכר לבן, שמן גרעיני דקלים מזוכך, אבקת קקאו, מתחלב (לציטין חמניות), מלח שולחן] ממתק בטעם שוקולד (5.5%) (סוכר לבן, עיסת קקאו, חמאת קקאו), עמילן טפיוקה, אינולין, אוליגופרוקטוז, שבבי בננה מיובשת (2%), מים, שמן חמניות מזוכך, קרמל (0.8%) (סוכר קנים גולמי, מים), חומרי טעם וריח, מלח שולחן, מקריש (אגר), מתחלב (לציטין חמניות), מונע התגיישות (קלציום קרבונט",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שני במדף. החלבון והסיבים הגבוהים ביותר בקטגוריה — אבל גם הנתרן מהגבוהים.",
+        "positiveSignals": [
+          "36 גרם חלבון — הגבוה ביותר במדף",
+          "19 גרם סיבים — הגבוה ביותר במדף",
+          "סוכר מתון יחסית לחלבון הגבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "387 מ\"ג נתרן ל-100 גרם — גבוה מהממוצע במדף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-003",
+      "barcode": "7290121166850",
+      "name": "חטיף חלבון וניל קראנץ'",
+      "name_he": "חטיף חלבון וניל קראנץ'",
+      "brand": "טודיי",
+      "score": 56.9,
+      "grade": "C",
+      "rank": 3,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YNB48_Z_P_7290121166850_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YNB48_Z_P_7290121166850_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 365.0,
+        "fat_g": 5.5,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 385.0,
+        "carbohydrates_g": 37.0,
+        "sugars_g": 16.0,
+        "dietary_fiber_g": 11.0,
+        "protein_g": 36.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "חלבון גבוה, אבל סוכר ונתרן מורידים אותו מהפסגה",
+      "rowVerdict": "גם כאן 36 גרם חלבון — אותה חוזקה כמו בננה-שוקולד — אבל 16 גרם סוכר ו-385 מ\"ג נתרן מחלישים את הפרופיל. C הגיוני: חלבון חזק, איזון פחות.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 36.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 365.0,
+          "protein": 36.0,
+          "sugar": 16.0,
+          "fat": 5.5,
+          "fiber": 11.0,
+          "sodium": 385.0
+        },
+        "ingredients": "תערובת חלבונים (45.2%) ]תערובת חלבון סויה )חלבון סויה מבודד, עמילן טפיוקה, מלח שולחן(, תערובת חלבוני מי גבינה )חלבון מי גבינה מבודד )חלב()4.4%(, חלבון מי גבינה מרוכז )חלב( )4.0%(, עמילן טפיוקה, מתחלב )לציטין חמניות(, מונע התגיישות )קלציום קרבונט((, חלבון חלב מרוכז )5.4%([, ציפוי בטעם שוקולד לבן (11.8%) ]סוכר לבן, שמן גרעיני דקלים מזוכך, חומר טעם וריח, מתחלב )לציטין חמניות(, מלח שולחן[, פצפוצי אורז )10%( ]אורז מלא, מתחלב )לציטין חמניות(, סירופ טפיוקה )עמילן טפיוקה, מים(, סיבי טפיוקה מסיסים, חומר הלחה )גליצרול(, מים, אינולין, שמן חמניות מזוכך, חומרי טעם וריח, מקריש )אגר(, אבקת תערובת חלבון ביצה ]חלבון ביצה, מווסת חומציות )חומצה ציטרית(, שמרים[, מלח שולחן",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שלישי במדף. חלבון ברמת מוביל, אבל סוכר ו-385 מ\"ג נתרן — גבוהים יותר מהגרסה הבננה-שוקולד.",
+        "positiveSignals": [
+          "36 גרם חלבון — בין הגבוהים במדף",
+          "11 גרם סיבים — מעל הממוצע"
+        ],
+        "limitingFactors": [
+          {
+            "text": "16 גרם סוכר ל-100 גרם — גבוה יותר מרוב חטיפי החלבון כאן",
+            "magnitude": 2
+          },
+          {
+            "text": "385 מ\"ג נתרן ל-100 גרם",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-004",
+      "barcode": "7290019766025",
+      "name": "אול אין סופט פיסטוק",
+      "name_he": "אול אין סופט פיסטוק",
+      "brand": "all in",
+      "score": 55,
+      "grade": "C",
+      "rank": 4,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHI54_Z_P_7290019766025_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHI54_Z_P_7290019766025_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 385.0,
+        "fat_g": 18.2,
+        "fat_saturated_g": 9.4,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 217.0,
+        "carbohydrates_g": 39.4,
+        "sugars_g": 4.6,
+        "dietary_fiber_g": 4.7,
+        "protein_g": 27.4
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "סוכר נמוך — אבל שומן רווי כבד מונע עלייה",
+      "rowVerdict": "4.6 גרם סוכר בלבד — אחד הנמוכים במדף, עם חלבון סביר. הבעיה: 9.4 גרם שומן רווי ל-100 גרם, וזה מה שמחזיק את הציון ב-C.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 27.4,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 385.0,
+          "protein": 27.4,
+          "sugar": 4.6,
+          "fat": 18.2,
+          "fiber": 4.7,
+          "sodium": 217.0
+        },
+        "ingredients": "תערובת חלבונים 21.5% (חלבון חלב איזולט, חלבון מי גבינה איזולט), ממתיקים (מלטיטול, סירופ מלטיטול, סוכרלוז), חומר הלחה (גליצרול), חמאת קקאו, אבקת חלב מלא, הידרוליזט גלוטן חיטה, חומר מילוי (פולידקסטרוז), פיסטוק 2.8%, סיבי תירס מסיסים, שמן סויה, חומרי טעם וריח , מלח, מתחלב (לציטין סויה), צבע מאכל (תרכובות נחושת של כלורופילינים)",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "מדורג רביעי. פרופיל סוכר-נמוך עם חלבון טוב, אבל שומן רווי גבוה מעכב.",
+        "positiveSignals": [
+          "4.6 גרם סוכר — מהנמוכים במדף",
+          "27 גרם חלבון — מעל הממוצע"
+        ],
+        "limitingFactors": [
+          {
+            "text": "9.4 גרם שומן רווי ל-100 גרם — גבוה יחסית",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-005",
+      "barcode": "7290119371129",
+      "name": "חטיף חלבון שוקולד עוגיות",
+      "name_he": "חטיף חלבון שוקולד עוגיות",
+      "brand": "פרו שטראוס",
+      "score": 55,
+      "grade": "C",
+      "rank": 5,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCW52_Z_P_7290119371129_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCW52_Z_P_7290119371129_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 428.0,
+        "fat_g": 22.0,
+        "fat_saturated_g": 13.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 190.0,
+        "carbohydrates_g": 32.0,
+        "sugars_g": 3.9,
+        "dietary_fiber_g": 5.4,
+        "protein_g": 28.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "סוכר נמוך וחלבון טוב — השומן הרווי הוא העיכוב",
+      "rowVerdict": "3.9 גרם סוכר ו-28 גרם חלבון — שילוב נקי על הנייר. אבל 13 גרם שומן רווי ל-100 גרם — מהגבוהים במדף — ולכן C, לא יותר.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 28.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 428.0,
+          "protein": 28.0,
+          "sugar": 3.9,
+          "fat": 22.0,
+          "fiber": 5.4,
+          "sodium": 190.0
+        },
+        "ingredients": "חלבוני חלב (24%), ממתיק (מלטיטול), חומר הלחה (גלצירול), אבקת חלב, שברי עוגיות קקאו (8.4%) [עמילן תפוח אדמה, קמח תירס, ממתיק (מלטיטול ), חמאה, אבקת קקאו מופחתת שומן (0.6%), קמח אורז, שומן חלב, ממתיק (אריתריטול), ממתיק (איזומאלט), מייצב (-E1412), עמילן טפיוקה, סיבים תזונתיים, מלח, חומרי טעם וריח, מיצוי וניל, מתפיח (E-500ii), חמאת קקאו, שומן חלב, סיבים תזונתיים, מים, אבקת קקאו מופחתת שומן, שמנים ושומנים מהצומח, מלח, מתחלב (לציטין סויה), חומרי טעם וריח, ממתיק (סוכרלוז). מכיל חלב, אגוזי קשיו, אגוזי לוז, אגוזי פקאן, שקדים, פיסטוק עלול להכיל ביצים, גלוטן חיטה, גלוטן שיבולת שועל",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "חמישי במדף, יחד עם עוד חטיפים ב-55. סוכר נמוך, אבל שומן רווי מהגבוהים בקטגוריה.",
+        "positiveSignals": [
+          "3.9 גרם סוכר — נמוך",
+          "28 גרם חלבון — חזק"
+        ],
+        "limitingFactors": [
+          {
+            "text": "13 גרם שומן רווי ל-100 גרם — מהגבוהים במדף",
+            "magnitude": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-006",
+      "barcode": "8410076610379",
+      "name": "נייטשר פרוטאין שוקולד",
+      "name_he": "נייטשר פרוטאין שוקולד",
+      "brand": "נייטשר וואלי",
+      "score": 55,
+      "grade": "C",
+      "rank": 6,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WHO52_Z_P_8410076610379_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WHO52_Z_P_8410076610379_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 489.0,
+        "fat_g": 28.3,
+        "fat_saturated_g": 7.4,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 375.0,
+        "carbohydrates_g": 27.5,
+        "sugars_g": 17.2,
+        "dietary_fiber_g": 11.0,
+        "protein_g": 25.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "חלבון וסיבים טובים — אבל 17 גרם סוכר, לא חטיף דל-סוכר",
+      "rowVerdict": "17.2 גרם סוכר ל-100 גרם — זה הרבה, וזה התנאי כאן. החלבון (25 גרם) והסיבים (11 גרם) הם שמרימים אותו בכל זאת ל-C ב-55, למרות הסוכר — לא בזכות סוכר נמוך. אל תקראו את ה-C כאילו זה חטיף דל-סוכר.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 25.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 489.0,
+          "protein": 25.0,
+          "sugar": 17.2,
+          "fat": 28.3,
+          "fiber": 11.0,
+          "sodium": 375.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (37.3%), שמן צמחי], חלבון סויה (14.5%), סיבים תזונתיים (אוליגופרוקטוז) (9.5%), סירופ גלוקוזה, שמנים ושומנים צמחיים, סוכר לבן, שבבי שוקולד מריר (4%), מלטודקסטרין, מחית בוטנים (1.9%), אבקת קקאו מופחת שומן, עמילן טפיוקה, פרוקטוז, לקטוז, חומר הלחה (גליצרול), מתחלבים (לציטין) (סויה), מלח, חומרי טעם וריח. המוצר מכיל 14% ציפוי בטעם שוקולד. מכיל בוטנים, חלב, סויה עלול להכיל אגוזי לוז, אגוזי מלך, אגוזי קשיו, אגוזי פקאן, אגוזים, שקדים, פיסטוק, אגוזי מקדמיה, צנוברים, אגוז ברזיל, אגוזי קוקוס, ערמונים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שישי במדף. חלבון וסיבים חזקים, אבל פרופיל סוכר גבוה וקלוריות גבוהות — 489 קל ל-100 גרם.",
+        "positiveSignals": [
+          "25 גרם חלבון — מעל הממוצע",
+          "11 גרם סיבים — טוב"
+        ],
+        "limitingFactors": [
+          {
+            "text": "17.2 גרם סוכר ל-100 גרם — גבוה; זה לא חטיף דל-סוכר",
+            "magnitude": 3
+          },
+          {
+            "text": "489 קל ל-100 גרם — מהצפופים קלורית במדף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-007",
+      "barcode": "8410076610386",
+      "name": "נייטשר פרוטאין קרמל מלוח",
+      "name_he": "נייטשר פרוטאין קרמל מלוח",
+      "brand": "נייטשר וואלי",
+      "score": 55,
+      "grade": "C",
+      "rank": 7,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WHV50_Z_P_8410076610386_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WHV50_Z_P_8410076610386_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 496.0,
+        "fat_g": 29.5,
+        "fat_saturated_g": 7.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 354.0,
+        "carbohydrates_g": 26.3,
+        "sugars_g": 16.1,
+        "dietary_fiber_g": 10.8,
+        "protein_g": 26.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "16 גרם סוכר — חלבון טוב, אבל לא מותר לשכוח את הסוכר",
+      "rowVerdict": "26 גרם חלבון ו-10.8 גרם סיבים נותנים C ב-55, למרות 16.1 גרם סוכר ל-100 גרם. הסוכר הגבוה הוא התנאי — לא חטיף לבחירה אם מחפשים דל-סוכר.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 26.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 496.0,
+          "protein": 26.0,
+          "sugar": 16.1,
+          "fat": 29.5,
+          "fiber": 10.8,
+          "sodium": 354.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (43%), שמן צמחי], חלבון סויה (11.3%), סיבים תזונתיים (אוליגופרוקטוז) (8.7%), שמנים ושומנים צמחיים, סירופ גלוקוזה, סוכר לבן, אבקת מוצקי מי גבינה, מלטודקסטרין, פרוקטוז, חומר הלחה (גליצרול), עמילן טפיוקה, אבקת קרמל (0.84%) (סוכר לבן, אבקת חלב רזה), אבקת חלב רזה, מתחלבים (לציטין) (סויה), מלח, חומרי טעם וריח, שקדים קלויים, אבקת קקאו מופחת שומן. המוצר מכיל 14% ציפוי בטעם קרמל מלוח. מכיל בוטנים, חלב, סויה, שקדים עלול להכיל אגוזי לוז, אגוזי מלך, אגוזי קשיו, אגוזי פקאן, פיסטוק, אגוזי מקדמיה, אגוז ברזיל, צנוברים, אגוזי קוקוס, ערמונים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שביעי במדף. דומה לגרסת השוקולד — חלבון וסיבים מרימים, סוכר גבוה וקלוריות גבוהות מגבילים.",
+        "positiveSignals": [
+          "26 גרם חלבון — חזק",
+          "10.8 גרם סיבים — טוב"
+        ],
+        "limitingFactors": [
+          {
+            "text": "16.1 גרם סוכר ל-100 גרם — גבוה; C בזכות חלבון+סיבים, לא בזכות סוכר נמוך",
+            "magnitude": 3
+          },
+          {
+            "text": "496 קל ל-100 גרם — מהגבוהים במדף",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-008",
+      "barcode": "7290015130035",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "name_he": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "score": 54,
+      "grade": "C",
+      "rank": 8,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIA36_Z_P_7290015130035_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIA36_Z_P_7290015130035_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 371.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 208.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 1.7,
+        "dietary_fiber_g": 8.2,
+        "protein_g": 31.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "סוכר כמעט אפסי — חלבון גבוה, C בגלל שומן רווי",
+      "rowVerdict": "1.7 גרם סוכר ו-31 גרם חלבון — אחד הפרופילים הנקיים במדף מבחינת סוכר. C כי 7.5 גרם שומן רווי וסיבים בינוניים מונעים ציון גבוה יותר.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 31.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 371.0,
+          "protein": 31.0,
+          "sugar": 1.7,
+          "fat": 17.0,
+          "fiber": 8.2,
+          "sodium": 208.0
+        },
+        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לציטין סויה), מלח, ממתיק (סוכלרוז). כלל מוצקי קקאו בשוקולד מינימום 39%, כלל מוצקי חלב בשוקולד מינימו ם 25%. מכיל חלב, שקדים, ביצים, דגים עלול להכיל אגוזים, בוטנים, סויה, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קבוצת 54 — WIN קרם קרמל. סוכר מהנמוך ביותר במדף, חלבון גבוה.",
+        "positiveSignals": [
+          "1.7 גרם סוכר — מהנמוך ביותר במדף",
+          "31 גרם חלבון — גבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7.5 גרם שומן רווי ל-100 גרם",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-009",
+      "barcode": "7290015130042",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "name_he": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "score": 54,
+      "grade": "C",
+      "rank": 9,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIH34_Z_P_7290015130042_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIH34_Z_P_7290015130042_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 374.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 208.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 2.3,
+        "dietary_fiber_g": 8.2,
+        "protein_g": 31.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "WIN קרמל — סוכר נמוך, חלבון גבוה, שומן רווי מגביל",
+      "rowVerdict": "2.3 גרם סוכר ו-31 גרם חלבון — פרופיל חלבוני-דל סוכר. C בגלל שומן רווי וסיבים לא מרשימים, לא בגלל חולשה בחלבון.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 31.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 374.0,
+          "protein": 31.0,
+          "sugar": 2.3,
+          "fat": 17.0,
+          "fiber": 8.2,
+          "sodium": 208.0
+        },
+        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לציטין סויה), מלח, ממתיק (סוכלרוז). כלל מוצקי קקאו בשוקולד מינימום 39%, כלל מוצקי חלב בשוקולד מינימו ם 25%. מכיל ביצים, חלב, שקדים, דגים עלול להכיל אגוזים, בוטנים, סויה, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "וריאנט WIN קרם קרמל — כמעט זהה לווריאנט הקרם האחר, סוכר מעט גבוה יותר.",
+        "positiveSignals": [
+          "2.3 גרם סוכר — נמוך מאוד",
+          "31 גרם חלבון — גבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7 גרם שומן רווי ל-100 גרם",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-010",
+      "barcode": "7290018703984",
+      "name": "עוגיית חלבון שוקולד צ'יפ",
+      "name_he": "עוגיית חלבון שוקולד צ'יפ",
+      "brand": "all in",
+      "score": 54,
+      "grade": "C",
+      "rank": 10,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFP58_Z_P_7290018703984_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFP58_Z_P_7290018703984_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 369.0,
+        "fat_g": 15.0,
+        "fat_saturated_g": 6.8,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 300.0,
+        "carbohydrates_g": 41.0,
+        "sugars_g": 2.5,
+        "dietary_fiber_g": 3.0,
+        "protein_g": 25.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "עוגיית חלבון — סוכר נמוך, סיבים דלים",
+      "rowVerdict": "2.5 גרם סוכר ו-25 גרם חלבון — טוב לסוכר, בינוני לחלבון. 3 גרם סיבים בלבד — חלש בעדשת החלבון+סיבים — ולכן C.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 25.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 369.0,
+          "protein": 25.0,
+          "sugar": 2.5,
+          "fat": 15.0,
+          "fiber": 3.0,
+          "sodium": 300.0
+        },
+        "ingredients": "חלבון חלב מרוכז, חומר הלחה (גליצרין צמחי), ממתיק (מלטיטול), שבבי שוקולד מריר עם ממתיק (9%) [מסת קקאו, ממתיק (מלטיטול), מתחלב (לציטין סויה), אבקת קקאו, חומרי טעם וריח], קמח חיטה (קמח חיטה, קלציום קרבונט, ברזל, ניאצין, תיאמין), הידרוליזד חלבון חיטה, שמן זית, שמן קוקוס, סיבי תירס, מייצב (אשלגן טרטרט), חומר תפיחה (סודיום ביקרבונט), חומרי טעם וריח. מכיל גלוטן, חלב, סויה, לקטוז עלול להכיל אגוזים, בוטנים, ביצים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קבוצת 54. פרופיל סוכר-נמוך, אבל סיבים נמוכים יחסית לחטיפים המובילים.",
+        "positiveSignals": [
+          "2.5 גרם סוכר — נמוך",
+          "25 גרם חלבון — סביר"
+        ],
+        "limitingFactors": [
+          {
+            "text": "3 גרם סיבים בלבד — נמוך לעדשת הקטגוריה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-011",
+      "barcode": "7290018703991",
+      "name": "עוגיית חלבון דאבל שוקולד",
+      "name_he": "עוגיית חלבון דאבל שוקולד",
+      "brand": "all in",
+      "score": 54,
+      "grade": "C",
+      "rank": 11,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFW56_Z_P_7290018703991_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFW56_Z_P_7290018703991_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 353.0,
+        "fat_g": 15.0,
+        "fat_saturated_g": 7.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 279.0,
+        "carbohydrates_g": 38.0,
+        "sugars_g": 2.5,
+        "dietary_fiber_g": 3.8,
+        "protein_g": 25.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "דאבל שוקולד — סוכר נמוך, סיבים לא מספיקים לעלייה",
+      "rowVerdict": "2.5 גרם סוכר, 25 גרם חלבון — דומה לגרסת הציפס. 3.8 גרם סיבים — מעט יותר, אבל עדיין לא מספיק כדי לבדל אותו מהקבוצה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 25.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 353.0,
+          "protein": 25.0,
+          "sugar": 2.5,
+          "fat": 15.0,
+          "fiber": 3.8,
+          "sodium": 279.0
+        },
+        "ingredients": "חלבון חלב מרוכז, חומר הלחה (גליצרין צמחי), ממתיק (מלטיטול), שבבי שוקולד מריר עם ממתיק (9%) [מסת קקאו, ממתיק (מלטיטול), מתחלב (לציטין סויה), אבקת קקאו, חומרי טעם וריח], קמח חיטה (קלציום קרבונט, ברזל, ניאצין, תיאמין), הידרוליזד חלבון חיטה, שמן זית, שמן קוקוס, אבקת קקאו, סיבי תירס, מייצב (אשלגן טרטרט), חומר תפיחה (סודיום ביקרבונט), חומרי טעם וריח. מכיל גלוטן, חלב, סויה, לקטוז עלול להכיל אגוזים, בוטנים, ביצים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "עוגיית חלבון דאבל שוקולד — פרופיל דומה לציפס, קלוריות מעט נמוכות יותר.",
+        "positiveSignals": [
+          "2.5 גרם סוכר — נמוך",
+          "353 קל ל-100 גרם — נמוך יחסית בקבוצה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "3.8 גרם סיבים — נמוך לעדשה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-012",
+      "barcode": "7290019401018",
+      "name": "חטיף פרוטאין קרם עוגיות",
+      "name_he": "חטיף פרוטאין קרם עוגיות",
+      "brand": "פרוטאין",
+      "score": 54,
+      "grade": "C",
+      "rank": 12,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIP42_Z_P_7290019401018_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XIP42_Z_P_7290019401018_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 357.0,
+        "fat_g": 12.0,
+        "fat_saturated_g": 5.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 92.0,
+        "carbohydrates_g": 32.0,
+        "sugars_g": 3.7,
+        "dietary_fiber_g": 3.9,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "34 גרם חלבון ונתרן נמוך — C כי הסיבים חלשים",
+      "rowVerdict": "34 גרם חלבון ונתרן נמוך (92 מ\"ג), עם 3.7 גרם סוכר ו-3.9 גרם סיבים בלבד. הסוכר נמוך והחלבון חזק, אבל הסיבים הדלילים הם שמחזיקים אותו ב-C.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 357.0,
+          "protein": 34.0,
+          "sugar": 3.7,
+          "fat": 12.0,
+          "fiber": 3.9,
+          "sodium": 92.0
+        },
+        "ingredients": "חלבון חלב מרוכז 26% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב : לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מרוכז ממותק (חלב ממותק(חלב מרוכז , סוכר) , שמן קוקוס , מייצב: גליצרול , חמאת קקאו , מתחלב: לציטין חמניות , מלח , מייצב פקטין , צבע מאכל: קרמל (E-150a) , חומר טעם טיבעי} , ממתיק: מלטיטול , חומר הלחה: שמן קנולה , אורז מעובד , 3.5% (קמח אורז,סוכר,שמן חמניות) , מים , מסמיך:אקציה גאם , מתחלב: מונו-ודיגליצרידים של חומצות שומן , חומר משמר: פוטסיום סורבט , חומרי טעם וריח , מעכב חימצון: תמצית טוקופרול",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "חטיף פרוטאין קרם עוגיות — חלבון גבוה, נתרן מהנמוך במדף.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה מאוד",
+          "92 מ\"ג נתרן — מהנמוך במדף"
+        ],
+        "limitingFactors": [
+          {
+            "text": "3.9 גרם סיבים — נמוך יחסית לחלבון הגבוה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-013",
+      "barcode": "7290019401049",
+      "name": "חטיף פרוטאין שוקולד קרמל",
+      "name_he": "חטיף פרוטאין שוקולד קרמל",
+      "brand": "פרוטאין",
+      "score": 54,
+      "grade": "C",
+      "rank": 13,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XJU46_Z_P_7290019401049_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XJU46_Z_P_7290019401049_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 362.0,
+        "fat_g": 13.0,
+        "fat_saturated_g": 5.7,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 92.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 3.6,
+        "dietary_fiber_g": 4.6,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "חלבון גבוה, נתרן נמוך — סיבים לא מרימים את הציון",
+      "rowVerdict": "34 גרם חלבון, 3.6 גרם סוכר, 92 מ\"ג נתרן — שלושה יתרונות. 4.6 גרם סיבים — לא מספיק כדי לעבור את רף ה-C הגבוה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 362.0,
+          "protein": 34.0,
+          "sugar": 3.6,
+          "fat": 13.0,
+          "fiber": 4.6,
+          "sodium": 92.0
+        },
+        "ingredients": "חלבון חלב מרוכז 24% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב: לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מרוכז ממותק (חלב ממותק (חלב מרוכז,סוכר) , שמן קוקוס , מייצב: גליצרול , חמאת קקאו , מתחלב: לציטין חמניות , מלח , מייצב פקטין , צבע מאכל : קרמל (E-150a) , חומר טעם טיבעי} , ממתיק: מלטיטול , חומר הלחה: גליצרול ,שמן קנולה , אורז מעובד , 3.5% (קמח אורז,סוכר,שמן חמניות) , מים , אבקת קקאו מופחת 1.8% (אבקת קקאו מופחת שומן , מווסת חומציות: פוטסיום קרבונט) , מסמיך:אקציה גאם , מתחלב: מונו-ודיגליצרידים של חומצות שומן , חומרי טעם וריח ,חומר משמר: פוטסיום סורבט , מעכב חימצון: תמצית טוקופרול",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שוקולד קרמל — אחד מזוג חטיפי פרוטאין עם נתרן נמוך וחלבון גבוה.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה מאוד",
+          "3.6 גרם סוכר — נמוך",
+          "92 מ\"ג נתרן — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "4.6 גרם סיבים — בינוני-נמוך לעדשה",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-014",
+      "barcode": "7290119371112",
+      "name": "חטיף חלבון קרמל ואגוזים",
+      "name_he": "חטיף חלבון קרמל ואגוזים",
+      "brand": "פרו שטראוס",
+      "score": 54,
+      "grade": "C",
+      "rank": 14,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCF44_Z_P_7290119371112_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCF44_Z_P_7290119371112_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 378.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 8.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 180.0,
+        "carbohydrates_g": 30.0,
+        "sugars_g": 3.7,
+        "dietary_fiber_g": 4.9,
+        "protein_g": 33.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "33 גרם חלבון — שומן רווי גבוה מחזיק ב-C",
+      "rowVerdict": "33 גרם חלבון ו-3.7 גרם סוכר — חלבוני ונקי מסוכר. 8.2 גרם שומן רווי ו-4.9 גרם סיבים — לא מספיק כדי לעלות.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 378.0,
+          "protein": 33.0,
+          "sugar": 3.7,
+          "fat": 17.0,
+          "fiber": 4.9,
+          "sodium": 180.0
+        },
+        "ingredients": "חלבוני חלב (26%), שכבה בטעם קרמל (13%) [ממתיק (סורביטול), שמנים ושומנים מהצומח, דקסטריןn(חיטה - גלוטן), חומר הלחה (גליצרול), אבקת חלב, מים, מתחלב (-E471(, מלח, מווסת חומציות (סודיום ציטרט), חומרי טעם וריח], חומר הלחה (גליצרול), שברי אגוזי לוז (8.1%), מים, ממתיק ( מלטיטול), חמאת קקאו, אבקת חלב, פצפוצי סויה [חלבון סויה איזולט (2.4%), עמילן טפיוקה, אבקת קקאו], עיסת קקאו, סיבים תזונתיים, שמנים וש ומנים מהצומח, שומן חלב, אבקת קקאו, חומרי טעם וריח, מלח, מתחלב (לציטין סויה), ממתיק (סוכרלוז). מכיל אגוזי לוז, חלב, גלוטן חיטה, סויה עלול להכיל אגוזי קשיו, בוטנים, ביצים, גלוטן שיבולת שועל, שקדים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קרמל ואגוזים — חלבון גבוה, סוכר נמוך, שומן רווי בינוני-גבוה.",
+        "positiveSignals": [
+          "33 גרם חלבון — גבוה",
+          "3.7 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "8.2 גרם שומן רווי ל-100 גרם",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-015",
+      "barcode": "7290015130028",
+      "name": "WIN חטיף חלבון קרם חלב",
+      "name_he": "WIN חטיף חלבון קרם חלב",
+      "brand": "חטיף חלב WIN",
+      "score": 51.5,
+      "grade": "C",
+      "rank": 15,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XHT38_Z_P_7290015130028_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XHT38_Z_P_7290015130028_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 435.0,
+        "fat_g": 22.0,
+        "fat_saturated_g": 9.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 260.0,
+        "carbohydrates_g": 33.0,
+        "sugars_g": 4.4,
+        "dietary_fiber_g": 2.3,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "34 גרם חלבון — אבל סיבים דלים ושומן רווי כבד",
+      "rowVerdict": "34 גרם חלבון ו-4.4 גרם סוכר — חזק. 2.3 גרם סיבים ו-9.9 גרם שומן רווי — שילוב שמוריד ל-51.5, מתחת לרוב הקבוצה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 435.0,
+          "protein": 34.0,
+          "sugar": 4.4,
+          "fat": 22.0,
+          "fiber": 2.3,
+          "sodium": 260.0
+        },
+        "ingredients": "תערובת חלבונים 28% (חלבון חלב פפטידי קולגן. חלבון ביצה), ממתיק (מלטיטול), שומנים צמחיים (שיאה, קוקוס, סויה. עלול לה. חמנייה), אבקת ח לב מלא (25%), פצפוצי סויה (8%) (איזולט חלבון סויה, אבקת קקאו, עמילן טפיוקה), חמאת קקאו, חומר הלחה )ליצרול), עיסת קקאן סיני תירס מסיס ים, סיבי פולידקסטרוזה, מתחלב (לציטין חמניה), אבקת קקאו (9.9%), חומרי טעם וריח מכיל ביצים, חלב, שקדים, דגים עלול להכיל אגוזים, בוטנים, סויה, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "WIN קרם חלב — חלבון גבוה, אבל הסיבים הנמוכים והשומן הרווי מורידים אותו מתחת ל-54.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה מאוד",
+          "4.4 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "2.3 גרם סיבים — מהנמוך במדף",
+            "magnitude": 2
+          },
+          {
+            "text": "9.9 גרם שומן רווי — גבוה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-016",
+      "barcode": "7290018043134",
+      "name": "אול אין שוק.לבן עוגיות",
+      "name_he": "אול אין שוק.לבן עוגיות",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 16,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QQH42_Z_P_7290018043134_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QQH42_Z_P_7290018043134_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 347.0,
+        "fat_g": 13.4,
+        "fat_saturated_g": 6.2,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 218.0,
+        "carbohydrates_g": 28.8,
+        "sugars_g": 3.5,
+        "dietary_fiber_g": 16.6,
+        "protein_g": 29.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "16.6 גרם סיבים — אול אין עם חוזק סיבים אמיתי",
+      "rowVerdict": "על הנייר מספרים מצוינים: 29 גרם חלבון, 16.6 גרם סיבים ורק 3.5 גרם סוכר. מה שמחזיק אותו ב-50 זה לא החלבון אלא ממתיקים מוספים ועומס תוספים גבוה יחד עם שומן רווי גבוה — חטיף מהונדס, לא חטיף נקי.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 29.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 347.0,
+          "protein": 29.0,
+          "sugar": 3.5,
+          "fat": 13.4,
+          "fiber": 16.6,
+          "sodium": 218.0
+        },
+        "ingredients": "תערובת חלבונים [חלבוני חלב (חלבון חלב מרוכז, חלבון מי גבינה איזולאט), הידרוליזט גלוטן חיטה], שוקולד לבן עם ממתיק 22.5% [ממתיק (מלטיטול)], שכבה בטעם קרמל 15% [חומר מילוי (פולידקסטרוז), שמן סויה, חלבון חלב, מייצב (קסיליטול), מלח, מתחלב (לציטין סויה), חומרי טעם], חומר מילוי (פולידקסטרוז), מתחלב (גליצרול), פצפוצי סויה (חלבון סויה, עמילן טפיוקה, מלח), ממתיקים (מלטיטול, סוכרלוז, סטיביה), פצפוצי סויה עם קקאו (חלבון סויה, אבקת קקאו דל שומן, עמילן טפיוקה), שמן חמניות, שבבי קקאו, חומרי טעם, מתחלב (לציטין סויה), מלח, ויטמינים [ויטמין C (חומצה אסקורבית), ניקוטינאמיד, ויטמין E (טוקופריל אצטאט), סידן פנטוטנאט, ויטמין 2B (ריבופלאבין), ויטמין 6B (פירידוקסין הידרוכלורי ד), ויטמין 1B (תיאמין הידרוכלוריד), חומצה פולית, ויטמין 12B (ציאנוקובלאמין)]. מכיל גלוטן, חלב, סויה עלול להכיל אגוזים, בוטנים, ביצים, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין שוקולד לבן עוגיות — אחד מקבוצת אול אין עם סיבים גבוהים.",
+        "positiveSignals": [
+          "16.6 גרם סיבים — גבוה מאוד",
+          "3.5 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "6.2 גרם שומן רווי ל-100 גרם",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-017",
+      "barcode": "7290018043899",
+      "name": "אול אין בוטנים קרמל",
+      "name_he": "אול אין בוטנים קרמל",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 17,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RTS60_Z_P_7290018043899_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RTS60_Z_P_7290018043899_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 367.0,
+        "fat_g": 15.7,
+        "fat_saturated_g": 7.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 280.0,
+        "carbohydrates_g": 29.4,
+        "sugars_g": 3.6,
+        "dietary_fiber_g": 8.8,
+        "protein_g": 33.3
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "בוטנים וקרמל — חלבון גבוה, סיבים בינוניים",
+      "rowVerdict": "33.3 גרם חלבון ו-3.6 גרם סוכר — חלבוני ונקי. 8.8 גרם סיבים — טוב, לא יוצא דופן. C סטנדרטי לקבוצת אול אין.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.3,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 367.0,
+          "protein": 33.3,
+          "sugar": 3.6,
+          "fat": 15.7,
+          "fiber": 8.8,
+          "sodium": 280.0
+        },
+        "ingredients": "תערובת חלבונים [חלבוני חלב (חלבון מי גבינה איזולט, חלבון קלציום קזאין, חלבון חלב איזולט), חלבון סויה], ממתיקים (מלטיטול, אריתריטול, סוכרלוז), שכבה בטעם קרמל 11.7% [חומר מילוי (פולידקסטרוז), שמן סויה, חלבון קלציום קזאין, ממתיקים (קסיליטול, סוכרלוז), מתחלב (לציטין סויה), מלח, חומרי טעם וריח), הידרוליזט גלוטן חיטה, חומר הלחה (גליצרול), חמאת קקאו, אבקת חלב, בוטנים 5%, מסת קקאו, סיבי תירס מסיסים, חומרי טעם וריח, מלח, מתחלב (לציטין סויה). מכיל בוטנים, גלוטן, חלב, סויה עלול להכיל ביצים, שומשום, אגוזים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין בוטנים קרמל — חלבון גבוה, סיבים בינוניים-טובים.",
+        "positiveSignals": [
+          "33.3 גרם חלבון — גבוה",
+          "3.6 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7.9 גרם שומן רווי ל-100 גרם",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-018",
+      "barcode": "7290018703076",
+      "name": "אול אין דאבל שוקולד",
+      "name_he": "אול אין דאבל שוקולד",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 18,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EWR50_Z_P_7290018703076_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EWR50_Z_P_7290018703076_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 351.0,
+        "fat_g": 13.8,
+        "fat_saturated_g": 7.7,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 291.0,
+        "carbohydrates_g": 31.1,
+        "sugars_g": 3.4,
+        "dietary_fiber_g": 8.3,
+        "protein_g": 33.3
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "דאבל שוקולד אול אין — חלבון חזק, סיבים סבירים",
+      "rowVerdict": "33.3 גרם חלבון, 3.4 גרם סוכר, 8.3 גרם סיבים — פרופיל מאוזן. מה שמושך אותו מטה זה 7.7 גרם שומן רווי, מהגבוהים בקבוצה. C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.3,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 351.0,
+          "protein": 33.3,
+          "sugar": 3.4,
+          "fat": 13.8,
+          "fiber": 8.3,
+          "sodium": 291.0
+        },
+        "ingredients": "תערובת חלבונים [חלבוני חלב (חלבון מי גבינה איזולט, חלבון קלציום קזאין, חלבון חלב איזולט), חלבון סויה], שוקולד חלב עם ממתיק 17.5% [ממתיק (מלטיטול)], שוקולד לבן עם ממתיק 12.5% [ממתיק (מלטיטול)], שכבה בטעם קרמל 11.7% [חומר מילוי (פולידקסטרוז), שמן סויה, חלבון קלציום קזאין, ממתיקים (קסיליטול, סוכרלוז), קקאו דל שומן, מתחלב (לציטין סויה), חומר הלחה (גליצרול), מלח, חומרי טעם וריח], הידרוליזט גלוטן חיטה, חומר הלחה (גליצרול), ממתיקים (אריתריטול, סוכרלוז), סיבי תירס מסיסים, שוקולד מריר עם ממתיק 2.3% [ממתיק (מלטיטול)], קקאו דל שומן, מלח, עמילן טפיוקה, חומרי טעם וריח. מכיל גלוטן, חלב, סויה עלול להכיל אגוזים, ביצים, בוטנים, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין דאבל שוקולד — פרופיל דומה לשאר קבוצת 50.",
+        "positiveSignals": [
+          "33.3 גרם חלבון — גבוה",
+          "3.4 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7.7 גרם שומן רווי",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-019",
+      "barcode": "7290018703304",
+      "name": "אול אין קרם עוגיות",
+      "name_he": "אול אין קרם עוגיות",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 19,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FFL44_Z_P_7290018703304_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FFL44_Z_P_7290018703304_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 348.0,
+        "fat_g": 13.6,
+        "fat_saturated_g": 6.3,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 209.0,
+        "carbohydrates_g": 28.2,
+        "sugars_g": 3.4,
+        "dietary_fiber_g": 16.4,
+        "protein_g": 28.3
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "קרם עוגיות — סיבים גבוהים, חלבון בינוני",
+      "rowVerdict": "16.4 גרם סיבים ו-3.4 גרם סוכר — חוזק סיבי ברור, עם 28.3 גרם חלבון ונתרן נמוך (209 מ\"ג). C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 28.3,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 348.0,
+          "protein": 28.3,
+          "sugar": 3.4,
+          "fat": 13.6,
+          "fiber": 16.4,
+          "sodium": 209.0
+        },
+        "ingredients": "תערובת חלבונים [חלבוני חלב (חלבון חלב מרוכז, חלבון מי גבינה איזולט, חלבון קלציום קזאין) הידרוליזט גלוטן חיטה], חומר מילוי (פולידקסטרוז), ממתיקים (מלטיטול, קסיליטול, סוכרלוז, סטיביה), חומר הלחה (גליצרול), חמאת קקאו, אבקת חלב מלא, חלבון סויה, מסת קקאו, שמן חמניות, שמן סויה, אבקת קקאו דל שומן, חומרי טעם וריח, מתחלב (לציטין סויה),עמילן טפיוקה, מלח, ויטמינים [ויטמין C (חומצה אסקורבית), ניקוטינאמיד, ויטמין E (טוקופריל אצטאט), סידן פנטוטנאט, ויטמין 2B (ריבופלאבין), ויטמין 6B (פירידוקסין הידרוכלוריד), ויטמין 1B (תיאמין הידרוכלוריד ), חומצה פולית, ויטמין 12B (ציאנוקובלאמין)]. מכיל גלוטן, חלב, סויה עלול להכיל אגוזים, בוטנים, ביצים, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין קרם עוגיות — סיבים גבוהים, חלבון בינוני-טוב.",
+        "positiveSignals": [
+          "16.4 גרם סיבים — גבוה",
+          "3.4 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "28.3 גרם חלבון — טוב, לא מוביל במדף",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-020",
+      "barcode": "7290019310235",
+      "name": "אול אין ונילה קראנץ",
+      "name_he": "אול אין ונילה קראנץ",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 20,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TAY42_Z_P_7290019310235_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TAY42_Z_P_7290019310235_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 343.0,
+        "fat_g": 13.0,
+        "fat_saturated_g": 6.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 240.0,
+        "carbohydrates_g": 28.9,
+        "sugars_g": 3.3,
+        "dietary_fiber_g": 16.2,
+        "protein_g": 29.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "ונילה קראנץ — סיבים גבוהים, חלבון סביר",
+      "rowVerdict": "16.2 גרם סיבים ו-3.3 גרם סוכר — חוזק סיבי, עם 29 גרם חלבון. גם השומן הרווי כאן מהנמוכים בקבוצה (6 גרם). C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 29.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 343.0,
+          "protein": 29.0,
+          "sugar": 3.3,
+          "fat": 13.0,
+          "fiber": 16.2,
+          "sodium": 240.0
+        },
+        "ingredients": "תערובת חלבונים [חלבוני חלב (חלבון חלב מרוכז, חלבון מי גבינה איזולט), הידרוליזט גלוטן חיטה], שוקולד לבן עם ממתיק 22.5% [ממתיק (מלטיטול)], שכבה בטעם וניל 15% [חומר מילוי (פולידקסטרוז), שמן סויה, חלבון חלב (קלציום קזאינט), מייצב (קסיליטול), חומרי טעם, מלח, מתחלב (אסטר חומצה ציטרית)], חומר מילוי (פולידקסטרוז), חומר הלחה (גליצרול), פצפוצי סויה (חלבון סויה, עמילן טפיוקה, מלח), ממתיקים (מלטיטול, סוכרלוז, סטיביה), שמן חמניות, חומרי טעם, מתחלב (לציטין סויה), מלח, ויטמינים [ויטמין C (חומצה אסקורבית), ניקוטינאמיד, ויטמין E (טוקופריל אצטאט), סידן פנטוטנאט, ויטמין 2B (ריבופלאוין), ויטמין 6B (פירידוקסין הידרוכלוריד), ויטמין 1B (תיאמין הידרוכלוריד), חומצה פולית, 12B (ציאנוקובלאמין)]. מכיל סויה, גלוטן, חלב עלול להכיל אגוזים, ביצים, בוטנים, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין ונילה קראנץ — דומה לקרם עוגיות מבחינת סיבים.",
+        "positiveSignals": [
+          "16.2 גרם סיבים — גבוה",
+          "3.3 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "29 גרם חלבון — לא ברמת המובילים",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-021",
+      "barcode": "7290019766018",
+      "name": "אול איןחלבון סופט עוגיות",
+      "name_he": "אול איןחלבון סופט עוגיות",
+      "brand": "all in",
+      "score": 50,
+      "grade": "C",
+      "rank": 21,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHB56_Z_P_7290019766018_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHB56_Z_P_7290019766018_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 372.0,
+        "fat_g": 16.5,
+        "fat_saturated_g": 9.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 245.0,
+        "carbohydrates_g": 39.0,
+        "sugars_g": 4.0,
+        "dietary_fiber_g": 5.9,
+        "protein_g": 27.2
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "סופט עוגיות — שומן רווי גבוה מחזיק ב-C",
+      "rowVerdict": "27.2 גרם חלבון ו-4 גרם סוכר — סביר. 9.1 גרם שומן רווי — מהגבוהים בקבוצת אול אין — וזה מה שמונע עלייה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 27.2,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 372.0,
+          "protein": 27.2,
+          "sugar": 4.0,
+          "fat": 16.5,
+          "fiber": 5.9,
+          "sodium": 245.0
+        },
+        "ingredients": "תערובת חלבונים (חלבון חלב, חלבון מי גבינה איזולט, חלבון סויה), ממתיקים (מלטיטול, סירופ מלטיטול, סוכרלוז), חומר הלחה (גליצרול), חמאת קקאו, אבקת חלב מלא, חומר מילוי (פולידקסטרוז), הידרוליזט גלוטן חיטה, מסת קקאו, סיבי תירס מסיסים, שמן סויה, קקאו מופחת שומן, חומרי טעם , מתחלב (לציטין סויה), מלח, עמילן טפיוקה, צבע מאכל (פחם שחור), חומר טעם וניל. מכיל גלוטן, חלב, סויה, לקטוז עלול להכיל אגוזים, בוטנים, ביצים, שומשום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אול אין סופט עוגיות — חלבון בינוני, שומן רווי גבוה.",
+        "positiveSignals": [
+          "4 גרם סוכר — נמוך",
+          "5.9 גרם סיבים — בינוני"
+        ],
+        "limitingFactors": [
+          {
+            "text": "9.1 גרם שומן רווי — גבוה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-022",
+      "barcode": "7290117384572",
+      "name": "חטיף חלבון קרם עוגיות",
+      "name_he": "חטיף חלבון קרם עוגיות",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 22,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TKV56_Z_P_7290117384572_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TKV56_Z_P_7290117384572_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 316.0,
+        "fat_g": 8.0,
+        "fat_saturated_g": 5.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 160.0,
+        "carbohydrates_g": 34.9,
+        "sugars_g": 3.0,
+        "dietary_fiber_g": 7.0,
+        "protein_g": 33.6
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "316 קל — אחד הקלים במדף, עם חלבון גבוה",
+      "rowVerdict": "33.6 גרם חלבון, 3 גרם סוכר, 316 קל — צפיפות קלורית נמוכה יחסית. 7 גרם סיבים — בינוני. C ב-50 — טוב, לא מיוחד.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.6,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 316.0,
+          "protein": 33.6,
+          "sugar": 3.0,
+          "fat": 8.0,
+          "fiber": 7.0,
+          "sodium": 160.0
+        },
+        "ingredients": "תערובת חלבונים (34%) [חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון סויה מבודד, חלבון מי גבינה מבודד (חלבון מי גבינה מבודד (4.2%), מתחלב (לציטין חמניות))] שוקולד לבן מעולה ללא תוספת סוכר (16%), חומר הלחה (גליצרול), קרם בטעם קרמל (10%) (חומר הלחה ( גליצרול), מלטודקסטרין, אוליגופרוקטוז, מים, חומר מילוי (מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, מסמיך (E1442), צבע מאכל (קרמל), מקרי ש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), מלח לתעשיית מזון סוג א', חומרי טעם וריח, מסמיך (קסנטן גאם)], סיבים תזו נתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, שבבי סויה עם קקאו (חלבון סויה מבודד, אבקת קקאו דל שומן, עמילן טפיוקה), חומר טעם וריח. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, חלב, סויה, אגוזי קוקוס עלול להכיל אגוזי לוז, אגוזי קשיו, בוטנים, שקדים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קרם עוגיות — אחד מזוג חטיפים עם קלוריות נמוכות וחלבון גבוה.",
+        "positiveSignals": [
+          "33.6 גרם חלבון — גבוה",
+          "316 קל ל-100 גרם — מהנמוך במדף",
+          "3 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7 גרם סיבים — בינוני, לא מרים את הציון",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-023",
+      "barcode": "7290117384589",
+      "name": "חטיף חלבון קרמל מלוח",
+      "name_he": "חטיף חלבון קרמל מלוח",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 23,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLM64_Z_P_7290117384589_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLM64_Z_P_7290117384589_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 314.0,
+        "fat_g": 7.7,
+        "fat_saturated_g": 4.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 352.0,
+        "carbohydrates_g": 34.8,
+        "sugars_g": 2.9,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 33.7
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "קרמל מלוח — חלבון גבוה, קלוריות נמוכות",
+      "rowVerdict": "33.7 גרם חלבון, 2.9 גרם סוכר, 314 קל — פרופיל חלבוני-קל עם 7.5 גרם סיבים. הנתרן כאן הגבוה בקבוצה (352 מ\"ג). C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.7,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 314.0,
+          "protein": 33.7,
+          "sugar": 2.9,
+          "fat": 7.7,
+          "fiber": 7.5,
+          "sodium": 352.0
+        },
+        "ingredients": "תערובת חלבונים (35%) [חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון סויה מבודד, חלבון מי גבינה מבודד (חלבון מי גבינה מבודד (4.2%), מתחלב (לציטין חמניות))], שוקולד חלב מעולה ללא תוספת סוכר (16%), חומר הלחה (גליצרול), קרם בטעם קרמל (10%) [חומר הלחה (גליצרול), מלטודקסטרין, אוליגופרוקטוז, מים, חומר מילוי (מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, מסמיך (E1442), צבע מאכל (קרמל), מקריש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), מלח לתעשיית המזון סוג א', חומרי טעם וריח, מסמיך (קסנטן גאם)], סיבים תזונתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, חומר טעם וריח, מלח לתעשיית המזון סוג א'. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, סויה, חלב, אגוזי קוקוס עלול להכיל אגוזי קשיו, בוטנים, אגוזי לוז, שקדים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קרמל מלוח — דומה לקרם עוגיות, עם 352 מ\"ג נתרן לעומת 160 מ\"ג.",
+        "positiveSignals": [
+          "33.7 גרם חלבון — גבוה",
+          "2.9 גרם סוכר — נמוך",
+          "314 קל — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "352 מ\"ג נתרן ל-100 גרם",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-024",
+      "barcode": "7290117384596",
+      "name": "חטיף חלבון פאי קינמון",
+      "name_he": "חטיף חלבון פאי קינמון",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 24,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLT62_Z_P_7290117384596_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLT62_Z_P_7290117384596_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 315.0,
+        "fat_g": 7.7,
+        "fat_saturated_g": 4.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 160.0,
+        "carbohydrates_g": 34.7,
+        "sugars_g": 2.9,
+        "dietary_fiber_g": 7.5,
+        "protein_g": 33.8
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "פאי קינמון — חלבון גבוה, קלוריות נמוכות",
+      "rowVerdict": "33.8 גרם חלבון, 2.9 גרם סוכר, 315 קל, 7.5 גרם סיבים — ומתוך הקבוצה, נתרן נמוך במיוחד (160 מ\"ג). C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.8,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 315.0,
+          "protein": 33.8,
+          "sugar": 2.9,
+          "fat": 7.7,
+          "fiber": 7.5,
+          "sodium": 160.0
+        },
+        "ingredients": "תערובת חלבונים (34%) (חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון מי גבינה מבודד (חלבון מי גבינה מבודד (4.2%), מתחלב (לציטין חמניות)), חלבון סויה מבודד], שוקולד חלב מעולה ללא תוספת סוכר (16%), חומר הלחה (גליצרול), קרם בטעם קרמל (10%) (חומר הלחה (גליצרול), מלטודקסטרין, אוליגופרוקטוז, מים, חומר מילוי (מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, מסמיך (E1442), צבע מאכל (קרמל), מקריש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), מלח לתעשיית המזון סוג א', חומרי טעם וריח, מסמיך (קסנטן גאם)], סיבים תזונתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, שבבי סויה עם קקאו (חלבון סויה מבודד, אבקת קקאו דל שומן, עמילן טפיוקה), חומר טעם וריח, אבקת קינמון. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, חלב, סויה, אגוזי קוקוס עלול להכיל אגוזי לוז, אגוזי קשיו, בוטנים, שקדים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "פאי קינמון — שלישייה עם קרם עוגיות וקרמל מלוח, פרופיל כמעט זהה.",
+        "positiveSignals": [
+          "33.8 גרם חלבון — גבוה",
+          "2.9 גרם סוכר — נמוך",
+          "160 מ\"ג נתרן — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7.5 גרם סיבים — בינוני",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-025",
+      "barcode": "7290121160582",
+      "name": "חטיף חלבון חמאת בוטנים",
+      "name_he": "חטיף חלבון חמאת בוטנים",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 25,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PFZ44_Z_P_7290121160582_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PFZ44_Z_P_7290121160582_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 303.0,
+        "fat_g": 7.6,
+        "fat_saturated_g": 4.8,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 272.0,
+        "carbohydrates_g": 31.6,
+        "sugars_g": 2.4,
+        "dietary_fiber_g": 6.5,
+        "protein_g": 34.8
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "303 קל — הקל ביותר במדף, חלבון גבוה",
+      "rowVerdict": "34.8 גרם חלבון — הגבוה בקבוצה — עם 2.4 גרם סוכר ו-303 קל בלבד. 6.5 גרם סיבים, בינוני. C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.8,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 303.0,
+          "protein": 34.8,
+          "sugar": 2.4,
+          "fat": 7.6,
+          "fiber": 6.5,
+          "sodium": 272.0
+        },
+        "ingredients": "תערובת חלבונים (35%) [חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון סויה מבודד, חלבון מי גבינה מבודד (חלבון מי גבינה מבודד (4.2%), מתחלב (לציטין חמניות))], שוקולד חלב מעולה ללא תוספת סוכר (16%) (מכיל סויה), חומר הלחה (גליצרול), קרם בטעם קרמל (10%) [חומר הלחה (גליצרול), מלטודקסטרין, אוליגופרוקטוז, חומר מילוי (אבקת מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, עמילן מעובד (E1442), מים, צבע מאכל (קרמל), מקריש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), חומרי טעם וריח, מלח שולחן, מסמיך (קסנטן גאם)] , סיבים תזונתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, חומרי טעם וריח, מלח שולחן. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, סויה, חלב עלול להכיל בוטנים, גלוטן שעורה, גלוטן שיפון, גלוטן שיבולת שועל, סולפיט, אגוזים אחרים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "חמאת בוטנים — הקלוריות הנמוכות ביותר במדף עם חלבון גבוה.",
+        "positiveSignals": [
+          "34.8 גרם חלבון — גבוה מאוד",
+          "303 קל — הנמוך ביותר במדף",
+          "2.4 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "6.5 גרם סיבים — בינוני",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-026",
+      "barcode": "7290121161916",
+      "name": "חטיף חלבון טריפל שוקולד",
+      "name_he": "חטיף חלבון טריפל שוקולד",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 26,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RFH46_Z_P_7290121161916_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RFH46_Z_P_7290121161916_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 303.0,
+        "fat_g": 7.7,
+        "fat_saturated_g": 4.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 100.0,
+        "carbohydrates_g": 32.1,
+        "sugars_g": 2.3,
+        "dietary_fiber_g": 7.4,
+        "protein_g": 32.4
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "טריפל שוקולד — חלבון גבוה, קל, נתרן נמוך",
+      "rowVerdict": "32.4 גרם חלבון, 2.3 גרם סוכר, 303 קל, 100 מ\"ג נתרן — ארבעה יתרונות. 7.4 גרם סיבים — טוב. C — טוב במדף, לא מספיק ל-B.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 32.4,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 303.0,
+          "protein": 32.4,
+          "sugar": 2.3,
+          "fat": 7.7,
+          "fiber": 7.4,
+          "sodium": 100.0
+        },
+        "ingredients": "תערובת חלבונים (36%) [חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון סויה מבודד, חלבון מי גבינה מבודד [חלבון מי גבינה מבודד (3.7%), מתחלב (לציטין חמניות)], שוקולד חלב מעולה ללא תוספת סוכר (16%) (מכיל סויה), חומר הלחה (גליצרול), קרם בטעם קרמל ושוקולד (10%) [חומר הלחה (גליצרול), מלטודקסטרין, אוליגופרוקטוז, חומר מילוי (אבקת מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, עמילן מעובד (E1442), אבקת קקאו, מקריש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), חומרי טעם וריח, מלח שולחן, מסמיך (קסנטן גאם)], סיבים תזונתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, אבקת קקאו דל שומן, חומר טעם וריח. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, חלב, סויה עלול להכיל בוטנים, גלוטן שעורה, גלוטן שיפון, גלוטן שיבולת שועל, אגוזים אחרים, סולפיט",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "טריפל שוקולד — בקבוצת 303 קל עם חלבון גבוה ונתרן נמוך.",
+        "positiveSignals": [
+          "32.4 גרם חלבון — גבוה",
+          "303 קל — נמוך",
+          "100 מ\"ג נתרן — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "7.4 גרם סיבים — טוב, לא יוצא דופן",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-027",
+      "barcode": "7290121161930",
+      "name": "חטיף חלבון טעם בננה טופי",
+      "name_he": "חטיף חלבון טעם בננה טופי",
+      "brand": "טודיי",
+      "score": 50,
+      "grade": "C",
+      "rank": 27,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RFV42_Z_P_7290121161930_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RFV42_Z_P_7290121161930_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 303.0,
+        "fat_g": 7.7,
+        "fat_saturated_g": 4.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 100.0,
+        "carbohydrates_g": 32.9,
+        "sugars_g": 2.5,
+        "dietary_fiber_g": 6.7,
+        "protein_g": 33.4
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "בננה טופי — חלבון גבוה, קלוריות נמוכות",
+      "rowVerdict": "33.4 גרם חלבון, 2.5 גרם סוכר, 303 קל, ונתרן נמוך מאוד (100 מ\"ג). 6.7 גרם סיבים. C ב-50.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.4,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 303.0,
+          "protein": 33.4,
+          "sugar": 2.5,
+          "fat": 7.7,
+          "fiber": 6.7,
+          "sodium": 100.0
+        },
+        "ingredients": "תערובת חלבונים (38%) [חלבון חלב מבודד, חלבון חיטה שעבר הידרוליזה (מכיל גלוטן), חלבון סויה מבודד, חלבון מי גבינה מבודד [חלבון מי גבינה מבודד (4.4%), מתחלב (לציטין חמניות)], שוקולד חלב מעולה ללא תוספת סוכר (16%) (מכיל סויה), חומר הלחה (גליצרול), קרם בטעם קרמל (10%) [חומר הלחה (גליצרול), מלטודקסטרין, אוליגופרוקטוז, חומר מילוי (אבקת מלטיטול), שמן קוקוס מזוכך, אבקת חלב כחוש, עמילן מעובד (E1442), מים, צבע מאכל (קרמל), מקריש (פקטין), מווסת חומציות (קלציום לקטט), מתחלב (לציטין לפתית), חומרי טעם וריח, מלח שולחן, מסמיך (קסנטן גאם)], סיבים תזונתיים, ממתיקים (סירופ מלטיטול, סוכרלוז), מים, חומר טעם וריח. מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה, חלב, סויה עלול להכיל בוטנים, גלוטן שעורה, גלוטן שיפון, גלוטן שיבולת שועל, סולפיט, אגוזים אחרים",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "בננה טופי — אחד משלושת חטיפי 303 קל עם חלבון גבוה.",
+        "positiveSignals": [
+          "33.4 גרם חלבון — גבוה",
+          "303 קל — נמוך",
+          "100 מ\"ג נתרן — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "6.7 גרם סיבים — בינוני",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-028",
+      "barcode": "7290019766230",
+      "name": "חטיף חלבון אסטרה סופט",
+      "name_he": "חטיף חלבון אסטרה סופט",
+      "brand": "all in",
+      "score": 49.8,
+      "grade": "D",
+      "rank": 28,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RPF52_Z_P_7290019766230_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RPF52_Z_P_7290019766230_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 377.0,
+        "fat_g": 17.3,
+        "fat_saturated_g": 8.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 253.0,
+        "carbohydrates_g": 38.6,
+        "sugars_g": 4.8,
+        "dietary_fiber_g": 5.1,
+        "protein_g": 27.3
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "D — חלבון סביר, שומן רווי גבוה מוריד מתחת לרף",
+      "rowVerdict": "27.3 גרם חלבון ו-4.8 גרם סוכר — לא רע. 8.9 גרם שומן רווי ו-5.1 גרם סיבים — שילוב שמוריד ל-D, מתחת לרוב המדף.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 27.3,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 377.0,
+          "protein": 27.3,
+          "sugar": 4.8,
+          "fat": 17.3,
+          "fiber": 5.1,
+          "sodium": 253.0
+        },
+        "ingredients": "תערובת חלבוני חלב 20.9% (חלבון חלב איזולט, חלבון מי גבינה איזולט (חלב)), ממתיקים (מלטיטול, סירופ מלטיטול, סוכרלוז), חומר הלחה (גליצרול), חמאת קקאו, אבקת חלב מלא, הידרוליזט גלוטן חיטה, חומר מילוי (פולידקסטרוז), שמן סויה, סיבי תירס מסיסים, חלבון סויה, פטל 1.1%, חומרי טעם וריח, מלח, מתחלב (לציטין סויה), צבע מאכל (רכז סלק), מווסת חומציות (חומצה ציטרית)",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "אסטרה סופט — תחתון-אמצע, D ב-49.8.",
+        "positiveSignals": [
+          "4.8 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "8.9 גרם שומן רווי — גבוה",
+            "magnitude": 2
+          },
+          {
+            "text": "5.1 גרם סיבים — נמוך יחסית",
+            "magnitude": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-029",
+      "barcode": "7290019401544",
+      "name": "חטיף פרוטאין עוגיות טופי",
+      "name_he": "חטיף פרוטאין עוגיות טופי",
+      "brand": "פרוטאין",
+      "score": 49.7,
+      "grade": "D",
+      "rank": 29,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YCV46_Z_P_7290019401544_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YCV46_Z_P_7290019401544_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 346.0,
+        "fat_g": 11.0,
+        "fat_saturated_g": 9.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 160.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 3.9,
+        "dietary_fiber_g": 6.3,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "D — חלבון גבוה, אבל שומן רווי כבד",
+      "rowVerdict": "34 גרם חלבון — חזק. 3.9 גרם סוכר — נמוך. 9.1 גרם שומן רווי — מה שמוריד ל-D למרות החלבון.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 346.0,
+          "protein": 34.0,
+          "sugar": 3.9,
+          "fat": 11.0,
+          "fiber": 6.3,
+          "sodium": 160.0
+        },
+        "ingredients": "ציפוי לבן עם מלטיטול 17% (ממתיק:מלטיטול , שמן לפתית , שמן קוקס , אבקת מי גבינה מתוקה , אבקת חלב כחוש , מתחלב:(לציטין) , חומר טעם וריח), חלבון קולגן 13% , מחית בטעם קרמל 12% [חומר הלחה:(גליצרול) , מלטודקסטרין , סיבים תזונתיים:(אוליגופרוקטוז) , שמן לפתית , ממתיק:(מלטיטול) , מסמיך:(גומי ערבי),אבקת חלבון מי גבינה מרוכז , מים , צבע מאכל: (קרמל) , חומר טעם וריח , מתחלב:(לציטיו) מלח] , ממתיק: (מלטיטול) , חלבון סויה 8.3% , חומר הלחה: (גליצרול) , חלבון חלב מרוכז 6.4% , (חלבון מי גבינה מרוכז , מתחלב (לציטין)) , שמן לפתית , אורז שעבר שיחול 3.5% (אורז,מלח,שמן לפתית) , מים חלבון סויה שעבר שיחול (חלבון סויה , עמילן טפיוקה ,מלח) , קוקוס מגורד , אבקת חלב מלא , צבע מאכל: (פחם שחור E153) , חומרי טעם וריח , מסמיך:(גומי ערבי) , מתחלב(מונו ודיגליצרידים של חומצות שומן) , מעכב חמצון (טוקופרול)",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "עוגיות טופי — D ב-49.7, חלבון גבוה עם שומן רווי גבוה.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה",
+          "3.9 גרם סוכר — נמוך"
+        ],
+        "limitingFactors": [
+          {
+            "text": "9.1 גרם שומן רווי — גבוה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-030",
+      "barcode": "7290112913487",
+      "name": "חטיף חלבון קרם אגוזים",
+      "name_he": "חטיף חלבון קרם אגוזים",
+      "brand": "מקס ברנר",
+      "score": 45,
+      "grade": "D",
+      "rank": 30,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JKA54_Z_P_7290112913487_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JKA54_Z_P_7290112913487_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 465.0,
+        "fat_g": 23.0,
+        "fat_saturated_g": 11.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 161.0,
+        "carbohydrates_g": 32.0,
+        "sugars_g": 31.0,
+        "dietary_fiber_g": null,
+        "protein_g": 33.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "31 גרם סוכר — D, תחתית המדף",
+      "rowVerdict": "33 גרם חלבון לא מציל 31 גרם סוכר ל-100 גרם — זה פרופיל של חטיף מתוק, לא חלבון נקי. D ב-45 — תחתית המדף.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 33.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 33.0,
+          "sugar": 31.0,
+          "fat": 23.0,
+          "fiber": null,
+          "sodium": 161.0
+        },
+        "ingredients": "פתיתי חלבון אבקת חלב, אגוז לוז (14%), חמאת קקאו, קלוי טחון, שומן חלב, שומן צמחי, עיסת קקאו, מתחלבים (לציטין לפתית, E476), ונילין, מלח שולחן. כלל מוצקי מעולה 27% מינימום. קקאו בשוקולד לבן מכיל חלב, אגוזים, סויה עלול להכיל אגוזי לוז, אגוזי פקאן, אגוזי קשיו, אגוזי מלך, אגוזים, בוטנים, ביצים, גלוטן, אגוזי קוקוס, אגוזי מקדמיה, דגנים מכילי גלוטן, רכיבי גלוטן חיטה",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קרם אגוזים — אחד משלושת ה-D עם סוכר גבוה מאוד.",
+        "positiveSignals": [
+          "33 גרם חלבון — גבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "31 גרם סוכר ל-100 גרם — גבוה מאוד; זה מה שמוריד ל-D",
+            "magnitude": 3
+          },
+          {
+            "text": "11 גרם שומן רווי — גבוה",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-031",
+      "barcode": "7290112915351",
+      "name": "חטיף חלבון קרמל מלוח",
+      "name_he": "חטיף חלבון קרמל מלוח",
+      "brand": "מקס ברנר",
+      "score": 45,
+      "grade": "D",
+      "rank": 31,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MDS46_Z_P_7290112915351_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MDS46_Z_P_7290112915351_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 430.0,
+        "fat_g": 19.0,
+        "fat_saturated_g": 9.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 396.0,
+        "carbohydrates_g": 36.0,
+        "sugars_g": 35.0,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "35 גרם סוכר — הגבוה ביותר מבין החטיפים כאן",
+      "rowVerdict": "34 גרם חלבון, אבל 35 גרם סוכר ל-100 גרם — הגבוה ביותר כאן — ו-0 גרם סיבים. D ב-45: חלבון לא מכסה פרופיל סוכר כזה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 430.0,
+          "protein": 34.0,
+          "sugar": 35.0,
+          "fat": 19.0,
+          "fiber": 0.0,
+          "sodium": 396.0
+        },
+        "ingredients": "שוקולד חלב (29%), קרם נוגט מלוח (26%) [שוקולד חלב, שומן צמחי (סויה), אגוז לוז קלוי (12%), סוכר לבן, מלח ים (2%), מתחלבים (E476, לציטין לפתית)], פתיתי חלבון סויה (24%) (פולי סויה), חלבון חלב (12%), שבבי קרמל (8%) [סוכר לבן, חמאת קקאו, עמילן אורז, מווסת חומציות (E500ii)], שומן חלב, חומר הזגה E414). כלל מוצקי קקאו בשוקולד חלב מעולה 30% מינימום",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "קרמל מלוח — הסוכר הגבוה ביותר במדף, ללא סיבים.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "35 גרם סוכר ל-100 גרם — הגבוה ביותר במדף",
+            "magnitude": 3
+          },
+          {
+            "text": "0 גרם סיבים — חסר לחלוטין",
+            "magnitude": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "prot-032",
+      "barcode": "7290112915382",
+      "name": "חטיף חלבון שוקולד דובאי",
+      "name_he": "חטיף חלבון שוקולד דובאי",
+      "brand": "מקס ברנר",
+      "score": 45,
+      "grade": "D",
+      "rank": 32,
+      "categoryTotal": 32,
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MEX50_Z_P_7290112915382_1.png",
+      "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MEX50_Z_P_7290112915382_1.png",
+      "nutrition_per_100g": {
+        "energy_kcal": 465.0,
+        "fat_g": 24.0,
+        "fat_saturated_g": 9.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 199.0,
+        "carbohydrates_g": 33.0,
+        "sugars_g": 27.0,
+        "dietary_fiber_g": 0.0,
+        "protein_g": 34.0
+      },
+      "confidence": "partial",
+      "confidence_label_he": "נתונים חלקיים",
+      "confidence_sub_reason": "ingredient_list_missing",
+      "confidence_tooltip_he": "רשימת הרכיבים לא חולצה. רמת העיבוד מוערכת כפרוקסי בלבד. הציון עשוי להתעדכן עם נתונים מאומתים.",
+      "insightLine": "27 גרם סוכר, בלי סיבים — D ברור",
+      "rowVerdict": "34 גרם חלבון לא מספיק מול 27 גרם סוכר ו-0 גרם סיבים. D ב-45 — פרופיל מתוק שמדמה חטיף חלבון, לא להפך.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "protein_g": 34.0,
+        "confidence_band": "medium",
+        "lens": "protein_bar_v1"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 465.0,
+          "protein": 34.0,
+          "sugar": 27.0,
+          "fat": 24.0,
+          "fiber": 0.0,
+          "sodium": 199.0
+        },
+        "ingredients": "שוקולד חלב (29%), פתיתי חלבון סויה (16%) (פולי סויה), חלבון חלב (16%), מחית פיסטוק (16%) (פיסטוק, צבע מאכל E141), שוקולד לבן , שערות קדאיף (8%) [קמח חיטה (גלוטן), מים, סוכר לבן, מלח שולחן, שומן צמחי, חומר משמר (E202), מטפל קמח (E920), מעכב חמצון – תמצית רוז מרין], שמן צמחי, טחינה גולמית (שומשום), שומן חלב, מתחלבים (E476 ,לציטין לפתית). כלל מוצקי קקאו בשוקולד חלב מעולה 30% מינימום. כלל מוצקי קקאו בשוקולד לבן מעולה 27% מינימום.n",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים חלקיים",
+        "comparisonContext": "שוקולד דובאי — D עם סוכר גבוה וללא סיבים.",
+        "positiveSignals": [
+          "34 גרם חלבון — גבוה"
+        ],
+        "limitingFactors": [
+          {
+            "text": "27 גרם סוכר ל-100 גרם — גבוה מאוד",
+            "magnitude": 3
+          },
+          {
+            "text": "0 גרם סיבים",
+            "magnitude": 2
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -186,6 +186,10 @@
             "type": "string",
             "description": "Source retailer slug"
           },
+          "brand": {
+            "type": ["string", "null"],
+            "description": "Manufacturer/brand name, display-only. Null/absent when unknown (never fabricated). Live in bread/hummus/cheese/granola/snacks/etc. since TASK-431 and the 2026-06-27 brand-beside-title rollout (c666b4f3); added here to close a schema-lag gap (G1 previously failed on every category already shipping it)."
+          },
           "barcode": {
             "type": "string",
             "description": "Product barcode (13-digit Israeli or internal code)"
@@ -312,6 +316,14 @@
           "categoryTotal": {
             "type": "integer",
             "description": "Total number of displayed products in this category page. Used by ShelfContextSection to render 'X out of Y' shelf context. Whitelisted 2026-06-22 — confirmed present on all live categories."
+          },
+          "nameHe": {
+            "type": ["string", "null"],
+            "description": "Hebrew product display name authored by Content (nameHe required per category; null only when genuinely unretrievable). Whitelisted 2026-07-01 for crackers go-live — TASK-433."
+          },
+          "_hash_no_rank": {
+            "type": ["string", "null"],
+            "description": "Internal provenance hash of the product record excluding rank (membership-correction reproducibility marker; not consumer-rendered). Whitelisted 2026-07-01 — emitted by bread_frontend_v4 membership correction, TASK-433."
           }
         },
         "additionalProperties": false

@@ -1,0 +1,218 @@
+{
+  "run_id": "run_protein_combined_task365_20260621_120733",
+  "generated_at": "2026-06-21T12:10:53+00:00",
+  "task": "TASK-365",
+  "corpus_file": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_20260621_120733.json",
+  "counts": {
+    "discovery_pool": 48,
+    "scrape_failed": 0,
+    "cookie_rejected_no_protein": 4,
+    "quarantine_plausibility_fail": 9,
+    "survived_corpus": 35,
+    "new_vs_existing_16": 21,
+    "carried_from_existing_16": 14
+  },
+  "brand_distribution": {
+    "": 35
+  },
+  "format_distribution": {
+    "bar": 25,
+    "cookie": 10
+  },
+  "discards": {
+    "scrape_failed": [],
+    "cookie_rejected": [
+      {
+        "barcode": "7290119040902",
+        "name": "עוגיות לקפה",
+        "reason": "cookie_no_protein_ingredient_signal",
+        "ingredients_preview": ""
+      },
+      {
+        "barcode": "7290119043743",
+        "name": "עוגיות מרוקאיות",
+        "reason": "cookie_no_protein_ingredient_signal",
+        "ingredients_preview": ""
+      },
+      {
+        "barcode": "7290119043798",
+        "name": "עוגיות אוזניות",
+        "reason": "cookie_no_protein_ingredient_signal",
+        "ingredients_preview": ""
+      },
+      {
+        "barcode": "7290119043897",
+        "name": "עוגיות רולדה תמרים",
+        "reason": "cookie_no_protein_ingredient_signal",
+        "ingredients_preview": ""
+      }
+    ],
+    "quarantined": [
+      {
+        "barcode": "7290017516356",
+        "name": "חטיפי חלבון שוקולד",
+        "shufersal_code": "P_7290017516356",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290017516561",
+        "name": "חטיפי חלבון אגוזי לוז",
+        "shufersal_code": "P_7290017516561",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290017516301",
+        "name": "חטיפי חלבון אגוזי לוז",
+        "shufersal_code": "P_7290017516301",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290017516370",
+        "name": "חטיפי חלבון חמאת בוטנים",
+        "shufersal_code": "P_7290017516370",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290017516493",
+        "name": "חטיפי חלבון קרמל מלוח",
+        "shufersal_code": "P_7290017516493",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290017516455",
+        "name": "חטיפי חלבון וניל קפה",
+        "shufersal_code": "P_7290017516455",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      },
+      {
+        "barcode": "7290114314602",
+        "name": "פרוטאין אפרסק 1.6%",
+        "shufersal_code": "P_7290114314602",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=22.7g < 70.0g per 100g",
+          "kcal=94 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 22.7,
+        "kcal": 94.0
+      },
+      {
+        "barcode": "7290114314596",
+        "name": "מולר פרוטאין טופ בוטנים",
+        "shufersal_code": "P_7290114314596",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=28.5g < 70.0g per 100g",
+          "kcal=133 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 28.5,
+        "kcal": 133.0
+      },
+      {
+        "barcode": "8410076900333",
+        "name": "חטיף פרוטאין בוטנים קרמל",
+        "shufersal_code": "P_8410076900333",
+        "reason": "plausibility_gate_fail",
+        "fail_reasons": [
+          "accounted_mass=0.0g < 70.0g per 100g",
+          "kcal=0 < 150.0 for dry snack"
+        ],
+        "accounted_mass_g": 0.0,
+        "kcal": 0.0
+      }
+    ]
+  },
+  "existing_barcodes_baseline": [
+    "7290017516295",
+    "7290112913487",
+    "7290112915351",
+    "7290112915382",
+    "7290117384589",
+    "7290117384596",
+    "7290119371112",
+    "7290119383153",
+    "7290119383160",
+    "7290121160582",
+    "7290121161886",
+    "7290121161916",
+    "7290121161930",
+    "7290121166850",
+    "8410076610379",
+    "8410076610386"
+  ],
+  "new_barcodes": [
+    "7290015130028",
+    "7290015130035",
+    "7290015130042",
+    "7290015130271",
+    "7290015130288",
+    "7290018043134",
+    "7290018043899",
+    "7290018703076",
+    "7290018703304",
+    "7290018703984",
+    "7290018703991",
+    "7290019310235",
+    "7290019401018",
+    "7290019401049",
+    "7290019401544",
+    "7290019766018",
+    "7290019766025",
+    "7290019766230",
+    "7290112497994",
+    "7290117384572",
+    "7290119371129"
+  ],
+  "carried_barcodes": [
+    "7290017516295",
+    "7290112913487",
+    "7290112915351",
+    "7290112915382",
+    "7290117384589",
+    "7290117384596",
+    "7290119371112",
+    "7290121160582",
+    "7290121161886",
+    "7290121161916",
+    "7290121161930",
+    "7290121166850",
+    "8410076610379",
+    "8410076610386"
+  ]
+}

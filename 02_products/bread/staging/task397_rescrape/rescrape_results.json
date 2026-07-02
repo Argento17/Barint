@@ -1,0 +1,741 @@
+{
+  "task": "TASK-397",
+  "track": "A",
+  "step": 2,
+  "run_id": "rescrape_20260625_115112",
+  "generated_at": "2026-06-25T11:51:12.396534+00:00",
+  "script_version": "1.1.0",
+  "off_ban_note": "Open Food Facts is BANNED. All nutrition from direct retailer scrape only. No OFF data used.",
+  "source_policy": "Direct product page scrape only. No kcal-derived fat injected. No estimated values.",
+  "retailer_priority_order": [
+    "victory",
+    "rami_levy",
+    "yochananof"
+  ],
+  "retailer_reachability": {
+    "victory": {
+      "reachable": true,
+      "probe_bytes": 68285,
+      "nutrition_accessible": false,
+      "site_type": "WordPress",
+      "block_reason": "WordPress site with no public WooCommerce REST API. Search page /?s={barcode} returns 38KB generic shell with no product data in HTML. Nutrition not server-rendered. WooCommerce API /wp-json/wc/v3/ returns 404 (not enabled). No nutrition accessible without JavaScript rendering.",
+      "status": "reachable_but_nutrition_inaccessible",
+      "urls_tried": [
+        "https://www.victory.co.il/?s={barcode}",
+        "https://www.victory.co.il/wp-json/wc/v3/products?sku={barcode}",
+        "https://www.victory.co.il/wp-json/wc/v3/products?search={barcode}",
+        "https://www.victory.co.il/wp-json/wp/v2/search?search={barcode}&type=post",
+        "https://www.victory.co.il/api/v2/products/search?q={barcode}",
+        "https://www.victory.co.il/umbraco/api/product/getbybarcode?barcode={barcode}"
+      ]
+    },
+    "rami_levy": {
+      "reachable": true,
+      "probe_bytes": 635747,
+      "nutrition_accessible": false,
+      "site_type": "Nuxt.js SPA",
+      "block_reason": "Nuxt.js SPA. Product pages /he/online/product/{barcode} return 200 (barcode in route path) but no product-specific content is server-rendered. All product data (nutrition, name, ingredients) is loaded client-side via authenticated API at www-api.rami-levy.co.il which returns 404 without OAuth credentials. The 'שומן' string found in all SSR pages is a UI i18n label ('אחוז שומן' = 'fat percentage') at a fixed offset in the translation bundle, NOT a product nutrition value. Requires browser automation + session authentication — not feasible one-shot.",
+      "status": "reachable_but_nutrition_inaccessible",
+      "authenticated_api_discovered": "https://www-api.rami-levy.co.il/api/v2/",
+      "urls_tried": [
+        "https://www.rami-levy.co.il/he/online/product/{barcode}",
+        "https://www.rami-levy.co.il/he/online/search?q={barcode}",
+        "https://www-api.rami-levy.co.il/api/v2/products/{barcode}",
+        "https://www-api.rami-levy.co.il/api/v2/products/search?q={barcode}",
+        "https://www-api.rami-levy.co.il/api/v3/site",
+        "https://www.rami-levy.co.il/api/catalog?q={barcode}"
+      ]
+    },
+    "yochananof": {
+      "reachable": false,
+      "probe_bytes": 0,
+      "nutrition_accessible": false,
+      "site_type": "unknown",
+      "block_reason": "Connection failed on probe. Host unreachable from this environment.",
+      "status": "blocked_or_unreachable"
+    }
+  },
+  "reachable_retailers": [
+    "victory",
+    "rami_levy"
+  ],
+  "blocked_retailers": [
+    "yochananof"
+  ],
+  "nutrition_accessible_retailers": [],
+  "feasibility_summary": "Secondary-retailer fat re-scrape for bread corpus (9 priority implausible + 13 opportunistic, 22 total sentinel products). Reachability: Victory (68KB home, reachable) and Rami Levy (636KB home, reachable) were probed; Yochananof was blocked/unreachable. However, both reachable retailers load nutrition data client-side via authenticated/JavaScript APIs that are not accessible without browser automation and session credentials: Victory is a WordPress site whose WooCommerce REST API is not publicly enabled (all search pages return generic 38KB shells with no product content); Rami Levy is a Nuxt.js SPA where product pages return route shells only — nutrition is fetched client-side from www-api.rami-levy.co.il which requires OAuth (returns 404 unauthenticated). The 'שומן' string found in Rami Levy SSR pages is a fixed i18n UI label, not a nutrition value. Result: 0/22 fat values recovered. All 22 products are discard_candidate=true per the missing-data-discard rule. No kcal-derived or estimated fat values were injected — all nulls are genuine one-shot misses. Recovery would require a headless-browser approach with session authentication — outside the scope of a one-shot EDPG-compliant scrape.",
+  "products": [
+    {
+      "barcode": "2079033",
+      "name_he": "לחם דגנים לייט",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 56.2,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=2079033 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/2079033 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "2079217",
+      "name_he": "לחם מחמצת שיפון+אגוזים",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 64.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=2079217 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/2079217 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "6451484",
+      "name_he": "לחם מחמצת אגוזים צימוקים",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 54.6,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=6451484 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/6451484 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7290014321168",
+      "name_he": "לחם לס פרוס קיטו",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 104.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7290014321168 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7290014321168 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7290016245325",
+      "name_he": "לחם טחינה פרוס",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 59.3,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7290016245325 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7290016245325 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7290016967074",
+      "name_he": "לחם אנג'ל חיטה מלאה",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 63.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7290016967074 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7290016967074 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "74252",
+      "name_he": "קרקר שומשום אסם",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 146.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=74252 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/74252 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "8434165658523",
+      "name_he": "קרקר קרם קרקר",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 129.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=8434165658523 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/8434165658523 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "96086000966",
+      "name_he": "קרקר כוסמין מלא ושומשום",
+      "is_priority_implausible": true,
+      "kcal_gap_from_prior_analysis": 111.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=96086000966 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/96086000966 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "2079927",
+      "name_he": "לחם דגנים מלא",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 35.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=2079927 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/2079927 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "3054183",
+      "name_he": "לחם שיפון מלא מסטמכר",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 30.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=3054183 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/3054183 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "3268252",
+      "name_he": "לחם חיטה מלא לילדים",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 21.2,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=3268252 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/3268252 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "3268429",
+      "name_he": "לחם ירוק מקמח מלא",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 26.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=3268429 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/3268429 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "481197",
+      "name_he": "לחם מחמצת גרעינים",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 30.2,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=481197 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/481197 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "481203",
+      "name_he": "לחם מחמצת קמח מלא",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 37.9,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=481203 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/481203 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "497044",
+      "name_he": "לחם ברמן אקטיב",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 46.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=497044 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/497044 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "574370",
+      "name_he": "לחם שיפון קל",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 37.3,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=574370 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/574370 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "6451507",
+      "name_he": "לחם מחמצת מכוסמין",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 21.6,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=6451507 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/6451507 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7290018500460",
+      "name_he": "לחם אנג'ל חצי מלא",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 20.5,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7290018500460 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7290018500460 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7296073134442",
+      "name_he": "קרקר פריך עם קמח שיפון",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 31.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7296073134442 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7296073134442 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "7296073134459",
+      "name_he": "קרקר פריך בסגנון שוודי",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 31.9,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=7296073134459 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/7296073134459 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    },
+    {
+      "barcode": "96086000577",
+      "name_he": "קרקר כוסמין אורגני",
+      "is_priority_implausible": false,
+      "kcal_gap_from_prior_analysis": 33.8,
+      "secondary_retailer": null,
+      "real_fat_g": null,
+      "plausibility_pass": null,
+      "plausibility_gap_kcal": null,
+      "recovery_status": "not_found",
+      "discard_candidate": true,
+      "not_found_reason": "Both reachable retailers (Victory, Rami Levy) load nutrition data client-side via authenticated/JavaScript-rendered content; not accessible one-shot. Yochananof blocked. Per missing-data-discard rule: no fat recoverable = discard_candidate.",
+      "retailer_attempts": [
+        {
+          "retailer": "victory",
+          "outcome": "no_nutrition_in_html",
+          "detail": "WordPress site. /?s=96086000577 returns generic 38KB shell. No product nutrition in server-rendered HTML. WooCommerce API not public."
+        },
+        {
+          "retailer": "rami_levy",
+          "outcome": "no_nutrition_in_html",
+          "detail": "Nuxt SPA. /he/online/product/96086000577 returns 200 but only route shell; nutrition served by authenticated API (www-api.rami-levy.co.il) — requires OAuth. SSR 'שומן' is UI label only."
+        },
+        {
+          "retailer": "yochananof",
+          "outcome": "blocked",
+          "detail": "Host unreachable from this environment."
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "total_sentinel_barcodes": 22,
+    "priority_implausible": 9,
+    "recovered_total": 0,
+    "recovered_plausibility_pass": 0,
+    "recovered_plausibility_fail": 0,
+    "not_found_total": 22,
+    "blocked_total": 0,
+    "discard_candidate_total": 22,
+    "priority_implausible_recovered": 0,
+    "priority_implausible_discard_candidate": 9
+  }
+}

@@ -1,0 +1,110 @@
+{
+ "summary": {
+  "n_strings": 6,
+  "readability_clean": 6,
+  "naturalness_high_total": 0,
+  "naturalness_medium_total": 2
+ },
+ "per_string": {
+  "S-40": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  },
+  "S-41": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  },
+  "S-42": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='האירופית לבטיחות מזון (EFSA) היא הגוף הרגולטורי')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  },
+  "S-43": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='עת מדעית משנת 2011 קבעה EFSA שצריכת מזון או משקה')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T9",
+     "match": "מלטיטול",
+     "note": "Bare technical additive name — gloss it in plain language (owner 2026-06-22): 'תוסף המזון מלטיטול' / 'הממתיק מלטיטול'."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  },
+  "S-44": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='חשוב לקרוא את זה מדויק. EFSA דיברה על עלייה נמוכ')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T1",
+     "match": ", לא על היעדר",
+     "note": "Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  },
+  "S-45": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='לחוות הדעת המקורית של EFSA (EFSA Journal 2011)')",
+    "Leak(kind='english', term='EFSA', context='ת הדעת המקורית של EFSA (EFSA Journal 2011)')",
+    "Leak(kind='english', term='Journal', context='ת המקורית של EFSA (EFSA Journal 2011)')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   }
+  }
+ }
+}

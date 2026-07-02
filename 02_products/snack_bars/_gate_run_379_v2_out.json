@@ -1,0 +1,430 @@
+{
+ "summary": {
+  "n_strings": 11,
+  "readability_clean": 10,
+  "naturalness_high_total": 0,
+  "naturalness_medium_total": 5
+ },
+ "per_string": {
+  "S-47": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": true,
+   "gram_flags": []
+  },
+  "S-48": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T9",
+     "match": "מלטיטול",
+     "note": "Bare technical additive name — gloss it in plain language (owner 2026-06-22): 'תוסף המזון מלטיטול' / 'הממתיק מלטיטול'."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": true,
+   "gram_flags": []
+  },
+  "S-49": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='WIN', context='WIN קרם קרמל: בחזית כתוב')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T9",
+     "match": "מלטיטול",
+     "note": "Bare technical additive name — gloss it in plain language (owner 2026-06-22): 'תוסף המזון מלטיטול' / 'הממתיק מלטיטול'."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "כתוב",
+     "anchor": "בחזית",
+     "expected": "Gender=Fem",
+     "observed": "Gender=Masc",
+     "context": "WIN קרם קרמל: בחזית כתוב \"1",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "מופיעים",
+     "anchor": "שבגב",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "בטבלה שבגב מופיעים 27 גרם כוהלי סוכר ל-100 גרם,",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "עוברים",
+     "anchor": "הסוכר",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "מדפיסים אותה רק כשכוהלי הסוכר עוברים 10% מהמשקל",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-50": {
+   "read_clean": false,
+   "read_leaks": [
+    "Leak(kind='score_mechanic', term='34.1', context='כר\". בטבלה שבגב מופיעים 34.1 גרם כוהלי סוכר ל-10')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "כתוב",
+     "anchor": "בחזית",
+     "expected": "Gender=Fem",
+     "observed": "Gender=Masc",
+     "context": "אול אין סופט פיסטוק: בחזית כתוב \"4",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "מופיעים",
+     "anchor": "שבגב",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "בטבלה שבגב מופיעים 34",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "עוברים",
+     "anchor": "הסוכר",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "ן עצמו הצהיר שכוהלי הסוכר כאן עוברים את סף ה-10%",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-51": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "כתוב",
+     "anchor": "בחזית",
+     "expected": "Gender=Fem",
+     "observed": "Gender=Masc",
+     "context": "רו שטראוס קרמל ואגוזים: בחזית כתוב \"3",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "מופיעים",
+     "anchor": "שבגב",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "בטבלה שבגב מופיעים 24 גרם כוהלי סוכר ל-100 גרם,",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "הצלחנו",
+     "anchor": "עצמה",
+     "expected": "Gender=Fem",
+     "observed": "Gender=Masc",
+     "context": "את האזהרה החוקית עצמה לא הצלחנו לאמת על האריזה הפיזית מהמקורו",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "הצלחנו",
+     "anchor": "עצמה",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "את האזהרה החוקית עצמה לא הצלחנו לאמת על האריזה הפיזית מהמקורו",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-13": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "מחייבות",
+     "anchor": "בשנת",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "2018, שנכנסו לתוקף בשנת 2021, מחייבות כל מוצר שבו כוהלי הסוכר עוברי",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "עוברים",
+     "anchor": "הסוכר",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "ייבות כל מוצר שבו כוהלי הסוכר עוברים 10% מהמשקל להדפיס שתי הצהרות",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-28": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T9",
+     "match": "מלטיטול",
+     "note": "Bare technical additive name — gloss it in plain language (owner 2026-06-22): 'תוסף המזון מלטיטול' / 'הממתיק מלטיטול'."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "ומגיעים",
+     "anchor": "גרם",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "כל ערכי הסוכר הם לכל 100 גרם ומגיעים ישירות מהניתוח של ברי",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-43a": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='עת מדעית משנת 2011 קבעה EFSA כך: כשתחליפי סוכר כ')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T9",
+     "match": "מלטיטול",
+     "note": "Bare technical additive name — gloss it in plain language (owner 2026-06-22): 'תוסף המזון מלטיטול' / 'הממתיק מלטיטול'."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "שמכילים",
+     "anchor": "משקה",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "ותר מזו שמתקבלת ממזון או משקה שמכילים סוכר",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-43b": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='מדויקת, איננה חלק ממה ש-EFSA בחנה.')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "noun_adj_gender_mismatch",
+     "span": "מדויקת",
+     "anchor": "לקונה",
+     "expected": "Gender=Masc",
+     "observed": "Gender=Fem",
+     "context": "ימת הרכיבים נותנת לקונה תמונה מדויקת, איננה חלק ממה ש-EFSA בחנה",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "יושבים",
+     "anchor": "סוכר",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "חזית בזמן ש-27 גרם כוהלי סוכר יושבים ברשימת הרכיבים נותנת לקונה תמ",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "נותנת",
+     "anchor": "הרכיבים",
+     "expected": "Gender=Masc",
+     "observed": "Gender=Fem",
+     "context": "לי סוכר יושבים ברשימת הרכיבים נותנת לקונה תמונה מדויקת, איננה חלק",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "נותנת",
+     "anchor": "הרכיבים",
+     "expected": "Number=Plur",
+     "observed": "Number=Sing",
+     "context": "לי סוכר יושבים ברשימת הרכיבים נותנת לקונה תמונה מדויקת, איננה חלק",
+     "confidence": "medium"
+    }
+   ]
+  },
+  "S-44": {
+   "read_clean": true,
+   "read_leaks": [
+    "Leak(kind='english', term='EFSA', context='חשוב לדייק כאן. EFSA דיברה על עלייה נמוכ')"
+   ],
+   "nat_clean": true,
+   "high": [],
+   "medium": [
+    {
+     "tell": "T1",
+     "match": ", לא על היעדר",
+     "note": "Possible 'X, לא Y' contrastive mid-text — judge whether it reads as a calque."
+    }
+   ],
+   "f2": {
+    "hedge_count": 0,
+    "hedge_ratio": 0.0,
+    "has_verdict_marker": false,
+    "f2_risk": "medium"
+   },
+   "gram_clean": true,
+   "gram_flags": []
+  },
+  "S-38": {
+   "read_clean": true,
+   "read_leaks": [],
+   "nat_clean": true,
+   "high": [],
+   "medium": [],
+   "f2": {
+    "hedge_count": 1,
+    "hedge_ratio": 0.25,
+    "has_verdict_marker": false,
+    "f2_risk": "high"
+   },
+   "gram_clean": false,
+   "gram_flags": [
+    {
+     "issue_type": "noun_adj_number_mismatch",
+     "span": "עייפים",
+     "anchor": "המדף",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "אם אתם עומדים מול המדף עייפים ורוצים קיצור דרך אחד, אל תעצר",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "ורוצים",
+     "anchor": "המדף",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "אם אתם עומדים מול המדף עייפים ורוצים קיצור דרך אחד, אל תעצרו במספר",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_gender_mismatch",
+     "span": "תעצרו",
+     "anchor": "דרך",
+     "expected": "Gender=Fem",
+     "observed": "Gender=Masc",
+     "context": "יפים ורוצים קיצור דרך אחד, אל תעצרו במספר הסוכר הגדול והברור",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "תעצרו",
+     "anchor": "דרך",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "יפים ורוצים קיצור דרך אחד, אל תעצרו במספר הסוכר הגדול והברור",
+     "confidence": "medium"
+    },
+    {
+     "issue_type": "subject_verb_number_mismatch",
+     "span": "מופיעים",
+     "anchor": "סוכר",
+     "expected": "Number=Sing",
+     "observed": "Number=Plur",
+     "context": "ואם מלטיטול או כוהל סוכר אחר מופיעים שם גבוה ברשימה, סביר שהמספר ה",
+     "confidence": "medium"
+    }
+   ]
+  }
+ }
+}

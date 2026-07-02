@@ -1,0 +1,406 @@
+{
+  "run_id": "task366_20260622T130415",
+  "generated_at": "2026-06-22T11:04:51.118905Z",
+  "off_check": "PASS - no Open Food Facts data used; sources are direct Shufersal product page scrapes only",
+  "sources": [
+    "shufersal (primary)"
+  ],
+  "task_a": {
+    "description": "Re-scrape 4 products with ingredient-boilerplate issue; corrected ingredients + re-score",
+    "count_targets": 4,
+    "count_scraped_ok": 4,
+    "count_real_ingredients_found": 1,
+    "count_still_boilerplate": 3,
+    "count_null": 0,
+    "results": [
+      {
+        "id": "ct-004",
+        "barcode": "3046920023429",
+        "name_scraped": "שוקולד חלב חתיכות קרמל",
+        "name_expected": "שוקולד חלב חתיכות קרמל",
+        "brand_scraped": "לינדט",
+        "barcode_name_mismatch": null,
+        "ingredients_status": "STILL_BOILERPLATE",
+        "ingredients_corrected": null,
+        "before_score": 50,
+        "before_grade": "C",
+        "after_score": 50,
+        "after_grade": "C",
+        "score_changed": false,
+        "nutrition_per_100g": {
+          "kcal": 560.0,
+          "fat_g": 35.0,
+          "sat_fat_g": null,
+          "sugar_g": 53.0,
+          "sodium_mg": 220.0,
+          "protein_g": 6.0,
+          "fiber_g": 1.6,
+          "saturated_fat_g": 22.0
+        },
+        "retailer_source": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%97%D7%9C%D7%91-%D7%97%D7%AA%D7%99%D7%9B%D7%95%D7%AA-%D7%A7%D7%A8%D7%9E%D7%9C/p/P_3046920023429"
+      },
+      {
+        "id": "ct-005",
+        "barcode": "3046920023368",
+        "name_scraped": "שוקולד חלב מעולה",
+        "name_expected": "שוקולד חלב מעולה",
+        "brand_scraped": "לינדט",
+        "barcode_name_mismatch": null,
+        "ingredients_status": "STILL_BOILERPLATE",
+        "ingredients_corrected": null,
+        "before_score": 50,
+        "before_grade": "C",
+        "after_score": 50,
+        "after_grade": "C",
+        "score_changed": false,
+        "nutrition_per_100g": {
+          "kcal": 570.0,
+          "fat_g": 37.0,
+          "sat_fat_g": null,
+          "sugar_g": 51.0,
+          "sodium_mg": 100.0,
+          "protein_g": 6.3,
+          "fiber_g": 1.7,
+          "saturated_fat_g": 24.0
+        },
+        "retailer_source": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%97%D7%9C%D7%91-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_3046920023368",
+        "brand_note": "'מעולה' in name is the Hebrew translation of Lindt 'Excellence' line — confirmed brand=Lindt, country=France. Not the Elite brand. No mismatch."
+      },
+      {
+        "id": "ct-006",
+        "barcode": "3046920023443",
+        "name_scraped": "שוקולד מריר מעולה",
+        "name_expected": "שוקולד מריר מעולה",
+        "brand_scraped": "לינדט",
+        "barcode_name_mismatch": null,
+        "ingredients_status": "STILL_BOILERPLATE",
+        "ingredients_corrected": null,
+        "before_score": 50,
+        "before_grade": "C",
+        "after_score": 50,
+        "after_grade": "C",
+        "score_changed": false,
+        "nutrition_per_100g": {
+          "kcal": 535.0,
+          "fat_g": 32.0,
+          "sat_fat_g": null,
+          "sugar_g": 47.0,
+          "sodium_mg": 5.3,
+          "protein_g": 6.0,
+          "fiber_g": 7.5,
+          "saturated_fat_g": 19.0
+        },
+        "retailer_source": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-%D7%9E%D7%A2%D7%95%D7%9C%D7%94/p/P_3046920023443",
+        "brand_note": "'מעולה' in name is the Hebrew translation of Lindt 'Excellence' line — confirmed brand=Lindt, country=France. Not the Elite brand. No mismatch."
+      },
+      {
+        "id": "ct-025",
+        "barcode": "7290112331984",
+        "name_scraped": "שוקולד פרה קראנצ' בסקויט",
+        "name_expected": "שוקולד פרה קראנצ' בסקויט",
+        "brand_scraped": "שוקולד פרה",
+        "barcode_name_mismatch": null,
+        "ingredients_status": "REAL_INGREDIENTS",
+        "ingredients_corrected": "שוקולד חלב מעולה 51%, אבקת רכיבי חלב, ביסקוויט בטעם שוקולד (חיטה-גלוטן, סויה) 12%, שמנים ושומנים מהצומח, סוכר לבן, סיבים תזונתיים (א ינולין), שומן חלב, חומרי טעם וריח, מתחלב (לציטין לפתית), מלח. מכיל גלוטן חיטה,",
+        "before_score": 21.8,
+        "before_grade": "E",
+        "after_score": 21.8,
+        "after_grade": "E",
+        "score_changed": false,
+        "nutrition_per_100g": {
+          "kcal": 539.0,
+          "fat_g": 32.0,
+          "sat_fat_g": null,
+          "sugar_g": 45.0,
+          "sodium_mg": 215.0,
+          "protein_g": 9.4,
+          "fiber_g": 3.2,
+          "saturated_fat_g": 18.8
+        },
+        "retailer_source": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%97%D7%A4%D7%99%D7%A1%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%94-%D7%A7%D7%A8%D7%90%D7%A0%D7%A6%27-%D7%91%D7%A1%D7%A7%D7%95%D7%99%D7%98/p/P_7290112331984"
+      }
+    ]
+  },
+  "task_b": {
+    "description": "Fill 65-90% dark cocoa ladder; priority 70% and 80%",
+    "count_targets": 9,
+    "count_scored": 7,
+    "count_failed": 2,
+    "cocoa_pct_coverage_before": {
+      "60": 1,
+      "70": 1,
+      "78": 1,
+      "81": 1,
+      "85": 4,
+      "90": 2
+    },
+    "cocoa_pct_coverage_new": {
+      "62": 1,
+      "70": 3,
+      "72": 1,
+      "75": 2
+    },
+    "cocoa_pct_coverage_combined": {
+      "60": 1,
+      "62": 1,
+      "70": 4,
+      "72": 1,
+      "75": 2,
+      "78": 1,
+      "81": 1,
+      "85": 4,
+      "90": 2
+    },
+    "results": [
+      {
+        "code": "P_3046920028004",
+        "barcode": "3046920028004",
+        "name": "שוקולד מריר לינדט 70%",
+        "brand": "לינדט",
+        "cocoa_pct_nominal": 70,
+        "priority": "HIGH",
+        "status": "SCORED",
+        "score": 28.7,
+        "grade": "E",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 566.0,
+          "fat_g": 41.0,
+          "saturated_fat_g": 24.0,
+          "sugars_g": 30.0,
+          "sodium_mg": 39.0,
+          "protein_g": 9.5,
+          "dietary_fiber_g": null
+        },
+        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, וניל . מינימום מוצקי קקאו בשוקולד מריר: 70%. מכיל עקבות של אגוזים עלול להכיל חלב,",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UXH38_Z_P_3046920028004_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%97%D7%A4%D7%99%D7%A1%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-%D7%9C%D7%99%D7%A0%D7%93%D7%98-70%25/p/P_3046920028004",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 30.0,
+          "sat_fat_g": null
+        }
+      },
+      {
+        "code": "P_7290018893401",
+        "barcode": "7290018893401",
+        "name": "צ'וקטה שוקולד מריר 70%",
+        "brand": "צ'וקטה",
+        "cocoa_pct_nominal": 70,
+        "priority": "HIGH",
+        "status": "SCORED",
+        "score": 27.9,
+        "grade": "E",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 545.0,
+          "fat_g": 38.0,
+          "saturated_fat_g": 24.0,
+          "sugars_g": 31.0,
+          "sodium_mg": 8.0,
+          "protein_g": 8.2,
+          "dietary_fiber_g": 13.0
+        },
+        "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, אבקת קקאו דל שומן,  מתחלב (לציטין סויה), חומרי טעם וריח .n מינימום  70%מוצקי קקאו. מכיל סויה עלול להכיל אגוזי לוז,",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AKW52_Z_P_7290018893401_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A6%27%D7%95%D7%A7%D7%98%D7%94-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-70%25/p/P_7290018893401",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 31.0,
+          "sat_fat_g": null
+        }
+      },
+      {
+        "code": "P_7290112914705",
+        "barcode": "7290112914705",
+        "name": "שוקולד מריר מעולה 70%",
+        "brand": "מקס ברנר",
+        "cocoa_pct_nominal": 70,
+        "priority": "HIGH",
+        "status": "SCORED",
+        "score": 20.0,
+        "grade": "E",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 558.0,
+          "fat_g": 45.0,
+          "saturated_fat_g": 27.0,
+          "sugars_g": 29.0,
+          "sodium_mg": 21.0,
+          "protein_g": 7.0,
+          "dietary_fiber_g": 0.0
+        },
+        "ingredients": "שוקולד מריר מעולה (100%). כלל מוצקי קקאו בשוקולד מריר מעולה 70% מינימום. nאזהרה: המוצר אינו מתאים לבעלי אלרגיה לחלב ולמזונות נוספים  המופיעים במידע על אלרגנים להלן.n מאפיינים נוספים אפוי ולא מטוגן עלול להכיל אגוזי לוז ערכים תזונתיים 100 גרם 0 גרם סיבים תזונתיים 29 גרם סוכרים מתוך פחמימות 558 קל אנרגיה 7 גרם חלבונים 32 גרם פחמימות 45 גרם שומנים 0 מג כולסטרול 21 מג נתרן 27 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 7.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LEW48_Z_P_7290112914705_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-%D7%9E%D7%A2%D7%95%D7%9C%D7%94-70%25/p/P_7290112914705",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 29.0,
+          "sat_fat_g": null
+        }
+      },
+      {
+        "code": "P_4820005195848",
+        "barcode": "4820005195848",
+        "name_scraped": "שוקולד מריר 80%",
+        "name_expected": "שוקולד מריר 80%",
+        "cocoa_pct_nominal": 80,
+        "status": "NO_SCORE",
+        "ingredients": "עיסת קקאו, סוכר, חמאת קקאו, אבקת קקאו דל שומן (10-12%), חומר מתחלב (לציטין סויה E322), חומר טעם וריח וניל. nמכיל לפחות 80% מוצקי קק או. הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%97%D7%A4%D7%99%D7%A1%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-80%25/p/P_4820005195848"
+      },
+      {
+        "code": "P_7296073726562",
+        "barcode": "7296073726562",
+        "name": "שוקולד מריר ללת\"ס 72%",
+        "brand": "DUBRO",
+        "cocoa_pct_nominal": 72,
+        "priority": "MED",
+        "status": "SCORED",
+        "score": 51.0,
+        "grade": "C",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 554.0,
+          "fat_g": 47.0,
+          "saturated_fat_g": 29.0,
+          "sugars_g": 0.7,
+          "sodium_mg": 10.0,
+          "protein_g": 7.2,
+          "dietary_fiber_g": 10.0
+        },
+        "ingredients": "עיסת קקאו, ממתיקים (מלטיטול, E960), חמאת קקאו, אבקת קקאו, חומר טעם וריח.nכלל מוצקי קקאו בשוקולד- מינימום 72%. מאפיינים נוספים ללא תוספת סוכר עלול להכיל אגוזי מלך,",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KFJ62_Z_P_7296073726562_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%93%D7%99%D7%90%D7%98-%D7%95%D7%9C%D7%9C%D7%90-%D7%A1%D7%95%D7%9B%D7%A8/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%93%D7%99%D7%90%D7%98%D7%98%D7%99/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-%D7%9C%D7%9C%D7%AA%22%D7%A1-72%25/p/P_7296073726562",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 0.7,
+          "sat_fat_g": null
+        }
+      },
+      {
+        "code": "P_4820005198597",
+        "barcode": "4820005198597",
+        "name_scraped": "שוקולד מריר 74%",
+        "name_expected": "שוקולד מריר 74%",
+        "cocoa_pct_nominal": 74,
+        "status": "NO_SCORE",
+        "ingredients": "עיסת קקאו, סוכר, חמאת קקאו, אבקת קקאו דל שומן (10-12%), חומר מתחלב (לציטין סויה E322), חומר טעם וריח וניל. nמכיל לפחות 74% מוצקי קק או. הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%97%D7%A4%D7%99%D7%A1%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-74%25/p/P_4820005198597"
+      },
+      {
+        "code": "P_7296073747802",
+        "barcode": "7296073747802",
+        "name": "שוקולד מריר פרימיום 75%",
+        "brand": "ARENSTO",
+        "cocoa_pct_nominal": 75,
+        "priority": "MED",
+        "status": "SCORED",
+        "score": 32.0,
+        "grade": "E",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 593.0,
+          "fat_g": 48.0,
+          "saturated_fat_g": 29.0,
+          "sugars_g": 21.0,
+          "sodium_mg": 10.0,
+          "protein_g": 8.7,
+          "dietary_fiber_g": 12.0
+        },
+        "ingredients": "עיסת קקאו, חמאת קקאו, סוכר, אבקת קקאו, חומר טעם וריח.nכלל מוצקי קקאו בשוקולד- מינימום 75%. עלול להכיל אגוזי לוז,",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PQH62_Z_P_7296073747802_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D-75%25/p/P_7296073747802",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 21.0,
+          "sat_fat_g": null
+        }
+      },
+      {
+        "code": "P_5941021001261",
+        "barcode": "5941021001261",
+        "name": "שוקולד מריר 75%",
+        "brand": "היידי",
+        "cocoa_pct_nominal": 75,
+        "priority": "MED",
+        "status": "SCORED",
+        "score": 16.2,
+        "grade": "E",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 591.0,
+          "fat_g": 48.0,
+          "saturated_fat_g": 29.0,
+          "sugars_g": 22.0,
+          "sodium_mg": 8.0,
+          "protein_g": 7.8,
+          "dietary_fiber_g": null
+        },
+        "ingredients": "עיסת קקאו, סוכר,nnחמאת קקאו, אבקת קקאו,nnאנרגיה(קלוריות)nnחומר מתחלב: לציטין סויה,nnסך השומנים (גרם(nnחומרי טעם וריח (תמצי תnnמתוכם:nn, וניל). כלל מוצקי קקאוnnחומצות שומן רוויורnnבשוקולד: מינימום 75%.n ערכים תזונתיים 100 גרם 22 גרם סוכרים מתוך פחמימות 591 קל אנרגיה 7.8 גרם חלבונים 25 גרם פחמימות 48 גרם שומנים 0 מג כולסטרול 8 מג נתרן 29 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 5.5 כפיות סוכר 47 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IJU32_Z_P_5941021001261_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%9E%D7%9E%D7%AA%D7%A7%D7%99%D7%9D/%D7%98%D7%91%D7%9C%D7%90%D7%95%D7%AA-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%A4%D7%A8%D7%99%D7%9E%D7%99%D7%95%D7%9D/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-75%25/p/P_5941021001261",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 22.0,
+          "sat_fat_g": null
+        },
+        "data_quality_flag": "Ingredients text contains embedded nutrition table rows (Shufersal page artifact) — ingredient string is garbled and not suitable for D4 additive analysis. Nutrition values (kcal/fat/sugar/etc.) are correctly scraped from the dedicated nutrition table. Score of 16.2/E is suppressed relative to real 75% dark due to this artifact. Recommend discard or manual ingredient verification before corpus inclusion."
+      },
+      {
+        "code": "P_7290119500482",
+        "barcode": "7290119500482",
+        "name": "טוסו שוקולד מריר 62%",
+        "brand": "טוסו",
+        "cocoa_pct_nominal": 62,
+        "priority": "LOW",
+        "status": "SCORED",
+        "score": 50.5,
+        "grade": "C",
+        "engine_category": "snack_bar_granola",
+        "plausibility_verdict": "pass",
+        "nutrition_per_100g": {
+          "energy_kcal": 518.0,
+          "fat_g": 40.2,
+          "saturated_fat_g": 24.0,
+          "sugars_g": 0.3,
+          "sodium_mg": 5.0,
+          "protein_g": 7.1,
+          "dietary_fiber_g": 7.3
+        },
+        "ingredients": "עיסת קקאו , ממתיק (מלטיטול), חמאת קקאו, מתחלב (לציטין חמניות), חומר טעם טבעי. nסך מוצקי קקאו: מינימום 62% מאפיינים נוספים ללא תוספת סוכר עלול להכיל אגוזי לוז,",
+        "image_url": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DLZ48_Z_P_7290119500482_1.png",
+        "retailer": "shufersal",
+        "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%93%D7%99%D7%90%D7%98-%D7%95%D7%9C%D7%9C%D7%90-%D7%A1%D7%95%D7%9B%D7%A8/%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%93%D7%99%D7%90%D7%98%D7%98%D7%99/%D7%98%D7%95%D7%A1%D7%95-%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93-%D7%9E%D7%A8%D7%99%D7%A8-62%25/p/P_7290119500482",
+        "scoring_trace_signals": {
+          "category": "snack_bar_granola",
+          "sugar_g": 0.3,
+          "sat_fat_g": null
+        }
+      }
+    ]
+  },
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\task366_20260622T130415\\output",
+  "bsip2_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\task366_20260622T130415\\products",
+  "plausibility_gate": "run_task360_phase3.run_plausibility_gate — per-100g sanity enforced",
+  "scoring_engine": "score_chocolate_task362.py lens (unchanged) via run_task360_phase3",
+  "integration_status": "DATA_ONLY — do not integrate to frontend; awaiting orchestrator verification"
+}

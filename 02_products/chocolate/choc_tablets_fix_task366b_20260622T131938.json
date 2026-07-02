@@ -1,0 +1,203 @@
+{
+  "run_id": "task366b_20260622T131938",
+  "generated_at": "2026-06-22T11:31:41.092704Z",
+  "retailer": "victory",
+  "pass_number": 2,
+  "off_check": "PASS — zero Open Food Facts data used. Sources: Victory storefront (Playwright direct scrape). No OFF fields, no fallback.",
+  "sources": [
+    "victory (victoryonline.co.il) — Playwright direct scrape"
+  ],
+  "provenance": {
+    "retailer": "victory",
+    "source_type": "direct_storefront_playwright",
+    "verification_status": "candidate",
+    "fetched_at": "2026-06-22T11:31:41.092749Z",
+    "client_version": "task366b_v1"
+  },
+  "target_2_lindt_ingredients": {
+    "description": "Re-scrape 3 Lindt barcodes with allergen-boilerplate ingredients from Pass 1 (Shufersal). Final attempt.",
+    "count_targets": 3,
+    "count_real_ingredients": 0,
+    "count_still_boilerplate": 0,
+    "count_null_or_not_found": 3,
+    "verdict": "NULL_FINAL",
+    "results": [
+      {
+        "barcode": "3046920023429",
+        "note": "Lindt caramel milk — ct-004",
+        "status": "NOT_FOUND_ON_VICTORY",
+        "ingredients_found": false,
+        "ingredients_text": null,
+        "ingredients_status": "NULL"
+      },
+      {
+        "barcode": "3046920023368",
+        "note": "Lindt Excellence milk — ct-005",
+        "status": "NOT_FOUND_ON_VICTORY",
+        "ingredients_found": false,
+        "ingredients_text": null,
+        "ingredients_status": "NULL"
+      },
+      {
+        "barcode": "3046920023443",
+        "note": "Lindt Excellence dark — ct-006, owner screenshot product",
+        "status": "NOT_FOUND_ON_VICTORY",
+        "ingredients_found": false,
+        "ingredients_text": null,
+        "ingredients_status": "NULL"
+      }
+    ]
+  },
+  "target_1_dark_80_percent": {
+    "description": "Find genuine 75-82% dark chocolate tablet on Victory with full per-100g nutrition + ingredients. Score via existing lens.",
+    "count_barcode_targets": 4,
+    "count_scored_from_barcodes": 0,
+    "count_no_nutrition": 4,
+    "discovery_queries": [
+      "שוקולד מריר 80%",
+      "שוקולד 80 אחוז קקאו",
+      "dark chocolate 80"
+    ],
+    "count_discovery_hits": 3,
+    "count_discovery_scored": 0,
+    "count_near_80_scored_total": 0,
+    "verdict": "NOT_FOUND: no 75-82% product with full nutrition panel found on Victory",
+    "results_by_barcode": [
+      {
+        "barcode": "4820005195848",
+        "name_search": "שוקולד מריר 80%",
+        "cocoa_pct_nominal": 80,
+        "note": "Millennium 80% — had no nutrition on Shufersal",
+        "status": "NOT_FOUND_ON_VICTORY"
+      },
+      {
+        "barcode": "3046920028004",
+        "name_search": "שוקולד מריר לינדט 70%",
+        "cocoa_pct_nominal": 70,
+        "note": "Lindt 70% — check if Victory has sat-fat (was NULL on Shufersal)",
+        "status": "NOT_FOUND_ON_VICTORY"
+      },
+      {
+        "barcode": "3046920028028",
+        "name_search": "שוקולד מריר 80% לינדט",
+        "cocoa_pct_nominal": 80,
+        "note": "Lindt 80% candidate (Excellence 80% COCOA barcode variant)",
+        "status": "NOT_FOUND_ON_VICTORY"
+      },
+      {
+        "barcode": "3046920022378",
+        "name_search": "שוקולד מריר 85% לינדט",
+        "cocoa_pct_nominal": 85,
+        "note": "Lindt 85% — check if Victory nutrition differs from Shufersal",
+        "status": "NOT_FOUND_ON_VICTORY"
+      }
+    ],
+    "discovery_results": [
+      {
+        "barcode": "7290019398233",
+        "name": "סטלה ארטואה בירה 6 יח' 1.980 ליטר",
+        "query": "שוקולד מריר 80%",
+        "cocoa_pct_nominal": null,
+        "status": "NO_NUTRITION",
+        "nutrition_per_100g": {
+          "energy": 41.0
+        },
+        "ingredients": "ואלרגנים רשימת רכיבים מים, לתת שעורה ( מכיל גלוטן), תירס כשות. אלרגנים כלולים גלוטן מידע נוסף והנחיות אזהרות שימוש ובטיחות מכיל אלכוהול - מומלץ להימנע משתיה מופרזת פרטים כללים ארץ ייצור בלגיה סימון תזונתי משקל ליחידה ל-100 מל אנרגיה (קלוריות) 41 קלוריות אין להסתמך על הפירוט המופיע באתר על מרכיבי המוצר, יתכנו טעויות או אי התאמות במידע, הנתונים המדויקים מופיעים על גבי המוצר. יש לבדוק שוב את הנתונים על גבי אריזת המוצר לפני השימוש. המבצעים המסומנים MaxCard, מותנים בתשלום באמצעות כרטיס אשראי מקס ויקטורי . מחיר המבצע יינתן עבור הכמות שבמבצע בלבד וללא כפל מבצעים.",
+        "score": null,
+        "grade": null,
+        "sat_fat_g": null,
+        "sugar_g": null,
+        "retailer": "victory",
+        "source_url": "https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%2080%25"
+      },
+      {
+        "barcode": "7290019398233",
+        "name": "סטלה ארטואה בירה 6 יח' 1.980 ליטר",
+        "query": "שוקולד 80 אחוז קקאו",
+        "cocoa_pct_nominal": null,
+        "status": "NO_NUTRITION",
+        "nutrition_per_100g": {
+          "energy": 41.0
+        },
+        "ingredients": "ואלרגנים רשימת רכיבים מים, לתת שעורה ( מכיל גלוטן), תירס כשות. אלרגנים כלולים גלוטן מידע נוסף והנחיות אזהרות שימוש ובטיחות מכיל אלכוהול - מומלץ להימנע משתיה מופרזת פרטים כללים ארץ ייצור בלגיה סימון תזונתי משקל ליחידה ל-100 מל אנרגיה (קלוריות) 41 קלוריות אין להסתמך על הפירוט המופיע באתר על מרכיבי המוצר, יתכנו טעויות או אי התאמות במידע, הנתונים המדויקים מופיעים על גבי המוצר. יש לבדוק שוב את הנתונים על גבי אריזת המוצר לפני השימוש. המבצעים המסומנים MaxCard, מותנים בתשלום באמצעות כרטיס אשראי מקס ויקטורי . מחיר המבצע יינתן עבור הכמות שבמבצע בלבד וללא כפל מבצעים.",
+        "score": null,
+        "grade": null,
+        "sat_fat_g": null,
+        "sugar_g": null,
+        "retailer": "victory",
+        "source_url": "https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%2080%20%D7%90%D7%97%D7%95%D7%96%20%D7%A7%D7%A7%D7%90%D7%95"
+      },
+      {
+        "barcode": "7290019398233",
+        "name": "סטלה ארטואה בירה 6 יח' 1.980 ליטר",
+        "query": "dark chocolate 80",
+        "cocoa_pct_nominal": null,
+        "status": "NO_NUTRITION",
+        "nutrition_per_100g": {
+          "energy": 41.0
+        },
+        "ingredients": "ואלרגנים רשימת רכיבים מים, לתת שעורה ( מכיל גלוטן), תירס כשות. אלרגנים כלולים גלוטן מידע נוסף והנחיות אזהרות שימוש ובטיחות מכיל אלכוהול - מומלץ להימנע משתיה מופרזת פרטים כללים ארץ ייצור בלגיה סימון תזונתי משקל ליחידה ל-100 מל אנרגיה (קלוריות) 41 קלוריות אין להסתמך על הפירוט המופיע באתר על מרכיבי המוצר, יתכנו טעויות או אי התאמות במידע, הנתונים המדויקים מופיעים על גבי המוצר. יש לבדוק שוב את הנתונים על גבי אריזת המוצר לפני השימוש. המבצעים המסומנים MaxCard, מותנים בתשלום באמצעות כרטיס אשראי מקס ויקטורי . מחיר המבצע יינתן עבור הכמות שבמבצע בלבד וללא כפל מבצעים.",
+        "score": null,
+        "grade": null,
+        "sat_fat_g": null,
+        "sugar_g": null,
+        "retailer": "victory",
+        "source_url": "https://www.victoryonline.co.il/category?search=dark%20chocolate%2080"
+      }
+    ],
+    "top_candidates_near_80": []
+  },
+  "plausibility_gate_results": {
+    "7290019398233": "INCOMPLETE"
+  },
+  "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\task366b_20260622T131938\\output",
+  "bsip2_dir": "C:\\Bari\\02_products\\chocolate\\bsip2_outputs\\task366b_20260622T131938\\products",
+  "scoring_engine": "score_chocolate_task362.py lens (unchanged) via run_task360_phase3",
+  "integration_status": "DATA_ONLY — do not integrate to frontend; awaiting orchestrator verification",
+  "commands_run": [
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%97%D7%9C%D7%91%20%D7%97%D7%AA%D7%99%D7%9B%D7%95%D7%AA%20%D7%A7%D7%A8%D7%9E%D7%9C%20%D7%9C%D7%99%D7%A0%D7%93%D7%98')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%97%D7%9C%D7%91%20%D7%9E%D7%A2%D7%95%D7%9C%D7%94%20%D7%9C%D7%99%D7%A0%D7%93%D7%98')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%20%D7%9E%D7%A2%D7%95%D7%9C%D7%94%20%D7%9C%D7%99%D7%A0%D7%93%D7%98')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%2080%25')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%20%D7%9C%D7%99%D7%A0%D7%93%D7%98%2070%25')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%2080%25%20%D7%9C%D7%99%D7%A0%D7%93%D7%98')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%2085%25%20%D7%9C%D7%99%D7%A0%D7%93%D7%98')",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%20%D7%9E%D7%A8%D7%99%D7%A8%2080%25') [discovery]",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=%D7%A9%D7%95%D7%A7%D7%95%D7%9C%D7%93%2080%20%D7%90%D7%97%D7%95%D7%96%20%D7%A7%D7%A7%D7%90%D7%95') [discovery]",
+      "exit_code": 0
+    },
+    {
+      "cmd": "playwright page.goto('https://www.victoryonline.co.il/category?search=dark%20chocolate%2080') [discovery]",
+      "exit_code": 0
+    },
+    {
+      "cmd": "P3.run_plausibility_gate + P3.build_bsip1 + P3.run_bsip2 (score_chocolate_task362 lens)",
+      "exit_code": 0
+    }
+  ]
+}

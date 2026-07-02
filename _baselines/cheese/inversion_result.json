@@ -1,0 +1,23 @@
+{
+  "gate": "9 INVERSION-INVARIANT",
+  "status": "FAIL",
+  "run_dir": "C:\\Bari\\02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_004\\products",
+  "lines": [
+    "  INFO: Total traces loaded: 59",
+    "  INFO: Excluded (null score): 0",
+    "  INFO: Excluded (out_of_scope): 0",
+    "  INFO: Eligible for inversion check: 59",
+    "  INFO: Hard-gate eligible (confidence_band != insufficient): 54",
+    "  INFO: Suspected-only (confidence_band == insufficient, logged WARN): 5",
+    "  INFO: Total ordered pairs checked (hard): 1419",
+    "  INFO: Inversion pairs firing (FAIL): 4",
+    "  INFO: Non-firing pairs: 1415",
+    "  FAIL: INVERSION: A(higher-scored) is nutritionally WORSE than B(lower-scored)\n    A(higher rank): id=3523230065467 (גבינת עזים שום+עשב תיבול) | score=63.8\n    B(lower rank):  id=6492852 (גבינה לבנה עיזים 5% גד) | score=55.7\n    A worse on (3 panel signals): ['sugars_g', 'fat_saturated_g', 'red_label_count']\n    A better on: (none -- full inversion)\n    Panel signal values (A vs B): sugars_g: A=1.0 B=0.5 [WORSE] | fat_saturated_g: A=12.0 B=3.3 [WORSE] | red_label_count: A=1 B=0 [WORSE] | fat_source_tier: A=2 B=2\n    Supporting: additive_marker_count: A=0 B=2 [SUPPORTING — informational only, not used in fire decision]",
+    "  FAIL: INVERSION: A(higher-scored) is nutritionally WORSE than B(lower-scored)\n    A(higher rank): id=7622201798154 (גבינת פילדלפיה לייט 13%) | score=60.6\n    B(lower rank):  id=6492852 (גבינה לבנה עיזים 5% גד) | score=55.7\n    A worse on (3 panel signals): ['sugars_g', 'fat_saturated_g', 'red_label_count']\n    A better on: (none -- full inversion)\n    Panel signal values (A vs B): sugars_g: A=4.0 B=0.5 [WORSE] | fat_saturated_g: A=7.1 B=3.3 [WORSE] | red_label_count: A=1 B=0 [WORSE] | fat_source_tier: A=2 B=2\n    Supporting: additive_marker_count: A=0 B=2 [SUPPORTING — informational only, not used in fire decision]",
+    "  FAIL: INVERSION: A(higher-scored) is nutritionally WORSE than B(lower-scored)\n    A(higher rank): id=7622201521493 (פילדלפיה שום+ע.תיבול 12%) | score=47.3\n    B(lower rank):  id=7290019635116 (גבינת שמנת זיתים 5%) | score=44.3\n    A worse on (3 panel signals): ['sugars_g', 'fat_saturated_g', 'red_label_count']\n    A better on: (none -- full inversion)\n    Panel signal values (A vs B): sugars_g: A=4.1 B=3.8 [WORSE] | fat_saturated_g: A=7.8 B=3.0 [WORSE] | red_label_count: A=1 B=0 [WORSE] | fat_source_tier: A=2 B=2\n    Supporting: additive_marker_count: A=1 B=3 [SUPPORTING — informational only, not used in fire decision]",
+    "  FAIL: INVERSION: A(higher-scored) is nutritionally WORSE than B(lower-scored)\n    A(higher rank): id=7622201798154 (גבינת פילדלפיה לייט 13%) | score=60.6\n    B(lower rank):  id=7290019635116 (גבינת שמנת זיתים 5%) | score=44.3\n    A worse on (3 panel signals): ['sugars_g', 'fat_saturated_g', 'red_label_count']\n    A better on: (none -- full inversion)\n    Panel signal values (A vs B): sugars_g: A=4.0 B=3.8 [WORSE] | fat_saturated_g: A=7.1 B=3.0 [WORSE] | red_label_count: A=1 B=0 [WORSE] | fat_source_tier: A=2 B=2\n    Supporting: additive_marker_count: A=0 B=3 [SUPPORTING — informational only, not used in fire decision]",
+    "  WARN: SUSPECTED inversions (confidence=insufficient, excluded from hard gate): 2",
+    "  WARN:   SUSPECTED: A(higher)=7290019635376 (גבינת שמנת גורגונזולה24%) score=51.2 vs B(lower)=554983 (גבינה לאבנה5%  א.ח.נוכרי) score=50 A-worse-on=['sugars_g', 'fat_saturated_g', 'red_label_count'] additive[A=1 B=0]",
+    "  WARN:   SUSPECTED: A(higher)=7622201798154 (גבינת פילדלפיה לייט 13%) score=60.6 vs B(lower)=554983 (גבינה לאבנה5%  א.ח.נוכרי) score=50 A-worse-on=['sugars_g', 'fat_saturated_g', 'red_label_count'] additive[A=0 B=0]"
+  ]
+}

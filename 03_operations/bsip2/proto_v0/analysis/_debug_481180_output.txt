@@ -1,0 +1,111 @@
+=== RAW INGREDIENT TEXT ===
+קמח חיטה לבן (מכיל גלוטן) (75% מהקמח, 40% מהלחם), מים, מחמצת חיטה לבן 18% (קמח חיטה לבן (מכיל גלוטן), מים), קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (25% מסך הקמחים, 15% מהלחם), מלח, גלוטן חיטה, חומר משמר (E282).
+
+=== PARSED RECORDS (structured_ingredient_reader.py) ===
+Record 1: pos=1 level=None stated_pct=40.0 effective_pct=40.0 has_own_sub=False
+  raw: קמח חיטה לבן (מכיל גלוטן) (75% מהקמח, 40% מהלחם)
+  qualifiers: ['לבן']
+
+Record 2: pos=2 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: מים
+  qualifiers: []
+
+Record 3: pos=3 level=None stated_pct=18.0 effective_pct=18.0 has_own_sub=True
+  raw: מחמצת חיטה לבן 18% (קמח חיטה לבן (מכיל גלוטן), מים)
+  qualifiers: ['לבן']
+
+Record 4: pos=3 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: קמח חיטה לבן (מכיל גלוטן)
+  qualifiers: ['לבן']
+
+Record 5: pos=4 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: מים
+  qualifiers: []
+
+Record 6: pos=4 level=None stated_pct=15.0 effective_pct=15.0 has_own_sub=False
+  raw: קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (25% מסך הקמחים, 15% מהלחם)
+  qualifiers: ['מלא']
+
+Record 7: pos=5 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: מלח
+  qualifiers: []
+
+Record 8: pos=6 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: גלוטן חיטה
+  qualifiers: []
+
+Record 9: pos=7 level=None stated_pct=None effective_pct=None has_own_sub=False
+  raw: חומר משמר (E282).
+  qualifiers: []
+
+=== PER-RECORD MARKER EXTRACTION ===
+Record pos=1 stated_pct=40.0 text_for_match='קמח חיטה לבן (מכיל גלוטן) (75% מהקמח, 40% מהלחם)'
+  MATCH: label=refined_wheat_flour class=refined matched='קמח חיטה' stated_pct=40.0 pos=1
+
+Record pos=2 stated_pct=None text_for_match='מים'
+
+Record pos=3 stated_pct=18.0 text_for_match='מחמצת חיטה לבן 18%'
+  MATCH: label=sourdough_starter class=whole matched='מחמצת' stated_pct=18.0 pos=3
+
+Record pos=3 stated_pct=None text_for_match='קמח חיטה לבן (מכיל גלוטן)'
+  MATCH: label=refined_wheat_flour class=refined matched='קמח חיטה' stated_pct=None pos=3
+
+Record pos=4 stated_pct=None text_for_match='מים'
+
+Record pos=4 stated_pct=15.0 text_for_match='קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (25% מסך הקמחים, 15% מהלחם'
+  MATCH: label=whole_wheat_flour class=whole matched='קמח חיטה מלא' stated_pct=15.0 pos=4
+
+Record pos=5 stated_pct=None text_for_match='מלח'
+
+Record pos=6 stated_pct=None text_for_match='גלוטן חיטה'
+
+Record pos=7 stated_pct=None text_for_match='חומר משמר (E282).'
+
+=== DEDUPLICATION (best effective_weight wins per label) ===
+  ADD: refined_wheat_flour ew=0.4000 pos=1 stated=40.0
+  ADD: sourdough_starter ew=0.1800 pos=3 stated=18.0
+  REPLACE: refined_wheat_flour old_ew=0.4000 new_ew=0.6800
+  ADD: whole_wheat_flour ew=0.1500 pos=4 stated=15.0
+
+=== FINAL MARKERS (after dedup) ===
+  refined_wheat_flour class=refined stated_pct=None pos=3 base_ew=0.6800
+  sourdough_starter class=whole stated_pct=18.0 pos=3 base_ew=0.1800
+  whole_wheat_flour class=whole stated_pct=15.0 pos=4 base_ew=0.1500
+
+=== SCORING CALCULATION (v5.1 formula) ===
+  total_stated_pct (capped at 1.0): 0.3300
+  remaining_mass: 0.6700
+  total_pos_weight (position-based markers only): 0.6800
+  grain_whole_ew: 0.1500 (abs_floor=0.05, abs_cond=True)
+  non_grain_whole_ew: 0.0000 (rel_floor=0.50x, rel_cond=True)
+  has_grain_context: True
+
+=== PER-MARKER EFFECTIVE WEIGHT (v5.1) ===
+  refined_wheat_flour            class=refined  stated=None   pos=3 base_w=0.6700 eff_w=0.6700  
+  sourdough_starter              class=whole    stated=18.0   pos=3 base_w=0.1800 eff_w=0.0000  NC-2b: zeroed (sourdough neutral)
+  whole_wheat_flour              class=whole    stated=15.0   pos=4 base_w=0.1500 eff_w=0.1500  
+
+  whole_weight:   0.1500
+  refined_weight: 0.6700
+  total_weight:   0.8200
+  dominance_ratio (whole/total): 0.1829
+  highest-ew marker: refined_wheat_flour (class=refined)
+  M-1 anchor nudge: no change (anchor=refined, ratio=0.1829)
+  FINAL SCORE: 25.5
+
+=== DOUBLE-COUNTING INVESTIGATION: קמח חיטה לבן ===
+Label text structure:
+  Top-level: 'קמח חיטה לבן (75% מהקמח, 40% מהלחם)' -> stated_pct=40 at position 1
+  Sub-composite inside מחמצת: 'מחמצת חיטה לבן 18% (קמח חיטה לבן, מים)' -> is this parsed as a separate record?
+
+Check if a second 'refined_wheat_flour' match appears in any sub-record:
+  Record 1 pos=1 level=None stated=40.0 eff=40.0
+    name_only: 'קמח חיטה לבן (מכיל גלוטן) (75% מהקמח, 40% מהלחם)'
+    'refined_wheat_flour' pattern MATCHES here
+  Record 4 pos=3 level=None stated=None eff=None
+    name_only: 'קמח חיטה לבן (מכיל גלוטן)'
+    'refined_wheat_flour' pattern MATCHES here
+
+Dedup outcome for 'refined_wheat_flour': only ONE instance survives (seen_labels dedup).
+The question: which instance won the dedup race — the top-level (stated_pct=40, pos=1)
+or the sub-composite instance (stated_pct=? via effective_pct, pos=?)?

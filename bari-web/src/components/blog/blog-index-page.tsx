@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 
@@ -183,20 +184,33 @@ export function BlogIndexPage() {
       <BlogEditorialBackdrop />
 
       <HomeContainer className="relative py-12 md:py-16 lg:py-20">
-        {/* Hero */}
-        <header className="max-w-3xl border-b border-black/[0.06] pb-10 md:pb-12">
-          <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.32em] text-[#167A58]">
-            {blogIndex.eyebrow}
-          </p>
-          <h1 className="mt-5 text-4xl font-extrabold tracking-[-0.055em] text-[#111318] md:text-[3.25rem] md:leading-[1.05]">
-            {blogIndex.title}
-          </h1>
-          <p className="mt-4 text-xl font-semibold leading-snug tracking-[-0.02em] text-[#3A413D] md:text-2xl">
-            {blogIndex.subtitle}
-          </p>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-[#4E5663]">
-            {blogIndex.supporting}
-          </p>
+        {/* Hero (+ NORI upper-left) */}
+        <header className="flex items-start justify-between gap-6 border-b border-black/[0.06] pb-10 md:pb-12">
+          <div className="max-w-3xl">
+            <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.32em] text-[#167A58]">
+              {blogIndex.eyebrow}
+            </p>
+            <h1 className="mt-5 text-4xl font-extrabold tracking-[-0.055em] text-[#111318] md:text-[3.25rem] md:leading-[1.05]">
+              {blogIndex.title}
+            </h1>
+            <p className="mt-4 text-xl font-semibold leading-snug tracking-[-0.02em] text-[#3A413D] md:text-2xl">
+              {blogIndex.subtitle}
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#4E5663]">
+              {blogIndex.supporting}
+            </p>
+          </div>
+
+          {/* NORI — the ingredient tile, Bari's Expert, taking ingredient notes. Decorative. */}
+          <Image
+            src="/mascots/mascot-nori-desk-v2.png"
+            alt=""
+            width={1260}
+            height={913}
+            aria-hidden
+            className="pointer-events-none -mt-2 hidden h-auto w-56 shrink-0 select-none lg:block xl:w-64"
+            priority
+          />
         </header>
 
         {/* Filters + ledger */}

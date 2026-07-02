@@ -1,0 +1,45 @@
+======================================================================
+GRADE DISTRIBUTION
+  meta says A=6, D=7, E=4
+  actual A=6, D=7, E=4
+
+======================================================================
+SCORE DISTRIBUTION
+  jc-003 A score=85.0 sugar=8.7 kcal=43
+  jc-006 A score=85.0 sugar=12.6 kcal=54
+  jc-001 A score=85.0 sugar=8.2 kcal=47
+  jc-005 A score=85.0 sugar=None kcal=54
+  jc-011 A score=85.0 sugar=None kcal=44
+  jc-002 A score=85.0 sugar=8.6 kcal=43
+  jc-017 D score=49.1 sugar=11.4 kcal=49
+  jc-019 D score=39.9 sugar=1.2 kcal=9
+  jc-018 D score=39.8 sugar=4.7 kcal=20
+  jc-020 D score=38.1 sugar=4.5 kcal=20
+  jc-021 D score=37.4 sugar=2.25 kcal=40
+  jc-022 D score=36.9 sugar=9.4 kcal=41
+  jc-024 D score=35.4 sugar=9.0 kcal=40
+  jc-025 E score=33.4 sugar=4.4 kcal=20
+  jc-026 E score=33.3 sugar=9.5 kcal=40
+  jc-023 E score=30.3 sugar=4.5 kcal=20
+  jc-027 E score=28.5 sugar=9.3 kcal=39
+
+======================================================================
+KEY CLAIM AUDITS
+
+jc-017 GAP CLAIM:
+  jc-017 score=49.1, A score=85.0, actual gap=35.9
+  rowVerdict claims: 60 points
+  comparisonContext claims: 60 points
+  rowVerdict status: FALSE (actual=35.9)
+  comparisonContext status: FALSE (actual=35.9)
+
+jc-011 KCAL CLAIM (residual panel recitation):
+  actual kcalPer100ml=44
+Traceback (most recent call last):
+  File "C:\Bari\__qa_number_audit.py", line 82, in <module>
+    print(f"  rowVerdict has kcal claim: {kcal_match_rv.group(0) if kcal_match_rv else 'NONE'}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 32-38: character maps to <undefined>

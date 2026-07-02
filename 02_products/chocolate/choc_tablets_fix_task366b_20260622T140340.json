@@ -1,0 +1,263 @@
+{
+  "task": "TASK-366 Pass 2 Victory probe",
+  "run_id": "choc_task366_pass2_20260622_140336",
+  "run_ts": "20260622T140340",
+  "retailer": "victory",
+  "retailer_id": 1470,
+  "off_check": "PASS",
+  "counts": {
+    "targets_attempted": 8,
+    "found_in_victory_catalog": 3,
+    "not_in_victory_catalog": 5,
+    "has_full_nutrition": 3,
+    "has_real_ingredients": 3,
+    "plausibility_pass": 3,
+    "scored": 3
+  },
+  "target1_outcome": {
+    "target": "80pct_dark_chocolate",
+    "barcode": "4820005195848",
+    "conclusion": "FINAL_NULL",
+    "detail": "Millennium 80% (4820005195848) is in the global Victory product registry (/api/products/4820005195848 -> id=415280 'שוקולד מריר 80%') but NOT in Victory retailer 1470 product catalog (/v2/retailers/1470/products?barcode=... returns total=0). No nutrition panel available from Victory. 80% with full nutrition = not found at Victory."
+  },
+  "target2_outcome": {
+    "target": "lindt_3046920_series",
+    "barcodes": [
+      "3046920023443",
+      "3046920023429",
+      "3046920023368"
+    ],
+    "conclusion": "FINAL_NULL",
+    "detail": "All 3 Lindt 3046920xxx barcodes (Excellence dark, caramel milk, Excellence milk) return total=0 from Victory retailer 1470 catalog. Ingredient lists remain boilerplate from Pass 1. No real ingredient data available from Victory."
+  },
+  "incidental_finds": {
+    "summary": "3 additional dark chocolates found in Victory with full nutrition + real ingredients + scored",
+    "products": [
+      "3046920028004 (Lindt 70%)",
+      "5941021001261 (75% dark)",
+      "7290119500482 (62% dark/maltitol)"
+    ],
+    "scores": {
+      "3046920028004": {
+        "score": 61.5,
+        "grade": "C"
+      },
+      "5941021001261": {
+        "score": 50.3,
+        "grade": "C"
+      },
+      "7290119500482": {
+        "score": 59.5,
+        "grade": "C"
+      }
+    }
+  },
+  "results": {
+    "4820005195848": {
+      "barcode": "4820005195848",
+      "label": "Millennium 80%",
+      "task": "TARGET1",
+      "status": "NOT_IN_VICTORY_CATALOG",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=4820005195848&appId=4",
+      "note": "Product not in Victory retailer 1470 catalog (API returned total=0)",
+      "nutrition": null,
+      "ingredients": null,
+      "ingredients_status": "NULL",
+      "has_full_nutrition": false,
+      "plausibility_gate": "NOT_APPLICABLE",
+      "score": null,
+      "grade": null,
+      "off_check": "PASS"
+    },
+    "3046920023443": {
+      "barcode": "3046920023443",
+      "label": "Lindt Excellence dark",
+      "task": "TARGET2",
+      "status": "NOT_IN_VICTORY_CATALOG",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=3046920023443&appId=4",
+      "note": "Product not in Victory retailer 1470 catalog (API returned total=0)",
+      "nutrition": null,
+      "ingredients": null,
+      "ingredients_status": "NULL",
+      "has_full_nutrition": false,
+      "plausibility_gate": "NOT_APPLICABLE",
+      "score": null,
+      "grade": null,
+      "off_check": "PASS"
+    },
+    "3046920023429": {
+      "barcode": "3046920023429",
+      "label": "Lindt caramel milk",
+      "task": "TARGET2",
+      "status": "NOT_IN_VICTORY_CATALOG",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=3046920023429&appId=4",
+      "note": "Product not in Victory retailer 1470 catalog (API returned total=0)",
+      "nutrition": null,
+      "ingredients": null,
+      "ingredients_status": "NULL",
+      "has_full_nutrition": false,
+      "plausibility_gate": "NOT_APPLICABLE",
+      "score": null,
+      "grade": null,
+      "off_check": "PASS"
+    },
+    "3046920023368": {
+      "barcode": "3046920023368",
+      "label": "Lindt Excellence milk",
+      "task": "TARGET2",
+      "status": "NOT_IN_VICTORY_CATALOG",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=3046920023368&appId=4",
+      "note": "Product not in Victory retailer 1470 catalog (API returned total=0)",
+      "nutrition": null,
+      "ingredients": null,
+      "ingredients_status": "NULL",
+      "has_full_nutrition": false,
+      "plausibility_gate": "NOT_APPLICABLE",
+      "score": null,
+      "grade": null,
+      "off_check": "PASS"
+    },
+    "3046920028004": {
+      "barcode": "3046920028004",
+      "label": "Lindt Excellence 70%",
+      "task": "INCIDENTAL",
+      "status": "FOUND_AND_SCORED",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=3046920028004&appId=4",
+      "note": "Confirmed in Victory retailer 1470 catalog",
+      "nutrition": {
+        "energy": 566.0,
+        "fat": 41.0,
+        "saturated_fat": 24.0,
+        "trans_fat": 0.5,
+        "sodium": 39.0,
+        "carbs": 34.0,
+        "sugar": 30.0,
+        "protein": 9.5
+      },
+      "nutrition_canonical": {
+        "energy_kcal": 566.0,
+        "fat_g": 41.0,
+        "fat_saturated_g": 24.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 39.0,
+        "carbohydrates_g": 34.0,
+        "sugars_g": null,
+        "dietary_fiber_g": null,
+        "protein_g": 9.5
+      },
+      "ingredients": "עיסת קקאו, סוכר לבן, חמאת קקאו, וניל . מינימום מוצקי קקאו בשוקולד מריר: 70%.",
+      "ingredients_status": "REAL_INGREDIENTS",
+      "has_full_nutrition": true,
+      "plausibility_gate": "pass",
+      "score": 61.5,
+      "grade": "C",
+      "confidence": 77,
+      "confidence_band": "medium",
+      "off_check": "PASS"
+    },
+    "4820005198597": {
+      "barcode": "4820005198597",
+      "label": "Millennium 74%",
+      "task": "TARGET1",
+      "status": "NOT_IN_VICTORY_CATALOG",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=4820005198597&appId=4",
+      "note": "Product not in Victory retailer 1470 catalog (API returned total=0)",
+      "nutrition": null,
+      "ingredients": null,
+      "ingredients_status": "NULL",
+      "has_full_nutrition": false,
+      "plausibility_gate": "NOT_APPLICABLE",
+      "score": null,
+      "grade": null,
+      "off_check": "PASS"
+    },
+    "5941021001261": {
+      "barcode": "5941021001261",
+      "label": "75% dark chocolate",
+      "task": "INCIDENTAL",
+      "status": "FOUND_AND_SCORED",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=5941021001261&appId=4",
+      "note": "Confirmed in Victory retailer 1470 catalog",
+      "nutrition": {
+        "energy": 591.0,
+        "fat": 48.0,
+        "saturated_fat": 29.0,
+        "trans_fat": 0.5,
+        "sodium": 8.0,
+        "carbs": 25.0,
+        "sugar": 22.0,
+        "protein": 7.8
+      },
+      "nutrition_canonical": {
+        "energy_kcal": 591.0,
+        "fat_g": 48.0,
+        "fat_saturated_g": 29.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 8.0,
+        "carbohydrates_g": 25.0,
+        "sugars_g": null,
+        "dietary_fiber_g": null,
+        "protein_g": 7.8
+      },
+      "ingredients": "עיסת קקאו, סוכר,nnחמאת קקאו, אבקת קקאו,nnאנרגיה(קלוריות)nnחומר מתחלב: לציטין סויה,nnסך השומנים (גרם(nnחומרי טעם וריח (תמציתnnמתוכם:nn, וניל). כלל מוצקי קקאוnnחומצות שומן רוויורnnבשוקולד: מינימום 75%.n",
+      "ingredients_status": "REAL_INGREDIENTS",
+      "has_full_nutrition": true,
+      "plausibility_gate": "pass",
+      "score": 50.3,
+      "grade": "C",
+      "confidence": 77,
+      "confidence_band": "medium",
+      "off_check": "PASS"
+    },
+    "7290119500482": {
+      "barcode": "7290119500482",
+      "label": "62% dark (maltitol)",
+      "task": "INCIDENTAL",
+      "status": "FOUND_AND_SCORED",
+      "source": "victory",
+      "source_endpoint": "/v2/retailers/1470/products?barcode=7290119500482&appId=4",
+      "note": "Confirmed in Victory retailer 1470 catalog",
+      "nutrition": {
+        "energy": 518.0,
+        "fat": 40.2,
+        "saturated_fat": 24.0,
+        "trans_fat": 0.5,
+        "sodium": 5.0,
+        "carbs": 42.7,
+        "sugar": 0.3,
+        "fiber": 7.3,
+        "protein": 7.1
+      },
+      "nutrition_canonical": {
+        "energy_kcal": 518.0,
+        "fat_g": 40.2,
+        "fat_saturated_g": 24.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 5.0,
+        "carbohydrates_g": 42.7,
+        "sugars_g": null,
+        "dietary_fiber_g": 7.3,
+        "protein_g": 7.1
+      },
+      "ingredients": "עיסת קקאו , ממתיק (מלטיטול), חמאת קקאו, מתחלב (לציטין חמניות), חומר טעם טבעי. nסך מוצקי קקאו: מינימום 62% ",
+      "ingredients_status": "REAL_INGREDIENTS",
+      "has_full_nutrition": true,
+      "plausibility_gate": "pass",
+      "score": 59.5,
+      "grade": "C",
+      "confidence": 82,
+      "confidence_band": "high",
+      "off_check": "PASS"
+    }
+  }
+}

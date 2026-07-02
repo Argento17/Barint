@@ -1,0 +1,71 @@
+import { NextResponse } from "next/server";
+
+import { isAuthed } from "@/lib/admin/auth";
+import { getSiteContentEntry, PAGE_CHROME_FILE } from "@/lib/admin/content-registry";
+import { extractEditableFields, LIVE_COMPARISON_FILES } from "@/lib/admin/fields";
+import { extractPageChromeFields, extractSiteFields } from "@/lib/admin/site-fields";
+import { getComparisonFile, getSiteContentFile } from "@/lib/admin/github";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function GET(request: Request) {
+  if (!(await isAuthed())) {
+    return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
+  }
+
+  const url = new URL(request.url);
+  const type = url.searchParams.get("type") ?? "products";
+
+  if (type === "site") {
+    const id = url.searchParams.get("id") ?? "";
+    const entry = getSiteContentEntry(id);
+    if (!entry) {
+      return NextResponse.json({ ok: false, error: "unknown_site_id" }, { status: 404 });
+    }
+    try {
+      const { data, sha } = await getSiteContentFile(entry.file);
+      const fields = extractSiteFields(data as Record<string, unknown>);
+      return NextResponse.json({ ok: true, type: "site", id, file: entry.file, sha, labelHe: entry.labelHe, fields });
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+    }
+  }
+
+  if (type === "page_chrome") {
+    const slug = url.searchParams.get("slug") ?? "";
+    try {
+      const { data, sha } = await getSiteContentFile(PAGE_CHROME_FILE);
+      const pages = data as Record<string, Record<string, unknown>>;
+      const chrome = pages[slug];
+      if (!chrome) {
+        return NextResponse.json({ ok: false, error: "unknown_slug" }, { status: 404 });
+      }
+      const fields = extractPageChromeFields(chrome);
+      return NextResponse.json({ ok: true, type: "page_chrome", slug, file: PAGE_CHROME_FILE, sha, fields });
+    } catch (err) {
+      return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+    }
+  }
+
+  const slug = url.searchParams.get("slug") ?? "";
+  const file = LIVE_COMPARISON_FILES[slug];
+  if (!file) {
+    return NextResponse.json({ ok: false, error: "unknown_category" }, { status: 404 });
+  }
+
+  try {
+    const { data, sha } = await getComparisonFile(file);
+    const products = (data.products ?? []).map((p) => ({
+      id: String(p.id ?? p.barcode ?? ""),
+      name: typeof p.name === "string" ? p.name : "",
+      score: p.score ?? null,
+      grade: p.grade ?? null,
+      fields: extractEditableFields(p),
+    }));
+    const nameHe = data._meta && typeof data._meta.name_he === "string" ? data._meta.name_he : slug;
+    return NextResponse.json({ ok: true, type: "products", slug, file, sha, nameHe, products });
+  } catch (err) {
+    return NextResponse.json({ ok: false, error: "load_failed", detail: String(err) }, { status: 502 });
+  }
+}

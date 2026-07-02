@@ -1,0 +1,44 @@
+{
+  "run_id": "run_bread_conform_002",
+  "task": "TASK-433",
+  "generated_at": "2026-07-01T16:56:18.659411+00:00",
+  "bsip0_source": "C:\\Bari\\02_products\\bread_retail_003\\real_bread_retail_003_v1_20260525T194532_bsip0_raw.json",
+  "curated_source": "C:\\Bari\\02_products\\bread_retail_003\\real_bread_retail_003_v1_curated_comparison_dataset.json",
+  "output_dir": "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_002\\output",
+  "records_written": 25,
+  "records_requested": 25,
+  "crackers_removed": [
+    "7296073134442",
+    "7296073134459",
+    "74252",
+    "8434165658523",
+    "96086000577",
+    "96086000966"
+  ],
+  "missing": [],
+  "brand_hits": [
+    {
+      "barcode": "3054183",
+      "brand": "מסטמכר",
+      "name": "לחם שיפון מלא מסטמכר"
+    },
+    {
+      "barcode": "497044",
+      "brand": "ברמן",
+      "name": "לחם ברמן אקטיב"
+    },
+    {
+      "barcode": "7290016967074",
+      "brand": "אנג'ל",
+      "name": "לחם אנג'ל חיטה מלאה"
+    },
+    {
+      "barcode": "7290018500460",
+      "brand": "אנג'ל",
+      "name": "לחם אנג'ל חצי מלא"
+    }
+  ],
+  "enrichment_version": "bsip1_enrichment_v1",
+  "off_sources": 0,
+  "note": "Bread re-derive after crackers split (TASK-433) — SCORES PROTECTED, corpus = 29 curated minus 6 crackers = 23. OFF ban absolute; nutrition + ingredients from direct Shufersal scrape only; brand from deterministic name-literal-match only (does not touch scored fields)."
+}

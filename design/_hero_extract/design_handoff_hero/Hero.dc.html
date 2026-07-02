@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/bari-design-system-6c7799ca-77c7-4ad1-9035-1eab65c2e214/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/bari-design-system-6c7799ca-77c7-4ad1-9035-1eab65c2e214/styles.css">
+  <script src="_ds/bari-design-system-6c7799ca-77c7-4ad1-9035-1eab65c2e214/_ds_bundle.js"></script>
+  <style>
+    @keyframes heroRise { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes imgRise { from { opacity:0; transform:translateY(22px) } to { opacity:1; transform:translateY(0) } }
+    @media (prefers-reduced-motion: reduce){ .h-anim{ animation:none !important } }
+    .bari-nav-link{ transition:color .3s, background .3s; }
+    .bari-nav-link:hover{ color:#111318 !important; background:rgba(255,255,255,0.7); }
+  </style>
+</helmet>
+<div dir="rtl" style="position:relative; width:100%; min-height:100vh; background:#F7F7F2; font-family:var(--font-sans); color:var(--fg1); overflow:hidden;">
+
+  <!-- ================= NAV ================= -->
+  <nav dir="ltr" style="position:sticky; top:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 clamp(24px,4vw,64px); background:rgba(247,247,242,0.82); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid var(--hairline-faint);">
+    <img src="assets/bari-logo.webp" alt="Bari" style="height:56px; width:auto; display:block;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="#" class="bari-nav-link" style="font-size:15px; font-weight:600; color:var(--fg2); text-decoration:none; padding:8px 16px; border-radius:9999px;">השוואות</a>
+      <a href="#" class="bari-nav-link" style="font-size:15px; font-weight:600; color:var(--fg2); text-decoration:none; padding:8px 16px; border-radius:9999px;">בלוג</a>
+      <a href="#" class="bari-nav-link" style="font-size:15px; font-weight:600; color:var(--fg2); text-decoration:none; padding:8px 16px; border-radius:9999px;">מדריכים</a>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <section data-screen-label="Hero" style="position:relative; display:grid; grid-template-columns:0.92fr 1.12fr; align-items:center; gap:clamp(16px,2vw,44px); min-height:calc(100vh - 72px); padding-block:clamp(32px,5vh,64px);">
+
+    <!-- headline (right) -->
+    <div style="grid-column:1; padding-inline:clamp(28px,4.5vw,80px) clamp(16px,2vw,40px); display:flex; flex-direction:column; align-items:flex-start;">
+      <h1 class="bari-display h-anim" style="font-size:clamp(1.9rem,3.25vw,3.4rem); line-height:1.16; margin:0; animation:heroRise 760ms var(--ease-out-soft) 80ms both;">
+        אתם יודעים <span style="color:var(--bari-green);">באמת</span> מה יש במוצרים שאתם צורכים?<br><span style="color:var(--bari-green);">בארי בודקת את זה בשבילכם</span>
+      </h1>
+      <p class="bari-lead h-anim" style="font-size:clamp(1.05rem,1.25vw,1.25rem); max-width:27em; margin:24px 0 0; animation:heroRise 760ms var(--ease-out-soft) 180ms both;">
+        חפשו מוצר מהסופר וקבלו תשובה פשוטה: מה טוב, מה בעייתי, ומה בעיקר שיווק.
+      </p>
+      <button class="h-anim" style="margin-top:30px; display:inline-flex; align-items:center; justify-content:center; gap:11px; min-width:300px; background:var(--bari-green); color:#fff; border:none; border-radius:14px; padding:18px 32px; font-family:var(--font-sans); font-size:18px; font-weight:700; cursor:pointer; box-shadow:var(--shadow-cta); transition:transform var(--dur) var(--ease-out-soft), box-shadow var(--dur) var(--ease-out-soft); animation:heroRise 760ms var(--ease-out-soft) 280ms both;" style-hover="transform:translateY(-1px); box-shadow:inset 0 1px 0 rgba(255,255,255,0.20), 0 18px 50px -16px rgba(31,143,106,0.66);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+        חפשו מוצר
+      </button>
+      <a href="#" class="h-anim" style="margin-top:18px; white-space:nowrap; font-size:14px; font-weight:600; color:var(--fg3); text-decoration:none; border-bottom:1px solid var(--green-ring); padding-bottom:2px; animation:heroRise 760ms var(--ease-out-soft) 360ms both;">סריקת ברקוד בקרוב</a>
+    </div>
+
+    <!-- product photo (left, bleeds to edge) -->
+    <div style="grid-column:2; position:relative; align-self:center;">
+      <img class="h-anim" src="assets/products.png" alt="מבחר מוצרי מזון" style="position:relative; z-index:1; display:block; width:100%; max-width:780px; height:auto; margin-inline-start:auto; -webkit-mask-image:linear-gradient(to right, #000 89%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 89%, transparent 100%); -webkit-mask-composite:source-in; mask-image:linear-gradient(to right, #000 89%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%, #000 89%, transparent 100%); mask-composite:intersect; animation:imgRise 1000ms var(--ease-out-soft) 200ms both;">
+    </div>
+  </section>
+
+
+</div>
+</x-dc>
+</body>
+</html>

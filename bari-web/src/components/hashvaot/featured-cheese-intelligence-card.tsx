@@ -29,7 +29,7 @@ type Props = {
 
 const CHEESE_CARD_INSIGHT_LINES = [
   "ארבע קבוצות במדף: קוטג', גבינה לבנה / קוורק, ממרחי גבינת שמנת ולבנה",
-  "הקוטג' והגבינות הלבנות מובילות — חלבון גבוה ל-100 גרם",
+  "הקוטג' והגבינות הלבנות מובילות — חלבון גבוה יחסית",
   "ממרחי גבינת שמנת נופלים נמוך יותר ברגע שסופרים את השומן האמיתי",
   "במדף הזה 'הכי טוב' הוא B — אף מוצר לא מגיע ל-A",
 ] as const;
@@ -53,7 +53,7 @@ export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
         categoryTags="גבינות לבנות וממרחים · שופרסל"
         title={CARD_HERO.title}
         description={stripCardDigits(cardDescription)}
-        insightLines={CHEESE_CARD_INSIGHT_LINES}
+        insightLines={[...CHEESE_CARD_INSIGHT_LINES].map(stripCardDigits)}
         stats={[
           { value: displayedCount, label: "מוצרים בהשוואה" },
           { value: scoredCount, label: "קיבלו ציון" },
