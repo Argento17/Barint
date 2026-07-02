@@ -126,6 +126,16 @@ from constants import (
     SODIUM_GENERAL_BANDS, SUGAR_GRADUATED_BANDS,
     REDLABEL_NULL_SATFAT_FAT_FLOOR, REDLABEL_DAIRY_SATFAT_FRACTION,
     REDLABEL_NULL_SATFAT_CONFIDENCE_HAIRCUT,      # EV-REDLABEL-001–012
+    PROTEIN_BAR_LENS_ON,
+    PROTEIN_BAR_WEIGHTS,
+    PROTEIN_BAR_GATE_MIN_G, PROTEIN_BAR_GATE_REJECT_G,
+    POLYOL_TIER_1_TOKENS, POLYOL_TIER_2_TOKENS, POLYOL_TIER_3_TOKENS,
+    POLYOL_TIER_3_PENALTY,
+    GLYCEROL_TOKENS, GLYCEROL_ENGINEERING_PENALTY,
+    PROTEIN_ISOLATE_FAMILIES, ISOLATE_STACKING_FAMILY_THRESHOLD,
+    PROTEIN_WHOLEFOOD_TOKENS,
+    PROTEIN_BAR_WHOLEFOOD_SOURCE_BONUS, PROTEIN_BAR_COLLAGEN_PENALTY,
+    PROTEIN_BAR_REAL_FOOD_SUGAR_BONUS,
 )
 import re as _re
 
@@ -2339,7 +2349,19 @@ def evaluate_guardrails(nn: dict, l3: dict, nova_level: int, category: str,
     # are suppressed to prevent double-counting with the PROCESSING_LOAD penalties already
     # applied by apply_protein_bar_lens() (glycerol penalty + isolate-stacking penalty).
     # The maltitol cap (62) and sweetener cap (70) remain binding.
-    is_protein_bar    = (category == "snack_bar_granola" and cat_subtype == "protein_bar")
+    # Lens eligibility matches the protein_bars corpus driver: router subtype OR
+    # (flag ON + protein gate not FAIL) on snack_bar_granola shelf.
+    _protein_g_guard = float(nn.get("protein_g") or 0)
+    is_protein_bar = (
+        category == "snack_bar_granola"
+        and (
+            cat_subtype == "protein_bar"
+            or (
+                PROTEIN_BAR_LENS_ON
+                and _protein_g_guard >= PROTEIN_BAR_GATE_REJECT_G
+            )
+        )
+    )
     context_flag      = eval_status.get("context_flag")
 
     # SRC-02: sugar context routing
@@ -3573,6 +3595,355 @@ def apply_floors(pre_floor_score: float, nova_level: int, nova_conf: float,
         "effective_floor": effective_floor,
         "floor_was_binding": pre_floor_score < effective_floor,
     }
+
+
+# ---------------------------------------------------------------------------
+# TASK-365 / TASK-457 — Protein Bar Sub-Lens (BARI_PROTEIN_BAR_V1)
+# Gated: PROTEIN_BAR_LENS_ON (default OFF). Routing is NOT gated.
+# ---------------------------------------------------------------------------
+
+def _protein_bar_ing_text(product: dict) -> str:
+    raw = (
+        product.get("ingredients_full")
+        or product.get("ingredients_text_he")
+        or product.get("ingredients_raw")
+        or ""
+    )
+    return raw.lower()
+
+
+def detect_protein_bar_signals(product: dict, nn: dict) -> dict:
+    """EV-PBAR-001 through EV-PBAR-007 signal detection for protein_bar lens."""
+    ing_text = _protein_bar_ing_text(product)
+    protein_g = float(nn.get("protein_g") or 0)
+    sugar_g = float(nn.get("sugars_g") or 0)
+
+    polyol_tier: int | None = None
+    polyol_token_matched: str | None = None
+    for tok in POLYOL_TIER_1_TOKENS:
+        if tok.lower() in ing_text:
+            polyol_tier = 1
+            polyol_token_matched = tok
+            break
+    if polyol_tier is None:
+        for tok in POLYOL_TIER_2_TOKENS:
+            if tok.lower() in ing_text:
+                polyol_tier = 2
+                polyol_token_matched = tok
+                break
+    if polyol_tier is None:
+        for tok in POLYOL_TIER_3_TOKENS:
+            if tok.lower() in ing_text:
+                polyol_tier = 3
+                polyol_token_matched = tok
+                break
+
+    glycerol_detected = any(tok.lower() in ing_text for tok in GLYCEROL_TOKENS)
+
+    families_detected: set[str] = set()
+    for family, tokens in PROTEIN_ISOLATE_FAMILIES.items():
+        if any(tok.lower() in ing_text for tok in tokens):
+            families_detected.add(family)
+    isolate_stacking = len(families_detected) >= ISOLATE_STACKING_FAMILY_THRESHOLD
+    isolate_families_count = len(families_detected)
+
+    wholefood_protein_detected = any(
+        tok.lower() in ing_text for tok in PROTEIN_WHOLEFOOD_TOKENS
+    )
+
+    _collagen_tokens = PROTEIN_ISOLATE_FAMILIES.get("collagen", ())
+    collagen_detected = any(tok.lower() in ing_text for tok in _collagen_tokens)
+
+    if protein_g >= PROTEIN_BAR_GATE_MIN_G:
+        protein_gate = "PASS"
+    elif protein_g >= PROTEIN_BAR_GATE_REJECT_G:
+        protein_gate = "WARN_LOW_PROTEIN"
+    else:
+        protein_gate = "FAIL_NOT_PROTEIN"
+
+    _art_sw_tokens = (
+        "סוכרלוז", "sucralose", "E955", "e955",
+        "אצסולפאם", "אצסולפם", "acesulfame", "E950", "e950",
+        "סכרין", "saccharin", "E954", "e954",
+        "אספרטם", "aspartame", "E951", "e951",
+        "נאוטם", "neotame", "E961", "e961",
+        "ציקלמט", "cyclamate", "E952", "e952",
+    )
+    has_artificial_sweetener = any(tok.lower() in ing_text for tok in _art_sw_tokens)
+
+    real_food_sugar_bonus_eligible = (
+        sugar_g <= 10.0
+        and polyol_tier is None
+        and not has_artificial_sweetener
+    )
+
+    return {
+        "polyol_tier": polyol_tier,
+        "polyol_token_matched": polyol_token_matched,
+        "glycerol_detected": glycerol_detected,
+        "isolate_stacking": isolate_stacking,
+        "isolate_families_count": isolate_families_count,
+        "families_detected": sorted(families_detected),
+        "wholefood_protein_detected": wholefood_protein_detected,
+        "collagen_detected": collagen_detected,
+        "protein_gate": protein_gate,
+        "protein_g": protein_g,
+        "sugar_g": sugar_g,
+        "has_artificial_sweetener": has_artificial_sweetener,
+        "real_food_sugar_bonus_eligible": real_food_sugar_bonus_eligible,
+    }
+
+
+def apply_protein_bar_lens(
+    base_result: dict,
+    product: dict,
+    nn: dict,
+    pb_signals: dict,
+) -> dict:
+    """
+    Apply the protein_bar sub-lens to a score_product result.
+    Flag OFF → returns base_result unchanged (byte-identical).
+    """
+    if not PROTEIN_BAR_LENS_ON:
+        return base_result
+
+    result = dict(base_result)
+    result["protein_bar_signals"] = pb_signals
+    result["protein_bar_lens_active"] = True
+    result["cond2_recal_p0_on"] = RECAL_P0_ON
+
+    dim_scores = dict(base_result.get("dimension_scores", {}))
+    dim_notes = dict(base_result.get("dimension_notes", {}))
+
+    kcal = float(nn.get("energy_kcal") or 0)
+    pb_calorie_score = lookup_calorie_density(kcal, "protein_bar")
+    old_calorie_score = dim_scores.get("calorie_density", 0)
+    dim_scores["calorie_density"] = pb_calorie_score
+    dim_notes["calorie_density"] = (
+        (dim_notes.get("calorie_density") or "")
+        + f" [PBAR_CALORIE_TABLE: protein_bar table {old_calorie_score:.1f}→{pb_calorie_score:.1f}]"
+    )
+
+    if pb_signals["real_food_sugar_bonus_eligible"]:
+        old_gq = dim_scores.get("glycemic_quality", 0)
+        new_gq = min(95.0, old_gq + PROTEIN_BAR_REAL_FOOD_SUGAR_BONUS)
+        dim_scores["glycemic_quality"] = new_gq
+        dim_notes["glycemic_quality"] = (
+            (dim_notes.get("glycemic_quality") or "")
+            + f" [PBAR_REAL_FOOD_SUGAR_BONUS: +{PROTEIN_BAR_REAL_FOOD_SUGAR_BONUS},"
+            f" {old_gq:.1f}→{new_gq:.1f}]"
+        )
+
+    protein_quality_adj_note = ""
+    if pb_signals["collagen_detected"]:
+        if not RECAL_P0_ON:
+            old_prq = dim_scores.get("protein_quality", 0)
+            new_prq = max(0.0, old_prq - PROTEIN_BAR_COLLAGEN_PENALTY)
+            dim_scores["protein_quality"] = new_prq
+            protein_quality_adj_note = (
+                f" [PBAR_COLLAGEN_PENALTY: -{PROTEIN_BAR_COLLAGEN_PENALTY},"
+                f" {old_prq:.1f}→{new_prq:.1f}; RECAL_P0_ON=False → penalty active;"
+                f" WHOLEFOOD_BONUS suppressed — collagen wins]"
+            )
+            dim_notes["protein_quality"] = (
+                (dim_notes.get("protein_quality") or "") + protein_quality_adj_note
+            )
+        else:
+            protein_quality_adj_note = (
+                " [PBAR_COLLAGEN_PENALTY: SKIPPED — RECAL_P0_ON=True;"
+                " PROTEIN_QUALITY_MATRIX_DISCOUNT subsumes this penalty (no double-fire);"
+                " WHOLEFOOD_BONUS suppressed — collagen wins]"
+            )
+            dim_notes["protein_quality"] = (
+                (dim_notes.get("protein_quality") or "") + protein_quality_adj_note
+            )
+    elif pb_signals["wholefood_protein_detected"] and not pb_signals["isolate_stacking"]:
+        old_prq = dim_scores.get("protein_quality", 0)
+        new_prq = min(100.0, old_prq + PROTEIN_BAR_WHOLEFOOD_SOURCE_BONUS)
+        dim_scores["protein_quality"] = new_prq
+        protein_quality_adj_note = (
+            f" [PBAR_WHOLEFOOD_SOURCE: +{PROTEIN_BAR_WHOLEFOOD_SOURCE_BONUS},"
+            f" {old_prq:.1f}→{new_prq:.1f}]"
+        )
+        dim_notes["protein_quality"] = (
+            (dim_notes.get("protein_quality") or "") + protein_quality_adj_note
+        )
+
+    if pb_signals["collagen_detected"]:
+        has_discount_note = "PROTEIN_QUALITY_MATRIX_DISCOUNT" in str(
+            base_result.get("dimension_notes", {}).get("protein_quality", "")
+        )
+        has_penalty_note = "PBAR_COLLAGEN_PENALTY" in protein_quality_adj_note
+        has_skip_note = "SKIPPED" in protein_quality_adj_note
+        double_fire = has_discount_note and has_penalty_note and not has_skip_note
+        assert not double_fire, (
+            f"COND-2 VIOLATION: collagen double-fire on barcode {product.get('barcode')}. "
+            f"RECAL_P0_ON={RECAL_P0_ON}"
+        )
+        result["cond2_double_fire_check"] = "PASS — no double-fire"
+        result["cond2_note"] = (
+            f"RECAL_P0_ON={RECAL_P0_ON}; "
+            + ("discount active — penalty skipped" if RECAL_P0_ON
+               else "discount inactive — penalty applied")
+        )
+
+    weighted_sum = sum(dim_scores[k] * PROTEIN_BAR_WEIGHTS[k] for k in dim_scores)
+    weighted_dim_score = round(weighted_sum, 2)
+
+    caps_fired: list[dict] = []
+    penalties_fired: list[dict] = []
+
+    polyol_tier = pb_signals["polyol_tier"]
+    binding_polyol_cap: int | None = None
+
+    if polyol_tier == 1:
+        binding_polyol_cap = 62
+        caps_fired.append({
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": f"polyol_tier=1 ({pb_signals['polyol_token_matched']})"
+        })
+    elif polyol_tier == 2:
+        binding_polyol_cap = 66
+        caps_fired.append({
+            "rule": "PROTEIN_BAR_POLYOL_TIER2",
+            "cap": 66,
+            "reason": f"polyol_tier=2 ({pb_signals['polyol_token_matched']})"
+        })
+    if polyol_tier == 3:
+        penalties_fired.append({
+            "rule": "PROTEIN_BAR_POLYOL_TIER3",
+            "penalty": POLYOL_TIER_3_PENALTY,
+            "reason": f"polyol_tier=3 ({pb_signals['polyol_token_matched']})"
+        })
+
+    binding_sweetener_cap: int | None = None
+    if pb_signals["has_artificial_sweetener"]:
+        binding_sweetener_cap = SWEETENER_CAP_C
+        caps_fired.append({
+            "rule": "SWEETENER_CAP_C_PROTEIN_BAR",
+            "cap": SWEETENER_CAP_C,
+            "reason": "Tier-C artificial sweetener detected — existing SWEETENER_CAP_C applies"
+        })
+
+    effective_pb_cap: int | None = None
+    if binding_polyol_cap is not None and binding_sweetener_cap is not None:
+        effective_pb_cap = min(binding_polyol_cap, binding_sweetener_cap)
+    elif binding_polyol_cap is not None:
+        effective_pb_cap = binding_polyol_cap
+    elif binding_sweetener_cap is not None:
+        effective_pb_cap = binding_sweetener_cap
+
+    score_after_pb_cap = (
+        min(weighted_dim_score, effective_pb_cap)
+        if effective_pb_cap is not None
+        else weighted_dim_score
+    )
+
+    eng_penalty_gross = 0
+    if pb_signals["glycerol_detected"]:
+        p = GLYCEROL_ENGINEERING_PENALTY
+        eng_penalty_gross += p
+        penalties_fired.append({
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": p,
+            "reason": "glycerol (humectant / engineering marker) detected"
+        })
+
+    if pb_signals["isolate_stacking"]:
+        p = 6
+        eng_penalty_gross += p
+        penalties_fired.append({
+            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
+            "penalty": p,
+            "reason": (f"{pb_signals['isolate_families_count']} isolate families:"
+                       f" {pb_signals['families_detected']}")
+        })
+
+    eng_penalty_capped = min(eng_penalty_gross, PROCESSING_FAMILY_BUDGET)
+
+    polyol_penalty_applied = POLYOL_TIER_3_PENALTY if polyol_tier == 3 else 0
+    total_pb_penalty = eng_penalty_capped + polyol_penalty_applied
+    score_after_pb_penalty = round(score_after_pb_cap - total_pb_penalty, 2)
+    score_after_pb_penalty = max(10.0, score_after_pb_penalty)
+
+    base_binding_cap = base_result.get("binding_cap")
+    if base_binding_cap is not None:
+        pre_base_cap = score_after_pb_penalty
+        score_after_pb_penalty = min(score_after_pb_penalty, base_binding_cap)
+        if score_after_pb_penalty < pre_base_cap:
+            caps_fired.append({
+                "rule": "BASE_ENGINE_BINDING_CAP_INHERIT",
+                "cap": base_binding_cap,
+                "reason": (f"base engine binding cap {base_binding_cap} inherited;"
+                           f" {pre_base_cap:.1f}→{score_after_pb_penalty:.1f}")
+            })
+
+    ceiling = (base_result.get("confidence_result") or {}).get("confidence_ceiling")
+    if ceiling is not None and score_after_pb_penalty > ceiling:
+        score_after_pb_penalty = ceiling
+
+    final_score = round(score_after_pb_penalty, 1)
+    grade = score_to_grade(final_score)
+
+    result.update({
+        "dimension_scores": dim_scores,
+        "dimension_notes": dim_notes,
+        "dimension_weights": PROTEIN_BAR_WEIGHTS,
+        "weighted_dimension_score_protein_bar": weighted_dim_score,
+        "protein_bar_caps": caps_fired,
+        "protein_bar_penalties": penalties_fired,
+        "effective_pb_cap": effective_pb_cap,
+        "score_after_pb_cap": round(score_after_pb_cap, 2),
+        "eng_penalty_gross": eng_penalty_gross,
+        "eng_penalty_capped": eng_penalty_capped,
+        "polyol_penalty_applied": polyol_penalty_applied,
+        "total_pb_penalty": total_pb_penalty,
+        "score_after_pb_penalty": score_after_pb_penalty,
+        "protein_gate": pb_signals["protein_gate"],
+        "final_score_estimate": final_score,
+        "grade_estimate": grade,
+        "protein_bar_lens_applied": True,
+    })
+    return result
+
+
+def apply_protein_bar_grade_proportionality(scored_rows: list[dict]) -> list[dict]:
+    """
+    TASK-365 / TASK-457 grade-boundary audit — protein_bar ONLY, gated caller.
+    Detects <1.0pt cross-boundary near-ties for trace; final grade stays
+    score_to_grade(score) per grade_boundary_policy_v1 floor rule (published
+    protein_combined_frontend_v2 keeps floor grades even when trace notes a
+    near-tie bump).
+    """
+    if not PROTEIN_BAR_LENS_ON:
+        return scored_rows
+
+    pb_rows = [r for r in scored_rows if r.get("is_protein_bar")]
+    other_rows = [r for r in scored_rows if not r.get("is_protein_bar")]
+    pb_sorted = sorted(pb_rows, key=lambda x: x["score"], reverse=True)
+
+    for i in range(len(pb_sorted) - 1):
+        higher = pb_sorted[i]
+        lower = pb_sorted[i + 1]
+        score_diff = higher["score"] - lower["score"]
+        floor_grade = score_to_grade(lower["score"])
+        lower["grade"] = floor_grade
+        if score_diff < 1.0 and higher["grade"] != floor_grade:
+            lower["grade_proportionality_applied"] = {
+                "old_grade": floor_grade,
+                "new_grade": higher["grade"],
+                "score_diff_vs_higher": round(score_diff, 3),
+                "higher_product_barcode": higher.get("barcode"),
+                "higher_product_score": higher["score"],
+                "rule": "TASK-365: <1.0pt cross-boundary near-tie (trace only; "
+                        "floor grade retained per grade_boundary_policy_v1)",
+            }
+
+    for row in pb_sorted:
+        row["grade"] = score_to_grade(row["score"])
+
+    return pb_sorted + other_rows
 
 
 # ---------------------------------------------------------------------------
@@ -4866,6 +5237,17 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     if BARI_D4_SCORE_V1:
         result["d4_score_penalty"] = d4_score_penalty
         result["d4_score_note"] = d4_score_note
+
+    # TASK-365 / TASK-457 — Protein bar sub-lens (BARI_PROTEIN_BAR_V1).
+    # Flag OFF → this block is skipped entirely → byte-identical to pre-wiring baseline.
+    # Eligibility matches protein_bars corpus driver: protein_gate != FAIL_NOT_PROTEIN.
+    if PROTEIN_BAR_LENS_ON:
+        _pb_signals = detect_protein_bar_signals(product, nn)
+        if _pb_signals["protein_gate"] != "FAIL_NOT_PROTEIN":
+            result = apply_protein_bar_lens(result, product, nn, _pb_signals)
+            result["category_subtype"] = (
+                cat_result.get("category_subtype") or "protein_bar"
+            )
 
     return result
 
