@@ -67,7 +67,10 @@ export function GA4Script() {
 
     // Apply the stored choice, then react to future CMP changes.
     const stored = getStoredConsent();
-    if (stored?.analytics) setGranted(true);
+    if (stored?.analytics) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- TASK-462: post-mount boot read from localStorage, SSR-hydration-safe by design
+      setGranted(true);
+    }
 
     const unsub = onConsentChange((record) => {
       setGranted(record.analytics);

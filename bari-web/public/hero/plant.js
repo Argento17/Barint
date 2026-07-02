@@ -118,12 +118,11 @@
   };
 
   PlantHero.prototype._bind = function () {
-    var self = this;
     if (this.reduced) return;
-    this._onMove = function (e) {
-      self._tpx = (e.clientX / innerWidth - 0.5) * 2; self._tpy = (e.clientY / innerHeight - 0.5) * 2;
+    this._onMove = (e) => {
+      this._tpx = (e.clientX / innerWidth - 0.5) * 2; this._tpy = (e.clientY / innerHeight - 0.5) * 2;
     };
-    this._onScroll = function () { self._scroll = scrollY; };
+    this._onScroll = () => { this._scroll = scrollY; };
     window.addEventListener("pointermove", this._onMove, { passive: true });
     window.addEventListener("scroll", this._onScroll, { passive: true });
   };

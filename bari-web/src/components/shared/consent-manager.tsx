@@ -75,6 +75,7 @@ export function ConsentManager() {
   useEffect(() => {
     const stored = getStoredConsent();
     if (!stored) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- TASK-462: post-mount boot read from localStorage, SSR-hydration-safe by design
       setView("banner");
     }
   }, []);

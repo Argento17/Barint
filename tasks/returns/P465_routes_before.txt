@@ -1,0 +1,72 @@
+﻿
+Route (app)                                        Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ○ /admin
+├ ○ /ai-index
+├ ƒ /api/admin/categories
+├ ƒ /api/admin/load
+├ ƒ /api/admin/login
+├ ƒ /api/admin/logout
+├ ƒ /api/admin/save
+├ ƒ /api/admin/session
+├ ƒ /api/newsletter/subscribe
+├ ○ /blog
+├ ○ /blog/bread-analysis
+├ ○ /blog/bread-everyday
+├ ○ /blog/bread-standouts
+├ ○ /blog/bread-wellness-gap
+├ ○ /blog/food-dyes
+├ ○ /blog/hummus
+├ ○ /blog/lechem
+├ ○ /blog/milk-analysis
+├ ○ /blog/shemen-zayit
+├ ○ /blog/sugar-alcohols
+├ ○ /blog/yogurt
+├ ○ /cookies
+├ ● /data/comparisons/[slug]                               1h      1y
+├ ƒ /data/comparisons/[slug]/products/[productId]
+├ ○ /data/products.json                                    1h      1y
+├ ○ /dev/confidence-preview
+├ ○ /dev/glass-box-preview
+├ ○ /disclaimer
+├ ○ /feed.xml                                              1d      1y
+├ ○ /hashvaot
+├ ƒ /hashvaot/bread
+├ ƒ /hashvaot/breakfast-cereals
+├ ƒ /hashvaot/brined-cheeses
+├ ƒ /hashvaot/cakes
+├ ƒ /hashvaot/cheese
+├ ƒ /hashvaot/chocolate-bars
+├ ƒ /hashvaot/chocolate-tablets
+├ ƒ /hashvaot/cookies-coffee
+├ ƒ /hashvaot/crackers
+├ ƒ /hashvaot/granola
+├ ƒ /hashvaot/hard-cheeses
+├ ƒ /hashvaot/hummus
+├ ƒ /hashvaot/juices
+├ ƒ /hashvaot/magnesium
+├ ƒ /hashvaot/milk-comparison
+├ ○ /hashvaot/personal-care
+├ ƒ /hashvaot/protein-bars
+├ ○ /hashvaot/raw-foods
+├ ƒ /hashvaot/snacks
+├ ○ /hashvaot/supermarket
+├ ○ /hashvaot/supplements
+├ ○ /icon.png
+├ ○ /llms.txt                                              1d      1y
+├ ○ /methodology
+├ ○ /nagisut
+├ ○ /newsletter
+├ ○ /privacy
+├ ○ /products/demo
+├ ○ /research/bread-transparency-shufersal
+├ ○ /research/glass-box
+├ ○ /robots.txt
+├ ○ /sitemap.xml                                           1d      1y
+└ ○ /terms
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
