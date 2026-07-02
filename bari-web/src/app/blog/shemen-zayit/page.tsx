@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { blogOpenGraph } from "@/lib/seo/open-graph";
+
 import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
 import { absoluteUrl } from "@/lib/site-url";
 import { OliveOilArticle } from "@/components/blog/olive-oil-article";
@@ -13,12 +15,12 @@ export const metadata: Metadata = {
   title: "13 מוצרי שמן זית בשופרסל. אפס גילויים על תאריך הקציר. | Bari",
   description:
     "סרקנו את מלאי שמן הזית בשופרסל — 13 מוצרים. אף אחד לא מצהיר על תאריך קציר. מה \"כתית מעולה\" מבטיח — ומה הוא לא מחויב לגלות.",
-  openGraph: {
+  openGraph: blogOpenGraph({
     title: "13 מוצרי שמן זית בשופרסל. אפס גילויים על תאריך הקציר.",
     description:
       "סרקנו את מלאי שמן הזית בשופרסל — 13 מוצרים. אף אחד לא מצהיר על תאריך קציר. מה \"כתית מעולה\" מבטיח — ומה הוא לא מחויב לגלות.",
     type: "article",
-  },
+  }),
 };
 
 export default function OliveOilBlogPage() {

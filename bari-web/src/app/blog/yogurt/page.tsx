@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { blogOpenGraph } from "@/lib/seo/open-graph";
+
 import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
 import { absoluteUrl } from "@/lib/site-url";
 import { YogurtArticle } from "@/components/blog/yogurt-article";
@@ -15,12 +17,12 @@ export const metadata: Metadata = {
   title: "19 יוגורטים. שתי רשתות. מה שמניע את הציונים. | Bari",
   description:
     "סרקנו 19 יוגורטים משופרסל ויוחננוף. יוגורט לבן פשוט הגיע ל-A. יוגורט 0% שומן בטעם תות — C. מה באמת מבדיל בין הגביעים.",
-  openGraph: {
+  openGraph: blogOpenGraph({
     title: "19 יוגורטים. שתי רשתות. מה שמניע את הציונים.",
     description:
       "סרקנו 19 יוגורטים משופרסל ויוחננוף. יוגורט לבן פשוט הגיע ל-A. יוגורט 0% שומן בטעם תות — C. מה באמת מבדיל בין הגביעים.",
     type: "article",
-  },
+  }),
 };
 
 export default function YogurtBlogPage() {

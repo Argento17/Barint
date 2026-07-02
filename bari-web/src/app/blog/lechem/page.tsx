@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { blogOpenGraph } from "@/lib/seo/open-graph";
+
 import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
 import { absoluteUrl } from "@/lib/site-url";
 import { BreadArticle } from "@/components/blog/bread-article";
@@ -14,12 +16,12 @@ export const metadata: Metadata = {
   title: "24 מוצרי לחם בשופרסל. מה מפריד בין A ל-B. | Bari",
   description:
     "סרקנו את מדף הלחם של שופרסל — 24 מוצרים עם ציון. מחמצת בשם ≠ מחמצת ברכיבים. מה שמסביר את פער 16 הנקודות בין הלחם הכי גבוה לכי נמוך.",
-  openGraph: {
+  openGraph: blogOpenGraph({
     title: "24 מוצרי לחם בשופרסל. מה מפריד בין A ל-B.",
     description:
       "סרקנו את מדף הלחם של שופרסל — 24 מוצרים עם ציון. מחמצת בשם ≠ מחמצת ברכיבים. מה שמסביר את פער 16 הנקודות בין הלחם הכי גבוה לכי נמוך.",
     type: "article",
-  },
+  }),
 };
 
 export default function BreadBlogPage() {

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/bread_frontend_v4.json";
 
 import {
@@ -86,10 +88,11 @@ export const breadMethodologyLines = [
   "מדגם מדף שופרסל בלבד.",
 ] as const;
 
-export const breadComparisonMetadata: Metadata = {
+export const breadComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: breadComparisonMeta.title,
-  description: breadComparisonMeta.description,
-};
+  description:
+    breadComparisonMeta.description,
+});
 
 function isBreadShelfFilterId(filter: string): filter is BreadShelfFilterId {
   return BREAD_SHELF_LENS_OPTIONS.some((option) => option.id === filter);

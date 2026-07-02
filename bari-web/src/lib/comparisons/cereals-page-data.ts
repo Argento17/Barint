@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/cereals_frontend_v2.json";
 
 import {
@@ -84,11 +86,11 @@ export const cerealsMethodologyLines = [
   "מוצרים עם נתוני רכיבים חלקיים מסומנים בהתאם — הציון מבוסס על מה שזמין.",
 ] as const;
 
-export const cerealsComparisonMetadata: Metadata = {
+export const cerealsComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת דגני בוקר | Bari",
   description:
     "השוואת 20 מוצרי דגני בוקר מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
-};
+});
 
 const cerealsShelfFilters = {
   lensOptions: CEREALS_SHELF_LENS_OPTIONS,

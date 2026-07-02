@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/snacks_frontend_v5.json";
 
 import {
@@ -82,10 +84,11 @@ export const snacksCategoryNote = [
 
 export const snacksMethodologyLines = snacksShelfMethodologyLines;
 
-export const snacksComparisonMetadata: Metadata = {
+export const snacksComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: snackComparisonMeta.title,
-  description: snackComparisonMeta.description,
-};
+  description:
+    snackComparisonMeta.description,
+});
 
 function isSnacksShelfFilterId(filter: string): filter is SnacksShelfFilterId {
   return SNACKS_SHELF_LENS_OPTIONS.some((option) => option.id === filter);

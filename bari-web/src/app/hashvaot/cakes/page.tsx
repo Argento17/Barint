@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { CakesHardCookiesComparisonPage } from "@/components/comparisons/cakes-hard-cookies-comparison-page";
 import {
@@ -14,11 +16,11 @@ import {
   cakesHardCookiesProducts,
 } from "@/lib/comparisons/cakes-hard-cookies-page-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withComparisonOpenGraph({
   title: "השוואת עוגות | Bari",
   description:
     "השוואת 62 עוגות מהמדף הישראלי — ציון Bari, סוכר, שומן רווי ורשימת רכיבים. מידע, לא המלצה.",
-};
+});
 
 export default async function CakesComparisonRoute({
   searchParams,

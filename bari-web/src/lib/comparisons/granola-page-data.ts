@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/granola_frontend_v2.json";
 
 import {
@@ -70,11 +72,11 @@ export const granolaMethodologyLines = [
   "הסוכר והחלבון מוצגים כשני מדדים מרכזיים — אבל הציון משקלל גם עיבוד, רכיבים, שומן וקלוריות ותוספים, כך שמוצר דל-סוכר עדיין יכול לקבל ציון נמוך.",
 ] as const;
 
-export const granolaComparisonMetadata: Metadata = {
+export const granolaComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת גרנולה ומוזלי | Bari",
   description:
     "השוואת 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
-};
+});
 
 const granolaShelfFilters = {
   lensOptions: GRANOLA_SHELF_LENS_OPTIONS,

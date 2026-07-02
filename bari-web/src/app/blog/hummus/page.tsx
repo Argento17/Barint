@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { blogOpenGraph } from "@/lib/seo/open-graph";
+
 import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
 import { absoluteUrl } from "@/lib/site-url";
 import { HummusArticle } from "@/components/blog/hummus-article";
@@ -14,12 +16,12 @@ export const metadata: Metadata = {
   title: "64 מוצרי חומוס בשופרסל. פער של 46 נקודות. | Bari",
   description:
     "סרקנו את מדף החומוס בשופרסל — 64 מוצרים. אחוז הטחינה הוא הגורם שמסביר הכי הרבה את הפערים. הנתרן משתנה פי-50 על אותו מדף.",
-  openGraph: {
+  openGraph: blogOpenGraph({
     title: "64 מוצרי חומוס בשופרסל. פער של 46 נקודות.",
     description:
       "סרקנו את מדף החומוס בשופרסל — 64 מוצרים. אחוז הטחינה הוא הגורם שמסביר הכי הרבה את הפערים. הנתרן משתנה פי-50 על אותו מדף.",
     type: "article",
-  },
+  }),
 };
 
 export default function HummusBlogPage() {
