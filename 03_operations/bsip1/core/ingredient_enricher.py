@@ -485,9 +485,8 @@ def _extract_terms(text_lower: str, ordered_items: list[dict],
 
 # ── BSIP0 raw ingredient lookup ───────────────────────────────────────────────
 
-BSIP0_YOHANANOF = pathlib.Path(
-    r"C:\Bari\03_operations\bsip0\scrape\yohananof\outputs\yohananof"
-)
+_REPO_ROOT = pathlib.Path(__file__).resolve().parents[3]
+BSIP0_YOHANANOF = _REPO_ROOT / "03_operations/bsip0/scrape/yohananof/outputs/yohananof"
 
 
 def _try_bsip0_raw(barcode: Optional[str]) -> tuple[Optional[str], str]:
