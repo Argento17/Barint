@@ -18,6 +18,7 @@ import {
 
 const navLinks = [
   { label: "השוואות", href: "/hashvaot" },
+  { label: "קטלוג", href: "/catalog" },
   { label: "בלוג", href: "/blog" },
   { label: "מדריכים", href: "/#guides" },
 ] as const;
