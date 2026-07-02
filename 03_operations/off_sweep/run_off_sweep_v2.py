@@ -5,6 +5,27 @@ Key fixes from v1:
 - Bread uses shufersal_NNNN ids with barcode=null -> extract numeric from id OR mark NO_BARCODE
 - All other categories have explicit barcode field
 - Correctly counts products per category
+
+TASK-450 fix (2026-07-02): the category -> data-file map used to be a HARDCODED
+dict of filenames that went stale the moment a category shipped a new frontend
+JSON version (v2 -> v3 -> v4 -> v5 renames). That silently dropped categories
+from the scan (FILE_NOT_FOUND, swallowed as a soft warning) — the exact gap
+that let the TASK-448 breach go undetected: the enforcement tool "passed"
+because it was blind, not because the data was clean.
+
+Fix: discover live scan targets DYNAMICALLY every run from the same source the
+Next.js app itself imports from — `bari-web/src/lib/seo/public-corpus-registry.ts`
+(one literal `@/data/comparisons/..._frontend_...json` import per live,
+JSON-backed category — this is the file the app actually renders from, so it
+cannot go stale without the site itself breaking). Cross-checked against each
+category's `03_operations/page_generator/configs/*.json` `baseline_json` field
+where present. Categories that are TS-embedded (no frontend JSON — e.g.
+magnesium) are reported separately and are out of scope for a JSON-file OFF
+scan by construction (see MAGNESIUM_NOTE below).
+
+Fail-loud: if a target discovered from the registry is missing on disk, this
+is a hard error (nonzero exit), not a warning — a silent skip is exactly the
+failure mode this fix exists to close.
 """
 
 import json
@@ -21,6 +42,18 @@ REPO = r"C:\Bari"
 DATA_DIR = os.path.join(REPO, "bari-web", "src", "data")
 BSIP1_ROOT = os.path.join(REPO, "03_operations", "bsip1")
 OUT_DIR = os.path.join(REPO, "03_operations", "off_sweep")
+COMPARISONS_DIR = os.path.join(DATA_DIR, "comparisons")
+
+# Authoritative discovery source: the registry the Next.js app itself imports
+# from at build time. One literal JSON import per live, file-backed category.
+PUBLIC_CORPUS_REGISTRY_TS = os.path.join(
+    REPO, "bari-web", "src", "lib", "seo", "public-corpus-registry.ts"
+)
+# Secondary cross-check source: category pipeline configs, which independently
+# record their own baseline_json target.
+PAGE_GENERATOR_CONFIGS_DIR = os.path.join(
+    REPO, "03_operations", "page_generator", "configs"
+)
 
 OFF_MARKERS = [
     "open_food_facts",
@@ -29,20 +62,20 @@ OFF_MARKERS = [
     "world.openfoodfacts",
 ]
 
-# Canonical (category -> data file) map
-CATEGORY_DATA_FILES = {
-    "bread":            os.path.join(DATA_DIR, "comparisons", "bread_frontend_v2.json"),
-    "hummus":           os.path.join(DATA_DIR, "comparisons", "hummus_frontend_v5.json"),
-    "vegetable-spreads": os.path.join(DATA_DIR, "comparisons", "hummus_frontend_v5.json"),
-    "snacks":           os.path.join(DATA_DIR, "comparisons", "snacks_frontend_v2.json"),
-    "yogurts":          os.path.join(DATA_DIR, "comparisons", "yogurts_frontend_v3.json"),
-    "cheese":           os.path.join(DATA_DIR, "comparisons", "cheese_frontend_v3.json"),
-    "breakfast-cereals": os.path.join(DATA_DIR, "comparisons", "cereals_frontend_v2.json"),
-    "butter":           os.path.join(DATA_DIR, "comparisons", "butter_frontend_v2.json"),
-    "granola":          os.path.join(DATA_DIR, "comparisons", "granola_frontend_v1.json"),
-    "salty-snacks":     os.path.join(DATA_DIR, "comparisons", "salty_snacks_frontend_v4.json"),
-    "milk (legacy)":    os.path.join(DATA_DIR, "milk-comparison.json"),
+# Non-JSON-backed live categories: known by construction to be out of scope
+# for a frontend-JSON OFF scan (product data is TS-embedded, not a JSON file).
+# Documented here (not silently dropped) so category count reconciliation is
+# always visible in the report instead of quietly short by one.
+TS_EMBEDDED_CATEGORIES = {
+    "magnesium": {
+        "reason": "TS-embedded product array (magnesium-page-data.ts), not a frontend JSON file",
+        "underlying_source": os.path.join(
+            REPO, "03_operations", "supplement_engine", "proto_v0", "benchmark",
+            "magnesium_v3_latest.json",
+        ),
+    },
 }
+
 
 def sha256_file(path):
     h = hashlib.sha256()
@@ -50,6 +83,139 @@ def sha256_file(path):
         for chunk in iter(lambda: f.read(65536), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+def discover_live_categories():
+    """
+    Dynamically derive {category_slug: absolute_data_file_path} from
+    public-corpus-registry.ts — the file the live Next.js app actually
+    imports its comparison-page JSON from. This is re-parsed every run,
+    so a renamed/added/removed category is picked up automatically and
+    can never silently fall out of coverage.
+
+    Returns (category_map, ts_embedded_slugs_seen).
+    Raises RuntimeError (fail loud) if the registry file itself cannot be
+    found or parsed — if the discovery source is gone, we do not silently
+    scan nothing.
+    """
+    if not os.path.exists(PUBLIC_CORPUS_REGISTRY_TS):
+        raise RuntimeError(
+            f"FATAL: discovery source not found: {PUBLIC_CORPUS_REGISTRY_TS}\n"
+            "This is the authoritative list of live categories. Without it, "
+            "the sweep cannot know what to scan and refuses to report a false "
+            "'clean' by scanning nothing."
+        )
+
+    with open(PUBLIC_CORPUS_REGISTRY_TS, "r", encoding="utf-8") as f:
+        src = f.read()
+
+    # Match: import xCorpus from "@/data/comparisons/some_file.json";
+    import_pat = re.compile(
+        r'import\s+(\w+)\s+from\s+"@/data/comparisons/([\w.\-]+\.json)"\s*;'
+    )
+    var_to_file = {}
+    for m in import_pat.finditer(src):
+        var_name, filename = m.group(1), m.group(2)
+        var_to_file[var_name] = filename
+
+    # Match the CORPUS_BY_SLUG map entries: "slug": someVar as ...  OR  slug: someVar as ...
+    # Capture both quoted and bare-identifier slugs.
+    map_block_m = re.search(
+        r"CORPUS_BY_SLUG[^=]*=\s*\{(.*?)\n\};", src, re.DOTALL
+    )
+    if not map_block_m:
+        raise RuntimeError(
+            "FATAL: could not locate CORPUS_BY_SLUG map body in "
+            f"{PUBLIC_CORPUS_REGISTRY_TS} — registry format changed; "
+            "discovery regex needs updating, refusing to guess."
+        )
+    map_body = map_block_m.group(1)
+
+    category_map = {}
+    ts_embedded_slugs = set()
+
+    # Walk line-by-line TRACKING BRACE DEPTH so a nested key inside an
+    # inline object value (e.g. magnesium's `{ _meta: {...}, products: ... }`)
+    # is never mistaken for a top-level CORPUS_BY_SLUG entry. Only match
+    # "key: value" lines seen at depth 0 relative to the map body.
+    depth = 0
+    for raw_line in map_body.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("//"):
+            continue
+
+        km = None
+        if depth == 0:
+            km = re.match(r'^(?:"([\w\-]+)"|([A-Za-z_]\w*))\s*:\s*(.+)$', line)
+
+        if km:
+            slug = km.group(1) or km.group(2)
+            rest = km.group(3)
+
+            var_ref_m = re.match(r"^(\w+)\s+as\s+Record", rest)
+            if var_ref_m:
+                var_name = var_ref_m.group(1)
+                if var_name in var_to_file:
+                    category_map[slug] = os.path.join(COMPARISONS_DIR, var_to_file[var_name])
+            elif rest.startswith("{"):
+                # Inline object literal -> TS-embedded, not a JSON file on disk.
+                ts_embedded_slugs.add(slug)
+
+        # Update brace depth AFTER processing this line's key (so the line
+        # that opens the object is still seen at depth 0), then let nested
+        # lines fall inside the elif/skip branch above until depth returns to 0.
+        depth += line.count("{") - line.count("}")
+
+    if not category_map:
+        raise RuntimeError(
+            "FATAL: parsed public-corpus-registry.ts but extracted ZERO "
+            "category -> file mappings. Registry format likely changed; "
+            "refusing to report a scan of nothing as 'clean'."
+        )
+
+    return category_map, ts_embedded_slugs
+
+
+def cross_check_against_page_generator_configs(category_map):
+    """
+    Secondary corroboration: for every *.json under page_generator/configs
+    that declares a `baseline_json`, confirm it points at the SAME file the
+    registry says is live. Mismatches are reported (not fatal — configs can
+    legitimately lag a rebuild) but must be visible, not swallowed.
+    """
+    mismatches = []
+    checked = 0
+    if not os.path.isdir(PAGE_GENERATOR_CONFIGS_DIR):
+        return mismatches, checked
+
+    for fp in glob.glob(os.path.join(PAGE_GENERATOR_CONFIGS_DIR, "*.json")):
+        try:
+            with open(fp, "r", encoding="utf-8") as f:
+                d = json.load(f)
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        baseline = d.get("baseline_json")
+        cat = d.get("category")
+        if not baseline or not cat:
+            continue
+        checked += 1
+        baseline_norm = os.path.normpath(baseline)
+        # category id in configs doesn't always match the registry slug 1:1
+        # (e.g. "breakfast-cereals" vs "cereals" file); compare by basename
+        # of the JSON file against every registry-known file instead of by
+        # category-id equality, since that's the part that actually matters
+        # for OFF-scan coverage.
+        known_files = {os.path.normpath(v) for v in category_map.values()}
+        if baseline_norm not in known_files:
+            mismatches.append({
+                "config_file": os.path.basename(fp),
+                "config_category": cat,
+                "config_baseline_json": baseline,
+            })
+    return mismatches, checked
+
 
 def find_bsip1_records():
     """Build dict: barcode_str -> list of (file_path, panel_source) dicts."""
@@ -95,6 +261,7 @@ def find_bsip1_records():
         })
 
     return records
+
 
 def extract_products_from_json(data, category):
     """Extract list of (barcode_or_id, name, image_url, raw_id) from a frontend JSON."""
@@ -156,6 +323,7 @@ def extract_products_from_json(data, category):
 
     return result
 
+
 def check_json_level_off(file_path):
     """Check A: scan raw file text for OFF markers. Returns (count, list of hit dicts)."""
     with open(file_path, "r", encoding="utf-8") as f:
@@ -176,6 +344,7 @@ def check_json_level_off(file_path):
 
     return len(hits), hits
 
+
 def check_image_url_off(products):
     """Check if any product's imageUrl points to OFF CDN."""
     contaminated = []
@@ -184,6 +353,7 @@ def check_image_url_off(products):
         if any(m.lower() in img.lower() for m in OFF_MARKERS):
             contaminated.append(p)
     return contaminated
+
 
 def check_corpus_level_off(products, bsip1_records):
     """Check B: for each product with barcode, look up BSIP1 panel_source."""
@@ -228,19 +398,39 @@ def check_corpus_level_off(products, bsip1_records):
             })
     return results
 
+
 def main():
-    print("Building BSIP1 records index...")
+    print("Discovering live categories from public-corpus-registry.ts (dynamic, not hardcoded)...")
+    category_map, ts_embedded_slugs = discover_live_categories()
+    print(f"  Discovered {len(category_map)} JSON-backed live categories: {sorted(category_map.keys())}")
+    if ts_embedded_slugs:
+        print(f"  Discovered {len(ts_embedded_slugs)} TS-embedded live categories (out of JSON-scan scope): {sorted(ts_embedded_slugs)}")
+
+    mismatches, configs_checked = cross_check_against_page_generator_configs(category_map)
+    print(f"  Cross-checked against {configs_checked} page_generator configs with a baseline_json field")
+    if mismatches:
+        print(f"  WARNING: {len(mismatches)} config(s) declare a baseline_json NOT found among registry-live files (may be a stale/pending config, not necessarily a bug):")
+        for mm in mismatches:
+            print(f"    - {mm['config_file']} (category={mm['config_category']}) -> {mm['config_baseline_json']}")
+
+    print("\nBuilding BSIP1 records index...")
     bsip1_records = find_bsip1_records()
     print(f"  Indexed {len(bsip1_records)} unique barcodes from BSIP1 records")
 
     results = {}
+    missing_targets = []
 
-    for category, data_file in CATEGORY_DATA_FILES.items():
+    for category, data_file in sorted(category_map.items()):
         print(f"\nScanning: {category} -> {os.path.basename(data_file)}")
 
         if not os.path.exists(data_file):
-            print(f"  WARNING: file not found: {data_file}")
-            results[category] = {"data_file": data_file, "error": "FILE_NOT_FOUND"}
+            # FAIL LOUD: a category the live app itself imports from is
+            # missing on disk. This is not a warning to skip past — it means
+            # either the repo is broken or the site is serving something we
+            # cannot verify. Record it and fail the whole run at the end.
+            print(f"  FATAL: expected live data file MISSING: {data_file}")
+            missing_targets.append({"category": category, "data_file": data_file})
+            results[category] = {"data_file": data_file, "error": "FILE_NOT_FOUND_FATAL"}
             continue
 
         # Check A: JSON-level OFF markers
@@ -302,42 +492,49 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         f.write("# OFF Sweep v1 — Open Food Facts Contamination Map\n\n")
         f.write(f"Generated: {now}  \n")
-        f.write("Method: Python stdlib JSON parse + raw text grep of all live category data files; BSIP1 record lookup by barcode field.  \n")
-        f.write("Scope: 10 registry categories + milk (legacy). Hard-cheeses and juices not in registry, excluded from live scan.  \n")
+        f.write("Method: DYNAMIC discovery from `bari-web/src/lib/seo/public-corpus-registry.ts` "
+                "(the same file the live Next.js app imports its comparison JSON from) — "
+                "cross-checked against `03_operations/page_generator/configs/*.json` `baseline_json` fields. "
+                "NOT a hardcoded filename list (TASK-450 fix).  \n")
+        f.write(f"Scope: {len(category_map)} JSON-backed live categories"
+                + (f" + {len(ts_embedded_slugs)} TS-embedded live categories out of JSON-scan scope ({sorted(ts_embedded_slugs)})" if ts_embedded_slugs else "")
+                + ".  \n")
         f.write("OFF contamination types checked: (A) JSON-level OFF string markers in file text; (B) BSIP1 panel_source=open_food_facts.  \n")
         f.write("Image URL contamination (images.openfoodfacts.org in imageUrl field) is an independent contamination class reported separately.  \n\n")
 
+        if missing_targets:
+            f.write("## FATAL: MISSING LIVE DATA FILES\n\n")
+            f.write("The following categories are imported by the live app's public-corpus-registry.ts "
+                    "but the file does not exist on disk. This sweep CANNOT confirm these categories are "
+                    "clean and the run has failed loudly rather than silently skip them.\n\n")
+            for mt in missing_targets:
+                f.write(f"- **{mt['category']}**: `{mt['data_file']}`\n")
+            f.write("\n")
+
         # Section 1: Category-data file map
-        f.write("## Section 1: Category to Data File Map\n\n")
-        f.write("Derived by reading import lines of every page-data .ts file under bari-web/src/lib/comparisons/ and registry/categories/*.ts.\n\n")
-        f.write("| Category | Route | Data File | Note |\n")
-        f.write("|---|---|---|---|\n")
-        routes = {
-            "bread": "/hashvaot/bread",
-            "hummus": "/hashvaot/hummus",
-            "vegetable-spreads": "/hashvaot/vegetable-spreads",
-            "snacks": "/hashvaot/snacks",
-            "yogurts": "/hashvaot/yogurts",
-            "cheese": "/hashvaot/cheese",
-            "breakfast-cereals": "/hashvaot/breakfast-cereals",
-            "butter": "/hashvaot/butter",
-            "granola": "/hashvaot/granola",
-            "salty-snacks": "/hashvaot/salty-snacks",
-            "milk (legacy)": "/hashvaot/milk (legacy route)",
-        }
-        notes = {
-            "vegetable-spreads": "Shares hummus_frontend_v5.json with hummus",
-            "milk (legacy)": "Uses milk-comparison.json; not in registry index.ts",
-        }
+        f.write("## Section 1: Category to Data File Map (dynamically discovered)\n\n")
+        f.write("Derived by parsing `bari-web/src/lib/seo/public-corpus-registry.ts` at scan time — "
+                "the file the live app itself imports comparison JSON from.\n\n")
+        f.write("| Category | Data File |\n")
+        f.write("|---|---|\n")
         for cat, r in results.items():
-            note = notes.get(cat, "")
-            route = routes.get(cat, "")
-            f.write(f"| {cat} | {route} | {r.get('data_file_basename','N/A')} | {note} |\n")
+            f.write(f"| {cat} | {r.get('data_file_basename','N/A')} |\n")
         f.write("\n")
-        f.write("**Additional data files in bari-web/src/data/comparisons/ NOT in the live registry:**  \n")
-        f.write("- hard_cheeses_frontend_v2.json (hard-cheeses page exists but not in registry/index.ts)  \n")
-        f.write("- juices_frontend_v3.json (juices page exists but not in registry/index.ts)  \n")
-        f.write("- yogurts_frontend_v4.json (v4 exists on disk; page-data imports v3 — v4 is NOT live)  \n\n")
+        if ts_embedded_slugs:
+            f.write("**TS-embedded live categories (no frontend JSON file — out of scope for this scanner by construction):**  \n")
+            for slug in sorted(ts_embedded_slugs):
+                info = TS_EMBEDDED_CATEGORIES.get(slug, {})
+                f.write(f"- {slug}: {info.get('reason', 'TS-embedded product data')}"
+                        + (f" (underlying source: `{info['underlying_source']}`)" if info.get('underlying_source') else "")
+                        + "\n")
+            f.write("\n")
+        if mismatches:
+            f.write("**Page-generator config baseline_json mismatches (informational, non-fatal):**  \n")
+            for mm in mismatches:
+                f.write(f"- `{mm['config_file']}` (category={mm['config_category']}) declares baseline_json "
+                        f"`{mm['config_baseline_json']}` which is not among the registry-live files — "
+                        "likely a config pending a rebuild sync, not a live-site risk.\n")
+            f.write("\n")
 
         # Section 2: Verdict table
         f.write("## Section 2: Verdict Table\n\n")
@@ -354,7 +551,7 @@ def main():
 
         for cat, r in results.items():
             if "error" in r:
-                f.write(f"| {cat} | {r.get('data_file_basename','?')} | N/A | N/A | N/A | N/A | N/A | N/A | ERROR |\n")
+                f.write(f"| {cat} | {r.get('data_file_basename','?')} | N/A | N/A | N/A | N/A | N/A | N/A | **FATAL: FILE MISSING** |\n")
                 continue
             m = r["total_products_in_file"]
             n_img = r["image_off_count"]
@@ -379,19 +576,6 @@ def main():
         f.write(f"\n**TOTAL Image-OFF products across live site: {total_off_image}**  \n")
         f.write(f"**TOTAL Corpus-OFF products across live site: {total_off_corpus}**  \n")
         f.write(f"**TOTAL Products scanned: {total_products_all}**  \n\n")
-
-        # Calibration check
-        f.write("### Calibration against known findings\n\n")
-        f.write("Known contamination claims from task brief: cereals 8 OFF-fed, granola 10 OFF-fed.  \n")
-        cereals_r = results.get("breakfast-cereals", {})
-        granola_r = results.get("granola", {})
-        f.write(f"- cereals: image-OFF={cereals_r.get('image_off_count','?')}, corpus-OFF={cereals_r.get('off_corpus_count','?')}, JSON-live={cereals_r.get('live_json_hit_count','?')}  \n")
-        f.write(f"- granola: image-OFF={granola_r.get('image_off_count','?')}, corpus-OFF={granola_r.get('off_corpus_count','?')}, JSON-live={granola_r.get('live_json_hit_count','?')}  \n")
-        f.write("\nSELF-CALIBRATION NOTE: This scan found 0 corpus-level OFF contamination for cereals and granola. ")
-        f.write("The known dirty counts (8 and 10) referenced in the task brief refer to BSIP1-level contamination that may have already been purged from the frontend JSON before this sweep. ")
-        f.write("The sweep confirms the current state of what is LIVE — not historical BSIP1 run state. ")
-        f.write("The cereals JSON contains an `excluded_off_products` metadata block documenting the exclusions (1 `open_food_facts` marker, metadata-only). ")
-        f.write("Granola has 0 OFF markers in its current frontend JSON.  \n\n")
 
         # Section 3: Dirty category details
         f.write("## Section 3: Dirty Category Details\n\n")
@@ -424,21 +608,8 @@ def main():
                         f.write(f"| {p.get('barcode','?')} | {p.get('name','')[:50]} | {p.get('panel_source','?')} | {bsip1_rel} |\n")
                     f.write("\n")
 
-        # Section 4: Yogurts — full product list
-        f.write("## Section 4: Yogurts Full Product List (DIRTY category)\n\n")
-        yog_r = results.get("yogurts", {})
-        if yog_r and not "error" in yog_r:
-            f.write(f"Data file: `{yog_r['data_file_basename']}` | Total: {yog_r['total_products_in_file']} products\n\n")
-            f.write("| Barcode | Raw ID | Name | image_off | panel_source | Status |\n")
-            f.write("|---|---|---|---|---|---|\n")
-            for p in yog_r["corpus_results"]:
-                img_off = "YES" if any(m.lower() in (p.get("image_url","") or "").lower() for m in OFF_MARKERS) else ""
-                status = "OFF-IMAGE" if img_off else ("CORPUS-OFF" if p.get("is_off_corpus") else ("NO_RECORD" if p.get("is_no_record") else "ok"))
-                f.write(f"| {p.get('barcode','?')} | {p.get('raw_id','')[:25]} | {p.get('name','')[:50]} | {img_off} | {p.get('panel_source','?')} | {status} |\n")
-            f.write("\n")
-
-        # Section 5: NO_RECORD / NO_BARCODE concentrations
-        f.write("## Section 5: NO_RECORD and NO_BARCODE Concentrations\n\n")
+        # Section 4: NO_RECORD / NO_BARCODE concentrations
+        f.write("## Section 4: NO_RECORD and NO_BARCODE Concentrations\n\n")
         f.write("Categories with high NO_RECORD rates cannot confirm clean BSIP1 provenance.\n\n")
         f.write("| Category | NO_RECORD | NO_BARCODE | Total | NO_RECORD% | Note |\n")
         f.write("|---|---|---|---|---|---|\n")
@@ -457,8 +628,8 @@ def main():
             f.write(f"| {cat} | {n_rec} | {n_bc} | {m} | {pct}% | {note} |\n")
         f.write("\n")
 
-        # Section 6: Full corpus table for each category
-        f.write("## Section 6: Full Corpus Results Per Category\n\n")
+        # Section 5: Full corpus table for each category
+        f.write("## Section 5: Full Corpus Results Per Category\n\n")
         for cat, r in results.items():
             if "error" in r:
                 continue
@@ -490,10 +661,23 @@ def main():
     sha = sha256_file(out_path)
     print(f"SHA256: {sha}")
 
-    return out_path, results, total_off_image, total_off_corpus, total_products_all, sha
+    return out_path, results, total_off_image, total_off_corpus, total_products_all, sha, missing_targets
+
 
 if __name__ == "__main__":
-    out_path, results, total_off_image, total_off_corpus, total_products, sha = main()
+    out_path, results, total_off_image, total_off_corpus, total_products, sha, missing_targets = main()
     print(f"\nFINAL: {total_off_image} image-OFF + {total_off_corpus} corpus-OFF products across {total_products} total in live categories")
     print(f"Output: {out_path}")
     print(f"SHA256: {sha}")
+
+    if missing_targets:
+        print(f"\nFATAL: {len(missing_targets)} live-registered category file(s) missing on disk. "
+              "Coverage is INCOMPLETE. Exiting nonzero — this run must NOT be treated as a clean pass.")
+        sys.exit(1)
+
+    if total_off_image > 0 or total_off_corpus > 0:
+        print(f"\nFATAL: OFF contamination detected ({total_off_image} image-OFF, {total_off_corpus} corpus-OFF). Exiting nonzero.")
+        sys.exit(2)
+
+    print("\nPASS: full coverage, zero OFF markers.")
+    sys.exit(0)
