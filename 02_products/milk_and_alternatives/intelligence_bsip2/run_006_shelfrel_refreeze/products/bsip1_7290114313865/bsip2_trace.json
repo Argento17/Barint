@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-16T04:57:39.122713Z",
+  "trace_generated_at": "2026-07-02T19:54:16.681266Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290114313865",
@@ -11,7 +11,7 @@
     "source_retailers": [
       "yohananof"
     ],
-    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output\\bsip1_7290114313865.json",
+    "bsip1_source_path": null,
     "audit_ref": "bsip1_audit_7290114313865.json",
     "bsip1_schema_version": "bsip1_v0_1",
     "load_errors": []
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "dairy_protein",
-  "category_confidence": 0.92,
-  "secondary_category": "whole_food_fat",
-  "secondary_confidence": 0.1,
+  "category": "snack_bar_granola",
+  "category_confidence": 0.91,
+  "secondary_category": "dairy_protein",
+  "secondary_confidence": 0.6,
   "category_instability_flag": false,
   "category_confidence_band": "high",
   "classification_basis": [
-    "dairy_protein:חלב(name)"
+    "hard_anchor:חלבון"
   ],
   "nova_proxy": 2,
   "nova_confidence": 0.25,
@@ -102,6 +102,7 @@
     "sweetener_detected": false,
     "sweetener_tier": null,
     "sweetener_matches": [],
+    "sweetener_negation_suppressed": [],
     "additive_marker_count": 0,
     "additive_categories": [],
     "has_flavor_enhancer": false,
@@ -154,6 +155,7 @@
     "functional_fiber_terms_matched": [],
     "functional_fiber_viscous_terms": [],
     "functional_fiber_prebiotic_terms": [],
+    "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
     "tax_emulsifier_medium": [],
@@ -251,7 +253,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 64.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=6.5g→32.5, fiber=0g→0.0, weighted 65/35=21.1",
-    "calorie_density": "kcal=64.0, category=dairy_protein → 90",
+    "calorie_density": "kcal=64.0, category=snack_bar_granola → 90",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=6.5g base=32.5, source=whole_food(×1.0) → 32.5",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
@@ -331,18 +333,6 @@
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
       "cap": 87.2,
-      "condition": false,
-      "fired": false
-    },
-    {
-      "rule": "ADDITIVE_MARKERS_5_PLUS",
-      "cap": 60,
-      "condition": false,
-      "fired": false
-    },
-    {
-      "rule": "ADDITIVE_MARKERS_3_PLUS",
-      "cap": 72,
       "condition": false,
       "fired": false
     },

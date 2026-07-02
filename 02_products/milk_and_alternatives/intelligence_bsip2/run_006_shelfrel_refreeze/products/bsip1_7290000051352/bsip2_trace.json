@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-16T04:57:39.085659Z",
+  "trace_generated_at": "2026-07-02T19:54:16.675011Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290000051352",
@@ -11,7 +11,7 @@
     "source_retailers": [
       "yohananof"
     ],
-    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output\\bsip1_7290000051352.json",
+    "bsip1_source_path": null,
     "audit_ref": "bsip1_audit_7290000051352.json",
     "bsip1_schema_version": "bsip1_v0_1",
     "load_errors": []
@@ -22,14 +22,14 @@
   "scope_basis": [
     "no out_of_scope or context_limited signals detected"
   ],
-  "category": "bread",
-  "category_confidence": 0.68,
-  "secondary_category": "dairy_protein",
-  "secondary_confidence": 0.47,
+  "category": "dairy_protein",
+  "category_confidence": 0.67,
+  "secondary_category": "bread",
+  "secondary_confidence": 0.48,
   "category_instability_flag": true,
   "category_confidence_band": "medium",
   "classification_basis": [
-    "bread:מלא(name×2)"
+    "dairy_protein:חלב(name)"
   ],
   "nova_proxy": 1,
   "nova_confidence": 0.9,
@@ -99,6 +99,7 @@
     "sweetener_detected": false,
     "sweetener_tier": null,
     "sweetener_matches": [],
+    "sweetener_negation_suppressed": [],
     "additive_marker_count": 0,
     "additive_categories": [],
     "has_flavor_enhancer": false,
@@ -151,6 +152,7 @@
     "functional_fiber_terms_matched": [],
     "functional_fiber_viscous_terms": [],
     "functional_fiber_prebiotic_terms": [],
+    "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
     "tax_emulsifier_medium": [],
@@ -228,7 +230,7 @@
       "reduction": -5
     },
     {
-      "factor": "category_confidence=medium (0.68)",
+      "factor": "category_confidence=medium (0.67)",
       "reduction": -8
     }
   ],
@@ -247,7 +249,7 @@
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 1 base=95 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 95.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=3.3g→16.5, fiber=0g→0.0, weighted 65/35=10.7",
-    "calorie_density": "kcal=67.0, category=bread (conf 0.68, relaxed by 1.05x) → 90",
+    "calorie_density": "kcal=67.0, category=dairy_protein (conf 0.67, relaxed by 1.05x) → 90",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(0.0) + wg(0) = 90.0",
     "protein_quality": "protein=3.3g base=16.5, source=whole_food(×1.0) → 16.5",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
@@ -497,7 +499,7 @@
     "FLOOR APPLIED: nova1_single_ingredient → minimum 85"
   ],
   "unresolved_flags": [
-    "CATEGORY_INSTABILITY: primary=bread secondary=dairy_protein, confidence=0.68",
+    "CATEGORY_INSTABILITY: primary=dairy_protein secondary=bread, confidence=0.67",
     "TRANS_FAT_PRESENT: trans_fat 0.2-0.5g (confirmed above threshold declaration)"
   ],
   "structural_class": {
