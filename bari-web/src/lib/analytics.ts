@@ -21,7 +21,9 @@ export type BariEventName =
   | "tier_card_expand"
   | "tier_card_collapse"
   | "scroll_past_additive_panel"
-  | "additive_panel_impression";
+  | "additive_panel_impression"
+  // Share-page feature (TASK-467). `properties` carries { method, page_path }.
+  | "share";
 
 export type BariEventProperties = Record<string, string | number | boolean>;
 
