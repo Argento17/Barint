@@ -24,9 +24,25 @@ export interface CommunityLink {
 }
 
 export const communityLinks: CommunityLink[] = [
-  { id: "whatsapp", label: "וואטסאפ", href: "", platform: "whatsapp" },
-  { id: "instagram", label: "אינסטגרם", href: "", platform: "instagram" },
-  { id: "facebook", label: "פייסבוק", href: "", platform: "facebook" },
+  // WhatsApp Channel (owner-supplied 2026-07-02; Channel per TASK-467 research advisory)
+  {
+    id: "whatsapp",
+    label: "וואטסאפ",
+    href: "https://whatsapp.com/channel/0029VbDGpnr7j6g4xM62910s",
+    platform: "whatsapp",
+  },
+  {
+    id: "instagram",
+    label: "אינסטגרם",
+    href: "https://www.instagram.com/bari_nutrition/",
+    platform: "instagram",
+  },
+  {
+    id: "facebook",
+    label: "פייסבוק",
+    href: "https://www.facebook.com/profile.php?id=61591403370117",
+    platform: "facebook",
+  },
 ];
 
 /** Community links with a real URL supplied. Renders nothing when empty. */
