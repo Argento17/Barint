@@ -183,6 +183,12 @@ BARI_GLASSBOX_W2 = os.environ.get("BARI_GLASSBOX_W2", "off").lower() == "on"
 # Does NOT auto-deploy; owner merges + deploys separately (hard rule TASK-371).
 BARI_D4_SCORE_V1 = os.environ.get("BARI_D4_SCORE_V1", "off").lower() == "on"
 
+# TASK-449 (P459) — Brined fermentation marker bonus restrict (Option A).
+# DEFAULT OFF → byte-identical to origin/master (no restrict; Path B +8 fires on name markers even for brined_food).
+# ON (with RECAL_P0): suppresses the cultured_cheese_name +8 precisely when context_flag=="brined_food".
+# See constants.py for full spec; D6+D7 co-signed; trace emission of applied/note now always available.
+BARI_FERMENT_MARKER_BRINED_FIX_V1 = os.environ.get("BARI_FERMENT_MARKER_BRINED_FIX_V1", "off").lower() == "on"
+
 # TASK-380 / EV-104 — Hard Cheese Endemic Sat-Fat Relief (BARI_HC_DAIRY_SATFAT_V1).
 # DEFAULT OFF → engine byte-identical to baseline for ALL categories.
 # Activation scope: category == "dairy_protein" AND bsip_cheese_subpool in
@@ -3593,6 +3599,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
     nova_level   = nova_result["nova_level"]
     nova_conf    = nova_result["nova_confidence"]
     red_label_ct = l3.get("red_label_count", 0)
+    context_flag = eval_result.get("context_flag")  # first-class for brined_food etc (EV-053); used by TASK-449 brined restrict
 
     # Stage 0 gate: out_of_scope
     if eval_result.get("evaluation_status") == "out_of_scope":
@@ -3965,7 +3972,8 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         # they do not qualify here → plain cottage lands at its R1+R2+R4 value (~90/A).
         is_cultured_cheese = (category in ("dairy_protein", "default")
                               and any(m in _name for m in CULTURED_CHEESE_NAME_MARKERS_HE)
-                              and not is_fluid_milk)
+                              and not is_fluid_milk
+                              and not (BARI_FERMENT_MARKER_BRINED_FIX_V1 and context_flag == "brined_food"))
 
         if is_yogurt and not is_flavored_variant:
             eligible_ferm = True
@@ -4740,7 +4748,7 @@ def score_product(product: dict, signals: dict, cat_result: dict,
         "recal_p0_veg_spread": is_veg_spread if RECAL_P0_ON else None,
         "recal_p0_veg_spread_immunity_clamped": veg_spread_immunity_clamped if RECAL_P0_ON else None,
         "weighted_dimension_score": weighted_dim_score,
-        "fermentation_bonus_applied": fermentation_bonus if fermentation_bonus else None,
+        "fermentation_bonus_applied": bool(fermentation_bonus),
         "fermentation_bonus_note": fermentation_bonus_note,
         "caps_considered": gr.get("caps_considered", []),
         "caps_applied":    gr.get("caps_applied", []),
