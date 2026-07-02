@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/crackers_frontend_v1.json";
 
 import {
@@ -101,11 +103,11 @@ export const crackersMethodologyLines = [
   "לא הוספנו נתונים שלא הופיעו על האריזה; במקום שבו נתון חסר, הוא מסומן ככזה.",
 ] as const;
 
-export const crackersComparisonMetadata: Metadata = {
+export const crackersComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת קרקרים — מה באמת מבדיל ביניהם | בארי",
   description:
     "השוואה של עשרים קרקרים מהמדף לפי דומיננטיות דגן מלא, אורך רשימת הרכיבים ותרומת סיבים — לא לפי קלוריות. כל קרקר מושווה מול קרקרים אחרים, לא מול לחם.",
-};
+});
 
 function isCrackersShelfFilterId(filter: string): filter is CrackersShelfFilterId {
   return CRACKERS_SHELF_LENS_OPTIONS.some((option) => option.id === filter);

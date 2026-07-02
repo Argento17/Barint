@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/juices_frontend_v3.json";
 
 import type { ComparisonCorpusMeta } from "@/lib/comparisons/corpus";
@@ -107,11 +109,11 @@ export const juicesMethodologyLines = [
   "מסד הנתונים עודכן ביוני 2026 — ייתכן שינויים בנוסחאות שאינם משתקפים עדיין בציון.",
 ] as const;
 
-export const juicesComparisonMetadata: Metadata = {
+export const juicesComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת מיצים ומשקאות פירות | Bari",
   description:
     "השוואת 17 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ\"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.",
-};
+});
 
 function isJuicesShelfFilterId(filter: string): filter is JuicesShelfFilterId {
   return JUICES_SHELF_LENS_OPTIONS.some((option) => option.id === filter);

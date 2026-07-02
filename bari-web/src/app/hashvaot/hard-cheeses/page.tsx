@@ -9,13 +9,10 @@ import {
   hardCheesesMethodologyLines,
   hardCheesesPrologueSentences,
   hardCheesesProducts,
+  hardCheesesComparisonMetadata,
 } from "@/lib/comparisons/hard-cheeses-page-data";
 
-export const metadata: Metadata = {
-  title: "השוואת גבינות קשות וצהובות | Bari",
-  description:
-    "השוואת 31 גבינות קשות מהמדף הישראלי — ציון Bari, חלבון, שומן ונתרן ל-100 גרם. מידע, לא המלצה.",
-};
+export const metadata: Metadata = hardCheesesComparisonMetadata;
 
 export default async function HardCheesesComparisonRoute({
   searchParams,

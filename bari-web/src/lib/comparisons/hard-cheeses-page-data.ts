@@ -1,5 +1,7 @@
 ﻿import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/hard_cheeses_frontend_v4.json";
 
 import {
@@ -67,11 +69,11 @@ export const hardCheesesMethodologyLines = [
   "מסד הנתונים עודכן ביוני 2026 — ייתכנו שינויים בנוסחאות שטרם משתקפים בציון.",
 ] as const;
 
-export const hardCheesesComparisonMetadata: Metadata = {
+export const hardCheesesComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת גבינות קשות וצהובות | Bari",
   description:
     "השוואת 31 גבינות קשות מהמדף הישראלי — ציון Bari, חלבון, שומן ונתרן ל-100 גרם. מידע, לא המלצה.",
-};
+});
 
 const hardCheesesShelfFilters = {
   lensOptions: HARD_CHEESES_SHELF_LENS_OPTIONS,

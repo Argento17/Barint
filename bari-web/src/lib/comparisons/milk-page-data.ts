@@ -16,6 +16,8 @@
 
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 // ─── Legacy imports ────────────────────────────────────────────────────────────
 import rawPage from "@/data/milk-comparison.json";
 import { formatGram } from "@/lib/format/numbers";
@@ -202,10 +204,11 @@ export const milkBlogLink = {
   label: _pageCopy.blog_link.label,
 } as const;
 
-export const milkComparisonMetadata: Metadata = {
+export const milkComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת חלב ואלטרנטיבות | Bari",
-  description: `השוואת ${milkVmProducts.length} מוצרי חלב ותחליפים ממדפי סופרים — ציון Bari, חלבון, סוכר, תוספים. מידע, לא המלצה.`,
-};
+  description:
+    `השוואת ${milkVmProducts.length} מוצרי חלב ותחליפים ממדפי סופרים — ציון Bari, חלבון, סוכר, תוספים. מידע, לא המלצה.`,
+});
 
 // ─── Shelf filters ─────────────────────────────────────────────────────────────
 // 10 lens options from page_copy.shelf_lens_options.

@@ -9,13 +9,10 @@ import {
   cerealsPrologueSentences,
   cerealsProducts,
   cerealsCategoryNote,
+  cerealsComparisonMetadata,
 } from "@/lib/comparisons/cereals-page-data";
 
-export const metadata: Metadata = {
-  title: "השוואת דגני בוקר | Bari",
-  description:
-    "השוואת 37 מוצרי דגני בוקר מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
-};
+export const metadata: Metadata = cerealsComparisonMetadata;
 
 export default async function BreakfastCerealsComparisonRoute({
   searchParams,

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
 import rawCorpus from "@/data/comparisons/cheese_frontend_v5.json";
 import {
   formatComparisonMetadataLine,
@@ -53,11 +55,11 @@ export const cheeseMethodologyLines: readonly string[] = _pageCopy.methodology.l
 // v4 JSON ships category_caveat as a flat string
 export const cheeseCategoryNote: string = _pageCopy.category_caveat;
 
-export const cheeseComparisonMetadata: Metadata = {
+export const cheeseComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת גבינות לבנות וממרחים | Bari",
   description:
     "השוואה בין גבינות לבנות, קוטג', ממרחי גבינת שמנת ולבנה — לפי רכיבים, חלבון, שומן ורמת עיבוד. מידע, לא המלצה.",
-};
+});
 
 const cheeseShelfFilters = {
   lensOptions: [] as Array<{ id: string; label: string }>,

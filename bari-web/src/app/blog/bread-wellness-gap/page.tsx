@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { blogOpenGraph } from "@/lib/seo/open-graph";
+
 import { BlogArticleSeo } from "@/components/seo/blog-article-seo";
 import { absoluteUrl } from "@/lib/site-url";
 import { BreadEditorialArticle } from "@/components/blog/bread-editorial-article";
@@ -11,11 +13,11 @@ export const metadata: Metadata = {
   robots: { index: false },
   title: article.metaTitle,
   description: article.metaDescription,
-  openGraph: {
+  openGraph: blogOpenGraph({
     title: article.metaTitle,
     description: article.metaDescription,
     type: "article",
-  },
+  }),
 };
 
 export default function BreadWellnessGapArticlePage() {

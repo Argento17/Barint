@@ -9,13 +9,10 @@ import {
   granolaPrologueSentences,
   granolaProducts,
   granolaCategoryNote,
+  granolaComparisonMetadata,
 } from "@/lib/comparisons/granola-page-data";
 
-export const metadata: Metadata = {
-  title: "השוואת גרנולה ומוזלי | Bari",
-  description:
-    "השוואת 22 מוצרי גרנולה ומוזלי מהמדף הישראלי — ציון Bari, רכיבים, ערכי תזונה ורמת עיבוד. מידע, לא המלצה.",
-};
+export const metadata: Metadata = granolaComparisonMetadata;
 
 export default async function GranolaComparisonRoute({
   searchParams,

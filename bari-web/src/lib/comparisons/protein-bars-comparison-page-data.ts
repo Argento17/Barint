@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/protein_combined_frontend_v2.json";
 
 import {
@@ -75,11 +77,11 @@ export const proteinBarsMethodologyLines = [
   "ציוני Bari מתעדים מבנה מוצר ואינם המלצה תזונתית.",
 ] as const;
 
-export const proteinBarsComparisonMetadata: Metadata = {
+export const proteinBarsComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת חטיפי חלבון ועוגיות חלבון | Bari",
   description:
     "השוואת 32 חטיפי חלבון ועוגיות חלבון מהמדף הישראלי — ציון Bari, מקור החלבון, תחליפי הסוכר ורמת העיבוד. מידע, לא המלצה.",
-};
+});
 
 const proteinBarsShelfFilters = {
   lensOptions: PROTEIN_BARS_SHELF_LENS_OPTIONS,

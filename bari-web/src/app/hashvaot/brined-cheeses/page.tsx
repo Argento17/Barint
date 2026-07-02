@@ -9,13 +9,10 @@ import {
   brinedCheesesMethodologyLines,
   brinedCheesesPrologueSentences,
   brinedCheesesProducts,
+  brinedCheesesComparisonMetadata,
 } from "@/lib/comparisons/brined-cheeses-page-data";
 
-export const metadata: Metadata = {
-  title: "השוואת גבינות מלוחות | Bari",
-  description:
-    "השוואת 36 גבינות מלוחות מהמדף הישראלי — ציון Bari, נתרן, חלבון ושומן ל-100 גרם. מידע, לא המלצה.",
-};
+export const metadata: Metadata = brinedCheesesComparisonMetadata;
 
 export default async function BrinedCheesesComparisonRoute({
   searchParams,

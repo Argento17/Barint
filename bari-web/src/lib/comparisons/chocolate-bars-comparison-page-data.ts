@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/chocolate_bars_frontend_v1.json";
 
 import {
@@ -60,11 +62,11 @@ export const chocolateBarsMethodologyLines = [
   "ציוני Bari מתעדים מבנה מוצר ואינם המלצה תזונתית.",
 ] as const;
 
-export const chocolateBarsComparisonMetadata: Metadata = {
+export const chocolateBarsComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת חטיפי שוקולד | Bari",
   description:
     "השוואת חטיפי שוקולד מהמדף הישראלי — ציון Bari, כמות סוכר, רכיבים ורמת עיבוד. מידע, לא המלצה.",
-};
+});
 
 const chocolateBarsShelfFilters = {
   lensOptions: CHOCOLATE_BARS_SHELF_LENS_OPTIONS,

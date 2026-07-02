@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/brined_cheeses_frontend_v2.json";
 
 import {
@@ -64,11 +66,11 @@ export const brinedCheesesMethodologyLines = [
   "כל מוצר שמוצג כאן עבר אימות מלא: רשימת רכיבים ונתוני תזונה ממקור ישיר. גבינה שלא ניתן היה לאמת אותה לא מופיעה. הערה לגבי אחוזי שומן: '24%' בשם גבינה כמעט תמיד מתייחס לשומן בחומר היבש — מדד תעשייתי שאינו שווה ערך לשומן ב-100 גרם מוכנה. בארי עובדת עם הנתון שעל התווית.",
 ] as const;
 
-export const brinedCheesesComparisonMetadata: Metadata = {
+export const brinedCheesesComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת גבינות מלוחות | Bari",
   description:
     "השוואת 36 גבינות מלוחות מהמדף הישראלי — ציון Bari, נתרן, חלבון ושומן ל-100 גרם. מידע, לא המלצה.",
-};
+});
 
 const brinedCheesesShelfFilters = {
   lensOptions: [],

@@ -9,13 +9,10 @@ import {
   juicesMethodologyLines,
   juicesPrologueSentences,
   juicesProducts,
+  juicesComparisonMetadata,
 } from "@/lib/comparisons/juices-page-data";
 
-export const metadata: Metadata = {
-  title: "השוואת מיצים ומשקאות פירות | Bari",
-  description:
-    'השוואת 65 מיצים ומשקאות פירות מהמדף הישראלי — ציון Bari, סוכר ל-100 מ"ל, ריכוז פרי ורמת עיבוד. מידע, לא המלצה.',
-};
+export const metadata: Metadata = juicesComparisonMetadata;
 
 export default async function JuicesComparisonRoute({
   searchParams,

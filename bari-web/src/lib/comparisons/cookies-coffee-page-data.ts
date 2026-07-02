@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/cookies_coffee_frontend_v2.json";
 
 import {
@@ -85,11 +87,11 @@ export const cookiesCoffeeMethodologyLines: readonly string[] =
 export const cookiesCoffeeCategoryNote =
   `${_pageCopy.caveat.title}\n\n${_pageCopy.caveat.body}`;
 
-export const cookiesCoffeeComparisonMetadata: Metadata = {
+export const cookiesCoffeeComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת עוגיות לקפה | Bari",
   description:
     `השוואת ${cookiesCoffeeProducts.length} ביסקוויטים מהמדף הישראלי — ציון Bari, שומן רווי, סוכר ורשימת רכיבים. מידע, לא המלצה.`,
-};
+});
 
 const cookiesCoffeeShelfFilters = {
   lensOptions: [],

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import rawCorpus from "@/data/comparisons/hummus_frontend_v5.json";
 
 import {
@@ -153,11 +155,11 @@ export const hummusMethodologyLines = [
   "הדירוג נועד לעזור בהשוואה בין מוצרים ואינו מהווה המלצה תזונתית אישית.",
 ] as const;
 
-export const hummusComparisonMetadata: Metadata = {
+export const hummusComparisonMetadata: Metadata = withComparisonOpenGraph({
   title: "השוואת חומוס | Bari",
   description:
     "בדקנו ממרחי חומוס ומסבחה בשופרסל לפי הרכב המוצר, רשימת הרכיבים ומבנה המוצר.",
-};
+});
 
 function isHummusShelfFilterId(filter: string): filter is HummusShelfFilterId {
   return HUMMUS_SHELF_LENS_OPTIONS.some((option) => option.id === filter);

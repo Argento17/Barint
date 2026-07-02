@@ -5,6 +5,8 @@
 
 import type { Metadata } from "next";
 
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
+
 import { ComparisonPageSeo } from "@/components/seo/comparison-page-seo";
 import { MagnesiumComparisonPage } from "@/components/comparisons/magnesium-comparison-page";
 import {
@@ -16,11 +18,11 @@ import {
   magnesiumCategoryNote,
 } from "@/lib/comparisons/magnesium-page-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withComparisonOpenGraph({
   title: "השוואת תוספי מגנזיום | Bari",
   description:
     "השוואת 18 תוספי מגנזיום מהמדף הישראלי — ציון Bari לפי מינון יסודי, צורת ספיגה ועדות מדעית. מידע, לא המלצה.",
-};
+});
 
 export default async function MagnesiumComparisonRoute({
   searchParams,
