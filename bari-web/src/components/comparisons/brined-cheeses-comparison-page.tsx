@@ -6,6 +6,7 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import { SODIUM_METRIC } from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
@@ -216,6 +217,12 @@ export function BrinedCheesesComparisonPage({
           lines={[...methodologyLines, METHODOLOGY_FOOTER_NOTE]}
           wide
         />
+
+        {/* TASK-467: end-of-content share module (brined-cheeses is a bespoke
+            assembly, not wrapped by ComparisonPage — same insertion shape). */}
+        <div className={cn("px-4 pb-6", comparisonWebSectionPaddingClass(), "-mt-2")}>
+          <SharePageButton title={hero.title} />
+        </div>
       </div>
     </div>
   );

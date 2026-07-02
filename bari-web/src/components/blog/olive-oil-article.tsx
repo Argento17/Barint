@@ -9,6 +9,7 @@ import { OliveOilExternalResearch } from "@/components/blog/olive-oil-external-r
 import { OliveOilOriginChart } from "@/components/blog/olive-oil-origin-chart";
 import { OliveOilTransparencyMatrix } from "@/components/blog/olive-oil-transparency-matrix";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import { HASHVAOT_HREF, oliveOilArticle } from "@/lib/blog/olive-oil-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -449,9 +450,16 @@ export function OliveOilArticle() {
               כל ניתוחי המדף
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
-            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton
+                title={oliveOilArticle.hero.title}
+                // Content gate 1 signed off (TASK-467 fix round). Adversarial QA (gate 2) still pending.
+                shareTitle="מה באמת קובע איכות בשמן זית"
+              />
+              <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>

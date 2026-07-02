@@ -13,6 +13,7 @@ import { InsightBlock } from "@/components/blog/shared/insight-block";
 import { RecentArticleCard } from "@/components/blog/shared/recent-article-card";
 import { ScienceSection } from "@/components/blog/shared/science-section";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import { BREAD_HASHVAOT_HREF, BREAD_BLOG_HREF, breadArticle } from "@/lib/blog/bread-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -260,9 +261,12 @@ export function BreadArticle() {
               לניתוח הלחם המלא
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
-            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton title={article.hero.title} />
+              <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>

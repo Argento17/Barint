@@ -29,6 +29,12 @@ export function comparisonOpenGraph(
     description,
     type: "website",
     locale: "he_IL",
+    // TASK-467: comparison pages previously inherited no og:image at all —
+    // explicit fallback so every share-relevant page resolves a valid,
+    // correctly-dimensioned absolute image (root layout sets the same asset
+    // via metadataBase). Follow-up: a dedicated 1200x630 share image is a
+    // Design asset, not a code change — see TASK-467 return.
+    images: [DEFAULT_OG_IMAGE],
   };
 }
 

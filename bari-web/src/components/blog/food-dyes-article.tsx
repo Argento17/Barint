@@ -9,6 +9,7 @@ import { FoodDyesArticleHero } from "@/components/blog/food-dyes-article-hero";
 import { FoodDyesReferenceTable } from "@/components/blog/food-dyes-reference-table";
 import { FoodDyesDualFormula } from "@/components/blog/food-dyes-dual-formula";
 import { HomeContainer } from "@/components/home/section-frame";
+import { SharePageButton } from "@/components/shared/share-page-button";
 import { HASHVAOT_HREF, foodDyesArticle } from "@/lib/blog/food-dyes-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -426,9 +427,12 @@ export function FoodDyesArticle() {
               כל ניתוחי המדף
               <ArrowLeft className="size-4" aria-hidden />
             </Link>
-            <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
-              חזרה לבלוג
-            </Link>
+            <div className="flex items-center gap-4">
+              <SharePageButton title={foodDyesArticle.hero.title} />
+              <Link href="/blog" className="text-sm font-semibold text-[#4E5663] hover:text-[#111318]">
+                חזרה לבלוג
+              </Link>
+            </div>
           </footer>
         </HomeContainer>
       </article>
