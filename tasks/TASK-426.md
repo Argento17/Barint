@@ -2,8 +2,11 @@
 id: TASK-426
 title: Cheese page: Tvorog-5% false 'highest protein in category' superlative (rank_check finding)
 owner: nutrition-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
+closed_at: 2026-07-01
+close_reason: >
+  Deployed (commit cede5e54, pushed to master -> Vercel). Mis-categorized goat/sheep cheese removed, score-neutral (0 survivors changed, git-diff verified), rank_check PASS, npm build exit 0, OFF=0, secondary audit clean. Copy unchanged (no two-gate needed).
 created_at: 2026-07-01
 depends_on: []
 blocks: []
