@@ -13,6 +13,17 @@
 //
 // Current state: console-only in dev; no-op in production until a provider is
 // configured. Wiring a provider is a Data/Infrastructure task, not a Frontend task.
+//
+// Consent gate (TASK-467 RT-3): ga4-script.tsx installs the `window.gtag` stub
+// unconditionally on mount (before any user consent choice, so Consent Mode v2
+// defaults can be pushed). That means `typeof window.gtag === "function"` is
+// true pre-consent too — checking only that would let a pre-consent event push
+// into the local dataLayer. `getStoredConsent().analytics` is the single source
+// of truth for "has the user actually granted analytics consent" (same read
+// ga4-script.tsx and consent-manager.tsx use) — gated here so every caller of
+// fireEvent is protected without each call site re-implementing the check.
+
+import { getStoredConsent } from "@/lib/consent";
 
 export type BariEventName =
   // Glass Box W2 additive panel engagement (TASK-179T / TASK-179R)
@@ -39,10 +50,14 @@ export function fireEvent(
     console.debug("[bari:event]", name, properties ?? {});
   }
 
-  // GA4 provider (consent-gated). gtag is only present once GA4Script has injected
-  // it AND the user granted analytics consent, so this is a safe no-op otherwise.
-  // Guard on `typeof window` for SSR and optional-chain `gtag` for absence.
-  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+  // GA4 provider (consent-gated). `window.gtag` is installed as a stub on mount
+  // regardless of consent (see ga4-script.tsx), so its presence alone does not
+  // mean consent was granted — the stored consent record is the real gate.
+  if (
+    typeof window !== "undefined" &&
+    typeof window.gtag === "function" &&
+    getStoredConsent()?.analytics === true
+  ) {
     window.gtag("event", name, properties ?? {});
   }
 
