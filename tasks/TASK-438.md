@@ -2,7 +2,9 @@
 id: TASK-438
 title: Root-cause brined_cheeses drift (GOLDEN page): 14/36 don't reproduce, 3 grade moves down — engine drift vs stale invocation? then refresh w/ fiber-gate bundled
 owner: nutrition-agent
-status: BLOCKED
+status: CLOSED
+closed_at: 2026-07-01
+close_reason: DEPLOYED to origin/master. Golden-page brined re-flow: 3 grade movers (2xA->B,1xB->C) verified; two-gate signed (Adversarial QA CONDITIONAL PASS 0 CRITICAL). Net win: removed 2 false superlatives live on the golden page. Pre-existing golden-page issues (Hebrew leakage, conventions) -> TASK-445.
 blocker: FACTORY IN FLIGHT (owner granted complete mandate) — rescore+copy_stage done (3 grade movers 2xA->B/1xB->C, 0 new products); content authoring in flight -> Adversarial QA -> deploy
 priority: HIGH
 created_at: 2026-07-01

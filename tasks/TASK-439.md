@@ -2,8 +2,9 @@
 id: TASK-439
 title: Re-flow cakes to current engine (scattered drift, 3x D->E): rescore -> copy reconcile -> two gates -> deploy
 owner: data-agent
-status: BLOCKED
-blocker: RT-1 false 'bottom of shelf' claim in 3 authored rowVerdicts (rank 2-4 of 9, not bottom) + RT-2 over-assertion on 5718021 (low NOVA conf); fix copy -> re-gate -> deploy
+status: CLOSED
+closed_at: 2026-07-01
+close_reason: DEPLOYED to origin/master 2cbfc91f. Cakes re-flow: 62 products (same set), 3 grade movers D->E on verified complete-data red-label/ultra-processed drivers, 27 within-grade updates. TWO-GATE CONTENT SIGN-OFF COMPLETE: Content authored+RT-fixed (RT-1 false shelf-ranking removed, RT-2 softened on low-NOVA-conf 5718021); Adversarial QA CLEAR-TO-DEPLOY (0 CRITICAL/0 open HIGH). C0: G4/G5/G6/G8 + rank R0/R1 PASS; G1/G3 pre-existing (identical on live). MEDIUM carried (RT-3 dup-pair, RT-4 leakage FP, RT-5 schema debt) non-blocking.
 priority: HIGH
 created_at: 2026-07-01
 depends_on: [TASK-436]
