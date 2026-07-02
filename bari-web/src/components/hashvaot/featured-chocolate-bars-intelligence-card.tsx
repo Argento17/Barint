@@ -53,7 +53,7 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
         stats={[
           { value: chocolateBarsProducts.length, label: "בדף ההשוואה" },
           { value: "E", label: "ציון כל המוצרים" },
-          { value: "45–60", label: "גרם סוכר ל-100 גרם" },
+          { value: "27–60", label: "גרם סוכר ל-100 גרם" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(chocolateBarsCorpusMeta.generated)}
         asLinkChild

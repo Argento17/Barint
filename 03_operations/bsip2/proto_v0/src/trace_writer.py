@@ -5,12 +5,18 @@ Assembles and writes the complete bsip2_trace.json for each product.
 import json
 import pathlib
 import datetime
+import os as _os
+
+# TASK-449: gate trace emission of the bonus fields so that flag-OFF runs produce
+# byte-identical traces to origin/master baseline (no new keys). When ON, every
+# trace (all categories) gets the fields; the restrict logic only affects brined scores.
+BARI_FERMENT_MARKER_BRINED_FIX_V1 = _os.environ.get("BARI_FERMENT_MARKER_BRINED_FIX_V1", "off").lower() == "on"
 
 
 def assemble_trace(product: dict, signals: dict, cat_result: dict,
                    nova_result: dict, eval_result: dict, score_result: dict) -> dict:
     """Assemble the complete trace record."""
-    return {
+    trace = {
         "bsip2_version": "proto_v0",
         "algorithm_version": "0.4.1",   # TASK-144: ingredient-bleed sanitize (EV-026) + fiber-not-applicable dairy (EV-027) + dairy protein source typing (EV-028)
         "trace_generated_at": datetime.datetime.utcnow().isoformat() + "Z",
@@ -69,7 +75,6 @@ def assemble_trace(product: dict, signals: dict, cat_result: dict,
         "dimension_notes":            score_result.get("dimension_notes"),
         "dimension_weights":          score_result.get("dimension_weights"),
         "weighted_dimension_score":   score_result.get("weighted_dimension_score"),
-
         "caps_considered":     score_result.get("caps_considered"),
         "caps_applied":        score_result.get("caps_applied"),
         "binding_cap":         score_result.get("binding_cap"),
@@ -100,6 +105,10 @@ def assemble_trace(product: dict, signals: dict, cat_result: dict,
         "explanation_drivers":  score_result.get("explanation_drivers"),
         "unresolved_flags":     score_result.get("unresolved_flags"),
     }
+    if BARI_FERMENT_MARKER_BRINED_FIX_V1:
+        trace["fermentation_bonus_applied"] = score_result.get("fermentation_bonus_applied")
+        trace["fermentation_bonus_note"] = score_result.get("fermentation_bonus_note")
+    return trace
 
 
 def write_trace(trace: dict, output_root: pathlib.Path) -> pathlib.Path:

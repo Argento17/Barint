@@ -24,7 +24,7 @@ const CATEGORIES = [
   {
     id: "bars",
     label: "חטיפי גרנולה וחלבון",
-    hint: `655 נסרקו · ${snacksProducts.length} בדף · שופרסל`,
+    hint: `${snacksProducts.length} בדף ההשוואה · שופרסל`,
     href: SNACK_COMPARISON_HREF,
     status: "זמין",
   },

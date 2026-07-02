@@ -36,6 +36,16 @@ type Props = {
 };
 
 export function FeaturedGranolaIntelligenceCard({ href, description }: Props) {
+  const granolaScores = granolaProducts
+    .map((p) => p.score)
+    .filter((s): s is number => s != null);
+  const granolaScoreSpread = granolaScores.length
+    ? Math.round(Math.max(...granolaScores) - Math.min(...granolaScores))
+    : 0;
+  const granolaCDCount = granolaProducts.filter(
+    (p) => p.grade === "C" || p.grade === "D"
+  ).length;
+
   return (
     <Link
       href={href}
@@ -52,8 +62,8 @@ export function FeaturedGranolaIntelligenceCard({ href, description }: Props) {
         insightLines={INSIGHT_LINES}
         stats={[
           { value: granolaProducts.length, label: "מוצרים נותחו" },
-          { value: 38, label: "פרמטרים הושוו" },
-          { value: 47, label: "נקודות פער" },
+          { value: granolaCDCount, label: "בציון C או D" },
+          { value: granolaScoreSpread, label: "נקודות פער" },
         ]}
         updatedLabel={formatComparisonUpdatedLine(granolaCorpusMeta.generated)}
         asLinkChild

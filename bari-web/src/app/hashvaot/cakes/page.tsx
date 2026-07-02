@@ -19,7 +19,7 @@ import {
 export const metadata: Metadata = withComparisonOpenGraph({
   title: "השוואת עוגות | Bari",
   description:
-    "השוואת 65 עוגות מהמדף הישראלי — ציון Bari, סוכר, שומן רווי ורשימת רכיבים. מידע, לא המלצה.",
+    "השוואת 62 עוגות מהמדף הישראלי — ציון Bari, סוכר, שומן רווי ורשימת רכיבים. מידע, לא המלצה.",
 });
 
 export default async function CakesComparisonRoute({
