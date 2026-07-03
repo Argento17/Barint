@@ -254,6 +254,150 @@ def test_g12_extra_negative_added():
     assert r["status"] == "FAIL", r["messages"]
 
 
+# ── G13: cross-category acquisition (TASK-498) ─────────────────────────────────
+
+def test_g13_own_category_query_passes():
+    """A record acquired via a term maadanim itself owns is not flagged."""
+    p = _make_product(name_he="מעדן חלב וניל", acquisition_query="מעדן")
+    r = gate.gate_cross_category_acquisition([p], category="maadanim")
+    assert r["status"] == "PASS", r["messages"]
+
+
+def test_g13_no_registry_entry_is_noop_pass():
+    """An unregistered category is skipped, not treated as contamination."""
+    p = _make_product(name_he="מוצר כלשהו", acquisition_query="מוצר כלשהו")
+    r = gate.gate_cross_category_acquisition([p], category="some_new_category_v9")
+    assert r["status"] == "PASS", r["messages"]
+
+
+def test_g13_reproduces_run_maadanim_001_collision_exact_real_data():
+    """Exact reproduction using the REAL field values verified on disk in
+    03_operations/bsip1/run_maadanim_001/output/ for all 5 confirmed
+    TASK-477/TASK-409 collision barcodes. All 5 carry acquisition_query
+    'מעדן פרוטאין' (maadanim's OWN registered term — confirmed on disk), so
+    signal 1 (query ownership) does NOT fire for any of them; this is exactly
+    why signal 2 (product-form head noun) exists. 3 of the 5 carry 'חטיף'
+    (snack_bars' bar-form noun) in the name and ARE caught. The other 2
+    (brand 'נייטשר פרוטאין') are NOT caught by either signal — this is a
+    known, reported residual gap (see PRODUCT_FORM_HEAD_NOUNS docstring),
+    not a false claim of 100% recall.
+    """
+    real_records = [
+        {"barcode": "7290019401018", "name_he": "חטיף פרוטאין קרם עוגיות", "acquisition_query": "מעדן פרוטאין"},
+        {"barcode": "7290019401049", "name_he": "חטיף פרוטאין שוקולד קרמל", "acquisition_query": "מעדן פרוטאין"},
+        {"barcode": "7290019401544", "name_he": "חטיף פרוטאין עוגיות טופי", "acquisition_query": "מעדן פרוטאין"},
+        {"barcode": "8410076610379", "name_he": "נייטשר פרוטאין שוקולד", "acquisition_query": "מעדן פרוטאין"},
+        {"barcode": "8410076610386", "name_he": "נייטשר פרוטאין קרמל מלוח", "acquisition_query": "מעדן פרוטאין"},
+    ]
+    r = gate.gate_cross_category_acquisition(real_records, category="maadanim")
+    assert r["status"] == "WARN", r["messages"]
+    joined = " ".join(r["messages"])
+    caught_by_name = ["7290019401018", "7290019401049", "7290019401544"]
+    for bc in caught_by_name:
+        assert bc in joined, f"expected {bc} to be flagged by the head-noun signal: {r['messages']}"
+    # Honest residual-gap check: the 2 brand-name barcodes are NOT caught by
+    # either signal today. If this assertion ever starts failing because a
+    # future change added brand-registry coverage, that's an improvement —
+    # update this test to require them, don't just delete the check.
+    not_yet_caught = ["8410076610379", "8410076610386"]
+    for bc in not_yet_caught:
+        assert bc not in joined, (
+            f"{bc} is now caught — great, but this test documents today's known "
+            f"gap; update the test's claim (and the module docstring) rather than "
+            f"silently deleting this assertion."
+        )
+
+
+def test_g13_strict_mode_hard_fails():
+    p = _make_product(barcode="7290019401049", name_he="חטיף פרוטאין שוקולד קרמל",
+                       acquisition_query="חטיף חלבון")
+    r = gate.gate_cross_category_acquisition([p], category="maadanim", strict=True)
+    assert r["status"] == "FAIL", r["messages"]
+
+
+def test_g13_real_run_maadanim_001_full_corpus_precision():
+    """Integration precision check against the REAL, on-disk 200-product
+    run_maadanim_001 BSIP1 output (not a synthetic fixture). Proves two
+    things at once: (1) recall — the 3 name-disclosing collision barcodes
+    (+ 1 bonus true positive the original TASK-477 trace didn't happen to
+    surface, 8410076900333, also 'חטיף פרוטאין...') are all caught; (2)
+    precision — NOT ONE of the other ~196 legitimate dairy-dessert records
+    is flagged. This is the test that caught two real false-positive
+    candidates during development (קורנפלקס/עוגיות as toppings inside
+    genuine desserts) BEFORE they were registered — keep this test wired to
+    the real directory so any future PRODUCT_FORM_HEAD_NOUNS addition is
+    forced through the same full-corpus precision bar.
+
+    Skips gracefully (does not fail) if the directory is not present, so the
+    suite stays portable / does not depend on this specific run existing.
+    """
+    real_dir = r"C:\Bari\03_operations\bsip1\run_maadanim_001\output"
+    if not os.path.isdir(real_dir):
+        print(f"  [skip] {real_dir} not found — skipping real-corpus precision check")
+        return
+
+    records = []
+    for fname in os.listdir(real_dir):
+        if not fname.startswith("bsip1_") or not fname.endswith(".json"):
+            continue
+        with open(os.path.join(real_dir, fname), encoding="utf-8") as fh:
+            d = json.load(fh)
+        records.append({
+            "barcode": d.get("barcode"),
+            "name_he": d.get("canonical_name_he"),
+            "acquisition_query": d.get("acquisition_query", ""),
+        })
+    assert len(records) >= 100, f"expected ~200 real records, found {len(records)}"
+
+    r = gate.gate_cross_category_acquisition(records, category="maadanim")
+    assert r["status"] == "WARN", r["messages"]
+
+    joined = " ".join(r["messages"])
+    expected_flagged = {
+        "7290019401018", "7290019401049", "7290019401544",  # 3 of TASK-477's 5 (name-disclosing)
+        "8410076900333",                                     # bonus true positive found in this task
+    }
+    for bc in expected_flagged:
+        assert bc in joined, f"expected {bc} flagged, got: {r['messages']}"
+
+    # Precision: exactly these 4 barcodes, nothing else, over the whole 200.
+    import re
+    all_flagged = set(re.findall(r"\b\d{6,14}\b", joined))
+    unexpected = all_flagged - expected_flagged
+    assert not unexpected, f"unexpected flags (false positives): {unexpected}"
+
+
+def test_g13_wired_into_run_gate_via_doc_category():
+    """run_gate() should pick up the doc's own 'category' field when the
+    caller doesn't pass one explicitly (mirrors how gate_run_summary already
+    requires 'category' at the doc level)."""
+    doc = _make_doc([
+        _make_product(barcode="7290019401018", name_he="חטיף פרוטאין קרם עוגיות",
+                       acquisition_query="חטיף פרוטאין"),
+    ], category="maadanim")
+    result = gate.run_gate(doc)
+    g13 = [c for c in result["checks"] if c["check"] == "G13_cross_category_acquisition"]
+    assert len(g13) == 1
+    assert g13[0]["status"] == "WARN", g13[0]["messages"]
+    # WARN alone must not flip the overall gate to FAIL (default, non-strict mode)
+    assert result["overall_status"] != "FAIL" or any(
+        c["status"] == "FAIL" for c in result["checks"] if c["check"] != "G13_cross_category_acquisition"
+    )
+
+
+def test_g13_clean_maadanim_run_all_own_terms_passes():
+    """A clean run where every record's query is maadanim's own vocabulary
+    produces zero G13 flags — proves the gate does not false-positive on
+    legitimate same-category acquisitions."""
+    products = [
+        _make_product(barcode="7290000000001", name_he="מעדן וניל", acquisition_query="מעדן"),
+        _make_product(barcode="7290000000002", name_he="מעדן חלבון תות", acquisition_query="מעדן חלבון"),
+        _make_product(barcode="7290000000003", name_he="פודינג שוקולד", acquisition_query="פודינג"),
+    ]
+    r = gate.gate_cross_category_acquisition(products, category="maadanim")
+    assert r["status"] == "PASS", r["messages"]
+
+
 # ── Composite gate: run_gate ───────────────────────────────────────────────────
 
 def test_run_gate_clean_doc():

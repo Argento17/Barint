@@ -27,6 +27,27 @@ Checks (all HARD-FAIL unless marked WARN):
   G11 EAN-13 checksum            — validates barcode check digit  (WARN per invalid barcode)
   G12 scope-boundary scan        — product names checked against basic non-food/out-of-scope tokens;
                                    category-agnostic (uses hard-coded negative token list)  (HARD FAIL)
+  G13 cross-category acquisition — TASK-498. Two complementary signals, both checked against the
+                                   run's declared --category (or the doc's own "category" field):
+                                     (1) acquisition_query ownership — the BSIP0 search term that
+                                         pulled a record in is checked against CATEGORY_QUERY_OWNERSHIP;
+                                         a term owned by a DIFFERENT category is flagged.
+                                     (2) product-form head noun — the record's own name is checked
+                                         against PRODUCT_FORM_HEAD_NOUNS; a name carrying another
+                                         category's defining physical-form noun (e.g. "חטיף"/bar-form
+                                         inside a dessert run) is flagged even when the query term is
+                                         the run's own.
+                                   WARN by default; pass --strict-cross-category to make it HARD FAIL.
+                                   Root cause: free-text retailer search does loose token matching, so
+                                   a query like "מעדן פרוטאין" (protein DESSERT, maadanim's OWN term)
+                                   can also return actual protein BARS (snack_bars' product form) — see
+                                   run_maadanim_001 (TASK-477/TASK-409): 5/33 protein-bars-corpus
+                                   barcodes duplicated into that dessert run this way. Signal (1) alone
+                                   does not catch this instance (the query WAS maadanim's own); signal
+                                   (2) is what actually flags 3 of the 5 real barcodes by name. The
+                                   remaining 2 (brand "נייטשר פרוטאין", no disclosing name token or
+                                   foreign query term) are a known, reported residual gap — see the
+                                   PRODUCT_FORM_HEAD_NOUNS docstring for what would close it.
 """
 from __future__ import annotations
 
@@ -384,13 +405,211 @@ def gate_scope_boundary(records: list[dict], extra_negative: list[str] | None = 
     return _check_result("G12_scope_boundary", status, msgs)
 
 
+# ── G13: cross-category acquisition-query collision ────────────────────────────
+#
+# TASK-498 root cause: a BSIP0 scraper's QUERY_PLAN is written to maximize recall
+# for ITS OWN category, using loose Hebrew free-text search terms against the
+# retailer's search endpoint. That endpoint does substring/token matching, not
+# category-scoped matching — so a query intended for one category's product type
+# can return a physically different product type that happens to share a word
+# (most commonly "פרוטאין"/"protein", "בריאות"/health, or a brand name spanning
+# multiple physical formats). The record then gets written into the WRONG
+# category's BSIP1 output as if it belonged there, with nothing downstream
+# checking that a query term actually "belongs" to the run's own category.
+#
+# Confirmed instance: run_maadanim_001 (dairy desserts) used the query
+# "מעדן פרוטאין" ("protein dessert") and picked up 5 barcodes that are true
+# protein BARS (owned by snack_bars' own "חטיף פרוטאין"/"חטיף חלבון" query
+# terms) — 7290019401018, 7290019401049, 7290019401544, 8410076610379,
+# 8410076610386. It did not taint any live score (maadanim never shipped from
+# that BSIP1 dir), but it is exactly the shape of a FUTURE contamination if a
+# tool ever barcode-globs across `03_operations/bsip1/run_*/output/` without
+# corpus-scoping.
+#
+# This registry is deliberately small and additive: it only lists terms that are
+# CONFIRMED to be one category's own defining product-type vocabulary (the
+# "mainstream" head-noun queries a scraper is built around), not every query a
+# scraper happens to try. Extend it whenever a new scraper's QUERY_PLAN is
+# authored — treat it the same as adding a new EXCLUDE_SIGNALS entry.
+CATEGORY_QUERY_OWNERSHIP: dict[str, tuple[str, ...]] = {
+    "snack_bars": (
+        "חטיף דגנים", "חטיף שיבולת שועל", "חטיף גרנולה", "חטיף תמרים",
+        "מאגדת דגנים", "חטיף חלבון", "חטיף פרוטאין", "protein bar", "פרו בר",
+        "חטיף חלבון פרו", "מקס ברנר חלבון",
+    ),
+    "maadanim": (
+        "מעדן", "מעדנים", "פודינג", "מוס", "קינוח", "מילקי", "עדנה", "יופלה",
+        "מילקי בר", "מעדן חלבון", "פרוביו", "מעדן פרוטאין", "מעדן ילדים",
+        "קינוח ילדים", "מעדן ללא סוכר", "מעדן דיאט", "מעדן קל",
+    ),
+    "cereals": (
+        "דגני בוקר", "קורנפלקס", "גרנולה",
+    ),
+    "cookies_coffee": (
+        "עוגיות", "ביסקוויט",
+    ),
+    "yogurt": (
+        "יוגורט", "יוגורט יווני", "יוגורט ביו",
+    ),
+    "hummus": (
+        "חומוס", "ממרח חומוס", "חומוס שום",
+    ),
+    "cheese": (
+        "גבינת קוטג'", "גבינה לבנה", "לבנה",
+    ),
+    "butter": (
+        "חמאה", "חמאה מחלב", "חמאת שמנת",
+    ),
+    "brined_cheeses": (),  # populated on demand; empty = no owned-term check yet
+    "olive_oil": (
+        "שמן זית", "שמן זית כתית מעולה", "extra virgin olive oil",
+    ),
+    "cakes_hard_cookies": (
+        "עוגה", "עוגת שוקולד", "עוגת שמרים",
+    ),
+    "chocolate": (
+        "שוקולד פרה", "טבלת שוקולד", "שוקולד מריר",
+    ),
+}
+
+# Product-FORM head-noun registry — the second, complementary signal G13 checks.
+#
+# Re-running the query-term-ownership check alone against the real
+# run_maadanim_001 data (all 5 confirmed cross-category records) showed it is
+# INSUFFICIENT on its own: all 5 records carry acquisition_query="מעדן פרוטאין",
+# which IS maadanim's own registered term (QUERY_PLAN tier "specialty") — the
+# scraper wasn't using someone else's query, its OWN legitimately-scoped term
+# just happened to also match a different physical product form because the
+# retailer's free-text search is loose. Query-term ownership cannot catch that
+# case by construction.
+#
+# The complementary signal: a product's NAME contains a head noun that is a
+# different category's defining physical product FORM (not a flavor/claim
+# word). "חטיף" (snack/bar) names a physical form incompatible with "מעדן"
+# (spoonable dessert) regardless of protein positioning. This is a one-way,
+# low-false-positive check — verified against all 200 real run_maadanim_001
+# records: exactly the true bar-form products carry "חטיף" in the name (0 of
+# the other 196 legitimate dessert records do).
+#
+# Known residual gap (reported honestly, not hidden): 2 of the 5 real
+# collision barcodes (8410076610379, 8410076610386, brand "נייטשר פרוטאין")
+# carry NEITHER a foreign query term NOR a foreign head-noun in the name — the
+# brand name alone does not disclose physical form. Closing that last gap
+# needs either (a) a barcode-registry cross-check against sibling categories'
+# already-built corpora (deferred — no uniform corpus file layout to key off
+# today, see task investigation notes) or (b) a maintained brand→category
+# lookup. Out of scope for this pass; flagged here for a future ticket rather
+# than papered over.
+# DELIBERATELY CONSERVATIVE: only "חטיף" is registered. A precision check against
+# ALL 200 real run_maadanim_001 records (not just the 5 known collisions) showed
+# candidate nouns like "קורנפלקס"/"דגני בוקר" (cereals) and "עוגיות" (cookies)
+# produce FALSE POSITIVES here — e.g. "מילקי טופ קורנפלקס" and "יופלה טופ תות
+# קורנפלקס" are genuine dairy desserts with a cornflake TOPPING ingredient, not
+# cereal-category products; a naive substring-in-name match can't tell "head
+# noun" from "ingredient mention." "חטיף" was verified clean over the same 200
+# records (4 hits, all 4 genuine bar-form products, 0 false positives) before
+# being added. Do NOT add a new noun here without the same full-run precision
+# check — false positives here would spuriously WARN legitimate future runs.
+#
+# (Separately, that same precision run surfaced 5 "עוגיות ... ללת\"ס" wafer-
+# cookie barcodes in run_maadanim_001 that plausibly ARE a second real
+# cookies_coffee/maadanim collision — but this was NOT part of the confirmed
+# TASK-477 finding this task was scoped to fix, and "עוגיות" is not clean
+# enough to register without further precision work. Flagged here for a
+# follow-up ticket, not silently added.)
+PRODUCT_FORM_HEAD_NOUNS: dict[str, tuple[str, ...]] = {
+    "snack_bars": ("חטיף",),
+}
+
+
+def _terms_owned_by_other_categories(this_category: str) -> dict[str, str]:
+    """Map lowercased query-term -> owning category, for every category that is
+    NOT this_category. Used to flag a record acquired via a term this run's own
+    category does not recognize as its own."""
+    owned_elsewhere: dict[str, str] = {}
+    for cat, terms in CATEGORY_QUERY_OWNERSHIP.items():
+        if cat == this_category:
+            continue
+        for t in terms:
+            owned_elsewhere.setdefault(t.strip().lower(), cat)
+    return owned_elsewhere
+
+
+def gate_cross_category_acquisition(records: list[dict], category: str | None,
+                                     strict: bool = False) -> dict:
+    """G13 — flag records acquired via a query term owned by a DIFFERENT category.
+
+    category: the run's own declared category (e.g. "maadanim"). If None or not
+    present in CATEGORY_QUERY_OWNERSHIP, this check is a no-op PASS (we only
+    check categories we have a registered vocabulary for — absence of a registry
+    entry is not itself evidence of contamination).
+    """
+    if not category or category not in CATEGORY_QUERY_OWNERSHIP:
+        return _check_result(
+            "G13_cross_category_acquisition", "PASS",
+            [f"No registered query-ownership vocabulary for category={category!r}; "
+             f"skipped (not evidence of contamination, just no registry entry)."],
+        )
+
+    owned_elsewhere = _terms_owned_by_other_categories(category)
+    own_terms = {t.strip().lower() for t in CATEGORY_QUERY_OWNERSHIP.get(category, ())}
+    own_head_nouns = {n.strip() for n in PRODUCT_FORM_HEAD_NOUNS.get(category, ())}
+
+    flagged: list[str] = []
+    for p in records:
+        code = str(p.get("barcode") or p.get("product_code") or "?")
+        name = str(p.get("name_he") or p.get("canonical_name_he") or p.get("name") or "")
+        q = str(p.get("acquisition_query") or "").strip().lower()
+
+        # Signal 1: acquired via a query term explicitly owned by another category.
+        if q and q not in own_terms:
+            other_cat = owned_elsewhere.get(q)
+            if other_cat:
+                flagged.append(f"{code} ({name[:60]!r}): acquired via {q!r}, which is "
+                                f"{other_cat}'s own query term, not {category}'s")
+                continue
+
+        # Signal 2: the record's own name carries a DIFFERENT category's product-
+        # FORM head noun (e.g. "חטיף"/bar-form inside a maadanim/dessert run) —
+        # catches same-query collisions signal 1 cannot (see PRODUCT_FORM_HEAD_NOUNS
+        # docstring: this is what actually flags 3 of the 5 real run_maadanim_001
+        # barcodes, since all 5 share maadanim's own acquisition_query).
+        for other_cat, head_nouns in PRODUCT_FORM_HEAD_NOUNS.items():
+            if other_cat == category:
+                continue
+            for noun in head_nouns:
+                if noun in own_head_nouns:
+                    continue
+                if noun and noun in name:
+                    flagged.append(f"{code} ({name[:60]!r}): name contains {noun!r}, "
+                                    f"{other_cat}'s product-form head noun, not a "
+                                    f"{category} product form")
+                    break
+            else:
+                continue
+            break
+
+    status = ("FAIL" if strict else "WARN") if flagged else "PASS"
+    msgs = ([f"CROSS_CATEGORY_ACQUISITION: {len(flagged)} record(s) suspected cross-category "
+             f"(query-term or product-form-noun mismatch): {flagged[:10]}"]
+            if flagged else
+            [f"No cross-category query-term or product-form collisions detected for "
+             f"category={category!r}."])
+    return _check_result("G13_cross_category_acquisition", status, msgs)
+
+
 # ── Runner ─────────────────────────────────────────────────────────────────────
 
-def run_gate(doc: Any, extra_negative_tokens: list[str] | None = None) -> dict:
+def run_gate(doc: Any, extra_negative_tokens: list[str] | None = None,
+             category: str | None = None, strict_cross_category: bool = False) -> dict:
     records = doc.get("products") if isinstance(doc, dict) else doc
     if not isinstance(records, list):
         records = []
     full_doc = doc if isinstance(doc, dict) else {"products": records}
+
+    # category: explicit arg wins; otherwise fall back to the doc's own declared
+    # category field (gate_run_summary already requires "category" to be present).
+    effective_category = category or (full_doc.get("category") if isinstance(full_doc, dict) else None)
 
     checks = [
         gate_off_contamination(records, full_doc),
@@ -402,6 +621,7 @@ def run_gate(doc: Any, extra_negative_tokens: list[str] | None = None) -> dict:
         gate_image_reachability(records),
         gate_barcode_checksum(records),
         gate_scope_boundary(records, extra_negative_tokens),
+        gate_cross_category_acquisition(records, effective_category, strict=strict_cross_category),
     ]
     order = {"FAIL": 0, "WARN": 1, "PASS": 2}
     overall = min((c["status"] for c in checks), key=lambda s: order[s])
@@ -425,14 +645,16 @@ def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="BSIP0 Exit Gate (shared v2)")
     parser.add_argument("input", nargs="?", default=None,
                         help="Path to BSIP0 raw JSON file (required)")
-    parser.add_argument("--category", help="Category name for scope scan")
+    parser.add_argument("--category", help="Category name for scope scan + G13 query-ownership check")
     parser.add_argument("--extra-negative", nargs="*", default=[],
                         help="Extra out-of-scope tokens for G12")
+    parser.add_argument("--strict-cross-category", action="store_true",
+                        help="Make G13 a HARD FAIL instead of WARN (TASK-498)")
     args = parser.parse_args(argv[1:])
 
     path = args.input
     if not path:
-        print("Usage: python bsip0_gate.py <bsip0_output.json> [--category CAT]")
+        print("Usage: python bsip0_gate.py <bsip0_output.json> [--category CAT] [--strict-cross-category]")
         return 1
 
     input_path = pathlib.Path(path)
@@ -441,7 +663,8 @@ def main(argv: list[str]) -> int:
         return 1
 
     doc = json.loads(input_path.read_text(encoding="utf-8"))
-    result = run_gate(doc, extra_negative_tokens=args.extra_negative)
+    result = run_gate(doc, extra_negative_tokens=args.extra_negative,
+                       category=args.category, strict_cross_category=args.strict_cross_category)
 
     print("=" * 64)
     print(f"BSIP0 EXIT GATE — {input_path.name}")
