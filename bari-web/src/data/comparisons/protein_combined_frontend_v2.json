@@ -16,14 +16,21 @@
     "corpus_sha256": "469c65015bb7e5e80cd844d5d69066c53048e2f34446c917b0eb2b1b77987dc3",
     "corpus_source": "C:\\Bari\\02_products\\snack_bars\\protein_combined_corpus_task365_33_20260621_fix.json",
     "fix_note": "TASK-365 data-integrity fix: removed 2 WIN barcodes with truncated ingredient lists (7290015130271, 7290015130288). 33 products remain.",
-    "deployment_note": "DO NOT OVERWRITE protein_bars_frontend_v1.json. This file is protein_combined_frontend_v2.json — live page stays on v1 until owner sign-off.",
+    "deployment_note": "Live comparison file for the protein-bars category. There is no protein_bars_frontend_v1.json in the tree; this file (protein_combined_frontend_v2.json) is the one the page reads.",
     "bev014_fix": "APPLIED — ADDITIVE_MARKERS_5_PLUS + _3_PLUS suppressed for protein_bar (BEV-014)",
     "collagen_fix": "APPLIED — פפטידי קולגן / collagen peptides in PROTEIN_ISOLATE_FAMILIES",
     "egg_isolate_fix": "APPLIED — egg white protein family added to PROTEIN_ISOLATE_FAMILIES",
     "elif_fix": "APPLIED — collagen wins unconditionally; wholefood bonus suppressed when collagen detected",
     "pb024_routing_fix": "APPLIED — barcode 7290018703304 forced to snack_bar_granola+protein_bar",
     "pb023_name_fix": "APPLIED — missing space in אול אין חלבון סופט עוגיות",
-    "grade_proportionality": "APPLIED — protein_bar <1.0pt cross-boundary → higher grade"
+    "grade_proportionality": "APPLIED — protein_bar <1.0pt cross-boundary → higher grade",
+    "task477_phase2_patch": {
+      "applied": true,
+      "note": "Surgical numbers-patch (score/grade/rank/_scoring_trace only) per gate_b_result.json mover set. Curated copy untouched.",
+      "movers_count": 13,
+      "pending_copy_barcodes": [],
+      "source_gate_result": "03_operations/page_generator/reports/task477/protein_bars_gate_b_result.json"
+    }
   },
   "products": [
     {
@@ -33,7 +40,7 @@
       "name_he": "חטיף חלבון אגוזי לוז",
       "brand": "פנגיאה",
       "format": "bar",
-      "score": 68.6,
+      "score": 69.3,
       "grade": "B",
       "rank": 1,
       "categoryTotal": 32,
@@ -85,7 +92,7 @@
         "cond2_double_fire_check": null,
         "protein_g": 27.0,
         "sugar_g": 17.0,
-        "weighted_dim_score_pb": 76.59,
+        "weighted_dim_score_pb": 77.31,
         "effective_pb_cap": null,
         "total_pb_penalty": 8,
         "caps_applied": [],
@@ -112,7 +119,7 @@
         },
         "protein_gate": "PASS",
         "dimension_scores": {
-          "processing_quality": 56.0,
+          "processing_quality": 65.0,
           "nutrient_density": 95.0,
           "calorie_density": 72,
           "glycemic_quality": 68.5,
@@ -121,7 +128,7 @@
           "satiety_support": 100,
           "fat_quality": 93.0,
           "regulatory_quality": 95.0,
-          "whole_food_integrity": 60
+          "whole_food_integrity": 48
         },
         "dimension_weights": {
           "processing_quality": 0.12,
@@ -136,7 +143,7 @@
           "whole_food_integrity": 0.03
         },
         "base_engine_binding_cap": {
-          "cap": 94.8,
+          "cap": 87.0,
           "note": "base engine binding cap that was inherited by protein_bar lens"
         },
         "collagen_detection_note": null
@@ -167,591 +174,15 @@
       "displayTitle": "פנגיאה חטיף חלבון אגוזי לוז"
     },
     {
-      "id": "pb-003",
-      "barcode": "7290121161886",
-      "name": "חטיף חלבון בננה שוקולד",
-      "name_he": "חטיף חלבון בננה שוקולד",
-      "brand": "טודיי",
-      "format": "bar",
-      "score": 61.9,
-      "grade": "C",
-      "rank": 2,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290121161886.webp",
-      "image_url": "/products/7290121161886.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 362.0,
-        "fat_g": 6.2,
-        "fat_saturated_g": 4.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 387.0,
-        "carbohydrates_g": 31.0,
-        "sugars_g": 12.0,
-        "dietary_fiber_g": 19.0,
-        "protein_g": 36.0
-      },
-      "protein_per_100g": 36.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        },
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        }
-      ],
-      "insightLine": "שיא הסיבים של הקטגוריה גר כאן, בשכנות לאחת מרמות הנתרן הגבוהות בה.",
-      "rowVerdict": "המקום השני נשען על עובדות חזקות: יותר סיבים מכל מוצר אחר במדף, וכמות חלבון שרק אח אחד שלו משתווה אליה. את הכיוון השני מחזיקים נתרן שרק שיאן המלח של הקטגוריה עוקף, ותערובת סויה ומי גבינה עם גליצרול מאחורי הכול.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": null,
-        "protein_g": 36.0,
-        "sugar_g": 12.0,
-        "weighted_dim_score_pb": 69.85,
-        "effective_pb_cap": null,
-        "total_pb_penalty": 8,
-        "caps_applied": [],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": false,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": false,
-          "collagen_detected": false,
-          "polyol_tier": null,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "soy",
-            "whey"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 95.0,
-          "calorie_density": 72,
-          "glycemic_quality": 81.0,
-          "protein_quality": 64.6,
-          "additive_quality": 30.0,
-          "satiety_support": 100,
-          "fat_quality": 66.9,
-          "regulatory_quality": 95.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 87.2,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": null
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 362.0,
-          "protein": 36.0,
-          "sugar": 12.0,
-          "fat": 6.2,
-          "fiber": 19.0,
-          "sodium": 387.0
-        },
-        "ingredients": "תערובת חלבונים (41%) [חלבון סויה מבודד, חלבון חלב מרוכז, חלבון מי גבינה מבודד (חלב) (2.1%), חלבון מי גבינה מרוכז (חלב) (1.9%), חלבון  אורז], חומר מילוי (פולידקסטרוז), חומר הלחה (גליצרול), ציפוי בטעם שוקולד מריר (9%) [סוכר לבן, שמן גרעיני דקלים מזוכך, אבקת קקאו, מתח לב (לציטין חמניות), מלח שולחן] ממת",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "החטיף הזה מוכיח שכמות חלבון לבדה לא קונה ציון: 36 גרם חלבון ל-100 גרם, אבל בלי מקור ממזון שלם ועם גליצרול ונתרן גבוה הוא נשאר באמצע. הוא לא נשען על מלטיטול כמו רוב המדף — וזה לזכותו — אבל ההנדסה כאן עדיין דומיננטית.",
-        "positiveSignals": [
-          "19 גרם סיבים ל-100 גרם — הגבוה במדף",
-          "לא נשען על מלטיטול להורדת סוכר",
-          "שומן כולל נמוך, 6.2 גרם ל-100 גרם"
-        ],
-        "limitingFactors": [
-          "חלבון מבודד, לא ממזון שלם",
-          "גליצרול ברשימה — חטיף מהונדס",
-          "387 מ\"ג נתרן ל-100 גרם — מהגבוהים במדף"
-        ]
-      },
-      "displayTitle": "טודיי חטיף חלבון בננה שוקולד"
-    },
-    {
-      "id": "pb-004",
-      "barcode": "7290121166850",
-      "name": "חטיף חלבון וניל קראנץ'",
-      "name_he": "חטיף חלבון וניל קראנץ'",
-      "brand": "טודיי",
-      "format": "bar",
-      "score": 56.9,
-      "grade": "C",
-      "rank": 3,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290121166850.webp",
-      "image_url": "/products/7290121166850.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 365.0,
-        "fat_g": 5.5,
-        "fat_saturated_g": 3.5,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 385.0,
-        "carbohydrates_g": 37.0,
-        "sugars_g": 16.0,
-        "dietary_fiber_g": 11.0,
-        "protein_g": 36.0
-      },
-      "protein_per_100g": 36.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        },
-        {
-          "e_number": "E330",
-          "name_he": "חומצת לימון",
-          "tier": "contested",
-          "function_he": "מווסת חומציות / מונע חמצון",
-          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
-        }
-      ],
-      "insightLine": "וניל קראנץ' מצטרף לאחיו בצמרת עם תוספת מפוקפקת: שלוש משפחות של חלבון מבודד.",
-      "rowVerdict": "גם כאן טודיי שומרת על נתרן צמוד לצמרת השלילית של המדף, והתערובת מתרחבת לביצה, סויה ומי גבינה. הסוכר נשאר סוכר אמיתי בחלק הגבוה של הקטגוריה, והגליצרול ממשיך ללוות את הסדרה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": null,
-        "protein_g": 36.0,
-        "sugar_g": 16.0,
-        "weighted_dim_score_pb": 68.87,
-        "effective_pb_cap": null,
-        "total_pb_penalty": 12,
-        "caps_applied": [],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          },
-          {
-            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
-            "penalty": 6,
-            "reason": "3 isolate families: ['egg', 'soy', 'whey']"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": false,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": true,
-          "wholefood_protein": false,
-          "collagen_detected": false,
-          "polyol_tier": null,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "egg",
-            "soy",
-            "whey"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 92.0,
-          "calorie_density": 72,
-          "glycemic_quality": 76.0,
-          "protein_quality": 64.6,
-          "additive_quality": 30.0,
-          "satiety_support": 100,
-          "fat_quality": 68.6,
-          "regulatory_quality": 95.0,
-          "whole_food_integrity": 35
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 87.2,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": null
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 365.0,
-          "protein": 36.0,
-          "sugar": 16.0,
-          "fat": 5.5,
-          "fiber": 11.0,
-          "sodium": 385.0
-        },
-        "ingredients": "תערובת חלבונים )%45.2( ]תערובת חלבון סויה )חלבון סויה מבודד, עמילן טפיוקה, מלח שולחן(, תערובת חלבוני מי גבינה )חלבון מי גבינ ה מבודד )חלב()4.4%(, חלבון מי גבינה מרוכז )חלב( )4.0%(, עמילן טפיוקה, מתחלב )לציטין חמניות(, מונע התגיישות )קלציום קרבונט((, חלבון ח לב מרוכז )5.4%([, ציפוי בטעם שוקולד לבן )%",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "כמעט תאום של גרסת הבננה-שוקולד מאותו מותג: חלבון גבוה שמגיע מבידוד, גליצרול שמסמן הנדסה, ונתרן בקצה הגבוה של המדף. בלי מלטיטול — וזה נקודת זכות — אבל ההרכב נשאר של חטיף מהונדס.",
-        "positiveSignals": [
-          "לא נשען על מלטיטול להורדת סוכר",
-          "שומן כולל נמוך, 5.5 גרם ל-100 גרם"
-        ],
-        "limitingFactors": [
-          "חלבון מבודד, לא ממזון שלם",
-          "גליצרול ברשימה — חטיף מהונדס",
-          "385 מ\"ג נתרן ל-100 גרם — מהגבוהים במדף",
-          "16 גרם סוכר ל-100 גרם"
-        ]
-      },
-      "displayTitle": "טודיי חטיף חלבון וניל קראנץ'"
-    },
-    {
-      "id": "pb-005",
-      "barcode": "8410076610379",
-      "name": "נייטשר פרוטאין שוקולד",
-      "name_he": "נייטשר פרוטאין שוקולד",
-      "brand": "נייטשר וואלי",
-      "format": "bar",
-      "score": 55,
-      "grade": "C",
-      "rank": 4,
-      "categoryTotal": 32,
-      "imageUrl": "/products/8410076610379.webp",
-      "image_url": "/products/8410076610379.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 489.0,
-        "fat_g": 28.3,
-        "fat_saturated_g": 7.4,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 375.0,
-        "carbohydrates_g": 27.5,
-        "sugars_g": 17.2,
-        "dietary_fiber_g": 11.0,
-        "protein_g": 25.0
-      },
-      "protein_per_100g": 25.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "בוטנים אמיתיים מספקים כאן את החלבון, ומביאים איתם חשבון קלורי כבד במיוחד.",
-      "rowVerdict": "הזוג של נייטשר וואלי נמנה עם הנקיים בקטגוריה במחלקת ההמתקה: סוכר רגיל, בלי מלטיטול ובלי ממתיקים מלאכותיים. התמורה נגבית בצפיפות: יחד עם אחיו הוא עוקף בקלוריות ובשומן את כל שאר המדף, וגם המלח והסוכר שלו גבוהים. חטיף ממלא באמת, כבד באותה מידה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": null,
-        "protein_g": 25.0,
-        "sugar_g": 17.2,
-        "weighted_dim_score_pb": 64.63,
-        "effective_pb_cap": null,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "BASE_ENGINE_BINDING_CAP_INHERIT",
-            "cap": 55,
-            "reason": "base engine binding cap 55 inherited; 56.6→55.0"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": false,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": true,
-          "collagen_detected": false,
-          "polyol_tier": null,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "soy"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 92.0,
-          "calorie_density": 38,
-          "glycemic_quality": 68.0,
-          "protein_quality": 72.6,
-          "additive_quality": 48.0,
-          "satiety_support": 100,
-          "fat_quality": 72.1,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": null
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 489.0,
-          "protein": 25.0,
-          "sugar": 17.2,
-          "fat": 28.3,
-          "fiber": 11.0,
-          "sodium": 375.0
-        },
-        "ingredients": "בוטנים קלויים [בוטנים (37.3%), שמן צמחי], חלבון סויה (14.5%), סיבים תזונתיים (אוליגופרוקטוז) (9.5%), סירופ גלוקוזה, שמנים ושומנים צמ חיים, סוכר לבן, שבבי שוקולד מריר (4%), מלטודקסטרין, מחית בוטנים (1.9%), אבקת קקאו מופחת שומן, עמילן טפיוקה, פרוקטוז, לקטוז, חומר הלח ה (גליצרול), מתחלבים (לציטין) (סוי",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מקרה מעניין: מקור החלבון כאן ממזון שלם, בדיוק מה שמרים את הראשונים במדף — אבל הצפיפות הקלורית והשומן הגבוה גוררים אותו לאמצע. זה מזכיר שמזון שלם הוא לא ערובה לחטיף קל; כאן הוא בא עם הרבה קלוריות.",
-        "positiveSignals": [
-          "חלבון ממקור ממזון שלם",
-          "לא נשען על מלטיטול ולא על ממתיק מלאכותי"
-        ],
-        "limitingFactors": [
-          "489 קלוריות ל-100 גרם — מהגבוהים במדף",
-          "28 גרם שומן ל-100 גרם",
-          "17 גרם סוכר ל-100 גרם — מהגבוהים מבין החטיפים שאינם תחליפי-סוכר"
-        ]
-      },
-      "displayTitle": "נייטשר וואלי פרוטאין שוקולד"
-    },
-    {
-      "id": "pb-006",
-      "barcode": "8410076610386",
-      "name": "נייטשר פרוטאין קרמל מלוח",
-      "name_he": "נייטשר פרוטאין קרמל מלוח",
-      "brand": "נייטשר וואלי",
-      "format": "bar",
-      "score": 55,
-      "grade": "C",
-      "rank": 5,
-      "categoryTotal": 32,
-      "imageUrl": "/products/8410076610386.webp",
-      "image_url": "/products/8410076610386.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 496.0,
-        "fat_g": 29.5,
-        "fat_saturated_g": 7.1,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 354.0,
-        "carbohydrates_g": 26.3,
-        "sugars_g": 16.1,
-        "dietary_fiber_g": 10.8,
-        "protein_g": 26.0
-      },
-      "protein_per_100g": 26.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "גרסת הקרמל המלוח של הזוג מחזיקה את שיא האנרגיה של הקטגוריה: 496 קלוריות למאה גרם.",
-      "rowVerdict": "אותם בוטנים קלויים בבסיס, אותו ויתור מבורך על תחליפי סוכר, ואותה בעיה בהגדלה: אין במדף הזה מוצר צפוף יותר בקלוריות או בשומן. מי שמחפש חטיף קל ימשיך הלאה; מי שצריך דלק לאימון ארוך קיבל כתובת.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": null,
-        "protein_g": 26.0,
-        "sugar_g": 16.1,
-        "weighted_dim_score_pb": 63.45,
-        "effective_pb_cap": null,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "BASE_ENGINE_BINDING_CAP_INHERIT",
-            "cap": 55,
-            "reason": "base engine binding cap 55 inherited; 55.5→55.0"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": false,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": true,
-          "collagen_detected": false,
-          "polyol_tier": null,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "soy",
-            "whey"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 91.4,
-          "calorie_density": 38,
-          "glycemic_quality": 70.8,
-          "protein_quality": 72.6,
-          "additive_quality": 30.0,
-          "satiety_support": 100,
-          "fat_quality": 75.0,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": null
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 496.0,
-          "protein": 26.0,
-          "sugar": 16.1,
-          "fat": 29.5,
-          "fiber": 10.8,
-          "sodium": 354.0
-        },
-        "ingredients": "בוטנים קלויים [בוטנים (43%), שמן צמחי)], חלבון סויה (11.3%), סיבים תזונתיים (אוליגופרוקטוז) (8.7%), שמנים ושומנים צמחיים, סירופ גלוק וזה, סוכר לבן, אבקת מוצקי מי גבינה, מלטודקסטרין, פרוקטוז, חומר הלחה (גליצרול), עמילן טפיוקה, אבקת קרמל (0.84%) (סוכר לבן, אבקת חלב ר זה), אבקת חלב רזה, מתחלבים (לציטין",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "החטיף הקלורי ביותר במדף, יחד עם אחיו השוקולד. מקור החלבון אמנם אמיתי, אבל 496 קלוריות ל-100 גרם הופכים אותו למשהו שצריך לאכול במודעות לכמות — לא חטיף קליל בין הארוחות.",
-        "positiveSignals": [
-          "חלבון ממקור ממזון שלם",
-          "לא נשען על מלטיטול ולא על ממתיק מלאכותי"
-        ],
-        "limitingFactors": [
-          "496 קלוריות ל-100 גרם — הגבוה במדף",
-          "29.5 גרם שומן ל-100 גרם",
-          "16 גרם סוכר ל-100 גרם — מהגבוהים במדף"
-        ]
-      },
-      "displayTitle": "נייטשר וואלי פרוטאין קרמל מלוח"
-    },
-    {
       "id": "pb-007",
       "barcode": "7290019766025",
       "name": "אול אין סופט פיסטוק",
       "name_he": "אול אין סופט פיסטוק",
       "brand": "all in",
       "format": "bar",
-      "score": 55,
+      "score": 62.0,
       "grade": "C",
-      "rank": 6,
+      "rank": 2,
       "categoryTotal": 32,
       "imageUrl": "/products/7290019766025.webp",
       "image_url": "/products/7290019766025.webp",
@@ -808,7 +239,7 @@
         "cond2_double_fire_check": null,
         "protein_g": 27.4,
         "sugar_g": 4.6,
-        "weighted_dim_score_pb": 63.17,
+        "weighted_dim_score_pb": 63.84,
         "effective_pb_cap": 62,
         "total_pb_penalty": 0,
         "caps_applied": [
@@ -821,11 +252,6 @@
             "rule": "SWEETENER_CAP_C_PROTEIN_BAR",
             "cap": 70,
             "reason": "Tier-C artificial sweetener detected — existing SWEETENER_CAP_C applies"
-          },
-          {
-            "rule": "BASE_ENGINE_BINDING_CAP_INHERIT",
-            "cap": 55,
-            "reason": "base engine binding cap 55 inherited; 62.0→55.0"
           }
         ],
         "penalties_applied": [],
@@ -846,16 +272,16 @@
         },
         "protein_gate": "PASS",
         "dimension_scores": {
-          "processing_quality": 44.0,
+          "processing_quality": 35.0,
           "nutrient_density": 77.6,
           "calorie_density": 62,
           "glycemic_quality": 87.9,
-          "protein_quality": 72.6,
+          "protein_quality": 88.8,
           "additive_quality": 15.0,
           "satiety_support": 100,
           "fat_quality": 48.1,
           "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
+          "whole_food_integrity": 18
         },
         "dimension_weights": {
           "processing_quality": 0.12,
@@ -870,7 +296,7 @@
           "whole_food_integrity": 0.03
         },
         "base_engine_binding_cap": {
-          "cap": 55,
+          "cap": 68.0,
           "note": "base engine binding cap that was inherited by protein_bar lens"
         },
         "collagen_detection_note": null
@@ -901,6 +327,296 @@
       "displayTitle": "אול אין סופט פיסטוק"
     },
     {
+      "id": "pb-003",
+      "barcode": "7290121161886",
+      "name": "חטיף חלבון בננה שוקולד",
+      "name_he": "חטיף חלבון בננה שוקולד",
+      "brand": "טודיי",
+      "format": "bar",
+      "score": 60.1,
+      "grade": "C",
+      "rank": 3,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290121161886.webp",
+      "image_url": "/products/7290121161886.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 362.0,
+        "fat_g": 6.2,
+        "fat_saturated_g": 4.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 387.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 12.0,
+        "dietary_fiber_g": 19.0,
+        "protein_g": 36.0
+      },
+      "protein_per_100g": 36.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        }
+      ],
+      "insightLine": "שיא הסיבים של הקטגוריה גר כאן, בשכנות לאחת מרמות הנתרן הגבוהות בה.",
+      "rowVerdict": "המקום השני נשען על עובדות חזקות: יותר סיבים מכל מוצר אחר במדף, וכמות חלבון שרק אח אחד שלו משתווה אליה. את הכיוון השני מחזיקים נתרן שרק שיאן המלח של הקטגוריה עוקף, ותערובת סויה ומי גבינה עם גליצרול מאחורי הכול.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": null,
+        "protein_g": 36.0,
+        "sugar_g": 12.0,
+        "weighted_dim_score_pb": 68.11,
+        "effective_pb_cap": null,
+        "total_pb_penalty": 8,
+        "caps_applied": [],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": false,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": false,
+          "collagen_detected": false,
+          "polyol_tier": null,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "soy",
+            "whey"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 95.0,
+          "calorie_density": 72,
+          "glycemic_quality": 81.0,
+          "protein_quality": 64.6,
+          "additive_quality": 30.0,
+          "satiety_support": 100,
+          "fat_quality": 66.9,
+          "regulatory_quality": 95.0,
+          "whole_food_integrity": 8
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 68.0,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": null
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 362.0,
+          "protein": 36.0,
+          "sugar": 12.0,
+          "fat": 6.2,
+          "fiber": 19.0,
+          "sodium": 387.0
+        },
+        "ingredients": "תערובת חלבונים (41%) [חלבון סויה מבודד, חלבון חלב מרוכז, חלבון מי גבינה מבודד (חלב) (2.1%), חלבון מי גבינה מרוכז (חלב) (1.9%), חלבון  אורז], חומר מילוי (פולידקסטרוז), חומר הלחה (גליצרול), ציפוי בטעם שוקולד מריר (9%) [סוכר לבן, שמן גרעיני דקלים מזוכך, אבקת קקאו, מתח לב (לציטין חמניות), מלח שולחן] ממת",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "החטיף הזה מוכיח שכמות חלבון לבדה לא קונה ציון: 36 גרם חלבון ל-100 גרם, אבל בלי מקור ממזון שלם ועם גליצרול ונתרן גבוה הוא נשאר באמצע. הוא לא נשען על מלטיטול כמו רוב המדף — וזה לזכותו — אבל ההנדסה כאן עדיין דומיננטית.",
+        "positiveSignals": [
+          "19 גרם סיבים ל-100 גרם — הגבוה במדף",
+          "לא נשען על מלטיטול להורדת סוכר",
+          "שומן כולל נמוך, 6.2 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "חלבון מבודד, לא ממזון שלם",
+          "גליצרול ברשימה — חטיף מהונדס",
+          "387 מ\"ג נתרן ל-100 גרם — מהגבוהים במדף"
+        ]
+      },
+      "displayTitle": "טודיי חטיף חלבון בננה שוקולד"
+    },
+    {
+      "id": "pb-004",
+      "barcode": "7290121166850",
+      "name": "חטיף חלבון וניל קראנץ'",
+      "name_he": "חטיף חלבון וניל קראנץ'",
+      "brand": "טודיי",
+      "format": "bar",
+      "score": 55.8,
+      "grade": "C",
+      "rank": 4,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290121166850.webp",
+      "image_url": "/products/7290121166850.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 365.0,
+        "fat_g": 5.5,
+        "fat_saturated_g": 3.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 385.0,
+        "carbohydrates_g": 37.0,
+        "sugars_g": 16.0,
+        "dietary_fiber_g": 11.0,
+        "protein_g": 36.0
+      },
+      "protein_per_100g": 36.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "contested",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "insightLine": "וניל קראנץ' מצטרף לאחיו בצמרת עם תוספת מפוקפקת: שלוש משפחות של חלבון מבודד.",
+      "rowVerdict": "גם כאן טודיי שומרת על נתרן צמוד לצמרת השלילית של המדף, והתערובת מתרחבת לביצה, סויה ומי גבינה. הסוכר נשאר סוכר אמיתי בחלק הגבוה של הקטגוריה, והגליצרול ממשיך ללוות את הסדרה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": null,
+        "protein_g": 36.0,
+        "sugar_g": 16.0,
+        "weighted_dim_score_pb": 67.79,
+        "effective_pb_cap": null,
+        "total_pb_penalty": 12,
+        "caps_applied": [],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          },
+          {
+            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
+            "penalty": 6,
+            "reason": "3 isolate families: ['egg', 'soy', 'whey']"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": false,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": true,
+          "wholefood_protein": false,
+          "collagen_detected": false,
+          "polyol_tier": null,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "egg",
+            "soy",
+            "whey"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 92.0,
+          "calorie_density": 72,
+          "glycemic_quality": 76.0,
+          "protein_quality": 64.6,
+          "additive_quality": 30.0,
+          "satiety_support": 100,
+          "fat_quality": 68.6,
+          "regulatory_quality": 95.0,
+          "whole_food_integrity": 35
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 68.0,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": null
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 365.0,
+          "protein": 36.0,
+          "sugar": 16.0,
+          "fat": 5.5,
+          "fiber": 11.0,
+          "sodium": 385.0
+        },
+        "ingredients": "תערובת חלבונים )%45.2( ]תערובת חלבון סויה )חלבון סויה מבודד, עמילן טפיוקה, מלח שולחן(, תערובת חלבוני מי גבינה )חלבון מי גבינ ה מבודד )חלב()4.4%(, חלבון מי גבינה מרוכז )חלב( )4.0%(, עמילן טפיוקה, מתחלב )לציטין חמניות(, מונע התגיישות )קלציום קרבונט((, חלבון ח לב מרוכז )5.4%([, ציפוי בטעם שוקולד לבן )%",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "כמעט תאום של גרסת הבננה-שוקולד מאותו מותג: חלבון גבוה שמגיע מבידוד, גליצרול שמסמן הנדסה, ונתרן בקצה הגבוה של המדף. בלי מלטיטול — וזה נקודת זכות — אבל ההרכב נשאר של חטיף מהונדס.",
+        "positiveSignals": [
+          "לא נשען על מלטיטול להורדת סוכר",
+          "שומן כולל נמוך, 5.5 גרם ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "חלבון מבודד, לא ממזון שלם",
+          "גליצרול ברשימה — חטיף מהונדס",
+          "385 מ\"ג נתרן ל-100 גרם — מהגבוהים במדף",
+          "16 גרם סוכר ל-100 גרם"
+        ]
+      },
+      "displayTitle": "טודיי חטיף חלבון וניל קראנץ'"
+    },
+    {
       "id": "pb-009",
       "barcode": "7290119371129",
       "name": "חטיף חלבון שוקולד עוגיות",
@@ -909,7 +625,7 @@
       "format": "cookie",
       "score": 55,
       "grade": "C",
-      "rank": 7,
+      "rank": 5,
       "categoryTotal": 32,
       "imageUrl": "/products/7290119371129.webp",
       "image_url": "/products/7290119371129.webp",
@@ -1058,6 +774,139 @@
       "displayTitle": "פרו שטראוס חטיף חלבון שוקולד עוגיות"
     },
     {
+      "id": "pb-005",
+      "barcode": "8410076610379",
+      "name": "נייטשר פרוטאין שוקולד",
+      "name_he": "נייטשר פרוטאין שוקולד",
+      "brand": "נייטשר וואלי",
+      "format": "bar",
+      "score": 54.6,
+      "grade": "C",
+      "rank": 6,
+      "categoryTotal": 32,
+      "imageUrl": "/products/8410076610379.webp",
+      "image_url": "/products/8410076610379.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 489.0,
+        "fat_g": 28.3,
+        "fat_saturated_g": 7.4,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 375.0,
+        "carbohydrates_g": 27.5,
+        "sugars_g": 17.2,
+        "dietary_fiber_g": 11.0,
+        "protein_g": 25.0
+      },
+      "protein_per_100g": 25.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "בוטנים אמיתיים מספקים כאן את החלבון, ומביאים איתם חשבון קלורי כבד במיוחד.",
+      "rowVerdict": "הזוג של נייטשר וואלי נמנה עם הנקיים בקטגוריה במחלקת ההמתקה: סוכר רגיל, בלי מלטיטול ובלי ממתיקים מלאכותיים. התמורה נגבית בצפיפות: יחד עם אחיו הוא עוקף בקלוריות ובשומן את כל שאר המדף, וגם המלח והסוכר שלו גבוהים. חטיף ממלא באמת, כבד באותה מידה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": null,
+        "protein_g": 25.0,
+        "sugar_g": 17.2,
+        "weighted_dim_score_pb": 62.65,
+        "effective_pb_cap": null,
+        "total_pb_penalty": 8,
+        "caps_applied": [],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": false,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": true,
+          "collagen_detected": false,
+          "polyol_tier": null,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "soy"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 92.0,
+          "calorie_density": 38,
+          "glycemic_quality": 68.0,
+          "protein_quality": 72.6,
+          "additive_quality": 48.0,
+          "satiety_support": 100,
+          "fat_quality": 72.1,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 0
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": null
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 489.0,
+          "protein": 25.0,
+          "sugar": 17.2,
+          "fat": 28.3,
+          "fiber": 11.0,
+          "sodium": 375.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (37.3%), שמן צמחי], חלבון סויה (14.5%), סיבים תזונתיים (אוליגופרוקטוז) (9.5%), סירופ גלוקוזה, שמנים ושומנים צמ חיים, סוכר לבן, שבבי שוקולד מריר (4%), מלטודקסטרין, מחית בוטנים (1.9%), אבקת קקאו מופחת שומן, עמילן טפיוקה, פרוקטוז, לקטוז, חומר הלח ה (גליצרול), מתחלבים (לציטין) (סוי",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מקרה מעניין: מקור החלבון כאן ממזון שלם, בדיוק מה שמרים את הראשונים במדף — אבל הצפיפות הקלורית והשומן הגבוה גוררים אותו לאמצע. זה מזכיר שמזון שלם הוא לא ערובה לחטיף קל; כאן הוא בא עם הרבה קלוריות.",
+        "positiveSignals": [
+          "חלבון ממקור ממזון שלם",
+          "לא נשען על מלטיטול ולא על ממתיק מלאכותי"
+        ],
+        "limitingFactors": [
+          "489 קלוריות ל-100 גרם — מהגבוהים במדף",
+          "28 גרם שומן ל-100 גרם",
+          "17 גרם סוכר ל-100 גרם — מהגבוהים מבין החטיפים שאינם תחליפי-סוכר"
+        ]
+      },
+      "displayTitle": "נייטשר וואלי פרוטאין שוקולד"
+    },
+    {
       "id": "pb-010",
       "barcode": "7290119371112",
       "name": "חטיף חלבון קרמל ואגוזים",
@@ -1066,7 +915,7 @@
       "format": "bar",
       "score": 54,
       "grade": "C",
-      "rank": 8,
+      "rank": 7,
       "categoryTotal": 32,
       "imageUrl": "/products/7290119371112.webp",
       "image_url": "/products/7290119371112.webp",
@@ -1224,646 +1073,6 @@
       "displayTitle": "פרו שטראוס חטיף חלבון קרמל ואגוזים"
     },
     {
-      "id": "pb-011",
-      "barcode": "7290019401018",
-      "name": "חטיף קרם עוגיות",
-      "name_he": "חטיף פרוטאין קרם עוגיות",
-      "brand": "פרוטאין",
-      "format": "cookie",
-      "score": 54,
-      "grade": "C",
-      "rank": 9,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290019401018.webp",
-      "image_url": "/products/7290019401018.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 357.0,
-        "fat_g": 12.0,
-        "fat_saturated_g": 5.5,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 92.0,
-        "carbohydrates_g": 32.0,
-        "sugars_g": 3.7,
-        "dietary_fiber_g": 3.9,
-        "protein_g": 34.0
-      },
-      "protein_per_100g": 34.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        },
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E440",
-          "name_he": "פקטין",
-          "tier": "functional",
-          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
-          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
-        },
-        {
-          "e_number": "E414",
-          "name_he": "גומי ערבי",
-          "tier": "functional",
-          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
-          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        },
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "contested",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "insightLine": "חלק משורת החלבון כאן הוא קולגן, רכיב שתורם למספר שעל האריזה יותר מלאיכות שמאחוריו.",
-      "rowVerdict": "עוגייה בנויה לפרטים: חלבון חלב עם קולגן פפטידים, מלטיטול גם בציפוי וגם בקרם, גליצרול ושישה תוספים מזוהים ברשימה. הנתרן מהנמוכים בקטגוריה, וזו נקודת האור האמיתית בלוח שלה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 34.0,
-        "sugar_g": 3.7,
-        "weighted_dim_score_pb": 62.68,
-        "effective_pb_cap": 62,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
-            "cap": 62,
-            "reason": "polyol_tier=1 (מלטיטול)"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": true,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": false,
-          "collagen_detected": true,
-          "polyol_tier": 1,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "collagen"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 75.4,
-          "calorie_density": 72,
-          "glycemic_quality": 90.5,
-          "protein_quality": 68.8,
-          "additive_quality": 0,
-          "satiety_support": 100,
-          "fat_quality": 52.7,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 357.0,
-          "protein": 34.0,
-          "sugar": 3.7,
-          "fat": 12.0,
-          "fiber": 3.9,
-          "sodium": 92.0
-        },
-        "ingredients": "חלבון חלב מרוכז 26% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא  , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב : לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מר וכז ממותק (חלב ממותק(חלב מרוכז , סוכר) , שמ",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "עוגייה שנשענת כולה על הנדסה: החלבון מבודד ולא ממזון שלם, הסוכר הנמוך הוא מלטיטול, וגליצרול שומר על המרקם. הרשימה כאן מהארוכות בקבוצה. הציון משקף הרכב, לא את מספר החלבון על החזית.",
-        "positiveSignals": [
-          "34 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [
-          "חלבון מבודד, לא ממזון שלם",
-          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
-          "גליצרול ורשימת רכיבים ארוכה עם תוספי מזון רבים"
-        ]
-      },
-      "displayTitle": "חטיף פרוטאין קרם עוגיות"
-    },
-    {
-      "id": "pb-012",
-      "barcode": "7290019401049",
-      "name": "חטיף שוקולד קרמל",
-      "name_he": "חטיף פרוטאין שוקולד קרמל",
-      "brand": "פרוטאין",
-      "format": "bar",
-      "score": 54,
-      "grade": "C",
-      "rank": 10,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290019401049.webp",
-      "image_url": "/products/7290019401049.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 362.0,
-        "fat_g": 13.0,
-        "fat_saturated_g": 5.7,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 92.0,
-        "carbohydrates_g": 31.0,
-        "sugars_g": 3.6,
-        "dietary_fiber_g": 4.6,
-        "protein_g": 34.0
-      },
-      "protein_per_100g": 34.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        },
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E440",
-          "name_he": "פקטין",
-          "tier": "functional",
-          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
-          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
-        },
-        {
-          "e_number": "E414",
-          "name_he": "גומי ערבי",
-          "tier": "functional",
-          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
-          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        },
-        {
-          "e_number": "E202",
-          "name_he": "פוטסיום סורבט",
-          "tier": "contested",
-          "function_he": "חומר משמר אנטי-מיקרוביאלי",
-          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
-        }
-      ],
-      "insightLine": "התאום בצורת חטיף של עוגיית הקרם: אותו קולגן, אותו מלטיטול, אותם תוספים.",
-      "rowVerdict": "ההבדלים מהעוגייה של אותו מותג מסתכמים בקומץ קלוריות וגרם שומן; הקולגן בתערובת, המלטיטול בציפוי ובקרם והנתרן הנמוך משותפים לשניהם. ההכרעה בין השניים היא עניין של מרקם.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 34.0,
-        "sugar_g": 3.6,
-        "weighted_dim_score_pb": 63.36,
-        "effective_pb_cap": 62,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
-            "cap": 62,
-            "reason": "polyol_tier=1 (מלטיטול)"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": true,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": false,
-          "collagen_detected": true,
-          "polyol_tier": 1,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "collagen"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 77.3,
-          "calorie_density": 72,
-          "glycemic_quality": 92.2,
-          "protein_quality": 68.8,
-          "additive_quality": 0,
-          "satiety_support": 100,
-          "fat_quality": 54.2,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 362.0,
-          "protein": 34.0,
-          "sugar": 3.6,
-          "fat": 13.0,
-          "fiber": 4.6,
-          "sodium": 92.0
-        },
-        "ingredients": "חלבון חלב מרוכז 24% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא  , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב: לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מרו כז ממותק (חלב ממותק (חלב מרוכז,סוכר)  , שמן",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "חטיף שמשקף את אותו מנגנון: סוכר נמוך שמושג בהחלפה למלטיטול, חלבון מבודד וגליצרול, עם רשימת רכיבים ארוכה. ההנדסה כאן עושה את העבודה, לא מזון שלם.",
-        "positiveSignals": [
-          "34 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [
-          "חלבון מבודד, לא ממזון שלם",
-          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
-          "גליצרול ורשימת רכיבים ארוכה עם תוספי מזון רבים"
-        ]
-      },
-      "displayTitle": "חטיף פרוטאין שוקולד קרמל"
-    },
-    {
-      "id": "pb-013",
-      "barcode": "7290015130035",
-      "name": "WIN חטיף חלבון קרם קרמל",
-      "name_he": "WIN חטיף חלבון קרם קרמל",
-      "brand": "חטיף חלב WIN",
-      "format": "bar",
-      "score": 54,
-      "grade": "C",
-      "rank": 11,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290015130035.webp",
-      "image_url": "/products/7290015130035.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 371.0,
-        "fat_g": 17.0,
-        "fat_saturated_g": 7.5,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 208.0,
-        "carbohydrates_g": 31.0,
-        "sugars_g": 1.7,
-        "dietary_fiber_g": 8.2,
-        "protein_g": 31.0
-      },
-      "protein_per_100g": 31.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "מספר הסוכר הנמוך בקטגוריה נרשם כאן, 1.7 גרם, ושלושה תחליפים מייצרים את המתיקות בפועל.",
-      "rowVerdict": "ההישג שעל האריזה נבנה במעבדה: מלטיטול, סורביטול ואריתריטול ממלאים את מקום הסוכר שירד. יש גם צד חיובי של ממש, שקדים קלויים בנתח מכובד וסיבים יפים; תערובת החלבון, שנשענת על קולגן וביצה, היא החוליה החלשה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 31.0,
-        "sugar_g": 1.7,
-        "weighted_dim_score_pb": 63.04,
-        "effective_pb_cap": 62,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
-            "cap": 62,
-            "reason": "polyol_tier=1 (מלטיטול)"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": true,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": true,
-          "collagen_detected": true,
-          "polyol_tier": 1,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "collagen",
-            "egg"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 85.9,
-          "calorie_density": 72,
-          "glycemic_quality": 100,
-          "protein_quality": 32.4,
-          "additive_quality": 15.0,
-          "satiety_support": 100,
-          "fat_quality": 59.0,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 371.0,
-          "protein": 31.0,
-          "sugar": 1.7,
-          "fat": 17.0,
-          "fiber": 8.2,
-          "sodium": 208.0
-        },
-        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לצי",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "מספר הסוכר הנמוך ביותר במדף שייך כאן — וזו בדיוק הדגמה למה המספר הזה מטעה: הוא מושג כמעט כולו במלטיטול, לא בהפחתת סוכר. החטיף מחזיק 8.2 גרם סיבים ל-100 גרם, וזה לזכותו, אבל הסיפור הוא ההחלפה.",
-        "positiveSignals": [
-          "31 גרם חלבון ל-100 גרם",
-          "8.2 גרם סיבים ל-100 גרם — באמצע המדף",
-          "חלבון ממקור ממזון שלם"
-        ],
-        "limitingFactors": [
-          "הסוכר הנמוך הוא כמעט כולו מלטיטול שהחליף סוכר",
-          "גליצרול ברשימה — חטיף מהונדס"
-        ]
-      },
-      "displayTitle": "WIN חטיף חלבון קרם קרמל"
-    },
-    {
-      "id": "pb-014",
-      "barcode": "7290015130042",
-      "name": "WIN חטיף חלבון קרם קרמל",
-      "name_he": "WIN חטיף חלבון קרם קרמל",
-      "brand": "חטיף חלב WIN",
-      "format": "bar",
-      "score": 54,
-      "grade": "C",
-      "rank": 12,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290015130042.webp",
-      "image_url": "/products/7290015130042.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 374.0,
-        "fat_g": 17.0,
-        "fat_saturated_g": 7.0,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 208.0,
-        "carbohydrates_g": 31.0,
-        "sugars_g": 2.3,
-        "dietary_fiber_g": 8.2,
-        "protein_g": 31.0
-      },
-      "protein_per_100g": 31.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        }
-      ],
-      "insightLine": "אותו קרם קרמל של WIN פעם שנייה: המדף מחזיק שתי אריזות של כמעט אותו מוצר.",
-      "rowVerdict": "מול התאום נרשמים הבדלים זעירים בלבד, וכל השאר משותף: שלישיית תחליפי הסוכר, שקדים אמיתיים, וחלבון שנשען על קולגן וביצה. שתי השורות האלה במדף הן סיפור אחד.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 31.0,
-        "sugar_g": 2.3,
-        "weighted_dim_score_pb": 63.23,
-        "effective_pb_cap": 62,
-        "total_pb_penalty": 8,
-        "caps_applied": [
-          {
-            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
-            "cap": 62,
-            "reason": "polyol_tier=1 (מלטיטול)"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": true,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": false,
-          "wholefood_protein": true,
-          "collagen_detected": true,
-          "polyol_tier": 1,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "collagen",
-            "egg"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 85.9,
-          "calorie_density": 72,
-          "glycemic_quality": 100,
-          "protein_quality": 32.4,
-          "additive_quality": 15.0,
-          "satiety_support": 100,
-          "fat_quality": 61.4,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 374.0,
-          "protein": 31.0,
-          "sugar": 2.3,
-          "fat": 17.0,
-          "fiber": 8.2,
-          "sodium": 208.0
-        },
-        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לצי",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "כמעט תאום של החטיף שלפניו מאותו מותג, עם אותה תמונה: הסוכר הנמוך הוא מלטיטול ולא הפחתה, אבל הסיבים (8.2 גרם) והחלבון שומרים אותו במרכז הקבוצה ולא בתחתיתה.",
-        "positiveSignals": [
-          "31 גרם חלבון ל-100 גרם",
-          "8.2 גרם סיבים ל-100 גרם — באמצע המדף",
-          "חלבון ממקור ממזון שלם"
-        ],
-        "limitingFactors": [
-          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
-          "גליצרול ברשימה — חטיף מהונדס"
-        ]
-      },
-      "displayTitle": "WIN חטיף חלבון קרם קרמל"
-    },
-    {
       "id": "pb-015",
       "barcode": "7290018703991",
       "name": "עוגיית חלבון דאבל שוקולד",
@@ -1872,7 +1081,7 @@
       "format": "cookie",
       "score": 54,
       "grade": "C",
-      "rank": 13,
+      "rank": 8,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018703991.webp",
       "image_url": "/products/7290018703991.webp",
@@ -2011,7 +1220,7 @@
       "format": "cookie",
       "score": 54,
       "grade": "C",
-      "rank": 14,
+      "rank": 9,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018703984.webp",
       "image_url": "/products/7290018703984.webp",
@@ -2142,31 +1351,31 @@
       "displayTitle": "אול אין עוגיית חלבון שוקולד צ'יפ"
     },
     {
-      "id": "pb-008",
-      "barcode": "7290015130028",
-      "name": "WIN חטיף חלבון קרם חלב",
-      "name_he": "WIN חטיף חלבון קרם חלב",
-      "brand": "חטיף חלב WIN",
+      "id": "pb-006",
+      "barcode": "8410076610386",
+      "name": "נייטשר פרוטאין קרמל מלוח",
+      "name_he": "נייטשר פרוטאין קרמל מלוח",
+      "brand": "נייטשר וואלי",
       "format": "bar",
-      "score": 51.5,
+      "score": 53.5,
       "grade": "C",
-      "rank": 15,
+      "rank": 10,
       "categoryTotal": 32,
-      "imageUrl": "/products/7290015130028.webp",
-      "image_url": "/products/7290015130028.webp",
+      "imageUrl": "/products/8410076610386.webp",
+      "image_url": "/products/8410076610386.webp",
       "nutrition_per_100g": {
-        "energy_kcal": 435.0,
-        "fat_g": 22.0,
-        "fat_saturated_g": 9.9,
+        "energy_kcal": 496.0,
+        "fat_g": 29.5,
+        "fat_saturated_g": 7.1,
         "fat_trans_g": null,
         "cholesterol_mg": null,
-        "sodium_mg": 260.0,
-        "carbohydrates_g": 33.0,
-        "sugars_g": 4.4,
-        "dietary_fiber_g": 2.3,
-        "protein_g": 34.0
+        "sodium_mg": 354.0,
+        "carbohydrates_g": 26.3,
+        "sugars_g": 16.1,
+        "dietary_fiber_g": 10.8,
+        "protein_g": 26.0
       },
-      "protein_per_100g": 34.0,
+      "protein_per_100g": 26.0,
       "protein_per_bar": null,
       "bar_weight_g": null,
       "show_per_bar": false,
@@ -2176,6 +1385,13 @@
       "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
       "d4_additives": [
         {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
           "e_number": "E322",
           "name_he": "לציטין",
           "tier": "functional",
@@ -2183,19 +1399,160 @@
           "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
         }
       ],
-      "insightLine": "קרם החלב של WIN מוותר על הגליצרול ואוסף שלושה מבודדים: קולגן, ביצה וסויה.",
-      "rowVerdict": "מהתאומים של המותג הוא מתרחק בלוח: קלוריות ושומן רווי בחלק הגבוה של הקטגוריה, וסיבים מהנמוכים שנרשמו בה. המתיקות נשענת על מלטיטול, והמספר הגדול שעל החזית מקבל מעט מאוד תמיכה מסביב.",
+      "insightLine": "גרסת הקרמל המלוח של הזוג מחזיקה את שיא האנרגיה של הקטגוריה: 496 קלוריות למאה גרם.",
+      "rowVerdict": "אותם בוטנים קלויים בבסיס, אותו ויתור מבורך על תחליפי סוכר, ואותה בעיה בהגדלה: אין במדף הזה מוצר צפוף יותר בקלוריות או בשומן. מי שמחפש חטיף קל ימשיך הלאה; מי שצריך דלק לאימון ארוך קיבל כתובת.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": null,
+        "protein_g": 26.0,
+        "sugar_g": 16.1,
+        "weighted_dim_score_pb": 61.47,
+        "effective_pb_cap": null,
+        "total_pb_penalty": 8,
+        "caps_applied": [],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": false,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": true,
+          "collagen_detected": false,
+          "polyol_tier": null,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "soy",
+            "whey"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 91.4,
+          "calorie_density": 38,
+          "glycemic_quality": 70.8,
+          "protein_quality": 72.6,
+          "additive_quality": 30.0,
+          "satiety_support": 100,
+          "fat_quality": 75.0,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 0
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": null
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 496.0,
+          "protein": 26.0,
+          "sugar": 16.1,
+          "fat": 29.5,
+          "fiber": 10.8,
+          "sodium": 354.0
+        },
+        "ingredients": "בוטנים קלויים [בוטנים (43%), שמן צמחי)], חלבון סויה (11.3%), סיבים תזונתיים (אוליגופרוקטוז) (8.7%), שמנים ושומנים צמחיים, סירופ גלוק וזה, סוכר לבן, אבקת מוצקי מי גבינה, מלטודקסטרין, פרוקטוז, חומר הלחה (גליצרול), עמילן טפיוקה, אבקת קרמל (0.84%) (סוכר לבן, אבקת חלב ר זה), אבקת חלב רזה, מתחלבים (לציטין",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "החטיף הקלורי ביותר במדף, יחד עם אחיו השוקולד. מקור החלבון אמנם אמיתי, אבל 496 קלוריות ל-100 גרם הופכים אותו למשהו שצריך לאכול במודעות לכמות — לא חטיף קליל בין הארוחות.",
+        "positiveSignals": [
+          "חלבון ממקור ממזון שלם",
+          "לא נשען על מלטיטול ולא על ממתיק מלאכותי"
+        ],
+        "limitingFactors": [
+          "496 קלוריות ל-100 גרם — הגבוה במדף",
+          "29.5 גרם שומן ל-100 גרם",
+          "16 גרם סוכר ל-100 גרם — מהגבוהים במדף"
+        ]
+      },
+      "displayTitle": "נייטשר וואלי פרוטאין קרמל מלוח"
+    },
+    {
+      "id": "pb-014",
+      "barcode": "7290015130042",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "name_he": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "score": 53.2,
+      "grade": "C",
+      "rank": 11,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290015130042.webp",
+      "image_url": "/products/7290015130042.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 374.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 208.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 2.3,
+        "dietary_fiber_g": 8.2,
+        "protein_g": 31.0
+      },
+      "protein_per_100g": 31.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "אותו קרם קרמל של WIN פעם שנייה: המדף מחזיק שתי אריזות של כמעט אותו מוצר.",
+      "rowVerdict": "מול התאום נרשמים הבדלים זעירים בלבד, וכל השאר משותף: שלישיית תחליפי הסוכר, שקדים אמיתיים, וחלבון שנשען על קולגן וביצה. שתי השורות האלה במדף הן סיפור אחד.",
       "_scoring_trace": {
         "category": "snack_bar_granola",
         "category_subtype": "protein_bar",
         "protein_bar_lens_active": true,
         "cond2_recal_p0_on": false,
         "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 34.0,
-        "sugar_g": 4.4,
-        "weighted_dim_score_pb": 57.54,
+        "protein_g": 31.0,
+        "sugar_g": 2.3,
+        "weighted_dim_score_pb": 61.25,
         "effective_pb_cap": 62,
-        "total_pb_penalty": 6,
+        "total_pb_penalty": 8,
         "caps_applied": [
           {
             "rule": "PROTEIN_BAR_MALTITOL_TIER1",
@@ -2205,39 +1562,38 @@
         ],
         "penalties_applied": [
           {
-            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
-            "penalty": 6,
-            "reason": "3 isolate families: ['collagen', 'egg', 'soy']"
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
           }
         ],
         "key_signals": {
-          "glycerol": false,
+          "glycerol": true,
           "maltitol": true,
           "erythritol": false,
           "sweetener_tier_c": false,
-          "isolate_stacking": true,
+          "isolate_stacking": false,
           "wholefood_protein": true,
           "collagen_detected": true,
           "polyol_tier": 1,
           "protein_gate": "PASS",
           "families_detected": [
             "collagen",
-            "egg",
-            "soy"
+            "egg"
           ]
         },
         "protein_gate": "PASS",
         "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 69.8,
-          "calorie_density": 50,
-          "glycemic_quality": 83.6,
+          "processing_quality": 35.0,
+          "nutrient_density": 85.9,
+          "calorie_density": 72,
+          "glycemic_quality": 100,
           "protein_quality": 32.4,
-          "additive_quality": 33.0,
+          "additive_quality": 15.0,
           "satiety_support": 100,
-          "fat_quality": 58.3,
+          "fat_quality": 61.4,
           "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
+          "whole_food_integrity": 0
         },
         "dimension_weights": {
           "processing_quality": 0.12,
@@ -2259,27 +1615,175 @@
       },
       "expansion": {
         "nutrition": {
-          "energyKcal": 435.0,
-          "protein": 34.0,
-          "sugar": 4.4,
-          "fat": 22.0,
-          "fiber": 2.3,
-          "sodium": 260.0
+          "energyKcal": 374.0,
+          "protein": 31.0,
+          "sugar": 2.3,
+          "fat": 17.0,
+          "fiber": 8.2,
+          "sodium": 208.0
         },
-        "ingredients": "תערובת חלבונים 28% (חלבון חלב פפטידי קולגן. חלבון ביצה), ממתיק (מלטיטול), שומנים צמחיים (שיאה, קוקוס, סויה. עלול לה. חמנייה), אבקת ח לב מלא (25%), פצפוצי סויה (8%) (איזולט חלבון סויה, אבקת קקאו, עמילן טפיוקה), חמאת קקאו, חומר הלחה )ליצרול), עיסת קקאן סיני תירס מסיס ים, סיבי פולידקסטרוזה, מתחלב (לציט",
+        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לצי",
         "servingNote": "ל-100 גרם",
         "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "דוגמה נקייה למנגנון של המדף: חלבון גבוה וסוכר 'נמוך' שמושג כמעט כולו במלטיטול. רשימת הרכיבים כאן קצרה יחסית, וזה לזכותו — אבל השומן הרווי הגבוה והחלפת הסוכר משאירים אותו במרכז הקבוצה, לא בראשה.",
+        "comparisonContext": "כמעט תאום של החטיף שלפניו מאותו מותג, עם אותה תמונה: הסוכר הנמוך הוא מלטיטול ולא הפחתה, אבל הסיבים (8.2 גרם) והחלבון שומרים אותו במרכז הקבוצה ולא בתחתיתה.",
         "positiveSignals": [
-          "34 גרם חלבון ל-100 גרם — מהגבוהים בקבוצה, מעט מתחת לחמישייה הראשונה",
-          "רשימת רכיבים קצרה יחסית"
+          "31 גרם חלבון ל-100 גרם",
+          "8.2 גרם סיבים ל-100 גרם — באמצע המדף",
+          "חלבון ממקור ממזון שלם"
         ],
         "limitingFactors": [
-          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר, לא הפחתה אמיתית",
-          "9.9 גרם שומן רווי ל-100 גרם — מהגבוהים במדף"
+          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
+          "גליצרול ברשימה — חטיף מהונדס"
         ]
       },
-      "displayTitle": "WIN חטיף חלבון קרם חלב"
+      "displayTitle": "WIN חטיף חלבון קרם קרמל"
+    },
+    {
+      "id": "pb-013",
+      "barcode": "7290015130035",
+      "name": "WIN חטיף חלבון קרם קרמל",
+      "name_he": "WIN חטיף חלבון קרם קרמל",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "score": 53.1,
+      "grade": "C",
+      "rank": 12,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290015130035.webp",
+      "image_url": "/products/7290015130035.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 371.0,
+        "fat_g": 17.0,
+        "fat_saturated_g": 7.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 208.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 1.7,
+        "dietary_fiber_g": 8.2,
+        "protein_g": 31.0
+      },
+      "protein_per_100g": 31.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "מספר הסוכר הנמוך בקטגוריה נרשם כאן, 1.7 גרם, ושלושה תחליפים מייצרים את המתיקות בפועל.",
+      "rowVerdict": "ההישג שעל האריזה נבנה במעבדה: מלטיטול, סורביטול ואריתריטול ממלאים את מקום הסוכר שירד. יש גם צד חיובי של ממש, שקדים קלויים בנתח מכובד וסיבים יפים; תערובת החלבון, שנשענת על קולגן וביצה, היא החוליה החלשה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": "PASS — no double-fire",
+        "protein_g": 31.0,
+        "sugar_g": 1.7,
+        "weighted_dim_score_pb": 61.06,
+        "effective_pb_cap": 62,
+        "total_pb_penalty": 8,
+        "caps_applied": [
+          {
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": "polyol_tier=1 (מלטיטול)"
+          }
+        ],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": true,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": true,
+          "collagen_detected": true,
+          "polyol_tier": 1,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "collagen",
+            "egg"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 85.9,
+          "calorie_density": 72,
+          "glycemic_quality": 100,
+          "protein_quality": 32.4,
+          "additive_quality": 15.0,
+          "satiety_support": 100,
+          "fat_quality": 59.0,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 0
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 371.0,
+          "protein": 31.0,
+          "sugar": 1.7,
+          "fat": 17.0,
+          "fiber": 8.2,
+          "sodium": 208.0
+        },
+        "ingredients": "תערובת חלבונים 30% (חלבון חלב, פפטידי קולגן, חלבון ביצה), ממתיק (מלטיטול), שקדים קלויים (12%), סיני תירם עלול לד מסיסים, חמאת קקאו, חומר הלחה (גליצרול), עיסת קקאן, ממתיק (סורביטול), אבקת חלב מלא (19.9%), חמאה, ממתיק (אריתריטול), סיני פולידקסטרוז, חומרי טעם וריח טב עיים, צבע מאכל (קרמל), מתחלבים (לצי",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "מספר הסוכר הנמוך ביותר במדף שייך כאן — וזו בדיוק הדגמה למה המספר הזה מטעה: הוא מושג כמעט כולו במלטיטול, לא בהפחתת סוכר. החטיף מחזיק 8.2 גרם סיבים ל-100 גרם, וזה לזכותו, אבל הסיפור הוא ההחלפה.",
+        "positiveSignals": [
+          "31 גרם חלבון ל-100 גרם",
+          "8.2 גרם סיבים ל-100 גרם — באמצע המדף",
+          "חלבון ממקור ממזון שלם"
+        ],
+        "limitingFactors": [
+          "הסוכר הנמוך הוא כמעט כולו מלטיטול שהחליף סוכר",
+          "גליצרול ברשימה — חטיף מהונדס"
+        ]
+      },
+      "displayTitle": "WIN חטיף חלבון קרם קרמל"
     },
     {
       "id": "pb-017",
@@ -2290,7 +1794,7 @@
       "format": "cookie",
       "score": 50,
       "grade": "C",
-      "rank": 16,
+      "rank": 13,
       "categoryTotal": 32,
       "imageUrl": "/products/7290117384572.webp",
       "image_url": "/products/7290117384572.webp",
@@ -2477,7 +1981,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 17,
+      "rank": 14,
       "categoryTotal": 32,
       "imageUrl": "/products/7290117384589.webp",
       "image_url": "/products/7290117384589.webp",
@@ -2671,7 +2175,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 18,
+      "rank": 15,
       "categoryTotal": 32,
       "imageUrl": "/products/7290117384596.webp",
       "image_url": "/products/7290117384596.webp",
@@ -2865,7 +2369,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 19,
+      "rank": 16,
       "categoryTotal": 32,
       "imageUrl": "/products/7290121160582.webp",
       "image_url": "/products/7290121160582.webp",
@@ -3066,7 +2570,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 20,
+      "rank": 17,
       "categoryTotal": 32,
       "imageUrl": "/products/7290121161916.webp",
       "image_url": "/products/7290121161916.webp",
@@ -3268,7 +2772,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 21,
+      "rank": 18,
       "categoryTotal": 32,
       "imageUrl": "/products/7290121161930.webp",
       "image_url": "/products/7290121161930.webp",
@@ -3470,7 +2974,7 @@
       "format": "cookie",
       "score": 50,
       "grade": "C",
-      "rank": 22,
+      "rank": 19,
       "categoryTotal": 32,
       "imageUrl": "/products/7290019766018.webp",
       "image_url": "/products/7290019766018.webp",
@@ -3628,7 +3132,7 @@
       "format": "cookie",
       "score": 50,
       "grade": "C",
-      "rank": 23,
+      "rank": 20,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018703304.webp",
       "image_url": "/products/7290018703304.webp",
@@ -3801,7 +3305,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 24,
+      "rank": 21,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018703076.webp",
       "image_url": "/products/7290018703076.webp",
@@ -3966,7 +3470,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 25,
+      "rank": 22,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018043899.webp",
       "image_url": "/products/7290018043899.webp",
@@ -4132,7 +3636,7 @@
       "format": "cookie",
       "score": 50,
       "grade": "C",
-      "rank": 26,
+      "rank": 23,
       "categoryTotal": 32,
       "imageUrl": "/products/7290018043134.webp",
       "image_url": "/products/7290018043134.webp",
@@ -4311,7 +3815,7 @@
       "format": "bar",
       "score": 50,
       "grade": "C",
-      "rank": 27,
+      "rank": 24,
       "categoryTotal": 32,
       "imageUrl": "/products/7290019310235.webp",
       "image_url": "/products/7290019310235.webp",
@@ -4471,13 +3975,507 @@
       "displayTitle": "אול אין ונילה קראנץ"
     },
     {
+      "id": "pb-008",
+      "barcode": "7290015130028",
+      "name": "WIN חטיף חלבון קרם חלב",
+      "name_he": "WIN חטיף חלבון קרם חלב",
+      "brand": "חטיף חלב WIN",
+      "format": "bar",
+      "score": 49.7,
+      "grade": "D",
+      "rank": 25,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290015130028.webp",
+      "image_url": "/products/7290015130028.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 435.0,
+        "fat_g": 22.0,
+        "fat_saturated_g": 9.9,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 260.0,
+        "carbohydrates_g": 33.0,
+        "sugars_g": 4.4,
+        "dietary_fiber_g": 2.3,
+        "protein_g": 34.0
+      },
+      "protein_per_100g": 34.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        }
+      ],
+      "insightLine": "מלטיטול ממתיק את קרם החלב, ושלוש משפחות חלבון מבודד (קולגן, ביצה, סויה) נערמות זו על זו באותה תערובת.",
+      "rowVerdict": "המתיקות כאן היא בעיקר עבודת מלטיטול במקום סוכר, וזה נפגש עם צבירה של שלושה חלבונים מבודדים בתערובת אחת. 9.9 גרם שומן רווי ל-100 גרם מהגבוהים במדף, והסיבים מהנמוכים בו. חלבון גבוה על התווית; ההרכב מאחוריו כבד יותר ממה שהחזית מבטיחה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": "PASS — no double-fire",
+        "protein_g": 34.0,
+        "sugar_g": 4.4,
+        "weighted_dim_score_pb": 55.68,
+        "effective_pb_cap": 62,
+        "total_pb_penalty": 6,
+        "caps_applied": [
+          {
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": "polyol_tier=1 (מלטיטול)"
+          }
+        ],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
+            "penalty": 6,
+            "reason": "3 isolate families: ['collagen', 'egg', 'soy']"
+          }
+        ],
+        "key_signals": {
+          "glycerol": false,
+          "maltitol": true,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": true,
+          "wholefood_protein": true,
+          "collagen_detected": true,
+          "polyol_tier": 1,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "collagen",
+            "egg",
+            "soy"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 69.8,
+          "calorie_density": 50,
+          "glycemic_quality": 83.6,
+          "protein_quality": 32.4,
+          "additive_quality": 33.0,
+          "satiety_support": 100,
+          "fat_quality": 58.3,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 4
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]",
+        "grade_proportionality_applied": {
+          "old_grade": "D",
+          "new_grade": "C",
+          "score_diff_vs_higher": 0.3,
+          "higher_product_barcode": "7290019310235",
+          "higher_product_score": 50,
+          "rule": "TASK-365: <1.0pt cross-boundary near-tie (trace only; floor grade retained per grade_boundary_policy_v1)"
+        }
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 435.0,
+          "protein": 34.0,
+          "sugar": 4.4,
+          "fat": 22.0,
+          "fiber": 2.3,
+          "sodium": 260.0
+        },
+        "ingredients": "תערובת חלבונים 28% (חלבון חלב פפטידי קולגן. חלבון ביצה), ממתיק (מלטיטול), שומנים צמחיים (שיאה, קוקוס, סויה. עלול לה. חמנייה), אבקת ח לב מלא (25%), פצפוצי סויה (8%) (איזולט חלבון סויה, אבקת קקאו, עמילן טפיוקה), חמאת קקאו, חומר הלחה )ליצרול), עיסת קקאן סיני תירס מסיס ים, סיבי פולידקסטרוזה, מתחלב (לציט",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "דוגמה נקייה למנגנון של המדף: חלבון גבוה וסוכר 'נמוך' שמושג כמעט כולו במלטיטול. רשימת הרכיבים כאן קצרה יחסית, וזה לזכותו — אבל השומן הרווי הגבוה והחלפת הסוכר משאירים אותו במרכז הקבוצה, לא בראשה.",
+        "positiveSignals": [
+          "34 גרם חלבון ל-100 גרם — מהגבוהים בקבוצה, מעט מתחת לחמישייה הראשונה",
+          "רשימת רכיבים קצרה יחסית"
+        ],
+        "limitingFactors": [
+          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר, לא הפחתה אמיתית",
+          "9.9 גרם שומן רווי ל-100 גרם — מהגבוהים במדף"
+        ]
+      },
+      "displayTitle": "WIN חטיף חלבון קרם חלב"
+    },
+    {
+      "id": "pb-012",
+      "barcode": "7290019401049",
+      "name": "חטיף שוקולד קרמל",
+      "name_he": "חטיף פרוטאין שוקולד קרמל",
+      "brand": "פרוטאין",
+      "format": "bar",
+      "score": 49.5,
+      "grade": "D",
+      "rank": 26,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290019401049.webp",
+      "image_url": "/products/7290019401049.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 362.0,
+        "fat_g": 13.0,
+        "fat_saturated_g": 5.7,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 92.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 3.6,
+        "dietary_fiber_g": 4.6,
+        "protein_g": 34.0
+      },
+      "protein_per_100g": 34.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        },
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        },
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
+      "insightLine": "הסוכר הנמוך על האריזה מגיע כמעט כולו ממלטיטול, וגליצרול שומר על המרקם הרך של הקרמל.",
+      "rowVerdict": "הסוכר 'הנמוך' כאן הוא בעיקר עבודת מלטיטול, וגליצרול מצטרף כמרכך מרקם ברשימת רכיבים ארוכה במיוחד. 362 קלוריות ל-100 גרם ושומן רווי ליד רף גבוה במדף, לצד חלבון מבודד ותערובת מהונדסת. חלבון גבוה על החזית; ההנדסה מאחוריו עושה את רוב העבודה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": "PASS — no double-fire",
+        "protein_g": 34.0,
+        "sugar_g": 3.6,
+        "weighted_dim_score_pb": 57.54,
+        "effective_pb_cap": 62,
+        "total_pb_penalty": 8,
+        "caps_applied": [
+          {
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": "polyol_tier=1 (מלטיטול)"
+          }
+        ],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": true,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": false,
+          "collagen_detected": true,
+          "polyol_tier": 1,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "collagen"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 77.3,
+          "calorie_density": 72,
+          "glycemic_quality": 92.2,
+          "protein_quality": 32.4,
+          "additive_quality": 0,
+          "satiety_support": 100,
+          "fat_quality": 54.2,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 30
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 362.0,
+          "protein": 34.0,
+          "sugar": 3.6,
+          "fat": 13.0,
+          "fiber": 4.6,
+          "sodium": 92.0
+        },
+        "ingredients": "חלבון חלב מרוכז 24% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא  , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב: לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מרו כז ממותק (חלב ממותק (חלב מרוכז,סוכר)  , שמן",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "חטיף שמשקף את אותו מנגנון: סוכר נמוך שמושג בהחלפה למלטיטול, חלבון מבודד וגליצרול, עם רשימת רכיבים ארוכה. ההנדסה כאן עושה את העבודה, לא מזון שלם.",
+        "positiveSignals": [
+          "34 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "חלבון מבודד, לא ממזון שלם",
+          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
+          "גליצרול ורשימת רכיבים ארוכה עם תוספי מזון רבים"
+        ]
+      },
+      "displayTitle": "חטיף פרוטאין שוקולד קרמל"
+    },
+    {
+      "id": "pb-011",
+      "barcode": "7290019401018",
+      "name": "חטיף קרם עוגיות",
+      "name_he": "חטיף פרוטאין קרם עוגיות",
+      "brand": "פרוטאין",
+      "format": "cookie",
+      "score": 48.9,
+      "grade": "D",
+      "rank": 27,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290019401018.webp",
+      "image_url": "/products/7290019401018.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 357.0,
+        "fat_g": 12.0,
+        "fat_saturated_g": 5.5,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 92.0,
+        "carbohydrates_g": 32.0,
+        "sugars_g": 3.7,
+        "dietary_fiber_g": 3.9,
+        "protein_g": 34.0
+      },
+      "protein_per_100g": 34.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        },
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        },
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        }
+      ],
+      "insightLine": "גם כאן הסוכר הנמוך מגיע ממלטיטול, וקולגן וגליצרול משלימים תערובת חלבון מהונדסת.",
+      "rowVerdict": "העוגייה חוזרת על אותו מנגנון: מלטיטול ממתיק במקום סוכר אמיתי, גליצרול שומר על הרכות, וקולגן פפטידים תופס חלק מרשימת החלבון. הנתרן כאן אכן מהנמוכים בקטגוריה, נקודת אור אמיתית בלוח שכולו נשען על הנדסת מזון ורכיבים מבודדים.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": "PASS — no double-fire",
+        "protein_g": 34.0,
+        "sugar_g": 3.7,
+        "weighted_dim_score_pb": 56.87,
+        "effective_pb_cap": 62,
+        "total_pb_penalty": 8,
+        "caps_applied": [
+          {
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": "polyol_tier=1 (מלטיטול)"
+          }
+        ],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": true,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": false,
+          "wholefood_protein": false,
+          "collagen_detected": true,
+          "polyol_tier": 1,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "collagen"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 75.4,
+          "calorie_density": 72,
+          "glycemic_quality": 90.5,
+          "protein_quality": 32.4,
+          "additive_quality": 0,
+          "satiety_support": 100,
+          "fat_quality": 52.7,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 30
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 357.0,
+          "protein": 34.0,
+          "sugar": 3.7,
+          "fat": 12.0,
+          "fiber": 3.9,
+          "sodium": 92.0
+        },
+        "ingredients": "חלבון חלב מרוכז 26% , שוקולד חלב עם מלטיטול 17% (ממתיק:מלטיטול,חמאת קקאו , אבקת חלב מלא  , עיסת קקאו , אבקת קקאו מופחת שומן , מתחלב : לציטין , סויה , טעם וניל טבעי) , קולגן פפטידים הידרוליזט 13% , ממרח קרמל 12% {פולידקסטרוז(סיבים) , ממתיק: מלטיטול , חלב מר וכז ממותק (חלב ממותק(חלב מרוכז , סוכר) , שמ",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "עוגייה שנשענת כולה על הנדסה: החלבון מבודד ולא ממזון שלם, הסוכר הנמוך הוא מלטיטול, וגליצרול שומר על המרקם. הרשימה כאן מהארוכות בקבוצה. הציון משקף הרכב, לא את מספר החלבון על החזית.",
+        "positiveSignals": [
+          "34 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "חלבון מבודד, לא ממזון שלם",
+          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
+          "גליצרול ורשימת רכיבים ארוכה עם תוספי מזון רבים"
+        ]
+      },
+      "displayTitle": "חטיף פרוטאין קרם עוגיות"
+    },
+    {
       "id": "pb-029",
       "barcode": "7290019766230",
       "name": "חטיף חלבון אסטרה סופט",
       "name_he": "חטיף חלבון אסטרה סופט",
       "brand": "all in",
       "format": "bar",
-      "score": 49.8,
+      "score": 48.3,
       "grade": "D",
       "rank": 28,
       "categoryTotal": 32,
@@ -4543,7 +4541,7 @@
         "cond2_double_fire_check": null,
         "protein_g": 27.3,
         "sugar_g": 4.8,
-        "weighted_dim_score_pb": 61.84,
+        "weighted_dim_score_pb": 60.28,
         "effective_pb_cap": 62,
         "total_pb_penalty": 12,
         "caps_applied": [
@@ -4588,7 +4586,7 @@
         },
         "protein_gate": "PASS",
         "dimension_scores": {
-          "processing_quality": 44.0,
+          "processing_quality": 35.0,
           "nutrient_density": 78.6,
           "calorie_density": 72,
           "glycemic_quality": 88.2,
@@ -4597,7 +4595,7 @@
           "satiety_support": 100,
           "fat_quality": 48.3,
           "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
+          "whole_food_integrity": 14
         },
         "dimension_weights": {
           "processing_quality": 0.12,
@@ -4615,15 +4613,7 @@
           "cap": 55,
           "note": "base engine binding cap that was inherited by protein_bar lens"
         },
-        "collagen_detection_note": null,
-        "grade_proportionality_applied": {
-          "old_grade": "D",
-          "new_grade": "C",
-          "score_diff_vs_higher": 0.2,
-          "higher_product_barcode": "7290019310235",
-          "higher_product_score": 50,
-          "rule": "TASK-365: <1.0pt cross-boundary → both get higher grade (protein_bar only)"
-        }
+        "collagen_detection_note": null
       },
       "expansion": {
         "nutrition": {
@@ -4651,181 +4641,6 @@
       "displayTitle": "אול אין חטיף חלבון אסטרה סופט"
     },
     {
-      "id": "pb-030",
-      "barcode": "7290019401544",
-      "name": "חטיף עוגיות טופי",
-      "name_he": "חטיף פרוטאין עוגיות טופי",
-      "brand": "פרוטאין",
-      "format": "cookie",
-      "score": 49.7,
-      "grade": "D",
-      "rank": 29,
-      "categoryTotal": 32,
-      "imageUrl": "/products/7290019401544.webp",
-      "image_url": "/products/7290019401544.webp",
-      "nutrition_per_100g": {
-        "energy_kcal": 346.0,
-        "fat_g": 11.0,
-        "fat_saturated_g": 9.1,
-        "fat_trans_g": null,
-        "cholesterol_mg": null,
-        "sodium_mg": 160.0,
-        "carbohydrates_g": 31.0,
-        "sugars_g": 3.9,
-        "dietary_fiber_g": 6.3,
-        "protein_g": 34.0
-      },
-      "protein_per_100g": 34.0,
-      "protein_per_bar": null,
-      "bar_weight_g": null,
-      "show_per_bar": false,
-      "confidence": "verified",
-      "confidence_label_he": "נתונים מאומתים",
-      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
-      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "name_he": "לציטין",
-          "tier": "functional",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
-        },
-        {
-          "e_number": "E150",
-          "name_he": "צבע קרמל",
-          "tier": "disclosure-gap",
-          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
-          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
-        },
-        {
-          "e_number": "E414",
-          "name_he": "גומי ערבי",
-          "tier": "functional",
-          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
-          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
-        },
-        {
-          "e_number": "E471",
-          "name_he": "מונו ודיגליצרידים",
-          "tier": "contested",
-          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
-          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
-        }
-      ],
-      "insightLine": "בעוגיית הטופי כמעט כל השומן הוא רווי, יחס שאין דומה לו בקטגוריה.",
-      "rowVerdict": "רוב מוחלט של השומן כאן רווי, בפער גדול מכל השאר במדף. תערובת החלבון נשענת גם על קולגן, המתיקות על מלטיטול, והגליצרול מלווה את הקרם. חלבון גבוה על התווית; ההרכב מספר סיפור חלש בהרבה.",
-      "_scoring_trace": {
-        "category": "snack_bar_granola",
-        "category_subtype": "protein_bar",
-        "protein_bar_lens_active": true,
-        "cond2_recal_p0_on": false,
-        "cond2_double_fire_check": "PASS — no double-fire",
-        "protein_g": 34.0,
-        "sugar_g": 3.9,
-        "weighted_dim_score_pb": 61.71,
-        "effective_pb_cap": 62,
-        "total_pb_penalty": 12,
-        "caps_applied": [
-          {
-            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
-            "cap": 62,
-            "reason": "polyol_tier=1 (מלטיטול)"
-          }
-        ],
-        "penalties_applied": [
-          {
-            "rule": "PROTEIN_BAR_GLYCEROL",
-            "penalty": 8,
-            "reason": "glycerol (humectant / engineering marker) detected"
-          },
-          {
-            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
-            "penalty": 6,
-            "reason": "3 isolate families: ['collagen', 'soy', 'whey']"
-          }
-        ],
-        "key_signals": {
-          "glycerol": true,
-          "maltitol": true,
-          "erythritol": false,
-          "sweetener_tier_c": false,
-          "isolate_stacking": true,
-          "wholefood_protein": false,
-          "collagen_detected": true,
-          "polyol_tier": 1,
-          "protein_gate": "PASS",
-          "families_detected": [
-            "collagen",
-            "soy",
-            "whey"
-          ]
-        },
-        "protein_gate": "PASS",
-        "dimension_scores": {
-          "processing_quality": 44.0,
-          "nutrient_density": 81.7,
-          "calorie_density": 72,
-          "glycemic_quality": 93.8,
-          "protein_quality": 68.8,
-          "additive_quality": 0,
-          "satiety_support": 100,
-          "fat_quality": 22.5,
-          "regulatory_quality": 60.0,
-          "whole_food_integrity": 30
-        },
-        "dimension_weights": {
-          "processing_quality": 0.12,
-          "nutrient_density": 0.14,
-          "calorie_density": 0.1,
-          "glycemic_quality": 0.17,
-          "protein_quality": 0.13,
-          "additive_quality": 0.1,
-          "satiety_support": 0.06,
-          "fat_quality": 0.08,
-          "regulatory_quality": 0.07,
-          "whole_food_integrity": 0.03
-        },
-        "base_engine_binding_cap": {
-          "cap": 55,
-          "note": "base engine binding cap that was inherited by protein_bar lens"
-        },
-        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]",
-        "grade_proportionality_applied": {
-          "old_grade": "D",
-          "new_grade": "C",
-          "score_diff_vs_higher": 0.1,
-          "higher_product_barcode": "7290019766230",
-          "higher_product_score": 49.8,
-          "rule": "TASK-365: <1.0pt cross-boundary → both get higher grade (protein_bar only)"
-        }
-      },
-      "expansion": {
-        "nutrition": {
-          "energyKcal": 346.0,
-          "protein": 34.0,
-          "sugar": 3.9,
-          "fat": 11.0,
-          "fiber": 6.3,
-          "sodium": 160.0
-        },
-        "ingredients": "ציפוי לבן עם מלטיטול 17% (ממתיק:מלטיטול , שמן לפתית , שמן קוקס , אבקת מי גבינה מתוקה , אבקת חלב כחוש , מתחלב:(לציטין) , חומר  טעם וריח), חלבון קולגן 13% , מחית בטעם קרמל 12% [חומר הלחה:(גליצרול) , מלטודקסטרין , סיבים תזונתיים:(אוליגופרוקטוז) , שמןnלפתית , ממתיק:(מלטיטול) , מסמיך:(גומי ערבי),אבקת חלב",
-        "servingNote": "ל-100 גרם",
-        "confidenceLabel": "נתונים מאומתים",
-        "comparisonContext": "עוגייה שמרכזת את החולשות של המדף: חלבון מבודד ולא ממזון שלם, הסוכר הנמוך הוא מלטיטול, ושומן רווי גבוה. אין כאן סיבה בודדת לציון הנמוך — יש תמונה כוללת של מוצר מהונדס.",
-        "positiveSignals": [
-          "34 גרם חלבון ל-100 גרם"
-        ],
-        "limitingFactors": [
-          "חלבון מבודד, לא ממזון שלם",
-          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
-          "9.1 גרם שומן רווי ל-100 גרם — בחלק הגבוה של המדף",
-          "גליצרול ורשימת רכיבים ארוכה"
-        ]
-      },
-      "displayTitle": "חטיף פרוטאין עוגיות טופי"
-    },
-    {
       "id": "pb-031",
       "barcode": "7290112915382",
       "name": "חטיף חלבון שוקולד דובאי",
@@ -4834,7 +4649,7 @@
       "format": "bar",
       "score": 45,
       "grade": "D",
-      "rank": 30,
+      "rank": 29,
       "categoryTotal": 32,
       "imageUrl": "/products/7290112915382.webp",
       "image_url": "/products/7290112915382.webp",
@@ -4981,7 +4796,7 @@
       "format": "bar",
       "score": 45,
       "grade": "D",
-      "rank": 31,
+      "rank": 30,
       "categoryTotal": 32,
       "imageUrl": "/products/7290112913487.webp",
       "image_url": "/products/7290112913487.webp",
@@ -5121,7 +4936,7 @@
       "format": "bar",
       "score": 45,
       "grade": "D",
-      "rank": 32,
+      "rank": 31,
       "categoryTotal": 32,
       "imageUrl": "/products/7290112915351.webp",
       "image_url": "/products/7290112915351.webp",
@@ -5265,6 +5080,173 @@
         ]
       },
       "displayTitle": "מקס ברנר חטיף חלבון קרמל מלוח"
+    },
+    {
+      "id": "pb-030",
+      "barcode": "7290019401544",
+      "name": "חטיף עוגיות טופי",
+      "name_he": "חטיף פרוטאין עוגיות טופי",
+      "brand": "פרוטאין",
+      "format": "cookie",
+      "score": 43.3,
+      "grade": "D",
+      "rank": 32,
+      "categoryTotal": 32,
+      "imageUrl": "/products/7290019401544.webp",
+      "image_url": "/products/7290019401544.webp",
+      "nutrition_per_100g": {
+        "energy_kcal": 346.0,
+        "fat_g": 11.0,
+        "fat_saturated_g": 9.1,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 160.0,
+        "carbohydrates_g": 31.0,
+        "sugars_g": 3.9,
+        "dietary_fiber_g": 6.3,
+        "protein_g": 34.0
+      },
+      "protein_per_100g": 34.0,
+      "protein_per_bar": null,
+      "bar_weight_g": null,
+      "show_per_bar": false,
+      "confidence": "verified",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_sub_reason": "נתוני תזונה ורכיבים ישירות מדף המוצר בשופרסל",
+      "confidence_tooltip_he": "הציון מבוסס על פאנל התזונה ורשימת הרכיבים שפורסמו למוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "name_he": "לציטין",
+          "tier": "functional",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        },
+        {
+          "e_number": "E471",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "explanation_he": "מונו ודיגליצרידים הם חומרי תחליב נפוצים הדומים כימית לחלק מתוצרי עיכול השומן הטבעי; הם מאושרים לשימוש ברמות הנוכחיות."
+        }
+      ],
+      "insightLine": "בעוגיית הטופי כמעט כל השומן הוא רווי, יחס שאין דומה לו בקטגוריה.",
+      "rowVerdict": "רוב מוחלט של השומן כאן רווי, בפער גדול מכל השאר במדף. תערובת החלבון נשענת גם על קולגן, המתיקות על מלטיטול, והגליצרול מלווה את הקרם. חלבון גבוה על התווית; ההרכב מספר סיפור חלש בהרבה.",
+      "_scoring_trace": {
+        "category": "snack_bar_granola",
+        "category_subtype": "protein_bar",
+        "protein_bar_lens_active": true,
+        "cond2_recal_p0_on": false,
+        "cond2_double_fire_check": "PASS — no double-fire",
+        "protein_g": 34.0,
+        "sugar_g": 3.9,
+        "weighted_dim_score_pb": 55.3,
+        "effective_pb_cap": 62,
+        "total_pb_penalty": 12,
+        "caps_applied": [
+          {
+            "rule": "PROTEIN_BAR_MALTITOL_TIER1",
+            "cap": 62,
+            "reason": "polyol_tier=1 (מלטיטול)"
+          }
+        ],
+        "penalties_applied": [
+          {
+            "rule": "PROTEIN_BAR_GLYCEROL",
+            "penalty": 8,
+            "reason": "glycerol (humectant / engineering marker) detected"
+          },
+          {
+            "rule": "PROTEIN_BAR_ISOLATE_STACKING",
+            "penalty": 6,
+            "reason": "3 isolate families: ['collagen', 'soy', 'whey']"
+          }
+        ],
+        "key_signals": {
+          "glycerol": true,
+          "maltitol": true,
+          "erythritol": false,
+          "sweetener_tier_c": false,
+          "isolate_stacking": true,
+          "wholefood_protein": false,
+          "collagen_detected": true,
+          "polyol_tier": 1,
+          "protein_gate": "PASS",
+          "families_detected": [
+            "collagen",
+            "soy",
+            "whey"
+          ]
+        },
+        "protein_gate": "PASS",
+        "dimension_scores": {
+          "processing_quality": 35.0,
+          "nutrient_density": 81.7,
+          "calorie_density": 72,
+          "glycemic_quality": 93.8,
+          "protein_quality": 32.4,
+          "additive_quality": 0,
+          "satiety_support": 100,
+          "fat_quality": 22.5,
+          "regulatory_quality": 60.0,
+          "whole_food_integrity": 10
+        },
+        "dimension_weights": {
+          "processing_quality": 0.12,
+          "nutrient_density": 0.14,
+          "calorie_density": 0.1,
+          "glycemic_quality": 0.17,
+          "protein_quality": 0.13,
+          "additive_quality": 0.1,
+          "satiety_support": 0.06,
+          "fat_quality": 0.08,
+          "regulatory_quality": 0.07,
+          "whole_food_integrity": 0.03
+        },
+        "base_engine_binding_cap": {
+          "cap": 55,
+          "note": "base engine binding cap that was inherited by protein_bar lens"
+        },
+        "collagen_detection_note": "פפטידי קולגן / collagen peptides tokens now in PROTEIN_ISOLATE_FAMILIES[collagen]"
+      },
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 346.0,
+          "protein": 34.0,
+          "sugar": 3.9,
+          "fat": 11.0,
+          "fiber": 6.3,
+          "sodium": 160.0
+        },
+        "ingredients": "ציפוי לבן עם מלטיטול 17% (ממתיק:מלטיטול , שמן לפתית , שמן קוקס , אבקת מי גבינה מתוקה , אבקת חלב כחוש , מתחלב:(לציטין) , חומר  טעם וריח), חלבון קולגן 13% , מחית בטעם קרמל 12% [חומר הלחה:(גליצרול) , מלטודקסטרין , סיבים תזונתיים:(אוליגופרוקטוז) , שמןnלפתית , ממתיק:(מלטיטול) , מסמיך:(גומי ערבי),אבקת חלב",
+        "servingNote": "ל-100 גרם",
+        "confidenceLabel": "נתונים מאומתים",
+        "comparisonContext": "עוגייה שמרכזת את החולשות של המדף: חלבון מבודד ולא ממזון שלם, הסוכר הנמוך הוא מלטיטול, ושומן רווי גבוה. אין כאן סיבה בודדת לציון הנמוך — יש תמונה כוללת של מוצר מהונדס.",
+        "positiveSignals": [
+          "34 גרם חלבון ל-100 גרם"
+        ],
+        "limitingFactors": [
+          "חלבון מבודד, לא ממזון שלם",
+          "הסוכר הנמוך הוא מלטיטול שהחליף סוכר",
+          "9.1 גרם שומן רווי ל-100 גרם — בחלק הגבוה של המדף",
+          "גליצרול ורשימת רכיבים ארוכה"
+        ]
+      },
+      "displayTitle": "חטיף פרוטאין עוגיות טופי"
     }
   ]
 }
