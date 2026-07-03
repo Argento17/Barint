@@ -1,14 +1,14 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/bread_frontend_v4.json`
-**Generated:** 2026-07-03T08:34:40Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T09:45:07Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
-| [FAIL] G2 COVERAGE | FAIL |
+| [WARN] G2 COVERAGE | WARN |
 | [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
 | [WARN] G5 GRADE-INTEGRITY | WARN |
@@ -16,14 +16,14 @@
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
-**Overall: FAIL**
+**Overall: PASS**
 
 ## Detail
 
 ### [PASS] G1 SCHEMA
   INFO: Document validates against schema
 
-### [FAIL] G2 COVERAGE
+### [WARN] G2 COVERAGE
   INFO: imageUrl: 23/23 non-null
   INFO: name: 23/23 non-null
   INFO: score: 23/23 non-null
@@ -40,10 +40,8 @@
   INFO: expansion.confidenceLabel: 23/23
   WARN: No corpus provided — imageUrl regression check skipped
   INFO: name: all products have Hebrew characters in name
-  FAIL: insightLine: 4/23 products still PENDING_COPY (page authored but incomplete)
-  FAIL: rowVerdict: 4/23 products still PENDING_COPY (page authored but incomplete)
-  FAIL: 4/23 products render NO verdict — both insightLine and rowVerdict are unauthored (PENDING/null/empty/missing) after the copy stage ran — barcodes: 2079033, 2079927, 2079996, 4685027
-  INFO: v3 milk-depth coverage checks: SKIP (copy stage not yet run; 4/23 insightLines still PENDING)
+  INFO: verdict coverage: every product has an authored insightLine or rowVerdict
+  INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
 
 ### [WARN] G3 SCOPE
   INFO: Displayed products: 23
@@ -72,8 +70,8 @@
   WARN: barcode=7290014321168: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=6451484: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=6451507: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290016967074: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=7290018500460: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290016967074: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=2079217: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=4685027: no trace found in --run dir, cannot verify score vs trace
   WARN: barcode=1902325: no trace found in --run dir, cannot verify score vs trace
