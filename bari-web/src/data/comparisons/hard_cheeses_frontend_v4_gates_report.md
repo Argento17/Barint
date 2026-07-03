@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/hard_cheeses_frontend_v4.json`
-**Generated:** 2026-07-03T14:59:42Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T15:17:45Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
@@ -91,14 +91,14 @@
 ### [PASS] G7 PARITY
   INFO: Product count: current=31 baseline=31
   INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=589  baseline=589  delta=+0
+  INFO: Avg consumer-text chars/product: current=588  baseline=589  delta=-0
   INFO: No grade changes vs baseline
   INFO: 
   INFO: === PARITY SUMMARY TABLE ===
   INFO:   Metric                                 Current    Baseline       Delta
   INFO:   Product count                               31          31          +0
   INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          589         589          +0
+  INFO:   Avg chars/product                          588         589          -0
   INFO:   Grade changes                                0           —           —
   INFO:   Products added                               0           —           —
   INFO:   Products removed                             0           —           —

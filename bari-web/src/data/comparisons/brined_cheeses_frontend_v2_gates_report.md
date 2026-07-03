@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json`
-**Generated:** 2026-07-03T14:59:42Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T15:17:45Z  |  **Elapsed:** 0.1s
 
 ## Summary
 

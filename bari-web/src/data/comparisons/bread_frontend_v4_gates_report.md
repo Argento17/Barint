@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/bread_frontend_v4.json`
-**Generated:** 2026-07-03T14:59:41Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T15:17:44Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
@@ -83,14 +83,14 @@
 ### [PASS] G7 PARITY
   INFO: Product count: current=23 baseline=23
   INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=428  baseline=428  delta=+0
+  INFO: Avg consumer-text chars/product: current=428  baseline=428  delta=-0
   INFO: No grade changes vs baseline
   INFO: 
   INFO: === PARITY SUMMARY TABLE ===
   INFO:   Metric                                 Current    Baseline       Delta
   INFO:   Product count                               23          23          +0
   INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          428         428          +0
+  INFO:   Avg chars/product                          428         428          -0
   INFO:   Grade changes                                0           —           —
   INFO:   Products added                               0           —           —
   INFO:   Products removed                             0           —           —
