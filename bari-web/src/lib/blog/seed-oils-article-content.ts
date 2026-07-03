@@ -5,7 +5,7 @@ export const HASHVAOT_HREF = "/hashvaot";
 
 /**
  * Content object for the seed-oils evidence explainer
- * ("שמני זרעים: מה המחקר באמת אומר, ומה ברי עושה עם זה").
+ * ("שמני זרעים: מה המחקר באמת אומר, ומה בארי עושה עם זה").
  *
  * Follows the canonical Bari blog content pattern established by food-dyes.json
  * (TASK-492A): a single data file consumed by layout-stable sub-components.
@@ -19,6 +19,13 @@ export const HASHVAOT_HREF = "/hashvaot";
  * of Public Health (Dr. Matti Marklund). Corroboration only, declared conflict
  * of interest: Nagra et al., Critical Reviews in Food Science and Nutrition,
  * April 2026.
+ *
+ * TASK-492A revision (owner review pass): brand name corrected ברי -> בארי
+ * throughout; `sections[].chart` (the cookies rank-1-vs-bottom-two proof visual,
+ * on the "bari-proof" section) and `claimsTable` (optional claims-vs-evidence
+ * table, inset into "institutions") added — both consumed by
+ * seed-oils-cookies-chart.tsx / seed-oils-claims-table.tsx, verified against
+ * cookies_coffee_frontend_v2.json (117-product corpus).
  */
 export const seedOilsArticle = seedOilsArticleData;
 
