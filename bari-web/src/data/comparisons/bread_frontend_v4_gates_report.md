@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/bread_frontend_v4.json`
-**Generated:** 2026-07-03T09:45:07Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T15:17:44Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
@@ -13,7 +13,7 @@
 | [PASS] G4 OFF | PASS |
 | [WARN] G5 GRADE-INTEGRITY | WARN |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [SKIP] G7 PARITY | SKIP |
+| [PASS] G7 PARITY | PASS |
 | [PASS] G8 DATA-SANITY | PASS |
 
 **Overall: PASS**
@@ -80,8 +80,20 @@
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [SKIP] G7 PARITY
-  SKIP: No baseline provided
+### [PASS] G7 PARITY
+  INFO: Product count: current=23 baseline=23
+  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
+  INFO: Avg consumer-text chars/product: current=428  baseline=428  delta=-0
+  INFO: No grade changes vs baseline
+  INFO: 
+  INFO: === PARITY SUMMARY TABLE ===
+  INFO:   Metric                                 Current    Baseline       Delta
+  INFO:   Product count                               23          23          +0
+  INFO:   Image coverage %                         100.0       100.0        +0.0
+  INFO:   Avg chars/product                          428         428          -0
+  INFO:   Grade changes                                0           —           —
+  INFO:   Products added                               0           —           —
+  INFO:   Products removed                             0           —           —
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)

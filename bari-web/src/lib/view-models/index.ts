@@ -20,6 +20,9 @@ export interface BariNutritionVM {
   satFat?: number | null;
   fiber: number | null;
   sodium: number | null;
+  /** Carbohydrates g per 100g/ml (TASK-487). Internal data-completeness field, not currently
+   *  rendered (golden 4-cell panel kept per owner scope-lock 2026-07-03). Additive, non-breaking. */
+  carbs?: number | null;
 }
 
 // ─── Expansion ────────────────────────────────────────────────────────────────

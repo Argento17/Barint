@@ -313,6 +313,8 @@ NUTRITION_FIELD_MAP = {
     "fat": "fat_g",
     "fiber": "dietary_fiber_g",
     "sodium": "sodium_mg",
+    "carbs": "carbohydrates_g",
+    "satFat": "fat_saturated_g",
 }
 
 
