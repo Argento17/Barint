@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gen Z Hero v2 — direction prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f4faf7;
+      --green: #0d6b4d;
+      --green-bright: #167A58;
+      --text: #0a0f14;
+      --muted: #3d4a57;
+      --border: rgba(13,107,77,.18);
+      --warn: #b45309;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Heebo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .banner {
+      background: #0a0f14;
+      color: #e8f5ef;
+      padding: .55rem 1rem;
+      font-size: .8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .hero {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 1.5rem;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--green-bright);
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      margin-bottom: 1rem;
+    }
+    .sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 34ch;
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+    .layout {
+      display: grid;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .layout { grid-template-columns: 1fr 1.1fr; }
+    }
+    .ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.5rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .9rem 1.35rem;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: transform .15s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-p {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(13,107,77,.25);
+    }
+    .btn-s {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .hook-label {
+      font-size: .75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: .65rem;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .75rem;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 1rem;
+    }
+    .panel {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1rem;
+      border: 1px solid rgba(0,0,0,.06);
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .panel-tag {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--muted);
+      margin-bottom: .5rem;
+    }
+    .panel-main {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .panel.pack .panel-main { color: var(--green); }
+    .panel.inside .panel-main { color: var(--warn); }
+    .panel-note {
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: .75rem;
+    }
+    .gap-badge {
+      grid-column: 1 / -1;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--warn);
+      padding: .35rem;
+    }
+    .carousel-block {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid rgba(0,0,0,.06);
+    }
+    .carousel-block h2 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: .75rem;
+    }
+    .carousel-mock {
+      height: 220px;
+      border-radius: 18px;
+      border: 2px dashed var(--border);
+      background: linear-gradient(135deg, #f4faf7 0%, #fff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 600;
+      text-align: center;
+      padding: 1rem;
+    }
+    .note {
+      margin-top: 1rem;
+      font-size: .8rem;
+      color: var(--muted);
+      max-width: 50rem;
+    }
+    .ph { color: #9aa5b1; font-style: italic; }
+  </style>
+</head>
+<body>
+  <div class="banner">V2 DIRECTION — no product strip · Heebo · higher contrast · copy slots empty (Content rework)</div>
+
+  <section class="hero">
+    <div class="layout">
+      <div>
+        <div class="eyebrow"><span class="ph">[ eyebrow — Content ]</span></div>
+        <h1><span class="ph">[ headline — sharp, active, not academic ]</span></h1>
+        <p class="sub"><span class="ph">[ subline — one punchy sentence ]</span></p>
+        <div class="ctas">
+          <a class="btn btn-p" href="#"><span class="ph">[ primary CTA — action ]</span></a>
+          <a class="btn btn-s" href="#"><span class="ph">[ secondary CTA ]</span></a>
+        </div>
+        <p class="note">No static product row. Hero hook = one real shelf moment (corpus). Interactivity = carousel + comparisons below.</p>
+      </div>
+
+      <div>
+        <p class="hook-label">Hero visual — front vs inside (example from live cereals data)</p>
+        <div class="split">
+          <div class="panel pack">
+            <div class="panel-tag">מה שכתוב בחזית</div>
+            <div class="panel-main">דגנים מלאים</div>
+            <div class="panel-note">תביעת אריזה · דגני בוקר</div>
+          </div>
+          <div class="panel inside">
+            <div class="panel-tag">מה שבראש הרשימה</div>
+            <div class="panel-main">קמח תירס / קמח מזוקק</div>
+            <div class="panel-note">רכיב ראשון בפועל · ממצא קטגוריה</div>
+          </div>
+          <div class="gap-badge">פער בין תביעה לרכיבים — לא שיפוט, ממצא</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="carousel-block">
+      <h2>השוואות מהמדף — האינטראקציה האמיתית</h2>
+      <div class="carousel-mock">[ Live carousel P1-02 — duels, spotlights, category reports ]<br />User taps in; hero does not duplicate this</div>
+    </div>
+  </section>
+</body>
+</html>

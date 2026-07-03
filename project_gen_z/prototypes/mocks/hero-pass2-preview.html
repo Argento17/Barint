@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bari -- Hero Pass 3 Preview</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #F7F7F2;
+      --green: #167A58;
+      --green-mid: #1F8F6A;
+      --text: #111318;
+      --muted: #4E5663;
+      --line: rgba(17,19,24,.07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Heebo, sans-serif; background: var(--cream); color: var(--text); }
+    .banner { background: #E8F5EF; border-bottom: 1px solid rgba(31,143,106,.2); padding: .55rem 1rem; font-size: .8rem; text-align: center; color: var(--green); font-weight: 700; }
+    .shell { max-width: 76rem; margin: 0 auto; padding: 0 1.25rem; }
+    .nav { height: 4rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.5); }
+    .logo { font-weight: 900; font-size: 1.35rem; color: var(--green); }
+    .nav-links { display: flex; gap: 1.25rem; font-weight: 600; font-size: .92rem; color: var(--muted); }
+
+    /* Hero */
+    .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--cream); }
+    .hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 55% at 22% 45%, rgba(47,174,130,.06), transparent 68%),
+                  radial-gradient(ellipse 50% 40% at 85% 20%, rgba(255,255,255,.9), transparent 70%); }
+    .hero-grid { position: relative; display: grid; gap: 2.5rem; align-items: center; padding: 3.5rem 0 3rem; }
+    @media (min-width: 768px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 2rem; padding: 4.5rem 0 4rem; } }
+    .copy h1 { font-size: clamp(2.25rem, 5.5vw, 3.75rem); font-weight: 800; line-height: 1.05; letter-spacing: -.04em; margin-bottom: 1.25rem; }
+    .copy h1 .g { color: var(--green); }
+    .copy .sub { font-size: 1.1rem; line-height: 1.65; color: var(--muted); max-width: 34ch; margin-bottom: 1.75rem; }
+    .cta-primary { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; max-width: 20rem; padding: 1rem 1.75rem; background: var(--green); color: var(--cream); border: none; border-radius: 1rem; font-family: inherit; font-size: 1rem; font-weight: 700; text-decoration: none; box-shadow: 0 16px 40px -16px rgba(22,122,88,.45); }
+    .cta-secondary { display: block; margin-top: .75rem; font-size: .88rem; font-weight: 600; color: #9A9FA6; }
+
+    /* Stage canvas -- Pass 3: one large rounded cream card */
+    .stage-wrap { display: flex; justify-content: center; }
+    @media (min-width: 768px) { .stage-wrap { justify-content: flex-end; } }
+    .canvas { position: relative; width: min(100%, 30rem); border-radius: 1.5rem; border: 1px solid rgba(17,19,24,.06); background: linear-gradient(to bottom, #FAFAF7, #F2F2EC); box-shadow: 0 24px 60px -20px rgba(17,19,24,.14); overflow: hidden; }
+    .stage { position: relative; aspect-ratio: 4/5; min-height: 22rem; }
+    /* Oval platform */
+    .platform-outer { position: absolute; left: 8%; right: 8%; bottom: 7%; height: 20%; border-radius: 50%; background: linear-gradient(to bottom, rgba(230,237,232,.7), rgba(221,228,223,.4)); filter: blur(3px); z-index: 0; }
+    .platform-inner { position: absolute; left: 13%; right: 13%; bottom: 9%; height: 15%; border-radius: 50%; border: 1px solid rgba(31,143,106,.08); background: radial-gradient(ellipse at center, rgba(255,255,255,.82), rgba(247,247,242,.1)); z-index: 0; }
+    /* All packs at consistent -4deg */
+    .pack { position: absolute; pointer-events: none; transform: rotate(-4deg); filter: drop-shadow(0 12px 24px rgba(17,19,24,.13)); }
+    .pack img { width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+
+    /* Score ring */
+    .score-ring { position: absolute; top: 8%; left: 62%; z-index: 10; width: 4.5rem; height: 4.5rem; border-radius: 50%; background: rgba(255,255,255,.95); box-shadow: 0 12px 32px -12px rgba(17,19,24,.22); border: 1px solid rgba(17,19,24,.06); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .score-ring .n { font-size: 1.15rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .score-ring .g { font-size: .62rem; font-weight: 700; color: var(--muted); margin-top: .15rem; }
+    .score-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+
+    /* Radar card */
+    .radar-card { position: absolute; top: .75rem; right: .75rem; z-index: 20; width: 7.5rem; padding: .75rem; border-radius: 1rem; border: 1px solid rgba(17,19,24,.06); background: rgba(255,255,255,.92); box-shadow: 0 16px 40px -18px rgba(17,19,24,.2); }
+    .radar-card p { font-size: .62rem; font-weight: 700; color: var(--green); margin-bottom: .35rem; }
+
+    /* Pills */
+    .pill { position: absolute; z-index: 20; padding: .4rem .85rem; border-radius: 999px; border: 1px solid rgba(31,143,106,.2); background: rgba(255,255,255,.92); font-size: .68rem; font-weight: 700; color: var(--green); box-shadow: 0 6px 20px -8px rgba(17,19,24,.16); }
+    .pill-quality { left: .75rem; bottom: 16%; }
+    .pill-ingredient { right: .75rem; bottom: 26%; }
+
+    /* Comparison section */
+    .comparisons { padding: 3.5rem 0 4rem; }
+    .comp-head { margin-bottom: 2rem; }
+    .comp-eyebrow { font-size: .85rem; font-weight: 700; color: var(--green); margin-bottom: .5rem; }
+    .comp-head h2 { font-size: clamp(1.6rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -.04em; margin-bottom: .5rem; }
+    .comp-head .sub { color: var(--muted); line-height: 1.6; max-width: 42ch; }
+
+    /* Editorial comparison card -- Pass 3 */
+    .feat-card { max-width: 52rem; margin: 0 auto 2.5rem; background: #fff; border: 1px solid rgba(17,19,24,.07); border-radius: 1.75rem; overflow: hidden; box-shadow: 0 20px 50px -24px rgba(17,19,24,.22); text-decoration: none; color: inherit; display: block; }
+
+    /* Top grid: story | vitabix | VS | lyon */
+    .feat-grid { display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .feat-grid { grid-template-columns: minmax(0,1fr) auto auto auto; } }
+
+    /* Story column */
+    .story-col { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: 1.5rem; border-bottom: 1px solid rgba(17,19,24,.05); }
+    @media (min-width: 768px) { .story-col { border-bottom: 0; border-inline-start: 1px solid rgba(17,19,24,.05); } }
+    .story-eyebrow { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--green); }
+    .story-title { font-size: 1.45rem; font-weight: 800; letter-spacing: -.03em; line-height: 1.2; margin: .3rem 0; }
+    .story-matchup { font-size: .88rem; color: var(--muted); line-height: 1.55; }
+    .story-verdict { font-size: .88rem; font-weight: 500; line-height: 1.55; }
+    .story-cta { font-size: .85rem; font-weight: 700; color: var(--green-mid); }
+
+    /* Product columns */
+    .prod-col { display: flex; flex-direction: column; align-items: center; gap: .75rem; padding: 1.5rem 1.25rem; text-align: center; border-bottom: 1px solid rgba(17,19,24,.05); }
+    @media (min-width: 768px) { .prod-col { border-bottom: 0; border-inline-start: 1px solid rgba(17,19,24,.05); } }
+    .prod-col img { height: 7rem; width: auto; object-fit: contain; mix-blend-mode: multiply; }
+    .score-chip { min-width: 2.75rem; padding: 5px 8px; border-radius: .5rem; text-align: center; border: 1px solid; border-inline-start-width: 4px; }
+    .score-chip.b { background: #E8F4EC; border-color: rgba(84,110,20,.25); border-inline-start-color: #546E14; }
+    .score-chip.c { background: #F5F0E4; border-color: rgba(138,99,0,.25); border-inline-start-color: #8A6300; }
+    .score-chip .sn { font-size: .85rem; font-weight: 800; line-height: 1; }
+    .score-chip.b .sn { color: #546E14; }
+    .score-chip.c .sn { color: #8A6300; }
+    .score-chip .gl { font-size: .62rem; font-weight: 700; margin-top: 3px; }
+    .prod-brand { font-size: .72rem; font-weight: 700; max-width: 7rem; line-height: 1.3; }
+
+    /* VS circle */
+    .vs-col { display: none; align-items: center; justify-content: center; padding: 0 .5rem; }
+    @media (min-width: 768px) { .vs-col { display: flex; } }
+    .vs { width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 2px solid #D1D5D0; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: .58rem; font-weight: 800; color: #6B7280; }
+
+    /* Bottom: insight strip + bullets */
+    .feat-bottom { padding: 1rem 1.5rem 1.25rem; border-top: 1px solid rgba(17,19,24,.05); }
+    .insight-strip { margin-bottom: .75rem; padding: .65rem 1rem; border-radius: .75rem; border-inline-end: 3px solid var(--green-mid); background: var(--cream); font-size: .88rem; font-weight: 700; color: var(--green); }
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+    .bullets li { display: flex; align-items: flex-start; gap: .5rem; font-size: .78rem; color: var(--muted); }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green-mid); flex-shrink: 0; margin-top: .3rem; }
+  </style>
+</head>
+<body>
+  <div class="banner">Pass 3 preview -- hero canvas + editorial duel card. Not production.</div>
+  <div class="shell">
+    <header class="nav">
+      <div class="logo">Bari</div>
+      <nav class="nav-links"><span>השוואות</span><span>בלוג</span></nav>
+    </header>
+  </div>
+
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="copy">
+        <h1>האריזה מספרת סיפור.<br /><span class="g">בארי בודקת את הרכיבים.</span></h1>
+        <p class="sub">חפשו מוצר מהסופר וקבלו תשובה פשוטה: מה טוב, מה בעייתי, ומה בעיקר שיווק.</p>
+        <a class="cta-primary" href="#">חפשו מוצר</a>
+        <span class="cta-secondary">סריקת ברקוד בקרוב</span>
+      </div>
+
+      <div class="stage-wrap">
+        <!-- PASS 3: single rounded cream canvas -->
+        <div class="canvas">
+          <div class="stage">
+            <div class="platform-outer"></div>
+            <div class="platform-inner"></div>
+
+            <!-- 5 products, consistent -4deg -->
+            <div class="pack" style="top:36%;right:75%;width:22%;z-index:1"><img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ARO54_Z_P_7290017962047_1.png" alt="גרנולה" /></div>
+            <div class="pack" style="top:40%;right:56%;width:22%;z-index:2"><img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UVF46_Z_P_7290102393190_1.png" alt="יוגורט" /></div>
+            <!-- vitabix hero: larger, centered -->
+            <div class="pack" style="top:10%;right:35%;width:30%;z-index:4"><img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KAG24_Z_P_5010029000061_1.png" alt="ויטביקס" /></div>
+            <div class="pack" style="top:26%;right:14%;width:22%;z-index:2"><img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BAC42_Z_P_5411188135005_1.png" alt="משקה שיבולת שועל" /></div>
+            <div class="pack" style="top:30%;right:2%;width:20%;z-index:1"><img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/III56_Z_P_7290017334479_1.png" alt="שמן זית" /></div>
+
+            <!-- Score ring anchored to vitabix -->
+            <div class="score-ring">
+              <svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="28" fill="none" stroke="#E8ECE9" stroke-width="5"/><circle cx="36" cy="36" r="28" fill="none" stroke="#1F8F6A" stroke-width="5" stroke-linecap="round" stroke-dasharray="175.9" stroke-dashoffset="44"/></svg>
+              <span class="n">75</span><span class="g">B</span>
+            </div>
+
+            <!-- Radar card top-start -->
+            <div class="radar-card">
+              <p>ניתוח מוצר</p>
+              <svg viewBox="0 0 120 120" width="88" height="88">
+                <g stroke="rgba(17,19,24,.1)" fill="none" stroke-width="1">
+                  <polygon points="60,22 95,50 82,95 38,95 25,50"/>
+                  <polygon points="60,35 85,52 74,82 46,82 35,52"/>
+                  <polygon points="60,48 75,54 66,69 54,69 45,54"/>
+                  <line x1="60" y1="60" x2="60" y2="22"/><line x1="60" y1="60" x2="95" y2="50"/><line x1="60" y1="60" x2="82" y2="95"/><line x1="60" y1="60" x2="38" y2="95"/><line x1="60" y1="60" x2="25" y2="50"/>
+                </g>
+                <polygon points="60,30 88,48 74,88 44,86 32,52" fill="rgba(31,143,106,.12)" stroke="#1F8F6A" stroke-width="2"/>
+              </svg>
+            </div>
+
+            <!-- Floating pills -->
+            <div class="pill pill-ingredient">איכות רכיבים</div>
+            <div class="pill pill-quality">עיבוד מינימלי</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="comparisons">
+    <div class="shell">
+      <div class="comp-head">
+        <p class="comp-eyebrow">ניתוחי קטגוריה · מוצרים אמיתיים</p>
+        <h2>השוואות מהמוצרים שאתם צורכים ביום יום</h2>
+        <p class="sub">לא כל מה שנראה דומה — באמת דומה.</p>
+      </div>
+
+      <!-- Pass 3: editorial story card -->
+      <a class="feat-card" href="#">
+        <div class="feat-grid">
+
+          <!-- Story column -->
+          <div class="story-col">
+            <div>
+              <p class="story-eyebrow">דגני בוקר</p>
+              <h3 class="story-title">מי באמת פחות מתוק?</h3>
+              <p class="story-matchup">ויטביקס מול נסטלה — אותה מדף, תמונה אחרת לגמרי</p>
+            </div>
+            <p class="story-verdict">ויטביקס מקבל ציון 75 בזכות מינימום סוכר וסיבים גבוהים. נסטלה נחתמת על 55 — בעיקר בגלל עומס הסוכר.</p>
+            <div class="story-cta">לצפייה בהשוואה ←</div>
+          </div>
+
+          <!-- Vitabix -->
+          <div class="prod-col">
+            <img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KAG24_Z_P_5010029000061_1.png" alt="ויטביקס" />
+            <div class="score-chip b"><div class="sn">75</div><div class="gl">B</div></div>
+            <div class="prod-brand">ויטביקס</div>
+          </div>
+
+          <!-- VS -->
+          <div class="vs-col"><div class="vs">VS</div></div>
+
+          <!-- Lyon -->
+          <div class="prod-col">
+            <img src="https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZNC36_Z_P_5900020036407_1.png" alt="ליון" />
+            <div class="score-chip c"><div class="sn">55</div><div class="gl">C</div></div>
+            <div class="prod-brand">נסטלה</div>
+          </div>
+        </div>
+
+        <!-- Bottom: insight strip + bullets -->
+        <div class="feat-bottom">
+          <div class="insight-strip">כ-1 כפית סוכר מול כ-6 כפיות לִ100 גרם</div>
+          <ul class="bullets">
+            <li><span class="dot"></span>ויטביקס: 4.2 גרם סוכר לִ100 גרם</li>
+            <li><span class="dot"></span>נסטלה: 24.7 גרם סוכר לִ100 גרם</li>
+            <li><span class="dot"></span>סיבים תזונתיים: 10 גרם מול 6.5 גרם לִ100 גרם</li>
+          </ul>
+        </div>
+      </a>
+    </div>
+  </section>
+</body>
+</html>
