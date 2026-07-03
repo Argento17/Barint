@@ -936,7 +936,13 @@ def _collect_consumer_strings(product):
             if item and isinstance(item, str) and item != PENDING:
                 fields.append((f"expansion.{fname}[{i}]", item))
     # v3: consumerExplanation sub-fields
-    ce = exp.get("consumerExplanation") or {}
+    # TASK-476b: copy_stage.py can leave a whole nested-object copy field as the
+    # literal PENDING_COPY sentinel string (not a dict) when the product is a
+    # grade-mover/new-to-page. Guard against that shape here so the gate reports
+    # a normal PENDING finding instead of crashing on ce.get(...).
+    ce = exp.get("consumerExplanation")
+    if not isinstance(ce, dict):
+        ce = {}
     for fname in ["whyRated", "context", "takeaway"]:
         val = ce.get(fname)
         if val and isinstance(val, str) and val != PENDING:

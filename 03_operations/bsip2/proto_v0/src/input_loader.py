@@ -82,8 +82,75 @@ def get_nutrition(product: dict) -> dict:
 
 
 def get_ingredients(product: dict) -> list[str]:
-    """Return ingredients_list, defaulting to empty list."""
-    return product.get("ingredients_list") or []
+    """Return the ingredient list for scoring, in fidelity-preference order.
+
+    Precedence (TASK-476, Nutrition-approved fallback chain):
+      1. ``ingredients_list`` if non-empty (highest fidelity — already
+         structured/sanitized by BSIP1's signal extractor).
+      2. ``ingredient_order`` — extract each entry's ``text`` field, in the
+         order BSIP1 recorded them (structured but not yet flattened into
+         ``ingredients_list``).
+      3. A bracket-depth-aware comma split of ``ingredients_text_he`` /
+         ``ingredients_raw`` — used only when no structured field is
+         available. This does NOT fragment parenthesised/bracketed
+         sub-groups (e.g. "קמחים 36% (פשתן, שומשום, אפונה)" stays one item).
+
+    Callers must still run the result through ``sanitize_ingredient_list()``
+    before using it for scoring or display — this function only resolves
+    *which* raw source to read, it does not sanitize.
+    """
+    primary = product.get("ingredients_list")
+    if primary:
+        return primary
+
+    order = product.get("ingredient_order")
+    if order:
+        texts = [entry.get("text") for entry in order
+                 if isinstance(entry, dict) and entry.get("text")]
+        if texts:
+            return texts
+
+    raw_text = product.get("ingredients_text_he") or product.get("ingredients_raw")
+    if raw_text:
+        items = _split_top_level_commas(raw_text)
+        if items:
+            return items
+
+    return []
+
+
+def _split_top_level_commas(text: str) -> list[str]:
+    """Bracket-depth-aware comma split.
+
+    Splits on commas only at bracket-depth 0, so parenthesised/bracketed
+    sub-groups (declared ingredient sub-lists) are never fragmented into
+    separate top-level items. Tracks (), [], and {} as one shared depth
+    counter (curly braces included per TASK-476 Step-4 follow-up so a
+    stray "{" does not truncate/merge unrelated real ingredients).
+    """
+    items: list[str] = []
+    depth = 0
+    current: list[str] = []
+    openers = "([{"
+    closers = ")]}"
+    for ch in text:
+        if ch in openers:
+            depth += 1
+            current.append(ch)
+        elif ch in closers:
+            depth = max(0, depth - 1)
+            current.append(ch)
+        elif ch == "," and depth == 0:
+            piece = "".join(current).strip()
+            if piece:
+                items.append(piece)
+            current = []
+        else:
+            current.append(ch)
+    tail = "".join(current).strip()
+    if tail:
+        items.append(tail)
+    return items
 
 
 def get_ingredients_text(product: dict) -> str:

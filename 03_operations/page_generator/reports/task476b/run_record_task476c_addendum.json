@@ -1,0 +1,49 @@
+{
+  "task": "TASK-476c",
+  "supersedes_scope_of": "TASK-476b (run_record_task476b.json)",
+  "worktree": "C:\\bari_wt_t476",
+  "branch": "golive/task476-rescore",
+  "commit": "04f4e0f6",
+  "generated_at": "2026-07-03",
+  "purpose": "Scope-correct the 476b bundle before it ships as a bread+crackers-ONLY PR: fix the crackers 20-product regression (frontend discard filter not re-applied) and exclude protein-bars entirely (split to TASK-477, its corpus is non-conforming/contaminated).",
+  "fix_1_crackers": {
+    "defect": "generate_page.py re-ran fresh in 476b, correctly re-scoring all 20 BSIP1 records but NOT re-applying the frontend_packaging-stage discard filter for barcode 7290112968807 (per 03_operations/page_generator/configs/crackers_frontend_discards_v1.json, reason: insufficient_data/unrecoverable nutrition corruption, discard-rule). Also silently dropped crackers-specific _meta fields not carried by the plain generator shape: categoryCaveat (mandatory yellow-box copy), exclusions record, task433_data_rework, task433_frontend_discard, task433_structural_finalization, reflow, off_used, deanchor_meta_regenerated.",
+    "fix": "Removed barcode 7290112968807 from products[]. Recomputed rank 1..19 by score-desc (barcode-asc tiebreak, matching finalize_crackers_v1_structure.py's own sort_key convention). Set categoryTotal=19 on all remaining products. Restored the crackers-specific _meta fields verbatim from origin/master's last-known-good state (pre-existing approved values, not new authoring) -- categoryCaveat, exclusions, task433_* narrative fields, off_used, deanchor_meta_regenerated. Rewrote the reflow annotation to correctly attribute lineage to TASK-476b/476c rather than the stale de-anchor pass values. Set product_count=19, scored_count=19 (matches master's convention: counts displayable rows, not total BSIP1 records -- the discarded product still exists as a BSIP1/BSIP2 record but isn't counted here).",
+    "fix_script": "C:\\Users\\HP\\AppData\\Local\\Temp\\claude\\c--Bari\\e6653b0d-675a-4d0b-90c7-36976c2e5fba\\scratchpad\\task476c\\fix_crackers.py",
+    "verification": {
+      "barcode_set_parity_vs_origin_master": "exact match, 0 added / 0 removed (symmetric difference = empty set)",
+      "rank_integrity": "1..19 contiguous, unique, non-increasing score order confirmed",
+      "categoryTotal": "19 on all 19 products",
+      "run_gates_g7_parity": "PASS -- product count 19==19, 0 added, 0 removed, exactly 1 grade change (7290018790328 C->D, the legitimate 476b rescore mover, matches 476b commit message)",
+      "run_gates_overall": "FAIL -- sole cause is G2 COVERAGE: 1/19 products (7290018790328) still PENDING_COPY, which is the sanctioned placeholder for the Content two-gate pass, not a defect"
+    }
+  },
+  "fix_2_protein_bars_excluded": {
+    "action": "git checkout origin/master -- bari-web/src/data/comparisons/protein_combined_frontend_v2.json",
+    "reason": "Protein-bars corpus is non-conforming/contaminated (per 476b's own disclosed Finding: scope_scan_result.json fed 7/15 REAL_LOSS rows from stray/wrong-category BSIP1 records). Split to TASK-477 for corpus cleanup before it re-flows.",
+    "verification": "sha256 of reverted file == sha256 of origin/master's copy (962624c7d9a34ea4a182602bcdd451328217df1f31bd32d3320310c19a5aaf1b), confirmed both sides",
+    "engine_fix_status": "input_loader.py/router_v2.py fix STAYS -- it is correct and only affects future re-flows; protein-bars is not re-flowed in this bundle so the stale live scores are unaffected by keeping the engine fix in the tree"
+  },
+  "bread_status": "Unchanged from 476b. 23 displayed products, 4 PENDING_COPY movers (2079033, 2079927, 2079996, 4685027), flagship 7290016245325 90.8/S. Confirmed correct as scoped -- no action taken.",
+  "final_scope_diff_vs_origin_master": {
+    "files_changed": [
+      "bari-web/src/data/comparisons/bread_frontend_v4.json",
+      "bari-web/src/data/comparisons/crackers_frontend_v1.json",
+      "bari-web/src/data/comparisons/bread_frontend_v4_gates_report.md (regenerated report artifact, byproduct of gate verification)",
+      "bari-web/src/data/comparisons/crackers_frontend_v1_gates_report.md (regenerated report artifact, byproduct of gate verification)",
+      "03_operations/bsip2/proto_v0/src/input_loader.py (476b engine fix, kept)",
+      "03_operations/bsip2/proto_v0/src/router_v2.py (476b engine fix, kept)",
+      "03_operations/page_generator/gates/run_gates.py (476b sentinel-crash fix, kept)",
+      "03_operations/page_generator/reports/task476b/run_record_task476b.json (476b run record, new file)",
+      "03_operations/page_generator/reports/task476b/run_record_task476c_addendum.json (this file, new)"
+    ],
+    "protein_combined_frontend_v2.json": "byte-identical to origin/master (reverted)",
+    "all_other_comparison_jsons": "16/16 byte-identical to origin/master (bread_frontend_v3, brined_cheeses_frontend_v2, cakes_hard_cookies_frontend_v1, cereals_frontend_v2, cheese_frontend_v4, cheese_frontend_v5, chocolate_bars_frontend_v1, chocolate_tablets_frontend_v1, cookies_coffee_frontend_v2, granola_frontend_v2, hard_cheeses_frontend_v4, hummus_frontend_v5, juices_frontend_v3, milk_frontend_v1, protein_combined_frontend_v2, snacks_frontend_v5) -- confirmed by per-file `git diff --quiet origin/master` loop, 0 diffs on all 16",
+    "note_on_pending_bari_web_diffs": "next.config.ts, catalog/_catalog-client.tsx, and components/comparisons/bari-product-thumbnail.tsx also diff vs origin/master, but these are pre-existing worktree/branch ancestry (TASK-470/374/471 commits already merged into this branch's history before 476b/476c) confirmed via `git log origin/master..HEAD` showing only 2 commits (07055d5d, 04f4e0f6) -- neither touches those 3 files per `git show --stat`. Not introduced by 476b or 476c; unrelated drift, not a scope violation."
+  },
+  "not_done": [
+    "Content pass on the 5 PENDING_COPY placeholders (4 bread + 1 crackers) -- explicitly out of scope, handed off",
+    "TASK-477 protein-bars corpus cleanup -- separate task",
+    "Push / PR / deploy -- explicitly out of scope per instructions"
+  ]
+}
