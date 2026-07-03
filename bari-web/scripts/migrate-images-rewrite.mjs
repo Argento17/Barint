@@ -8,8 +8,8 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const MAP = JSON.parse(fs.readFileSync(path.join(ROOT, "scripts", ".image-migration-map.json"), "utf8"));
-const PHASE_A_HOST =
-  /https?:\/\/(?:[\w.-]+\.)?(?:yochananof\.co\.il|vitamins4all\.co\.il|teva-call\.co\.il|solgar\.co\.il|biogaya\.co\.il|altman\.co\.il|tinc\.co\.il)/gi;
+const EXTERNAL_IMG_HOST =
+  /https?:\/\/(?:[\w.-]+\.)?(?:yochananof\.co\.il|vitamins4all\.co\.il|teva-call\.co\.il|solgar\.co\.il|biogaya\.co\.il|altman\.co\.il|tinc\.co\.il|shufersal\.co\.il|cloudinary\.com)[^\s"']*\.(?:jpe?g|png|webp|gif)/gi;
 
 const DATA_DIRS = ["src/data", "src/data/comparisons", "src/lib/comparisons"];
 const files = [];
@@ -52,7 +52,7 @@ console.log("Total URL replacements:", totalReplacements);
 let remaining = 0;
 for (const file of files) {
   const txt = fs.readFileSync(file, "utf8");
-  const hits = txt.match(PHASE_A_HOST);
+  const hits = txt.match(EXTERNAL_IMG_HOST);
   if (hits) {
     remaining += hits.length;
     console.log(`  ⚠ ${path.basename(file)} still has ${hits.length} retailer-host ref(s): ${hits[0].slice(0, 70)}`);

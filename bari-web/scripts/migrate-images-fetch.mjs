@@ -21,10 +21,13 @@ const OUT_DIR = path.join(ROOT, "public", "products");
 const MAP_PATH = path.join(ROOT, "scripts", ".image-migration-map.json");
 const PROV_PATH = path.join(OUT_DIR, "_provenance.json");
 
-// Hosts whose images must be self-hosted (optimizer-incompatible). Cloudinary/shufersal
-// stay remote (Phase B) — they optimize fine today.
-const PHASE_A_HOST =
-  /(^|\.)(yochananof\.co\.il|vitamins4all\.co\.il|teva-call\.co\.il|solgar\.co\.il|biogaya\.co\.il|altman\.co\.il|tinc\.co\.il)$/i;
+// Every third-party host we self-host product images from. Phase A covered the
+// optimizer-incompatible retailer hosts; Phase B adds Shufersal's Cloudinary + CDN so
+// Bari owns 100% of its product imagery and depends on no third party at request time.
+// Re-running is idempotent: already-migrated images are local (/products/…), not http,
+// so they are never re-matched.
+const EXTERNAL_IMG_HOST =
+  /(^|\.)(yochananof\.co\.il|vitamins4all\.co\.il|teva-call\.co\.il|solgar\.co\.il|biogaya\.co\.il|altman\.co\.il|tinc\.co\.il|shufersal\.co\.il|cloudinary\.com)$/i;
 
 const DATA_DIRS = ["src/data", "src/data/comparisons", "src/lib/comparisons"];
 const URL_RE = /https?:\/\/[^\s"'\\)]+?\.(?:jpe?g|png|webp|gif)/gi;
@@ -56,7 +59,7 @@ function extractTargets(files) {
       } catch {
         continue;
       }
-      if (!PHASE_A_HOST.test(host)) continue;
+      if (!EXTERNAL_IMG_HOST.test(host)) continue;
       const before = txt.slice(Math.max(0, m.index - 800), m.index);
       const bc = [...before.matchAll(/(?:barcode|"id"|\bid)\s*[:=]\s*"?(\d{8,14})"?/g)].pop();
       const barcode = bc ? bc[1] : null;
@@ -97,13 +100,23 @@ function keyFor(url, barcode) {
   return "img" + (h >>> 0).toString(36);
 }
 
+function loadJson(p) {
+  try {
+    return JSON.parse(fs.readFileSync(p, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const targets = extractTargets(collectFiles());
-  console.log(`Phase-A target images: ${targets.size}`);
+  console.log(`Target external product images: ${targets.size}`);
 
-  const map = {};
-  const provenance = {};
+  // Merge with any prior run (e.g. Phase A already self-hosted the retailer images) so
+  // the manifests accumulate every image rather than overwrite the previous phase.
+  const map = loadJson(MAP_PATH);
+  const provenance = loadJson(PROV_PATH);
   let ok = 0,
     discarded = 0;
   const now = new Date().toISOString();
