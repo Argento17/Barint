@@ -35,7 +35,38 @@
     "corpus_filter": null,
     "_source": "fresh_rescore_task391.py (BSIP0 -> BSIP1 -> BSIP2 pipeline; 121 total scored; tablets=92)"
   },
-  "exclusions": [],
+  "exclusions": [
+    {
+      "barcode": "3046920023429",
+      "name_he": "שוקולד חלב חתיכות קרמל",
+      "brand": "לינדט",
+      "grade_at_exclusion": "C",
+      "score_at_exclusion": 50,
+      "reason": "missing_data_discard_rule: ingredients_raw scrape captured only an allergen-advisory fragment (כפי שרשום על גבי האריזה עלול להכיל אגוזי לוז, 45 chars), not the actual ingredient list. Nutrition panel is complete and verified, but the site's completeness bar requires BOTH verified nutrition AND a verifiable ingredient list. One-shot recovery not re-attempted since 2026-06-24 (missing_data_discard_rule: no re-sourcing investment).",
+      "excluded_since_commit": "c294039e (2026-06-24)",
+      "excluded_since_note": "Originally dropped 38->35 alongside ct-005/ct-006; reason was stated only in the commit message, never propagated to config.exclusions or _meta until TASK-481 (2026-07-03) closed this G3 disclosure gap. No score/grade/rank change from this patch."
+    },
+    {
+      "barcode": "3046920023368",
+      "name_he": "שוקולד חלב מעולה",
+      "brand": "לינדט",
+      "grade_at_exclusion": "C",
+      "score_at_exclusion": 50,
+      "reason": "missing_data_discard_rule: ingredients_raw scrape captured only an allergen-advisory fragment (כפי שרשום על גבי האריזה עלול להכיל אגוזי לוז, 45 chars), not the actual ingredient list. Nutrition panel is complete and verified. One-shot recovery not re-attempted since 2026-06-24.",
+      "excluded_since_commit": "c294039e (2026-06-24)",
+      "excluded_since_note": "Originally dropped 38->35 alongside ct-004/ct-006; reason was stated only in the commit message, never propagated to config.exclusions or _meta until TASK-481 (2026-07-03)."
+    },
+    {
+      "barcode": "3046920023443",
+      "name_he": "שוקולד מריר מעולה",
+      "brand": "לינדט",
+      "grade_at_exclusion": "C",
+      "score_at_exclusion": 50,
+      "reason": "missing_data_discard_rule: ingredients_raw scrape captured only an allergen-advisory fragment (כפי שרשום על גבי האריזה עלול להכיל אגוזי לוז, 45 chars), not the actual ingredient list. Nutrition panel is complete and verified. One-shot recovery not re-attempted since 2026-06-24.",
+      "excluded_since_commit": "c294039e (2026-06-24)",
+      "excluded_since_note": "Originally dropped 38->35 alongside ct-004/ct-005; reason was stated only in the commit message, never propagated to config.exclusions or _meta until TASK-481 (2026-07-03)."
+    }
+  ],
   "extension_fields": [],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json"
 }
