@@ -184,6 +184,12 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
    * → all existing category pages byte-identical.
    */
   forcePartialDisclosure?: boolean;
+  /**
+   * Optional decorative mascot rendered at the hero's left (RTL end) via CategoryHero.
+   * Prop-gated — default undefined leaves every other category page byte-identical.
+   * Used by the magnesium page. Decorative only (aria-hidden).
+   */
+  heroMascot?: React.ReactNode;
 }
 
 /** Exposed so ComparisonTable can receive it without prop-drilling through page props. */
@@ -210,6 +216,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   clampVerdictLines,
   compactDividers = false,
   forcePartialDisclosure = false,
+  heroMascot,
 }: ComparisonPageProps<TFilterId>) {
   // FIX-5: filters are hidden — active set is always empty. The shelfFilters prop is
   // retained on the interface so pages compile unchanged; filterProducts receives [] and
@@ -248,7 +255,7 @@ export function ComparisonPage<TFilterId extends string = string>({
           "lg:max-w-[1180px] lg:rounded-[1.25rem] lg:shadow-[0_24px_70px_-44px_rgba(17,19,24,0.4)]"
         )}
       >
-        <CategoryHero eyebrow={hero.eyebrow} title={hero.title} metadata={metadataLine} wide />
+        <CategoryHero eyebrow={hero.eyebrow} title={hero.title} metadata={metadataLine} wide mascot={heroMascot} />
         <CategoryPrologue
           sentences={[...prologueSentences]}
           wide

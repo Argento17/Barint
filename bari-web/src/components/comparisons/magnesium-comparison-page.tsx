@@ -7,6 +7,8 @@
 // TASK-384A: MagnesiumSafetyBox injected above the ComparisonPage prologue area.
 // It uses the collapseMobileNote collapse pattern already in place for the category note.
 
+import Image from "next/image";
+
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import { MagnesiumSafetyBox } from "@/components/shared/magnesium-safety-box";
 import type { BariProductVM } from "@/lib/view-models";
@@ -62,6 +64,19 @@ export function MagnesiumComparisonPage({
       clampVerdictLines={3}
       compactDividers
       forcePartialDisclosure
+      heroMascot={
+        /* Mg mascot — the ingredient tile investigating magnesium. Decorative.
+           Mobile-visible at a small tuned size so it doesn't crowd the hero title. */
+        <Image
+          src="/mascots/mascot-mg-magnesium.png"
+          alt=""
+          width={1394}
+          height={882}
+          aria-hidden
+          className="pointer-events-none -mt-1 h-auto w-16 shrink-0 select-none sm:w-24 lg:w-64 xl:w-72"
+          priority
+        />
+      }
     />
   );
 }
