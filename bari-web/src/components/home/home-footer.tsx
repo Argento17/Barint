@@ -74,7 +74,7 @@ function CommunityBand({ community }: { community: ReturnType<typeof activeCommu
 
   return (
     <div className="border-b border-black/[0.08] pb-10 mb-10 md:pb-11 md:mb-11">
-      <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-center md:justify-end md:gap-10 md:text-right">
+      <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-center md:justify-start md:gap-10 md:text-right">
         <div className="space-y-1.5">
           <h2 className="text-lg font-bold text-[#111318] md:text-xl">
             {communityBandCopy.heading}
