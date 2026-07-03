@@ -23,9 +23,9 @@ const copyrightYear = 2026;
 // TASK-469 draft consumer copy — Content gate 1 + Adversarial QA gate 2 both
 // pending. Do not treat as final; do not ship elsewhere without sign-off.
 const communityBandCopy = {
-  heading: "רוצים להיות חלק מהשיחה?", // DRAFT
-  subline: "קהילת ברי בוואטסאפ, באינסטגרם ובפייסבוק", // DRAFT
-  whatsappCta: "הצטרפו בוואטסאפ", // DRAFT
+  heading: "רוצים להישאר מעודכנים?", // gate 1: FIXED (two-way "שיחה" → honest "מעודכנים" for a broadcast Channel)
+  subline: "עקבו אחרי ברי בוואטסאפ, באינסטגרם ובפייסבוק", // gate 1: FIXED ("קהילה" overclaims a one-way Channel → "עקבו אחרי")
+  whatsappCta: "הצטרפו בוואטסאפ", // gate 1: PASS
 } as const;
 
 const secondaryIconClass = "size-5 shrink-0";
