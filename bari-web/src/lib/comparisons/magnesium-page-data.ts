@@ -120,7 +120,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום ציטראט+B6 בדץ 60 טבליות",
     brand: "סופהרב",
     // Source: teva-call.co.il
-    imageUrl: "https://www.teva-call.co.il/wp-content/uploads/2015/11/7290013464248-510x510.webp",
+    imageUrl: "/products/7290013464248.webp",
     score: 73,
     grade: "B",
     // BAV: HIGH / ספיגה גבוהה יחסית. Administered elemental: 250 mg. Form: citrate.
@@ -162,7 +162,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום ביסגליצינט 250 קפליות",
     brand: "אלטמן",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2026/01/7290019444480.png",
+    imageUrl: "/products/7290019444480.webp",
     score: 73,
     grade: "B",
     // BAV: HIGH / ספיגה גבוהה יחסית. Administered elemental: 250 mg. Form: bisglycinate.
@@ -203,7 +203,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום ציטראט 120 קפליות",
     brand: "אלטמן",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2020/08/7290011899967.jpg",
+    imageUrl: "/products/7290011899967.webp",
     score: 69,
     grade: "B",
     // BAV: HIGH / ספיגה גבוהה יחסית. Administered elemental: 200 mg. Form: citrate.
@@ -237,7 +237,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום WELL כמוסות 90",
     brand: "נוטריקר",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2020/09/7290018439043.png",
+    imageUrl: "/products/7290018439043.webp",
     score: 66,
     grade: "B",
     // BAV: HIGH / ספיגה גבוהה יחסית. Administered elemental: 168 mg. Form: bisglycinate.
@@ -276,7 +276,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "כמוסות מגנזיום אנטי לג קרמפס",
     brand: "NT L.C.",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2021/01/7290010207640.png",
+    imageUrl: "/products/7290010207640.webp",
     score: 64,
     grade: "C",
     // BAV: MODERATE / ספיגה בינונית. Administered elemental: 190 mg. Form: hydroxide.
@@ -352,7 +352,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום מלאט 60 כמוסות",
     brand: "טינק",
     // Source: biogaya.co.il
-    imageUrl: "https://www.biogaya.co.il/media/catalog/product/7/2/7290015318532_1.jpg",
+    imageUrl: "/products/7290015318532.webp",
     score: 61,
     grade: "C",
     // BAV: MODERATE / ספיגה בינונית. Administered elemental: 136 mg. Form: malate.
@@ -388,7 +388,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום מלאט 90 כמוסות",
     brand: "נוטריקר",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2025/11/7290001066973-1.jpg",
+    imageUrl: "/products/7290001066973.webp",
     score: 59,
     grade: "C",
     // BAV: MODERATE / ספיגה בינונית. Administered elemental: 135 mg. Form: malate.
@@ -429,7 +429,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "סידן ומגנזיום +D ויטמין 150 טבליות",
     brand: "סולגר",
     // Source: solgar.co.il
-    imageUrl: "https://www.solgar.co.il/wp-content/uploads/2022/12/%D7%A1%D7%99%D7%93%D7%9F-%D7%95%D7%9E%D7%92%D7%A0%D7%96%D7%99%D7%95%D7%9D-%D7%91%D7%AA%D7%95%D7%A1%D7%A4%D7%AA-%D7%95%D7%99%D7%98%D7%9E%D7%99%D7%9F-D3.png",
+    imageUrl: "/products/0033984005181.webp",
     score: 49,
     grade: "D",
     // BAV: UNRESOLVED / הרכב לא פורט — לא ניתן להעריך ספיגה. Form: oxide_citrate_blend.
@@ -469,7 +469,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום טאוראט 90 כמוסות",
     brand: "נוטריקר",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2022/02/7290018439579.webp",
+    imageUrl: "/products/7290018439579.webp",
     score: 46,
     grade: "D",
     // BAV: MODERATE / ספיגה בינונית. Administered elemental: 76 mg. Form: taurate.
@@ -516,7 +516,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום אוקסיד 520 100 כמוסות",
     brand: "נוטריקר",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/05/7290001065662.webp",
+    imageUrl: "/products/7290001065662.webp",
     score: 49,
     grade: "D",
     // BAV: LOW / ספיגה נמוכה יחסית. Administered elemental: 520 mg (panel-verified).
@@ -560,7 +560,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום 520 60 כמוסות",
     brand: "אלטמן",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/08/7290017218564-2.webp",
+    imageUrl: "/products/7290017218564.webp",
     score: 49,
     grade: "D",
     // BAV: LOW / ספיגה נמוכה יחסית. Administered elemental: 520 mg (panel-verified).
@@ -600,7 +600,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום UP 60 כמוסות",
     brand: "אלטמן",
     // Source: altman.co.il
-    imageUrl: "https://www.altman.co.il/wp-content/uploads/batc/_i/bd7e8878-3115-4e63-9646-d28e5d617979.webp",
+    imageUrl: "/products/7290013142894.webp",
     score: 49,
     grade: "D",
     // BAV: LOW / ספיגה נמוכה יחסית. Administered elemental: 450 mg (panel-verified).
@@ -640,7 +640,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום באלאנס 60 כמוסות",
     brand: "אלטמן",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2025/05/7290019444206.webp",
+    imageUrl: "/products/7290019444206.webp",
     score: 49,
     grade: "D",
     // BAV: LOW / ספיגה נמוכה יחסית. Administered elemental: 450 mg (panel-verified).
@@ -685,7 +685,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "נאנו מגנזיום ליפוזומלי 60 כמוסות",
     brand: "נוטריקר",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2024/07/%D7%A0%D7%90%D7%A0%D7%95-%D7%9E%D7%92%D7%A0%D7%96%D7%99%D7%95%D7%9D-Copy.webp",
+    imageUrl: "/products/7290001065594.webp",
     score: 34,
     grade: "E",
     // BAV: HIGH class for base form (bisglycinate). Administered elemental: 88 mg.
@@ -725,7 +725,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "מגנזיום אוקסיד 520 90 כמוסות",
     brand: "טינק",
     // Source: tinc.co.il
-    imageUrl: "https://www.tinc.co.il/GoopSitesFiles/83206/User/catalog_941469-l.jpg?637595154336530000",
+    imageUrl: "/products/7290015318426.webp",
     score: null,
     grade: null,
     // UNRESOLVED: label declares "520 מ\"ג מגנזיום אוקסיד" without elemental qualifier.
@@ -758,7 +758,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "pH מגנזיום 60 קפסולות",
     brand: "אמורפיקיור",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2023/12/7290015429245-1.jpg",
+    imageUrl: "/products/7290015429245.webp",
     score: null,
     grade: null,
     // UNRESOLVED: 160 mg elemental-vs-compound ambiguous (carbonate 0.288 fraction). ~3.5x uncertainty.
@@ -787,7 +787,7 @@ const magnesiumProductsRaw: BariProductVM[] = [
     name: "TRIOMAG מגנזיום 60 כמוסות",
     brand: "סופהרב",
     // Source: vitamins4all.co.il
-    imageUrl: "https://vitamins4all.co.il/wp-content/uploads/2026/01/7290118816065-1.jpg",
+    imageUrl: "/products/7290118816065.webp",
     score: null,
     grade: null,
     // UNRESOLVED: 200 mg likely elemental but unconfirmed; form ratios undisclosed.
