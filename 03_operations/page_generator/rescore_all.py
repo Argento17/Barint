@@ -87,6 +87,10 @@ MILK_CANONICAL_FLAGS = {
     "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
     "BARI_GRAD_SODIUM_V1": "off",
     "BARI_SODIUM_CEREAL": "off",
+    # TASK-496: must be explicitly OFF here so a prior shelf's config-supplied
+    # BARI_REDLABEL_CONTINUOUS_V1=on (cheese/cakes/chocolate_bars/chocolate_tablets)
+    # cannot leak into the milk C10 invariant check within one rescore_all.py run.
+    "BARI_REDLABEL_CONTINUOUS_V1": "off",
 }
 
 # BARI_* vars that may be set by shelf configs and must be snapshotted/restored
@@ -107,6 +111,10 @@ MANAGED_BARI_VARS = [
     "BARI_GLASSBOX_W15",
     "BARI_GLASSBOX_W2",
     "BARI_DAIRY_SAT_FAT_INFER",
+    # TASK-496: now supplied via config (cheese/cakes/chocolate_bars/chocolate_tablets)
+    # instead of an ad-hoc env override — must be snapshotted/restored like every
+    # other shelf flag so it never leaks across shelves in one rescore_all.py run.
+    "BARI_REDLABEL_CONTINUOUS_V1",
 ]
 
 if str(SCORE_ENGINE_SRC) not in sys.path:
