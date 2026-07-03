@@ -12,7 +12,8 @@
       "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
       "BARI_REDLABEL_V1": "off",
       "BARI_SODIUM_CEREAL": "off",
-      "BARI_GRAD_SODIUM_V1": "off"
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_REDLABEL_CONTINUOUS_V1": "on"
     },
     "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
     "task": "TASK-409 clean+traceable re-derive v2",
@@ -24,7 +25,20 @@
     "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
     "generated": "2026-06-26T15:58:10",
     "category": "cheese",
-    "product_count": 47
+    "product_count": 47,
+    "task483_traceability": {
+      "status": "reconciled",
+      "run_id": "run_cheese_006_task483",
+      "run_dir": "02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_006_task483",
+      "reconciled_at": "2026-07-03T12:48:11+00:00",
+      "engine_entrypoint": "03_operations/page_generator/rescore_all.py --shelf cheese",
+      "extra_env_beyond_config_flags": {
+        "BARI_REDLABEL_CONTINUOUS_V1": "on"
+      },
+      "reproduction_table": "02_products\\cheese_spreads\\bsip2_outputs\\run_cheese_006_task483\\reproduction_table.json",
+      "reproduction_result": "ALL live-displayed products reproduce mechanically (score abs delta <= 0.05, grade exact match)",
+      "note": "TASK-483 hygiene reconciliation. This _meta update is the ONLY change made to this file: no score, grade, rank, or copy field was touched. Verified byte-identical products/page_copy before and after this update."
+    }
   },
   "products": [
     {
