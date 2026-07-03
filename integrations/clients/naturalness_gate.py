@@ -25,8 +25,10 @@ HONEST LIMITS (read before trusting a verdict)
   a regex. It emits an F2 *risk signal* (hedge density + verdict-marker presence)
   for the judge to weigh; it never fails a line on F2 alone.
 - Calibration guardrails baked in (owner ruling 2026-06-22): `אשר` is NOT a tell;
-  an *earned* short fragment closer ("לייט זה לא.") is NOT a tell — only the
-  comma/dash contrastive "X, לא Y" closer and the dangling-`גם` ending fire.
+  an *earned* short fragment closer ("לייט זה לא.") is NOT a tell — the comma/dash
+  contrastive "X, לא Y" closer, the non-comma "X ולא Y" form, standalone "אלא"
+  contrastive, and the dangling-`גם` ending fire (TASK-491: all antithesis forms,
+  not just the comma-prefixed one — see T1 below).
 
 Interface
 ---------
@@ -75,10 +77,71 @@ def _last_sentence(text: str) -> str:
 # T1 — "X, לא Y" contrastive CLOSER (the #1 tell). Comma or em-dash + לא + short
 # phrase as the final clause. Guard: bare "...זה לא." (no comma/dash) is an EARNED
 # fragment per owner ruling and must NOT fire.
+# NOTE (TASK-491): this comma/dash form is only ONE of the antithesis shapes — see
+# _T1_VELO and _ALA below for the non-comma "ולא" / standalone "אלא" siblings that
+# escaped this comma-only scan 4×+ this session.
 _T1_CLOSER = re.compile(r"[,—]\s*לא\s+\S+")
 
 # T1 mid-text contrastive (weaker) — same shape anywhere. MEDIUM.
 _T1_MID = re.compile(r"[,—]\s*לא\s+\S+\s+\S+")
+
+# T1-VELO — the non-comma "X ולא Y" define-by-negation (TASK-491). The recurring
+# escapee: QA caught this shape 4×+ this session (TASK-477 RT-M1, TASK-484,
+# TASK-461 chocbars/cakes/hardcheese, TASK-490) because it reads as a plain
+# conjunction with no comma/dash — e.g. "חלבון מבודד ולא ממזון שלם",
+# "מבוסס על הנדסת מזון ולא על מרכיבים שלמים". Structurally identical antithesis to
+# T1, just without the punctuation tell. HIGH. Mirrors the doc scan
+# `(?<!,)\s+ולא\s` in content_voice/tom_bari_voice/5_banned_phrases_and_claims.md §1.5.
+#
+# Guards (do NOT flag): the doc's approved CARVE-OUTS —
+#   - a comma/dash already precedes (that is T1/T1_MID's own shape — do not
+#     double-classify here);
+#   - `לא X ולא Y` (neither/nor) — a bare word-boundary לא earlier in the same
+#     clause;
+#   - `ולא` used as a plain clause connective ("...ולא מפתיע ש...") is NOT
+#     excluded by shape alone — in practice it is caught by the neither/nor/clause
+#     check only when a `לא` precedes it; a bare `ולא + verb-clause` with no
+#     preceding `לא` is rare and, if it is a genuine antithesis-of-two-things, is
+#     correctly the tell this rule targets.
+_T1_VELO = re.compile(r"\s+ולא\s+\S+")
+
+
+def _t1_velo_hits(text: str) -> List[str]:
+    hits: List[str] = []
+    for m in _T1_VELO.finditer(text):
+        pre = text[:m.start()]
+        if re.search(r"[,—]\s*$", pre):
+            continue  # already the comma/dash T1 shape — avoid double-count
+        clause = re.split(r"[,—;]", pre)[-1]
+        if re.search(r"(?<!ו)\bלא\b", clause):
+            continue  # "לא X ולא Y" neither/nor carve-out
+        hits.append(m.group(0).strip())
+    return hits
+
+
+# ALA — standalone contrastive "אלא" (TASK-491). The comma-only scan never
+# touched this form at all. HIGH when it is the antithesis-of-two-things shape
+# ("...אינה החמרה אלא תיאור..."). Guards (do NOT flag) mirror
+# `5_banned_phrases_and_claims.md` §1.5's approved carve-outs:
+#   - the APPROVED `לא X אלא Y` / `אינ- X אלא Y` repair form that NAMES A
+#     POSITIVE ALTERNATIVE (a negation word already earlier in the same clause);
+#   - the concessive "אלא ש..." ("except that...") connective, which resolves
+#     into a full clause rather than a bare antithesis.
+_ALA = re.compile(r"\bאלא\b")
+
+
+def _ala_hits(text: str) -> List[str]:
+    hits: List[str] = []
+    for m in _ALA.finditer(text):
+        pre = text[:m.start()]
+        clause = re.split(r"[,—;.]", pre)[-1]
+        if re.search(r"\bלא\b|\bאינ(ה|ו|ם|ן)\b", clause):
+            continue  # approved אלא-repair form naming the positive alternative
+        if text[m.start():m.start() + 6].startswith("אלא ש"):
+            continue  # concessive "except that..." connective
+        hits.append(m.group(0))
+    return hits
+
 
 # T1b — the "works as X; less so as Y" antithesis CLOSER (calque). Added after the
 # independent judge caught it recurring 4× on the protein-bars shelf (NT-H1, TASK-374)
@@ -230,6 +293,32 @@ def analyze(text: str) -> NaturalnessReport:
                 "T1", "MEDIUM", m2.group(0).strip(),
                 "Possible 'X, לא Y' contrastive mid-text — judge whether it reads "
                 "as a calque."))
+
+    # T1-VELO — non-comma "X ולא Y" define-by-negation (HIGH). TASK-491: the
+    # recurring escapee that read as a plain conjunction and slipped past the
+    # comma-only scan 4×+ this session. Scanned across the whole text (not just
+    # the closer) — the tell fires wherever the antithesis-of-two-things shape
+    # appears. Carve-outs (neither/nor, comma/dash T1 double-count) handled in
+    # _t1_velo_hits.
+    for hit in _t1_velo_hits(text):
+        flags.append(NaturalnessFlag(
+            "T1", "HIGH", hit,
+            "Non-comma 'X ולא Y' contrastive (calque of 'X, and not Y') — the "
+            "define-by-negation shape without the comma tell. Resolve with a "
+            "positive statement of what X is, or 'מדובר בסך הכל ב…'; do not "
+            "define X by naming what it is not."))
+        break  # one HIGH flag per tell class is enough signal; avoid noise
+
+    # ALA — standalone "אלא" contrastive (HIGH). TASK-491: the comma-only scan
+    # never touched this form. Carve-outs (approved אלא-repair naming a positive
+    # alternative, concessive "אלא ש...") handled in _ala_hits.
+    for hit in _ala_hits(text):
+        flags.append(NaturalnessFlag(
+            "T1", "HIGH", hit,
+            "Standalone 'אלא' contrastive not resolving into the approved "
+            "'לא X אלא Y' positive-alternative repair form — judge whether this "
+            "is the antithesis-of-two-things tell."))
+        break
 
     # T1b "works as X; less/far as Y" antithesis closer (HIGH) — on the final sentence.
     m = _T1B_CLOSER.search(last)
@@ -385,6 +474,12 @@ def _selftest() -> int:
         "המספרים סבירים אבל ההרכב מהונדס לעומק. סביר.",   # BARE one-word closer
         "רשימה ארוכה וחלבון מבודד מכמה מקורות. מהונדס.",  # BARE one-word closer
         "עוגייה שמרכזת את הכל, חלבון מכמה מקורות מבודדים. C.",  # GRADE token leak
+        # TASK-491: the non-comma "ולא" / standalone "אלא" escapees — caught by QA
+        # 4×+ this session, missed by the comma-only _T1_CLOSER scan.
+        "חלבון מבודד ולא ממזון שלם.",                     # T1-VELO real escapee
+        "מבוסס על הנדסת מזון ולא על מרכיבים שלמים.",       # T1-VELO real escapee
+        "המתיקות באה ממזון שלם ולא ממלטיטול.",             # T1-VELO (taxonomy #39)
+        "הטעם כאן מלאכותי אלא מציאותי כביכול.",             # standalone אלא — no prior negation, not concessive "אלא ש"
     ]
     # Owner GOLD lines: none may raise a HIGH flag.
     good = [
@@ -394,6 +489,12 @@ def _selftest() -> int:
         "כל קשר בין עוגת בריוש לעוגה זו מקרי בהחלט.",
         "סוכר הוא הרכיב הראשון במוצר ויש בו גם דבש.",     # גם mid-sentence — guard
         "מוצר נקי הוא לא בהכרח מוצר חזק תזונתית.",        # repaired T2 form — guard
+        # TASK-491 carve-outs — must stay CLEAN under the new T1-VELO/ALA checks:
+        "ללא סוכר מוסף.",                                 # factual negation ("ללא"), not "ולא"/"אלא"
+        "לא חזק ולא חלש במיוחד.",                          # neither/nor carve-out
+        "לא חטיף אלא מנת ביניים אמיתית.",                  # approved אלא-repair naming positive alt
+        "אינה החמרה אלא תיאור בלבד.",                      # approved אלא-repair naming positive alt
+        "האגוזים האמיתיים הם היתרון הברור שלו, אלא שהוא מגיע במחיר של צפיפות קלורית גבוהה.",  # concessive "אלא ש..."
     ]
     failures = []
     for t in bad:
