@@ -74,7 +74,7 @@ function CommunityBand({ community }: { community: ReturnType<typeof activeCommu
 
   return (
     <div className="border-b border-black/[0.08] pb-10 mb-10 md:pb-11 md:mb-11">
-      <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-center md:justify-between md:text-right">
+      <div className="flex flex-col items-center gap-5 text-center md:flex-row md:items-center md:justify-end md:gap-10 md:text-right">
         <div className="space-y-1.5">
           <h2 className="text-lg font-bold text-[#111318] md:text-xl">
             {communityBandCopy.heading}
@@ -102,7 +102,7 @@ function CommunityBand({ community }: { community: ReturnType<typeof activeCommu
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="inline-flex size-10 items-center justify-center rounded-full border border-black/[0.12] text-[#4E5663] transition hover:border-[#167A58]/40 hover:text-[#167A58] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
+              className="inline-flex size-11 items-center justify-center rounded-full border border-black/[0.12] text-[#4E5663] transition hover:border-[#167A58]/40 hover:text-[#167A58] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
             >
               {communityIcons[link.platform]}
             </a>
