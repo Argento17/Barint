@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 /**
  * TASK 2 — Terms of use (/terms).
  * Route is live so it can be linked before final copy is approved.
- * Body text below is a DRAFT loaded for owner review (page stays noindexed).
+ * Body text below is a DRAFT loaded for owner review. Page is indexable
+ * (inherits `index, follow` from the root layout; no robots override here).
  * Tokens rendered as 【...】 mark facts the owner must still fill/verify.
  */
 export default function TermsPage() {
