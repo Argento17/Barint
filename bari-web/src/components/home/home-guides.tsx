@@ -23,14 +23,15 @@ export function HomeGuides() {
               מופיע כאן; שאר הקטגוריות נפתחות בהדרגה.
             </p>
           </div>
-          {/* LUMO hanging from a branch beside the title, above the article batch. Decorative. */}
+          {/* LUMO hanging from a branch beside the title, above the article batch. Decorative.
+              Mobile: centered under the copy at a smaller size, no desktop translate offsets. */}
           <Image
             src="/mascots/lumo-tree.png"
             alt=""
             width={1100}
             height={869}
             aria-hidden
-            className="pointer-events-none hidden w-44 shrink-0 self-start lg:block lg:-translate-x-10 lg:translate-y-8"
+            className="pointer-events-none mx-auto w-28 shrink-0 self-center sm:w-32 md:self-start lg:mx-0 lg:w-44 lg:-translate-x-10 lg:translate-y-8"
           />
           <div className="flex items-center gap-2 md:ms-auto md:flex-col md:items-center md:gap-1">
             <Link
