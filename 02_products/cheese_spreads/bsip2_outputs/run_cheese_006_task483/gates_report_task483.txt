@@ -1,0 +1,58 @@
+Traces loaded: 59 BSIP2 traces from C:\bari_wt_t483\02_products\cheese_spreads\bsip2_outputs\run_cheese_006_task483\products
+Report written to: C:\bari_wt_t483\bari-web\src\data\comparisons\cheese_frontend_v5_gates_report.md
+Overall: FAIL
+[PASS] G1 SCHEMA
+  INFO: Document validates against schema
+
+[WARN] G2 COVERAGE
+  INFO: imageUrl: 47/47 non-null
+  INFO: name: 47/47 non-null
+  INFO: score: 47/47 non-null
+  INFO: grade: 47/47 non-null
+  INFO: insightLine: 47/47 non-null
+  INFO: expansion: 47/47
+  INFO: expansion.ingredients: 47/47
+  INFO: expansion.nutrition.energyKcal: 47/47
+  INFO: expansion.nutrition.protein: 47/47
+  INFO: expansion.nutrition.sugar: 28/47
+  INFO: expansion.nutrition.fat: 47/47
+  INFO: expansion.nutrition.fiber: 2/47
+  INFO: expansion.nutrition.sodium: 47/47
+  INFO: expansion.confidenceLabel: 47/47
+  WARN: No corpus provided — imageUrl regression check skipped
+  INFO: name: all products have Hebrew characters in name
+  INFO: verdict coverage: every product has an authored insightLine or rowVerdict
+  INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
+
+[FAIL] G3 SCOPE
+  INFO: Displayed products: 47
+  INFO: Scored products (trace dirs): 59
+  INFO: Declared exclusions in _meta: 0
+  FAIL: Scored barcode 4127800 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 4127817 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 4127862 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 47942 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 48185 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 554969 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 554976 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 554983 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 5992889 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7290014217492 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7290108506624 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073453123 not in frontend and not explained in _meta exclusions
+
+[PASS] G4 OFF
+  INFO: No OFF markers detected in frontend JSON or displayed corpus records
+
+[PASS] G5 GRADE-INTEGRITY
+  INFO: Boundary policy: floor
+
+[PASS] G6 COPY-SAFETY
+  INFO: No copy-safety violations detected
+
+[SKIP] G7 PARITY
+  SKIP: No baseline provided
+
+[PASS] G8 DATA-SANITY
+  INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)
+

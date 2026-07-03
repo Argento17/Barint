@@ -25,7 +25,18 @@
     "scored": 29,
     "task": "TASK-409 clean+traceable re-derive v2",
     "task433_membership_correction": "Crackers split to standalone category (TASK-433); membership correction only, no re-score; 23 survivors byte-identical to bread_frontend_v3.json (scores/grades/expansion/d4_additives/insightLine/rowVerdict untouched). 6 cracker products removed (barcodes: 7296073134442, 7296073134459, 74252, 8434165658523, 96086000577, 96086000966). rank renumbered 1..23 in existing score-desc order. brand injected via deterministic name-literal-match ONLY where not already present (brand_extractor.py) — never invented, never overwrote an existing value.",
-    "ts": "2026-06-26T15:58:10"
+    "ts": "2026-06-26T15:58:10",
+    "task483_traceability": {
+      "status": "reconciled",
+      "run_id": "run_bread_task483_001",
+      "run_dir": "02_products\\bread\\bsip2_outputs\\run_bread_task483_001",
+      "reconciled_at": "2026-07-03T12:48:11+00:00",
+      "engine_entrypoint": "03_operations/page_generator/rescore_all.py --shelf bread",
+      "extra_env_beyond_config_flags": null,
+      "reproduction_table": "02_products\\bread\\bsip2_outputs\\run_bread_task483_001\\reproduction_table.json",
+      "reproduction_result": "ALL live-displayed products reproduce mechanically (score abs delta <= 0.05, grade exact match)",
+      "note": "TASK-483 hygiene reconciliation. This _meta update is the ONLY change made to this file: no score, grade, rank, or copy field was touched. Verified byte-identical products/page_copy before and after this update."
+    }
   },
   "products": [
     {

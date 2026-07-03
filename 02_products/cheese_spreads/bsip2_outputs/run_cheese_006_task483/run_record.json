@@ -1,0 +1,30 @@
+{
+  "task": "TASK-483 traceability reconciliation",
+  "shelf": "cheese",
+  "run_id": "run_cheese_006_task483",
+  "created_at": "2026-07-03T12:46:21+00:00",
+  "engine_entrypoint": "03_operations/page_generator/rescore_all.py --shelf cheese",
+  "engine_src_dir": "03_operations/bsip2/proto_v0/src",
+  "config_path": "C:\\bari_wt_t483\\03_operations\\page_generator\\configs\\cheese.json",
+  "config_flag_vector": {
+    "BARI_SHELF_RELATIVE_V1": "on",
+    "BARI_FAT_TECH_V1": "on",
+    "BARI_RECAL_P0": "on",
+    "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+    "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+    "BARI_REDLABEL_V1": "off",
+    "BARI_SODIUM_CEREAL": "off",
+    "BARI_GRAD_SODIUM_V1": "off",
+    "BARI_REDLABEL_CONTINUOUS_V1": "on"
+  },
+  "extra_env_beyond_config": {
+    "BARI_REDLABEL_CONTINUOUS_V1": "on"
+  },
+  "corpus_dirs": [
+    "C:\\Bari\\03_operations\\bsip1\\run_cheese_003\\output"
+  ],
+  "live_frontend_json": "C:\\bari_wt_t483\\bari-web\\src\\data\\comparisons\\cheese_frontend_v5.json",
+  "n_traces_written": 59,
+  "reproduction": "see reproduction_table.json in this dir; hard gate = every LIVE-DISPLAYED barcode score within 0.05 and grade exact match",
+  "purpose": "Hygiene reconciliation only (TASK-483). ZERO score/grade change to any live product. This run makes the live scores mechanically reproducible from a committed trace."
+}
