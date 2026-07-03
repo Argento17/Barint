@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 /**
  * Medical disclaimer (/disclaimer).
  * Route is live so it can be linked from the footer and supplement pages.
- * Body text below is a DRAFT loaded for owner review (page stays noindexed).
+ * Body text below is a DRAFT loaded for owner review. Page is indexable
+ * (inherits `index, follow` from the root layout; no robots override here).
  * Source: P404 legal drafts, DOC 5 (כתב ויתור רפואי) — the longer footer version.
  */
 export default function DisclaimerPage() {

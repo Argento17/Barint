@@ -32,4 +32,7 @@ export const ALL_INDEXABLE_PATHS = [
   "/ai-index",
   "/privacy",
   "/terms",
+  "/nagisut",
+  "/cookies",
+  "/disclaimer",
 ] as const;
