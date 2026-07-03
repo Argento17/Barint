@@ -51,6 +51,15 @@ _LEAK_TERMS = [
     "אלגוריתם", "מנוע הניקוד", "דימנשן", "נובה", "פרוקסי",
 ]
 
+# Brand names that legitimately contain a framework term as a substring
+# (TASK-497: "תנובה" / Tenuva, a real dairy brand, contains "נובה" / NOVA).
+# The word-boundary guard below already prevents this false-positive on its
+# own; this allowlist is a second, explicit line of defense so a future
+# unicode-range tweak can't silently reopen the false-positive.
+_BRAND_ALLOWLIST_SUBSTRINGS = {
+    "תנובה",  # Tenuva dairy brand — contains נובה (NOVA) as a true substring
+}
+
 # words that signal a *recommendation* (Bari describes, never prescribes)
 _RECOMMENDATION_TERMS = [
     "מומלץ", "כדאי לקנות", "עדיף לקנות", "אל תקנו", "הימנעו", "בריא יותר",
@@ -104,6 +113,23 @@ class ReadabilityReport:
         return round(max(0.0, s), 1)
 
 
+_HEB_LETTER_CLASS = "א-ת"
+
+
+def _is_substring_of_allowlisted_brand(term: str, text: str, idx: int) -> bool:
+    """True iff the leak-term match at `idx` is actually part of an allowlisted
+    brand name spanning that position (e.g. term='נובה' matched inside
+    'תנובה' at the position where 'תנובה' occurs in `text`)."""
+    for brand in _BRAND_ALLOWLIST_SUBSTRINGS:
+        if term == brand or term not in brand:
+            continue
+        offset_in_brand = brand.find(term)
+        brand_start = idx - offset_in_brand
+        if brand_start >= 0 and text[brand_start:brand_start + len(brand)] == brand:
+            return True
+    return False
+
+
 def _scan_leaks(text: str) -> list[Leak]:
     leaks: list[Leak] = []
     low = text.lower()
@@ -113,6 +139,22 @@ def _scan_leaks(text: str) -> list[Leak]:
             # word-boundary-ish guard for short English tokens to cut false hits
             if term.isascii() and len(term) <= 4:
                 if not re.search(rf"(?<![a-z]){re.escape(term)}(?![a-z])", low):
+                    continue
+            # word-boundary guard for Hebrew terms: a framework token must not be
+            # a substring of a larger Hebrew word (e.g. "נובה"/NOVA inside the
+            # brand name "תנובה"/Tenuva — TASK-497). Real leaks (standalone
+            # "נובה", or "נובה" adjacent to punctuation/space/digits) still fire;
+            # only mid-word substring hits are suppressed. The brand allowlist
+            # is redundant with this guard by construction (belt-and-suspenders):
+            # if a future edit narrows the boundary regex, an allowlisted brand
+            # substring is still explicitly exempted here.
+            if not term.isascii():
+                if _is_substring_of_allowlisted_brand(term, text, idx):
+                    continue
+                if not re.search(
+                    rf"(?<![{_HEB_LETTER_CLASS}]){re.escape(term)}(?![{_HEB_LETTER_CLASS}])",
+                    text,
+                ):
                     continue
             leaks.append(Leak("framework", term, _ctx(text, idx)))
     for term in _RECOMMENDATION_TERMS:
@@ -175,6 +217,35 @@ def analyze(text: str) -> ReadabilityReport:
     )
 
 
+def _regression_tests() -> list[str]:
+    """TASK-497: word-boundary regression suite. Returns a list of failure
+    messages (empty list == all pass). Kept dependency-free (no pytest) so it
+    runs as part of this module's own `python hebrew_readability.py` self-test."""
+    failures: list[str] = []
+
+    # Tenuva ("תנובה") is a real dairy brand and must NOT be flagged just
+    # because it contains "נובה" (NOVA) as a substring.
+    tenuva_text = "החברה תנובה מייצרת את המוצר הזה עם רכיבים איכותיים."
+    r = analyze(tenuva_text)
+    if not r.is_clean or any(l.term == "נובה" for l in r.leaks):
+        failures.append(
+            f"REGRESSION: 'תנובה' brand text incorrectly flagged as leak: "
+            f"{[(l.kind, l.term) for l in r.leaks]}"
+        )
+
+    # A standalone "נובה" (NOVA framework token) must still be caught — the
+    # word-boundary guard must not weaken real leakage detection.
+    standalone_text = "המוצר עבר עיבוד לפי נובה 4 והכיל חומרים משמרים."
+    r2 = analyze(standalone_text)
+    if r2.is_clean or not any(l.term == "נובה" for l in r2.leaks):
+        failures.append(
+            f"REGRESSION: standalone 'נובה' NOT flagged (should still leak): "
+            f"{[(l.kind, l.term) for l in r2.leaks]}"
+        )
+
+    return failures
+
+
 if __name__ == "__main__":
     import sys
     if hasattr(sys.stdout, "reconfigure"):
@@ -187,6 +258,10 @@ if __name__ == "__main__":
             "המוצר קיבל ניקוד 68.2 כי ה-NOVA cap הופעל על ה-dimension של processing.",
         "recommendation + english":
             "מומלץ לקנות את ה-Milky כי הוא הבריא יותר על המדף.",
+        "brand substring guard (תנובה, TASK-497)":
+            "החברה תנובה מייצרת את המוצר הזה עם רכיבים איכותיים.",
+        "standalone נובה still flags (TASK-497)":
+            "המוצר עבר עיבוד לפי נובה 4 והכיל חומרים משמרים.",
     }
     for name, txt in samples.items():
         r = analyze(txt)
@@ -196,3 +271,14 @@ if __name__ == "__main__":
         print(f"  readability_score={r.readability_score} is_clean={r.is_clean}")
         for f in r.flags:
             print(f"    - {f}")
+
+    print()
+    print("== TASK-497 regression suite ==")
+    failures = _regression_tests()
+    if failures:
+        for f in failures:
+            print(f"  FAIL: {f}")
+        print(f"  {len(failures)} regression failure(s)")
+        sys.exit(1)
+    else:
+        print("  PASS: 2/2 regression cases (תנובה clean, standalone נובה still flags)")
