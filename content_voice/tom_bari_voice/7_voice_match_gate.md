@@ -34,12 +34,13 @@ flag the gap, don't guess.
 8. ☐ Distinguishes **"bad product" from "limited product"** — Balanced ≠ Critical.
 9. ☐ Does **not** pretend every processed product is equally problematic, and gives a genuinely strong product real, bounded praise.
 10. ☐ Treats additives/claims as part of the **whole picture**, never as a single-villain verdict.
+11. ☐ **Residual-antithesis scan (all forms) = 0** except logged, carve-out-justified keeps — run all four patterns from `5_banned_phrases_and_claims.md` §1.5 (comma/dash לא-ולא, the **bare non-comma `ולא`**, standalone `אלא`, English "X, not Y"). A scan that checks only the comma form is not a completed check — this exact gap has recurred 4×+ (TASK-477 RT-M1, TASK-484, TASK-461, TASK-490).
 
 ## Step 3 — The texture (does it read like Tom)
-11. ☐ Simple, conversational, second-person Hebrew. Short sentences; fragments allowed for punch.
-12. ☐ Sounds like a sharp friend at the shelf — **not a dietitian brochure**.
-13. ☐ Uses at least one signature move (situation opener, "X לא תמיד אומר Y", image-vs-structure, the "אז זהו" pivot) — without mechanically over-using one.
-14. ☐ Em-dash used as a **pivot at most once per paragraph** (the §7 tension in `2_voice_fingerprint.md`); never stacked, never a list-connector.
+12. ☐ Simple, conversational, second-person Hebrew. Short sentences; fragments allowed for punch.
+13. ☐ Sounds like a sharp friend at the shelf — **not a dietitian brochure**.
+14. ☐ Uses at least one signature move (situation opener, "X לא תמיד אומר Y", image-vs-structure, the "אז זהו" pivot) — without mechanically over-using one.
+15. ☐ Em-dash used as a **pivot at most once per paragraph** (the §7 tension in `2_voice_fingerprint.md`); never stacked, never a list-connector.
 
 ---
 
@@ -280,7 +281,7 @@ process into consumer copy, which is a first-order failure of the Bari voice.
 
 | Status | Condition |
 |---|---|
-| **PASS** | All 14 checklist items "yes" AND all 8 hard-fail criteria clear (zero triggers) |
+| **PASS** | All 15 checklist items "yes" AND all 8 hard-fail criteria clear (zero triggers) |
 | **FAIL — HF-1** | Same signature move in >2/5 consecutive reviews on the shelf |
 | **FAIL — HF-2A** | Critical framing applied to a product with ≤8 ingredients, no E-numbers, ≤10g sugar/100g |
 | **FAIL — HF-2B** | Positive-threshold product (≥5g fiber, ≤8g sugar, ≥5g protein, ≤8 ingredients) reviewed with hedge-only language and no named concrete strength |
