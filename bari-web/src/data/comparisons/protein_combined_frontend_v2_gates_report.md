@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/protein_combined_frontend_v2.json`
-**Generated:** 2026-07-03T13:48:21Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T13:58:41Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
@@ -13,7 +13,7 @@
 | [PASS] G4 OFF | PASS |
 | [WARN] G5 GRADE-INTEGRITY | WARN |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [SKIP] G7 PARITY | SKIP |
+| [PASS] G7 PARITY | PASS |
 | [PASS] G8 DATA-SANITY | PASS |
 
 **Overall: FAIL**
@@ -109,8 +109,23 @@
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [SKIP] G7 PARITY
-  SKIP: No baseline provided
+### [PASS] G7 PARITY
+  INFO: Product count: current=32 baseline=32
+  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
+  INFO: Avg consumer-text chars/product: current=637  baseline=631  delta=+7
+  INFO: Per-barcode grade changes (3):
+  INFO:   barcode=7290015130028 [WIN חטיף חלבון קרם חלב]: C -> D
+  INFO:   barcode=7290019401018 [חטיף קרם עוגיות]: C -> D
+  INFO:   barcode=7290019401049 [חטיף שוקולד קרמל]: C -> D
+  INFO: 
+  INFO: === PARITY SUMMARY TABLE ===
+  INFO:   Metric                                 Current    Baseline       Delta
+  INFO:   Product count                               32          32          +0
+  INFO:   Image coverage %                         100.0       100.0        +0.0
+  INFO:   Avg chars/product                          637         631          +7
+  INFO:   Grade changes                                3           —           —
+  INFO:   Products added                               0           —           —
+  INFO:   Products removed                             0           —           —
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)
