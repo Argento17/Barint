@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
@@ -49,10 +50,17 @@ export function BariProductThumbnail({
           className
         )}
       >
-        <img
+        {/* next/image (not a raw <img>) so the photo is proxied through Next's optimizer
+            and served SAME-ORIGIN from /_next/image — it never hotlinks the retailer host
+            from the visitor's browser, so ad blockers / VPNs / private-DNS filters that block
+            third-party image domains can no longer blank the thumbnail. `fill` sizes the image
+            to the parent box (which carries the fixed dimensions). onError still trips the
+            no-photo ✦ fallback below. */}
+        <Image
           src={product.imageUrl}
           alt={product.name}
-          className="h-full w-full object-contain p-2"
+          fill
+          className="object-contain p-2"
           sizes={
             size === "sm"
               ? "48px"
@@ -62,9 +70,7 @@ export function BariProductThumbnail({
                   ? "96px"
                   : "64px"
           }
-          loading={eager ? "eager" : "lazy"}
-          fetchPriority={eager ? "high" : "auto"}
-          decoding="async"
+          priority={eager}
           onError={() => setFailed(true)}
         />
       </div>
