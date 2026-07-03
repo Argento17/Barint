@@ -362,6 +362,7 @@ export const ComparisonRow = memo(function ComparisonRow({
                 rank={product.rank}
                 categoryTotal={product.categoryTotal}
                 magnesiumBadges={product.magnesiumBadges}
+                creatineBadges={product.creatineBadges}
               />
             ) : null}
           </div>
