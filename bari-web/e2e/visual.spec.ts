@@ -32,6 +32,9 @@ const ROUTES = [
   { path: "/hashvaot/hard-cheeses",     name: "hashvaot-hard-cheeses" },
   { path: "/hashvaot/snack-bars",       name: "hashvaot-snack-bars" },
   { path: "/hashvaot/milk-comparison",  name: "hashvaot-milk"       },
+  // TASK-471: canonical per-product page (single-product surface, not a
+  // shelf/comparison route — no grade-chip-count assertion applies).
+  { path: "/p/7290016245325",           name: "product-page"        },
 ] as const;
 
 // ── Pages with auto-scrolling Embla carousels ────────────────────────────────

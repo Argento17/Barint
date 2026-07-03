@@ -9,7 +9,15 @@ import AxeBuilder from "@axe-core/playwright";
  * moderate findings are reported but not failed, to keep the gate honest and unflaky.
  */
 
-const ROUTES = ["/", "/hashvaot/breakfast-cereals", "/hashvaot/hummus"];
+const ROUTES = [
+  "/",
+  "/hashvaot/breakfast-cereals",
+  "/hashvaot/hummus",
+  // TASK-471: canonical per-product page — a Design-critic contrast miss (the
+  // category-name link) shipped here undetected; this route keeps the a11y
+  // gate covering /p/[barcode] going forward.
+  "/p/7290016245325",
+];
 
 for (const route of ROUTES) {
   test(`a11y: no serious/critical violations on ${route}`, async ({ page }) => {
