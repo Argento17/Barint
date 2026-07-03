@@ -209,6 +209,25 @@ function BrandTag({ brand, productName }: { brand: string | null | undefined; pr
   );
 }
 
+// ── Canonical product page link ───────────────────────────────────────────────
+// TASK-471: every row with a barcode (sku) gets a link to its canonical
+// /p/[barcode] page, alongside the existing name → category-comparison link.
+// Absent when the row has no barcode (never fabricate one).
+
+function ProductPageLink({ sku }: { sku: string | null }) {
+  if (!sku) return null;
+  return (
+    <Link
+      href={`/p/${sku}`}
+      className="inline-flex w-fit items-center gap-1 text-[11px] font-medium transition-colors hover:underline"
+      style={{ color: "var(--fg3, #5E6560)" }}
+      title="עמוד המוצר"
+    >
+      עמוד מוצר ←
+    </Link>
+  );
+}
+
 // ── Dormant buy affordance ────────────────────────────────────────────────────
 // C1 fix: text → var(--fg3, #5E6560) which yields ≥5.9:1 on #FFFFFF and #FBFBF9.
 // "Inert" feel preserved via: very light border (0.10 opacity) + icon at 40% opacity.
@@ -268,40 +287,15 @@ interface FilterBarProps {
   retailerOptions: Array<{ id: string; nameHe: string }>;
 }
 
-function FilterBar({
-  filters,
-  onChange,
-  categoryOptions,
-  retailerOptions,
-  appearance = "default",
-  hasUnscored = true,
-}: FilterBarProps & { appearance?: "default" | "dashboard"; hasUnscored?: boolean }) {
-  const isDashboard = appearance === "dashboard";
-  const selectClass = isDashboard
-    ? "rounded-md border border-[rgba(17,19,24,0.12)] bg-white px-2.5 py-1 text-xs font-medium text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
-    : "rounded-full border border-[rgba(17,19,24,0.12)] bg-white px-3.5 py-1.5 text-sm text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
-  const inputClass = isDashboard
-    ? "w-full rounded-md border border-[rgba(17,19,24,0.12)] bg-white pe-8 ps-3 py-1 text-xs text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
-    : "w-full rounded-full border border-[rgba(17,19,24,0.12)] bg-white pe-9 ps-4 py-1.5 text-sm text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
+function FilterBar({ filters, onChange, categoryOptions, retailerOptions }: FilterBarProps) {
+  const selectClass =
+    "rounded-full border border-[rgba(17,19,24,0.12)] bg-white px-3.5 py-1.5 text-sm text-[#111318] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40";
 
   return (
-    <div
-      className={
-        isDashboard
-          ? "flex flex-wrap items-center gap-1.5 rounded-md border p-2"
-          : "flex flex-wrap items-center gap-2"
-      }
-      style={
-        isDashboard
-          ? { borderColor: "rgba(17,19,24,0.10)", background: "#FAFAF8" }
-          : undefined
-      }
-      role="search"
-      aria-label="סינון מוצרים"
-    >
-      <div className={isDashboard ? "relative min-w-[180px] flex-[1.4]" : "relative flex-1 min-w-[200px]"}>
+    <div className="flex flex-wrap items-center gap-2" role="search" aria-label="סינון מוצרים">
+      <div className="relative flex-1 min-w-[200px]">
         <Search
-          className={`pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 opacity-50 ${isDashboard ? "h-3.5 w-3.5" : "h-4 w-4"}`}
+          className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-50"
           style={{ color: "var(--fg3, #5E6560)" }}
           aria-hidden
         />
@@ -309,10 +303,10 @@ function FilterBar({
           type="search"
           value={filters.q}
           onChange={(e) => onChange({ ...filters, q: e.target.value })}
-          placeholder="חיפוש שם מוצר, מותג..."
+          placeholder="חיפוש שם מוצר, מותג או ברקוד..."
           dir="rtl"
-          className={inputClass}
-          aria-label="חיפוש מוצר"
+          className="w-full rounded-full border border-[rgba(17,19,24,0.12)] bg-white pe-9 ps-4 py-1.5 text-sm text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
+          aria-label="חיפוש מוצר לפי שם או ברקוד"
         />
       </div>
 
@@ -346,7 +340,7 @@ function FilterBar({
         className={selectClass}
         aria-label="סינון לפי דרגה"
       >
-        {GRADE_OPTIONS.filter((o) => o.value !== "unscored" || hasUnscored).map((o) => (
+        {GRADE_OPTIONS.map((o) => (
           <option key={o.value} value={o.value}>{o.label}</option>
         ))}
       </select>
@@ -361,15 +355,11 @@ function SortHeader({
   sortKey,
   sort,
   onSort,
-  alignEnd = false,
-  compact = false,
 }: {
   label: string;
   sortKey: SortKey;
   sort: SortState;
   onSort: (key: SortKey) => void;
-  alignEnd?: boolean;
-  compact?: boolean;
 }) {
   const active = sort.key === sortKey;
   const ariaSort: React.AriaAttributes["aria-sort"] = !active
@@ -379,7 +369,7 @@ function SortHeader({
       : "descending";
 
   return (
-    <th scope="col" aria-sort={ariaSort} style={{ ...thStyle, padding: compact ? "10px 16px" : "13px 22px", textAlign: alignEnd ? "end" : "start" }}>
+    <th scope="col" aria-sort={ariaSort} style={{ ...thStyle, padding: "13px 22px", textAlign: "start" }}>
       <button
         type="button"
         onClick={() => onSort(sortKey)}
@@ -415,8 +405,6 @@ function SortHeader({
 interface ProductTableProps {
   rows: InventoryProductRowWithBuy[];
   variant?: "public" | "admin";
-  /** Dashboard styling for /catalog — dense grid, sticky header, toolbar filters. */
-  appearance?: "default" | "dashboard";
   loading?: boolean;
   error?: string | null;
   onRetry?: () => void;
@@ -443,7 +431,6 @@ interface ProductTableProps {
 export function ProductTable({
   rows,
   variant = "public",
-  appearance = "default",
   loading = false,
   error = null,
   onRetry,
@@ -452,7 +439,6 @@ export function ProductTable({
   detailsById,
 }: ProductTableProps) {
   const isAdmin = variant === "admin";
-  const isDashboard = appearance === "dashboard" && !isAdmin;
   const hasExpansion = !isAdmin && detailsById !== undefined;
   const [filters, setFilters] = useState<TableFilters>(EMPTY_FILTERS);
   const [sort, setSort] = useState<SortState>(NO_SORT);
@@ -509,11 +495,7 @@ export function ProductTable({
 
   const filtered = useMemo(() => {
     // externalQ (AppShell header) takes precedence over internal search field
-    const rawQ = externalQ.trim() || filters.q.trim();
-    const q = rawQ.toLowerCase();
-    const normalizedSkuQuery = /^\d+$/.test(rawQ.replace(/\s+/g, ""))
-      ? rawQ.replace(/\s+/g, "")
-      : null;
+    const q = (externalQ.trim() || filters.q.trim()).toLowerCase();
     // resolvedCategoryName: externalCategory (by id→name lookup) OR internal select
     const cat = resolvedCategoryName;
     return rows.filter((r) => {
@@ -527,9 +509,6 @@ export function ProductTable({
         }
       }
       if (q) {
-        if (normalizedSkuQuery && r.sku?.replace(/\s+/g, "") === normalizedSkuQuery) {
-          return true;
-        }
         const haystack = [r.name, r.brand ?? "", r.categoryNameHe, r.retailer.nameHe, r.sku ?? ""]
           .join(" ")
           .toLowerCase();
@@ -538,6 +517,15 @@ export function ProductTable({
       return true;
     });
   }, [rows, filters, externalQ, resolvedCategoryName]);
+
+  // Exact barcode match: offers a direct jump to the canonical /p/[barcode] page.
+  // Only fires on an exact sku match (not a substring) so it doesn't appear for
+  // every partial numeric search — a deliberate, precise trigger.
+  const exactBarcodeMatch = useMemo(() => {
+    const q = (externalQ.trim() || filters.q.trim());
+    if (!q) return null;
+    return rows.find((r) => r.sku === q) ?? null;
+  }, [rows, filters.q, externalQ]);
 
   // Sort the filtered set. ציון sorts by numeric score (unscored always last);
   // text columns use Hebrew locale compare. Default (no key) = as-passed order.
@@ -598,7 +586,7 @@ export function ProductTable({
   };
 
   return (
-    <div className={`flex flex-col ${isDashboard ? "gap-3" : "gap-4"}`} id="product-table-root">
+    <div className="flex flex-col gap-4" id="product-table-root">
       <FilterBar
         filters={displayFilters}
         onChange={(next) => {
@@ -611,9 +599,23 @@ export function ProductTable({
         }}
         categoryOptions={categoryOptions}
         retailerOptions={retailerOptions}
-        appearance={isDashboard ? "dashboard" : "default"}
-        hasUnscored={rows.some((r) => r.grade === null)}
       />
+
+      {/* Exact barcode match: direct jump to the canonical /p/[barcode] page */}
+      {!loading && !error && exactBarcodeMatch && (
+        <Link
+          href={`/p/${exactBarcodeMatch.sku}`}
+          className="flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-medium transition-colors hover:bg-[#F1F8F4]"
+          style={{
+            borderColor: "rgba(31,143,106,0.25)",
+            background: "#F6FBF8",
+            color: "#155C3C",
+          }}
+        >
+          <ChevronRight className="h-4 w-4 rotate-180" aria-hidden />
+          התאמת ברקוד מדויקת: מעבר לעמוד המוצר של {exactBarcodeMatch.name}
+        </Link>
+      )}
 
       {!loading && !error && (
         <p
@@ -621,7 +623,7 @@ export function ProductTable({
           style={{ color: "var(--fg3, #5E6560)" }}
           aria-live="polite"
         >
-          {filtered.length.toLocaleString("he-IL")} מוצרים
+          {filtered.length.toLocaleString("he-IL")} מוצרים מוצגים
         </p>
       )}
 
@@ -661,9 +663,7 @@ export function ProductTable({
       )}
 
       {/* Table wrapper */}
-      {/* lg:overflow-visible — an overflow-x-auto ancestor traps position:sticky, so the
-          dashboard thead can only stick to the page when the table fits without scrolling */}
-      <div className={isDashboard ? "overflow-x-auto lg:overflow-visible" : "overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]"}>
+      <div className="overflow-x-auto rounded-[18px] border border-[rgba(17,19,24,0.08)]">
 
         {/* Mobile: stacked list */}
         <div className="block sm:hidden">
@@ -718,12 +718,12 @@ export function ProductTable({
           </colgroup>
 
           {/* Thead: background #FAFAF8, mono uppercase, H1 padding 13px/22px */}
-          <thead className={isDashboard ? "sticky top-[var(--site-header-height-sm,4.25rem)] z-10" : undefined}>
+          <thead>
             <tr style={{ background: "#FAFAF8", borderBottom: "1px solid rgba(17,19,24,0.08)" }}>
-              <SortHeader label="מוצר" sortKey="name" sort={sort} onSort={handleSort} compact={isDashboard} />
-              <SortHeader label="קטגוריה" sortKey="category" sort={sort} onSort={handleSort} compact={isDashboard} />
-              <SortHeader label="ציון" sortKey="score" sort={sort} onSort={handleSort} alignEnd={isDashboard} compact={isDashboard} />
-              <SortHeader label="רשת · מקור" sortKey="retailer" sort={sort} onSort={handleSort} compact={isDashboard} />
+              <SortHeader label="מוצר" sortKey="name" sort={sort} onSort={handleSort} />
+              <SortHeader label="קטגוריה" sortKey="category" sort={sort} onSort={handleSort} />
+              <SortHeader label="ציון" sortKey="score" sort={sort} onSort={handleSort} />
+              <SortHeader label="רשת · מקור" sortKey="retailer" sort={sort} onSort={handleSort} />
               {!isAdmin && (
                 <th scope="col" style={{ ...thStyle, padding: "13px 12px", textAlign: "start" }}>
                   <span className="sr-only">צפייה ברשת</span>
@@ -759,7 +759,6 @@ export function ProductTable({
                   row={row}
                   idx={idx}
                   isAdmin={isAdmin}
-                  isDashboard={isDashboard}
                   hasExpansion={hasExpansion}
                   detail={hasExpansion ? (detailsById?.[row.id] ?? null) : null}
                   expanded={expandedId === row.id}
@@ -821,7 +820,6 @@ function DesktopRow({
   row,
   idx,
   isAdmin,
-  isDashboard,
   hasExpansion,
   detail,
   expanded,
@@ -833,7 +831,6 @@ function DesktopRow({
   row: InventoryProductRowWithBuy;
   idx: number;
   isAdmin: boolean;
-  isDashboard: boolean;
   hasExpansion: boolean;
   detail: BariProductVM | null;
   expanded: boolean;
@@ -852,7 +849,7 @@ function DesktopRow({
         style={{ background: expanded ? "#F4FAF7" : rowBg }}
       >
         {/* מוצר */}
-        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
+        <td style={{ padding: "13px 22px" }}>
           <div className="flex items-center gap-3 min-w-0">
             <ProductThumb imageUrl={row.imageUrl} name={row.name} />
             <div className="flex flex-col gap-0.5 min-w-0">
@@ -883,48 +880,25 @@ function DesktopRow({
                   {row.brand}
                 </span>
               )}
+              {!isAdmin && <ProductPageLink sku={row.sku} />}
             </div>
           </div>
         </td>
 
         {/* קטגוריה */}
-        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
-          <span
-            className={isDashboard ? "inline-block rounded px-2 py-0.5" : undefined}
-            style={{
-              fontSize: isDashboard ? 12 : 13.5,
-              fontWeight: 500,
-              color: "var(--fg2, #4E5663)",
-              background: isDashboard ? "rgba(17,19,24,0.04)" : undefined,
-              border: isDashboard ? "1px solid rgba(17,19,24,0.06)" : undefined,
-            }}
-          >
+        <td style={{ padding: "13px 22px" }}>
+          <span style={{ fontSize: 13.5, fontWeight: 500, color: "var(--fg2, #4E5663)" }}>
             {row.categoryNameHe}
           </span>
         </td>
 
         {/* ציון */}
-        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px", textAlign: isDashboard ? "end" : "start" }}>
-          <div className={isDashboard ? "inline-flex flex-col items-end gap-1" : undefined}>
-            {isDashboard && row.score !== null ? (
-              <span
-                className="font-bold tabular-nums"
-                style={{
-                  fontSize: 13,
-                  color: "var(--fg1, #111318)",
-                  fontVariantNumeric: "tabular-nums",
-                  fontFamily: "var(--font-mono, ui-monospace, monospace)",
-                }}
-              >
-                {row.score.toLocaleString("he-IL")}
-              </span>
-            ) : null}
-            <InventoryGradeChip grade={row.grade} />
-          </div>
+        <td style={{ padding: "13px 22px" }}>
+          <InventoryGradeChip grade={row.grade} />
         </td>
 
         {/* רשת + optional SKU (admin only) */}
-        <td style={{ padding: isDashboard ? "10px 16px" : "13px 22px" }}>
+        <td style={{ padding: "13px 22px" }}>
           <div className="flex flex-col gap-0.5">
             <span style={{ fontSize: 13.5, fontWeight: 500, color: "var(--fg2, #4E5663)" }}>
               {row.retailer.nameHe}
@@ -947,7 +921,7 @@ function DesktopRow({
 
         {/* Buy affordance (public only) — tighter horizontal padding so the pill fits */}
         {!isAdmin && (
-          <td style={{ padding: isDashboard ? "10px 8px" : "13px 12px" }}>
+          <td style={{ padding: "13px 12px" }}>
             <BuyAffordance buyUrl={row.buyUrl} />
           </td>
         )}
@@ -1096,6 +1070,7 @@ function MobileRow({
           <p className="truncate text-xs" style={{ color: "var(--fg3, #5E6560)" }}>
             {row.categoryNameHe} · {row.retailer.nameHe}
           </p>
+          {hasExpansion && <ProductPageLink sku={row.sku} />}
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <InventoryGradeChip grade={row.grade} />
@@ -1169,19 +1144,10 @@ function EmptyState() {
   return (
     <div className="py-12 text-center" role="status" aria-live="polite">
       <p className="text-sm font-medium" style={{ color: "var(--fg2, #4E5663)" }}>
-        לא נמצאו מוצרים תואמים
+        אין מוצרים בסינון הזה
       </p>
       <p className="mt-1 text-xs" style={{ color: "var(--fg3, #5E6560)" }}>
-        נסו לשנות את הסינון, או שהמוצר עדיין לא נבדק. הקטלוג גדל כל שבוע, וכל ההשוואות המלאות נמצאות ב
-        {" "}
-        <a
-          href="/hashvaot"
-          className="font-semibold underline underline-offset-2"
-          style={{ color: "var(--bari-green-deep, #176F53)" }}
-        >
-          השוואות
-        </a>
-        .
+        נסו לשנות את פרמטרי הסינון
       </p>
     </div>
   );

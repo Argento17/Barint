@@ -114,13 +114,7 @@ export function buildInventoryRows(): InventoryProductRowVM[] {
         categoryNameHe: nameHe,
         grade: product.grade ?? null,
         score: product.score ?? null,
-        // BariConfidence contract (view-models/index.ts): backend "full" maps to
-        // "verified" at the language boundary — some corpus JSONs (cheese v5)
-        // still carry the raw backend value.
-        confidence:
-          (product.confidence as string) === "full"
-            ? "verified"
-            : product.confidence,
+        confidence: product.confidence,
         retailer,
         sku,
         imageUrl: product.imageUrl ?? null,
@@ -237,16 +231,13 @@ export function buildInventorySummary(
  * Build a Map<productId, BariProductVM> for the catalog's per-product expansion panel.
  *
  * Sources from the same getComparisonCategoryCorpusPayload used by buildInventoryRows,
- * so the detail set is guaranteed to match the catalog rows exactly — same registry
- * categories, same corpus curation (e.g. hummus exclusions), same
- * normalizeProductBrandDisplay already applied by loadComparisonCorpus inside each
- * category's getCorpusPayload. Row/category counts are registry-driven on purpose:
- * they are not repeated here, so this comment cannot go stale when a category is
- * registered or a corpus curates.
+ * so the detail set is guaranteed to match the 174 catalog rows exactly (same corpus,
+ * same hummus curation, same normalizeProductBrandDisplay already applied by
+ * loadComparisonCorpus inside each category's getCorpusPayload).
  *
- * Payload size scales with the registry and is kept safely under the 1.5 MB embed
- * threshold → embedded in the page at render time. Expansions render lazily on user
- * interaction, so the data weight is acceptable.
+ * Payload size (measured 2026-07-01): 464 KB serialized for the 6 registered categories
+ * → safely under the 1.5 MB embed threshold → embedded in the page at render time.
+ * Expansions render lazily on user interaction, so the data weight is acceptable.
  *
  * Pure function — no auth, no I/O. Safe to call from public Server Components.
  */
@@ -261,4 +252,54 @@ export function buildInventoryProductDetails(): Map<string, BariProductVM> {
   }
 
   return map;
+}
+
+// ─── Barcode product index (TASK-471) ────────────────────────────────────────
+
+/**
+ * One entry in the barcode → product index that backs the canonical /p/[barcode]
+ * page. Joins the flat row (which already carries `sku` = barcode, categoryNameHe,
+ * comparisonHref, retailer) with the full BariProductVM detail (editorial fields,
+ * nutrition, ingredients) by the shared product `id`.
+ *
+ * DISPLAY-ONLY: both halves are read verbatim from the existing corpus payload.
+ * Nothing here recomputes, reorders, or rounds a score/grade/nutrition value.
+ */
+export interface BarcodeProductEntry {
+  row: InventoryProductRowVM;
+  detail: BariProductVM;
+}
+
+/**
+ * Build a Map<barcode, BarcodeProductEntry> across the full live registry.
+ *
+ * Products with a null/absent barcode are excluded — they simply have no
+ * canonical /p/ page (never fabricate a barcode to give them one).
+ *
+ * If two products across categories somehow share a barcode (not expected in the
+ * live corpus — each category's barcodes are scoped to its own scrape), the last
+ * one encountered wins; this mirrors the existing dedup-by-id behavior of
+ * buildInventoryProductDetails and is a display-only tie-break, never a scoring one.
+ *
+ * Pure function — no auth, no I/O. Safe to call from generateStaticParams and
+ * from the page Server Component alike.
+ */
+export function buildBarcodeProductIndex(): Map<string, BarcodeProductEntry> {
+  const rows = buildInventoryRows();
+  const details = buildInventoryProductDetails();
+  const index = new Map<string, BarcodeProductEntry>();
+
+  for (const row of rows) {
+    if (!row.sku) continue; // no fabricated barcodes — skip products without one
+    const detail = details.get(row.id);
+    if (!detail) continue; // defensive: row without a matching detail VM
+    index.set(row.sku, { row, detail });
+  }
+
+  return index;
+}
+
+/** Look up a single product by barcode. Returns null when not found (→ notFound()). */
+export function getProductByBarcode(barcode: string): BarcodeProductEntry | null {
+  return buildBarcodeProductIndex().get(barcode) ?? null;
 }
