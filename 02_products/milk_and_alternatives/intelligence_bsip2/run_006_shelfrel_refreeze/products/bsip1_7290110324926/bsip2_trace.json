@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-06-16T04:57:39.109343Z",
+  "trace_generated_at": "2026-07-02T19:54:16.686965Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_7290110324926",
@@ -11,7 +11,7 @@
     "source_retailers": [
       "yohananof"
     ],
-    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_milk_002\\output\\bsip1_7290110324926.json",
+    "bsip1_source_path": null,
     "audit_ref": "bsip1_audit_7290110324926.json",
     "bsip1_schema_version": "bsip1_v0_1",
     "load_errors": []
@@ -54,7 +54,7 @@
     "sugars_g": null,
     "dietary_fiber_g": null,
     "protein_g": 3.3,
-    "ingredient_count": 12,
+    "ingredient_count": 10,
     "ingredient_list": [
       "מיצוי פולי סויה (99.4%) (מים",
       "פולי סויה 6.4%)",
@@ -65,14 +65,12 @@
       "מלח",
       "מייצב: ג''לאן גאם",
       "ויטמינים B12",
-      "B2 ו- D (B2-0.24 מ\"ג",
-      "B12-מק\"ג 0.4",
-      "D-0.75 מק\"ג ל-100 גרם)."
+      "B12-מק\"ג 0.4"
     ],
-    "ingredient_count_raw": 12,
+    "ingredient_count_raw": 10,
     "ingredient_sanitization": {
-      "raw_count": 12,
-      "clean_count": 12,
+      "raw_count": 10,
+      "clean_count": 10,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
@@ -112,6 +110,7 @@
     "sweetener_detected": false,
     "sweetener_tier": null,
     "sweetener_matches": [],
+    "sweetener_negation_suppressed": [],
     "additive_marker_count": 3,
     "additive_categories": [
       "color",
@@ -168,6 +167,7 @@
     "functional_fiber_terms_matched": [],
     "functional_fiber_viscous_terms": [],
     "functional_fiber_prebiotic_terms": [],
+    "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
     "tax_emulsifier_medium": [],
@@ -179,7 +179,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 12,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -204,9 +204,7 @@
       "מלח",
       "מייצב: ג''לאן גאם",
       "ויטמינים B12",
-      "B2 ו- D (B2-0.24 מ\"ג",
-      "B12-מק\"ג 0.4",
-      "D-0.75 מק\"ג ל-100 גרם)."
+      "B12-מק\"ג 0.4"
     ]
   },
   "L4_interpreted_concerns": {
@@ -270,7 +268,7 @@
     "satiety_support": 79.2,
     "fat_quality": 94.9,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 52
+    "whole_food_integrity": 56
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
@@ -282,7 +280,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (3.3×3 + 0×5) / 50 × 400 = 79.2",
     "fat_quality": "fat_v1(fat=1.8g<8.0): sat=0.3g base=94.9-seed0-trans0=94.9",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=12 complexity_pen=8 → 52"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=10 complexity_pen=4 → 56"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -296,7 +294,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 56.73,
+  "weighted_dimension_score": 56.89,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -400,7 +398,7 @@
     }
   ],
   "binding_cap": 72,
-  "score_after_cap": 56.73,
+  "score_after_cap": 56.89,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -451,7 +449,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 56.73,
+  "score_after_penalty": 56.89,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -512,11 +510,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 56.73,
+  "score_after_floors": 56.89,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 56.7,
+  "final_score_estimate": 56.9,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -528,16 +526,16 @@
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.58,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.201,
+    "primary_confidence": 0.52,
+    "secondary": "C",
+    "secondary_label": "Mechanically Fragmented",
+    "secondary_confidence": 0.215,
     "class_weights": {
       "A": 0.052,
       "B": 0.052,
-      "C": 0.116,
-      "D": 0.58,
-      "E": 0.201,
+      "C": 0.215,
+      "D": 0.52,
+      "E": 0.161,
       "F": 0.0
     },
     "is_between_worlds": false,
