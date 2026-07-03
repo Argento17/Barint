@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 /**
  * TASK 2 — Accessibility statement (/nagisut).
  * Route is live so crawlers and assistive technology can discover it.
- * Body text below is a DRAFT loaded for owner review (page stays noindexed).
+ * Body text below is a DRAFT loaded for owner review. Page is indexable
+ * (inherits `index, follow` from the root layout; no robots override here).
  * Tokens rendered as 【...】 mark facts the owner must still fill/verify.
  * Israeli Standard IS 5568 requires a published accessibility statement.
  */
