@@ -10,6 +10,7 @@
  */
 
 import { useMemo } from "react";
+import Image from "next/image";
 
 import { CatalogKpiStrip } from "@/components/inventory/catalog-kpi-strip";
 import { computeCatalogDashboardMetrics } from "@/components/inventory/catalog-dashboard-metrics";
@@ -34,23 +35,36 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
 
   return (
     <div className="space-y-4 lg:space-y-5" dir="rtl">
-      <header className="border-b pb-4" style={{ borderColor: "rgba(17,19,24,0.08)" }}>
-        <p
-          className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
-          style={{ color: "var(--fg3, #5E6560)" }}
-        >
-          BARI CATALOG
-        </p>
-        <h1
-          className="mt-1.5 font-extrabold tracking-tight"
-          style={{ fontSize: "clamp(22px, 3.5vw, 28px)", letterSpacing: "-0.04em", color: "#111318" }}
-        >
-          קטלוג המוצרים
-        </h1>
-        <p className="mt-1 text-xs font-medium" style={{ color: "var(--fg3, #5E6560)" }}>
-          {summary.totalProducts.toLocaleString("he-IL")} מוצרים ·{" "}
-          {summary.categoryCount.toLocaleString("he-IL")} קטגוריות
-        </p>
+      <header className="flex items-start justify-between gap-3 border-b pb-4" style={{ borderColor: "rgba(17,19,24,0.08)" }}>
+        <div className="min-w-0">
+          <p
+            className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
+            style={{ color: "var(--fg3, #5E6560)" }}
+          >
+            BARI CATALOG
+          </p>
+          <h1
+            className="mt-1.5 font-extrabold tracking-tight"
+            style={{ fontSize: "clamp(22px, 3.5vw, 28px)", letterSpacing: "-0.04em", color: "#111318" }}
+          >
+            קטלוג המוצרים
+          </h1>
+          <p className="mt-1 text-xs font-medium" style={{ color: "var(--fg3, #5E6560)" }}>
+            {summary.totalProducts.toLocaleString("he-IL")} מוצרים ·{" "}
+            {summary.categoryCount.toLocaleString("he-IL")} קטגוריות
+          </p>
+        </div>
+        {/* OLI beside the catalog title. Decorative. Mobile-visible at a small tuned size. */}
+        <Image
+          src="/mascots/mascot-oli-catalog.png"
+          alt=""
+          width={700}
+          height={494}
+          aria-hidden
+          className="pointer-events-none h-auto w-14 shrink-0 select-none sm:w-20 md:w-32 lg:w-40"
+          sizes="(max-width: 768px) 56px, (max-width: 1024px) 128px, 160px"
+          priority
+        />
       </header>
 
       <CatalogKpiStrip metrics={metrics} />

@@ -559,18 +559,19 @@ export function HomeMethodology() {
           )}
         >
           <div className="relative overflow-hidden rounded-[1.65rem] border border-black/[0.08] bg-[#FFFFFF]/72 p-4 md:p-6">
-            <div className="mb-4 flex items-center justify-between gap-3">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
               <div className="shrink-0">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#5E6560]">פרופיל מוצר לדוגמה</p>
                 <h3 className="mt-1 text-xl font-extrabold tracking-[-0.035em] text-[#111318]">
                   ניתוח רב־ממדי של מוצר
                 </h3>
               </div>
-              {/* OLI conducts the holographic radar — mastered on the panel white, plays plain */}
+              {/* OLI conducts the holographic radar — mastered on the panel white, plays plain.
+                  Mobile: own row, small + centered so it never fights the title/pill for width. */}
               <MascotClip
                 src="/mascots/clips/oli-radar.mp4"
                 plain
-                className="hidden aspect-video w-56 sm:block"
+                className="order-last aspect-video w-24 shrink-0 basis-full justify-self-center sm:order-none sm:w-56 sm:basis-auto"
               />
               <div className="shrink-0 rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
                 8 פרמטרים

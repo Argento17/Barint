@@ -49,14 +49,16 @@ export function FeaturedComparisonCard({ className = "" }: { className?: string 
         {/* Product A -- vitabix */}
         <div className="flex flex-col items-center gap-3 border-b border-black/[0.05] px-5 py-6 text-center md:border-b-0">
           <div className="relative">
-            {/* OLI in boxing gloves beside the winning pack, fully clear of it. Decorative. */}
+            {/* OLI in boxing gloves beside the winning pack, fully clear of it. Decorative.
+                Mobile: smaller + tighter offset so it stays clear of the pack without
+                overflowing the narrow single-column card. */}
             <Image
               src="/mascots/oli-boxing.png"
               alt=""
               width={820}
               height={900}
               aria-hidden
-              className="pointer-events-none absolute bottom-0 -start-28 hidden w-24 md:block"
+              className="pointer-events-none absolute bottom-0 -start-14 w-14 sm:-start-16 sm:w-16 md:-start-28 md:w-24"
             />
             <CarouselCardImage
               productId={vitabix.id}
