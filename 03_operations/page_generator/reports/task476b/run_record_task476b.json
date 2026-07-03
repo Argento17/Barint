@@ -1,0 +1,58 @@
+{
+  "task": "TASK-476b",
+  "worktree": "C:\\bari_wt_t476",
+  "branch": "golive/task476-rescore",
+  "base_commit": "66536aba (origin/master, merge PR #56 fix/task472-crackers-provenance)",
+  "generated_at": "2026-07-03",
+  "engine_fix": {
+    "input_loader.py": {
+      "function": "get_ingredients()",
+      "precedence": [
+        "ingredients_list (if non-empty)",
+        "ingredient_order (entry['text'] fields, order preserved)",
+        "bracket-aware split of ingredients_text_he / ingredients_raw (rule 3, new helper _split_top_level_commas, tracks (), [], {})"
+      ],
+      "sha256": "a46cc2e3d15109c9db83094a0ca551146fceb6fa574893da041c53fe887bc78e"
+    },
+    "router_v2.py": {
+      "function": "classify_category()",
+      "change": "deleted duplicate naive ingredient-count fallback (old lines ~1022-1039); now routes _req362_ingredient_count through input_loader.get_ingredients()",
+      "sha256": "ee1a4e0248a36a10058800ba6c57340289551acf3d842ff61cf1508c6a5a277e"
+    },
+    "run_gates.py": {
+      "change": "defensive type-check in _collect_consumer_strings() -- consumerExplanation can be the literal PENDING_COPY sentinel string (not a dict) after copy_stage runs on a grade-mover; guarded to avoid AttributeError crash",
+      "sha256": "cdd9285ddf67beb3c63ac9780462478493cd9b2d42f2a295b16a5335fa9950af"
+    }
+  },
+  "pipeline_runs": {
+    "bread": {
+      "config": "03_operations/page_generator/configs/bread.json",
+      "rescore_all": "python 03_operations/page_generator/rescore_all.py --shelf bread",
+      "corpus": "03_operations/bsip1/run_bread_conform_001/output (31 BSIP1 records)",
+      "copy_stage": "python 03_operations/page_generator/copy_stage.py --staging _rescore_staging/bread/bread_rescored.json --live bari-web/src/data/comparisons/bread_frontend_v4.json --out _rescore_staging/bread/bread_copy_applied.json",
+      "note": "config's own baseline_json points at bread_frontend_v3.json (stale, config comment discloses v4 is the true live-route target since TASK-433); --live was pointed explicitly at v4 for correctness, not the config default",
+      "rank_fix": "rank recomputed as score-descending position (1..23) after copy_stage marked it PENDING_COPY on the 4 movers -- structural/derived field, not authored copy",
+      "gates_exit": "1 (FAIL) -- sole cause: G2 COVERAGE PENDING_COPY on the 4 known grade-movers (by design, Content two-gate not yet run). G1/G3/G4/G5/G6/G7/G8 all PASS."
+    },
+    "crackers": {
+      "config": "03_operations/page_generator/configs/crackers.json",
+      "rescore_all": "python 03_operations/page_generator/rescore_all.py --shelf crackers",
+      "corpus": "03_operations/bsip1/run_crackers_conform_001/output (20 BSIP1 records)",
+      "copy_stage": "python 03_operations/page_generator/copy_stage.py --staging _rescore_staging/crackers/crackers_rescored.json --live bari-web/src/data/comparisons/crackers_frontend_v1.json --out _rescore_staging/crackers/crackers_copy_applied.json",
+      "rank_fix": "rank recomputed as score-descending position (1..20)",
+      "categoryTotal_fix": "categoryTotal recomputed as true product count (20) -- was left as PENDING_COPY string by copy_stage on the 2 PENDING rows",
+      "gates_exit": "1 (FAIL) -- sole cause: G2 COVERAGE PENDING_COPY on 1 mover + 1 new-to-corpus product. All other gates PASS."
+    },
+    "protein_bars": {
+      "config": "03_operations/page_generator/configs/protein_bars.json",
+      "note_CONFLICT": "config explicitly states 'generate_page.py is NOT compatible' with this category (no standard BSIP1 trace dir; lens-scored inline from a flat corpus JSON). rescore_all.py --shelf protein_bars would hard-error ('no bsip1 files matched corpus_dirs') because 02_products/snack_bars/bsip2_outputs/protein_bars_task365/ contains no bsip1_*.json files. Used the real existing reproducer 03_operations/page_generator/provenance/protein_bars_reproduce_harness.py instead, which scores the real live corpus (protein_combined_corpus_task365_33_20260621_fix.json) through the same engine (score_product/router_v2/signal_extractor) via the same adapter logic as the local (uncommitted, main-tree-only) batch_run_protein_bars_task365.py -- confirmed byte-equivalent adapter logic by direct comparison.",
+      "corpus": "02_products/snack_bars/protein_combined_corpus_task365_33_20260621_fix.json (32 published barcodes)",
+      "flags": "BARI_PROTEIN_BAR_V1=on, BARI_FAT_TECH_V1=on, BARI_GLASSBOX_W4=on, rest off (matches published-page canonical flags per the harness's own CANONICAL_FLAGS)",
+      "copy_stage": "staging JSON built by overlaying harness scores/grades onto a deep copy of the live protein_combined_frontend_v2.json (same schema), then run through copy_stage.py normally",
+      "rank_fix": "rank recomputed as score-descending position (1..32)",
+      "categoryTotal_fix": "categoryTotal recomputed as true product count (32) for the 3 PENDING rows",
+      "gates_exit": "1 (FAIL) -- G1 SCHEMA fails on ~20 'additional property not allowed' errors that ALSO fire identically against the untouched, currently-published protein_combined_frontend_v2.json (confirmed by direct re-run) -- this is a PRE-EXISTING schema/tooling gap (protein-bars was never conformed to the generic page_output_schema_v1.json), not introduced by this rescore. G2 COVERAGE fails only on the 3 known PENDING movers. G4/G6/G7/G8 PASS."
+    }
+  },
+  "c10_milk_gate_note": "rescore_all.py's C10 milk-freeze check FAILs identically (same 2 products, same deltas: bsip1_7290110324926 +0.2, bsip1_7290110325619 +4.1) with and without this task's engine fix -- confirmed via a controlled git stash/git stash pop A-B test. This is a PRE-EXISTING condition in origin/master's milk-freeze machinery, not caused by this change. Disclosed as a diagnostic finding, not fixed (out of this task's scope)."
+}

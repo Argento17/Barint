@@ -21,6 +21,7 @@ Key improvements over v1 (category_classifier.py):
 
 from __future__ import annotations
 import os as _os
+from input_loader import get_ingredients as _get_ingredients
 
 ROUTER_VERSION = "router_v2.5"  # TASK-394: BARI_R3_BISCUIT_NARROW_V1 promoted to production-default ON
 
@@ -1126,22 +1127,14 @@ def classify_category(product: dict) -> dict:
     ing_text = (product.get("ingredients_text_he") or "").lower()
     nn       = product.get("normalized_nutrition_per_100g") or {}
 
-    # REQ-362-R1: resolve ingredient_count for Rule 2.  The count is taken from
-    # the BSIP1 ingredient list (already sanitized by the signal extractor).  If
-    # not present, fall back to a comma-split of the ingredient text — this must
-    # be consistent with what signal_extractor.py sees.
-    # BSIP1 uses "ingredients_list" (primary) or "ingredient_list" or "ingredients".
-    _ing_list = (product.get("ingredients_list")
-                 or product.get("ingredient_list")
-                 or product.get("ingredients")
-                 or [])
-    if _ing_list:
-        _ingredient_count = len(_ing_list)
-    else:
-        import re as _re
-        _ing_text_raw = product.get("ingredients_text_he") or ""
-        _parts = [x.strip() for x in _re.split(r"[,;]", _ing_text_raw) if x.strip() and len(x.strip()) > 1]
-        _ingredient_count = len(_parts)
+    # REQ-362-R1: resolve ingredient_count for Rule 2.  TASK-476: this must
+    # route through the same fidelity-preference chain as everywhere else in
+    # the pipeline (input_loader.get_ingredients) rather than re-deriving its
+    # own naive fallback — a duplicate, lower-fidelity comma-split here was
+    # mis-routing products whose ingredient count depends on ingredient_order
+    # or bracket-aware text splitting (see TASK-476 Finding 1).
+    _ing_list = _get_ingredients(product)
+    _ingredient_count = len(_ing_list)
     # Inject for _apply_req362_overrides so it can log the count without re-deriving.
     product["_req362_ingredient_count"] = _ingredient_count
 
