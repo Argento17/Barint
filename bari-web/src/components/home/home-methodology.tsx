@@ -571,7 +571,7 @@ export function HomeMethodology() {
               <MascotClip
                 src="/mascots/clips/oli-radar.mp4"
                 plain
-                className="order-last aspect-video w-32 shrink-0 basis-full justify-self-center sm:order-none sm:w-56 sm:basis-auto"
+                className="order-last aspect-video w-24 shrink-0 basis-full justify-self-center sm:order-none sm:w-56 sm:basis-auto"
               />
               <div className="shrink-0 rounded-full border border-black/[0.08] bg-[#1F8F6A]/[0.035] px-3 py-1 text-xs font-bold text-[#1F8F6A]">
                 8 פרמטרים

@@ -70,10 +70,11 @@ export function MagnesiumComparisonPage({
         <Image
           src="/mascots/mascot-mg-magnesium.png"
           alt=""
-          width={1394}
-          height={882}
+          width={700}
+          height={443}
           aria-hidden
           className="pointer-events-none -mt-1 h-auto w-16 shrink-0 select-none sm:w-24 lg:w-64 xl:w-72"
+          sizes="(max-width: 768px) 64px, (max-width: 1024px) 96px, 288px"
           priority
         />
       }

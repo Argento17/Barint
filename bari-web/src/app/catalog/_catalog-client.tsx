@@ -58,10 +58,11 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
         <Image
           src="/mascots/mascot-oli-catalog.png"
           alt=""
-          width={1374}
-          height={969}
+          width={700}
+          height={494}
           aria-hidden
           className="pointer-events-none h-auto w-14 shrink-0 select-none sm:w-20 md:w-32 lg:w-40"
+          sizes="(max-width: 768px) 56px, (max-width: 1024px) 128px, 160px"
           priority
         />
       </header>
