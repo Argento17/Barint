@@ -4,7 +4,9 @@ import type { BariProductVM } from "@/lib/view-models";
  * Shelf lens ids for chocolate countline bars.
  * All products in this corpus are grade E — grade filter is uninformative.
  * Instead: sugar-band lenses (≤50g vs >50g per 100g) + a "real-food ingredient"
- * lens (nuts / peanuts present, visible in the product name on this corpus).
+ * lens (nuts / peanuts present in the product's ingredients, per the scraped
+ * ingredients list — not just the name; e.g. Snickers has no nut word in its
+ * name but lists peanuts as its third ingredient).
  */
 export type ChocolateBarsShelfFilterId =
   | "sugar-low"
@@ -22,10 +24,23 @@ export const CHOCOLATE_BARS_SHELF_LENS_OPTIONS: ChocolateBarsShelfLensOption[] =
   { id: "sugar-high", label: "הרבה סוכר (>50 גרם)" },
 ];
 
-/** Names containing nuts/peanuts — used as a proxy for "real food ingredient".
- *  The filter is conservative: it matches only if the product name contains one
- *  of the Hebrew keywords, which are the authoritative label on this shelf. */
-const REAL_FOOD_KEYWORDS = ["בוטן", "אגוז", "שקד", "פיסטוק", "קשיו"];
+/** Nut/peanut keywords — used to detect "real food ingredient" presence.
+ *  Stems (not full singular words) so both singular and plural Hebrew forms
+ *  match as substrings: Hebrew plurals replace a word-final letter (e.g. "ן")
+ *  with a medial letter + suffix (e.g. "ן" -> "נים"), so the full singular
+ *  word "בוטן" is never a substring of its own plural "בוטנים". Using the
+ *  stem "בוטנ" matches both. */
+const REAL_FOOD_KEYWORDS = ["בוטנ", "אגוז", "שקד", "פיסטוק", "קשיו"];
+
+/** Checks both the product name and its scraped ingredients list — the name
+ *  alone silently misses products where the nut/peanut content is a named
+ *  ingredient but not part of the marketing name (e.g. Snickers: "בוטנים" is
+ *  the third listed ingredient, but "בוטנים" never appears in the name). */
+function containsRealFoodKeyword(text: string | null | undefined): boolean {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  return REAL_FOOD_KEYWORDS.some((kw) => lower.includes(kw));
+}
 
 function productMatchesChocolateBarsFilter(
   product: BariProductVM,
@@ -41,8 +56,10 @@ function productMatchesChocolateBarsFilter(
       return sugar !== null && sugar !== undefined && sugar > 50;
     }
     case "has-real-food": {
-      const name = product.name.toLowerCase();
-      return REAL_FOOD_KEYWORDS.some((kw) => name.includes(kw));
+      return (
+        containsRealFoodKeyword(product.name) ||
+        containsRealFoodKeyword(product.expansion?.ingredients)
+      );
     }
     default:
       return true;
