@@ -90,6 +90,37 @@ authors must not over-correct into mush. Distinguish the bare contrastive **clos
 - **`לא X אלא Y`** (not X but rather Y) **naming the positive alternative** — this is the **APPROVED repair form**, not a tell.
 - Discriminator: a closer that **adds a positive alternative or a full resolving clause** is allowed; a closer that **only negates, repeated shelf-wide,** is the tell.
 
+### ALL-FORMS antithesis residual scan — mandatory, every draft (owner rule `no_x_not_y_phrasing`; TASK-491)
+
+**Why this exists:** the owner-banned "X, not Y" / define-by-negation construction
+has been caught by QA **4×+ in one session** (TASK-477 RT-M1, TASK-484, TASK-461
+chocbars/cakes/hardcheese, TASK-490) because every prior self-check scanned **only
+the comma-prefixed `, לא`** form. The coded gate (`_T1_CLOSER` in
+`integrations/clients/naturalness_gate.py`) has the same blind spot: it requires a
+leading comma or em-dash before `לא`. **The recurring miss is the bare, non-comma
+`ולא` form** ("...בלי כוכביות ולא מוטרד מ..."), which reads as a plain conjunction
+but is structurally the identical "X, and-not Y" antithesis the owner rejected — and
+`אלא` ("not X but rather Y"), which the comma-only scan never touches at all.
+
+Before any draft leaves this gate (and again at the publication-mode residual
+check, §3 below), run **all four** forms — not just the first:
+
+| Form | Regex | Catches |
+|---|---|---|
+| Comma/dash + לא/ולא | `[,;]?\s*ו?לא\s` | "...טבלת קקאו, לא ממתק." / "...ולא ממתק." |
+| **Bare non-comma ולא (the recurring miss)** | `(?<!,)\s+ולא\s` | "...בלי כוכביות **ולא מוטרד** מאחוז שומן..." — no comma, easy to miss by eye |
+| Standalone אלא | `\bאלא\b` | "...אינה החמרה **אלא** תיאור..." / "לא X **אלא** Y" |
+| English | `,\s*not\s` | "analysis, not opinion" |
+
+Run all four as one pass over every consumer-facing field (`rowVerdict`,
+`insightLine`, `expansion.positiveSignals[]`, `expansion.limitingFactors[]`,
+`expansion.comparisonContext`, hero/prologue/categoryNote/methodology copy) — a
+scan that only checks the first pattern is an incomplete scan and does not clear
+this gate. Apply the same CARVE-OUTS above (`לא X ולא Y` neither/nor, a single
+resolving `אבל`, `לא X אלא Y` naming a positive alternative, plain factual negation
+like `ללא סוכר` / `ללא שינוי`, standard site-wide disclaimer boilerplate) — those
+are not the tell; only the antithesis-of-two-things shape is.
+
 **Two failure modes (owner ruling, file 8 H5-R3):** T1–T7 are the **F1
 translationese-punch** axis. The opposite failure is **F2 neutral-bland** — no
 verdict, hedge-only, "says nothing." Both are banned: the target is *opinionated
@@ -148,6 +179,7 @@ scrape field, or an approved doc/URL). Vague provenance ("מקור מזון רש
 ## 3. Gate order (run before any handoff)
 1. **Claim scan** — every factual sentence is Tier-A-verifiable or carries a "דורש אימות" flag. Tier-B → escalate to Nutrition.
 2. **Phrase scan** — no banned phrase (§1); run `hebrew_readability.is_clean` (must be true).
+2.5. **Residual-antithesis scan, ALL FORMS (§1.5 box above)** — run all four patterns (`[,;]?\s*ו?לא\s`, `(?<!,)\s+ולא\s`, `\bאלא\b`, `,\s*not\s`), not just the comma-לא form. Result = 0 hits except logged, carve-out-justified keeps. This is a required pre-return line — recurring miss caught 4×+ (TASK-477 RT-M1, TASK-484, TASK-461, TASK-490).
 3. **Tone scan** — any witty/critical line passes HebEMO anger+disgust.
 4. **Form scan** — run hero/prologue/insight lines through DICTA Nakdan; garbled word = rewrite.
 5. **Grammar/agreement scan** — run `hebrew_grammar_gate.analyze(text).is_clean` (must be true); gender/number agreement failure = not-done. High-confidence flags may be auto-fixed via `hebrew_grammar_autofix.auto_fix(text)`; medium-confidence flags require human review.
