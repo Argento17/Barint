@@ -4,7 +4,7 @@ import type { BariProductVM } from "@/lib/view-models";
  * Shelf lens ids for chocolate tablets. Grade-based (C/D/E spread exists on this corpus).
  * Same self-contained pattern as snacks/protein-bars — NO separate ghost module.
  */
-export type ChocolateTabletsShelfFilterId = "grade-C" | "grade-D" | "grade-E";
+export type ChocolateTabletsShelfFilterId = "grade-B" | "grade-C" | "grade-D" | "grade-E";
 
 export interface ChocolateTabletsShelfLensOption {
   id: ChocolateTabletsShelfFilterId;
@@ -12,6 +12,7 @@ export interface ChocolateTabletsShelfLensOption {
 }
 
 export const CHOCOLATE_TABLETS_SHELF_LENS_OPTIONS: ChocolateTabletsShelfLensOption[] = [
+  { id: "grade-B", label: "ב" },
   { id: "grade-C", label: "ג" },
   { id: "grade-D", label: "ד" },
   { id: "grade-E", label: "ה" },
@@ -22,6 +23,8 @@ function productMatchesChocolateTabletsFilter(
   filter: ChocolateTabletsShelfFilterId
 ): boolean {
   switch (filter) {
+    case "grade-B":
+      return product.grade === "B";
     case "grade-C":
       return product.grade === "C";
     case "grade-D":

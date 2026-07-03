@@ -21,8 +21,8 @@
     "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
     "task": "TASK-409 clean+traceable re-derive v2",
     "ts": "2026-06-26T15:58:10",
-    "corpus_records": 33,
-    "scored": 33,
+    "corpus_records": 35,
+    "scored": 35,
     "failed_barcodes": [],
     "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
     "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
@@ -58,6 +58,10 @@
       "reproduction_table": "02_products\\chocolate\\bsip2_outputs\\run_chocolate_tablets_task483_001\\reproduction_table.json",
       "reproduction_result": "ALL live-displayed products reproduce mechanically (score abs delta <= 0.05, grade exact match)",
       "note": "TASK-483 hygiene reconciliation. This _meta update is the ONLY change made to this file: no score, grade, rank, or copy field was touched. Verified byte-identical products/page_copy before and after this update."
+    },
+    "task481_documented_exclusions": {
+      "documented_exclusions_count": 3,
+      "note": "3 grade-C tablets (barcodes 3046920023429/3046920023368/3046920023443) excluded per missing_data_discard_rule -- ingredients_raw scrape captured only an allergen-advisory fragment, not an actual ingredient list; nutrition panel complete and verified for all 3. See config.exclusions (03_operations/page_generator/configs/chocolate_tablets.json) for full reason per barcode. Originally excluded 2026-06-24 (commit c294039e) without disclosure; disclosed 2026-07-03 (TASK-481). corpus_records/scored corrected 33->35 in this same update -- the prior 33 was an artifact of the TASK-409 re-derive script scoping its corpus to the barcodes already live at rerun time, not a true corpus count. This _meta update is the ONLY change made to this file: no score, grade, rank, or copy field was touched."
     }
   },
   "products": [
