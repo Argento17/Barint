@@ -16,12 +16,14 @@
 
 import { ComparisonPage } from "@/components/comparisons/comparison-page";
 import { ComparisonTable } from "@/components/shared/comparison-table";
+import { CreatineEvidenceSection } from "@/components/shared/creatine-evidence-section";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
 import {
   creatineIsraeliSectionLabel,
   creatineWorldwideSectionLabel,
+  creatineEvidenceSections,
 } from "@/lib/comparisons/creatine-page-data";
 
 export interface CreatineComparisonPageProps {
@@ -118,6 +120,12 @@ export function CreatineComparisonPage({
             clampVerdictLines={3}
             compactDividers
           />
+          {/* TASK-492C FIX 1: evidence prose (efficacy tiers, effective dose, forms,
+              safety, dose-honesty tier definitions, dairy annotation) renders BELOW
+              the product tables — the 31-row comparison is the hero of the page. */}
+          <div className={cn("px-4 pt-2", comparisonWebSectionPaddingClass())}>
+            <CreatineEvidenceSection sections={[...creatineEvidenceSections]} />
+          </div>
         </>
       )}
     />

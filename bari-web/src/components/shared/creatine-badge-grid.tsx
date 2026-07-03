@@ -25,9 +25,18 @@ const BADGE_TITLES = [
   "מחיר לגרם אפקטיבי", // Badge 5
 ] as const;
 
+// TASK-492C FIX 2 (design-critic C2, WCAG 1.4.3): the original honest-tier green
+// (#1F8F6A, 3.86:1 on card bg #FAFAF7) and below_floor gold (#B5882F, 3.08:1) both
+// fail AA 4.5:1 for normal text. Replaced with darker tones already established
+// elsewhere in the app for the same semantic color, not invented:
+//   - honest: #167A58 (used for brand/positive text app-wide, e.g. comparison-row.tsx
+//     brand color) — 5.07:1 on #FAFAF7.
+//   - below_floor: #6B5A1E (used for the same caution/gold semantic in
+//     magnesium-safety-box.tsx) — 6.46:1 on #FAFAF7.
+//   - undisclosed: #6E756D unchanged — already 4.53:1, passes.
 function doseHonestyTone(tier: CreatineBadgesVM["doseHonesty"]): { color: string; dotFilled: boolean } {
-  if (tier === "honest") return { color: "#1F8F6A", dotFilled: true };
-  if (tier === "below_floor") return { color: "#B5882F", dotFilled: false };
+  if (tier === "honest") return { color: "#167A58", dotFilled: true };
+  if (tier === "below_floor") return { color: "#6B5A1E", dotFilled: false };
   return { color: "#6E756D", dotFilled: false };
 }
 
