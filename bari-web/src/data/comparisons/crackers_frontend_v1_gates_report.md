@@ -1,29 +1,29 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/crackers_frontend_v1.json`
-**Generated:** 2026-07-01T19:47:29Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-03T08:34:49Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
-| [WARN] G2 COVERAGE | WARN |
-| [PASS] G3 SCOPE | PASS |
+| [FAIL] G2 COVERAGE | FAIL |
+| [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
-| [PASS] G5 GRADE-INTEGRITY | PASS |
+| [WARN] G5 GRADE-INTEGRITY | WARN |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [SKIP] G7 PARITY | SKIP |
+| [PASS] G7 PARITY | PASS |
 | [PASS] G8 DATA-SANITY | PASS |
 
-**Overall: PASS**
+**Overall: FAIL**
 
 ## Detail
 
 ### [PASS] G1 SCHEMA
   INFO: Document validates against schema
 
-### [WARN] G2 COVERAGE
+### [FAIL] G2 COVERAGE
   INFO: imageUrl: 19/19 non-null
   INFO: name: 19/19 non-null
   INFO: score: 19/19 non-null
@@ -40,29 +40,59 @@
   INFO: expansion.confidenceLabel: 19/19
   WARN: No corpus provided — imageUrl regression check skipped
   INFO: name: all products have Hebrew characters in name
-  INFO: verdict coverage: every product has an authored insightLine or rowVerdict
-  INFO: v3 consumerTakeaway: 19/19 authored (0 PENDING)
-  INFO: v3 consumerExplanation.whyRated: 19/19 authored (0 PENDING)
-  INFO: v3 bariInterpretation.interpretation: 190/190 authored (0 PENDING)
-  INFO: v3 bestUseCases: 19/19 authored (0 PENDING)
+  FAIL: insightLine: 1/19 products still PENDING_COPY (page authored but incomplete)
+  FAIL: rowVerdict: 1/19 products still PENDING_COPY (page authored but incomplete)
+  FAIL: 1/19 products render NO verdict — both insightLine and rowVerdict are unauthored (PENDING/null/empty/missing) after the copy stage ran — barcodes: 7290018790328
+  INFO: v3 milk-depth coverage checks: SKIP (copy stage not yet run; 1/19 insightLines still PENDING)
 
-### [PASS] G3 SCOPE
+### [WARN] G3 SCOPE
   INFO: Displayed products: 19
-  INFO: Scored products (trace dirs): 20
-  INFO: Declared exclusions in _meta: 1
-  INFO:   missing barcode 7290112968807: excluded — insufficient_data: unrecoverable per-serving/per-100g nutrition corruption, discard-rule. Full nutrition block (kcal/protein/carbs/fiber/sodium) was ~1/4.6 of near-identical sibling 'פיטנס' products with no clean unit/parse scaling factor -> nulled at BSIP1 source (TASK-433 FIX2b, missing-data-discard rule) -> engine returns insufficient_data/neutral score -> a gradeless row does not belong on a comparison page. Same rule as the existing BSIP1-stage discard of 5317200 (total data blackout), applied one stage later because this product's corruption was found and nulled during the TASK-433 rework, not at initial scrape.
+  WARN: Run directory not found: None
 
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [PASS] G5 GRADE-INTEGRITY
+### [WARN] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
+  WARN: barcode=96086000966: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=96086000577: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290013740823: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290013740809: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7296073659945: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7296073134459: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7296073134442: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290112963918: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7296073659952: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290112968821: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290115205176: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=8434165658523: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7296073398875: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=74252: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290013740083: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290011489595: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=74375: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290018790328: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=5000396021202: no trace found in --run dir, cannot verify score vs trace
+  INFO: All grade/score checks passed
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [SKIP] G7 PARITY
-  SKIP: No baseline provided
+### [PASS] G7 PARITY
+  INFO: Product count: current=19 baseline=19
+  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
+  INFO: Avg consumer-text chars/product: current=1430  baseline=1615  delta=-185
+  INFO: Per-barcode grade changes (1):
+  INFO:   barcode=7290018790328 [קרקר מרובע מלוח]: C -> D
+  INFO: 
+  INFO: === PARITY SUMMARY TABLE ===
+  INFO:   Metric                                 Current    Baseline       Delta
+  INFO:   Product count                               19          19          +0
+  INFO:   Image coverage %                         100.0       100.0        +0.0
+  INFO:   Avg chars/product                         1430        1615        -185
+  INFO:   Grade changes                                1           —           —
+  INFO:   Products added                               0           —           —
+  INFO:   Products removed                             0           —           —
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)

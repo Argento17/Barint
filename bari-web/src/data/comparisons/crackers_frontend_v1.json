@@ -1,17 +1,34 @@
 {
   "_meta": {
     "category": "crackers",
+    "categoryCaveat": "קרקרים הם מוצר יבש: האפייה מסלקת כמעט את כל המים, ולכן הקלוריות ל-100 גרם גבוהות יותר מלחם — וזה נובע מהמבנה של הקרקר. לכן בארי משווה כל קרקר מול קרקרים אחרים, לא מול לחם: צפיפות קלורית עדיין נמדדת, אבל מול מדף הקרקרים ולא מול לחם. מה שבאמת מבדיל בין המוצרים במדף הוא כמה מהבסיס דגן מלא לעומת קמח מזוקק ומילויי עמילן, אורך רשימת הרכיבים ומספר מקורות הסוכר, וכמות הסיבים — שם, לצד הקלוריות, נמצא הפער הגדול בציונים.",
     "config_sha256": "5172b56d99950d3c76b45f8e1ca288af92692f457b6aa04067cfd7bb4098e0ce",
-    "exclusions": [],
+    "deanchor_meta_regenerated": "2026-07-02",
+    "exclusions": [
+      {
+        "barcode": "7290112968807",
+        "dropped_at": "2026-07-01T19:36:05.788749+00:00",
+        "reason": "insufficient_data: unrecoverable per-serving/per-100g nutrition corruption, discard-rule. Full nutrition block (kcal/protein/carbs/fiber/sodium) was ~1/4.6 of near-identical sibling 'פיטנס' products with no clean unit/parse scaling factor -> nulled at BSIP1 source (TASK-433 FIX2b, missing-data-discard rule) -> engine returns insufficient_data/neutral score -> a gradeless row does not belong on a comparison page. Same rule as the existing BSIP1-stage discard of 5317200 (total data blackout), applied one stage later because this product's corruption was found and nulled during the TASK-433 rework, not at initial scrape.",
+        "stage": "frontend_packaging",
+        "task": "TASK-433"
+      }
+    ],
     "generated": "2026-06-16T00:00:00Z",
     "generator_version": "1.2.0",
-    "product_count": 20,
+    "off_used": false,
+    "product_count": 19,
+    "reflow": {
+      "date": "2026-07-03",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "note": "Scores re-flowed by TASK-476b's ingredient-fallback engine fix (input_loader.py/router_v2.py). This _meta.reflow annotation records the fix lineage; see the TASK-476b/476c run record for the authoritative per-product before/after score table and mover count.",
+      "task": "TASK-476b rescore (ingredient-fallback fix), TASK-476c scope correction"
+    },
     "retailer_breakdown": {
       "shufersal": 20
     },
     "schema": "BariProductVM[]",
     "schema_version": "v3",
-    "scored_count": 20,
+    "scored_count": 19,
     "source_paths": {
       "corpus_dirs": [
         "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output"
@@ -20,10 +37,14 @@
         "C:\\bari_wt_t476\\_rescore_staging\\crackers\\products"
       ]
     },
-    "subpool_filter": null
+    "subpool_filter": null,
+    "task433_data_rework": "TASK-433 data-layer rework (Adversarial QA + C3 red-team NO-GO fix): FIX1 ingredient bleed/truncation cleaned at BSIP1 source for 20/20 rows (reproducible marker-cut rule, verbatim prefix of raw scrape, never invented); FIX2 sodium thousands-separator parser bug corrected (7290018790328: 1.2->1200mg) and source-confirmed corrupted nutrition block nulled per missing-data-discard rule (7290112968807: all fields null, ~1/4.6 of sibling products, no clean scaling factor found); FIX3 sugar extracted from embedded nutrition-panel-bleed text for 2/20 rows (5000396021202=8.5g, 8434165658523=4.0g), remaining rows genuinely null at source. Re-scored through canonical BSIP2 batch_run_crackers_conform_001.py (identical flag set, unchanged). Copy fields (nameHe, rowVerdict, insightLine, consumerTakeaway, bariInterpretation[].interpretation/label/strength text, expansion.consumerExplanation prose, expansion.whyRated, _meta.categoryCaveat) preserved verbatim -- NOT rewritten by this pass.",
+    "task433_frontend_discard": "Orchestrator directive (within-lane, no tripwire): 7290112968807 dropped from displayable set post-rescore (insufficient_data, unrecoverable). 20 scored -> 19 displayable. See _meta.exclusions and 03_operations/page_generator/configs/crackers_frontend_discards_v1.json for the reproducible discard record.",
+    "task433_structural_finalization": "rank (1..20, score desc) and _website_cluster added — structural/data fields only, no copy authored. _website_cluster derived from whole-grain-flour-percentage evidence in BSIP1 ingredients_text_he (sum of explicit % for כוסמין מלא/חיטה מלא(ה)/שיפון מלא terms): whole_grain >=70%, mixed_grain >0% and <70%, refined_white =0%. Cluster counts: {'whole_grain': 3, 'mixed_grain': 9, 'refined_white': 8}. KRIT (8434165658523) brand left null — the pre-existing bread_frontend_v3.json 'KRIT' value is unsourced (not derivable from any scrape/BSIP0/BSIP1 artifact) and was NOT carried forward, per reproducibility rule."
   },
   "products": [
     {
+      "_website_cluster": "whole_grain",
       "barcode": "96086000966",
       "bariInterpretation": [
         {
@@ -102,6 +123,7 @@
         "חלבון"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -139,16 +161,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RQT50_Z_P_96086000966_1.png",
       "insightLine": "ארבעה רכיבים בסך הכול, וכולם אמיתיים: כוסמין מלא, שומשום, מלח ואורגנו.",
       "name": "קרקר כוסמין מלא ושומשום",
+      "nameHe": "קרקר כוסמין מלא ושומשום",
+      "rank": 1,
       "retailer": "shufersal",
       "rowVerdict": "כוסמין מלא (82%) ושומשום בונים קרקר בלי מילוי ובלי תוסף אחד, והחלבון שלו נמנה עם הגבוהים בהשוואה. הרשימה הקצרה הזו היא ממש הסיפור של המוצר.",
       "score": 81.6,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "whole_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר כוסמין מלא ושומשום",
-      "rank": 1
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "whole_grain",
       "barcode": "96086000577",
       "bariInterpretation": [
         {
@@ -227,6 +248,7 @@
         "חלבון"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -264,16 +286,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RBU48_Z_P_96086000577_1.png",
       "insightLine": "98% כוסמין מלא אורגני, מים ומלח: שלושה רכיבים ותו לא.",
       "name": "קרקר כוסמין אורגני",
+      "nameHe": "קרקר כוסמין אורגני",
+      "rank": 2,
       "retailer": "shufersal",
       "rowVerdict": "כמעט קרקר-כוסמין טהור: כמעט כל המשקל הוא דגן מלא אורגני, בלי שום דבר אחר מלבד מים ומלח. החלבון כאן זהה לקרקר שמעליו, עם מעט פחות סיבים.",
       "score": 79.6,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "whole_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר כוסמין אורגני",
-      "rank": 2
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7290013740823",
       "bariInterpretation": [
         {
@@ -351,6 +372,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -390,16 +412,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGU46_Z_P_7290013740823_1.png",
       "insightLine": "שמן זית ותערובת זרעים אמיתית לצד כוסמין מלא, בלי תוסף אחד ברשימה.",
       "name": "קרקר כוסמין טבעי",
+      "nameHe": "קרקר כוסמין טבעי",
+      "rank": 3,
       "retailer": "shufersal",
       "rowVerdict": "שומשום, חמניות, צ'יה, פשתן ודלעת מצטרפים לכוסמין המלא ולשמן הזית, והסיבים כאן מהגבוהים בכל ההשוואה. הכוסמין תופס כשליש מהמשקל, החלק המרכזי של הרשימה.",
       "score": 76.2,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר כוסמין טבעי",
-      "rank": 3
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7290013740809",
       "bariInterpretation": [
         {
@@ -477,6 +498,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -515,16 +537,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGG50_Z_P_7290013740809_1.png",
       "insightLine": "אבקת סלק לצבע, ומעבר לזה אותה משפחה נקייה כמו הכוסמין הטבעי שלצדו.",
       "name": "קרקר כוסמין סלק",
+      "nameHe": "קרקר כוסמין סלק",
+      "rank": 4,
       "retailer": "shufersal",
       "rowVerdict": "כוסמין מלא, שמן זית וזרעים אמיתיים, עם אבקת סלק (1.3%) לצבע ובלי תוסף מזון אחד. הסיבים כאן מהגבוהים בהשוואה כולה, החלבון מעט נמוך מהתאום שלו, וגם כאן הכוסמין הוא כשליש מהמשקל.",
       "score": 74.7,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר כוסמין סלק",
-      "rank": 4
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7296073659945",
       "bariInterpretation": [
         {
@@ -602,6 +623,7 @@
         "בסיס לממרח"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -648,16 +670,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PRE72_Z_P_7296073659945_1.png",
       "insightLine": "כמעט תאום של הקרקר הכפרי לצדו: אותה תערובת קמחים, אותו חלבון גבוה.",
       "name": "קרקר דק רוזמרין",
+      "nameHe": "קרקר דק רוזמרין",
+      "rank": 5,
       "retailer": "shufersal",
       "rowVerdict": "כרבע מהתערובת חיטה מלאה, בדיוק כמו התאום שלו, עם שמן דקל וקינואה אדומה. החלבון הגבוה מגיע מאותו מקום, והסיבים נשארים נמוכים משני הצדדים.",
       "score": 74.2,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דק רוזמרין",
-      "rank": 5
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7296073134459",
       "bariInterpretation": [
         {
@@ -735,6 +756,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -772,16 +794,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SIE60_Z_P_7296073134459_1.png",
       "insightLine": "'בסגנון שוודי' על האריזה, כשהבסיס בפועל הוא כשליש חיטה מלאה, גריסי תירס ועמילן.",
       "name": "קרקר פריך בסגנון שוודי",
+      "nameHe": "קרקר פריך בסגנון שוודי",
+      "rank": 6,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה פותחת את הרשימה, אך רק כשליש מהמשקל; גריסי תירס ועמילן תפוח אדמה משלימים את השאר, לצד סוכר. הרשימה קצרה ובלי תוספי מזון, והשם מבטיח יותר ממה שהבסיס בפועל נותן.",
       "score": 74.1,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר פריך בסגנון שוודי",
-      "rank": 6
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "whole_grain",
       "barcode": "7296073134442",
       "bariInterpretation": [
         {
@@ -859,6 +880,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -896,16 +918,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SHN52_Z_P_7296073134442_1.png",
       "insightLine": "שבעים אחוז חיטה מלאה בבסיס: יותר דגן מלא מכל קרקר קמח-מעורב אחר בהשוואה.",
       "name": "קרקר פריך עם קמח שיפון",
+      "nameHe": "קרקר פריך עם קמח שיפון",
+      "rank": 7,
       "retailer": "shufersal",
       "rowVerdict": "החיטה המלאה כאן היא רוב מכריע של המשקל, חלק גדול בהרבה מהשליש הרגיל במדף, ולצדה מעט קמח שיפון. גריסי תירס, עמילן תפוח אדמה וסוכר מדללים את הרשימה, והסיבים בסוף נשארים בינוניים בלבד.",
       "score": 73.3,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "whole_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר פריך עם קמח שיפון",
-      "rank": 7
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7290112963918",
       "bariInterpretation": [
         {
@@ -983,6 +1004,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1035,16 +1057,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FZR58_Z_P_7290112963918_1.png",
       "insightLine": "'פיטנס' על האריזה, אבל קמח אורז וקמח לבן מרכיבים את רוב הבסיס בפועל.",
       "name": "קרקר דק רוזמרין פיטנס",
+      "nameHe": "קרקר דק רוזמרין פיטנס",
+      "rank": 8,
       "retailer": "shufersal",
       "rowVerdict": "הרכיב הראשון ברשימה הוא חיטה מלאה, כשליש מהבסיס, ואז קמח אורז וקמח חיטה לבנה משלימים את השאר. יש כאן גם תוסף שנוי במחלוקת, והסיבים נשארים נמוכים לקטגוריה.",
       "score": 70.9,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דק רוזמרין פיטנס",
-      "rank": 8
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7296073659952",
       "bariInterpretation": [
         {
@@ -1122,6 +1143,7 @@
         "חלבון"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1168,16 +1190,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PRL70_Z_P_7296073659952_1.png",
       "insightLine": "החלבון כאן מהגבוהים בהשוואה, בזכות גלוטן חיטה, שומשום וקינואה.",
       "name": "קרקר דק כפרי",
+      "nameHe": "קרקר דק כפרי",
+      "rank": 9,
       "retailer": "shufersal",
       "rowVerdict": "תערובת הקמחים היא כרבע חיטה מלאה בלבד, ולצדה שמן דקל ברשימה. מה שמרים את החלבון הוא דווקא התוספות: גלוטן חיטה, שומשום וקינואה אדומה.",
       "score": 70.7,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דק כפרי",
-      "rank": 9
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7290112968821",
       "bariInterpretation": [
         {
@@ -1255,6 +1276,7 @@
         "בסיס לממרח"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1300,16 +1322,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NGG56_Z_P_7290112968821_1.png",
       "insightLine": "אבקת בטטה וגזר נותנות צבע וטעם, והבסיס עצמו נשען בעיקר על קמח אורז וחיטה לבנה.",
       "name": "קרקר דק פיטנס בטטה",
+      "nameHe": "קרקר דק פיטנס בטטה",
+      "rank": 10,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה (31%) פותחת את הרשימה, ואז קמח אורז וחיטה לבנה משלימים את רוב הבסיס. אבקת הבטטה והגזר תורמות טעם וצבע בלבד, ויש כאן גם תוסף אחד שנוי במחלוקת.",
       "score": 69.4,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דק פיטנס בטטה",
-      "rank": 10
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "mixed_grain",
       "barcode": "7290115205176",
       "bariInterpretation": [
         {
@@ -1387,6 +1408,7 @@
         "בסיס לממרח"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1440,16 +1462,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLX46_Z_P_7290115205176_1.png",
       "insightLine": "קינואה ושומשום מוסיפים גיוון, אך הבסיס עדיין כשליש חיטה מלאה עם שני תוספים שנויים במחלוקת.",
       "name": "קרקר דק כפרי פיטנס",
+      "nameHe": "קרקר דק כפרי פיטנס",
+      "rank": 11,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה פותחת, וקינואה ושומשום נותנים לו גיוון אמיתי. קמח אורז וחיטה לבנה משלימים את רוב הבסיס, הסיבים נמוכים, ושני תוספים שנויים במחלוקת מצטרפים לרשימה. קרקר שיושב באמצע המדף בכל מדד.",
       "score": 69.4,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "mixed_grain",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דק כפרי פיטנס",
-      "rank": 11
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "8434165658523",
       "bariInterpretation": [
         {
@@ -1527,6 +1548,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1572,16 +1594,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SXG60_Z_P_8434165658523_1.png",
       "insightLine": "קמח לבן, שני שמנים וסוכר לבן: הראשון מבין קרקרי הקמח הלבן במדף.",
       "name": "קרקר קרם קרקר",
+      "nameHe": "קרקר קרם קרקר",
+      "rank": 12,
       "retailer": "shufersal",
       "rowVerdict": "כאן עובר קו הגבול בין משפחת הדגן המלא לקרקרי הקמח הלבן שממלאים את החצי השני של המדף. קמח חיטה לבן פותח את הרשימה, עם שמן חמניות ודקל, סוכר וטעם לתת שעורה, והסיבים נשארים מהנמוכים בהשוואה.",
       "score": 68.1,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר קרם קרקר",
-      "rank": 12
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "7296073398875",
       "bariInterpretation": [
         {
@@ -1659,6 +1680,7 @@
         "בסיס לממרח"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1711,16 +1733,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMA74_Z_P_7296073398875_1.png",
       "insightLine": "קמח לבן ועמילן תירס כבסיס, עם דקסטרוז ופרוקטוז כשני מקורות סוכר.",
       "name": "קרם קרקר",
+      "nameHe": "קרם קרקר",
+      "rank": 13,
       "retailer": "shufersal",
       "rowVerdict": "דגן מלא נעדר לגמרי מהרשימה הזו: קמח חיטה ועמילן תירס בלבד, עם שני סוגי סוכר. הסיבים מהנמוכים בכל ההשוואה, קרקר לבן קלאסי בלי צד תזונתי חזק.",
       "score": 64.3,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרם קרקר",
-      "rank": 13
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "74252",
       "bariInterpretation": [
         {
@@ -1798,6 +1819,7 @@
         "בסיס לממרח"
       ],
       "brand": "אסם",
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1857,16 +1879,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EUV20_Z_P_74252_1.png",
       "insightLine": "84% קמח לבן ושלושה מקורות סוכר: השומשום הוא כמעט הדבר היחיד לצדו.",
       "name": "קרקר שומשום אסם",
+      "nameHe": "קרקר שומשום אסם",
+      "rank": 14,
       "retailer": "shufersal",
       "rowVerdict": "שליטה כמעט מוחלטת לקמח החיטה הלבן כאן, וסוכר, סירופ גלוקוזה וגלוטן חיטה משלימים את הרשימה. השומשום (6.6%) הוא כל מה שיש כאן מעבר לבסיס הלבן, ונתוני הסיבים כלל לא מופיעים על האריזה.",
       "score": 59.3,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר שומשום אסם",
-      "rank": 14
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "7290013740083",
       "bariInterpretation": [
         {
@@ -1944,6 +1965,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -1998,16 +2020,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VEI44_Z_P_7290013740083_1.png",
       "insightLine": "הקלוריות הגבוהות בכל ההשוואה, כי מעבר לקמח הלבן יש כאן שפע זרעים, מרגרינה וביצים.",
       "name": "קרקר דגנים ללת\"ס",
+      "nameHe": "קרקר דגנים ללת\"ס",
+      "rank": 15,
       "retailer": "shufersal",
       "rowVerdict": "שומשום, חמניות, פשתן, דלעת וקצח לצד ביצים דוחפים את החלבון והקלוריות גבוה, אך הבסיס עצמו נשאר קמח חיטה לבן ושמן קנולה. גם הנתרן כאן מהגבוהים בהשוואה כולה.",
       "score": 57.6,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר דגנים ללת\"ס",
-      "rank": 15
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "7290011489595",
       "bariInterpretation": [
         {
@@ -2085,6 +2106,7 @@
         "בסיס לממרח"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -2158,16 +2180,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UBC60_Z_P_7290011489595_1.png",
       "insightLine": "הנתרן כאן השני בגובהו בכל ההשוואה, וחמישה תוספי מזון מצטרפים לרשימה.",
       "name": "קרקר טופז שומשום",
+      "nameHe": "קרקר טופז שומשום",
+      "rank": 16,
       "retailer": "shufersal",
       "rowVerdict": "754 מיליגרם נתרן ל-100 גרם ממקמים אותו קרוב לראש טבלת המלח של הקטגוריה כולה. קמח לבן, סירופ גלוקוזה וסוכר אינוורטי בונים את הבסיס, ותוסף שנוי במחלוקת נמצא ברשימה.",
       "score": 50.4,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר טופז שומשום",
-      "rank": 16
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "refined_white",
       "barcode": "74375",
       "bariInterpretation": [
         {
@@ -2245,6 +2266,7 @@
         "בסיס לממרח"
       ],
       "brand": "אסם",
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -2297,16 +2319,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EZO26_Z_P_74375_1.png",
       "insightLine": "שבעים ותשעה אחוז קמח לבן, בלי גרם אחד של דגן מלא שיחזיק את המוצר.",
       "name": "קרקר זהב אסם",
+      "nameHe": "קרקר זהב אסם",
+      "rank": 17,
       "retailer": "shufersal",
       "rowVerdict": "כמעט כל הבסיס כאן הוא קמח חיטה לבן, עם שמנים, סוכר וסירופ גלוקוזה לצדו. דגן מלא לא נמצא בשום צורה, והחלבון נשאר בין הנמוכים בהשוואה כולה.",
       "score": 49.4,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר זהב אסם",
-      "rank": 17
+      "source_traceability_status": "resolved"
     },
     {
+      "_website_cluster": "PENDING_COPY",
       "barcode": "7290018790328",
       "bariInterpretation": [
         "PENDING_COPY"
@@ -2315,6 +2336,7 @@
         "PENDING_COPY"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -2380,71 +2402,15 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DYN56_Z_P_7290018790328_1.png",
       "insightLine": "PENDING_COPY",
       "name": "קרקר מרובע מלוח",
+      "nameHe": "PENDING_COPY",
+      "rank": 18,
       "retailer": "shufersal",
       "rowVerdict": "PENDING_COPY",
       "score": 48.1,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "PENDING_COPY",
-      "categoryTotal": 20,
-      "nameHe": "PENDING_COPY",
-      "rank": 18
+      "source_traceability_status": "resolved"
     },
     {
-      "barcode": "7290112968807",
-      "bariInterpretation": [
-        "PENDING_COPY"
-      ],
-      "bestUseCases": [
-        "PENDING_COPY"
-      ],
-      "brand": null,
-      "confidence": "insufficient",
-      "confidence_label_he": "חסרים נתונים מרכזיים",
-      "confidence_level": "insufficient",
-      "confidence_sub_reason": "insufficient_data",
-      "confidence_tooltip_he": "חסרים נתונים מרכזיים — הציון עשוי להיות לא מייצג.",
-      "consumerTakeaway": "PENDING_COPY",
-      "d4_additives": [
-        {
-          "e_number": "E224",
-          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
-          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
-          "name_he": "סולפיטים (תרכובת לא מפורטת)",
-          "tier": "contested"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "הציון ממוקם ביחס ל-20 מוצרים בהשוואה.",
-        "confidenceLabel": "חסרים נתונים מרכזיים",
-        "consumerExplanation": "PENDING_COPY",
-        "ingredients": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23%), קמח חיטה (15.5%), שמנים צמחיים, אבקת סלק (7.5%), קמח אורז מלא (6%), גלוטן חיטה, עמי לן אורז, סוכר, שמרים, מלח ים, בצל מיובש (0.9%), שומשום,  חומרי טעם וריח, שום מיובש, חומר לטיפול בקמח (סולפיט), מעכב חמצון (תמצית רוז מרין).",
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": null,
-          "fat": null,
-          "fiber": null,
-          "protein": null,
-          "sodium": null,
-          "sugar": null
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_crackers_7290112968807",
-      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NFS60_Z_P_7290112968807_1.png",
-      "insightLine": "PENDING_COPY",
-      "name": "קרקר דק פיטנס סלק",
-      "retailer": "shufersal",
-      "rowVerdict": "PENDING_COPY",
-      "score": 45.3,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "PENDING_COPY",
-      "categoryTotal": 20,
-      "nameHe": "PENDING_COPY",
-      "rank": 19
-    },
-    {
+      "_website_cluster": "refined_white",
       "barcode": "5000396021202",
       "bariInterpretation": [
         {
@@ -2522,6 +2488,7 @@
         "רכיבים פשוטים"
       ],
       "brand": null,
+      "categoryTotal": 19,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
       "confidence_level": "sufficient",
@@ -2574,14 +2541,12 @@
       "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHJ30_Z_P_5000396021202_1.png",
       "insightLine": "התחתית של המדף: קמח לבן, סוכר 8.5 גרם ל-100 גרם, ובלי דגן מלא בשום מקום.",
       "name": "קרקר",
+      "nameHe": "קרקר",
+      "rank": 19,
       "retailer": "shufersal",
       "rowVerdict": "קמח חיטה לבן וסוכר-גלוקוז-פרוקטוז מרכיבים את רוב הרשימה, והסוכר הנמדד כאן הוא הגבוה ביותר בכל ההשוואה. חלבון וסיבים נמוכים משלימים תמונה של קרקר מתוק-מלוח בלי עוגן תזונתי.",
       "score": 44.5,
-      "source_traceability_status": "resolved",
-      "_website_cluster": "refined_white",
-      "categoryTotal": 20,
-      "nameHe": "קרקר",
-      "rank": 20
+      "source_traceability_status": "resolved"
     }
   ]
 }
