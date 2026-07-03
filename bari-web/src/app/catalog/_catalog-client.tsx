@@ -86,7 +86,6 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
           <ProductTable
             rows={initialRows}
             variant="public"
-            appearance="dashboard"
             detailsById={detailsById}
           />
         </div>
