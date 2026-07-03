@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gen Z Hero v3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #080c10;
+      --muted: #4a5568;
+      --green: #0a5c42;
+      --green-btn: #0d6b4d;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --red-border: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Heebo, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    .banner {
+      background: #080c10; color: #fff; text-align: center;
+      padding: .5rem 1rem; font-size: .78rem; font-weight: 600;
+    }
+    .hero { position: relative; max-width: 76rem; margin: 0 auto; padding: 2rem 1rem 0; min-height: 520px; }
+    .hero-stage { position: relative; padding-bottom: 3rem; }
+    .copy-block {
+      position: relative; z-index: 2;
+      max-width: 28rem;
+      padding-top: 1rem;
+    }
+    .eyebrow {
+      font-size: .8rem; font-weight: 800; letter-spacing: .08em;
+      color: var(--green); margin-bottom: .75rem;
+    }
+    h1 {
+      font-size: clamp(2.1rem, 7vw, 3.75rem);
+      font-weight: 900; line-height: 1.02; letter-spacing: -.03em;
+      margin-bottom: .85rem;
+    }
+    .sub { font-size: 1.05rem; color: var(--muted); line-height: 1.5; margin-bottom: 1.5rem; max-width: 26ch; }
+    .ctas { display: flex; flex-direction: column; gap: .65rem; align-items: flex-start; }
+    .btn-scan {
+      display: inline-flex; align-items: center; gap: .65rem;
+      background: var(--green-btn); color: #fff;
+      padding: 1rem 1.35rem; border-radius: 16px;
+      font-weight: 800; font-size: 1.05rem; text-decoration: none;
+      box-shadow: 0 12px 32px rgba(13,107,77,.35);
+      border: none; cursor: pointer;
+    }
+    .btn-scan svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .soon {
+      font-size: .7rem; font-weight: 700; background: rgba(255,255,255,.2);
+      padding: .2rem .5rem; border-radius: 6px; margin-inline-start: .25rem;
+    }
+    .btn-ghost {
+      font-weight: 700; color: var(--text); text-decoration: none;
+      padding: .5rem 0; font-size: .95rem; border-bottom: 2px solid var(--green);
+    }
+    .cta-note { font-size: .72rem; color: var(--muted); margin-top: .35rem; max-width: 22rem; }
+
+    /* Broken grid — card overlaps copy */
+    .hook-card {
+      position: relative;
+      z-index: 5;
+      margin-top: 2rem;
+      transform: rotate(-2.5deg);
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,.12));
+    }
+    @media (min-width: 880px) {
+      .hook-card {
+        position: absolute;
+        left: 0;
+        top: 2.5rem;
+        width: min(52%, 520px);
+        margin-top: 0;
+        transform: rotate(-3deg) translateX(-8%);
+      }
+      .copy-block { margin-inline-end: 42%; padding-top: 2.5rem; }
+    }
+
+    .split {
+      background: #fff;
+      border: 3px solid #111;
+      border-radius: 22px;
+      overflow: hidden;
+    }
+    .split-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .65rem 1rem;
+      background: #111; color: #fff;
+      font-size: .72rem; font-weight: 800; letter-spacing: .06em;
+    }
+    .split-body { display: grid; grid-template-columns: 1fr 1fr; }
+    .panel { padding: 1.1rem; min-height: 130px; }
+    .panel.pack {
+      background: #f0fdf4;
+      border-inline-end: 2px solid #e5e7eb;
+    }
+    .panel.inside {
+      background: var(--red-bg);
+      border: 4px solid var(--red-border);
+      border-radius: 0 0 18px 0;
+      position: relative;
+    }
+    .panel-tag { font-size: .65rem; font-weight: 800; color: var(--muted); margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .05em; }
+    .panel-main { font-size: 1.45rem; font-weight: 900; line-height: 1.15; }
+    .panel.pack .panel-main { color: var(--green); }
+    .panel.inside .panel-main { color: #991b1b; }
+    .warn-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%) rotate(2.5deg);
+      background: var(--red); color: #fff;
+      font-size: .72rem; font-weight: 900;
+      padding: .35rem .85rem; border-radius: 8px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(220,38,38,.5);
+      letter-spacing: .04em;
+    }
+    .warn-badge.alt {
+      background: #111;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    }
+    .badge-row {
+      display: flex; gap: .5rem; justify-content: center;
+      padding: .5rem; background: #fef2f2; border-top: 2px dashed var(--red-border);
+      font-size: .68rem; color: #991b1b; font-weight: 700;
+    }
+
+    .carousel-block {
+      margin-top: 1rem; padding: 2rem 0 3rem;
+      border-top: 3px solid #111;
+    }
+    .carousel-block h2 { font-size: 1.25rem; font-weight: 900; margin-bottom: 1rem; }
+    .carousel-mock {
+      height: 200px; border-radius: 20px;
+      background: repeating-linear-gradient(-12deg, #f8faf9, #f8faf9 12px, #eef6f2 12px, #eef6f2 24px);
+      border: 2px solid #111;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; text-align: center; padding: 1rem;
+    }
+    .ph { color: #94a3b8; font-weight: 600; }
+    .legend {
+      margin-top: 1rem; padding: .75rem 1rem; background: #f8fafc;
+      border-inline-start: 4px solid #111; font-size: .75rem; color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">V3 — broken grid · harsh inside signal · scan/search CTA · carousel kept</div>
+
+  <section class="hero">
+    <div class="hero-stage">
+      <div class="copy-block">
+        <div class="eyebrow">GEN Z HERO · COPY TBD</div>
+        <h1><span class="ph">[ headline ]</span></h1>
+        <p class="sub"><span class="ph">[ subline ]</span></p>
+        <div class="ctas">
+          <a class="btn-scan" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 7V4h3M20 7V4h-3M4 17v3h3M20 17v3h-3"/><rect x="7" y="7" width="10" height="10" rx="1"/></svg>
+            חפשו מוצר
+            <span class="soon">סריקה בקרוב</span>
+          </a>
+          <a class="btn-ghost" href="#">איך זה עובד</a>
+          <p class="cta-note">Phase 1: product search / shelf pick (P1-07). Phase 2: barcode scan opens camera.</p>
+        </div>
+      </div>
+
+      <div class="hook-card">
+        <div class="split">
+          <div class="split-head">
+            <span>FRONT VS INSIDE</span>
+            <span>דגני בוקר · ממצא אמיתי</span>
+          </div>
+          <div class="split-body">
+            <div class="panel pack">
+              <div class="panel-tag">מה שכתוב בחזית</div>
+              <div class="panel-main">דגנים מלאים</div>
+            </div>
+            <div class="panel inside">
+              <div class="warn-badge">פער שזוהה</div>
+              <div class="panel-tag">מה שבראש הרשימה</div>
+              <div class="panel-main">קמח תירס מותק</div>
+            </div>
+          </div>
+          <div class="badge-row">Badge option B (owner override): Lie Detected — needs Content + Red Team unlock</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      Inside box: red border + badge = instant visual alarm without reading ingredient text.
+      Layout: card overlaps copy block on desktop (broken grid, not 50/50).
+    </div>
+
+    <div class="carousel-block">
+      <h2>השוואות מהמדף</h2>
+      <div class="carousel-mock">Carousel P1-02 — duels · spotlights · category reports<br/>Tap to compare</div>
+    </div>
+  </section>
+</body>
+</html>
