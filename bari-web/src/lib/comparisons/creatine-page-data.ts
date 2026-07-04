@@ -12,9 +12,18 @@
 //   BOTH a per-serving dose AND servings-per-container were disclosed — never estimated.
 //
 // PRODUCT RULING 2 (two-tier certification, applied throughout):
-//   "אומת מול מאגר" ONLY for the 6 NSF-directory-confirmed worldwide rows (Thorne, Momentous,
-//   Klean Athlete, BPN, MegaFood, BioSteel). Every other cert claim = "מוצהר על-ידי היצרן".
-//   ESN = honest uncertified comparator. 0 Israeli products are directory-confirmed.
+//   "אומת מול מאגר" ONLY for the 7 NSF-directory-confirmed worldwide rows (Thorne, Momentous,
+//   Klean Athlete, BPN, MegaFood, Sports Research, BioSteel). Every other cert claim = "מוצהר
+//   על-ידי היצרן". ESN = honest uncertified comparator. 0 Israeli products are directory-confirmed.
+//
+// TASK-492C RED-TEAM FIX (RT-1, CRITICAL): creatine_benchmark_solid_v1.md row 6 states, with
+// zero hedge, that Sports Research's primary SKU (Creatine Monohydrate Unflavored, nsfsport.com
+// id 1751614) is "NSF Certified for Sport — directory-confirmed" — the same confidence level as
+// the other 6 NSF rows. The benchmark's own summary prose (§3, line 133-138) undercounted this
+// as "6 directory-confirmed," conflating the confirmed primary SKU with a *separate*,
+// NOT-directory-confirmed Sports Research Creapure sub-SKU mentioned in the same row's footnote.
+// The table-row fact (per-row, directly sourced) is authoritative over the summary arithmetic;
+// true count is 7/13. Fixed here + in every downstream prose count/list in this file.
 //
 // Product images: package leaves imageUrls unassigned (no retailer/manufacturer hotlinking,
 // no invented URLs). imageUrl: null on all 31 products — BariProductThumbnail's existing
@@ -88,7 +97,7 @@ export const creatinePrologueSentences = [
 export const creatineCategoryNote =
   "איך נקבע הדירוג, וביחס למה\n\n" +
   "הדף הזה אינו נותן ציון מספרי או דירוג אותיות. קריאטין מונוהידראט במינון הוגן עובד באותה מידה בין המותגים, ולכן הדירוג נשען על מה שבאמת משתנה בין המוצרים: שקיפות המינון והשווי לגרם. ארבעה דברים נמדדים: כמה קריאטין המוצר מספק במנה מול הטווח שנחקר (3 עד 5 גרם ליום), באיזו צורה, האם יש בדיקת צד-שלישי, וכמה עולה גרם אפקטיבי אחד.\n\n" +
-  "בדיקת צד-שלישי מוצגת בשתי רמות: \"אומת מול מאגר\" כשבדקנו את רישום המוצר ישירות במאגר של גוף ההסמכה, ו\"מוצהר על-ידי היצרן\" כשהטענה מופיעה רק בדף המוצר של המותג ולא אומתה מול המאגר. שש מנות ייחוס עולמיות אומתו מול מאגר NSF. אף מוצר מהמדף הישראלי לא אומת מול מאגר בשלב זה.\n\n" +
+  "בדיקת צד-שלישי מוצגת בשתי רמות: \"אומת מול מאגר\" כשבדקנו את רישום המוצר ישירות במאגר של גוף ההסמכה, ו\"מוצהר על-ידי היצרן\" כשהטענה מופיעה רק בדף המוצר של המותג ולא אומתה מול המאגר. שבע מנות ייחוס עולמיות אומתו מול מאגר NSF. אף מוצר מהמדף הישראלי לא אומת מול מאגר בשלב זה.\n\n" +
   "הערת קטגוריה: מה חשוב לדעת לפני שבוחרים\n\n" +
   "בארי מבססת את ההשוואה על קריאת תוויות ודפי מוצר. כל המינונים והמחירים המוצגים הם מה שכתוב על האריזה או בדף המוצר בעת הבדיקה. המחירים המוצגים נכונים לתאריך הבדיקה (יולי 2026) ועשויים להשתנות. המידע כאן הוא לצורך הכרה בלבד, ואינו תחליף לייעוץ רפואי.";
 
@@ -639,7 +648,7 @@ export const creatineIsraeliProducts: BariProductVM[] = creatineIsraeliProductsR
 );
 
 // ─── Worldwide benchmark — 13 products, 6 regions (§1.3) ─────────────────────
-// Sorted: 6 directory-verified (NSF) first, then manufacturer-stated, then the
+// Sorted: 7 directory-verified (NSF) first, then manufacturer-stated, then the
 // uncertified comparator (ESN) last — corpus order stable within each tier.
 // bandNote marks the directory-verified sub-group boundary (mirrors magnesium's
 // UL_EXCEED bandNote pattern).
@@ -778,21 +787,21 @@ const creatineWorldwideProductsRaw: BariProductVM[] = [
     grade: null,
     creatineBadges: mkBadge(
       "מונוהידראט", "5 גרם", "honest", DOSE_HONESTY_LABEL.honest,
-      "manufacturer_stated", "מוצהר על-ידי היצרן (NSF Certified for Sport)",
+      "directory_verified", "אומת מול מאגר (NSF, id 1751614)",
       null
     ),
-    insightLine: "5 גרם מונוהידראט. דף המותג טוען NSF Certified for Sport, אך ה-SKU הספציפי לא אותר במאגר בסבב זה — מוצג כמוצהר. סדרת Creapure נפרדת של המותג היא טענת דף בלבד ואינה מעורבבת עם רישום זה.",
-    rowVerdict: "מינון הוגן — 5 גרם מונוהידראט. NSF Certified for Sport מוצהר; ה-SKU הספציפי לא נמצא במאגר בסבב זה.",
+    insightLine: "5 גרם מונוהידראט, NSF Certified for Sport מאומת ישירות מול מאגר nsfsport.com. סדרת Creapure נפרדת של המותג היא טענת דף בלבד ואינה מעורבבת עם הרישום המאומת הזה.",
+    rowVerdict: "מינון הוגן — 5 גרם מונוהידראט. NSF Certified for Sport אומת מול מאגר. מחיר לא נאסף בסבב זה.",
     confidence: "partial",
     expansion: {
       nutrition: null,
       ingredients: null,
-      confidenceLabel: "מבוסס על דף מותג — לא אותר במאגר NSF בסבב זה",
+      confidenceLabel: "מבוסס על מאגר NSF — מחיר לא נאסף בסבב זה",
       servingNote: "למנה יומית",
-      positiveSignals: ["מונוהידראט במינון גבוה (5 גרם)"],
-      limitingFactors: ["טענת NSF Certified for Sport — ה-SKU הספציפי לא אותר במאגר בסבב זה", "מחיר לא נאסף בסבב איסוף זה"],
+      positiveSignals: ["מונוהידראט במינון גבוה (5 גרם)", "אומת ישירות מול מאגר NSF Certified for Sport"],
+      limitingFactors: ["מחיר לא נאסף בסבב איסוף זה — לא ניתן לחשב מחיר לגרם אפקטיבי"],
       caveats: [
-        "סדרת Creapure נפרדת של Sports Research מוזכרת בדף המותג בלבד — אינה מעורבבת עם רישום זה.",
+        "סדרת Creapure נפרדת של Sports Research (מוצר שונה) מוזכרת בדף המותג בלבד ולא אומתה מול מאגר בנפרד — אינה מעורבבת עם הרישום המאומת של מוצר זה.",
       ],
     },
   },
