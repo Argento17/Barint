@@ -240,7 +240,7 @@ export function UpfArticle() {
                   <p className="text-[13px] leading-[1.6] text-[#4E5663]">
                     {ref.text} <span className="font-semibold text-[#111318]">{ref.title}</span>{" "}
                     <em className="not-italic font-medium">{ref.journal}.</em> {ref.citation}{" "}
-                    <span className="font-mono text-xs text-[#8A8F98]">
+                    <span className="font-mono text-xs text-[#5E6672]">
                       DOI:{" "}
                       <a
                         href={`https://doi.org/${ref.doi}`}

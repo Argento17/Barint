@@ -28,11 +28,16 @@ export function UpfEmulsifierSpectrum() {
         <span className="text-[#9A4012]">{data.penalizedLabel}</span>
         <span className="text-[#155C3C]">{data.reliefLabel}</span>
       </div>
+      {/*
+        Direction-aware: the reading order in this article is always RTL (relief
+        label on the left, penalty label on the right -- see the row above), so
+        the RTL gradient must run green (left) -> orange (right). Encoded as
+        Tailwind `rtl:`/`ltr:` variants (native, dir-attribute-based) rather than
+        a physical `style` gradient, so this can't silently point the wrong way
+        if the component is ever reused in an LTR context.
+      */}
       <div
-        className="mb-4 h-2 w-full rounded-full opacity-90"
-        style={{
-          background: "linear-gradient(90deg, #9A4012 0%, #8A8F98 50%, #155C3C 100%)",
-        }}
+        className="mb-4 h-2 w-full rounded-full bg-[linear-gradient(90deg,#155C3C_0%,#8A8F98_50%,#9A4012_100%)] opacity-90 ltr:bg-[linear-gradient(90deg,#9A4012_0%,#8A8F98_50%,#155C3C_100%)]"
         aria-hidden
       />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

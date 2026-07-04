@@ -51,7 +51,13 @@ export function UpfSchematicSplit() {
                 <br />
                 <span className="font-semibold text-[#111318]">{product.highlight}</span>
               </p>
-              <p className="text-center text-base leading-none text-[#8A8F98]" aria-hidden>
+              <p
+                className={cn(
+                  "text-center text-base leading-none",
+                  isUp ? "text-[#155C3C]" : "text-[#9A4012]",
+                )}
+                aria-hidden
+              >
                 {isUp ? "↑" : "↓"}
               </p>
               <p

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -8,7 +9,7 @@ export function UpfArticleHero() {
   const { hero } = upfArticle;
 
   return (
-    <header className="relative border-b border-black/6 bg-[#FFFFFF]">
+    <header className="relative overflow-visible border-b border-black/6 bg-[#FFFFFF]">
       <HomeContainer className="flex flex-col py-8 md:py-12">
         <Link
           href="/blog"
@@ -29,6 +30,26 @@ export function UpfArticleHero() {
             {hero.subtitle}
           </p>
           <p className="mt-2 text-sm text-[#5E6672]">{hero.meta}</p>
+        </div>
+
+        {/* LUMO -- The Investigator -- follows the ingredient/additive trail
+            out of a cereal box with a magnifying glass (per Character Bible:
+            investigation -> LUMO). Owner-supplied landscape scene (1280x1024),
+            so unlike seed-oils' small side portrait this renders as a full-
+            width featured image on the white hero, below the title/standfirst
+            column rather than beside it. `overflow-visible` on the wrapping
+            `<header>` (no `overflow-hidden` ancestor) so the image is never
+            clipped; `h-auto` + `w-full` preserve the native ratio at every
+            breakpoint, including 390px mobile. */}
+        <div className="mt-8 w-full max-w-3xl overflow-visible">
+          <Image
+            src="/mascots/mascot-upf-lumo.webp"
+            alt="לומו עוקב עם זכוכית מגדלת אחר שובל הרכיבים שיוצא מקופסת דגני בוקר, בודק מה באמת בפנים במקום לסמוך על התווית"
+            width={1280}
+            height={1024}
+            priority
+            className="h-auto w-full rounded-2xl"
+          />
         </div>
       </HomeContainer>
     </header>
