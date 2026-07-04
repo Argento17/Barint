@@ -43,6 +43,7 @@ export function CheeseComparisonPage({
       shelfFilters={cheeseShelfFilters}
       metricSpecs={CHEESE_METRIC_SPECS}
       categoryNote={categoryNote}
+      category="cheese"
       initialExpandedProductId={initialExpandedProductId}
     />
   );

@@ -45,6 +45,7 @@ export function MilkComparisonPage({
       shelfFilters={milkShelfFilters}
       metricSpecs={MILK_METRIC_SPECS}
       categoryNote={categoryNote}
+      category="milk-comparison"
       blogLink={blogLink}
       initialExpandedProductId={initialExpandedProductId}
     />

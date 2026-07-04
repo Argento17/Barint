@@ -6,6 +6,7 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { ExploreNextComparisons } from "@/components/shared/explore-next-comparisons";
 import {
   SUGAR_METRIC,
   COOKIES_COFFEE_SAT_FAT_METRIC,
@@ -202,6 +203,9 @@ export function CookiesCoffeeComparisonPage({
           wide
         />
       </div>
+
+      {/* TASK-507: cross-category navigation module. */}
+      <ExploreNextComparisons currentCategoryId="cookies-coffee" wide />
     </div>
   );
 }

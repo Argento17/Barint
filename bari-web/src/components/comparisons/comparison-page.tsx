@@ -5,6 +5,7 @@ import React, { useMemo, useState } from "react";
 import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { ExploreNextComparisons } from "@/components/shared/explore-next-comparisons";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { SharePageButton } from "@/components/shared/share-page-button";
 import type { MetricSpec } from "@/components/shared/comparison-metric-column";
@@ -331,6 +332,10 @@ export function ComparisonPage<TFilterId extends string = string>({
           <SharePageButton title={hero.title} />
         </div>
       </div>
+
+      {/* TASK-507: cross-category navigation module. Outside the white card by
+          design — additive only, never touches product-row copy above. */}
+      <ExploreNextComparisons currentCategoryId={category} wide />
     </div>
   );
 }

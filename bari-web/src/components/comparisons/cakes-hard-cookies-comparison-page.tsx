@@ -7,6 +7,7 @@ import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { CategoryShelfLenses } from "@/components/shared/category-shelf-lenses";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { ExploreNextComparisons } from "@/components/shared/explore-next-comparisons";
 import { SUGAR_METRIC } from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
@@ -230,6 +231,11 @@ export function CakesHardCookiesComparisonPage({
           wide
         />
       </div>
+
+      {/* TASK-507: cross-category navigation module. Route is /hashvaot/cakes,
+          so the id passed here is "cakes" (not the "cakes-hard-cookies" internal
+          analytics category label used above by ComparisonTable). */}
+      <ExploreNextComparisons currentCategoryId="cakes" wide />
     </div>
   );
 }

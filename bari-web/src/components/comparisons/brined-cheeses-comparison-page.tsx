@@ -6,6 +6,7 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { ExploreNextComparisons } from "@/components/shared/explore-next-comparisons";
 import { SharePageButton } from "@/components/shared/share-page-button";
 import { SODIUM_METRIC } from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
@@ -224,6 +225,10 @@ export function BrinedCheesesComparisonPage({
           <SharePageButton title={hero.title} />
         </div>
       </div>
+
+      {/* TASK-507: cross-category navigation module — outside the white card,
+          golden-template page included per the survey/verification requirement. */}
+      <ExploreNextComparisons currentCategoryId="brined-cheeses" wide />
     </div>
   );
 }

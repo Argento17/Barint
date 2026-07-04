@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 import { HomeContainer } from "@/components/home/section-frame";
 import { SharePageButton } from "@/components/shared/share-page-button";
+import { ExploreNextComparisons } from "@/components/shared/explore-next-comparisons";
 import { SugarAlcoholsChart1 } from "@/components/blog/sugar-alcohols-chart1";
 import { SugarAlcoholsChart2 } from "@/components/blog/sugar-alcohols-chart2";
 import { SugarAlcoholsEfsaCard } from "@/components/blog/sugar-alcohols-efsa-card";
@@ -250,6 +251,16 @@ export function SugarAlcoholsArticle() {
               </Link>
             </div>
           </footer>
+        </HomeContainer>
+
+        {/* TASK-507: cross-category navigation module — feasibility demo on a blog
+            post (per spec: "if the blog layout supports it cleanly"). Blog posts have
+            no single bespoke layout to retrofit uniformly (each article is its own
+            hand-authored component); rolling this out to all posts is a separate,
+            larger task. currentCategoryId is omitted (no single "current category"
+            on a blog post) — shows the manifest's default lead set. */}
+        <HomeContainer className="pb-14">
+          <ExploreNextComparisons className="mx-0 max-w-none px-0" />
         </HomeContainer>
       </article>
     </div>
