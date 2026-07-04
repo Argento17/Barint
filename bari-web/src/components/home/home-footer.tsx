@@ -24,7 +24,7 @@ const copyrightYear = 2026;
 // pending. Do not treat as final; do not ship elsewhere without sign-off.
 const communityBandCopy = {
   heading: "רוצים להישאר מעודכנים?", // gate 1: FIXED (two-way "שיחה" → honest "מעודכנים" for a broadcast Channel)
-  subline: "עקבו אחרי ברי בוואטסאפ, באינסטגרם ובפייסבוק", // gate 1: FIXED ("קהילה" overclaims a one-way Channel → "עקבו אחרי")
+  subline: "עקבו אחרי בארי בוואטסאפ, באינסטגרם ובפייסבוק", // gate 1: FIXED ("קהילה" overclaims a one-way Channel → "עקבו אחרי")
   whatsappCta: "הצטרפו בוואטסאפ", // gate 1: PASS
 } as const;
 

@@ -56,7 +56,7 @@ export async function generateMetadata({
   if (!entry) return {};
 
   const { row, detail } = entry;
-  const title = `${detail.name} · ברי`;
+  const title = `${detail.name} · בארי`;
   const scoreLine =
     detail.score != null && detail.grade != null
       ? `ציון ${Math.round(detail.score)}, דרגה ${detail.grade}.`
