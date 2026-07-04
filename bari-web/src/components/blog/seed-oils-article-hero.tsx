@@ -9,7 +9,7 @@ export function SeedOilsArticleHero() {
   const { hero } = seedOilsArticle;
 
   return (
-    <header className="relative overflow-hidden border-b border-black/6 bg-[#FFFFFF]">
+    <header className="relative border-b border-black/6 bg-[#FFFFFF]">
       <HomeContainer className="flex flex-col py-8 md:py-12">
         <Link
           href="/blog"
@@ -20,7 +20,7 @@ export function SeedOilsArticleHero() {
         </Link>
 
         <div className="flex flex-col-reverse items-center gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
-          <div className="flex max-w-3xl flex-col justify-center text-center md:text-right">
+          <div className="flex max-w-3xl flex-col justify-center text-right">
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
               {hero.eyebrow}
             </p>
@@ -36,16 +36,22 @@ export function SeedOilsArticleHero() {
           {/* LUMO — The Investigator — inspects seed oils with a magnifying
               glass. Decorative hero placement per Character Bible (job-to-be-
               done: investigation -> LUMO). Visible at every breakpoint,
-              scaled up progressively — no `hidden ... md:block` mobile-hide. */}
-          <Image
-            src="/mascots/mascot-seedoils.png"
-            alt=""
-            width={580}
-            height={665}
-            aria-hidden
-            priority
-            className="pointer-events-none h-auto w-28 shrink-0 select-none sm:w-36 md:w-44 lg:w-52"
-          />
+              scaled up progressively — no `hidden ... md:block` mobile-hide.
+              `overflow-visible` wrapper + no clipping ancestor (the `<header>`
+              no longer carries `overflow-hidden`) so the mascot can never be
+              cropped by its container; `h-auto` preserves the source's native
+              580:665 ratio so the full figure (incl. feet) always renders. */}
+          <div className="shrink-0 overflow-visible py-1">
+            <Image
+              src="/mascots/mascot-seedoils.png"
+              alt=""
+              width={580}
+              height={665}
+              aria-hidden
+              priority
+              className="pointer-events-none h-auto w-32 select-none sm:w-40 md:w-48 lg:w-56"
+            />
+          </div>
         </div>
       </HomeContainer>
     </header>

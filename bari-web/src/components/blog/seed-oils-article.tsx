@@ -1,11 +1,13 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 
 import { SeedOilsArticleHero } from "@/components/blog/seed-oils-article-hero";
+import { SeedOilsClaimsTable } from "@/components/blog/seed-oils-claims-table";
+import { SeedOilsCookiesChart } from "@/components/blog/seed-oils-cookies-chart";
 import { HomeContainer } from "@/components/home/section-frame";
 import { HASHVAOT_HREF, seedOilsArticle } from "@/lib/blog/seed-oils-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -40,28 +42,32 @@ function ArticleSection({
   eyebrowLabel,
   title,
   paragraphs,
-  index,
   tone = "cream",
+  afterContent,
+  insetContent,
 }: {
   id: string;
   eyebrowLabel: string;
   title: string;
   paragraphs: string[];
-  index: number;
   tone?: "cream" | "white";
+  /** Rendered after the paragraphs, inside the same max-w-3xl column (e.g. the cookies chart). */
+  afterContent?: ReactNode;
+  /** Rendered between paragraphs[1] and paragraphs[2] to break up a long section (e.g. the claims table). */
+  insetContent?: ReactNode;
 }) {
   const reduceMotion = useReducedMotion();
   return (
     <section
       id={id}
       className={cn(
-        "border-t border-black/6 py-14 md:py-20",
+        "border-t border-black/6 py-10 md:py-14",
         tone === "white" ? "bg-[#FFFFFF]" : "bg-[#F7F7F2]",
       )}
     >
       <HomeContainer>
         <div className="mx-auto max-w-3xl">
-          <header className="mb-8 text-right">
+          <header className="mb-6 text-right">
             <p className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#7A9450]/85">
               {eyebrowLabel}
             </p>
@@ -69,22 +75,25 @@ function ArticleSection({
               {title}
             </h2>
           </header>
-          <div className="space-y-5">
+          <div className="space-y-4">
             {paragraphs.map((p, i) => (
-              <motion.div
-                key={i}
-                initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.45, delay: (index + i) * 0.02 }}
-              >
-                <RichParagraph
-                  text={p}
-                  className="text-base leading-[1.85] text-[#111318] md:text-lg"
-                />
-              </motion.div>
+              <Fragment key={i}>
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, y: 6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.35, delay: Math.min(i, 3) * 0.03 }}
+                >
+                  <RichParagraph
+                    text={p}
+                    className="text-base leading-[1.85] text-[#111318] md:text-lg"
+                  />
+                </motion.div>
+                {insetContent && i === 1 ? <div className="py-2">{insetContent}</div> : null}
+              </Fragment>
             ))}
           </div>
+          {afterContent ? <div className="mt-8">{afterContent}</div> : null}
         </div>
       </HomeContainer>
     </section>
@@ -141,8 +150,8 @@ export function SeedOilsArticle() {
         <SeedOilsArticleHero />
 
         {/* Lead */}
-        <HomeContainer className="py-10 md:py-14">
-          <div className="mx-auto max-w-3xl space-y-5">
+        <HomeContainer className="py-8 md:py-10">
+          <div className="mx-auto max-w-3xl space-y-4">
             {article.lead.map((p) => (
               <RichParagraph
                 key={p.slice(0, 24)}
@@ -153,7 +162,9 @@ export function SeedOilsArticle() {
           </div>
         </HomeContainer>
 
-        {/* Body sections -- ported verbatim from the approved draft */}
+        {/* Body sections -- ported verbatim from the approved draft. The cookies
+            chart (the article's proof) lands after "bari-proof"'s paragraphs; the
+            claims-vs-evidence table breaks up the longer "institutions" section. */}
         {article.sections.map((section, i) => (
           <ArticleSection
             key={section.id}
@@ -161,14 +172,15 @@ export function SeedOilsArticle() {
             eyebrowLabel={section.eyebrowLabel}
             title={section.title}
             paragraphs={section.paragraphs}
-            index={i}
             tone={i % 2 === 0 ? "cream" : "white"}
+            afterContent={section.id === "bari-proof" ? <SeedOilsCookiesChart /> : undefined}
+            insetContent={section.id === "institutions" ? <SeedOilsClaimsTable /> : undefined}
           />
         ))}
 
         {/* Conclusion */}
-        <HomeContainer className="space-y-16 py-8 md:space-y-24 md:py-12">
-          <div className="mx-auto max-w-4xl space-y-16 md:space-y-24">
+        <HomeContainer className="space-y-10 py-8 md:space-y-14 md:py-10">
+          <div className="mx-auto max-w-4xl space-y-10 md:space-y-14">
             <section id="conclusion">
               <h2 className="text-2xl font-extrabold tracking-[-0.04em] text-[#111318] md:text-3xl">
                 {article.conclusion.title}
