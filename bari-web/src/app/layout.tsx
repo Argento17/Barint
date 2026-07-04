@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { ConsentManager } from "@/components/shared/consent-manager";
 import { GA4Script } from "@/components/shared/ga4-script";
+import { Analytics } from "@vercel/analytics/next";
 import { SiteStructuredData } from "@/components/seo/site-structured-data";
 import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
@@ -73,6 +74,18 @@ export default function RootLayout({
         <HomeFooter />
         <ConsentManager />
         <GA4Script />
+        {/*
+          Vercel Web Analytics — cookieless, no personal data (daily-rotating
+          anonymous hash; no cross-day or cross-site identity). Unlike GA4 it is
+          NOT consent-gated: under the ePrivacy directive and the PPA Feb-2026
+          posture, analytics that store nothing on the device and collect no PII
+          do not require prior opt-in. This is deliberate — it lets us count the
+          traffic GA4 cannot see (visitors who never grant analytics consent),
+          for aggregate pageview/referrer/campaign totals only. If the privacy
+          posture ever treats cookieless analytics as consent-requiring, gate
+          this behind the ConsentManager like GA4Script. See privacy/page.tsx.
+        */}
+        <Analytics />
         <SiteStructuredData />
       </body>
     </html>

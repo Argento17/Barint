@@ -54,6 +54,17 @@ export default function CookiesPage() {
         </section>
 
         <section>
+          <h2 className="mb-2 text-base font-bold text-[#111318]">מדידה שאינה מבוססת עוגיות</h2>
+          <p>
+            בנוסף לשירות Google Analytics, האתר משתמש ב-<strong>Vercel Web
+            Analytics</strong> — כלי מדידה שאינו שומר עוגיות במכשירכם ואינו אוסף
+            מידע אישי מזהה. הכלי מודד נתונים מצטברים בלבד (כגון מספר צפיות בעמודים
+            ומקורות הפניה לאתר), ומאחר שאינו עושה שימוש בעוגיות ואינו מצריך הסכמה
+            מוקדמת, הוא אינו נכלל בבאנר העוגיות.
+          </p>
+        </section>
+
+        <section>
           <h2 className="mb-2 text-base font-bold text-[#111318]">כיצד ניתן לבטל או לחסום עוגיות</h2>
           <p>באפשרותכם לשלוט בעוגיות ולמחוק אותן בכל עת:</p>
           <ul className="mt-2 list-disc space-y-1 pr-5">
