@@ -124,8 +124,21 @@ export interface ComparisonPageProps<TFilterId extends string = string> {
   /** Optional editorial CTA (e.g. a blog deep-dive) shown under the prologue. */
   blogLink?: { href: string; label: string };
   initialExpandedProductId?: string | null;
-  /** Category slug for analytics context (TASK-179T — additive panel engagement events). */
+  /** Category slug for analytics context (TASK-179T — additive panel engagement events).
+   *  WARNING (TASK-507 HIGH-1): this same value also flows to ComparisonTable → ComparisonRow →
+   *  expansion-section.tsx `getCategoryNutrition(category)`, which changes the expansion's
+   *  nutrition-bar scale and good/warn color thresholds per category. Passing a NEW value here
+   *  that a page didn't already have is NOT a no-op — it silently changes expansion rendering.
+   *  Do not source the explore-next module's current-category id from this prop; use the
+   *  dedicated `exploreNextCategoryId` below instead. */
   category?: string;
+  /**
+   * TASK-507: current page's category id (route segment under /hashvaot/), used ONLY to tell
+   * ExploreNextComparisons which card to exclude. Deliberately separate from `category` above —
+   * that prop feeds ComparisonTable/expansion nutrition scaling and must never be touched to
+   * wire navigation. Each page passes its own value explicitly; no derivation from `category`.
+   */
+  exploreNextCategoryId?: string;
   /** TASK-181Q: when true + NEXT_PUBLIC_GLASSBOX_W5=on, appends a "פירוט המתודולוגיה" inline link
    *  to /research/glass-box at the end of the methodology footer. When W5 is OFF, byte-identical to HEAD. */
   glassBoxMethodologyLink?: boolean;
@@ -208,6 +221,7 @@ export function ComparisonPage<TFilterId extends string = string>({
   blogLink,
   initialExpandedProductId = null,
   category,
+  exploreNextCategoryId,
   glassBoxMethodologyLink = false,
   renderProducts,
   collapseMobileNote = false,
@@ -335,7 +349,7 @@ export function ComparisonPage<TFilterId extends string = string>({
 
       {/* TASK-507: cross-category navigation module. Outside the white card by
           design — additive only, never touches product-row copy above. */}
-      <ExploreNextComparisons currentCategoryId={category} wide />
+      <ExploreNextComparisons currentCategoryId={exploreNextCategoryId} wide />
     </div>
   );
 }

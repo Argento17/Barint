@@ -52,7 +52,7 @@ export function BreadComparisonPage({
       shelfFilters={breadShelfFilters}
       metricSpecs={BREAD_METRIC_SPECS}
       categoryNote={categoryNote}
-      category="bread"
+      exploreNextCategoryId="bread"
       blogLink={{
         href: "/research/bread-transparency-shufersal",
         label: "קראו את הניתוח בבלוג ←",

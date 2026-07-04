@@ -57,6 +57,7 @@ export function MagnesiumComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="magnesium"
+      exploreNextCategoryId="magnesium"
       collapseMobileNote
       collapseMobilePrologue
       noAutoExpand

@@ -79,6 +79,7 @@ export function CerealsComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="breakfast-cereals"
+      exploreNextCategoryId="breakfast-cereals"
     />
   );
 }

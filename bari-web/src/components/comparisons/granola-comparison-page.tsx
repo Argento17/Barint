@@ -77,6 +77,7 @@ export function GranolaComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="granola"
+      exploreNextCategoryId="granola"
     />
   );
 }

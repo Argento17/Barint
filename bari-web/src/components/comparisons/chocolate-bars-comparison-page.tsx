@@ -44,6 +44,7 @@ export function ChocolateBarsComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="chocolate-bars"
+      exploreNextCategoryId="chocolate-bars"
     />
   );
 }

@@ -88,6 +88,7 @@ export function CreatineComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="creatine"
+      exploreNextCategoryId="creatine"
       collapseMobileNote
       collapseMobilePrologue
       noAutoExpand

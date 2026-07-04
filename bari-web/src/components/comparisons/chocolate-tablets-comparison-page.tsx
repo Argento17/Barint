@@ -44,6 +44,7 @@ export function ChocolateTabletsComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="chocolate-tablets"
+      exploreNextCategoryId="chocolate-tablets"
     />
   );
 }

@@ -61,6 +61,7 @@ export function HardCheesesComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="hard-cheeses"
+      exploreNextCategoryId="hard-cheeses"
     />
   );
 }

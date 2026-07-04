@@ -59,6 +59,7 @@ export function HummusComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="hummus"
+      exploreNextCategoryId="hummus"
       glassBoxMethodologyLink={glassBoxMethodologyLink}
     />
   );

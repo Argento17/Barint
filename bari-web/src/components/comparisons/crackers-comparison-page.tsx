@@ -52,7 +52,7 @@ export function CrackersComparisonPage({
       shelfFilters={crackersShelfFilters}
       metricSpecs={CRACKERS_METRIC_SPECS}
       categoryNote={categoryNote}
-      category="crackers"
+      exploreNextCategoryId="crackers"
       initialExpandedProductId={initialExpandedProductId}
     />
   );

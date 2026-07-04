@@ -55,6 +55,7 @@ export function ProteinBarsComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="protein-bars"
+      exploreNextCategoryId="protein-bars"
     />
   );
 }

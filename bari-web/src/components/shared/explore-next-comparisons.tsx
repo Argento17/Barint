@@ -1,8 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
-import { getExploreNextCategories } from "@/lib/hashvaot/explore-next-categories";
+import {
+  getExploreNextCategories,
+  type ExploreNextCategory,
+} from "@/lib/hashvaot/explore-next-categories";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +23,13 @@ import { cn } from "@/lib/utils";
  *
  * Data-driven from `EXPLORE_NEXT_CATEGORIES` (src/lib/hashvaot/explore-next-categories.ts):
  * adding a category there makes it eligible to appear here automatically, and the
- * current page's own category is always filtered out.
+ * current page's own category is always filtered out. Candidates are additionally
+ * scoped to the current category's own shelf (Product D1 — e.g. magnesium/supplements
+ * never mixes with the supermarket shelf) and capped at one card per `family` tag
+ * (Product D2 — e.g. cheese / brined-cheeses / hard-cheeses never all appear together).
+ * `currentCategoryId` is intentionally its OWN prop, decoupled from the `category` prop
+ * ComparisonPage/ComparisonTable use for expansion nutrition-scale lookups (TASK-507
+ * HIGH-1) — never source this value from that prop.
  *
  * Visual language is deliberately NOT novel: geometry (radius, border, shadow, hover
  * lift, focus ring) is copied from the existing `HashvaotCategoryBox` LiveCard pattern
@@ -81,56 +93,79 @@ export function ExploreNextComparisons({
 
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((category) => (
-          <Link
-            key={category.id}
-            href={`/hashvaot/${category.id}`}
-            className={cn(
-              "group flex flex-col overflow-hidden rounded-[0.875rem] border border-black/8 bg-white",
-              "shadow-[0_1px_3px_rgba(17,19,24,0.06),0_1px_2px_rgba(17,19,24,0.04)]",
-              "transition-[transform,box-shadow] duration-200",
-              "hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-24px_rgba(17,19,24,0.22)]",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
-            )}
-          >
-            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-[#F7F7F2]">
-              <Image
-                src={category.image}
-                alt=""
-                fill
-                aria-hidden
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover"
-              />
-              {/* Decorative category accent — non-text, so per-category color does
-                  not carry a WCAG 1.4.3 text-contrast obligation (unlike the CTA
-                  label below, which stays on the fixed brand link color). */}
-              <span
-                aria-hidden
-                className="absolute inset-x-0 bottom-0 h-[3px]"
-                style={{ backgroundColor: category.accent }}
-              />
-            </div>
-            <div className="flex flex-1 flex-col gap-3 px-4 py-3.5">
-              <h3 className="text-[0.95rem] font-extrabold tracking-[-0.01em] text-[#111318]">
-                {category.label}
-              </h3>
-              {/*
-               * CTA text uses the fixed brand link color (#167A58), not the
-               * per-category accent: several accents (e.g. juices #E8A020, milk
-               * #5C7FB0) fail WCAG 1.4.3 (~2.2:1 / ~4.1:1) as bold 12px text on
-               * white — confirmed by `npm run test:a11y` against this component.
-               * #167A58 is the same color already used for link text elsewhere
-               * in this codebase (e.g. comparison-page.tsx blogLink, bread
-               * dashboard CTAs) at the same or smaller sizes.
-               */}
-              <span className="mt-auto inline-flex w-fit items-center gap-1.5 text-xs font-bold text-[#167A58]">
-                לכל ההשוואות
-                <ChevronLeft className="size-3.5 stroke-[2.5]" aria-hidden />
-              </span>
-            </div>
-          </Link>
+          <ExploreNextCard key={category.id} category={category} />
         ))}
       </div>
     </section>
+  );
+}
+
+function ExploreNextCard({ category }: { category: ExploreNextCategory }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <Link
+      href={`/hashvaot/${category.id}`}
+      className={cn(
+        "group flex flex-col overflow-hidden rounded-[0.875rem] border border-black/8 bg-white",
+        "shadow-[0_1px_3px_rgba(17,19,24,0.06),0_1px_2px_rgba(17,19,24,0.04)]",
+        "transition-[transform,box-shadow] duration-200",
+        "hover:-translate-y-0.5 hover:shadow-[0_18px_48px_-24px_rgba(17,19,24,0.22)]",
+        "active:translate-y-0 active:shadow-[0_1px_3px_rgba(17,19,24,0.06)]",
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
+      )}
+    >
+      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-[#F7F7F2]">
+        {imageFailed ? (
+          // Design Finding B: broken/missing stock image degrades to a plain
+          // accent-tinted panel instead of a next/image broken-icon placeholder.
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{ backgroundColor: `${category.accent}22` }}
+          />
+        ) : (
+          <Image
+            src={category.image}
+            alt=""
+            fill
+            aria-hidden
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+            onError={() => setImageFailed(true)}
+          />
+        )}
+        {/* Decorative category accent — non-text, so per-category color does
+            not carry a WCAG 1.4.3 text-contrast obligation (unlike the CTA
+            label below, which stays on the fixed brand link color). */}
+        <span
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-[3px]"
+          style={{ backgroundColor: category.accent }}
+        />
+      </div>
+      <div className="flex flex-1 flex-col gap-3 px-4 py-3.5">
+        <h3 className="text-[0.95rem] font-extrabold tracking-[-0.01em] text-[#111318]">
+          {category.label}
+        </h3>
+        {/*
+         * CTA text uses the fixed brand link color (#167A58), not the
+         * per-category accent: several accents (e.g. juices #E8A020, milk
+         * #5C7FB0) fail WCAG 1.4.3 (~2.2:1 / ~4.1:1) as bold 12px text on
+         * white — confirmed by `npm run test:a11y` against this component.
+         * #167A58 is the same color already used for link text elsewhere
+         * in this codebase (e.g. comparison-page.tsx blogLink, bread
+         * dashboard CTAs) at the same or smaller sizes.
+         *
+         * Copy: "להשוואה" (Content gate-1 approved, TASK-507 fix #2) — the
+         * original "לכל ההשוואות" implied linking to ALL comparisons, but each
+         * card links to exactly one category.
+         */}
+        <span className="mt-auto inline-flex w-fit items-center gap-1.5 text-xs font-bold text-[#167A58]">
+          להשוואה
+          <ChevronLeft className="size-3.5 stroke-[2.5]" aria-hidden />
+        </span>
+      </div>
+    </Link>
   );
 }

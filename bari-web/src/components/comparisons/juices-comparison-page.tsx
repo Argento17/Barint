@@ -64,6 +64,7 @@ export function JuicesComparisonPage({
       categoryNote={categoryNote}
       initialExpandedProductId={initialExpandedProductId}
       category="juices"
+      exploreNextCategoryId="juices"
     />
   );
 }
