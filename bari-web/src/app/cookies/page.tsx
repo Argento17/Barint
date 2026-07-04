@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 /**
  * Cookie notice (/cookies).
  * Route is live so it can be linked from the footer and privacy policy.
- * Body text below is a DRAFT loaded for owner review (page stays noindexed).
+ * Body text below is a DRAFT loaded for owner review. Page is indexable
+ * (inherits `index, follow` from the root layout; no robots override here).
  * Tokens rendered as 【...】 mark facts/decisions the owner must still resolve.
  * Source: P404 legal drafts, DOC 3 (הודעת עוגיות) — the full in-page section.
  * The A/B consent-mechanism choice is left open by the draft and surfaced as a
