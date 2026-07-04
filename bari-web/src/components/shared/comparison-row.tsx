@@ -191,7 +191,15 @@ export const ComparisonRow = memo(function ComparisonRow({
         </span>
         <span className="bari-cmp-namecell">
           <span className="block truncate text-[0.97rem] font-bold leading-[1.3] tracking-[-0.01em] text-[#111318]">
-            {product.name}
+            {/* TASK-492C FIX 3 (design-critic H1): dir="auto" isolates the product name's
+                own bidi paragraph direction from the RTL ancestor, so a Latin-script name
+                (e.g. "Sports Micronized Creatine") truncates at its logical END ("Sports
+                Micronized...") instead of having its START clipped ("...orts Micronized
+                Creatine"). Matches the existing dir="auto" already used on product.brand
+                two lines below — same fix, applied to name. Shared row: verified this does
+                not change magnesium's Hebrew names (dir="auto" on Hebrew text is a no-op —
+                RTL is still detected as the string's own direction). */}
+            <span dir="auto">{product.name}</span>
             {product.brand?.trim() ? (
               <span
                 className="ms-2 inline font-semibold tracking-normal text-[#167A58]"
@@ -362,6 +370,7 @@ export const ComparisonRow = memo(function ComparisonRow({
                 rank={product.rank}
                 categoryTotal={product.categoryTotal}
                 magnesiumBadges={product.magnesiumBadges}
+                creatineBadges={product.creatineBadges}
               />
             ) : null}
           </div>

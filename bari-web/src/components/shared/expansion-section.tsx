@@ -12,6 +12,7 @@ import type {
   BariNutritionVM,
   BariProcessingSignalVM,
   BariProductVM,
+  CreatineBadgesVM,
   MagnesiumBadgesVM,
 } from "@/lib/view-models";
 import {
@@ -23,6 +24,7 @@ import { NewAdditivePanel } from "@/components/shared/AdditivePanel";
 import { ProcessingSignalNote } from "@/components/shared/processing-signal-note";
 import { DeepDiveSection, hasDeepDiveContent } from "@/components/shared/deep-dive-section";
 import { MagnesiumBadgeGrid } from "@/components/shared/magnesium-badge-grid";
+import { CreatineBadgeGrid } from "@/components/shared/creatine-badge-grid";
 
 // ─── Label constants (verbatim — spec §1, non-negotiable) ─────────────────────
 const LABEL_POSITIVE = "מה עובד לטובת המוצר?";
@@ -1062,6 +1064,7 @@ export function ExpansionSection({
   rank,
   categoryTotal,
   magnesiumBadges,
+  creatineBadges,
 }: {
   expansion: BariExpansionVM;
   confidence: BariConfidence;
@@ -1087,6 +1090,9 @@ export function ExpansionSection({
   /** TASK-384A: magnesium structured badge data. Rendered as a 6-badge grid in the
    *  expansion. Only present on magnesium category products; absent → no badge grid. */
   magnesiumBadges?: MagnesiumBadgesVM;
+  /** TASK-492C: creatine structured badge data. Rendered as a 5-badge grid in the
+   *  expansion. Only present on creatine category products; absent → no badge grid. */
+  creatineBadges?: CreatineBadgesVM;
 }) {
   const isWithheld = glassBox?.gateState === "withhold";
 
@@ -1174,6 +1180,14 @@ export function ExpansionSection({
       {magnesiumBadges ? (
         <Section label="פרטי המוצר">
           <MagnesiumBadgeGrid badges={magnesiumBadges} />
+        </Section>
+      ) : null}
+
+      {/* ── Creatine badge grid (TASK-492C) ──────────────────────────────── */}
+      {/* Only renders when creatineBadges is present (creatine category only). */}
+      {creatineBadges ? (
+        <Section label="פרטי המוצר">
+          <CreatineBadgeGrid badges={creatineBadges} />
         </Section>
       ) : null}
 

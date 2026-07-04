@@ -268,6 +268,44 @@ export interface MagnesiumBadgesVM {
   compound_transparency?: string | null;
 }
 
+// ─── Creatine Badge VM (TASK-492C) ───────────────────────────────────────────
+// Per-product structured badge data for the creatine category expansion panel.
+// Creatine has NO A–E grade and NO numeric score (Product ruling 1 — monohydrate
+// at an honest dose is evidence-equivalent across brands). The headline signal is
+// the dose-honesty verdict; the ranking signal is price-per-effective-gram.
+// Display-only — never a score input. Absent on all other categories.
+//
+// certTier: two-tier certification badge (Product ruling 2).
+//   "directory_verified"   → "אומת מול מאגר" (certifier's own registry directly confirmed)
+//   "manufacturer_stated"  → "מוצהר על-ידי היצרן" (brand-page claim, not directory-confirmed)
+//   null                   → no third-party certification claim found
+//
+// doseHonesty: the page's primary headline classification (§1.0 of the content package).
+//
+// All Hebrew strings are DRAFT pending Content two-gate + Adversarial QA sign-off before deploy.
+export type CreatineCertTier = "directory_verified" | "manufacturer_stated" | null;
+export type CreatineDoseHonesty =
+  | "honest" // "הוגן — מינון משמעותי"
+  | "below_floor" // "מוצהר, מתחת לרצפה"
+  | "undisclosed"; // "לא מפורט"
+
+export interface CreatineBadgesVM {
+  /** Badge 1: chemical form — monohydrate vs HCl vs other. */
+  form_label: string; // e.g. "מונוהידראט" | "HCl"
+  /** Badge 2: grams of creatine per serving as labeled, or a not-disclosed string. */
+  dose_label: string; // e.g. "3.0 גרם" | "לא מפורט"
+  /** Badge 3: dose-honesty verdict, plain Hebrew (mirrors doseHonesty enum). */
+  dose_honesty_label: string; // e.g. "הוגן — מינון משמעותי"
+  /** Badge 4: third-party certification tier, plain Hebrew. */
+  cert_label: string; // e.g. "אומת מול מאגר (NSF)" | "מוצהר על-ידי היצרן (Informed Sport)" | "לא נמצאה טענה"
+  /** Structured cert tier for any future non-copy logic (display-only, never scoring). */
+  certTier: CreatineCertTier;
+  /** Badge 5: price per 3g effective dose, or null when not computable (dose or servings undisclosed). */
+  price_per_3g_label: string | null; // e.g. "₪1.03 ל-3 גרם"
+  /** Structured dose-honesty enum, paired with dose_honesty_label. */
+  doseHonesty: CreatineDoseHonesty;
+}
+
 // ─── Product ──────────────────────────────────────────────────────────────────
 // The single unit of shelf rendering.
 // insightLine: pre-authored Hebrew string. "" = no insight slot rendered.
@@ -385,6 +423,16 @@ export interface BariProductVM {
    * All Hebrew strings are DRAFT pending Content two-gate sign-off.
    */
   magnesiumBadges?: MagnesiumBadgesVM;
+
+  /**
+   * TASK-492C: Creatine structured badge data. Optional — present only on creatine
+   * category products. Rendered as a badge grid in the expansion panel by
+   * CreatineBadgeGrid. Absent → no badge grid rendered (byte-identical to today for
+   * all other categories). Presentation only — never a score input. score/grade are
+   * null for every creatine product (Product ruling 1 — no A–E grade).
+   * All Hebrew strings are DRAFT pending Content two-gate sign-off.
+   */
+  creatineBadges?: CreatineBadgesVM;
 
   // ─── Deep-Dive fields (TASK-332) ─────────────────────────────────────────────
   // Carry per-product authored depth from the pipeline. Absent on categories whose
