@@ -26,6 +26,7 @@ export const ALL_INDEXABLE_PATHS = [
   "/blog/shemen-zayit",
   "/blog/sugar-alcohols",
   "/blog/food-dyes",
+  "/blog/ultra-processed-food",
   "/research/glass-box",
   "/research/bread-transparency-shufersal",
   "/methodology",
