@@ -210,3 +210,12 @@ Any claim about who should or should not consume a product, any health-effect cl
 ### P-10: The HebEMO anger+disgust gate is mandatory before publication
 
 Any line intended as dry wit or criticism must pass the HebEMO anger + disgust gate (`LABEL_0` on both) before the review ships. This is the final tonal safety check before publication (see also §3 Gate 3 above).
+
+
+<!-- Appended 2026-07-04 from the owner naturalness-labeling session (TASK-506) -->
+
+### Banned / correct-me (for 5_banned_phrases_and_claims.md)
+- **סודיום / סודים** — never; the Hebrew term for sodium is **נתרן**. (Now a HARD fail in hebrew_readability.)
+- **ברי** as the brand name — the brand is spelled **בארי**. ('ברי' as the ordinary word, and goji berry, are fine.) (HARD fail when used as brand-subject.)
+- **Restating the nutrition numbers** already shown in the values/table inside the prose (e.g. repeating '10.1 גרם חלבון', '31%'). Say what they mean, don't re-list them. (Advisory flag.)
+- **Over-using the em-dash (—)** as a structural crutch. Minimize; most can become a comma or a full stop. (Advisory flag.)

@@ -68,3 +68,10 @@ voice; rotate. New phrases enter only after they appear in a Tom edit (file 8).
 - Positive bullet: `רשימת רכיבים קצרה: <מה בדיוק>` · `חלבון טבעי סביר ל־100 מ״ל`
 - Caution bullet (limit + consequence): `חלבון זניח — אינו תחליף לחלבון מהמדף` · `המים הם הרכיב הראשון — אחוז <X> נמוך בפועל`
 - takeaway: `<תיאור קצר> — <מה זה לא>.`  e.g. `משקה קל — לא מקור חלבון.`
+
+
+<!-- Appended 2026-07-04 from the owner naturalness-labeling session (TASK-506) -->
+
+### Approved / preferred (for 4_approved_phrases.md)
+- **נתרן** — the correct Hebrew term for sodium.
+- **בארי** — the correct spelling of the brand name in prose.
