@@ -178,7 +178,7 @@ export const creatineMethodologyLines = [
 
 // ─── Section headings (rendered by creatine-comparison-page.tsx via renderProducts) ──
 export const creatineIsraeliSectionLabel = "המדף הישראלי — 18 מוצרים";
-export const creatineWorldwideSectionLabel = "מותגי ייחוס עולמיים — 13 מוצרים, 6 מדינות";
+export const creatineWorldwideSectionLabel = "מותגי ייחוס עולמיים — 13 מוצרים, 5 מדינות";
 
 // ─── Israeli shelf — 18 products (§1.2) ──────────────────────────────────────
 // Sort within each dose-honesty tier by price-per-3g ascending (cheapest first) —
@@ -647,7 +647,12 @@ export const creatineIsraeliProducts: BariProductVM[] = creatineIsraeliProductsR
   normalizeProductBrandDisplay(product)
 );
 
-// ─── Worldwide benchmark — 13 products, 6 regions (§1.3) ─────────────────────
+// ─── Worldwide benchmark — 13 products, 5 regions (§1.3) ─────────────────────
+// Distinct regions per creatine_benchmark_solid_v1.md: US (7 — Thorne, Momentous,
+// Klean Athlete, BPN, MegaFood, Sports Research, Naked), Canada (BioSteel),
+// UK (Applied Nutrition, both MyProtein SKUs), Australia (Switch Nutrition),
+// Germany (ESN). The benchmark's §4 "6 regions" self-check counted Israel, which
+// is the separate Israeli-shelf section above, not part of these 13.
 // Sorted: 7 directory-verified (NSF) first, then manufacturer-stated, then the
 // uncertified comparator (ESN) last — corpus order stable within each tier.
 // bandNote marks the directory-verified sub-group boundary (mirrors magnesium's
