@@ -53,14 +53,14 @@ export function activeCommunityLinks(): CommunityLink[] {
 /**
  * Share message builder. `title` is always the page's full editorial headline
  * (hero.title / article.title) — never a bare category name — so the template
- * uses the publisher-prefix idiom ("ברי בדקה: <headline>"), which stays
+ * uses the publisher-prefix idiom ("בארי בדקה: <headline>"), which stays
  * grammatical for statement, question, and multi-sentence headlines alike.
  *
  * Copy status: Content gate 1 signed off (TASK-467). Adversarial QA (gate 2)
  * still pending per CLAUDE.md "Content sign-off".
  */
 export function buildShareText(title: string): string {
-  return `ברי בדקה: ${title}`;
+  return `בארי בדקה: ${title}`;
 }
 
 /**
