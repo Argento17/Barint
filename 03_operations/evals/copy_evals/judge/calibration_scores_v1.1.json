@@ -1,0 +1,609 @@
+{
+  "judge_version": "1.1",
+  "model": "claude-opus-4-8",
+  "prompt_hash": "3aa7928ff4167c4a",
+  "n_originals": 41,
+  "n_seeds": 19,
+  "results": [
+    {
+      "id": "tr-001",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "השמן שמציעים הוא ההבדל האמיתי בין המוצרים.",
+      "score": 0.82,
+      "rationale": "Idiomatic, interpretive Hebrew sentence with a clear point, but it's a touch plain/generic and the editor would likely tighten it.",
+      "sec": 7.9
+    },
+    {
+      "id": "tr-002",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "יש כאן חלבון ממשי, לא רק הבטחה על האריזה.",
+      "score": 0.35,
+      "rationale": "Define-by-negation 'X, לא Y' construction ('חלבון ממשי, לא רק הבטחה') triggers the house-style ban on define-by-negation.",
+      "sec": 8.3
+    },
+    {
+      "id": "tr-003",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "המוצר הזה מהגבוהים בחלבון בקטגוריה.",
+      "score": 0.32,
+      "rationale": "Bare superlative fragment with vague deictic 'המוצר הזה'—reads as a clipped tag, not an interpretive written description, so the editor sends it back.",
+      "sec": 7.0
+    },
+    {
+      "id": "tr-004",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "המוצר עושה עבודה טובה בלספק חלבון לאורך היום.",
+      "score": 0.32,
+      "rationale": "Vague filler phrasing ('עושה עבודה טובה בלספק חלבון') reads as flat translationese that states rather than interprets, so the editor sends it back.",
+      "sec": 8.1
+    },
+    {
+      "id": "tr-005",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "יש כאן פחות סוכר מרוב המדף, וזה מורגש גם ברשימת הרכיבים.",
+      "score": 0.88,
+      "rationale": "Interpretive native prose that reads the sugar data ('פחות סוכר מרוב המדף') rather than reciting numbers, with idiomatic flow and clean house style.",
+      "sec": 8.5
+    },
+    {
+      "id": "ls-002",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "קלוריות נמוכות יחסית ל-100 גרם, עם כמויות חלבון וסיבים גבוהות באופן יוצא דופן. נתרן — הנמוך ביותר בכל המדף. הטחינה והקמחים ממקור צמחי-זרעי הם הסיבה לפרופיל הזה, לא תוסף.\nציון S.",
+      "score": 0.28,
+      "rationale": "Prose recites nutritional data (calories/protein/fiber/sodium levels) and uses a define-by-negation 'X, לא Y' plus a structural em-dash, triggering a revision.",
+      "sec": 7.7
+    },
+    {
+      "id": "ls-005",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "פטה עיזים 5% מחלבות גד מגיעה לראש הקטגוריה בזכות הרשימה הקצרה ביותר האפשרית: חלב עיזים מפוסטר, מלח, חומר משמר אחד. אין מייצבים, אין רכיבי חלב נוספים. הנתרן נמצא ליד חציון המדף — ולכן אינו מוסיף חיסרון מעבר לבסיס.",
+      "score": 0.86,
+      "rationale": "Flowing interpretive prose with correct נתרן/בארי, a single purposeful em-dash and one figure used in service of a point rather than data-recitation.",
+      "sec": 6.1
+    },
+    {
+      "id": "ls-008",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "מבין עוגות הגבינה האפויות, זו דלת הסוכר ביותר — כשלושה גרם בלבד, עם 10 גרם חלבון. הסוכר הנמוך ופרופיל הקלוריות המתון (186 קלוריות) הם יתרונות אמיתיים. אבל מולם יושבת רשימת תוספי ייצוב ארוכה, ובתוכה מתחלב שעדויות מוקדמות לגביו שנויות במחלוקת. ציון C.",
+      "score": 0.9,
+      "rationale": "Interpretive, flowing native prose with clear subject and correct נתרן-free framing; the single '3 grams'/'186 קלוריות' numbers serve the point rather than reciting the panel, and the one em-dash is idiomatic.",
+      "sec": 13.4
+    },
+    {
+      "id": "ls-011",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "95% חיטה, ארבעה רכיבים, ללא תוספי מזון — ויטביקס הוא הדוגמה הכי ברורה במדף הזה למה פשטות עובדת. הסיבים והחלבון גבוהים מרוב השכנים; הדגן עצמו עושה את העבודה.",
+      "score": 0.88,
+      "rationale": "Flowing interpretive prose with a clear subject and idiomatic 'פשטות עובדת'/'הדגן עצמו עושה את העבודה'; the single em-dash and light stats serve the point rather than reciting the panel.",
+      "sec": 7.1
+    },
+    {
+      "id": "ls-014",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "קוטג 1% הוא המוצר הרזה ביותר בקטגוריה: 62 קלוריות ל-100 גרם, כ-12 גרם חלבון, ללא תוספים מזוהים. רמת העיבוד אינה ודאית לחלוטין, אך כל שאר הממדים ציינו בחיוב.",
+      "score": 0.28,
+      "rationale": "Prose recites the nutritional panel (62 קלוריות/100 גרם, 12 גרם חלבון) rather than interpreting it, which this editor sends back.",
+      "sec": 12.0
+    },
+    {
+      "id": "ls-017",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "סוכר וסירופ גלוקוז פותחים את רשימת הרכיבים, ורק אז מגיעים הבוטנים. הם תורמים את החלבון (8.6 גרם ל-100 גרם) ואת התחושה שיש כאן משהו ללעוס, וזה באמת מה שמציב את סניקרס בראש המדף. אבל ראש מדף של חטיפי שוקולד הוא עדיין ממתק, לא חטיף ביניים.",
+      "score": 0.88,
+      "rationale": "Flowing, interpretive editorial prose with a clear subject and idiomatic voice; the single 8.6g figure serves the point rather than reciting the panel, and no house-style triggers fire.",
+      "sec": 5.9
+    },
+    {
+      "id": "ls-020",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "אחת הטבלות הקרובות ביותר לקקאו טהור: רשימה קצרה שפותחת במסת קקאו, סיבים גבוהים שמגיעים מהקקאו עצמו ולא מתוסף. הקאץ' הוא הטעם — 90% מריר הוא בחירה נישתית שלא מתאימה לכל חך.",
+      "score": 0.72,
+      "rationale": "Interpretive and idiomatic native prose, but the single em-dash used as a structural crutch before 'הטעם' is exactly the minor flow tweak this editor would make.",
+      "sec": 7.7
+    },
+    {
+      "id": "ls-023",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "עוגיות גרידת הלימון של דני וגלית בנויות על שקדים וקמח אורז מלא, עם אגבה כממתיק — מבנה יוצא דופן לקטגוריה. הסוכר הכולל נמוך מאוד לעוגייה, השומן הרווי מתון. שמן הקנולה ברשימה הוא הסייג הקטן. הציון הגבוה ביותר במדף.",
+      "score": 0.83,
+      "rationale": "Confident, interpretive native prose with correct נתרן-free framing and a clear subject, but the mid-line 'שמן הקנולה ברשימה הוא הסייג הקטן' plus a second sentence reciting 'סוכר נמוך/שומן רווי מתון' leans slightly toward listing panel readings, which this exacting editor would likely tighten.",
+      "sec": 10.1
+    },
+    {
+      "id": "ls-026",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "מהגבוהות בסיבים במדף — 14.5 ג', עם 11.4 ג' חלבון. אבל הסיבים מוגברים בעולש מוסף והחמוציות ממותקות ברכז תפוחים — מאפה מהונדס לסיבים, 386 קק\"ל.",
+      "score": 0.05,
+      "rationale": "Recites multiple nutrition numbers in prose (14.5g fiber, 11.4g protein, 386 kcal) rather than interpreting them, so the exacting editor would send it back.",
+      "sec": 5.5
+    },
+    {
+      "id": "ls-029",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "יחס טחינה גבוה במיוחד (31%) לצד 34% חומוס — הרכב עשיר שמסביר את החלבון הגבוה (10.1 גרם) ואת הנתרן הנמוך יחסית למדף. מהבולטים במדף בזכות הבסיס; חומר משמר ותוסף נוסף ברשימה הם הפשרה שמשאירה אותו ב-B.",
+      "score": 0.32,
+      "rationale": "Prose recites multiple data-panel numbers (31%, 34%, 10.1 גרם) merely echoing the nutrition data rather than interpreting them, triggering a revision.",
+      "sec": 6.3
+    },
+    {
+      "id": "ls-032",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "פרי בלבד — ולנסיה, סחוט ישיר, ללא ריכוז. הסוכר בכוס הוא הסוכר שהיה בתפוז. עם 8.7 גרם ל-100 מ\"ל זהו המתוק מבין מיצי התפוזים הסחוטים בסקירה — אבל המתיקות הזו היא הפרי עצמו, לא תוספת. אם אתם אוהבים תפוז מתקתק ועשיר, זו הבחירה; מי שמחפש את הקל ביותר בסוכר ימצא אותו במיץ תפוז סחוט אחר.",
+      "score": 0.9,
+      "rationale": "Flowing interpretive prose that frames the single 8.7g figure toward a point about fruit-sourced sweetness, correct נתרן/בארי conventions untriggered, idiomatic native Hebrew with clear guidance.",
+      "sec": 7.2
+    },
+    {
+      "id": "ls-035",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "רכיב אחד ברשימה, חלב, וזהו. אין מייצבים, אין העשרה, אין תוספי מזון — חלב פרה מלא 3.4% כמו שהוא, עם 3.3 ג׳ חלבון ל-100 מ״ל. הציון הגבוה כאן לא בא מאיזה שדרוג חכם אלא דווקא מהיעדרו. לא כל מוצר צריך להיות מתוחכם כדי להיות טוב.",
+      "score": 0.9,
+      "rationale": "Confident interpretive prose that reads the high score as coming from absence rather than reciting the panel; correct נתרן/בארי conventions and the single em-dash plus one purposeful protein figure serve the point without listing data.",
+      "sec": 6.4
+    },
+    {
+      "id": "lb2-001",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "קלוריות בינוניות, חלבון וסיבים טובים. הכוח כאן הוא הפשטות: 100% קמח חיטה מלא, חומץ טבעי כחומר תסיסה, ורשימת רכיבים שאפשר לספור על יד אחת. בתוך מדף שבו הרוב מגיע עם תוספי עיבוד וקמח מעורב — הפשטות הזו מספיקה כדי להציב אותו בין המובילים.\nציון S.",
+      "score": 0.86,
+      "rationale": "Flowing interpretive prose with a clear subject and correct house terms; the single em-dash serves a real clause and 'ציון S' is a clean tag, so no revision trigger fires.",
+      "sec": 9.8
+    },
+    {
+      "id": "lb2-002",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "קלוריות בינוניות, חלבון וסיבים טובים. קמח חיטה מלא הוא 100% מהקמחים. שתי מחמצות (שיפון וחיטה) ברשימת הרכיבים. ה'לילדים' בשם הוא שיווק — הפרופיל הוא לחם מלא לכל גיל.\nציון A.",
+      "score": 0.25,
+      "rationale": "Opens with a clipped label-fragment and then recites several data points (100% flours, two starters) rather than interpreting, despite the strong final marketing insight.",
+      "sec": 12.7
+    },
+    {
+      "id": "lb2-003",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "צפתית 5% מחלבות גד. הנתרן (600 מ\"ג) נמוך משמעותית מחציון המדף — ולכן הגבינה הזו נמלטת מחיסרון פער הנתרן. עם זאת, 600 מ\"ג מחייב חיסרון בסיסי מינימלי, כפי שכל גבינה בטווח הזה מקבלת. שלושה רכיבים, עיבוד מינימלי.",
+      "score": 0.24,
+      "rationale": "Prose recites the sodium figure (600 מ\"ג) repeatedly and restates the score-mechanic instead of interpreting, plus an em-dash crutch and a trailing clipped label fragment.",
+      "sec": 8.7
+    },
+    {
+      "id": "lb2-004",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "צפתית מעודנת 5% מחלבות גד. כל נתון — שומן, חלבון, נתרן, רשימת רכיבים — זהה לגרסה הסטנדרטית של אותה מחלבה. ברי לא מצאה הבדל מהותי בין השתיים.",
+      "score": 0.87,
+      "rationale": "Flowing interpretive prose that reads the finding ('no material difference') rather than reciting numbers; the field labels sit inside a proper sentence and the single em-dash is idiomatic, not a crutch.",
+      "sec": 8.7
+    },
+    {
+      "id": "lb2-005",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "עוגת קרם שוקולד אישית עם שתי שכבות שמן קוקוס — אחת בציפוי ואחת בקרם. קלוריות נמוכות מסתירות עיבוד כבד. הציון D לא בא מהקלוריות — בא ממקור השומן הכפול.",
+      "score": 0.28,
+      "rationale": "Prose recites the D grade and restates the low-calories/heavy-processing data point, and leans on two structural em-dashes rather than interpretive editorial flow.",
+      "sec": 7.3
+    },
+    {
+      "id": "lb2-006",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "295 קלוריות ל-100 גרם עם 7.4 גרם שומן רווי. מרגרינת סויה היא בסיס השומן, ולצידה רשימה של 15 רכיבים וסוכר מוסף שמגיע מכמה מקורות. כל אלה מושכים את הציון למטה.",
+      "score": 0.28,
+      "rationale": "Opens by reciting data-panel numbers (295 cal/100g, 7.4g saturated fat) as prose rather than interpreting them, which this editor sends back.",
+      "sec": 7.3
+    },
+    {
+      "id": "lb2-007",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "הרשימה לא יכולה להיות נקייה יותר: אורז מלא בלבד, ללא תוספת סוכר, ללא מלח, ללא תוספי מזון — ורכיב אחד בלבד. נתרן נמוך. החולשה: אורז מלא ב-100% הוא עדיין דגן עם פרופיל סיבים שטוח — ה'מלא' על האריזה שווה פחות ממה שנשמע.",
+      "score": 0.24,
+      "rationale": "Prose recites the data panel (ללא סוכר/מלח/תוספים list plus 'נתרן נמוך' and '100%') and leans on two structural em-dashes, so the exacting editor would send it back for a revision pass.",
+      "sec": 7.9
+    },
+    {
+      "id": "lb2-008",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "שלושה רכיבים, ללא תוספי מזון — הרשימה מינימלית. הבעיה היא שהבסיס הוא אורז לבן, לא מלא, ופרופיל הסיבים כמעט לא קיים. בנוסף, הנתרן גבוה לפצפוצים שמציגים עצמם כמוצר פשוט.",
+      "score": 0.72,
+      "rationale": "Interpretive and idiomatic native prose, but 'הנתרן גבוה' plus the fiber point lean toward light data-restatement and the em-dash is a minor structural crutch the editor would likely tighten.",
+      "sec": 6.7
+    },
+    {
+      "id": "lb2-009",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "טבורוג 5% מציג את תשואת החלבון הגבוהה ביותר בקטגוריה — 17 גרם ל-100 גרם, עם סודיום נמוך יוצא דופן של 30 מ\"ג. תוסף אחד ועיבוד מסוים מורידים מעט מהציון.",
+      "score": 0.2,
+      "rationale": "Recites nutritional numbers in prose (17 גרם/100 גרם, 30 מ\"ג) and misspells נתרן as \"סודיום\", both house-style triggers.",
+      "sec": 6.5
+    },
+    {
+      "id": "lb2-010",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "קוטג 3% מציע את שילוב החלבון-קלוריות הטוב ביותר בין גבינות קוטג: 11 גרם חלבון, 77 קלוריות, ללא תוספים. הסודיום עומד על 350 מ\"ג.",
+      "score": 0.05,
+      "rationale": "Uses forbidden 'סודיום' instead of 'נתרן' and recites a list of raw numbers (11g protein, 77 cal, 350mg) rather than interpreting them.",
+      "sec": 10.7
+    },
+    {
+      "id": "lb2-011",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "סוכר וקמח חיטה מובילים, אגוזי הלוז הם 10% בלבד, והשומן הרווי מטפס ל-16.4 גרם ל-100 גרם — מהגבוהים במדף. זה שוקולד ממולא בתחפושת של חטיף ביניים.",
+      "score": 0.12,
+      "rationale": "Prose recites the nutrition panel (10%, 16.4 גרם ל-100 גרם) plus an em-dash crutch, so the editor sends it back for a revision pass.",
+      "sec": 8.8
+    },
+    {
+      "id": "lb2-012",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "הרכב זהה לפסק זמן הקלאסי: סוכר וקמח לפני אגוזי הלוז, ו-16.4 גרם שומן רווי ל-100 גרם. האריזה משתנה, המבנה התזונתי לא.",
+      "score": 0.14,
+      "rationale": "Prose recites the nutrition panel (16.4 grams saturated fat per 100g, plus sugar/flour ordering) rather than interpreting it, which this editor sends back.",
+      "sec": 6.0
+    },
+    {
+      "id": "lb2-013",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "מוצר שמנסה לשבת על שני הכיסאות: קקאו אמיתי עם ממתיקים טבעיים. הסיבים הגבוהים מגיעים מאינולין, לא מהקקאו. מי שמחפש חוויה מתוקה בלי סוכר — זה בין האמינים בקטגוריה, אבל הנוסחה מהונדסת יותר מ-90% קקאו פשוט.",
+      "score": 0.78,
+      "rationale": "Interpretive, native, and idiomatic prose with a clear point, but the em-dash used as a structural connector plus the '90% קקאו' echo would prompt the exacting editor to tweak.",
+      "sec": 7.5
+    },
+    {
+      "id": "lb2-014",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "חמישה מרכיבים בלבד: עיסת קקאו, חמאת קקאו, אבקת קקאו, סוכר, וניל. הנוסחה ישרה. הסוכר קיים ונמוך. לינדט מציעה כאן 90% מריר שנגיש קצת יותר מהגרסה הקיצונית — עמוק, אבל לא חד כמו פגיון.",
+      "score": 0.88,
+      "rationale": "Interpretive, native editorial prose with clear voice; the single '90% מריר' number and lone em-dash serve a point rather than reciting the data panel.",
+      "sec": 6.2
+    },
+    {
+      "id": "lb2-015",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "עוגיות בטעם החמאה האלה מגיעות ל-C. הרשימה קצרה. שמנים ושומנים מהצומח (חלקם מוקשים) הם מקור השומן הרווי — זה המגביל הבלעדי. אין סוכר גבוה, אין חומרי שימור, אין צבעי מאכל. חומרי תפיחה (E450, E500) ברשימה.",
+      "score": 0.35,
+      "rationale": "Recites data/E-codes and stacks 'אין X, אין Y, אין Z' negation-listing with an em-dash crutch, so the editor sends it back for interpretive rewrite.",
+      "sec": 6.1
+    },
+    {
+      "id": "lb2-016",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "עוגיות הדגנים האלה מגיעות ל-C. שיבולת שועל כרכיב ראשון, קמח חיטה מלאה כשני — שילוב שלא נפוץ במדף הזה. הסיבים גבוהים לקטגוריה, השומן הרווי מתון. רשימת הרכיבים חלקית בנתונים — לא ניתן לאשר את מעמד התוספים מתוך הנתון הזמין. C בשדה שבו רוב הדגן הוא קמח לבן.",
+      "score": 0.32,
+      "rationale": "Two structural em-dashes standing in for connectors in one short line, plus a stiff data-listing cadence ('הסיבים גבוהים... השומן הרווי מתון').",
+      "sec": 13.8
+    },
+    {
+      "id": "lb2-017",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "411 קלוריות ל-100 גרם עם כ-21 גרם חלבון וכ-12 גרם סיבים. שיבולת שועל מלאה 54% הבסיס; חלבון סויה מרוכז מספק את עיקר החלבון. שני מקורות סוכר מוסף ברשימה. נטיפי שוקולד מריר 6.5% וקשיו 4%.",
+      "score": 0.28,
+      "rationale": "Reads as a data recitation—multiple grams/calories/percentages listed rather than interpreted—so the editor would send it back for a real revision pass.",
+      "sec": 8.2
+    },
+    {
+      "id": "lb2-018",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "not_approved",
+      "text": "504 קלוריות ל-100 גרם עם כ-12 גרם סיבים ו-18 גרם חלבון. רשימה של עשרה רכיבים שלמים בלבד — שיבולת שועל מלאה, שקדים, קשיו, אגוזי לוז, גרעיני חמניה, גרעיני דלעת, טחינה, סילאן, תבלינים. 394 מ\"ג נתרן — אפיון הגרנולה המלוחה.",
+      "score": 0.16,
+      "rationale": "Prose recites multiple nutrition numbers (504 kcal, 12g fiber, 18g protein, 394mg נתרן) echoing the data panel, plus an em-dash used as a structural crutch.",
+      "sec": 7.0
+    },
+    {
+      "id": "lb2-019",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "מהממרחים המוכנים הבולטים במדף: רשימה קצרה של גרגירי חומוס, טחינה ותבלינים, עם חומר משמר יחיד. החלבון הגבוה ביותר בין הממרחים (18.2 גרם) מעיד על בסיס סמיך שאינו מדולל. לא חומוס מצוין במובן המוחלט — אבל מול שאר המדף, מהמלאים שבו, גם אם לא נטול תוספים.",
+      "score": 0.72,
+      "rationale": "Flowing, interpretive prose with clear subject, but the single em-dash structural break plus reciting the exact protein figure (18.2 גרם) are minor tweaks the exacting editor would likely smooth.",
+      "sec": 6.8
+    },
+    {
+      "id": "lb2-020",
+      "cls": "original",
+      "gold": "unnatural",
+      "verdict": "partially_approved",
+      "text": "חצי מהמוצר חומוס מבושל (50%) עם 15% טחינה גולמית — הרכב מלא יחסית שמספק 4 גרם סיבים ונתרן מתון. מעט מעל רוב המדף, אך רשימת התוספים — חומר משמר ותוסף נוסף — מחזיקה אותו בבינוני. ממרח סביר, מהחזקים שבחלק האמצעי.",
+      "score": 0.32,
+      "rationale": "Prose recites the nutritional data panel (50% חומוס, 15% טחינה, 4 גרם סיבים) and leans on two structural em-dashes, both house-style revision triggers.",
+      "sec": 8.2
+    },
+    {
+      "id": "lb2-021",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "רימון אחד, ורק רימון. הסוכר כאן הגבוה ביותר בין שישת מוצרי ה-A בסקירה — אבל הרימון מתוק מטבעו וכל הסוכר שבכוס היה בפרי עצמו. אין פה תוספת. הציון A משקף בדיוק את זה: פרי שלם, ללא עיבוד, ללא תוספות.",
+      "score": 0.9,
+      "rationale": "Interpretive, flowing native prose that explains what the sugar number means (all from fruit, no added sugar) rather than reciting the panel; clean house style, correct terms, purposeful single em-dash.",
+      "sec": 6.3
+    },
+    {
+      "id": "lb2-022",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "המיץ הפשוט ביותר שאפשר למצוא: תפוזים סחוטים, ללא ריכוז, בלי כלום נוסף. כל הסוכר בכוס הגיע מהפרי עצמו. עם 8.2 גרם ל-100 מ\"ל זהו גם הנמוך ביותר בסוכר מבין מיצי התפוזים הסחוטים — אם בתוך קבוצת ה-A אתם רוצים למזער את הסוכר, זה התפוז לקחת.",
+      "score": 0.2,
+      "rationale": "Recites the sugar number and then restates it as prose while also using a define-by-negation ('ללא ריכוז') and reciting the 8.2g figure, tipping into data-recitation rather than interpretation.",
+      "sec": 6.8
+    },
+    {
+      "id": "lb2-023",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "חלב טבעי 4% ממחלבות רמת הגולן, ורשימת הרכיבים נגמרת אחרי מילה אחת — חלב. השומן המלא כאן הוא בדיוק העניין: ההרכב הכי קרוב לחלב כמו שהוא, בלי שום עיבוד שמוסיף יציבות או מרקם. זאת הבחירה למי שרוצה חלב פרה מלא בלי כוכביות, ולא מוטרד מאחוז שומן גבוה.",
+      "score": 0.9,
+      "rationale": "Flowing interpretive prose that reads the single-ingredient list and full-fat as meaning rather than reciting the panel; clean idiomatic Hebrew with one purposeful em-dash.",
+      "sec": 6.3
+    },
+    {
+      "id": "lb2-024",
+      "cls": "original",
+      "gold": "natural",
+      "verdict": "approved",
+      "text": "חלב עיזים מפוסטר ממשק צוריאל, רכיב אחד וזהו. ההרכב נקי בדיוק כמו חלב הפרה שלצידו בראש הטבלה, רק שהבסיס הוא עז — אותם 3.4 ג׳ חלבון ל-100 מ״ל, בלי תוספות. מי שמגיע לעיזים עושה את זה בדרך כלל בגלל הטעם או הרגישות לחלב פרה, וכאן הוא מקבל את זה בלי שיעבור דרך מוצר מעובד.",
+      "score": 0.88,
+      "rationale": "Flowing interpretive Hebrew that reads the product's meaning; single purposeful number and one functional em-dash inside native prose, no house-style violations.",
+      "sec": 10.5
+    },
+    {
+      "id": "tr-001_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "השמן המוצע הוא ההבדל בין המוצרים",
+      "score": 0.14,
+      "rationale": "Vague, uninterpretive fragment with a dangling reference ('the difference between the products') that anchors nothing and reads as a stiff placeholder rather than finished editorial prose.",
+      "sec": 7.1
+    },
+    {
+      "id": "tr-002_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "המוצר מכיל חלבון אמיתי",
+      "score": 0.08,
+      "rationale": "Bare clipped fragment ('the product contains real protein') that states a raw claim without interpreting it — too thin to be publishable editorial prose.",
+      "sec": 6.1
+    },
+    {
+      "id": "tr-003_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "מוצר זה הינו מהגבוהים בקטגוריה מבחינת חלבון",
+      "score": 0.06,
+      "rationale": "Bare stiff data-restatement ('among the highest in protein') with translationese 'הינו', not interpretive editorial prose.",
+      "sec": 10.0
+    },
+    {
+      "id": "tr-004_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "מוצר זה מספק כמות יומית גבוהה של חלבון",
+      "score": 0.12,
+      "rationale": "Bare formulaic template line that recites 'high daily amount of protein' as a data label rather than interpreting it — stiff and not native editorial prose.",
+      "sec": 7.9
+    },
+    {
+      "id": "tr-005_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "יש כאן פחות סוכר מרוב המוצרים במדף",
+      "score": 0.72,
+      "rationale": "Idiomatic, clean interpretive comparison with correct house style, but the bare 'פחות סוכר' framing is a touch plain and the editor would likely sharpen it.",
+      "sec": 7.6
+    },
+    {
+      "id": "ls-002_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "במוצר זה יש קלוריות נמוכיות יחסית ל-100 גרם, עם כמות חלבון סיבים גבוהה באופן יוצא דופן ונתרן נמוך מכל יתר המוצרים במדף. הסיבה לפרופיל התזונתי הייחודי הוא שהטחינה והקמחים הינם ממקור צמחי-זרעי.",
+      "score": 0.05,
+      "rationale": "Recites the nutritional data in prose (low calories per 100g, unusually high protein/fiber, lowest sodium) plus grammatical errors ('נמוכיות', 'הסיבה...הוא'), so the editor sends it back.",
+      "sec": 8.9
+    },
+    {
+      "id": "ls-005_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "פטה עיזים 5% ממחלבות גד מגיעה לראש הקטגוריה בזכות הרשימה הקצרה ביותר האפשרית. לא תמצאו כאן מייצבים או תוספות חלב מיותרות. הנתרן של המוצר מאוזן.",
+      "score": 0.82,
+      "rationale": "Fluent, interpretive native prose with correct נתרן/בארי and short-list framing, but the flat closing 'הנתרן של המוצר מאוזן' is a touch plain and would likely invite one small tweak.",
+      "sec": 11.5
+    },
+    {
+      "id": "ls-008_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "עוגה זו היא דלת הסוכר ביותר מבין עוגות הגבינה האפויות שבדקנו. לצד ערכי חלבון לא רעים יחסית לקטגוריה, ישנה רשימת תוספי ייצוב ארוכה, לרבות מתחלב שעדויות מוקדמות לגביו שנויות במחלוקת",
+      "score": 0.7,
+      "rationale": "Flowing interpretive prose with no house-style trigger, but the plain hedge 'חלבון לא רעים' reads slightly weak/casual and the exacting editor would likely tighten it.",
+      "sec": 17.8
+    },
+    {
+      "id": "ls-011_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "מוצר זה מכיל 95% חיטה ובעל ארבעה רכיבים וללא תוספי מזון. ויטביקס הוא הדוגמא הכי ברורה במדף הזה למה פשטות עובדת. הסיבים והחלבון גבוהים מרוב והשכנים.",
+      "score": 0.16,
+      "rationale": "Prose recites the nutritional data panel (95% wheat, four ingredients, no additives) instead of interpreting it, plus the dangling non-idiomatic phrase 'גבוהים מרוב והשכנים'.",
+      "sec": 8.5
+    },
+    {
+      "id": "ls-014_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "קוטג' 1% הוא המוצר הרזה ביותר בקטגוריה. אין כאן תוספי מזון מיותרים..",
+      "score": 0.24,
+      "rationale": "Second sentence is a bare 'no unnecessary additives' fragment plus a doubled period typo, reading as a clipped tag rather than finished interpretive prose.",
+      "sec": 7.5
+    },
+    {
+      "id": "ls-020_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "אחת טבלאות השוקולד שקרובות ביותר לקקאו טהור. רשימת הרכיבים קצרה שנפתחת במסת קקאו, סיבים גבוהים יחסית שמגיעים מהקקאו עצמו. כשיש אחוז גבוה של קקאו כמו במוצר זה, הטעם שמקבלים הוא בדרך כלל מריר מאוד שלא מתאים לכל חך.",
+      "score": 0.16,
+      "rationale": "Grammatical error ('אחת טבלאות' missing מ) plus a dangling comma-splice fragment ('סיבים גבוהים... שמגיעים') make it read stiff and unfinished — a clear revision-pass send-back.",
+      "sec": 18.0
+    },
+    {
+      "id": "ls-023_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "עוגיות גרידת הלימון של דני וגלית בנויות על שקדים וקמח אורז מלא, עם אגבה כממתיק — מבנה יוצא דופן לקטגוריה. הסוכר הכולל נמוך מאוד לעוגייה, השומן הרווי מתון. שמן הקנולה ברשימה הוא הסייג הקטן. מוצר מצוין ביחס למדף.",
+      "score": 0.4,
+      "rationale": "Prose restates the nutrition panel (סוכר נמוך, שומן רווי מתון) and leans on an em-dash, plus the 'הסייג הקטן' framing reads slightly stiff—triggering a revision pass.",
+      "sec": 7.6
+    },
+    {
+      "id": "lb2-001_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "קלוריות בינוניות, חלבון וסיבים טובים. הכוח כאן הוא הפשטות: 100% קמח חיטה מלא, חומץ טבעי כחומר תסיסה, ורשימת רכיבים שאפשר לספור על יד אחת. בתוך מדף שבו הרוב מגיע עם תוספי עיבוד וקמח מעורב, הפשטות הזו מספיקה כדי להציב אותו בין המובילים.",
+      "score": 0.88,
+      "rationale": "Interpretive, native editorial prose with a clear subject and idiomatic voice ('לספור על יד אחת'); no house-style triggers—the one percentage serves the simplicity point rather than reciting the panel.",
+      "sec": 10.0
+    },
+    {
+      "id": "lb2-002_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "קלוריות בינוניות, חלבון וסיבים טובים, 100% קמח חיטה מלא. שתי מחמצות (שיפון וחיטה) ברשימת הרכיבים. ה'לילדים' בשם הוא שימושי שיווקי, הפרופיל הוא לחם מלא לכל גיל.",
+      "score": 0.86,
+      "rationale": "Flowing interpretive Hebrew whose payoff line reframes the marketing 'לילדים' as a whole-grain profile for all ages; only a faint number-listing opening keeps it from a higher score.",
+      "sec": 9.2
+    },
+    {
+      "id": "lb2-003_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "צפתית 5% מחלבות גד. הנתרן כאן נמוך משמעותית מחציון המדף, ולכן הגבינה הזו נמלטת מחיסרון פער הנתרן. עם זאת, 600 מ\"ג מחייב חיסרון בסיסי מינימלי, כפי שכל גבינה בטווח הזה מקבלת. שלושה רכיבים, עיבוד מינימלי.",
+      "score": 0.28,
+      "rationale": "Recites the raw sodium figure (600 מ\"ג) and reads stiff/mechanical ('מחייב חיסרון בסיסי מינימלי, כפי שכל גבינה בטווח הזה מקבלת'), echoing the data panel rather than interpreting it.",
+      "sec": 9.7
+    },
+    {
+      "id": "lb2-004_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "צפתית מעודנת 5% מחלבות גד. כל נתון שקראנו מהערכים התזונתיים (שומן, חלבון, נתרן) זהה לגרסה הסטנדרטית של אותה מחלבה. בארי לא מצאה הבדל מהותי בין השתיים.",
+      "score": 0.72,
+      "rationale": "Flowing, interpretive prose with a clear 'no meaningful difference' verdict, but it names the three nutrient fields (שומן, חלבון, נתרן) in a mild data-recital gesture the editor would likely tighten.",
+      "sec": 8.2
+    },
+    {
+      "id": "lb2-005_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "עוגת קרם שוקולד אישית עם שתי שכבות שמן קוקוס, אחת בציפוי ואחת בקרם. קלוריות נמוכות מסתירות עיבוד כבד. הציון D לא בא מהקלוריות אלא ממקור השומן הכפול.",
+      "score": 0.28,
+      "rationale": "Prose recites the nutritional framing (low calories) and pivots on a define-by-negation 'לא בא מהקלוריות אלא ממקור השומן', which the exacting editor would send back for a revision pass.",
+      "sec": 7.5
+    },
+    {
+      "id": "lb2-015_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "רשימת הרכיבים בעוגיות האלה קצרה. שמנים ושומנים מהצומח (חלקם מוקשים) הם מקור השומן הרווי וזה המגביל הבלעדי. אין סוכר גבוה, אין חומרי שימור, אין צבעי מאכל. יש חומרי תפיחה (E450, E500) ברשימה.",
+      "score": 0.28,
+      "rationale": "Recites the additive E-codes and lists nutritional attributes as data (short ingredient list, saturated fat source, no high sugar/preservatives/colors) rather than interpreting them, reading as a stiff data-restatement rather than flowing editorial prose.",
+      "sec": 6.5
+    },
+    {
+      "id": "lb2-016_rw",
+      "cls": "seed",
+      "gold": "natural",
+      "verdict": "owner_rewrite",
+      "text": "שיבולת שועל כרכיב ראשון, קמח חיטה מלאה כשני הם שילוב לא נפוץ במדף הזה. הסיבים גבוהים לקטגוריה, השומן הרווי מתון.",
+      "score": 0.72,
+      "rationale": "Interpretive and idiomatic with a genuinely editorial framing ('שילוב לא נפוץ במדף הזה'), but the second sentence leans toward plainly restating panel readings (סיבים גבוהים, שומן רווי מתון), which the exacting editor would likely tighten.",
+      "sec": 9.9
+    }
+  ]
+}
