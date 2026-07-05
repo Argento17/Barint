@@ -1,7 +1,7 @@
 {
   "run_id": "run_ricecakes_conform_001",
   "task": "TASK-516",
-  "generated_at": "2026-07-05T06:05:41.871877+00:00",
+  "generated_at": "2026-07-05T07:56:18.195544+00:00",
   "bsip0_source": "C:\\Bari\\02_products\\crackers\\bsip0_ricecakes\\ricecakes_bsip0_raw_20260705T055211.json",
   "output_dir": "C:\\Bari\\03_operations\\bsip1\\run_ricecakes_conform_001\\output",
   "candidates_total": 36,
@@ -189,6 +189,14 @@
     }
   ],
   "rule5_flags": [],
+  "bracket_repairs_applied": [
+    {
+      "barcode": "4267230",
+      "fix": "TASK517_reversed_bracket_repair",
+      "before": "פריכיות אורז)אורז חום,מלח(,ציפוי בטעם שוקולד}מכיל:סוכר,שמנים ושומנים מהצומח)מוקשים חלקית(אבקת קקאו,מתחלב:לציטין סויה)(E-322,חומרי טע     ם וריח{",
+      "after": "פריכיות אורז(אורז חום,מלח),ציפוי בטעם שוקולד{מכיל:סוכר,שמנים ושומנים מהצומח(מוקשים חלקית)אבקת קקאו,מתחלב:לציטין סויה()E-322,חומרי טע     ם וריח}"
+    }
+  ],
   "results": [
     {
       "barcode": "7296073079019",

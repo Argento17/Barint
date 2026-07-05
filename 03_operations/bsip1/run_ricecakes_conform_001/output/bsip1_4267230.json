@@ -36,8 +36,8 @@
     "protein_g": 5.9
   },
   "energy_source_unit": "kcal",
-  "ingredients_text_he": "פריכיות אורז)אורז חום,מלח(,ציפוי בטעם שוקולד}מכיל:סוכר,שמנים ושומנים מהצומח)מוקשים חלקית(אבקת קקאו,מתחלב:לציטין סויה)(E-322,חומרי טע     ם וריח{",
-  "ingredients_raw": "פריכיות אורז)אורז חום,מלח(,ציפוי בטעם שוקולד}מכיל:סוכר,שמנים ושומנים מהצומח)מוקשים חלקית(אבקת קקאו,מתחלב:לציטין סויה)(E-322,חומרי טע     ם וריח{",
+  "ingredients_text_he": "פריכיות אורז(אורז חום,מלח),ציפוי בטעם שוקולד{מכיל:סוכר,שמנים ושומנים מהצומח(מוקשים חלקית)אבקת קקאו,מתחלב:לציטין סויה()E-322,חומרי טע     ם וריח}",
+  "ingredients_raw": "פריכיות אורז(אורז חום,מלח),ציפוי בטעם שוקולד{מכיל:סוכר,שמנים ושומנים מהצומח(מוקשים חלקית)אבקת קקאו,מתחלב:לציטין סויה()E-322,חומרי טע     ם וריח}",
   "ingredients_list": [],
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
@@ -93,31 +93,31 @@
   "ingredient_order": [
     {
       "position": 1,
-      "text": "פריכיות אורז)אורז חום,מלח(",
+      "text": "פריכיות אורז(אורז חום,מלח)",
       "percentage_declared": null,
-      "has_subgroup": false
+      "has_subgroup": true
     },
     {
       "position": 2,
-      "text": "ציפוי בטעם שוקולד}מכיל:סוכר",
+      "text": "ציפוי בטעם שוקולד{מכיל:סוכר",
       "percentage_declared": null,
       "has_subgroup": false
     },
     {
       "position": 3,
-      "text": "שמנים ושומנים מהצומח)מוקשים חלקית(אבקת קקאו",
+      "text": "שמנים ושומנים מהצומח(מוקשים חלקית)אבקת קקאו",
       "percentage_declared": null,
-      "has_subgroup": false
+      "has_subgroup": true
     },
     {
       "position": 4,
-      "text": "מתחלב:לציטין סויה)(E-322",
+      "text": "מתחלב:לציטין סויה()E-322",
       "percentage_declared": null,
       "has_subgroup": false
     },
     {
       "position": 5,
-      "text": "חומרי טע     ם וריח{",
+      "text": "חומרי טע     ם וריח}",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -193,11 +193,15 @@
     {
       "fix": "TASK516_ingredient_bleed_cut",
       "detail": "cut:מאפיינים נוספים"
+    },
+    {
+      "fix": "TASK517_reversed_bracket_repair",
+      "detail": "position-preserving '('<->')' '{'<->'}' swap; stack-based reverse-nesting signature confirmed before repair"
     }
   ],
   "_rule5_check": {
     "fat_g": 15.9,
-    "ingredient_count_cleaned": 2,
+    "ingredient_count_cleaned": 5,
     "flag": false
   }
 }

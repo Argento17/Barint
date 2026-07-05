@@ -127,6 +127,75 @@ def clean_ricecakes_bleed(ingredients_raw: str) -> tuple[str | None, str]:
     return real, f"cut:{mo.group(1)}"
 
 
+# --- FIX 3 (TASK-517): reversed-bracket-nesting repair --------------------
+# Nutrition Agent finding, 2026-07-05: barcode 4267230's ingredients_text_he
+# carries a bracket-reversal bug present in Shufersal's OWN raw HTML
+# (03_operations/bsip0/raw_store/shufersal/ricecakes/P_4267230/
+# 20260705T055346868812.html, line 2790) -- parentheses and curly braces are
+# systematically mirrored/swapped (position-preserving '('<->')', '{'<->'}'),
+# confirmed by unscrambling into perfectly coherent, correctly-balanced
+# Hebrew ingredient text. A stack-based reverse-nesting scan across all 53
+# corpus products (34 new + 19 existing crackers, 54 BSIP1 files including
+# the 1 pre-existing nutrition-nulled-but-ingredient-present barcode) found
+# this signature EXACTLY ONCE -- not a systemic scraper issue, so this is a
+# narrow, signature-gated repair, never a blanket transform.
+#
+# Trigger: detect_reversed_brackets() is a stack-based scan that flags a
+# ')' or '}' appearing before its matching opener is on the stack (i.e. the
+# bracket nesting is provably inverted, not just "some brackets present").
+# Repair: normalize_reversed_brackets() does a position-preserving character
+# swap ('('<->')', '{'<->'}') ONLY -- no other text is touched. This is a
+# data REPAIR (undoing a confirmed scrape/source-side encoding artifact),
+# not a fabrication: no character is invented, added, or removed, only the
+# open/close role of the 4 bracket characters is corrected in place.
+def detect_reversed_brackets(text: str | None) -> bool:
+    """Stack-based reverse-nesting detector. Returns True iff a closing
+    bracket (')' or '}') is encountered before its matching opener is on
+    the stack -- i.e. the nesting is provably inverted, not merely
+    unbalanced. Never fires on ordinary unbalanced/absent brackets."""
+    if not text:
+        return False
+    stack: list[str] = []
+    for ch in text:
+        if ch in "({":
+            stack.append(ch)
+        elif ch in ")}":
+            expected_open = "(" if ch == ")" else "{"
+            if stack and stack[-1] == expected_open:
+                stack.pop()
+            else:
+                return True
+    return False
+
+
+def normalize_reversed_brackets(text: str) -> str:
+    """Position-preserving swap: '('<->')', '{'<->'}'. No other characters
+    are touched. Only called when detect_reversed_brackets() has already
+    confirmed the inverted-nesting signature on this exact string."""
+    return text.translate(str.maketrans("(){}", ")(}{"))
+
+
+def repair_reversed_brackets(text: str | None, barcode: str, log: list[dict]) -> str | None:
+    """Applies the bracket repair only if the reverse-nesting signature is
+    detected. Logs before/after text for audit (data-correction, must be
+    traceable) into `log`. Returns the (possibly repaired) text unchanged
+    otherwise."""
+    if not text or not detect_reversed_brackets(text):
+        return text
+    repaired = normalize_reversed_brackets(text)
+    log.append({
+        "barcode": barcode,
+        "fix": "TASK517_reversed_bracket_repair",
+        "before": text,
+        "after": repaired,
+    })
+    print(f"  BRACKET-REPAIR: {barcode} | reversed-nesting signature detected -> position-preserving swap applied")
+    return repaired
+
+
+BRACKET_REPAIR_LOG: list[dict] = []
+
+
 def _count_ingredients(cleaned_text: str | None) -> int:
     """Top-level ingredient count from CLEANED text (post bleed-cut), for
     Rule-5 admission bookkeeping only -- never used to invent/alter data."""
@@ -173,6 +242,12 @@ def build_bsip1_record(raw: dict) -> dict:
 
     ingredients_raw_original = (raw.get("ingredients_raw") or "").strip()
     ingredients_text_he, bleed_reason = clean_ricecakes_bleed(ingredients_raw_original)
+    # TASK-517: narrow, signature-gated repair for the confirmed
+    # reversed-bracket-nesting scrape artifact (see FIX 3 above). No-op for
+    # every other product -- only fires when the stack-based detector
+    # confirms provably inverted nesting.
+    bracket_fix_applied = bool(ingredients_text_he and detect_reversed_brackets(ingredients_text_he))
+    ingredients_text_he = repair_reversed_brackets(ingredients_text_he, barcode, BRACKET_REPAIR_LOG)
     ingredient_count = _count_ingredients(ingredients_text_he)
 
     image_urls = raw.get("image_urls") or []
@@ -333,9 +408,12 @@ def build_bsip1_record(raw: dict) -> dict:
         },
         "enrichment_version": ENRICHMENT_VERSION,
         "enrichment_warnings": [],
-        "data_fixes_applied": [
-            {"fix": "TASK516_ingredient_bleed_cut", "detail": bleed_reason}
-        ] if bleed_reason.startswith("cut:") else [],
+        "data_fixes_applied": (
+            [{"fix": "TASK516_ingredient_bleed_cut", "detail": bleed_reason}] if bleed_reason.startswith("cut:") else []
+        ) + (
+            [{"fix": "TASK517_reversed_bracket_repair", "detail": "position-preserving '('<->')' '{'<->'}' swap; stack-based reverse-nesting signature confirmed before repair"}]
+            if bracket_fix_applied else []
+        ),
         "_rule5_check": {
             "fat_g": fat,
             "ingredient_count_cleaned": ingredient_count,
@@ -394,6 +472,7 @@ def main():
     print(f"Discarded: {len(discarded)} -> {[d['barcode'] for d in discarded]}")
     print(f"Brand hits: {len(brand_hits)}/{written}")
     print(f"Rule-5 boundary flags: {len(rule5_flags)}/{written} -> {rule5_flags}")
+    print(f"TASK-517 bracket repairs applied: {len(BRACKET_REPAIR_LOG)} -> {[r['barcode'] for r in BRACKET_REPAIR_LOG]}")
 
     run_record = {
         "run_id": "run_ricecakes_conform_001",
@@ -406,6 +485,7 @@ def main():
         "discarded": discarded,
         "brand_hits": brand_hits,
         "rule5_flags": rule5_flags,
+        "bracket_repairs_applied": BRACKET_REPAIR_LOG,
         "results": results,
         "enrichment_version": ENRICHMENT_VERSION,
         "off_sources": 0,
