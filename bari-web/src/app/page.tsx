@@ -5,6 +5,7 @@ import { HomeComparisons } from "@/components/home/home-comparisons";
 import { HomeFinalCta } from "@/components/home/home-final-cta";
 import { HomeGuides } from "@/components/home/home-guides";
 import { HomeHero } from "@/components/home/home-hero";
+import { HomeHeroCapture } from "@/components/home/home-hero-capture";
 import { HomeMethodology } from "@/components/home/home-methodology";
 import { HomeNewsletter } from "@/components/home/home-newsletter";
 import { cn } from "@/lib/utils";
@@ -25,6 +26,7 @@ export default function HomePage() {
     >
       <div lang="he" className="relative">
         <HomeHero />
+        <HomeHeroCapture />
         <HomeAnalysisEngine />
         <HomeMethodology />
         <HomeComparisons />

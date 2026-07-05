@@ -111,6 +111,30 @@ export async function subscribeEmailToBeehiiv({
   const normalizedEmail = email.trim().toLowerCase();
   const maskedEmail = maskEmailForLogs(normalizedEmail);
 
+  // Resolve config once, up front. Previously this was called a second time
+  // further down (after the existence lookup), which meant a missing-env-var
+  // failure was indistinguishable in logs from any other unhandled error
+  // (both fell into the generic "subscribe_unhandled_error" catch below).
+  // A single, named failure here is the actionable signal if Beehiiv was
+  // never actually wired up in production (this repo's .env.local has both
+  // vars set for local dev, but that does not prove BEEHIIV_API_KEY /
+  // BEEHIIV_PUBLICATION_ID are configured in the deployed Vercel environment).
+  let beehiivConfig: { apiKey: string; publicationId: string };
+  try {
+    beehiivConfig = getBeehiivConfig();
+  } catch (error) {
+    console.error("[newsletter] beehiiv_config_missing", {
+      email: maskedEmail,
+      source,
+      error: error instanceof Error ? error.message : String(error),
+    });
+    return {
+      ok: false,
+      code: "error",
+      message: NEWSLETTER_MESSAGES.error,
+    };
+  }
+
   try {
     const existingSubscription = await getExistingSubscription(normalizedEmail).catch((error) => {
       console.warn("[newsletter] beehiiv_lookup_failed", {
@@ -130,7 +154,7 @@ export async function subscribeEmailToBeehiiv({
       };
     }
 
-    const { apiKey, publicationId } = getBeehiivConfig();
+    const { apiKey, publicationId } = beehiivConfig;
     const subscribeUrl = `${BEEHIIV_API_BASE}/publications/${publicationId}/subscriptions`;
 
     const response = await fetch(subscribeUrl, {

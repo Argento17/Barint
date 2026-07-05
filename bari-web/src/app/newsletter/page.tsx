@@ -33,7 +33,7 @@ export default function NewsletterPage() {
                 </p>
               </div>
               <NewsletterSignup source="newsletter_page" />
-              <p className="text-sm text-[#7A817C]">ללא ספאם. ביטול בכל עת.</p>
+              <p className="text-sm text-[#5E6560]">ללא ספאם. ביטול בכל עת.</p>
             </div>
           </div>
         </HomeContainer>
