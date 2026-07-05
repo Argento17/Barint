@@ -1,4 +1,4 @@
-﻿---
+---
 name: Content Agent
 model: sonnet
 model_routing: >
@@ -213,8 +213,8 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 | Skill | Use |
 |---|---|
-| `marketing/copywriting` (T11) | Persuasive page copy when category pages need conversion-oriented language |
-| `marketing/content-strategy` (T13) | Content planning aligned with category pipeline |
+| `copywriting` (T11) | Persuasive page copy when category pages need conversion-oriented language |
+| `content-strategy` (T13) | Content planning aligned with category pipeline |
 
 ## Optional Skills
 
@@ -226,7 +226,7 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 ## Restricted Skills
 
-`bari-category-factory` (B1), `bari-bsip2-scoring-governance` (B2), `bari-qa-audit` (B3), `bari-frontend-ui` (B4), `react-best-practices` (T3), `composition-patterns` (T4), `webapp-testing` (T7), `marketing/marketing-ideas` (T12), `marketing/seo-audit` (T14)
+`bari-category-factory` (B1), `bari-bsip2-scoring-governance` (B2), `bari-qa-audit` (B3), `bari-frontend-ui` (B4), `react-best-practices` (T3), `composition-patterns` (T4), `webapp-testing` (T7), `marketing-ideas` (T12), `bari-seo`
 
 ---
 
