@@ -1,13 +1,13 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/crackers_frontend_v1.json`
-**Generated:** 2026-07-05T08:03:03Z  |  **Elapsed:** 0.2s
+**Generated:** 2026-07-05T09:03:16Z  |  **Elapsed:** 0.2s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
-| [PASS] G1 SCHEMA | PASS |
+| [FAIL] G1 SCHEMA | FAIL |
 | [FAIL] G2 COVERAGE | FAIL |
 | [PASS] G3 SCOPE | PASS |
 | [PASS] G4 OFF | PASS |
@@ -20,8 +20,10 @@
 
 ## Detail
 
-### [PASS] G1 SCHEMA
-  INFO: Document validates against schema
+### [FAIL] G1 SCHEMA
+  FAIL: #._meta.exclusions[0]: additional property 'dropped_at' not allowed
+  FAIL: #._meta.exclusions[0]: additional property 'stage' not allowed
+  FAIL: #._meta.exclusions[0]: additional property 'task' not allowed
 
 ### [FAIL] G2 COVERAGE
   INFO: imageUrl: 53/53 non-null
@@ -65,19 +67,31 @@
   INFO: No copy-safety violations detected
 
 ### [PASS] G7 PARITY
-  INFO: Product count: current=53 baseline=19
-  INFO: Products added vs baseline (34): 4267230, 4952792, 7290017325422, 7290018371275, 7290019431794, 7290020179043, 7290110560300, 7290110560317, 7290111564291, 7290112340122, 7290112348999, 7290118422129, 7290118426516, 7290118426530, 7290119373352, 7296073079002, 7296073079019, 7296073106098, 7296073151463, 7296073161479, 7296073195252, 7296073195269, 7296073343202, 7296073343219, 7296073420323, 7296073420330, 7296073441335, 7296073450740, 7296073592440, 8423207208871, 9322969000015, 9322969000022, 9322969000039, 9322969000046
+  INFO: Product count: current=53 baseline=53
   INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=568  baseline=484  delta=+83
-  INFO: No grade changes vs baseline
+  INFO: Avg consumer-text chars/product: current=568  baseline=568  delta=+0
+  INFO: Per-barcode grade changes (13):
+  INFO:   barcode=7290018371275 [מיני פריכיות כוסמת]: B -> A
+  INFO:   barcode=7290018790328 [קרקר מרובע מלוח]: D -> C
+  INFO:   barcode=7290019431794 [פריכיות כוסמת עם קינואה]: B -> A
+  INFO:   barcode=7290020179043 [פריכיות כוסמת עם טף]: B -> A
+  INFO:   barcode=7290110560300 [פריכיות משולש פלפל שחור]: C -> B
+  INFO:   barcode=7290118426516 [פיטנס פריכיות דקות תירס]: C -> B
+  INFO:   barcode=7296073343202 [פריכיות כוסמת]: B -> A
+  INFO:   barcode=7296073398875 [קרם קרקר]: C -> B
+  INFO:   barcode=7296073420323 [פריכיות כוסמת אורגנית]: B -> A
+  INFO:   barcode=7296073420330 [פריכיות כוסמת ללא מלח]: B -> A
+  INFO:   barcode=74375 [קרקר זהב אסם]: D -> C
+  INFO:   barcode=9322969000046 [פריכיות תירס אורגניות]: B -> A
+  INFO:   barcode=96086000577 [קרקר כוסמין אורגני]: B -> A
   INFO: 
   INFO: === PARITY SUMMARY TABLE ===
   INFO:   Metric                                 Current    Baseline       Delta
-  INFO:   Product count                               53          19         +34
+  INFO:   Product count                               53          53          +0
   INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          568         484         +83
-  INFO:   Grade changes                                0           —           —
-  INFO:   Products added                              34           —           —
+  INFO:   Avg chars/product                          568         568          +0
+  INFO:   Grade changes                               13           —           —
+  INFO:   Products added                               0           —           —
   INFO:   Products removed                             0           —           —
 
 ### [PASS] G8 DATA-SANITY

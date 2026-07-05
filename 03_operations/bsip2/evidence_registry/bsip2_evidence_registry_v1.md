@@ -2759,6 +2759,78 @@ study_objects:
 
 ---
 
+### EV-104 — Category-Relative Protein Scale extension: cracker (TASK-516/517 follow-up)
+
+**Topic:** `PROTEIN_SCALE_TABLES` (EV-030 mechanism) had no `"cracker"` row, so crackers/ricecakes fell back to `"default"` (the legacy supplement curve calibrated for foods reaching 20-25g protein/100g), compressing every cracker — including genuine 16g/100g seed-and-legume products — into the bottom third of the protein dimension.
+
+**Authorization:** D7 lane (Product Agent), not owner tripwire. Crackers is a live published category (confirmed ancestor of origin/master via TASK-433 go-live), but re-scoring it under an already-approved mechanism (EV-030) to fix a demonstrated calibration gap is expected pipeline work under the 2026-06-18 re-flow ruling ("nothing is frozen"), conditioned on a verified, logged reflow — which this entry records.
+
+**Signal / breakpoints:** `PROTEIN_SCALE_TABLES["cracker"] = [(0,0),(3,15),(5,30),(7,45),(9,58),(11,75),(13,85),(16,95),(99,100)]`. Same interpolation as `CALORIE_DENSITY_TABLES`; no new dimension or code path — a data addition to a table `lookup_protein_scale()` already reads.
+
+**Data source:** Real measured protein distribution across the live 53-product crackers/ricecakes shelf (`bari-web/src/data/comparisons/crackers_frontend_v1.json`, 100% coverage): n=53, min=5.5g, Q1=8.0g, median=9.0g, Q3=13.0g, max=16.0g, mean=10.28g. Anchors: max 16.0g → mass 95 (exact breakpoint); median 9.0g → mass 58 (top of EV-030's stated 55-60 target band).
+
+**Category scope:** `cracker` ONLY (rice-cake/פריכיות SKUs inherit this curve via existing `router_v2.py` routing — pre-existing behavior, not a new decision here). Does not touch `dairy_protein`/`sauce_spread` (EV-030 live) or the still-frozen `milk_dairy`/`yogurt`/`bread`/`snack_bar_granola` rows.
+
+**Pilot verification (isolated, not committed to production — `03_operations/bsip2/proto_v0/src/batch_run_crackers_ricecakes_ev104_protein_pilot.py`, in-process monkey-patch, `constants.py` on disk untouched):**
+- 54/54 corpus products scored (53 displayed + 1 pre-existing discard), 0 scoring errors.
+- **13/54 grade crossers, 0 double-grade jumps: 8×B→A / 3×C→B / 2×D→C.** Two independent analysts produced conflicting breakdowns before the engine run (Nutrition Agent's linear back-calculation said 7×B→A/4×C→B; Product Agent's independent recomputation of the real scoring formulas said 8×B→A/3×C→B) — the actual engine run confirms **Product Agent's count was correct**, Nutrition's estimate was off by one crosser. Full barcode-level reconciliation: `03_operations/bsip2/proto_v0/pilots/ev104_crackers_protein/crosser_reconciliation_table.csv`.
+- Anti-immunity: every crosser requires genuine measured protein ≥7.3g/100g — no gaming path (a product cannot fake seed/legume protein mass).
+- **Cap-clip check:** 1/54 newly-introduced clip — barcode `7290011489595` (protein 8.1g, sodium 754mg): post-patch dimension score 61.72 exceeds its `HIGH_SODIUM_700MG_PLUS` cap (60), clipped to 60. Reviewed and CLEARED (Nutrition Agent): this is the sodium cap correctly absorbing a genuine dimension-accuracy improvement on a 700mg+ sodium product — its entire design purpose. Grade unchanged (C→C), score moved only 50.4→51.0. **Watch note (non-blocking):** barcode `7290110560300` sits 1.81pts under its own 72 cap post-patch — not clipped this run, worth a glance if any future rule stacks further onto this dimension.
+- Byte-identical guard: structural proof (single dict-keyed call site, `constants.py:891`, cannot cross-contaminate other category keys) + empirical spot-check (bread corpus, 31 products, true `category=="bread"` products: 0 mismatches vs. a fresh unpatched re-score).
+- **Unrelated finding surfaced during this pilot, spun into its own task:** 17/31 bread products don't reproduce byte-identically on a fresh re-score of the CURRENT engine even with nothing patched — pre-existing drift, not caused by or related to EV-104. Tracked separately as TASK-519.
+
+**Distributions (pilot, n=54):** old (unpatched/default fallback) min=41.2 max=81.6 median=70.1 stdev=10.28 grades{D:6,C:8,B:38,A:1,insufficient_data:1} → new (patched) min=42.7 max=86.0 median=73.05 stdev=11.02 grades{D:4,C:7,B:33,A:9,insufficient_data:1}.
+
+**Adversarial QA:** Condition-5 SIGN-OFF GIVEN (scoring correctness/isolation/defensibility) via a 306-product cross-category isolation check, zero non-cracker movement, prior to this implementation.
+
+**RT-1 resolution (Condition 3, ship-corpus confirmation):** Adversarial QA flagged that 6 barcodes routing to `category="cracker"` (`7296073134442`, `7296073134459`, `74252`, `8434165658523`, `96086000577`, `96086000966`) physically live in the bread BSIP1 lineage and predate the TASK-433 crackers/bread split, and asked whether the PRODUCTION entrypoint (`batch_run_crackers_conform_001.py`, not just the 54-product pilot) actually re-scores them. Verified: `batch_run_crackers_conform_001.py`'s `BSIP1_DIR` is `03_operations/bsip1/run_crackers_conform_001/output/`, which contains all 6 of these barcodes as first-class files (duplicated there from `run_bread_conform_001` at TASK-433 category-split time) — confirmed by direct filesystem grep. The production run below scored 20/20 files from that directory, including all 6 legacy barcodes, with results identical to the pilot's. **No gap existed; the pilot's narrower corpus selection was for isolation/speed only, production was already correct.**
+
+**Implementation (SHIPPED 2026-07-05):**
+- `PROTEIN_SCALE_TABLES["cracker"]` added to `constants.py` on disk (real change, not a monkey-patch), at the exact row negotiated in this entry.
+- Production re-run: `batch_run_crackers_conform_001.py` (20/20 scored, 0 errors) + `batch_run_ricecakes_conform_001.py` (34/34 scored, 0 router mismatches) — every score/grade reproduces the pilot's `crosser_reconciliation_table.csv` exactly, including the 6 legacy-lineage barcodes.
+- `crackers_frontend_v1.json` regenerated via `03_operations/page_generator/regen_crackers_ev104_protein_001.py`: score/grade/rank updated from the fresh BSIP2 traces for all 53 live products; every copy field (rowVerdict, insightLine, expansion.*, confidence_*, brand, imageUrl, `_website_cluster`, d4_additives) left byte-identical. All 13 crossers' existing copy was read in full before the run — none references a specific grade letter or a rank-band claim a grade move would falsify (confirmed: composition/percentage/sodium/fiber/protein language only).
+- **Final production crossers: 13/53, 0 double-grade jumps — 8×B→A (`7290018371275`, `7290019431794`, `7290020179043`, `9322969000046`, `7296073343202`, `7296073420323`, `7296073420330`, `96086000577`) / 3×C→B (`7290110560300`, `7290118426516`, `7296073398875`) / 2×D→C (`74375`, `7290018790328`). Exact match to the pilot's 13-crosser list, barcode-for-barcode.**
+- Gate verification: `run_gates.py` — G1 SCHEMA and G2 COVERAGE fail identically before and after this change (pre-existing: `_meta.exclusions[0]` extra keys, v3 `consumerExplanation`/`bestUseCases` still PENDING_COPY — unrelated to EV-104, confirmed by diffing against the pre-change JSON with the same gate invocation). G5 GRADE-INTEGRITY: FAIL→PASS (the pre-change JSON was itself 53/53 score-mismatched against fresh traces — a pre-existing staleness this run corrects as a side effect). G7 PARITY: PASS, reports the 13 grade movers as an intentional, EV-104-sourced INFO table (not a failure) — product count/image coverage/avg copy length all delta=0. `validate_comparison_page.py`: score==trace 53/53 (0 mismatch, was 53/53 mismatched pre-change); OFF ban clean; PENDING-render clean; count-consistency clean; superlative check clean (5 pre-existing manual-review flags, unrelated). One pre-existing, EV-104-unrelated hard fail carried over unchanged: `ingredients` truncated/bleed on 15 products (identical list before and after this change) — not caused by or fixed by this entry; needs its own tracked follow-up.
+- Cross-category isolation: structural guarantee holds — `lookup_protein_scale()` (`constants.py:891`) is the only call site touching `PROTEIN_SCALE_TABLES`, via a single `.get(category, ...)` keyed lookup; no code iterates the dict. Empirically, `bread_frontend_v4.json` (the live post-split bread page) contains zero products with "קרקר"/"פריכי" in the name — the crackers/ricecakes split from TASK-433 already fully separated the corpora, so no live bread-page product routes to `category="cracker"`. This reproduces the pilot's structural + empirical isolation finding; the pre-existing 17/31 bread byte-reproduction gap (unrelated drift) stays tracked separately as TASK-519.
+- Distributions (production, n=53 displayed / 54 scored incl. 1 insufficient_data): old grades{D:6,C:8,B:38,A:1} → new grades{D:4,C:7,B:33,A:9}; old score min=41.2 max=81.6 median=70.1 stdev=9.93 → new score min=42.7 max=86.0 median=73.1 stdev=10.58. (Matches pilot distributions within rounding.)
+- Not committed: staged in the working tree per Data Agent lane law — orchestrator reviews and commits.
+
+**Impact:** Scoring (protein_quality + nutrient_density dimensions, `cracker` category only — 53 live products + any future crackers/ricecakes additions).
+
+**Status:** SHIPPED. D7 co-signed (Product Agent), Conditions 1-2 closed (engine-verified crosser list + cap-clip review) pre-existing, Condition 5 (Adversarial QA) signed off pre-existing, Condition 3 (ship-corpus / RT-1) resolved above — no gap found, Condition 4 (isolated, revertible commit) — change is isolated to `constants.py` + `crackers_frontend_v1.json` + this registry entry, ready for the orchestrator's commit.
+
+**Task:** TASK-516/TASK-517 follow-up
+
+---
+
+### EV-105v2-FINAL — Yogurt×sugar shelf-relative, TWO-POOL split (spoonable/drinkable) persisted (TASK-515/TASK-515A, 2026-07-05)
+
+**Topic:** The single-pool EV-088 yogurt×sugar shelf-relative stats (median=5.45, computed pre-split) are superseded for the two-pool shipping build by pool-specific recomputation: spoonable and drinkable yogurt have materially different sugar distributions and must not share one shelf-relative reference.
+
+**Authorization:** D6 (Nutrition Agent) APPROVED the exclusion ruling that produced the 117-product shipping corpus (this IS the D6 approval for the recomputed constants, per `ev105_final.approval_state` in the run record). D7 (Product Agent) CO-SIGNED before this `constants.py` write. Both sign-offs are recorded in `02_products/yogurt_system/bsip2_task515_v3/run_record.json` (`ev105_final` block).
+
+**Corpus:** TASK-515/515A shipping corpus — 122 loaded from `02_products/yogurt_system/bsip1_task515`, minus 2 soy-based non-dairy products (out of scope), minus 3 Nutrition-ruled display exclusions (1 non-cultured savory drink, 2 confectionery-lens products) = 117 in shipping corpus. Split: spoonable 94 / drinkable 23 (target-confirmed, matches).
+
+**Stats persisted to `constants.py` (additive; EV-088's original single-pool constants are UNTOUCHED):**
+- **Spoonable** (n_total=94, n_with_sugars_g=80): `SUGAR_SHELF_REL_YOGURT_SPOONABLE_MEDIAN=4.65`, `SUGAR_SHELF_REL_YOGURT_SPOONABLE_IQR_SCALE=4.6`, `SUGAR_SHELF_REL_YOGURT_SPOONABLE_N=80`. Low-variance guard PASSED (4.6 ≥ 3.0). Floor/threshold/P_MAX/B_MAX inherited unchanged from EV-088 (62 / 12.0g / 6 / 3).
+- **Drinkable** (n_total=23, n_with_sugars_g=22): median=4.95, scale=1.85 — low-variance guard **FAILED** (1.85 < 3.0). Ruled an honest finding, not a defect. Per D6/D7 co-sign, **no `SUGAR_SHELF_REL_YOGURT_DRINKABLE_*` constant is persisted** — drinkable stays UNSET / absolute-floor-only. The `yogurt_drinks` frontend page carries the standard D13-approved sugar category-caveat box at go-live instead (content/frontend attach existing approved copy; not authored by this entry).
+
+**0-diff / zero-blast-radius proof (tripwire-1 guard):**
+- `git diff --stat` on `constants.py`: 36 insertions(+), 0 deletions — pure addition, every pre-existing line byte-unchanged.
+- `grep SUGAR_SHELF_REL_YOGURT_SPOONABLE score_engine.py` → 0 matches: the new constants are not wired into any call site, so this write cannot move any score (spoonable scoring for this shipping run was already computed in-process by `bsip2_task515_v3`'s runner via `set_shelf_stats()`/`clear_shelf_stats()`, using these exact numbers — this entry persists the record, it does not newly activate anything).
+- `run_regression_check.py` golden-corpus regression re-run post-edit: 11 PASS / 1 pre-existing WARN (`anchor_soy_drink`, unchanged acceptable secondary classification) — identical to the pre-edit baseline; no category moved.
+- `pool_shelf_stats.spoonable` in the run record (median=4.65, scale=4.6, scale_source=`compute_shelf_stats(scale_type='iqr')`) matches the persisted constants verbatim — the v3 shipping run already used these exact stats.
+
+**Implementation:** `03_operations/bsip2/proto_v0/src/constants.py` (additive constants only, no `score_engine.py` change).
+
+**Impact:** Record-keeping / future scoring reference for the yogurt-spoonable subpool. No score moved by this write (see 0-diff proof above). Frontend packaging (Stage 3, TASK-515A) reads the already-scored `bsip2_task515_v3` traces directly — does not re-score.
+
+**Status:** D6 + D7 CO-SIGNED, persisted to `constants.py`, evidence registered.
+
+**Task:** TASK-515/TASK-515A
+
+---
+
 *Bari BSIP2 Evidence Registry v1*  
 *Chief Nutrition Officer — 2026-05-30*  
 *Source: Engineering Architecture for AI-Driven Food and Supplement Intelligence (78pp)*  

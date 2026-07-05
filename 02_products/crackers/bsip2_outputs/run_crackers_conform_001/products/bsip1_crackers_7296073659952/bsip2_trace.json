@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T05:44:36.950138Z",
+  "trace_generated_at": "2026-07-05T08:57:07.428212Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_crackers_7296073659952",
@@ -278,10 +278,10 @@
   ],
   "dimension_scores": {
     "processing_quality": 56.0,
-    "nutrient_density": 63.4,
+    "nutrient_density": 77.5,
     "calorie_density": 55.0,
     "glycemic_quality": 100,
-    "protein_quality": 70.0,
+    "protein_quality": 91.7,
     "additive_quality": 82.0,
     "satiety_support": 61.3,
     "fat_quality": 71.0,
@@ -290,10 +290,10 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=15.0g→70.0, fiber=5.5g→51.2, weighted 65/35=63.4",
+    "nutrient_density": "protein=15.0g→91.7, fiber=5.5g→51.2, weighted 65/35=77.5",
     "calorie_density": "kcal=473.0, category=cracker → 55",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(11.0) + wg(5) = 106.0",
-    "protein_quality": "protein=15.0g base=70.0, source=whole_food(×1.0) → 70.0",
+    "protein_quality": "protein=15.0g base=91.7, source=whole_food(×1.0) → 91.7",
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (15.0×3 + 5.5×5) / 473.0 × 400 = 61.3",
     "fat_quality": "R3 leanness: fat=3.5g sat_fat absent (treated 0) → 71.0",
@@ -312,7 +312,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 77.67,
+  "weighted_dimension_score": 81.95,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -412,7 +412,7 @@
     }
   ],
   "binding_cap": 94.8,
-  "score_after_cap": 77.67,
+  "score_after_cap": 81.95,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -474,7 +474,7 @@
   "total_penalty_before_scaling": 7.0,
   "total_penalty_after_scaling": 7.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 70.67,
+  "score_after_penalty": 74.95,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -543,11 +543,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 70.67,
+  "score_after_floors": 74.95,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 70.7,
+  "final_score_estimate": 75.0,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T07:57:07.257906Z",
+  "trace_generated_at": "2026-07-05T08:57:09.286744Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_ricecakes_7290110560317",
@@ -260,10 +260,10 @@
   ],
   "dimension_scores": {
     "processing_quality": 56.0,
-    "nutrient_density": 68.4,
+    "nutrient_density": 82.5,
     "calorie_density": 55.0,
     "glycemic_quality": 100,
-    "protein_quality": 69.6,
+    "protein_quality": 91.3,
     "additive_quality": 84.0,
     "satiety_support": 75.0,
     "fat_quality": 88.0,
@@ -272,10 +272,10 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=14.9g→69.6, fiber=7.7g→66.0, weighted 65/35=68.4",
+    "nutrient_density": "protein=14.9g→91.3, fiber=7.7g→66.0, weighted 65/35=82.5",
     "calorie_density": "kcal=444.0, category=cracker → 55",
     "glycemic_quality": "90 - sugar_penalty(3.5) + fiber(15.4) + wg(0) = 101.9",
-    "protein_quality": "protein=14.9g base=69.6, source=whole_food(×1.0) → 69.6",
+    "protein_quality": "protein=14.9g base=91.3, source=whole_food(×1.0) → 91.3",
     "additive_quality": "sprint1_additives=1 base=82 sw_pen=0 id_delta=+2→84.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (14.9×3 + 7.7×5) / 444.0 × 400 = 75.0",
     "fat_quality": "EV-012 fat_ratio: fat=12.1g ratio=7.643 base=93.0-seed5-trans0=88.0",
@@ -294,7 +294,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 72.96,
+  "weighted_dimension_score": 77.25,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -394,7 +394,7 @@
     }
   ],
   "binding_cap": 94.8,
-  "score_after_cap": 72.96,
+  "score_after_cap": 77.25,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -451,7 +451,7 @@
   "total_penalty_before_scaling": 3.0,
   "total_penalty_after_scaling": 3.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 69.96,
+  "score_after_penalty": 74.25,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -516,11 +516,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 69.96,
+  "score_after_floors": 74.25,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 70.0,
+  "final_score_estimate": 74.2,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [

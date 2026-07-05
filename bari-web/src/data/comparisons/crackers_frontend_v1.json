@@ -4,6 +4,168 @@
     "categoryCaveat": "קרקרים הם מוצר יבש: האפייה מסלקת כמעט את כל המים, ולכן הקלוריות ל-100 גרם גבוהות יותר מלחם — וזה נובע מהמבנה של הקרקר. לכן בארי משווה כל קרקר מול קרקרים אחרים, לא מול לחם: צפיפות קלורית עדיין נמדדת, אבל מול מדף הקרקרים ולא מול לחם. מה שבאמת מבדיל בין המוצרים במדף הוא כמה מהבסיס דגן מלא לעומת קמח מזוקק ומילויי עמילן, אורך רשימת הרכיבים ומספר מקורות הסוכר, וכמות הסיבים — שם, לצד הקלוריות, נמצא הפער הגדול בציונים.",
     "config_sha256": "ef6faf74d1f0c118ab17099948af3e32e6f3f925cfe68f44fdf6ba3d0a79bc80",
     "deanchor_meta_regenerated": "2026-07-02",
+    "ev104_protein_scale_implementation": {
+      "approval_chain": "Nutrition Agent proposed -> Product Agent D7 co-signed WITH CONDITIONS -> Data Agent pilot (54-product isolated run) reconciled crosser count -> Nutrition cleared 1 cap-clip case -> Adversarial QA Condition-5 sign-off (306-product cross-category isolation check, zero non-cracker movement).",
+      "change": "Added PROTEIN_SCALE_TABLES['cracker'] to constants.py -- crackers/ricecakes previously fell back to the 'default' supplement-calibrated curve, compressing genuine 16g/100g seed-and-legume products into the bottom third of the protein dimension. No new dimension or code path -- a data addition to a table lookup_protein_scale() already reads.",
+      "copy_note": "rowVerdict/insightLine/expansion.* left byte-identical for all 53 products, including all 13 crossers -- reviewed before this run and confirmed to describe product composition (percentages, sodium, fiber, protein, additive counts), never a specific grade letter or rank-band claim that a grade move would falsify.",
+      "copy_touched": false,
+      "date": "2026-07-05",
+      "engine_source": "03_operations/bsip2/proto_v0/src/constants.py (on-disk, not a monkey-patch)",
+      "evidence_id": "EV-104",
+      "grade_crossers": [
+        {
+          "barcode": "96086000577",
+          "delta": 4.3,
+          "name": "קרקר כוסמין אורגני",
+          "new_grade": "A",
+          "new_score": 83.9,
+          "old_grade": "B",
+          "old_score": 79.6
+        },
+        {
+          "barcode": "7296073343202",
+          "delta": 4.5,
+          "name": "פריכיות כוסמת",
+          "new_grade": "A",
+          "new_score": 84.0,
+          "old_grade": "B",
+          "old_score": 79.5
+        },
+        {
+          "barcode": "7296073420323",
+          "delta": 4.5,
+          "name": "פריכיות כוסמת אורגנית",
+          "new_grade": "A",
+          "new_score": 84.0,
+          "old_grade": "B",
+          "old_score": 79.5
+        },
+        {
+          "barcode": "7296073420330",
+          "delta": 4.5,
+          "name": "פריכיות כוסמת ללא מלח",
+          "new_grade": "A",
+          "new_score": 84.0,
+          "old_grade": "B",
+          "old_score": 79.5
+        },
+        {
+          "barcode": "7290019431794",
+          "delta": 4.4,
+          "name": "פריכיות כוסמת עם קינואה",
+          "new_grade": "A",
+          "new_score": 83.3,
+          "old_grade": "B",
+          "old_score": 78.9
+        },
+        {
+          "barcode": "7290020179043",
+          "delta": 4.4,
+          "name": "פריכיות כוסמת עם טף",
+          "new_grade": "A",
+          "new_score": 83.3,
+          "old_grade": "B",
+          "old_score": 78.9
+        },
+        {
+          "barcode": "9322969000046",
+          "delta": 3.9,
+          "name": "פריכיות תירס אורגניות",
+          "new_grade": "A",
+          "new_score": 80.4,
+          "old_grade": "B",
+          "old_score": 76.5
+        },
+        {
+          "barcode": "7290018371275",
+          "delta": 4.5,
+          "name": "מיני פריכיות כוסמת",
+          "new_grade": "A",
+          "new_score": 80.2,
+          "old_grade": "B",
+          "old_score": 75.7
+        },
+        {
+          "barcode": "7290118426516",
+          "delta": 2.1,
+          "name": "פיטנס פריכיות דקות תירס",
+          "new_grade": "B",
+          "new_score": 66.6,
+          "old_grade": "C",
+          "old_score": 64.5
+        },
+        {
+          "barcode": "7296073398875",
+          "delta": 2.6,
+          "name": "קרם קרקר",
+          "new_grade": "B",
+          "new_score": 66.9,
+          "old_grade": "C",
+          "old_score": 64.3
+        },
+        {
+          "barcode": "7290110560300",
+          "delta": 4.3,
+          "name": "פריכיות משולש פלפל שחור",
+          "new_grade": "B",
+          "new_score": 67.2,
+          "old_grade": "C",
+          "old_score": 62.9
+        },
+        {
+          "barcode": "74375",
+          "delta": 2.3,
+          "name": "קרקר זהב אסם",
+          "new_grade": "C",
+          "new_score": 51.7,
+          "old_grade": "D",
+          "old_score": 49.4
+        },
+        {
+          "barcode": "7290018790328",
+          "delta": 2.2,
+          "name": "קרקר מרובע מלוח",
+          "new_grade": "C",
+          "new_score": 50.3,
+          "old_grade": "D",
+          "old_score": 48.1
+        }
+      ],
+      "grade_crossers_count": 13,
+      "grade_distribution_new": {
+        "A": 9,
+        "B": 33,
+        "C": 7,
+        "D": 4
+      },
+      "grade_distribution_old": {
+        "A": 1,
+        "B": 38,
+        "C": 8,
+        "D": 6
+      },
+      "score_distribution_new": {
+        "count": 53,
+        "max": 86.0,
+        "mean": 70.519,
+        "median": 73.1,
+        "min": 42.7,
+        "stdev": 10.582
+      },
+      "score_distribution_old": {
+        "count": 53,
+        "max": 81.6,
+        "mean": 67.375,
+        "median": 70.1,
+        "min": 41.2,
+        "stdev": 9.933
+      },
+      "source_run_ids": [
+        "run_crackers_conform_001",
+        "run_ricecakes_conform_001"
+      ],
+      "task": "TASK-516/517 follow-up"
+    },
     "exclusions": [
       {
         "barcode": "7290112968807",
@@ -90,7 +252,133 @@
       "rank": 1,
       "retailer": "shufersal",
       "rowVerdict": "קרקר כוסמין מלא ושומשום בנוי משמונים ושניים אחוז כוסמין מלא ועוד שומשום, בלי מילוי ובלי תוסף מזון אחד. הסיבים והחלבון שלו נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה. זו רשימת רכיבים שאפשר לקרוא בעין אחת ולהבין בדיוק ממה עשוי הקרקר.",
-      "score": 81.6,
+      "score": 86.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073343202",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמת (100%), מלח. סיבים בין הגבוהים ביותר וחלבון גבוה יחסית מכל 53 המוצרים בהשוואה, ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "כוסמת (99.5%), מלח",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 383.0,
+          "fat": 3.4,
+          "fiber": 9.3,
+          "protein": 13.4,
+          "sodium": 210.0,
+          "sugar": 1.0
+        },
+        "positiveSignals": [
+          "100% כוסמת, ללא תוסף מזון אחד",
+          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה",
+          "חלבון 13 גרם ל-100 גרם, גבוה יחסית להשוואה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_ricecakes_7296073343202",
+      "imageUrl": "/products/7296073343202.webp",
+      "insightLine": "כוסמת, תשעים ותשעה וחצי אחוז מהמשקל, וללא תוסף מזון ברשימה.",
+      "name": "פריכיות כוסמת",
+      "nameHe": "פריכיות כוסמת",
+      "rank": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "הפריכייה הזו בנויה כמעט כולה מכוסמת, עם מלח בלבד לצדה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה. אין תוסף מזון אחד ברשימה, ודגן מלא אחד בונה את כל המוצר.",
+      "score": 84.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073420323",
+      "brand": "גרין",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמת אורגנית (100%), מלח. סיבים בין הגבוהים ביותר וחלבון גבוה יחסית מכל 53 המוצרים בהשוואה, ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "כוסמת אורגנית (99.5%), מלח",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 383.0,
+          "fat": 3.4,
+          "fiber": 9.3,
+          "protein": 13.4,
+          "sodium": 210.0,
+          "sugar": 1.0
+        },
+        "positiveSignals": [
+          "100% כוסמת אורגנית, ללא תוסף מזון אחד",
+          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה",
+          "חלבון 13 גרם ל-100 גרם, גבוה יחסית להשוואה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_ricecakes_7296073420323",
+      "imageUrl": "/products/7296073420323.webp",
+      "insightLine": "כוסמת אורגנית, תשעים ותשעה וחצי אחוז מהמשקל, וללא תוסף מזון ברשימה.",
+      "name": "פריכיות כוסמת אורגנית",
+      "nameHe": "פריכיות כוסמת אורגנית",
+      "rank": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "כוסמת אורגנית מהווה כמעט את כל המשקל כאן, עם מלח בלבד לצדה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה. פריכייה פשוטה שמבוססת כולה על דגן מלא אחד, ללא תוסף מזון.",
+      "score": 84.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073420330",
+      "brand": "גרין",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמת אורגנית (100%), רכיב יחיד. נתרן בין הנמוכים ביותר וסיבים בין הגבוהים ביותר מכל 53 המוצרים בהשוואה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "כוסמת אורגנית (100%)",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 383.0,
+          "fat": 3.4,
+          "fiber": 9.3,
+          "protein": 13.4,
+          "sodium": 23.0,
+          "sugar": 1.0
+        },
+        "positiveSignals": [
+          "רכיב יחיד: כוסמת אורגנית, ללא מלח",
+          "נתרן 23 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה",
+          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_ricecakes_7296073420330",
+      "imageUrl": "/products/7296073420330.webp",
+      "insightLine": "כוסמת אורגנית בלבד, ללא מלח, ונתרן 23 מיליגרם ל-100 גרם.",
+      "name": "פריכיות כוסמת ללא מלח",
+      "nameHe": "פריכיות כוסמת ללא מלח",
+      "rank": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "מדובר ברכיב יחיד: כוסמת אורגנית, ללא מלח וללא תוסף מזון. הנתרן, 23 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל 53 המוצרים בהשוואה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה.",
+      "score": 84.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -124,142 +412,16 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "B",
+      "grade": "A",
       "id": "bsip1_crackers_96086000577",
       "imageUrl": "/products/img89qin2.webp",
       "insightLine": "תשעים ושמונה אחוז כוסמין מלא אורגני, מים ומלח: שלושה רכיבים עיקריים ותו לא.",
       "name": "קרקר כוסמין אורגני",
       "nameHe": "קרקר כוסמין אורגני",
-      "rank": 2,
-      "retailer": "shufersal",
-      "rowVerdict": "כמעט כל המשקל של הקרקר הזה הוא כוסמין מלא אורגני, ולצדו רק מים ומלח. הסיבים והחלבון נמצאים בין הגבוהים ביותר מכל 53 המוצרים בהשוואה. הקלוריות שלו גם נמוכות יחסית, כך שהוא משלב דגן מלא כמעט טהור עם פרופיל תזונתי חזק.",
-      "score": 79.6,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073343202",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "כוסמת (100%), מלח. סיבים בין הגבוהים ביותר וחלבון גבוה יחסית מכל 53 המוצרים בהשוואה, ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "כוסמת (99.5%), מלח",
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 383.0,
-          "fat": 3.4,
-          "fiber": 9.3,
-          "protein": 13.4,
-          "sodium": 210.0,
-          "sugar": 1.0
-        },
-        "positiveSignals": [
-          "100% כוסמת, ללא תוסף מזון אחד",
-          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה",
-          "חלבון 13 גרם ל-100 גרם, גבוה יחסית להשוואה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073343202",
-      "imageUrl": "/products/7296073343202.webp",
-      "insightLine": "כוסמת, תשעים ותשעה וחצי אחוז מהמשקל, וללא תוסף מזון ברשימה.",
-      "name": "פריכיות כוסמת",
-      "nameHe": "פריכיות כוסמת",
-      "rank": 3,
-      "retailer": "shufersal",
-      "rowVerdict": "הפריכייה הזו בנויה כמעט כולה מכוסמת, עם מלח בלבד לצדה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה. אין תוסף מזון אחד ברשימה, ודגן מלא אחד בונה את כל המוצר.",
-      "score": 79.5,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073420323",
-      "brand": "גרין",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "כוסמת אורגנית (100%), מלח. סיבים בין הגבוהים ביותר וחלבון גבוה יחסית מכל 53 המוצרים בהשוואה, ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "כוסמת אורגנית (99.5%), מלח",
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 383.0,
-          "fat": 3.4,
-          "fiber": 9.3,
-          "protein": 13.4,
-          "sodium": 210.0,
-          "sugar": 1.0
-        },
-        "positiveSignals": [
-          "100% כוסמת אורגנית, ללא תוסף מזון אחד",
-          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה",
-          "חלבון 13 גרם ל-100 גרם, גבוה יחסית להשוואה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073420323",
-      "imageUrl": "/products/7296073420323.webp",
-      "insightLine": "כוסמת אורגנית, תשעים ותשעה וחצי אחוז מהמשקל, וללא תוסף מזון ברשימה.",
-      "name": "פריכיות כוסמת אורגנית",
-      "nameHe": "פריכיות כוסמת אורגנית",
-      "rank": 4,
-      "retailer": "shufersal",
-      "rowVerdict": "כוסמת אורגנית מהווה כמעט את כל המשקל כאן, עם מלח בלבד לצדה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה. פריכייה פשוטה שמבוססת כולה על דגן מלא אחד, ללא תוסף מזון.",
-      "score": 79.5,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073420330",
-      "brand": "גרין",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "כוסמת אורגנית (100%), רכיב יחיד. נתרן בין הנמוכים ביותר וסיבים בין הגבוהים ביותר מכל 53 המוצרים בהשוואה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "כוסמת אורגנית (100%)",
-        "limitingFactors": [],
-        "nutrition": {
-          "energyKcal": 383.0,
-          "fat": 3.4,
-          "fiber": 9.3,
-          "protein": 13.4,
-          "sodium": 23.0,
-          "sugar": 1.0
-        },
-        "positiveSignals": [
-          "רכיב יחיד: כוסמת אורגנית, ללא מלח",
-          "נתרן 23 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה",
-          "סיבים 9 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה כולה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073420330",
-      "imageUrl": "/products/7296073420330.webp",
-      "insightLine": "כוסמת אורגנית בלבד, ללא מלח, ונתרן 23 מיליגרם ל-100 גרם.",
-      "name": "פריכיות כוסמת ללא מלח",
-      "nameHe": "פריכיות כוסמת ללא מלח",
       "rank": 5,
       "retailer": "shufersal",
-      "rowVerdict": "מדובר ברכיב יחיד: כוסמת אורגנית, ללא מלח וללא תוסף מזון. הנתרן, 23 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל 53 המוצרים בהשוואה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה.",
-      "score": 79.5,
+      "rowVerdict": "כמעט כל המשקל של הקרקר הזה הוא כוסמין מלא אורגני, ולצדו רק מים ומלח. הסיבים והחלבון נמצאים בין הגבוהים ביותר מכל 53 המוצרים בהשוואה. הקלוריות שלו גם נמוכות יחסית, כך שהוא משלב דגן מלא כמעט טהור עם פרופיל תזונתי חזק.",
+      "score": 83.9,
       "source_traceability_status": "resolved"
     },
     {
@@ -292,7 +454,7 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "B",
+      "grade": "A",
       "id": "bsip1_ricecakes_7290019431794",
       "imageUrl": "/products/7290019431794.webp",
       "insightLine": "נתרן 6 מיליגרם ל-100 גרם, הנמוך ביותר מכל 53 המוצרים בהשוואה, על בסיס כוסמת וקינואה.",
@@ -301,7 +463,7 @@
       "rank": 6,
       "retailer": "shufersal",
       "rowVerdict": "כוסמת מהווה תשעים וארבעה אחוז מהמשקל כאן, עם קינואה בשישה האחוזים הנותרים, ובלי מלח או תוסף מזון. הנתרן, 6 מיליגרם ל-100 גרם, הוא הנמוך ביותר מכל 53 המוצרים בהשוואה. החלבון והסיבים גם הם גבוהים יחסית להשוואה כולה, בזכות הכוסמת והקינואה כאחד.",
-      "score": 78.9,
+      "score": 83.3,
       "source_traceability_status": "resolved"
     },
     {
@@ -334,7 +496,7 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "B",
+      "grade": "A",
       "id": "bsip1_ricecakes_7290020179043",
       "imageUrl": "/products/7290020179043.webp",
       "insightLine": "טף מתווסף לכוסמת, שישה אחוזים מהמשקל, וללא תוסף מזון ברשימה.",
@@ -343,7 +505,7 @@
       "rank": 7,
       "retailer": "shufersal",
       "rowVerdict": "כוסמת מהווה תשעים וארבעה אחוז מהמשקל, וטף משלים את השאר, ללא תוסף מזון. החלבון והסיבים כאן, 14 ו-7 גרם ל-100 גרם, גבוהים יחסית להשוואה כולה. שילוב שני דגנים מלאים בלי שום תוספת מעבר להם.",
-      "score": 78.9,
+      "score": 83.3,
       "source_traceability_status": "resolved"
     },
     {
@@ -376,7 +538,7 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "B",
+      "grade": "A",
       "id": "bsip1_ricecakes_9322969000046",
       "imageUrl": "/products/9322969000046.webp",
       "insightLine": "תירס עם תוספת שומשום קטנה, וסיבים 8 גרם ל-100 גרם, גבוהים מעל הרף העליון בהשוואה כולה.",
@@ -385,52 +547,7 @@
       "rank": 8,
       "retailer": "shufersal",
       "rowVerdict": "תירס מהווה תשעים ושבעה אחוז מהמשקל, ושומשום מתווסף בשני האחוזים הנותרים. הסיבים, 8 גרם ל-100 גרם, נמצאים מעל רף הרבע העליון מכלל 53 המוצרים בהשוואה, גבוה במיוחד לפריכיית תירס. אין תוסף מזון ברשימה, והסוכר מדווח כאפס.",
-      "score": 76.5,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "_website_cluster": "mixed_grain",
-      "barcode": "7290013740823",
-      "brand": "קופסת העוגיות של רחלי",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "כוסמין מלא (37%), שמן זית ותערובת זרעים (שומשום, חמניות, צ'יה, פשתן, דלעת). קלוריות מהנמוכות ביותר בהשוואה, סיבים גבוהים, ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, גרעיני חמניות, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, גרעיני דלעת, מלח ים אטלנטי.",
-        "limitingFactors": [
-          "הכוסמין המלא הוא כשליש מהמשקל בלבד"
-        ],
-        "nutrition": {
-          "energyKcal": 313,
-          "fat": 0.25,
-          "fiber": 10.5,
-          "protein": 9.5,
-          "sodium": 394,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "313 קלוריות ל-100 גרם, מהנמוכות ביותר מבין 53 המוצרים בהשוואה",
-          "סיבים 10.5 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה",
-          "שמן זית ותערובת זרעים אמיתית, ללא תוסף מזון אחד"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_crackers_7290013740823",
-      "imageUrl": "/products/7290013740823.webp",
-      "insightLine": "מהקלוריות הנמוכות ביותר בכל ההשוואה, עם כוסמין מלא, שמן זית ותערובת זרעים אמיתית.",
-      "name": "קרקר כוסמין טבעי",
-      "nameHe": "קרקר כוסמין טבעי",
-      "rank": 9,
-      "retailer": "shufersal",
-      "rowVerdict": "313 קלוריות ל-100 גרם הופכות אותו לאחד הקלים ביותר מבין 53 המוצרים בהשוואה, ולצדן סיבים גבוהים במיוחד. הבסיס הוא כוסמין מלא, כשליש מהמשקל, ולצדו שמן זית ותערובת זרעים אמיתית: שומשום, חמניות, צ'יה, פשתן ודלעת. הרשימה נקייה מתוספי מזון, אבל הכוסמין המלא עצמו הוא רק חלק מהבסיס.",
-      "score": 76.2,
+      "score": 80.4,
       "source_traceability_status": "resolved"
     },
     {
@@ -473,21 +590,21 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "B",
+      "grade": "A",
       "id": "bsip1_ricecakes_7290018371275",
       "imageUrl": "/products/7290018371275.webp",
       "insightLine": "כוסמת אורגנית, תשעים ותשעה וחצי אחוז מהמשקל, עם חלבון וסיבים בין הגבוהים בהשוואה כולה.",
       "name": "מיני פריכיות כוסמת",
       "nameHe": "מיני פריכיות כוסמת",
-      "rank": 10,
+      "rank": 9,
       "retailer": "shufersal",
       "rowVerdict": "הפריכייה הזו בנויה כמעט כולה מכוסמת אורגנית, עם מלח ותוסף תחליב בכמות קטנה. הסיבים, 9 גרם ל-100 גרם, נמנים עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והחלבון, 13 גרם, גבוה יחסית להשוואה כולה. תוסף התחליב היחיד ברשימה הוא ממקור קנולה, מסוג התוספים הפונקציונליים המקובלים.",
-      "score": 75.7,
+      "score": 80.2,
       "source_traceability_status": "resolved"
     },
     {
       "_website_cluster": "mixed_grain",
-      "barcode": "7290013740809",
+      "barcode": "7290013740823",
       "brand": "קופסת העוגיות של רחלי",
       "categoryTotal": 53,
       "confidence": "partial",
@@ -497,38 +614,37 @@
       "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
       "d4_additives": [],
       "expansion": {
-        "comparisonContext": "כוסמין מלא (37%), שמן זית, זרעים ואבקת סלק (1%) לצבע. קלוריות הנמוכות ביותר מבין 53 המוצרים, סיבים גבוהים, ללא תוספי מזון.",
+        "comparisonContext": "כוסמין מלא (37%), שמן זית ותערובת זרעים (שומשום, חמניות, צ'יה, פשתן, דלעת). קלוריות מהנמוכות ביותר בהשוואה, סיבים גבוהים, ללא תוספי מזון.",
         "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, כמון, שומשום שחור, אבקת סלק (1.3%), מלח ים  אטלנטי.",
+        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, גרעיני חמניות, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, גרעיני דלעת, מלח ים אטלנטי.",
         "limitingFactors": [
-          "חלבון 8 גרם ל-100 גרם, נמוך יחסית",
           "הכוסמין המלא הוא כשליש מהמשקל בלבד"
         ],
         "nutrition": {
-          "energyKcal": 288,
+          "energyKcal": 313,
           "fat": 0.25,
-          "fiber": 10.3,
-          "protein": 8.1,
-          "sodium": 391,
+          "fiber": 10.5,
+          "protein": 9.5,
+          "sodium": 394,
           "sugar": null
         },
         "positiveSignals": [
-          "288 קלוריות ל-100 גרם, הנמוך ביותר מכל המוצרים בהשוואה",
-          "סיבים 10 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה",
-          "רשימת רכיבים נקייה ללא תוסף מזון אחד"
+          "313 קלוריות ל-100 גרם, מהנמוכות ביותר מבין 53 המוצרים בהשוואה",
+          "סיבים 10.5 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה",
+          "שמן זית ותערובת זרעים אמיתית, ללא תוסף מזון אחד"
         ],
         "servingNote": "ל-100 גרם"
       },
       "grade": "B",
-      "id": "bsip1_crackers_7290013740809",
-      "imageUrl": "/products/7290013740809.webp",
-      "insightLine": "288 קלוריות ל-100 גרם: הנמוך ביותר מכל 53 המוצרים בהשוואה.",
-      "name": "קרקר כוסמין סלק",
-      "nameHe": "קרקר כוסמין סלק",
-      "rank": 11,
+      "id": "bsip1_crackers_7290013740823",
+      "imageUrl": "/products/7290013740823.webp",
+      "insightLine": "מהקלוריות הנמוכות ביותר בכל ההשוואה, עם כוסמין מלא, שמן זית ותערובת זרעים אמיתית.",
+      "name": "קרקר כוסמין טבעי",
+      "nameHe": "קרקר כוסמין טבעי",
+      "rank": 10,
       "retailer": "shufersal",
-      "rowVerdict": "הקרקר הזה נושא את הקלוריות הנמוכות ביותר בכל ההשוואה, 288 ל-100 גרם, ולצד זה סיבים גבוהים במיוחד. כוסמין מלא, שמן זית וזרעים בונים את הבסיס, ואבקת סלק מוסיפה צבע בלבד. החלבון נשאר בינוני, כי הכוסמין המלא מהווה רק כשליש מהמשקל הכולל.",
-      "score": 74.7,
+      "rowVerdict": "313 קלוריות ל-100 גרם הופכות אותו לאחד הקלים ביותר מבין 53 המוצרים בהשוואה, ולצדן סיבים גבוהים במיוחד. הבסיס הוא כוסמין מלא, כשליש מהמשקל, ולצדו שמן זית ותערובת זרעים אמיתית: שומשום, חמניות, צ'יה, פשתן ודלעת. הרשימה נקייה מתוספי מזון, אבל הכוסמין המלא עצמו הוא רק חלק מהבסיס.",
+      "score": 79.2,
       "source_traceability_status": "resolved"
     },
     {
@@ -578,10 +694,10 @@
       "insightLine": "חיטה מלאה מהווה כרבע בלבד מהמוצר הכולל, עם שמן דקל וקינואה אדומה.",
       "name": "קרקר דק רוזמרין",
       "nameHe": "קרקר דק רוזמרין",
-      "rank": 12,
+      "rank": 11,
       "retailer": "shufersal",
       "rowVerdict": "תערובת הקמחים בקרקר הזה מגיעה בעיקר מאורז וחיטה לבנה, וחיטה מלאה מהווה כרבע בלבד מהמוצר הכולל. שמן דקל וגלוטן חיטה מוסף מצטרפים לרשימה, כשהגלוטן הוא זה שמרים את החלבון. הקלוריות כאן בין הגבוהות בהשוואה, והסיבים נשארים נמוכים יחסית לכמות החלבון.",
-      "score": 74.2,
+      "score": 78.6,
       "source_traceability_status": "resolved"
     },
     {
@@ -622,10 +738,10 @@
       "insightLine": "'בסגנון שוודי' על האריזה, כשהבסיס בפועל הוא שליש חיטה מלאה, גריסי תירס ועמילן תפוח אדמה.",
       "name": "קרקר פריך בסגנון שוודי",
       "nameHe": "קרקר פריך בסגנון שוודי",
-      "rank": 13,
+      "rank": 12,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה פותחת את רשימת הרכיבים, אבל מהווה רק כשליש מהמשקל. גריסי תירס ועמילן תפוח אדמה משלימים את רוב הבסיס, ולתת שעורה תורם עוד קצת מרקם. הקלוריות כאן נמוכות יחסית להשוואה, אין תוספי מזון ברשימה, אבל השם 'בסגנון שוודי' מבטיח יותר דגן מלא ממה שיש בפועל.",
-      "score": 74.1,
+      "score": 78.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -666,10 +782,56 @@
       "insightLine": "שבעים אחוז מהבסיס הוא חיטה מלאה, לצד מעט קמח שיפון.",
       "name": "קרקר פריך עם קמח שיפון",
       "nameHe": "קרקר פריך עם קמח שיפון",
-      "rank": 14,
+      "rank": 13,
       "retailer": "shufersal",
       "rowVerdict": "שבעים אחוז מהקרקר הזה בנוי מחיטה מלאה, חלק גדול משמעותית מהרגיל בקרקרי קמח-מעורב. קמח שיפון מצטרף בכמות קטנה, וגריסי תירס, עמילן תפוח אדמה וסוכר משלימים את השאר. הרשימה נקייה מתוספי מזון, אבל הסיבים בסוף נשארים בינוניים ביחס לאחוז החיטה המלאה הגבוה.",
-      "score": 73.3,
+      "score": 77.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290013740809",
+      "brand": "קופסת העוגיות של רחלי",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמין מלא (37%), שמן זית, זרעים ואבקת סלק (1%) לצבע. קלוריות הנמוכות ביותר מבין 53 המוצרים, סיבים גבוהים, ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, כמון, שומשום שחור, אבקת סלק (1.3%), מלח ים  אטלנטי.",
+        "limitingFactors": [
+          "חלבון 8 גרם ל-100 גרם, נמוך יחסית",
+          "הכוסמין המלא הוא כשליש מהמשקל בלבד"
+        ],
+        "nutrition": {
+          "energyKcal": 288,
+          "fat": 0.25,
+          "fiber": 10.3,
+          "protein": 8.1,
+          "sodium": 391,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "288 קלוריות ל-100 גרם, הנמוך ביותר מכל המוצרים בהשוואה",
+          "סיבים 10 גרם ל-100 גרם, בין הגבוהים ביותר בהשוואה",
+          "רשימת רכיבים נקייה ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290013740809",
+      "imageUrl": "/products/7290013740809.webp",
+      "insightLine": "288 קלוריות ל-100 גרם: הנמוך ביותר מכל 53 המוצרים בהשוואה.",
+      "name": "קרקר כוסמין סלק",
+      "nameHe": "קרקר כוסמין סלק",
+      "rank": 14,
+      "retailer": "shufersal",
+      "rowVerdict": "הקרקר הזה נושא את הקלוריות הנמוכות ביותר בכל ההשוואה, 288 ל-100 גרם, ולצד זה סיבים גבוהים במיוחד. כוסמין מלא, שמן זית וזרעים בונים את הבסיס, ואבקת סלק מוסיפה צבע בלבד. החלבון נשאר בינוני, כי הכוסמין המלא מהווה רק כשליש מהמשקל הכולל.",
+      "score": 77.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -720,7 +882,7 @@
       "rank": 15,
       "retailer": "shufersal",
       "rowVerdict": "תירס מהווה את רוב המשקל כאן, ולצדו זרעי פשתן, פולי סויה, שמן סויה וזרעי צ'יה. השילוב הזה מייצר את הסיבים הגבוהים ביותר מכל 53 המוצרים בהשוואה, 11 גרם ל-100 גרם. שמן צמחי אחד ברשימה, ותמצית רוזמרין משמשת לשימור טבעי.",
-      "score": 72.5,
+      "score": 76.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -764,93 +926,7 @@
       "rank": 16,
       "retailer": "shufersal",
       "rowVerdict": "תירס מהווה תשעים ותשעה אחוז מהמשקל, עם שמן צמחי ומלח ים לצדו וללא תוסף תחליב. הסיבים, 7 גרם ל-100 גרם, גבוהים במפתיע לפריכיית תירס, שרובן נעות סביב שלושה גרם בלבד. הסוכר מדווח כאפס.",
-      "score": 72.0,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073106098",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא (83%), כוסמת (16%), מלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (83%), כוסמת (16%), מלח",
-        "limitingFactors": [
-          "הכוסמת היא רק שישה עשר אחוז מהמשקל, הבסיס העיקרי עדיין אורז"
-        ],
-        "nutrition": {
-          "energyKcal": 392.0,
-          "fat": 3.0,
-          "fiber": 4.5,
-          "protein": 9.0,
-          "sodium": 390.0,
-          "sugar": 0.6
-        },
-        "positiveSignals": [
-          "ללא תוסף מזון אחד ברשימה",
-          "תוספת כוסמת מרימה מעט את הסיבים והחלבון"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073106098",
-      "imageUrl": "/products/7296073106098.webp",
-      "insightLine": "כוסמת מתווספת לאורז המלא, שישה עשר אחוז מהמשקל.",
-      "name": "פריכיות דקות כוסמת",
-      "nameHe": "פריכיות דקות כוסמת",
-      "rank": 17,
-      "retailer": "shufersal",
-      "rowVerdict": "הבסיס העיקרי כאן הוא אורז חום מלא, ולצדו כוסמת בשישה עשר אחוז מהמשקל. אין תוסף מזון ברשימה. תוספת הכוסמת מרימה מעט את הסיבים והחלבון מעל פריכיית אורז רגילה, אבל בכמות קטנה יחסית שלא הופכת אותה לדגן-כוסמת מלא.",
-      "score": 71.8,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7290017325422",
-      "brand": "הרדוף",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא אורגני (100%), רכיב יחיד. נתרן בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא אורגני (100%)",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
-        ],
-        "nutrition": {
-          "energyKcal": 360.0,
-          "fat": 3.0,
-          "fiber": 4.3,
-          "protein": 8.8,
-          "sodium": 18.0,
-          "sugar": 0.0
-        },
-        "positiveSignals": [
-          "רכיב יחיד: אורז חום מלא אורגני, ללא מלח",
-          "נתרן 18 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7290017325422",
-      "imageUrl": "/products/7290017325422.webp",
-      "insightLine": "רכיב אחד בלבד: אורז חום מלא אורגני, ונתרן 18 מיליגרם ל-100 גרם, בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
-      "name": "פריכיות אורז מלא ללת\"מ",
-      "nameHe": "פריכיות אורז מלא ללת\"מ",
-      "rank": 18,
-      "retailer": "shufersal",
-      "rowVerdict": "מדובר ברכיב יחיד: אורז חום מלא אורגני, ללא מלח וללא תוסף מזון. הנתרן שלו, 18 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל המוצרים בהשוואה. חלבון וסיבים נשארים בינוניים, כפי שמצופה ממוצר שכולו אורז מלא.",
-      "score": 71.3,
+      "score": 75.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -907,94 +983,10 @@
       "insightLine": "'פיטנס' על האריזה, אבל קמח אורז וקמח חיטה לבנה מרכיבים את רוב הבסיס בפועל.",
       "name": "קרקר דק רוזמרין פיטנס",
       "nameHe": "קרקר דק רוזמרין פיטנס",
-      "rank": 19,
+      "rank": 17,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה פותחת את רשימת הרכיבים בשלושים אחוז, אבל קמח אורז וקמח חיטה לבנה משלימים את רוב המשקל שאחריה. הקלוריות כאן בין הגבוהות בהשוואה, הסיבים נמוכים יחסית, ויש ברשימה גם תוסף שנוי במחלוקת. השם 'פיטנס' לא משקף בהכרח בסיס דגן מלא.",
-      "score": 70.9,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073079019",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא (97%), קצח (2%), מלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (97%), קצח (2%), מלח",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים ביחס להשוואה הכוללת"
-        ],
-        "nutrition": {
-          "energyKcal": 390.0,
-          "fat": 3.2,
-          "fiber": 4.7,
-          "protein": 8.4,
-          "sodium": 390.0,
-          "sugar": 0.7
-        },
-        "positiveSignals": [
-          "97% אורז חום מלא, ללא תוסף מזון אחד"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073079019",
-      "imageUrl": "/products/7296073079019.webp",
-      "insightLine": "אורז חום מלא עם תוספת קטנה של קצח, שני אחוזים מהמשקל, לטעם בלבד.",
-      "name": "פריכיות דקות קצח",
-      "nameHe": "פריכיות דקות קצח",
-      "rank": 20,
-      "retailer": "shufersal",
-      "rowVerdict": "הבסיס כאן הוא אורז חום מלא, תשעים ושבעה אחוז מהמשקל, וקצח מתווסף בכמות קטנה לטעם. אין תוסף מזון ברשימה, והחלבון והסיבים מעט גבוהים יותר מפריכיית אורז בסיסית, בזכות תוספת הקצח.",
-      "score": 70.9,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073195252",
-      "brand": "גרין",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז מלא אורגני (99%) ומלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז מלא אורגני (99%), מלח",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
-        ],
-        "nutrition": {
-          "energyKcal": 383.0,
-          "fat": 2.8,
-          "fiber": 3.7,
-          "protein": 8.5,
-          "sodium": 400.0,
-          "sugar": 0.5
-        },
-        "positiveSignals": [
-          "99% אורז מלא אורגני, ללא תוסף מזון אחד"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073195252",
-      "imageUrl": "/products/7296073195252.webp",
-      "insightLine": "אורז מלא אורגני ומלח, שני רכיבים ותו לא.",
-      "name": "פריכיות אורז מלא",
-      "nameHe": "פריכיות אורז מלא",
-      "rank": 21,
-      "retailer": "shufersal",
-      "rowVerdict": "אורז מלא אורגני מהווה תשעים ותשעה אחוז מהמשקל כאן, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והחלבון והסיבים נשארים בטווח הטיפוסי לפריכיית אורז מלא.",
-      "score": 70.7,
+      "score": 75.2,
       "source_traceability_status": "resolved"
     },
     {
@@ -1044,99 +1036,14 @@
       "insightLine": "החלבון כאן בין הגבוהים ביותר בכל ההשוואה, אבל מקורו בגלוטן חיטה, שומשום וקינואה מוספים.",
       "name": "קרקר דק כפרי",
       "nameHe": "קרקר דק כפרי",
-      "rank": 22,
+      "rank": 18,
       "retailer": "shufersal",
       "rowVerdict": "החלבון בקרקר הזה, 15 גרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל 53 המוצרים בהשוואה. המקור שלו הוא גלוטן חיטה, שומשום וקינואה שמוספים לתערובת, כשחיטה מלאה מהווה כרבע בלבד מהמוצר הכולל. הקלוריות כאן גם בין הגבוהות בהשוואה כולה, ושמן דקל נמצא ברשימה.",
-      "score": 70.7,
+      "score": 75.0,
       "source_traceability_status": "resolved"
     },
     {
-      "barcode": "4952792",
-      "brand": "הרדוף",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא אורגני (99%) ומלח. ללא תוספי מזון, ללא סוכר מוצהר. חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא אורגני (99%), מלח",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם"
-        ],
-        "nutrition": {
-          "energyKcal": 360.0,
-          "fat": 2.7,
-          "fiber": 4.2,
-          "protein": 8.0,
-          "sodium": 400.0,
-          "sugar": 0.0
-        },
-        "positiveSignals": [
-          "99% אורז חום מלא אורגני, ללא תוסף מזון אחד",
-          "סוכר מוצהר כאפס"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_4952792",
-      "imageUrl": "/products/img1w6emy9.webp",
-      "insightLine": "רכיב אחד בלבד מלבד מלח: אורז חום מלא אורגני, תשעים ותשעה אחוז מהמשקל.",
-      "name": "פריכיות אורז דקות אורגני",
-      "nameHe": "פריכיות אורז דקות אורגני",
-      "rank": 23,
-      "retailer": "shufersal",
-      "rowVerdict": "הפריכיות האלה בנויות כמעט לגמרי מאורז חום מלא אורגני, עם מלח כרכיב היחיד הנוסף. אין בהן תוסף מזון אחד, והסוכר על האריזה מדווח כאפס. הפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים, כי אורז מלא בטבעו לא עשיר בהם כמו כוסמת או קטניות.",
-      "score": 70.6,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073195269",
-      "brand": "גרין",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז מלא אורגני (94%), קינואה אורגנית (6%), מלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז מלא אורגני (93.5%), קינואה אורגנית (5.5%), מלח",
-        "limitingFactors": [
-          "תוספת הקינואה נמצאת בכמות קטנה בלבד, כחמישה אחוז מהמשקל"
-        ],
-        "nutrition": {
-          "energyKcal": 386.0,
-          "fat": 3.2,
-          "fiber": 3.7,
-          "protein": 8.5,
-          "sodium": 400.0,
-          "sugar": 1.0
-        },
-        "positiveSignals": [
-          "ללא תוסף מזון אחד ברשימה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073195269",
-      "imageUrl": "/products/7296073195269.webp",
-      "insightLine": "קינואה אורגנית מתווספת לאורז המלא, חמישה וחצי אחוז מהמשקל.",
-      "name": "פריכיות אורז מלא+קינואה",
-      "nameHe": "פריכיות אורז מלא+קינואה",
-      "rank": 24,
-      "retailer": "shufersal",
-      "rowVerdict": "הבסיס כאן הוא אורז מלא אורגני, ולצדו כמעט שישה אחוז קינואה אורגנית. אין תוסף מזון ברשימה, אבל תוספת הקינואה בכמות הזו לא משנה משמעותית את החלבון או הסיבים ביחס לפריכיית אורז רגילה.",
-      "score": 70.5,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073079002",
+      "barcode": "7296073106098",
       "brand": "ARDO",
       "categoryTotal": 53,
       "confidence": "partial",
@@ -1146,162 +1053,36 @@
       "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
       "d4_additives": [],
       "expansion": {
-        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון. חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא.",
+        "comparisonContext": "אורז חום מלא (83%), כוסמת (16%), מלח. ללא תוספי מזון.",
         "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (99%), מלח",
+        "ingredients": "אורז חום מלא (83%), כוסמת (16%), מלח",
         "limitingFactors": [
-          "חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם"
+          "הכוסמת היא רק שישה עשר אחוז מהמשקל, הבסיס העיקרי עדיין אורז"
         ],
         "nutrition": {
-          "energyKcal": 395.0,
+          "energyKcal": 392.0,
           "fat": 3.0,
-          "fiber": 4.0,
-          "protein": 8.3,
-          "sodium": 400.0,
-          "sugar": 0.7
+          "fiber": 4.5,
+          "protein": 9.0,
+          "sodium": 390.0,
+          "sugar": 0.6
         },
         "positiveSignals": [
-          "99% אורז חום מלא, ללא תוסף מזון אחד"
+          "ללא תוסף מזון אחד ברשימה",
+          "תוספת כוסמת מרימה מעט את הסיבים והחלבון"
         ],
         "servingNote": "ל-100 גרם"
       },
       "grade": "B",
-      "id": "bsip1_ricecakes_7296073079002",
-      "imageUrl": "/products/7296073079002.webp",
-      "insightLine": "אורז חום מלא ומלח, שני רכיבים בסך הכול.",
-      "name": "פריכיות דקות אורז מלא",
-      "nameHe": "פריכיות דקות אורז מלא",
-      "rank": 25,
+      "id": "bsip1_ricecakes_7296073106098",
+      "imageUrl": "/products/7296073106098.webp",
+      "insightLine": "כוסמת מתווספת לאורז המלא, שישה עשר אחוז מהמשקל.",
+      "name": "פריכיות דקות כוסמת",
+      "nameHe": "פריכיות דקות כוסמת",
+      "rank": 19,
       "retailer": "shufersal",
-      "rowVerdict": "הפריכיות האלה מבוססות על אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח כרכיב הנוסף היחיד. אין תוסף מזון ברשימה, והפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים.",
-      "score": 70.1,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073151463",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא (100%), רכיב יחיד. נתרן בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (100%)",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
-        ],
-        "nutrition": {
-          "energyKcal": 395.0,
-          "fat": 3.0,
-          "fiber": 4.0,
-          "protein": 8.3,
-          "sodium": 8.0,
-          "sugar": 0.7
-        },
-        "positiveSignals": [
-          "רכיב יחיד: אורז חום מלא, ללא מלח",
-          "נתרן 8 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073151463",
-      "imageUrl": "/products/7296073151463.webp",
-      "insightLine": "רכיב יחיד, אורז חום מלא, ונתרן 8 מיליגרם ל-100 גרם: בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
-      "name": "פריכיות דקות דל נתרן",
-      "nameHe": "פריכיות דקות דל נתרן",
-      "rank": 26,
-      "retailer": "shufersal",
-      "rowVerdict": "מדובר ברכיב יחיד: אורז חום מלא, ללא מלח וללא תוסף מזון. הנתרן שלו, 8 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל המוצרים בהשוואה. חלבון וסיבים נשארים ברמה טיפוסית לפריכיית אורז מלא.",
-      "score": 70.1,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073343219",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (99%), מלח",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
-        ],
-        "nutrition": {
-          "energyKcal": 395.0,
-          "fat": 3.0,
-          "fiber": 4.0,
-          "protein": 8.3,
-          "sodium": 400.0,
-          "sugar": 0.7
-        },
-        "positiveSignals": [
-          "99% אורז חום מלא, ללא תוסף מזון אחד"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073343219",
-      "imageUrl": "/products/7296073343219.webp",
-      "insightLine": "אורז חום מלא ומלח: שני רכיבים, ללא תוסף מזון.",
-      "name": "פריכיות אורז מלא",
-      "nameHe": "פריכיות אורז מלא",
-      "rank": 27,
-      "retailer": "shufersal",
-      "rowVerdict": "הפריכיות האלה בנויות על אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והחלבון והסיבים נשארים בטווח הטיפוסי לפריכיית אורז מלא.",
-      "score": 70.1,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073441335",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [],
-      "expansion": {
-        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "אורז חום מלא (99%), מלח",
-        "limitingFactors": [
-          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
-        ],
-        "nutrition": {
-          "energyKcal": 395.0,
-          "fat": 3.0,
-          "fiber": 4.0,
-          "protein": 8.3,
-          "sodium": 400.0,
-          "sugar": 0.7
-        },
-        "positiveSignals": [
-          "99% אורז חום מלא, ללא תוסף מזון אחד"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7296073441335",
-      "imageUrl": "/products/7296073441335.webp",
-      "insightLine": "אורז חום מלא ומלח, בלי תוסף מזון אחד ברשימה.",
-      "name": "פריכיות אורז מלא",
-      "nameHe": "פריכיות אורז מלא",
-      "rank": 28,
-      "retailer": "shufersal",
-      "rowVerdict": "הבסיס כאן הוא אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם.",
-      "score": 70.1,
+      "rowVerdict": "הבסיס העיקרי כאן הוא אורז חום מלא, ולצדו כוסמת בשישה עשר אחוז מהמשקל. אין תוסף מזון ברשימה. תוספת הכוסמת מרימה מעט את הסיבים והחלבון מעל פריכיית אורז רגילה, אבל בכמות קטנה יחסית שלא הופכת אותה לדגן-כוסמת מלא.",
+      "score": 74.4,
       "source_traceability_status": "resolved"
     },
     {
@@ -1350,10 +1131,10 @@
       "insightLine": "קמח חומוס, עדשים שחורות וקינואה מרימים את החלבון, 15 גרם ל-100 גרם, בין הגבוהים ביותר מכל 53 המוצרים בהשוואה.",
       "name": "פריכיות משולשות מלח ים",
       "nameHe": "פריכיות משולשות מלח ים",
-      "rank": 29,
+      "rank": 20,
       "retailer": "shufersal",
       "rowVerdict": "הבסיס כאן הוא קמח חומוס וקמח אורז, ועדשים שחורות וקינואה תורמים לחלבון ולסיבים הגבוהים. החלבון, 15 גרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל 53 המוצרים בהשוואה. אין כאן תוספת סוכר, רק תוסף תחליב אחד ותוסף למניעת התגבשות, לצד שמן חמניות.",
-      "score": 70.0,
+      "score": 74.2,
       "source_traceability_status": "resolved"
     },
     {
@@ -1402,15 +1183,15 @@
       "insightLine": "קמח חומוס, עדשים שחורות וקינואה מרימים את החלבון והסיבים לרמה בין הגבוהות ביותר בהשוואה.",
       "name": "פריכיות משולשים מלח ים",
       "nameHe": "פריכיות משולשים מלח ים",
-      "rank": 30,
+      "rank": 21,
       "retailer": "shufersal",
       "rowVerdict": "קמח חומוס וקמח אורז בונים את הבסיס, ועדשים שחורות וקינואה מוסיפים חלבון וסיבים גבוהים. החלבון, 15 גרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל 53 המוצרים בהשוואה. אין תוספת סוכר ברשימה, רק תוסף תחליב אחד ותוסף למניעת התגבשות, לצד שמן חמניות.",
-      "score": 70.0,
+      "score": 74.2,
       "source_traceability_status": "resolved"
     },
     {
-      "barcode": "9322969000039",
-      "brand": "ריל פודס",
+      "barcode": "7290017325422",
+      "brand": "הרדוף",
       "categoryTotal": 53,
       "confidence": "partial",
       "confidence_label_he": "נתונים בבדיקה",
@@ -1419,88 +1200,36 @@
       "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
       "d4_additives": [],
       "expansion": {
-        "comparisonContext": "תירס (78%), דורה, אורז חום, כוסמת, דוחן, שמן חמניות, מלח ים. חמישה דגנים בתערובת, סיבים וחלבון גבוהים יחסית לפריכיית תירס.",
+        "comparisonContext": "אורז חום מלא אורגני (100%), רכיב יחיד. נתרן בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
         "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "תירס (78%), דורה (7%), אורז חום (7%), כוסמת (5%), דוחן (2%), שמן חמניות, מלח ים מכיל שומשום",
+        "ingredients": "אורז חום מלא אורגני (100%)",
         "limitingFactors": [
-          "שמן חמניות ברשימה"
+          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
         ],
         "nutrition": {
-          "energyKcal": 388.0,
-          "fat": 3.4,
-          "fiber": 6.8,
-          "protein": 10.6,
-          "sodium": 259.0,
-          "sugar": 0.7
+          "energyKcal": 360.0,
+          "fat": 3.0,
+          "fiber": 4.3,
+          "protein": 8.8,
+          "sodium": 18.0,
+          "sugar": 0.0
         },
         "positiveSignals": [
-          "תערובת חמישה דגנים, בהם כוסמת מלאה",
-          "סיבים 7 גרם וחלבון 11 גרם ל-100 גרם, גבוהים יחסית לפריכיית תירס"
+          "רכיב יחיד: אורז חום מלא אורגני, ללא מלח",
+          "נתרן 18 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
         ],
         "servingNote": "ל-100 גרם"
       },
       "grade": "B",
-      "id": "bsip1_ricecakes_9322969000039",
-      "imageUrl": "/products/9322969000039.webp",
-      "insightLine": "תערובת חמישה דגנים, בהם כוסמת מלאה, מרימה את הסיבים והחלבון מעל פריכיית תירס טיפוסית.",
-      "name": "פריכיות תירס+דגנים כשלפ",
-      "nameHe": "פריכיות תירס+דגנים כשלפ",
-      "rank": 31,
+      "id": "bsip1_ricecakes_7290017325422",
+      "imageUrl": "/products/7290017325422.webp",
+      "insightLine": "רכיב אחד בלבד: אורז חום מלא אורגני, ונתרן 18 מיליגרם ל-100 גרם, בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
+      "name": "פריכיות אורז מלא ללת\"מ",
+      "nameHe": "פריכיות אורז מלא ללת\"מ",
+      "rank": 22,
       "retailer": "shufersal",
-      "rowVerdict": "התירס הוא הרכיב הראשי, שבעים ושמונה אחוז, אבל דורה, אורז חום, כוסמת ודוחן מצטרפים בכמויות קטנות. הכוסמת שביניהם מוסיפה דגן מלא אמיתי לרשימה. הסיבים והחלבון גבוהים יחסית לפריכיית תירס רגילה, ושמן חמניות הוא התוספת הלא-דגנית היחידה.",
-      "score": 69.8,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "_website_cluster": "mixed_grain",
-      "barcode": "7290112968821",
-      "brand": "פיטנס",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E224",
-          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
-          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
-          "name_he": "סולפיטים (תרכובת לא מפורטת)",
-          "tier": "contested"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "חיטה מלאה (31%) כרכיב ראשון, קמח אורז וחיטה לבנה, אבקת בטטה (6%) וגזר. סיבים 6.5 גרם ל-100 גרם. תוסף אחד שנוי במחלוקת.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23.5%), קמח חיטה (15.5%), שמנים צמחיים, אבקת בטטה (6%), קמח אורז מלא (6%), גלוטן חיטה, עמ ילן אורז, אבקת גזר (1.5%), גרעיני דלעת (1.5%), סוכר, שמרים, מלח ים, שום מיובש, חומרי טעם וריח, חומר לטיפול בקמח (סולפיט).",
-        "limitingFactors": [
-          "קמח אורז וחיטה לבנה משלימים את רוב הבסיס",
-          "תוסף שנוי במחלוקת ברשימה"
-        ],
-        "nutrition": {
-          "energyKcal": 459,
-          "fat": 0.25,
-          "fiber": 6.5,
-          "protein": 11.5,
-          "sodium": 400,
-          "sugar": null
-        },
-        "positiveSignals": [
-          "חיטה מלאה היא הרכיב הראשון ברשימה (31%)"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_crackers_7290112968821",
-      "imageUrl": "/products/7290112968821.webp",
-      "insightLine": "אבקת בטטה וגזר מוסיפות צבע וטעם, אבל קמח אורז וחיטה לבנה מרכיבים את רוב הבסיס.",
-      "name": "קרקר דק פיטנס בטטה",
-      "nameHe": "קרקר דק פיטנס בטטה",
-      "rank": 32,
-      "retailer": "shufersal",
-      "rowVerdict": "חיטה מלאה פותחת את הרשימה בשלושים ואחד אחוז, ולאחריה קמח אורז וחיטה לבנה משלימים את רוב המשקל. אבקת הבטטה והגזר תורמות בעיקר טעם וצבע. יש ברשימה גם תוסף שנוי במחלוקת, והסיבים נשארים נמוכים יחסית לכמות התוספים.",
-      "score": 69.4,
+      "rowVerdict": "מדובר ברכיב יחיד: אורז חום מלא אורגני, ללא מלח וללא תוסף מזון. הנתרן שלו, 18 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל המוצרים בהשוואה. חלבון וסיבים נשארים בינוניים, כפי שמצופה ממוצר שכולו אורז מלא.",
+      "score": 73.8,
       "source_traceability_status": "resolved"
     },
     {
@@ -1558,10 +1287,443 @@
       "insightLine": "קינואה ושומשום מוסיפים גיוון, אבל הבסיס עדיין כשליש חיטה מלאה עם שני תוספים שנויים במחלוקת.",
       "name": "קרקר דק כפרי פיטנס",
       "nameHe": "קרקר דק כפרי פיטנס",
-      "rank": 33,
+      "rank": 23,
       "retailer": "shufersal",
       "rowVerdict": "חיטה מלאה פותחת את הרשימה, וקינואה ושומשום מוספים נותנים לקרקר הזה גיוון אמיתי. קמח אורז וחיטה לבנה משלימים את רוב הבסיס שאחריה, הסיבים נמוכים יחסית, ושני תוספים שנויים במחלוקת נמצאים ברשימה.",
-      "score": 69.4,
+      "score": 73.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290112968821",
+      "brand": "פיטנס",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "חיטה מלאה (31%) כרכיב ראשון, קמח אורז וחיטה לבנה, אבקת בטטה (6%) וגזר. סיבים 6.5 גרם ל-100 גרם. תוסף אחד שנוי במחלוקת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23.5%), קמח חיטה (15.5%), שמנים צמחיים, אבקת בטטה (6%), קמח אורז מלא (6%), גלוטן חיטה, עמ ילן אורז, אבקת גזר (1.5%), גרעיני דלעת (1.5%), סוכר, שמרים, מלח ים, שום מיובש, חומרי טעם וריח, חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [
+          "קמח אורז וחיטה לבנה משלימים את רוב הבסיס",
+          "תוסף שנוי במחלוקת ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 459,
+          "fat": 0.25,
+          "fiber": 6.5,
+          "protein": 11.5,
+          "sodium": 400,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חיטה מלאה היא הרכיב הראשון ברשימה (31%)"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290112968821",
+      "imageUrl": "/products/7290112968821.webp",
+      "insightLine": "אבקת בטטה וגזר מוסיפות צבע וטעם, אבל קמח אורז וחיטה לבנה מרכיבים את רוב הבסיס.",
+      "name": "קרקר דק פיטנס בטטה",
+      "nameHe": "קרקר דק פיטנס בטטה",
+      "rank": 24,
+      "retailer": "shufersal",
+      "rowVerdict": "חיטה מלאה פותחת את הרשימה בשלושים ואחד אחוז, ולאחריה קמח אורז וחיטה לבנה משלימים את רוב המשקל. אבקת הבטטה והגזר תורמות בעיקר טעם וצבע. יש ברשימה גם תוסף שנוי במחלוקת, והסיבים נשארים נמוכים יחסית לכמות התוספים.",
+      "score": 73.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "9322969000039",
+      "brand": "ריל פודס",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "תירס (78%), דורה, אורז חום, כוסמת, דוחן, שמן חמניות, מלח ים. חמישה דגנים בתערובת, סיבים וחלבון גבוהים יחסית לפריכיית תירס.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "תירס (78%), דורה (7%), אורז חום (7%), כוסמת (5%), דוחן (2%), שמן חמניות, מלח ים מכיל שומשום",
+        "limitingFactors": [
+          "שמן חמניות ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 388.0,
+          "fat": 3.4,
+          "fiber": 6.8,
+          "protein": 10.6,
+          "sodium": 259.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "תערובת חמישה דגנים, בהם כוסמת מלאה",
+          "סיבים 7 גרם וחלבון 11 גרם ל-100 גרם, גבוהים יחסית לפריכיית תירס"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_9322969000039",
+      "imageUrl": "/products/9322969000039.webp",
+      "insightLine": "תערובת חמישה דגנים, בהם כוסמת מלאה, מרימה את הסיבים והחלבון מעל פריכיית תירס טיפוסית.",
+      "name": "פריכיות תירס+דגנים כשלפ",
+      "nameHe": "פריכיות תירס+דגנים כשלפ",
+      "rank": 25,
+      "retailer": "shufersal",
+      "rowVerdict": "התירס הוא הרכיב הראשי, שבעים ושמונה אחוז, אבל דורה, אורז חום, כוסמת ודוחן מצטרפים בכמויות קטנות. הכוסמת שביניהם מוסיפה דגן מלא אמיתי לרשימה. הסיבים והחלבון גבוהים יחסית לפריכיית תירס רגילה, ושמן חמניות הוא התוספת הלא-דגנית היחידה.",
+      "score": 73.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073079019",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא (97%), קצח (2%), מלח. ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא (97%), קצח (2%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים ביחס להשוואה הכוללת"
+        ],
+        "nutrition": {
+          "energyKcal": 390.0,
+          "fat": 3.2,
+          "fiber": 4.7,
+          "protein": 8.4,
+          "sodium": 390.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "97% אורז חום מלא, ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073079019",
+      "imageUrl": "/products/7296073079019.webp",
+      "insightLine": "אורז חום מלא עם תוספת קטנה של קצח, שני אחוזים מהמשקל, לטעם בלבד.",
+      "name": "פריכיות דקות קצח",
+      "nameHe": "פריכיות דקות קצח",
+      "rank": 26,
+      "retailer": "shufersal",
+      "rowVerdict": "הבסיס כאן הוא אורז חום מלא, תשעים ושבעה אחוז מהמשקל, וקצח מתווסף בכמות קטנה לטעם. אין תוסף מזון ברשימה, והחלבון והסיבים מעט גבוהים יותר מפריכיית אורז בסיסית, בזכות תוספת הקצח.",
+      "score": 73.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073195252",
+      "brand": "גרין",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז מלא אורגני (99%) ומלח. ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז מלא אורגני (99%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
+        ],
+        "nutrition": {
+          "energyKcal": 383.0,
+          "fat": 2.8,
+          "fiber": 3.7,
+          "protein": 8.5,
+          "sodium": 400.0,
+          "sugar": 0.5
+        },
+        "positiveSignals": [
+          "99% אורז מלא אורגני, ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073195252",
+      "imageUrl": "/products/7296073195252.webp",
+      "insightLine": "אורז מלא אורגני ומלח, שני רכיבים ותו לא.",
+      "name": "פריכיות אורז מלא",
+      "nameHe": "פריכיות אורז מלא",
+      "rank": 27,
+      "retailer": "shufersal",
+      "rowVerdict": "אורז מלא אורגני מהווה תשעים ותשעה אחוז מהמשקל כאן, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והחלבון והסיבים נשארים בטווח הטיפוסי לפריכיית אורז מלא.",
+      "score": 73.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073195269",
+      "brand": "גרין",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז מלא אורגני (94%), קינואה אורגנית (6%), מלח. ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז מלא אורגני (93.5%), קינואה אורגנית (5.5%), מלח",
+        "limitingFactors": [
+          "תוספת הקינואה נמצאת בכמות קטנה בלבד, כחמישה אחוז מהמשקל"
+        ],
+        "nutrition": {
+          "energyKcal": 386.0,
+          "fat": 3.2,
+          "fiber": 3.7,
+          "protein": 8.5,
+          "sodium": 400.0,
+          "sugar": 1.0
+        },
+        "positiveSignals": [
+          "ללא תוסף מזון אחד ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073195269",
+      "imageUrl": "/products/7296073195269.webp",
+      "insightLine": "קינואה אורגנית מתווספת לאורז המלא, חמישה וחצי אחוז מהמשקל.",
+      "name": "פריכיות אורז מלא+קינואה",
+      "nameHe": "פריכיות אורז מלא+קינואה",
+      "rank": 28,
+      "retailer": "shufersal",
+      "rowVerdict": "הבסיס כאן הוא אורז מלא אורגני, ולצדו כמעט שישה אחוז קינואה אורגנית. אין תוסף מזון ברשימה, אבל תוספת הקינואה בכמות הזו לא משנה משמעותית את החלבון או הסיבים ביחס לפריכיית אורז רגילה.",
+      "score": 73.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "4952792",
+      "brand": "הרדוף",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא אורגני (99%) ומלח. ללא תוספי מזון, ללא סוכר מוצהר. חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא אורגני (99%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם"
+        ],
+        "nutrition": {
+          "energyKcal": 360.0,
+          "fat": 2.7,
+          "fiber": 4.2,
+          "protein": 8.0,
+          "sodium": 400.0,
+          "sugar": 0.0
+        },
+        "positiveSignals": [
+          "99% אורז חום מלא אורגני, ללא תוסף מזון אחד",
+          "סוכר מוצהר כאפס"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_4952792",
+      "imageUrl": "/products/img1w6emy9.webp",
+      "insightLine": "רכיב אחד בלבד מלבד מלח: אורז חום מלא אורגני, תשעים ותשעה אחוז מהמשקל.",
+      "name": "פריכיות אורז דקות אורגני",
+      "nameHe": "פריכיות אורז דקות אורגני",
+      "rank": 29,
+      "retailer": "shufersal",
+      "rowVerdict": "הפריכיות האלה בנויות כמעט לגמרי מאורז חום מלא אורגני, עם מלח כרכיב היחיד הנוסף. אין בהן תוסף מזון אחד, והסוכר על האריזה מדווח כאפס. הפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים, כי אורז מלא בטבעו לא עשיר בהם כמו כוסמת או קטניות.",
+      "score": 72.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073079002",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון. חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא (99%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם"
+        ],
+        "nutrition": {
+          "energyKcal": 395.0,
+          "fat": 3.0,
+          "fiber": 4.0,
+          "protein": 8.3,
+          "sodium": 400.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "99% אורז חום מלא, ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073079002",
+      "imageUrl": "/products/7296073079002.webp",
+      "insightLine": "אורז חום מלא ומלח, שני רכיבים בסך הכול.",
+      "name": "פריכיות דקות אורז מלא",
+      "nameHe": "פריכיות דקות אורז מלא",
+      "rank": 30,
+      "retailer": "shufersal",
+      "rowVerdict": "הפריכיות האלה מבוססות על אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח כרכיב הנוסף היחיד. אין תוסף מזון ברשימה, והפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים.",
+      "score": 72.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073151463",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא (100%), רכיב יחיד. נתרן בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא (100%)",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
+        ],
+        "nutrition": {
+          "energyKcal": 395.0,
+          "fat": 3.0,
+          "fiber": 4.0,
+          "protein": 8.3,
+          "sodium": 8.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "רכיב יחיד: אורז חום מלא, ללא מלח",
+          "נתרן 8 מיליגרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073151463",
+      "imageUrl": "/products/7296073151463.webp",
+      "insightLine": "רכיב יחיד, אורז חום מלא, ונתרן 8 מיליגרם ל-100 גרם: בין הנמוכים ביותר מכל 53 המוצרים בהשוואה.",
+      "name": "פריכיות דקות דל נתרן",
+      "nameHe": "פריכיות דקות דל נתרן",
+      "rank": 31,
+      "retailer": "shufersal",
+      "rowVerdict": "מדובר ברכיב יחיד: אורז חום מלא, ללא מלח וללא תוסף מזון. הנתרן שלו, 8 מיליגרם ל-100 גרם, נמנה עם הנמוכים ביותר מכל המוצרים בהשוואה. חלבון וסיבים נשארים ברמה טיפוסית לפריכיית אורז מלא.",
+      "score": 72.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073343219",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא (99%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
+        ],
+        "nutrition": {
+          "energyKcal": 395.0,
+          "fat": 3.0,
+          "fiber": 4.0,
+          "protein": 8.3,
+          "sodium": 400.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "99% אורז חום מלא, ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073343219",
+      "imageUrl": "/products/7296073343219.webp",
+      "insightLine": "אורז חום מלא ומלח: שני רכיבים, ללא תוסף מזון.",
+      "name": "פריכיות אורז מלא",
+      "nameHe": "פריכיות אורז מלא",
+      "rank": 32,
+      "retailer": "shufersal",
+      "rowVerdict": "הפריכיות האלה בנויות על אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והחלבון והסיבים נשארים בטווח הטיפוסי לפריכיית אורז מלא.",
+      "score": 72.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073441335",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "אורז חום מלא (99%) ומלח. ללא תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "אורז חום מלא (99%), מלח",
+        "limitingFactors": [
+          "חלבון וסיבים בינוניים, טיפוסי לפריכיית אורז מלא"
+        ],
+        "nutrition": {
+          "energyKcal": 395.0,
+          "fat": 3.0,
+          "fiber": 4.0,
+          "protein": 8.3,
+          "sodium": 400.0,
+          "sugar": 0.7
+        },
+        "positiveSignals": [
+          "99% אורז חום מלא, ללא תוסף מזון אחד"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7296073441335",
+      "imageUrl": "/products/7296073441335.webp",
+      "insightLine": "אורז חום מלא ומלח, בלי תוסף מזון אחד ברשימה.",
+      "name": "פריכיות אורז מלא",
+      "nameHe": "פריכיות אורז מלא",
+      "rank": 33,
+      "retailer": "shufersal",
+      "rowVerdict": "הבסיס כאן הוא אורז חום מלא, תשעים ותשעה אחוז מהמשקל, עם מלח בלבד לצדו. אין תוסף מזון ברשימה, והפרופיל התזונתי טיפוסי לפריכיית אורז: חלבון וסיבים בינוניים, כי אורז מלא לבדו אינו מקור עשיר בהם.",
+      "score": 72.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -1613,7 +1775,7 @@
       "rank": 34,
       "retailer": "shufersal",
       "rowVerdict": "הקרקר הזה בנוי על קמח חיטה לבן, שני סוגי שמן וסוכר לבן, בלי גרם אחד של דגן מלא. הנתרן שלו, 520 מיליגרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל 53 המוצרים בהשוואה, והסוכר, 4 גרם, גם הוא בין הגבוהים מבין המוצרים שמצהירים על תכולת סוכר. תוסף שנוי במחלוקת מצטרף לרשימה, והסיבים נשארים נמוכים.",
-      "score": 68.1,
+      "score": 70.4,
       "source_traceability_status": "resolved"
     },
     {
@@ -1665,7 +1827,7 @@
       "rank": 35,
       "retailer": "shufersal",
       "rowVerdict": "קמח תירס מלא פותח את הרשימה, ולצדו קמח אורז, קינואה וקמח שיבולת שועל מלא, כך ששני דגנים מלאים בונים חלק ניכר מהבסיס. עם זאת, הסוכר, 4 גרם ל-100 גרם, נמנה עם הגבוהים ביותר מבין המוצרים שמצהירים על תכולת סוכר, ותוסף תחליב אחד מצטרף לרשימה.",
-      "score": 65.9,
+      "score": 68.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -1723,7 +1885,7 @@
       "rank": 36,
       "retailer": "shufersal",
       "rowVerdict": "תשעים ושישה אחוז מהמשקל כאן הם תערובת שלושה דגנים, מחציתם קמח תירס מלא, ולצדם אורז וקמח שיבולת שועל מלא. עם זאת, הסוכר הלבן שמתווסף, 5 גרם ל-100 גרם, נמנה עם הגבוהים ביותר מבין המוצרים שמצהירים על תכולת סוכר, והחלבון נשאר נמוך יחסית ביחס לתערובת הדגנים המלאים.",
-      "score": 65.8,
+      "score": 67.9,
       "source_traceability_status": "resolved"
     },
     {
@@ -1773,7 +1935,7 @@
       "rank": 37,
       "retailer": "shufersal",
       "rowVerdict": "הבסיס כאן הוא תירס, תשעים ותשעה אחוז, עם מלח ותוסף תחליב יחיד. הסוכר על האריזה מדווח כאפס, אבל הסיבים והחלבון נשארים נמוכים יחסית להשוואה, כפי שאופייני לפריכיית תירס נטולת תוספת דגן נוסף או קטניות.",
-      "score": 65.3,
+      "score": 67.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -1821,163 +1983,7 @@
       "rank": 38,
       "retailer": "shufersal",
       "rowVerdict": "תירס מהווה תשעים ותשעה אחוז מהמשקל כאן, עם מלח ותוסף תחליב יחיד לצדו. הסיבים והחלבון נמוכים יחסית להשוואה, אופייני לפריכיית תירס בלבד, ללא דגן או קטנייה נוספים.",
-      "score": 65.2,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7290118426530",
-      "brand": "אסם",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "name_he": "לציטין",
-          "tier": "functional"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "גריסי תירס (74%), אורז מלא (25%), מלח, תוסף תחליב. סיבים וחלבון נמוכים יחסית להשוואה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "גריסי תירס (74%), אורז מלא (25%), מלח, מתחלב (לציטין סויה). מכיל סויה",
-        "limitingFactors": [
-          "סיבים 3 גרם וחלבון 7 גרם ל-100 גרם, נמוכים יחסית להשוואה",
-          "תוסף תחליב אחד ברשימה"
-        ],
-        "nutrition": {
-          "energyKcal": 384.0,
-          "fat": 2.0,
-          "fiber": 3.2,
-          "protein": 7.3,
-          "sodium": 400.0,
-          "sugar": 0.4
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "B",
-      "id": "bsip1_ricecakes_7290118426530",
-      "imageUrl": "/products/7290118426530.webp",
-      "insightLine": "גריסי תירס ואורז מלא, עם תוסף תחליב יחיד ברשימה.",
-      "name": "פיטנס פריכיות דקות",
-      "nameHe": "פיטנס פריכיות דקות",
-      "rank": 39,
-      "retailer": "shufersal",
-      "rowVerdict": "גריסי תירס מהווים כשלושה רבעים מהמשקל, ואורז מלא משלים את השאר, עם תוסף תחליב יחיד ברשימה. הסיבים והחלבון נמוכים יחסית להשוואה, טיפוסי לפריכיית תירס-אורז בסיסית ללא תוספת קטנייה או דגן נוסף.",
-      "score": 65.1,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7290118426516",
-      "brand": "פיטנס",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "name_he": "לציטין",
-          "tier": "functional"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "גריסי תירס (74%), אורז שחור מלא (25%), מלח, תוסף תחליב. סיבים וחלבון נמוכים יחסית להשוואה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "גריסי תירס (74%), אורז שחור מלא (25%), מלח, מתחלב (לציטין סויה)",
-        "limitingFactors": [
-          "סיבים 3 גרם וחלבון 7 גרם ל-100 גרם, נמוכים יחסית להשוואה",
-          "תוסף תחליב אחד ברשימה"
-        ],
-        "nutrition": {
-          "energyKcal": 384.0,
-          "fat": 2.0,
-          "fiber": 3.2,
-          "protein": 7.3,
-          "sodium": 400.0,
-          "sugar": 0.4
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "C",
-      "id": "bsip1_ricecakes_7290118426516",
-      "imageUrl": "/products/7290118426516.webp",
-      "insightLine": "גריסי תירס ואורז שחור מלא, עם תוסף תחליב יחיד ברשימה.",
-      "name": "פיטנס פריכיות דקות תירס",
-      "nameHe": "פיטנס פריכיות דקות תירס",
-      "rank": 40,
-      "retailer": "shufersal",
-      "rowVerdict": "גריסי תירס מהווים כשלושה רבעים מהמשקל, ואורז שחור מלא משלים את השאר, עם תוסף תחליב יחיד. הסיבים והחלבון נמוכים יחסית להשוואה. השם 'פיטנס' לא מוסיף כאן יתרון תזונתי מיוחד מעבר להרכב עצמו.",
-      "score": 64.5,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "_website_cluster": "refined_white",
-      "barcode": "7296073398875",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "name_he": "לציטין",
-          "tier": "functional"
-        },
-        {
-          "e_number": "E392",
-          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
-          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
-          "name_he": "תמציות רוזמרין",
-          "tier": "likely-neutral"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "קמח חיטה לבן ועמילן תירס, שני סוגי סוכר. סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "קמח חיטה, עמילן תירס, שמנים צמחיים (דקל, חמניות), סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה, מלח, שמרים, מתחלב: לציטין סויה, חומרי תפיחה : נתרן ואמוניום קרבונטים, מעכב חמצון: תמצית רוזמרין.",
-        "limitingFactors": [
-          "אין דגן מלא ברשימה",
-          "שני סוגי סוכר (דקסטרוז ופרוקטוז)",
-          "סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
-        ],
-        "nutrition": {
-          "energyKcal": 452,
-          "fat": 3.5,
-          "fiber": 2,
-          "protein": 9,
-          "sodium": 390,
-          "sugar": null
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "C",
-      "id": "bsip1_crackers_7296073398875",
-      "imageUrl": "/products/7296073398875.webp",
-      "insightLine": "סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר מכל 53 המוצרים בהשוואה, ושני סוגי סוכר ברשימה.",
-      "name": "קרם קרקר",
-      "nameHe": "קרם קרקר",
-      "rank": 41,
-      "retailer": "shufersal",
-      "rowVerdict": "דגן מלא נעדר לגמרי מהרשימה: קמח חיטה לבן ועמילן תירס הם הבסיס, ולצדם שני סוגי סוכר, דקסטרוז ופרוקטוז. הסיבים, 2 גרם ל-100 גרם, נמנים עם הנמוכים ביותר מכל 53 המוצרים בהשוואה. תוסף תחליב ונוגד חמצון טבעי משלימים רשימה שנשארת בלי עוגן תזונתי חזק.",
-      "score": 64.3,
+      "score": 67.3,
       "source_traceability_status": "resolved"
     },
     {
@@ -2027,16 +2033,172 @@
         ],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "C",
+      "grade": "B",
       "id": "bsip1_ricecakes_7290110560300",
       "imageUrl": "/products/7290110560300.webp",
       "insightLine": "קמח חומוס ועדשים שחורות מרימים את החלבון והסיבים, אבל שני מקורות סוכר ורשימת תוספים ארוכה מצטרפים לצדם.",
       "name": "פריכיות משולש פלפל שחור",
       "nameHe": "פריכיות משולש פלפל שחור",
-      "rank": 42,
+      "rank": 39,
       "retailer": "shufersal",
       "rowVerdict": "הבסיס כאן הוא קמח חומוס וקמח אורז, ולצדם עדשים שחורות וקינואה שתורמים לחלבון ולסיבים, שניהם גבוהים יחסית להשוואה כולה. עם זאת, שני מקורות סוכר, מלטודקסטרין ודקסטרוז, מתווספים לרשימה, לצד שמן חמניות ומספר תוספי מזון. פלפל שחור ותבלינים אחרים נותנים את הטעם.",
-      "score": 62.9,
+      "score": 67.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290118426530",
+      "brand": "אסם",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "גריסי תירס (74%), אורז מלא (25%), מלח, תוסף תחליב. סיבים וחלבון נמוכים יחסית להשוואה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "גריסי תירס (74%), אורז מלא (25%), מלח, מתחלב (לציטין סויה). מכיל סויה",
+        "limitingFactors": [
+          "סיבים 3 גרם וחלבון 7 גרם ל-100 גרם, נמוכים יחסית להשוואה",
+          "תוסף תחליב אחד ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 384.0,
+          "fat": 2.0,
+          "fiber": 3.2,
+          "protein": 7.3,
+          "sodium": 400.0,
+          "sugar": 0.4
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7290118426530",
+      "imageUrl": "/products/7290118426530.webp",
+      "insightLine": "גריסי תירס ואורז מלא, עם תוסף תחליב יחיד ברשימה.",
+      "name": "פיטנס פריכיות דקות",
+      "nameHe": "פיטנס פריכיות דקות",
+      "rank": 40,
+      "retailer": "shufersal",
+      "rowVerdict": "גריסי תירס מהווים כשלושה רבעים מהמשקל, ואורז מלא משלים את השאר, עם תוסף תחליב יחיד ברשימה. הסיבים והחלבון נמוכים יחסית להשוואה, טיפוסי לפריכיית תירס-אורז בסיסית ללא תוספת קטנייה או דגן נוסף.",
+      "score": 67.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "7296073398875",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן ועמילן תירס, שני סוגי סוכר. סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "קמח חיטה, עמילן תירס, שמנים צמחיים (דקל, חמניות), סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה, מלח, שמרים, מתחלב: לציטין סויה, חומרי תפיחה : נתרן ואמוניום קרבונטים, מעכב חמצון: תמצית רוזמרין.",
+        "limitingFactors": [
+          "אין דגן מלא ברשימה",
+          "שני סוגי סוכר (דקסטרוז ופרוקטוז)",
+          "סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר בהשוואה כולה"
+        ],
+        "nutrition": {
+          "energyKcal": 452,
+          "fat": 3.5,
+          "fiber": 2,
+          "protein": 9,
+          "sodium": 390,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7296073398875",
+      "imageUrl": "/products/7296073398875.webp",
+      "insightLine": "סיבים 2 גרם ל-100 גרם, בין הנמוכים ביותר מכל 53 המוצרים בהשוואה, ושני סוגי סוכר ברשימה.",
+      "name": "קרם קרקר",
+      "nameHe": "קרם קרקר",
+      "rank": 41,
+      "retailer": "shufersal",
+      "rowVerdict": "דגן מלא נעדר לגמרי מהרשימה: קמח חיטה לבן ועמילן תירס הם הבסיס, ולצדם שני סוגי סוכר, דקסטרוז ופרוקטוז. הסיבים, 2 גרם ל-100 גרם, נמנים עם הנמוכים ביותר מכל 53 המוצרים בהשוואה. תוסף תחליב ונוגד חמצון טבעי משלימים רשימה שנשארת בלי עוגן תזונתי חזק.",
+      "score": 66.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290118426516",
+      "brand": "פיטנס",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "גריסי תירס (74%), אורז שחור מלא (25%), מלח, תוסף תחליב. סיבים וחלבון נמוכים יחסית להשוואה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "גריסי תירס (74%), אורז שחור מלא (25%), מלח, מתחלב (לציטין סויה)",
+        "limitingFactors": [
+          "סיבים 3 גרם וחלבון 7 גרם ל-100 גרם, נמוכים יחסית להשוואה",
+          "תוסף תחליב אחד ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 384.0,
+          "fat": 2.0,
+          "fiber": 3.2,
+          "protein": 7.3,
+          "sodium": 400.0,
+          "sugar": 0.4
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_ricecakes_7290118426516",
+      "imageUrl": "/products/7290118426516.webp",
+      "insightLine": "גריסי תירס ואורז שחור מלא, עם תוסף תחליב יחיד ברשימה.",
+      "name": "פיטנס פריכיות דקות תירס",
+      "nameHe": "פיטנס פריכיות דקות תירס",
+      "rank": 42,
+      "retailer": "shufersal",
+      "rowVerdict": "גריסי תירס מהווים כשלושה רבעים מהמשקל, ואורז שחור מלא משלים את השאר, עם תוסף תחליב יחיד. הסיבים והחלבון נמוכים יחסית להשוואה. השם 'פיטנס' לא מוסיף כאן יתרון תזונתי מיוחד מעבר להרכב עצמו.",
+      "score": 66.6,
       "source_traceability_status": "resolved"
     },
     {
@@ -2085,58 +2247,7 @@
       "rank": 43,
       "retailer": "shufersal",
       "rowVerdict": "תירס הוא הרכיב הראשי כאן, עם שמן חמניות ותוסף תחליב מצטרפים לרשימה. הסיבים, 3 גרם ל-100 גרם, נמנים עם הנמוכים ביותר מכל 53 המוצרים בהשוואה. הוספת שמן צמחי לא מתורגמת כאן ליתרון תזונתי נוסף.",
-      "score": 61.4,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "barcode": "7296073450740",
-      "brand": "ARDO",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "name_he": "לציטין",
-          "tier": "functional"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "תפוח אדמה מיובש (41%), עמילן תפוח אדמה, קמח אורז, אפונה ירוקה מיובשת, שמן חמניות. שומן בין הגבוהים בהשוואה, סיבים וחלבון בינוניים.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "תפו\"א מיובש (41.2%), עמילן תפו\"א (16.9%), קמח אורז (16.9%), אפונה ירוקה מיובשת (13%), שמן חמניות, מלח, מונע התגיישות (אבקת צלולוז) , מתחלב (לציטין סויה). מכיל סויה",
-        "limitingFactors": [
-          "שומן 11 גרם ל-100 גרם, בין הגבוהים בהשוואה, בעיקר משמן חמניות",
-          "תוסף תחליב אחד ברשימה"
-        ],
-        "nutrition": {
-          "energyKcal": 427.0,
-          "fat": 11.0,
-          "fiber": 4.0,
-          "protein": 7.7,
-          "sodium": 370.0,
-          "sugar": 1.2
-        },
-        "positiveSignals": [
-          "אפונה ירוקה מיובשת כמקור חלבון וסיבים אמיתי"
-        ],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "C",
-      "id": "bsip1_ricecakes_7296073450740",
-      "imageUrl": "/products/7296073450740.webp",
-      "insightLine": "אפונה ירוקה מיובשת מתווספת לתפוח אדמה ואורז, אבל שמן חמניות ותוסף תחליב מצטרפים גם הם.",
-      "name": "חטיפי פריכיות בטעם טבעי",
-      "nameHe": "חטיפי פריכיות בטעם טבעי",
-      "rank": 44,
-      "retailer": "shufersal",
-      "rowVerdict": "תפוח אדמה מיובש ועמילן תפוח אדמה מהווים כחמישים ושמונה אחוז מהמשקל, וקמח אורז ואפונה ירוקה מיובשת משלימים את השאר. השומן כאן, 11 גרם ל-100 גרם, בין הגבוהים בהשוואה, בעיקר משמן חמניות. הסיבים והחלבון נשארים בינוניים, ותוסף תחליב אחד נמצא ברשימה.",
-      "score": 59.8,
+      "score": 63.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -2199,10 +2310,10 @@
       "insightLine": "84 אחוז קמח לבן ושלושה מקורות סוכר: השומשום הוא כמעט הדבר היחיד לצדם.",
       "name": "קרקר שומשום אסם",
       "nameHe": "קרקר שומשום אסם",
-      "rank": 45,
+      "rank": 44,
       "retailer": "shufersal",
       "rowVerdict": "קמח חיטה לבן שולט כמעט לגמרי ברשימה הזו, 84 אחוז מהמשקל, וסוכר, גלוטן חיטה וסירופ גלוקוזה משלימים את השאר. השומשום, 7 אחוז, הוא כל מה שיש כאן מעבר לבסיס הלבן. נתוני הסיבים לא צוינו על האריזה, ויש ברשימה כמה תוספי מזון.",
-      "score": 59.3,
+      "score": 63.4,
       "source_traceability_status": "resolved"
     },
     {
@@ -2261,10 +2372,120 @@
       "insightLine": "519 קלוריות ל-100 גרם: הגבוה ביותר מכל 53 המוצרים בהשוואה.",
       "name": "קרקר דגנים ללת\"ס",
       "nameHe": "קרקר דגנים ללת\"ס",
-      "rank": 46,
+      "rank": 45,
       "retailer": "shufersal",
       "rowVerdict": "הקרקר הזה נושא את הקלוריות הגבוהות ביותר מכל המוצרים בהשוואה, 519 ל-100 גרם, וגם הנתרן שלו נמנה עם הגבוהים ביותר. שומשום, חמניות, פשתן, דלעת וקצח לצד ביצים דוחפים את החלבון למעלה, אבל הבסיס עצמו נשאר קמח חיטה לבן ושמן קנולה, בלי דגן מלא.",
-      "score": 57.6,
+      "score": 62.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7296073450740",
+      "brand": "ARDO",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "תפוח אדמה מיובש (41%), עמילן תפוח אדמה, קמח אורז, אפונה ירוקה מיובשת, שמן חמניות. שומן בין הגבוהים בהשוואה, סיבים וחלבון בינוניים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "תפו\"א מיובש (41.2%), עמילן תפו\"א (16.9%), קמח אורז (16.9%), אפונה ירוקה מיובשת (13%), שמן חמניות, מלח, מונע התגיישות (אבקת צלולוז) , מתחלב (לציטין סויה). מכיל סויה",
+        "limitingFactors": [
+          "שומן 11 גרם ל-100 גרם, בין הגבוהים בהשוואה, בעיקר משמן חמניות",
+          "תוסף תחליב אחד ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 427.0,
+          "fat": 11.0,
+          "fiber": 4.0,
+          "protein": 7.7,
+          "sodium": 370.0,
+          "sugar": 1.2
+        },
+        "positiveSignals": [
+          "אפונה ירוקה מיובשת כמקור חלבון וסיבים אמיתי"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_ricecakes_7296073450740",
+      "imageUrl": "/products/7296073450740.webp",
+      "insightLine": "אפונה ירוקה מיובשת מתווספת לתפוח אדמה ואורז, אבל שמן חמניות ותוסף תחליב מצטרפים גם הם.",
+      "name": "חטיפי פריכיות בטעם טבעי",
+      "nameHe": "חטיפי פריכיות בטעם טבעי",
+      "rank": 46,
+      "retailer": "shufersal",
+      "rowVerdict": "תפוח אדמה מיובש ועמילן תפוח אדמה מהווים כחמישים ושמונה אחוז מהמשקל, וקמח אורז ואפונה ירוקה מיובשת משלימים את השאר. השומן כאן, 11 גרם ל-100 גרם, בין הגבוהים בהשוואה, בעיקר משמן חמניות. הסיבים והחלבון נשארים בינוניים, ותוסף תחליב אחד נמצא ברשימה.",
+      "score": 61.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "74375",
+      "brand": "אסם",
+      "categoryTotal": 53,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן (79%), שמנים צמחיים, לתת שעורה, סוכר וסירופ גלוקוזה. מספר תוספי מזון, שחלקם שנויים במחלוקת. נתוני סיבים לא צוינו על האריזה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "קמח חיטה (79%) (מכיל גלוטן), שמנים צמחיים, תמצית לתת שעורה, חומר תפיחה (E503), סוכר, סירופ גלוקוזה, מלח, תחליף מלח (מלח אשלגן), מתחל ב (לציטין סויה), חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [
+          "79% מהבסיס הוא קמח חיטה לבן, ללא דגן מלא כלל",
+          "סוכר וסירופ גלוקוזה כשני מקורות סוכר",
+          "נתוני סיבים לא צוינו על האריזה",
+          "מספר תוספי מזון, שחלקם שנויים במחלוקת"
+        ],
+        "nutrition": {
+          "energyKcal": 468,
+          "fat": 0.25,
+          "fiber": null,
+          "protein": 8,
+          "sodium": 400,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_74375",
+      "imageUrl": "/products/img1ued86p.webp",
+      "insightLine": "שבעים ותשעה אחוז קמח לבן, בלי גרם אחד של דגן מלא.",
+      "name": "קרקר זהב אסם",
+      "nameHe": "קרקר זהב אסם",
+      "rank": 47,
+      "retailer": "shufersal",
+      "rowVerdict": "כמעט כל הבסיס של הקרקר הזה הוא קמח חיטה לבן, 79 אחוז מהמשקל, ולצדו שמנים, סוכר וסירופ גלוקוזה. דגן מלא לא נמצא בשום צורה ברשימה, ונתוני הסיבים לא צוינו על האריזה. כמה תוספי מזון, חלקם שנויים במחלוקת, משלימים רשימה שבנויה כולה על קמח מזוקק.",
+      "score": 51.7,
       "source_traceability_status": "resolved"
     },
     {
@@ -2340,69 +2561,10 @@
       "insightLine": "נתרן 754 מיליגרם ל-100 גרם, בין הגבוהים ביותר מכל 53 המוצרים בהשוואה.",
       "name": "קרקר טופז שומשום",
       "nameHe": "קרקר טופז שומשום",
-      "rank": 47,
-      "retailer": "shufersal",
-      "rowVerdict": "הנתרן בקרקר הזה, 754 מיליגרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל המוצרים בהשוואה. קמח חיטה לבן, סירופ גלוקוזה וסוכר אינוורטי בונים את הבסיס, וחמישה תוספי מזון, חלקם שנויים במחלוקת, מצטרפים לרשימה. שומשום הוא התוספת היחידה מעבר לבסיס התעשייתי הזה.",
-      "score": 50.4,
-      "source_traceability_status": "resolved"
-    },
-    {
-      "_website_cluster": "refined_white",
-      "barcode": "74375",
-      "brand": "אסם",
-      "categoryTotal": 53,
-      "confidence": "partial",
-      "confidence_label_he": "נתונים בבדיקה",
-      "confidence_level": "sufficient",
-      "confidence_sub_reason": "low_extraction",
-      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
-      "d4_additives": [
-        {
-          "e_number": "E322",
-          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
-          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
-          "name_he": "לציטין",
-          "tier": "functional"
-        },
-        {
-          "e_number": "E224",
-          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
-          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
-          "name_he": "סולפיטים (תרכובת לא מפורטת)",
-          "tier": "contested"
-        }
-      ],
-      "expansion": {
-        "comparisonContext": "קמח חיטה לבן (79%), שמנים צמחיים, לתת שעורה, סוכר וסירופ גלוקוזה. מספר תוספי מזון, שחלקם שנויים במחלוקת. נתוני סיבים לא צוינו על האריזה.",
-        "confidenceLabel": "נתונים בבדיקה",
-        "ingredients": "קמח חיטה (79%) (מכיל גלוטן), שמנים צמחיים, תמצית לתת שעורה, חומר תפיחה (E503), סוכר, סירופ גלוקוזה, מלח, תחליף מלח (מלח אשלגן), מתחל ב (לציטין סויה), חומר לטיפול בקמח (סולפיט).",
-        "limitingFactors": [
-          "79% מהבסיס הוא קמח חיטה לבן, ללא דגן מלא כלל",
-          "סוכר וסירופ גלוקוזה כשני מקורות סוכר",
-          "נתוני סיבים לא צוינו על האריזה",
-          "מספר תוספי מזון, שחלקם שנויים במחלוקת"
-        ],
-        "nutrition": {
-          "energyKcal": 468,
-          "fat": 0.25,
-          "fiber": null,
-          "protein": 8,
-          "sodium": 400,
-          "sugar": null
-        },
-        "positiveSignals": [],
-        "servingNote": "ל-100 גרם"
-      },
-      "grade": "D",
-      "id": "bsip1_crackers_74375",
-      "imageUrl": "/products/img1ued86p.webp",
-      "insightLine": "שבעים ותשעה אחוז קמח לבן, בלי גרם אחד של דגן מלא.",
-      "name": "קרקר זהב אסם",
-      "nameHe": "קרקר זהב אסם",
       "rank": 48,
       "retailer": "shufersal",
-      "rowVerdict": "כמעט כל הבסיס של הקרקר הזה הוא קמח חיטה לבן, 79 אחוז מהמשקל, ולצדו שמנים, סוכר וסירופ גלוקוזה. דגן מלא לא נמצא בשום צורה ברשימה, ונתוני הסיבים לא צוינו על האריזה. כמה תוספי מזון, חלקם שנויים במחלוקת, משלימים רשימה שבנויה כולה על קמח מזוקק.",
-      "score": 49.4,
+      "rowVerdict": "הנתרן בקרקר הזה, 754 מיליגרם ל-100 גרם, נמנה עם הגבוהים ביותר מכל המוצרים בהשוואה. קמח חיטה לבן, סירופ גלוקוזה וסוכר אינוורטי בונים את הבסיס, וחמישה תוספי מזון, חלקם שנויים במחלוקת, מצטרפים לרשימה. שומשום הוא התוספת היחידה מעבר לבסיס התעשייתי הזה.",
+      "score": 51.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -2473,7 +2635,7 @@
         "positiveSignals": [],
         "servingNote": "ל-100 גרם"
       },
-      "grade": "D",
+      "grade": "C",
       "id": "bsip1_crackers_7290018790328",
       "imageUrl": "/products/7290018790328.webp",
       "insightLine": "נתרן 1,200 מיליגרם ל-100 גרם, הגבוה ביותר מכל 53 המוצרים בהשוואה, בפער גדול מכל מוצר אחר.",
@@ -2482,7 +2644,7 @@
       "rank": 49,
       "retailer": "shufersal",
       "rowVerdict": "המלח הוא הסיפור המרכזי כאן: 1,200 מיליגרם נתרן ל-100 גרם, הגבוה ביותר מכל המוצרים בהשוואה, בפער ניכר. הסיבים, 1.5 גרם ל-100 גרם, הם במקביל הנמוכים ביותר מכל 53 המוצרים. הבסיס הוא קמח חיטה לבן עם שמן דקל ושלושה מקורות סוכר, ורשימת תוספי המזון ארוכה וכוללת תוספים שחלקם שנויים במחלוקת.",
-      "score": 48.1,
+      "score": 50.3,
       "source_traceability_status": "resolved"
     },
     {
@@ -2539,7 +2701,7 @@
       "rank": 50,
       "retailer": "shufersal",
       "rowVerdict": "תפוח אדמה מיובש ועמילן תפוח אדמה בונים את רוב הבסיס כאן, וקמח אורז משלים חלק נוסף. החלבון, 5.5 גרם ל-100 גרם, הוא הנמוך ביותר מכל 53 המוצרים בהשוואה. שלושה מקורות סוכר, דקסטרוז, סוכר לבן ואבקת סוכר, מצטרפים לרשימה ארוכה של שלושה עשר רכיבים, לצד שמן חמניות ומספר תוספי מזון.",
-      "score": 45.8,
+      "score": 47.0,
       "source_traceability_status": "resolved"
     },
     {
@@ -2599,7 +2761,7 @@
       "rank": 51,
       "retailer": "shufersal",
       "rowVerdict": "הסוכר בקרקר הזה, 8.5 גרם ל-100 גרם, הוא הגבוה ביותר מבין המוצרים שמצהירים על תכולת סוכר, וגם הקלוריות והנתרן נמנים עם הגבוהים. קמח חיטה לבן וסירופ גלוקוז-פרוקטוז בונים את הבסיס, בלי גרם דגן מלא. חומרי התפחה בלבד מופיעים כתוספים, בלי תוסף שנוי במחלוקת ברשימה.",
-      "score": 44.5,
+      "score": 46.7,
       "source_traceability_status": "resolved"
     },
     {
@@ -2671,7 +2833,7 @@
       "rank": 52,
       "retailer": "shufersal",
       "rowVerdict": "רשימת הרכיבים של הפריכייה הזו כוללת עשרים ואחד פריטים, הארוכה ביותר מכל 53 המוצרים בהשוואה: קמח אורז, קמח תירס מלא, קמח חומוס, שמן קנולה, קמח שיבולת שועל מלא, קינואה, סוכר, אבקת קייל, בצל מיובש, תחליף מלח, ומספר חומרי טעם, ריח ותפיחה. אחד מהתוספים, מווסת חומציות, שנוי במחלוקת. השומן, 13.6 גרם ל-100 גרם, גם הוא בין הגבוהים ביותר בהשוואה. תערובת הדגנים המגוונת כאן מתורגמת בפועל לרשימה תעשייתית ארוכה.",
-      "score": 43.2,
+      "score": 46.5,
       "source_traceability_status": "resolved"
     },
     {
@@ -2721,7 +2883,7 @@
       "rank": 53,
       "retailer": "shufersal",
       "rowVerdict": "מתחת לציפוי בטעם שוקולד מסתתרת פריכיית אורז מלא רגילה, אבל הציפוי עצמו משנה את כל התמונה. הוא בנוי משמנים ושומנים מהצומח, חלקם מוקשים חלקית, וסוכר ואבקת קקאו. השומן הרווי שנוצר מכך, 14 גרם ל-100 גרם, הוא הגבוה ביותר מבין 34 המוצרים החדשים שנבדקו בקטגוריה. נתוני הסיבים והסוכר לא צוינו על האריזה עבור המוצר הזה.",
-      "score": 41.2,
+      "score": 42.7,
       "source_traceability_status": "resolved"
     }
   ]

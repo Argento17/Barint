@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T07:57:07.283120Z",
+  "trace_generated_at": "2026-07-05T08:57:09.315408Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_ricecakes_7290119373352",
@@ -274,10 +274,10 @@
   ],
   "dimension_scores": {
     "processing_quality": 44.0,
-    "nutrient_density": 32.4,
+    "nutrient_density": 36.5,
     "calorie_density": 55.0,
     "glycemic_quality": 90.4,
-    "protein_quality": 27.5,
+    "protein_quality": 33.8,
     "additive_quality": 48.0,
     "satiety_support": 34.7,
     "fat_quality": 88.0,
@@ -286,10 +286,10 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 44.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=5.5g→27.5, fiber=4.2g→41.5, weighted 65/35=32.4",
+    "nutrient_density": "protein=5.5g→33.8, fiber=4.2g→41.5, weighted 65/35=36.5",
     "calorie_density": "kcal=432.0, category=cracker → 55",
     "glycemic_quality": "90 - sugar_penalty(8.0) + fiber(8.4) + wg(0) = 90.4",
-    "protein_quality": "protein=5.5g base=27.5, source=whole_food(×1.0) → 27.5",
+    "protein_quality": "protein=5.5g base=33.8, source=whole_food(×1.0) → 33.8",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0 id_delta=+2→48.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.5×3 + 4.2×5) / 432.0 × 400 = 34.7",
     "fat_quality": "EV-012 fat_ratio: fat=10.0g ratio=10.111 base=93.0-seed5-trans0=88.0",
@@ -308,7 +308,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 52.78,
+  "weighted_dimension_score": 54.02,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -412,7 +412,7 @@
     }
   ],
   "binding_cap": 72,
-  "score_after_cap": 52.78,
+  "score_after_cap": 54.02,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -474,7 +474,7 @@
   "total_penalty_before_scaling": 7.0,
   "total_penalty_after_scaling": 7.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 45.78,
+  "score_after_penalty": 47.02,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -543,11 +543,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 45.78,
+  "score_after_floors": 47.02,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 45.8,
+  "final_score_estimate": 47.0,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -558,19 +558,19 @@
     "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
   ],
   "structural_class": {
-    "primary": "D",
-    "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.319,
-    "secondary": "F",
-    "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.319,
+    "primary": "E",
+    "primary_label": "Engineered Wellness System",
+    "primary_confidence": 0.328,
+    "secondary": "D",
+    "secondary_label": "Industrially Reconstructed",
+    "secondary_confidence": 0.282,
     "class_weights": {
-      "A": 0.051,
-      "B": 0.051,
-      "C": 0.019,
-      "D": 0.319,
-      "E": 0.241,
-      "F": 0.319
+      "A": 0.045,
+      "B": 0.045,
+      "C": 0.017,
+      "D": 0.282,
+      "E": 0.328,
+      "F": 0.282
     },
     "is_between_worlds": true,
     "classification_notes": [

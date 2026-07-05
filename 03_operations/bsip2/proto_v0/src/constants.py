@@ -440,6 +440,11 @@ PROTEIN_SCALE_TABLES = {
     "yogurt":            [(0,0),(2,20),(3.5,40),(5,58),(7,75),(9,90),(11,95),(99,100)],
     "bread":             [(0,0),(4,30),(6,45),(8,60),(10,72),(13,85),(99,95)],
     "snack_bar_granola": [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
+    # EV-104 (TASK-516/517 follow-up, D7 co-sign WITH CONDITIONS, Adversarial QA
+    # Condition-5 sign-off): real measured protein distribution across the live
+    # 53-product crackers/ricecakes shelf (n=53, min=5.5g, median=9.0g, max=16.0g).
+    # Anchors: max 16.0g -> mass 95; median 9.0g -> mass 58 (top of EV-030 target band).
+    "cracker":           [(0,0),(3,15),(5,30),(7,45),(9,58),(11,75),(13,85),(16,95),(99,100)],
     "default":           [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
 }
 
@@ -593,6 +598,37 @@ SUGAR_SHELF_REL_YOGURT_FLOOR = 62
 SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G = 12.0
 SUGAR_SHELF_REL_YOGURT_P_MAX = 6
 SUGAR_SHELF_REL_YOGURT_B_MAX = 3
+
+# EV-105v2-FINAL — yogurt×sugar shelf-relative, TWO-POOL split (TASK-515/515A, 2026-07-05).
+# D6 (Nutrition Agent) + D7 (Product Agent) CO-SIGNED. Recomputed from the 117-product
+# TASK-515/515A SHIPPING corpus (122 loaded - 2 soy out-of-scope - 3 Nutrition-ruled display
+# exclusions), split spoonable(94)/drinkable(23). Source of these exact numbers:
+# 02_products/yogurt_system/bsip2_task515_v3/run_record.json (pool_shelf_stats + ev105_final).
+# ADDITIVE ONLY: these constants are not yet referenced by any call site in score_engine.py —
+# the bsip2_task515_v3 run computed scores in-process via set_shelf_stats()/clear_shelf_stats()
+# using these exact values (0-diff proof: pool_shelf_stats.spoonable.median=4.65/scale=4.6 in
+# the run_record match verbatim below). Persisting them here is a record of the co-signed
+# constant, not new engine wiring — no other category, and no other yogurt subpool, reads
+# these names, so this write cannot move any published score.
+#
+# SPOONABLE pool (n_total=94, n_with_sugars_g=80): low-variance guard PASSED (scale 4.6 >= the
+# SUGAR_SHELF_SCALE_GUARD floor of 3.0). Floor/threshold/P_MAX/B_MAX inherited unchanged from
+# EV-088 (same mechanism, pool-specific stats).
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_MEDIAN = 4.65
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_IQR_SCALE = 4.6      # robust_scale (IQR-primary); n=80 with sugars_g
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_N = 80
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_FLOOR = 62
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_FLOOR_THRESHOLD_G = 12.0
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_P_MAX = 6
+SUGAR_SHELF_REL_YOGURT_SPOONABLE_B_MAX = 3
+#
+# DRINKABLE pool (n_total=23, n_with_sugars_g=22): low-variance guard FAILED (scale 1.85 <
+# 3.0) — ruled an HONEST finding, not a defect to patch around. Per the D6/D7 co-sign,
+# drinkable stays UNSET / absolute-floor-only: deliberately NO
+# SUGAR_SHELF_REL_YOGURT_DRINKABLE_* shelf-relative surcharge/relief constant is persisted.
+# Do not add one without a fresh D6+D7 co-sign on a future recomputation. The yogurt_drinks
+# frontend page instead carries the standard D13-approved sugar category-caveat box at
+# go-live (content/frontend attach the existing approved copy; not authored by this entry).
 
 # EV-089 cheese_spreads×sat_fat shelf-relative (P119, 2026-06-14; n=24 cream_cheese from run_cheese_003)
 # Scope guard: category=="dairy_protein" AND category_subtype in CREAM_CHEESE_SPREAD_SUBTYPES.

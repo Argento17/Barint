@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T07:57:07.243126Z",
+  "trace_generated_at": "2026-07-05T08:57:09.270382Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_ricecakes_7290017325422",
@@ -235,10 +235,10 @@
   ],
   "dimension_scores": {
     "processing_quality": 64.0,
-    "nutrient_density": 43.4,
+    "nutrient_density": 51.6,
     "calorie_density": 70.0,
     "glycemic_quality": 98.6,
-    "protein_quality": 44.0,
+    "protein_quality": 56.7,
     "additive_quality": 100,
     "satiety_support": 53.2,
     "fat_quality": 88.7,
@@ -247,10 +247,10 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 64.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=8.8g→44.0, fiber=4.3g→42.2, weighted 65/35=43.4",
+    "nutrient_density": "protein=8.8g→56.7, fiber=4.3g→42.2, weighted 65/35=51.6",
     "calorie_density": "kcal=360.0, category=cracker → 70",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(8.6) + wg(0) = 98.6",
-    "protein_quality": "protein=8.8g base=44.0, source=whole_food(×1.0) → 44.0",
+    "protein_quality": "protein=8.8g base=56.7, source=whole_food(×1.0) → 56.7",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.8×3 + 4.3×5) / 360.0 × 400 = 53.2",
     "fat_quality": "fat_v1(fat=3.0g<8.0): sat=1.0g base=88.7-seed0-trans0=88.7",
@@ -269,7 +269,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 71.28,
+  "weighted_dimension_score": 73.78,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -364,7 +364,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 71.28,
+  "score_after_cap": 73.78,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -415,7 +415,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 71.28,
+  "score_after_penalty": 73.78,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -476,15 +476,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 71.28,
+  "score_after_floors": 73.78,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 71.3,
+  "final_score_estimate": 73.8,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: nutrient_density=43.4 (lowest dimension)"
+    "PRIMARY SIGNAL: nutrient_density=51.6 (lowest dimension)"
   ],
   "unresolved_flags": [
     "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
@@ -492,23 +492,23 @@
   "structural_class": {
     "primary": "B",
     "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.426,
+    "primary_confidence": 0.404,
     "secondary": "A",
     "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.301,
+    "secondary_confidence": 0.285,
     "class_weights": {
-      "A": 0.301,
-      "B": 0.426,
-      "C": 0.191,
+      "A": 0.285,
+      "B": 0.404,
+      "C": 0.181,
       "D": 0.0,
-      "E": 0.082,
+      "E": 0.13,
       "F": 0.0
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_2_signal",
       "no_additives_detected",
-      "moderate_protein_quality",
+      "high_protein_quality",
       "minimal_ingredients",
       "zero_additive_categories"
     ],
