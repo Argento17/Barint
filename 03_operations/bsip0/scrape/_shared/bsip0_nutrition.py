@@ -867,7 +867,25 @@ _YOHANANOF_LABEL_MAP: list[tuple[str, str]] = [
     ("נתרן", "sodium"),
     ("סך הפחמימות", "carbs"),
     ("סוכרים מתוך פחמימות", "sugar"),
-    ("מתוכן כפיות סוכר", "sugar_teaspoons"),
+    # "סוכרים: לקטוז" ("Sugars: lactose") is a real observed Yohananof phrasing
+    # (TASK-515/515A, 2026-07-05) that the line above does NOT match (different
+    # literal text) — without this entry the true sugar-in-grams row is silently
+    # dropped entirely. Any "סוכרים:" (colon) row is the grams figure; the
+    # teaspoon sub-row below is handled separately and never collides with this
+    # (neither string is a substring of the other).
+    ("סוכרים:", "sugar"),
+    # BUG (found via TASK-515 cross-check, fixed 2026-07-05): this row's field name
+    # used to be "sugar_teaspoons", which contains "sugar" as a literal substring.
+    # classify_nutr_label() (below) does a bare `"sugar" in low` check and was
+    # reclassifying this TEASPOON count back into the "sugar" (grams) field,
+    # silently overwriting/pre-empting the real gram value whenever this row
+    # appeared earlier in the row list (it reads e.g. "1.5" tsp vs the true "5.6g"
+    # — exactly the disagreement pattern 3 SKUs showed against Shufersal in the
+    # TASK-515 cross-check: 5.6 vs 1.5, 3.4 vs 0.75, 4.3 vs 1.0 — each ~4.2x off,
+    # consistent with a tsp-to-gram mismatch). Renamed so it contains NEITHER
+    # "sugar" nor "סוכר" as a substring — classify_nutr_label() now correctly
+    # returns None for it (ignored, not folded into any of the 8 target fields).
+    ("מתוכן כפיות סוכר", "teaspoon_marker_noop"),
     ("סיבים תזונתיים", "fiber"),
     ("חלבונים", "protein"),
 ]

@@ -1,0 +1,37 @@
+{
+  "_comment": "TASK-515/515A Stage 3 -- yogurt DRINKABLE subpool. Reads already-scored BSIP2 traces from bsip2_task515_v3/drinkable/products. Sugar shelf-relative guard FAILED for this pool (scale 1.85 < 3.0 low-variance guard) -- ruled honest; per D6/D7 co-sign NO SUGAR_SHELF_REL_YOGURT_DRINKABLE_* constant was persisted, sugar stays UNSET / absolute-floor-only for drinkable (see EV-105v2-FINAL). This page REQUIRES the standard D13-approved sugar category-caveat box at go-live (content/frontend attach existing approved copy -- not authored by this config). No live baseline exists yet -> baseline_json null. All copy fields render PENDING_COPY.",
+  "category": "yogurt-drinkable",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\drinkable\\products",
+  "baseline_json": null,
+  "retailer_scope": null,
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": "Guard FAILED for drinkable (scale 1.85 < 3.0) -- no shelf-relative sugar surcharge/relief constant exists for this pool by D6/D7 ruling; sugar sits at absolute-floor-only. This config does not re-score.",
+    "bsip1_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
+    "corpus_filter": null,
+    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record.json (TASK-515/515A shipping run, D6+D7 co-signed EV-105v2-FINAL)"
+  },
+  "exclusions": [],
+  "extension_fields": [],
+  "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
+  "_status": "SCORED -- NOT PUBLISHED. REQUIRES D13 sugar category-caveat box at go-live (guard fail, honest). Copy = PENDING_COPY pending two-gate sign-off."
+}

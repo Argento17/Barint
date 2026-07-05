@@ -69,6 +69,33 @@ def pubmed_search(query: str, retmax: int = 10) -> list[str]:
     return data.get("esearchresult", {}).get("idlist", [])
 
 
+def _article_doi(article_node, article_el) -> str | None:
+    """Return the DOI of the article ITSELF — never a cited reference's DOI.
+
+    PubMed efetch XML nests each cited reference's own id list under
+    ``PubmedData/ReferenceList/Reference/ArticleIdList``. A recursive search like
+    ``.//ArticleIdList/ArticleId`` matches those too and can silently return an
+    unrelated paper's DOI (the bug behind TASK-513: 3/9 briefed DOIs resolved to
+    unrelated papers). Only two locations are the article's own id:
+      1. ``PubmedArticle/PubmedData/ArticleIdList/ArticleId[@IdType="doi"]`` (preferred)
+      2. ``MedlineCitation/Article/ELocationID[@EIdType="doi"]`` (fallback)
+    Never descend into ReferenceList/CommentsCorrectionsList — those are cited works.
+    """
+    id_list = article_node.find("PubmedData/ArticleIdList")
+    if id_list is not None:
+        for idn in id_list.findall("ArticleId"):
+            if idn.get("IdType") == "doi":
+                text = (idn.text or "").strip()
+                if text:
+                    return text
+    eloc = article_el.find("ELocationID[@EIdType='doi']")
+    if eloc is not None:
+        text = (eloc.text or "").strip()
+        if text:
+            return text
+    return None
+
+
 def pubmed_fetch(pmids: list[str]) -> list[Paper]:
     """Fetch full records (with abstracts) for PMIDs via efetch XML."""
     if not pmids:
@@ -100,10 +127,7 @@ def pubmed_fetch(pmids: list[str]) -> list[Paper]:
             last, fore = a.findtext("LastName"), a.findtext("ForeName")
             if last:
                 authors.append(f"{fore} {last}".strip() if fore else last)
-        doi = None
-        for idn in art.findall(".//ArticleIdList/ArticleId"):
-            if idn.get("IdType") == "doi":
-                doi = (idn.text or "").strip()
+        doi = _article_doi(art, art_el)
         pub_types = [pt.text for pt in art_el.findall(".//PublicationType") if pt.text]
         papers.append(Paper(
             source="pubmed", id=pmid, title=title, journal=journal, year=year,

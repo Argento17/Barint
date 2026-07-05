@@ -1,0 +1,162 @@
+{
+  "run_id": "run_yogurt_task515_20260705T054247",
+  "created_at": "2026-07-05T05:42:47.884351+00:00",
+  "sources": {
+    "shufersal": 139,
+    "victory": 0,
+    "yohananof": 8
+  },
+  "plausibility_proposed_operative": {
+    "passed": 134,
+    "quarantined": 13,
+    "quarantined_examples": [
+      {
+        "name": "יוגורט יווני 6.5% שומן",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט בסגנון יווני 6.5%",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט בסגנון יווני 6.5%",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט גו נטול לקטוז",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 196g > 105g (impossible per-100g)",
+          "kcal 86 vs Atwater estimate 796 (>30% mismatch)"
+        ]
+      },
+      {
+        "name": "חיידקי קפיר להכנה ביתית",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט פרו קראנצ' מריר",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט מחלב עיזים",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט יווני 6.5% חלבון",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט יווני 6.5% שומן",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      },
+      {
+        "name": "יוגורט קוליוס יווני",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      }
+    ]
+  },
+  "plausibility_authoritative_shared_gate_comparison": {
+    "passed": 45,
+    "total": 147,
+    "note": "FoodClass.DAIRY_SOLID/BEVERAGE unmodified shared gate — reported for comparison only, NOT operative for this run's corpus (see run_plausibility() docstring: floor miscalibrated for yogurt, flagged for Nutrition Agent review, not silently patched into the shared module)."
+  },
+  "field_coverage": {
+    "name": "129/129",
+    "barcode": "129/129",
+    "nutrition": "129/129",
+    "ingredients": "129/129",
+    "images": "122/129"
+  },
+  "cross_check": {
+    "unique_barcodes": 141,
+    "multi_source_count": 6,
+    "multi_source_barcodes": [
+      "7290110578053",
+      "7290112330390",
+      "7290110565527",
+      "7290107936309",
+      "7290110558284",
+      "7290119385768"
+    ],
+    "disagreements": [
+      {
+        "barcode": "7290110578053",
+        "name": "יוגורט קרנצ' כדורי דגנים",
+        "panels": [
+          {
+            "source": "shufersal",
+            "energy_kcal": 102.0
+          },
+          {
+            "source": "yohananof",
+            "energy_kcal": 174.0
+          }
+        ]
+      }
+    ]
+  },
+  "dedup": {
+    "survivors": 129,
+    "dropped": 5
+  },
+  "subpool_distribution": {
+    "drinkable": 23,
+    "spoonable": 106
+  },
+  "edge_case_distribution": {
+    "null": 122,
+    "labneh": 7
+  },
+  "source_distribution": {
+    "shufersal": 122,
+    "yohananof": 7
+  },
+  "validator_checks": {
+    "1_anti_fabrication": "PASS",
+    "2_portal_availability": "WARN",
+    "3_product_identity": "PARTIAL — verified for Shufersal via ld+json name/barcode cross-check at scrape time; NOT independently re-verified for Victory/Yohananof (barcode used to locate the card is the sole identity signal, no separate on-page name capture in the modal) — flagged as a scraper follow-up.",
+    "4_scope_boundaries": "FAIL",
+    "5_consumer_output": "DEFERRED_NOT_APPLICABLE_AT_BSIP0",
+    "6_run_summary": "PASS"
+  },
+  "overall_status": "FAIL",
+  "run_summary": {
+    "scrape_success_rate": 0.878,
+    "source_verified": true,
+    "null_imageUrl_rate": 0.054,
+    "scope_rejected_count": 18,
+    "portal_availability": {
+      "https://www.shufersal.co.il": "UP",
+      "https://www.victoryonline.co.il": "DOWN",
+      "https://yochananof.co.il": "UP"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "method": "classify_category() captured before/after the router_v2.py edit (18 BARCODE_ROUTING_OVERRIDES entries + 3 new Stage-1 HARD_ANCHORS entries: יופלה שטוזים / אקטיביה / מולר אקטיב), over every product in 4 live category corpora (milk_and_alternatives, hard_cheeses, snack_bars, juices)",
+  "n_products_compared": 213,
+  "n_category_or_subtype_diffs": 0,
+  "diffs": [],
+  "n_new_override_barcodes": 18,
+  "n_new_hard_anchors": 3,
+  "new_hard_anchor_terms": [
+    "יופלה שטוזים",
+    "אקטיביה",
+    "מולר אקטיב"
+  ],
+  "barcode_collisions_with_live_corpora": [],
+  "result": "PASS -- 0 diffs, 0 collisions",
+  "note": "Superseded an earlier barcode-override-only attempt for 3 barcodes (58030, 7290112346797, 7290114311069) after empirically discovering Stage 5 (BARCODE_ROUTING_OVERRIDES) is unreachable when a Stage-1 HARD_ANCHOR fires first and returns early -- classify_category() has no fallthrough from Stage 1 to Stage 5. Re-verified zero-cross-category-impact after switching those 3 to Stage-1 anchors instead."
+}

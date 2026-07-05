@@ -1,0 +1,190 @@
+{
+  "run_id": "run_yogurt_task515_bsip2_v3_shipping",
+  "task": "TASK-515 / TASK-515A shipping-corpus finalize + re-score (v3)",
+  "generated": "2026-07-05T08:53:31.364761+00:00",
+  "run_type": "SCORED -- NOT PUBLISHED (measured category build; go-live gated by orchestrator per the 7-stage pipeline protocol)",
+  "engine": "proto_v0 score_engine.py -- UNMODIFIED (uniform-baseline doctrine)",
+  "corpus": {
+    "source_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
+    "n_loaded_raw": 122,
+    "discarded_prior_stage_soy": {
+      "count": 2,
+      "barcodes": {
+        "7290110329792": "מעדן סויה ביו אפרסק -- soy-based (מיצוי פולי סויה 74%), non-dairy; not a yogurt product",
+        "7290110329815": "מעדן סויה ביו מעודנת -- soy-based (מיצוי פולי סויה 93%), non-dairy; not a yogurt product"
+      }
+    },
+    "excluded_this_stage_display_ruling": {
+      "count": 3,
+      "barcodes": {
+        "4068028": "ציזיקי לשתיה -- Nutrition ruling: savory flavored-milk drink, no starter culture declared in ingredient text; not yogurt. EXCLUDE from shipping/display corpus. v2 trace kept on disk (was scored non-dairy_protein / not-cultured, never displayed as yogurt).",
+        "7290119377480": "יוגורט פרו עם שוקולד -- Nutrition ruling: scores under the confectionery lens via TASK-362 co-signed Rule 3 (chocolate-name-marker reroute). Displaying a confectionery-scored product on the yogurt page is incoherent. EXCLUDE from shipping/display corpus. v2 trace (snack_bar_granola/confectionery_chocolate scored) kept on disk at bsip2_task515_v2/spoonable/products/, untouched.",
+        "7290119385768": "דנונה פרו קראנצ' פצפוץ שוקולד מריר -- same ruling and disposition as 7290119377480."
+      }
+    },
+    "n_discarded_total": 5,
+    "n_in_shipping_corpus": 117,
+    "subpool_distribution": {
+      "spoonable": 94,
+      "drinkable": 23
+    },
+    "other_subpool_count": 0,
+    "target_confirmed": {
+      "spoonable_target": 94,
+      "drinkable_target": 23,
+      "spoonable_actual": 94,
+      "drinkable_actual": 23,
+      "matches_target": true
+    }
+  },
+  "router_check": {
+    "n_dairy_protein": 117,
+    "n_non_dairy_protein": 0,
+    "non_dairy_protein_rows": [],
+    "subtype_distribution": {
+      "yogurt": 75,
+      "bio_yogurt": 12,
+      "froop_yogurt": 1,
+      "yogurt_mixin": 6,
+      "protein_yogurt": 22,
+      "greek_yogurt": 1
+    },
+    "n_not_in_cultured_yogurt_subtypes": 0,
+    "not_in_cultured_yogurt_subtypes_rows": [],
+    "shipping_corpus_router_clean": true
+  },
+  "pool_shelf_stats": {
+    "spoonable": {
+      "n_total_products": 94,
+      "n_with_sugars_g": 80,
+      "median": 4.65,
+      "scale": 4.6,
+      "scale_source": "compute_shelf_stats(scale_type='iqr')",
+      "min_n_guard": 20,
+      "guard_n_pass": true,
+      "low_variance_guard_threshold": 3.0,
+      "guard_scale_pass": true,
+      "guard_pass_overall": true
+    },
+    "drinkable": {
+      "n_total_products": 23,
+      "n_with_sugars_g": 22,
+      "median": 4.95,
+      "scale": 1.85,
+      "scale_source": "compute_shelf_stats(scale_type='iqr')",
+      "min_n_guard": 20,
+      "guard_n_pass": true,
+      "low_variance_guard_threshold": 3.0,
+      "guard_scale_pass": false,
+      "guard_pass_overall": false
+    }
+  },
+  "pool_distributions": {
+    "spoonable": {
+      "n_scored": 94,
+      "n_out_of_scope": 0,
+      "min": 35.1,
+      "median": 66.4,
+      "max": 92.6,
+      "mean": 64.54,
+      "stdev": 15.55,
+      "grade_counts": {
+        "A": 11,
+        "B": 38,
+        "C": 23,
+        "D": 20,
+        "S": 2
+      }
+    },
+    "drinkable": {
+      "n_scored": 23,
+      "n_out_of_scope": 0,
+      "min": 35.2,
+      "median": 57.7,
+      "max": 77.2,
+      "mean": 56.8,
+      "stdev": 11.3,
+      "grade_counts": {
+        "B": 5,
+        "C": 13,
+        "D": 5
+      }
+    }
+  },
+  "pool_errors": {
+    "spoonable": [],
+    "drinkable": []
+  },
+  "nova_scoring_path_confirmation": {
+    "claim": "NOVA stays descriptive; not a new scoring input for this run",
+    "evidence": [
+      "nova_proxy.infer_nova(product, l3) never reads product.get('nova_proxy') -- unchanged from v1/v2; this run adds zero new NOVA logic."
+    ]
+  },
+  "no_bleed_confirmation": {
+    "claim": "No other category's published scores moved; score_engine/constants/router are 0-diff for THIS run vs. the v2 run that already landed the (proven zero-blast-radius) router fix",
+    "basis": [
+      "This run performs ZERO writes to score_engine.py / constants.py / router_v2.py (read-only imports). It is a corpus-composition change (3 barcodes excluded from the loaded set) plus a fresh shelf-stat recompute on the resulting pools -- NOT an engine change.",
+      "score_engine_sha256 and constants_sha256 below are compared against v2's recorded values; MATCH == 0-diff confirmed.",
+      "router_v2_sha256 below is compared against v2's recorded value; MATCH == no further router edits happened between v2 and this v3 run (v2's additive BARCODE_ROUTING_OVERRIDES fix is unchanged, still in effect).",
+      "score_product() is invoked ONLY for the (now 117) yogurt BSIP1 records that survive exclusion, loaded from 02_products/yogurt_system/bsip1_task515 in this process. No other category's BSIP1/BSIP2 pipeline was touched or re-run.",
+      "set_shelf_stats()/clear_shelf_stats() mutate an in-process global discarded when this one-shot script exits."
+    ],
+    "score_engine_sha256": "535a9ed1b704e587546c2c314ef76abddf543310dcce0b7e74fb8e7f26453f34",
+    "constants_sha256": "024add660c2c1084cc74c422fe79aaa856c6162f1444e4cfdbecdc18e863a8e9",
+    "router_v2_sha256": "9da6f3b7b86a82c4e655fe2768dcf018b478999a8fea4ab0364c21274103e3f9",
+    "v2_score_engine_sha256": "535a9ed1b704e587546c2c314ef76abddf543310dcce0b7e74fb8e7f26453f34",
+    "v2_constants_sha256": "024add660c2c1084cc74c422fe79aaa856c6162f1444e4cfdbecdc18e863a8e9",
+    "v2_router_v2_sha256": "9da6f3b7b86a82c4e655fe2768dcf018b478999a8fea4ab0364c21274103e3f9",
+    "score_engine_0diff_vs_v2": true,
+    "constants_0diff_vs_v2": true,
+    "router_v2_0diff_vs_v2": true
+  },
+  "ev105_final": {
+    "id": "EV-105v2-FINAL",
+    "status": "SCORED / PROPOSAL -- NOT LIVE -- not written to constants.py",
+    "supersedes": "EV-105v2 (v2, run_yogurt_task515_bsip2_v2) -- computed on the pre-exclusion 96/24 pool split; this run's 94/23 split (post the 3 Nutrition-ruled display exclusions) is the FINAL shipping proposal.",
+    "approval_state": "Nutrition Agent D6: APPROVED (the exclusion ruling that produced this corpus IS the D6 approval for the recomputed constants). Product Agent D7: PENDING co-sign before any constants.py edit or go-live.",
+    "topic": "Yogurt sugar shelf-relative -- TWO-POOL split (spoonable vs drinkable), recomputed from the 117-product TASK-515/515A SHIPPING corpus (122 loaded - 2 soy out-of-scope - 3 Nutrition-ruled display exclusions).",
+    "floor_and_bands_inherited_unchanged_from_EV-088": {
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3
+    },
+    "spoonable": {
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_MEDIAN": 4.65,
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_IQR_SCALE": 4.6,
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_N": 80,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+      "guard_pass": true
+    },
+    "drinkable": {
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_MEDIAN": 4.95,
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_IQR_SCALE": 1.85,
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_N": 22,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+      "guard_pass": false
+    }
+  },
+  "content_frontend_note": {
+    "note_for_content_and_frontend_stage": "The DRINKABLE (yogurt_drinks / TASK-515A) page requires the sugar category-caveat box on go-live: the shelf-relative sugar guard FAILS on the drinkable pool (IQR scale below the low-variance floor) so sugar stays UNSET / absolute-floor-only for that pool -- consumers need the standard yellow category-caveat explaining why. Nutrition D13 has already approved the caveat copy for this situation; this run does NOT author it -- Content/Frontend attach the existing D13-approved copy to the yogurt_drinks page at build time.",
+    "authored_here": false
+  },
+  "excluded_traces_kept_on_disk": {
+    "location": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v2",
+    "barcodes": [
+      "4068028",
+      "7290119377480",
+      "7290119385768"
+    ],
+    "note": "These 3 barcodes' v2 trace JSON files were NOT deleted or moved; they simply do not appear in this v3 shipping output, per the Nutrition ruling."
+  },
+  "output_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3"
+}

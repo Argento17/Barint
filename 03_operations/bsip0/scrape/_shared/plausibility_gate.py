@@ -34,7 +34,27 @@ class FoodClass(str, Enum):
     MOIST_BAKED = "moist_baked"    # cakes, fresh bread, pastries (water-heavy)
     SPREAD = "spread"             # hummus, dips, nut butters (water/oil heavy)
     BEVERAGE = "beverage"         # juices, drinks, milk (mostly water)
-    DAIRY_SOLID = "dairy_solid"    # hard/brined cheese, yogurt
+    DAIRY_SOLID = "dairy_solid"    # hard/brined cheese (yogurt no longer maps here —
+                                   # see DAIRY_SEMISOLID/DAIRY_CULTURED_DRINK below;
+                                   # labneh is the one yogurt-family edge case that
+                                   # STILL routes here per the ruling, see docstring)
+    # ── Added 2026-07-05, Nutrition Agent ruling (TASK-515/515A), ADDITIVE ONLY —
+    # 01_framework/governance/yogurt_plausibility_floor_ruling_v1.json. Yogurt
+    # (~85-90% water, fermented) is structurally different from hard/brined cheese
+    # (~40-60% water, concentrated by draining/pressing); applying DAIRY_SOLID's
+    # 20g floor to yogurt was a category-calibration error that false-positived on
+    # the majority of correctly-labeled yogurt (see plausibility_gate false-positive
+    # finding, TASK-515 Stage 0 run). These two classes are yogurt-only; DAIRY_SOLID
+    # (cheese) is verified byte-identical below this edit (see task515 return).
+    DAIRY_SEMISOLID = "dairy_semisolid"        # spoonable yogurt: plain/low-fat/Greek/
+                                                # skyr/flavored/protein-fortified.
+                                                # EXCLUDES labneh (routes to DAIRY_SOLID).
+    DAIRY_CULTURED_DRINK = "dairy_cultured_drink"  # drinkable yogurt subpool: yogurt
+                                                     # drinks, drinkable kefir, ayran,
+                                                     # lassi. NOT generic BEVERAGE —
+                                                     # that class's 120kcal ceiling
+                                                     # wrongly rejects protein/fat-
+                                                     # bearing cultured drinks.
 
 
 # accounted_mass = carbs + fat + protein (+ fiber if not already inside carbs).
@@ -47,6 +67,9 @@ ACCOUNTED_MASS_FLOOR = {
     FoodClass.SPREAD: 18.0,
     FoodClass.BEVERAGE: 2.0,
     FoodClass.DAIRY_SOLID: 20.0,
+    # Nutrition Agent ruling 2026-07-05 (yogurt_plausibility_floor_ruling_v1.json):
+    FoodClass.DAIRY_SEMISOLID: 8.0,
+    FoodClass.DAIRY_CULTURED_DRINK: 4.0,
 }
 
 # kcal floor/ceiling per-100g (sanity, not nutrition science).
@@ -57,6 +80,9 @@ KCAL_BOUNDS = {
     FoodClass.SPREAD: (40, 750),
     FoodClass.BEVERAGE: (0, 120),
     FoodClass.DAIRY_SOLID: (40, 450),
+    # Nutrition Agent ruling 2026-07-05 (yogurt_plausibility_floor_ruling_v1.json):
+    FoodClass.DAIRY_SEMISOLID: (30, 250),
+    FoodClass.DAIRY_CULTURED_DRINK: (20, 150),
 }
 
 # Ingredient tokens that REQUIRE sugar > 0 in the panel. If present and sugar==0,

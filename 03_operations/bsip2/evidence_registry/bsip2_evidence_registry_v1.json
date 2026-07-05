@@ -591,7 +591,30 @@
         ]
       },
       "risk_of_misuse": "Applying a score penalty for saccharin would unfairly disadvantage products where the risk is statistical, not individual",
-      "notes": "Related to EV-004 (allulose) and EV-005 (polyols). Three sweetener findings together form a complete sweetener tier framework."
+      "notes": "Related to EV-004 (allulose) and EV-005 (polyols). Three sweetener findings together form a complete sweetener tier framework.",
+      "corroboration_addenda": [
+        {
+          "date": "2026-06-18",
+          "classification": "CORROBORATES",
+          "posture_change": false,
+          "source": "Frontiers in Nutrition mouse model (sucralose/stevia intergenerational metabolic + genetic changes); UK Biobank observational CVD association; appetite-stimulation/satiety-disruption mechanism",
+          "summary": "Corroborates the existing EV-017 high-risk classification of sucralose. Does not justify a new signal or a heavier penalty.",
+          "reasoning": "New arms are mouse (intergenerational) or observational (UK Biobank CVD), not population-level RCT evidence that would lift EV-017 to a score-moving tier. Per the red-label de-anchor directive, corroborating evidence for a tier already recognised is logged as a second evidence arm, not a penalty increase.",
+          "label_derivability": "Sweetener identity (sucralose E955, steviol glycosides E960) is ingredient-text observable; intergenerational/appetite mechanisms are not per-SKU label-derivable and stay reference-only.",
+          "doi_status": "unconfirmed — Research Agent must verify before consumer copy citation (citations_discipline)"
+        },
+        {
+          "date": "2026-07-03",
+          "classification": "REFINES",
+          "posture_change": false,
+          "source": "Tufts Food is Medicine Institute (Mozaffarian et al.), narrative review + meta-analysis, \"Artificial and Other Non-Nutritive Sweeteners, the Microbiome, and Cardiometabolic Health,\" Current Atherosclerosis Reports vol 28 art 65, ~2026-06-30 (press: Tufts Now, EurekAlert, Newsweek). Pooled 21 adult RCTs, NNS vs noncaloric controls.",
+          "summary": "Raised fasting insulin and HbA1c with a trend toward worse insulin sensitivity across the pooled population (not confined to a responder subgroup), plus supporting observational-cohort links to cardiometabolic risk.",
+          "reasoning": "Materially different from the 2026-06-18 addendum: that one held the line because its corroborating arms were mouse/observational, not population-level RCT evidence. This source IS a population-level RCT meta-analysis and directly qualifies EV-017's should_affect_score_now rationale ('high inter-individual variability prevents population-level scoring'). It still does not flip the posture today because the meta pools NNS as a class and does not independently confirm EV-017's specific sucralose/saccharin-vs-stevia/monk-fruit tiering — a class-level signal is agnostic-to-threatening on the tier structure, not confirmatory of it.",
+          "open_question_for_d6_d7": "Should the flag-vs-score posture be revisited now that the individual-variability-only premise has a population-level RCT-meta counterexample? Requires Nutrition + Product D7 co-sign; trips the published-scores tripwire. Crux to resolve: the evidence operates at the sweetener CLASS level while EV-017's mechanism operates at the TIER level.",
+          "label_derivability": "Sweetener identity (sucralose E955, saccharin E954, steviol glycosides E960) remains ingredient-text observable.",
+          "doi_status": "unconfirmed — Research Agent must verify before consumer copy citation (citations_discipline)"
+        }
+      ]
     },
     {
       "finding_id": "EV-018",

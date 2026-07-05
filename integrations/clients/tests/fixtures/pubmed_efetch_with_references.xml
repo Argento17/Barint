@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+TASK-513 regression fixture — a saved (trimmed, but structurally faithful) PubMed
+efetch XML response. Mirrors the real shape that caused the wrong-DOI bug: each
+PubmedArticle carries its OWN doi under PubmedData/ArticleIdList, but ALSO carries a
+PubmedData/ReferenceList where every cited Reference has its OWN nested ArticleIdList
+with a DIFFERENT doi. A naive ".//ArticleIdList/ArticleId" search matches both and can
+return the cited paper's doi instead of the article's own.
+
+  - PMID 11111111 (Article A): has its own doi via ArticleIdList; ReferenceList carries
+    two unrelated reference DOIs that must NEVER be returned.
+  - PMID 22222222 (Article B): has NO doi anywhere (no ArticleIdList doi, no ELocationID
+    doi) but its ReferenceList reference DOES have a doi — must resolve to None, not the
+    borrowed reference doi.
+  - PMID 33333333 (Article C): has no PubmedData/ArticleIdList doi entry, but the
+    article's own ELocationID carries EIdType="doi" — exercises the fallback path.
+-->
+<PubmedArticleSet>
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">11111111</PMID>
+      <Article PubModel="Print">
+        <Journal>
+          <Title>The Lancet Diabetes &amp; Endocrinology</Title>
+          <JournalIssue>
+            <PubDate>
+              <Year>2024</Year>
+            </PubDate>
+          </JournalIssue>
+        </Journal>
+        <ArticleTitle>GLP-1 receptor agonists and cardiovascular outcomes: a systematic review</ArticleTitle>
+        <Abstract>
+          <AbstractText>This review summarizes cardiovascular outcome trials of GLP-1 receptor agonists.</AbstractText>
+        </Abstract>
+        <AuthorList>
+          <Author>
+            <LastName>Cohen</LastName>
+            <ForeName>Dana</ForeName>
+          </Author>
+        </AuthorList>
+        <PublicationTypeList>
+          <PublicationType>Systematic Review</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">11111111</ArticleId>
+        <ArticleId IdType="doi">10.1016/j.article-a.2024.00111</ArticleId>
+        <ArticleId IdType="pmc">PMC1111111</ArticleId>
+      </ArticleIdList>
+      <ReferenceList>
+        <Reference>
+          <Citation>UK Prospective Diabetes Study (UKPDS) Group. Lancet. 1998.</Citation>
+          <ArticleIdList>
+            <ArticleId IdType="pubmed">9742976</ArticleId>
+            <ArticleId IdType="doi">10.1016/S0140-6736(98)07019-6</ArticleId>
+          </ArticleIdList>
+        </Reference>
+        <Reference>
+          <Citation>Some mHealth RCT. J Med Internet Res. 2020.</Citation>
+          <ArticleIdList>
+            <ArticleId IdType="pubmed">32365123</ArticleId>
+            <ArticleId IdType="doi">10.2196/99999</ArticleId>
+          </ArticleIdList>
+        </Reference>
+      </ReferenceList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">22222222</PMID>
+      <Article PubModel="Print">
+        <Journal>
+          <Title>Journal of Lipid Research</Title>
+          <JournalIssue>
+            <PubDate>
+              <Year>2012</Year>
+            </PubDate>
+          </JournalIssue>
+        </Journal>
+        <ArticleTitle>Lipid metabolism in early-phase weight-loss studies (no DOI on record)</ArticleTitle>
+        <Abstract>
+          <AbstractText>Older record predating routine DOI assignment.</AbstractText>
+        </Abstract>
+        <AuthorList>
+          <Author>
+            <LastName>Levi</LastName>
+            <ForeName>Noam</ForeName>
+          </Author>
+        </AuthorList>
+        <PublicationTypeList>
+          <PublicationType>Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">22222222</ArticleId>
+      </ArticleIdList>
+      <ReferenceList>
+        <Reference>
+          <Citation>Some unrelated cited paper with its own doi.</Citation>
+          <ArticleIdList>
+            <ArticleId IdType="pubmed">55555555</ArticleId>
+            <ArticleId IdType="doi">10.1000/borrowed-reference-doi</ArticleId>
+          </ArticleIdList>
+        </Reference>
+      </ReferenceList>
+    </PubmedData>
+  </PubmedArticle>
+
+  <PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+      <PMID Version="1">33333333</PMID>
+      <Article PubModel="Electronic">
+        <Journal>
+          <Title>Diabetes Care</Title>
+          <JournalIssue>
+            <PubDate>
+              <Year>2023</Year>
+            </PubDate>
+          </JournalIssue>
+        </Journal>
+        <ELocationID EIdType="doi" ValidYN="Y">10.2337/article-c.2023.00333</ELocationID>
+        <ArticleTitle>Semaglutide dosing and adherence in a real-world cohort</ArticleTitle>
+        <Abstract>
+          <AbstractText>Cohort study of adherence patterns.</AbstractText>
+        </Abstract>
+        <AuthorList>
+          <Author>
+            <LastName>Peretz</LastName>
+            <ForeName>Ilan</ForeName>
+          </Author>
+        </AuthorList>
+        <PublicationTypeList>
+          <PublicationType>Journal Article</PublicationType>
+        </PublicationTypeList>
+      </Article>
+    </MedlineCitation>
+    <PubmedData>
+      <ArticleIdList>
+        <ArticleId IdType="pubmed">33333333</ArticleId>
+      </ArticleIdList>
+    </PubmedData>
+  </PubmedArticle>
+</PubmedArticleSet>

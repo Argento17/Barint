@@ -1,0 +1,63 @@
+{
+  "run_id": "run_yogurt_task515_bsip1",
+  "task": "TASK-515 / TASK-515A — Stage 1 (BSIP1 enrichment)",
+  "generated": "2026-07-05T07:52:42.512761+00:00",
+  "source_corpus_file": "C:\\Bari\\02_products\\yogurt_system\\bsip0_task515\\run_yogurt_task515_20260705T062308_corpus.json",
+  "enrichment_version": "bsip1_enrichment_v1",
+  "totals": {
+    "input_corpus": 126,
+    "excluded": 4,
+    "excluded_labneh": 4,
+    "excluded_cottage": 0,
+    "excluded_kefir": 0,
+    "final_enriched": 122
+  },
+  "subpool_distribution_post_exclusion": {
+    "drinkable": 23,
+    "spoonable": 99
+  },
+  "field_coverage_pct_of_final": {
+    "name": "122/122 (100.0%)",
+    "ingredients": "119/122 (97.5%)",
+    "nutrition_core_energy_and_protein": "122/122 (100.0%)",
+    "images": "117/122 (95.9%)",
+    "sat_fat_labeled": "65/122 (53.3%)",
+    "sugar_labeled": "107/122 (87.7%)",
+    "fiber_labeled": "51/122 (41.8%)"
+  },
+  "nova_distribution": {
+    "NOVA_4": 80,
+    "NOVA_1": 28,
+    "NOVA_3": 9,
+    "NOVA_2": 5
+  },
+  "allergen_distribution": {
+    "milk": 119,
+    "fish": 11,
+    "gluten": 2,
+    "soy": 6,
+    "tree_nuts": 11
+  },
+  "ingredient_text_cleanup": {
+    "boilerplate_trimmed_count": 108,
+    "stray_n_artifact_fixed_count": 15,
+    "marketing_bleed_discarded_count": 3,
+    "note": "boilerplate = repeated nutrition table + legal disclaimer bleed after the true ingredient list on Shufersal pages, cut at the earliest of ['ערכים תזונתיים', 'הנתונים המדויקים', 'יתכנו טעויות', 'התמונות והתאריכים', 'מכיל חלב', 'מכיל גלוטן', 'מכיל סויה', 'מכיל ביצים']. stray_n = a lost '\\n' that survived scraping as a literal 'n' glued to the next digit/space (e.g. 'ביפידוס.n20 גרם'); fixed only on the narrow '. n<space|digit>' pattern. marketing_bleed_discarded = the scraped 'ingredients_raw' field actually contained ad copy (e.g. Muller's templated bullet description) or a near-empty fragment instead of a real ingredient declaration — ingredients_text_he set to null for these per the missing-data discard rule (never fabricate a clean list out of marketing prose); ingredients_raw_he is preserved unmodified for audit."
+  },
+  "schema_finding": {
+    "finding": "The BSIP0 corpus mixes TWO distinct record shapes: 121 Shufersal records (rich schema: name_he/brand/image_urls/source_url/claims_raw) and 5 Yohananof records (minimal schema: name/status/provenance, no image_urls key at all, no brand key). All 5 Yohananof records genuinely have no image (0/5) and no brand (0/5) — this is real missing data, not a parsing bug; every one of the 5 does carry a populated `name` field under a different key, so overall name coverage is NOT degraded (matches the BSIP0 manifest's 126/126 name claim once both key names are checked)."
+  },
+  "bsip2_methodology_flags_for_nutrition_and_product": [
+    "Spoonable vs drinkable may need DIFFERENT serving-size / sugar-density norms at scoring time (a 100g drinkable serving is consumed very differently from a 100g spoonable serving) — Data Agent does not decide this, flagging per TASK-515A brief.",
+    "Whether spoonable and drinkable share the same comparison dimensions or need per-subpool dimension sets is a BSIP2 methodology call, not decided here.",
+    "NOVA proxy assigned in this Stage-1 pass is a DESCRIPTIVE attribute extraction (same class of label as hard_cheeses' NOVA proxy) — it is NOT a scoring rule and was not submitted for Nutrition+Product co-sign. It should not enter BSIP2 scoring logic without that review.",
+    "3 products are missing fat_g at the source (energy/protein/carbs/sodium present, fat_raw scraped as an empty string): barcodes 7290116936215, 7290116932774, 5416415. Kept in the corpus (BSIP0 already admitted them past its own gate); flagged here as partial data_sufficiency rather than re-discarded at BSIP1."
+  ],
+  "hard_rule_compliance": {
+    "off_used": false,
+    "off_count_in_final": 0,
+    "rescrape_performed": false,
+    "plausibility_gate_rerun": false,
+    "source_file_mutated": false
+  }
+}

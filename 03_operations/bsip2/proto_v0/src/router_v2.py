@@ -21,6 +21,7 @@ Key improvements over v1 (category_classifier.py):
 
 from __future__ import annotations
 import os as _os
+from input_loader import get_ingredients as _get_ingredients
 
 ROUTER_VERSION = "router_v2.5"  # TASK-394: BARI_R3_BISCUIT_NARROW_V1 promoted to production-default ON
 
@@ -213,6 +214,34 @@ HARD_ANCHORS: list[tuple[str, str, str | None, float]] = [
     ("דנונ.פרו", "dairy_protein", "protein_yogurt", 0.93),
     ("דנונה ביו", "dairy_protein", "bio_yogurt", 0.93),
     ("דנונה יווני", "dairy_protein", "greek_yogurt", 0.93),
+    # TASK-515/515A — 3 more yogurt brand-line anchors. These MUST be Stage-1
+    # HARD_ANCHORS (not BARCODE_ROUTING_OVERRIDES/Stage-5) because each of their
+    # 3 known products has a COMPETING Stage-1 anchor already firing first
+    # (classify_category() returns immediately on a Stage-1 anchor match, before
+    # Stage 5 is ever reached) — a barcode override for these 3 was tried first
+    # and empirically verified to have NO effect (Stage-5 unreachable), which is
+    # why these are here instead. Confidence set above the anchor each one must
+    # beat, per the same "higher confidence wins" _check_anchors() rule used by
+    # every entry above:
+    #   - "יופלה שטוזים" (0.95) beats bare "יופלה" (dessert, 0.91) — Stouzy is a
+    #     drinkable-yogurt sub-line (68% יוגורט per ingredient text), not the
+    #     base Yoplait dessert line.
+    #   - "אקטיביה" (0.94) beats "שיבולת שועל" (cereal/oatmeal, 0.88) — Activia's
+    #     oat-mixin SKU was routing to cereal. Deliberately NOT given a
+    #     "משקה"/"שתייה" exclusion (unlike the sub-brand anchors above) — TASK-515
+    #     confirmed drinkable Activia (משקה אקטיביה) is genuine cultured yogurt
+    #     and must ALSO route dairy_protein, not beverage.
+    #   - "מולר אקטיב" (0.94) beats bare "חלבון" (snack_bar_granola/protein_bar,
+    #     0.91) — Muller Activ's high-protein SKU was routing to protein_bar.
+    # All 3 confirmed genuinely cultured, milk-based yogurt by ingredient-text
+    # read (see BARCODE_ROUTING_OVERRIDES comment block below for the full
+    # TASK-515 disposition table). Zero-cross-category-impact proof: 213
+    # products across 4 other live categories (milk_and_alternatives,
+    # hard_cheeses, snack_bars, juices) re-classified before/after this edit —
+    # 0 diffs (see run_yogurt_task515_v2_tripwire_proof.json).
+    ("יופלה שטוזים", "dairy_protein", "yogurt", 0.95),
+    ("אקטיביה", "dairy_protein", "bio_yogurt", 0.94),
+    ("מולר אקטיב", "dairy_protein", "protein_yogurt", 0.94),
     # ── Brined cheeses (TASK-267 / EV-055) ───────────────────────────────────
     # Brined-cheese products whose names do NOT contain "גבינה"/"גבינת" (already
     # anchored above) use type-specific terms: פטה (feta), בולגרית (Bulgarian),
@@ -779,6 +808,98 @@ BARCODE_ROUTING_OVERRIDES: dict[str, tuple[str, str, float, str]] = {
                       "TASK-365 barcode override: cream-cookie format without חלבון in name; "
                       "All-In brand protein product confirmed on protein shelf; "
                       "קרם token caused false dessert routing"),
+
+    # ── TASK-515/515A — yogurt-corpus routing gap fixes ──────────────────────
+    # BSIP2 run_yogurt_task515_bsip2 found 20/122 yogurt-shelf products did not
+    # route to dairy_protein (mostly Actimel/Activia/Muller-Activ/Danone-drink
+    # brand transliterations lacking a "יוגורט"/"קפיר" marker token, so they fell
+    # through to default/beverage/dessert/cereal/snack_bar_granola instead), plus
+    # 3 already-dairy_protein products with no CULTURED_YOGURT_SUBTYPES subtype.
+    # Each entry below was confirmed genuinely cultured, milk-based yogurt by
+    # ingredient-text read (pasteurized milk + declared probiotic culture, e.g.
+    # BIFIDUS / L.CASEI / Bio) — see run_yogurt_task515_bsip2_v2 disposition
+    # table. Barcode-keyed (last-resort, Stage 5) so this can never affect any
+    # product/category outside these exact barcodes — zero-blast-radius by
+    # construction, unlike a name-substring HARD_ANCHORS entry.
+    # NOT fixed (left as-is), by design, per the same run's disposition table:
+    #   - 4068028  (ציזיקי לשתיה) — ambiguous cultured-dairy-drink vs. prepared
+    #     cucumber salad-drink; no declared starter culture in ingredient text
+    #     unlike every fixed entry below. Flagged to Nutrition, not forced.
+    #   - 7290119377480 / 7290119385768 (יוגורט פרו / דנונה פרו קראנצ' + chocolate)
+    #     — genuine yogurt, but TASK-362's co-signed Rule 3 (chocolate-name-marker
+    #     override) deliberately reroutes ANY dairy_protein/dessert/etc. result to
+    #     snack_bar_granola/confectionery_chocolate whenever a chocolate marker is
+    #     in the name. Overriding that here would require touching Rule 3 itself
+    #     (cross-category blast radius) — out of scope for this barcode-only fix.
+    #     Flagged to Nutrition/Product for a scoped ruling.
+    #   - 7290110329792 / 7290110329815 (מעדן סויה ביו) — soy-based, non-dairy;
+    #     already correctly NOT dairy_protein. Discarded from the yogurt corpus.
+    "58030": ("dairy_protein", "yogurt", 0.94,
+              "TASK-515: יופלה שטוזים משקה תות — ingredient text opens '68% יוגורט "
+              "2.2% שומן'; a genuine drinkable cultured yogurt, not a dessert. "
+              "'יופלה' anchor (dessert, conf 0.91) fired first; this is the "
+              "Stouzy drink sub-line, not the base Yoplait dessert line."),
+    "6664693": ("dairy_protein", "yogurt", 0.94,
+                "TASK-515: דנונה אפרסק3% שומן — pasteurized milk + BIFIDUS culture; "
+                "plain Danone yogurt cup with no 'יוגורט' token in name → fell to default."),
+    "7290102031276": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: אקטימל תות בננה מארז — Actimel; milk + cream + "
+                       "declared probiotic culture; brand token not previously anchored."),
+    "7290105364678": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: משקה אקטיביה אפרסק — Activia; milk + Bifidus "
+                       "Actiregularis culture; fell to beverage on 'משקה' token."),
+    "7290105965738": ("dairy_protein", "yogurt", 0.94,
+                       "TASK-515: דנונה לשתיה תות בננה — milk + BIFIDUS culture; "
+                       "plain Danone drinking yogurt, no brand-line anchor existed."),
+    "7290107937542": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: משקה אקטיביה תות 1.2% — Activia; same as 7290105364678."),
+    "7290107938396": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: מארז אקטימל תות — Actimel; same as 7290102031276."),
+    "7290107958035": ("dairy_protein", "yogurt", 0.94,
+                       "TASK-515: דנונה במתיקות מעודנת — milk + BIFIDUS culture; "
+                       "plain reduced-sweetness Danone yogurt, no brand-line anchor."),
+    "7290110552244": ("dairy_protein", "protein_yogurt", 0.94,
+                       "TASK-515: משקה דנונה פרו20 ללת\"ס — milk + whey protein + "
+                       "declared yogurt culture; existing 'דנונה פרו' anchor (0.93) is "
+                       "excluded when name contains 'משקה' (drinkable Danone-Pro was "
+                       "deliberately out of scope pre-515); this barcode override does "
+                       "NOT touch that anchor/exclusion, so the spoonable דנונה פרו line "
+                       "is unaffected. NOTE: BSIP1 subpool field for this barcode was "
+                       "corrected spoonable->drinkable to match its actual physical form "
+                       "(name says משקה); see bsip1_yogurt_7290110552244.json."),
+    "7290110561352": ("dairy_protein", "yogurt", 0.94,
+                       "TASK-515: דנונה דל לקטוז 200 גרם — milk + BIFIDUS culture; "
+                       "plain lactose-free Danone yogurt, no brand-line anchor."),
+    "7290110573713": ("dairy_protein", "yogurt_mixin", 0.94,
+                       "TASK-515: דנונה מולטי צ'יה — milk + chia + BIFIDUS culture; "
+                       "yogurt+mix-in compound product, same pattern as the existing "
+                       "'מולר מיקס' anchor (yogurt_mixin); fell to snack_bar_granola."),
+    "7290112341686": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: אקטיביה 3% מארז — Activia plain; brand token not "
+                       "previously anchored (ingredient text not parsed, but Activia "
+                       "is an unambiguous cultured-yogurt brand identity)."),
+    "7290112346797": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: אקטיביה שיבולת שועל שזיף — milk + oats + confirmed "
+                       "Bifidus Actiregularis culture; Activia+oat mix-in, fell to "
+                       "cereal/oatmeal (0.88) — no Activia brand anchor existed."),
+    "7290114311069": ("dairy_protein", "protein_yogurt", 0.94,
+                       "TASK-515: מולר אקטיב לבן0% 25חלבון — milk + Bio culture; "
+                       "Muller Activ high-protein yogurt; bare 'חלבון' anchor (0.91, "
+                       "snack_bar_granola/protein_bar) outscored dairy identity — no "
+                       "'מולר אקטיב' brand anchor existed (only מולר פרוטאין/פרופ/מיקס do)."),
+    "7290115676051": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: משקה אקטיביה עם ש.שועל — Activia+oats drink; milk + "
+                       "Bifidus Actiregularis culture; fell to beverage on 'משקה' token."),
+    # Already dairy_protein, subtype-only fix (CULTURED_YOGURT_SUBTYPES membership
+    # for the R7 fermentation-bonus gate; category itself was already correct).
+    "6664655": ("dairy_protein", "bio_yogurt", 0.94,
+                "TASK-515: אקטימל לבן מארז — Actimel plain; milk + L.CASEI DN114-001 "
+                "culture; router already said dairy_protein but subtype was None."),
+    "7290119380923": ("dairy_protein", "bio_yogurt", 0.94,
+                       "TASK-515: אקטימל לבן מארז (dup SKU) — same as 6664655."),
+    "7290114310536": ("dairy_protein", "protein_yogurt", 0.94,
+                       "TASK-515: מולר אקטיב לייט וניל — milk + Bio culture; router "
+                       "already said dairy_protein but subtype was None."),
 }
 
 
@@ -1020,21 +1141,22 @@ def classify_category(product: dict) -> dict:
     nn       = product.get("normalized_nutrition_per_100g") or {}
 
     # REQ-362-R1: resolve ingredient_count for Rule 2.  The count is taken from
-    # the BSIP1 ingredient list (already sanitized by the signal extractor).  If
-    # not present, fall back to a comma-split of the ingredient text — this must
-    # be consistent with what signal_extractor.py sees.
-    # BSIP1 uses "ingredients_list" (primary) or "ingredient_list" or "ingredients".
-    _ing_list = (product.get("ingredients_list")
-                 or product.get("ingredient_list")
-                 or product.get("ingredients")
-                 or [])
-    if _ing_list:
-        _ingredient_count = len(_ing_list)
-    else:
-        import re as _re
-        _ing_text_raw = product.get("ingredients_text_he") or ""
-        _parts = [x.strip() for x in _re.split(r"[,;]", _ing_text_raw) if x.strip() and len(x.strip()) > 1]
-        _ingredient_count = len(_parts)
+    # the BSIP1 ingredient list (already sanitized by the signal extractor).
+    #
+    # TASK-476: this used to duplicate its own "ingredients_list, else naive
+    # comma-split of ingredients_text_he" fallback here, independent of
+    # input_loader.get_ingredients(). That duplicate fallback did not respect
+    # parenthetical sub-groups (e.g. "קמחים 36% (פשתן, שומשום, אפונה, סויה,
+    # שקדים)" — one ingredient with a declared sub-group — split into 6 naive
+    # fragments instead of 1), which could inflate the count enough to
+    # mis-trigger the REQ-362-R2 engineered-bar override on products whose
+    # real ingredient count is well under the threshold. Now calls the same
+    # get_ingredients() the rest of the pipeline uses (ingredients_list →
+    # ingredient_order item texts → ingredients_text_he/ingredients_raw
+    # comma-split), so routing sees the identical, highest-fidelity count
+    # signal_extractor.py scores on — never a second, lower-fidelity count.
+    _ing_list = _get_ingredients(product)
+    _ingredient_count = len(_ing_list)
     # Inject for _apply_req362_overrides so it can log the count without re-deriving.
     product["_req362_ingredient_count"] = _ingredient_count
 

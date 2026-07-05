@@ -1,0 +1,160 @@
+{
+  "schema_version": "bsip1_v0_1",
+  "file_type": "product",
+  "canonical_product_id": "bsip1_yogurt_7290110561352",
+  "barcode": "7290110561352",
+  "canonical_name_he": "דנונה דל לקטוז 200 גרם",
+  "canonical_name_en": null,
+  "brand": null,
+  "weight_g": null,
+  "category": "yogurt_system",
+  "subpool": "spoonable",
+  "source_retailers": [
+    "yohananof"
+  ],
+  "retailer_prices": {
+    "yohananof": null
+  },
+  "image_url": null,
+  "source_url": null,
+  "normalized_nutrition_per_100g": {
+    "energy_kcal": 67.0,
+    "fat_g": 3.0,
+    "fat_saturated_g": 2.0,
+    "fat_trans_g": null,
+    "sodium_mg": 48.0,
+    "carbohydrates_g": 4.5,
+    "sugars_g": null,
+    "dietary_fiber_g": null,
+    "protein_g": 5.2
+  },
+  "energy_kcal": 67.0,
+  "fat_g": 3.0,
+  "fat_saturated_g": 2.0,
+  "fat_trans_g": null,
+  "protein_g": 5.2,
+  "carbohydrates_g": 4.5,
+  "sugars_g": null,
+  "sodium_mg": 48.0,
+  "dietary_fiber_g": null,
+  "calcium_mg": null,
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סידן (טרי קלציום פוספאט), בתוספת חיידק פרוביוטי Bifidus.",
+  "ingredients_raw_he": "חלב מפוסטר, רכיבי חלב, סידן (טרי קלציום פוספאט), בתוספת חיידק פרוביוטי Bifidus.",
+  "allergens_contains": [
+    "milk"
+  ],
+  "allergens_may_contain": [],
+  "missing_fields": [],
+  "data_sufficiency": "sufficient",
+  "nutrition_consistency_status": "consistent",
+  "consistency_checks": {
+    "sugar_le_carbs": true,
+    "satfat_le_fat": true,
+    "kcal_plausible": true,
+    "macros_plausible": true
+  },
+  "canonical_trust_level": "medium",
+  "canonical_trust_score": 0.7,
+  "confidence": 0.7,
+  "bsip1_trust_level": "medium",
+  "bsip1_trust_score": 0.7,
+  "bsip1_risk_flags": [
+    "single_source_only",
+    "no_image"
+  ],
+  "conflicts_summary": [],
+  "inferred_fields": [],
+  "audit_ref": null,
+  "provenance": {
+    "source": "yohananof",
+    "fetched_at": "2026-07-05T06:16:30.087032+00:00",
+    "panel_source": "yohananof",
+    "verification_status": "candidate"
+  },
+  "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
+  "run_id": "run_yogurt_task515_bsip1",
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, סידן (טרי קלציום פוספאט), בתוספת חיידק פרוביוטי Bifidus.",
+  "ingredients_raw_provenance": {
+    "source": "bsip1_text_fallback",
+    "bsip0_status": "bsip0_file_not_found",
+    "populated_at": "bsip1_enrichment_v1",
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
+  },
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "חלב מפוסטר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "רכיבי חלב",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סידן (טרי קלציום פוספאט)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "בתוספת חיידק פרוביוטי Bifidus.",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
+  "extracted_additives": [],
+  "extracted_flavors": [],
+  "extracted_sweeteners": [],
+  "extracted_protein_markers": [],
+  "extracted_matrix_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידק פרוביוטי",
+      "category": "live_cultures",
+      "position": 4
+    },
+    {
+      "term": "bifidus",
+      "category": "bifidobacterium",
+      "position": 4
+    }
+  ],
+  "extracted_roasting_markers": [],
+  "enrichment_summary": {
+    "ingredient_count_parsed": 4,
+    "additive_count": 0,
+    "flavor_marker_count": 0,
+    "sweetener_count": 0,
+    "protein_marker_count": 0,
+    "matrix_marker_count": 0,
+    "fermentation_marker_count": 2,
+    "roasting_marker_count": 0,
+    "has_flavor_descriptor": false,
+    "has_prebiotic_fiber": false,
+    "has_live_cultures": true,
+    "has_protein_isolate_or_concentrate": false
+  },
+  "enrichment_version": "bsip1_enrichment_v1",
+  "enrichment_warnings": [],
+  "nova_proxy": 1,
+  "nova_confidence": 0.8,
+  "nova_confidence_band": "medium",
+  "nova_notes": [
+    "minimal_ingredients_milk_cultures_only_or_no_ingredient_text: NOVA1 proxy"
+  ],
+  "detected_additives": [],
+  "additive_count": 0,
+  "ingredients_list": [
+    "חלב מפוסטר",
+    "רכיבי חלב",
+    "סידן (טרי קלציום פוספאט)",
+    "בתוספת חיידק פרוביוטי Bifidus."
+  ],
+  "ingredient_count": 4,
+  "ingredient_text_quality": "good"
+}

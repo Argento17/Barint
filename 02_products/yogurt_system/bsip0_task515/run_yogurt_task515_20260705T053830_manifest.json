@@ -1,0 +1,126 @@
+{
+  "run_id": "run_yogurt_task515_20260705T053830",
+  "created_at": "2026-07-05T05:38:30.685078+00:00",
+  "sources": {
+    "shufersal": 139,
+    "victory": 0,
+    "yohananof": 0
+  },
+  "plausibility": {
+    "passed": 43,
+    "quarantined": 96,
+    "quarantined_examples": [
+      {
+        "name": "יוגורט פרופ קציפת קיווי",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 18g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "אקטיביה 3% מארז",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 12g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "מולר פרופ אפרסק פסיפלורה",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 18g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט GO חלבון  25 גרם",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 19g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט פרופ קוקוס ואננס",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 19g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט מולר נטורל 1.7%",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 10g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט כבשים 5% שומן",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 14g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט עיזים ביו",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 11g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט פרופ קציפת מנגו",
+        "source": "shufersal",
+        "reasons": [
+          "accounted_mass 18g < floor 20g for dairy_solid (likely per-serving panel or truncated/contaminated)"
+        ]
+      },
+      {
+        "name": "יוגורט יווני 6.5% שומן",
+        "source": "shufersal",
+        "reasons": [
+          "panel is entirely empty (no usable macros)"
+        ]
+      }
+    ]
+  },
+  "cross_check": {
+    "unique_barcodes": 139,
+    "multi_source_count": 0,
+    "multi_source_barcodes": [],
+    "disagreements": []
+  },
+  "dedup": {
+    "survivors": 43,
+    "dropped": 0
+  },
+  "subpool_distribution": {
+    "drinkable": 23,
+    "spoonable": 20
+  },
+  "edge_case_distribution": {
+    "null": 39,
+    "labneh": 4
+  },
+  "source_distribution": {
+    "shufersal": 43
+  },
+  "validator_checks": {
+    "1_anti_fabrication": "PASS",
+    "2_portal_availability": "WARN",
+    "3_product_identity": "PARTIAL — verified for Shufersal via ld+json name/barcode cross-check at scrape time; NOT independently re-verified for Victory/Yohananof (barcode used to locate the card is the sole identity signal, no separate on-page name capture in the modal) — flagged as a scraper follow-up.",
+    "4_scope_boundaries": "FAIL",
+    "5_consumer_output": "DEFERRED_NOT_APPLICABLE_AT_BSIP0",
+    "6_run_summary": "FAIL"
+  },
+  "overall_status": "FAIL",
+  "run_summary": {
+    "scrape_success_rate": 0.309,
+    "source_verified": true,
+    "null_imageUrl_rate": 0.0,
+    "scope_rejected_count": 96,
+    "portal_availability": {
+      "https://www.shufersal.co.il": "UP",
+      "https://www.victoryonline.co.il": "DOWN",
+      "https://yochananof.co.il": "UP"
+    }
+  }
+}

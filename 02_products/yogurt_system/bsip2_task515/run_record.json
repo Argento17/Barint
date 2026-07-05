@@ -1,0 +1,995 @@
+{
+  "run_id": "run_yogurt_task515_bsip2",
+  "task": "TASK-515 / TASK-515A Stage 2 (BSIP2 scoring)",
+  "generated": "2026-07-05T08:10:25.617241+00:00",
+  "run_type": "SCORED -- NOT PUBLISHED (measured category build; go-live gated by orchestrator per the 7-stage pipeline protocol)",
+  "engine": "proto_v0 score_engine.py -- UNMODIFIED (uniform-baseline doctrine, no engine change, no bespoke loader)",
+  "flag_config": {
+    "BARI_RECAL_P0": "on",
+    "BARI_RECAL_P0_YOGURT_TRIM": "on",
+    "BARI_TASK144_FIXES": "off",
+    "BARI_TASK250_CONF": "on",
+    "BARI_SHELF_RELATIVE_V1": "on (engine default, unset by this script -- byte-identical to run_yogurt_006_shipcfg2)"
+  },
+  "corpus": {
+    "source_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
+    "n_loaded": 122,
+    "subpool_distribution": {
+      "spoonable": 99,
+      "drinkable": 23
+    },
+    "other_subpool_count": 0
+  },
+  "router_check": {
+    "n_dairy_protein": 102,
+    "n_non_dairy_protein": 20,
+    "non_dairy_protein_rows": [
+      {
+        "barcode": "4068028",
+        "name": "ציזיקי לשתיה",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "58030",
+        "name": "יופלה שטוזים משקה תות",
+        "subpool": "drinkable",
+        "router_category": "dessert",
+        "router_subtype": "flavored_yogurt_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "6664693",
+        "name": "דנונה אפרסק3% שומן",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290102031276",
+        "name": "אקטימל תות בננה מארז",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290105364678",
+        "name": "משקה אקטיביה אפרסק",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290105965738",
+        "name": "דנונה לשתיה תות בננה",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107937542",
+        "name": "משקה אקטיביה תות 1.2%",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107938396",
+        "name": "מארז אקטימל תות",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107958035",
+        "name": "דנונה במתיקות מעודנת",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110329792",
+        "name": "מעדן סויה ביו אפרסק",
+        "subpool": "spoonable",
+        "router_category": "dessert",
+        "router_subtype": "dairy_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110329815",
+        "name": "מעדן סויה ביו מעודנת",
+        "subpool": "spoonable",
+        "router_category": "dessert",
+        "router_subtype": "dairy_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110552244",
+        "name": "משקה דנונה פרו20 ללת\"ס",
+        "subpool": "spoonable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110561352",
+        "name": "דנונה דל לקטוז 200 גרם",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110573713",
+        "name": "דנונה מולטי  צ'יה",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290112341686",
+        "name": "אקטיביה 3% מארז",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290112346797",
+        "name": "אקטיביה שיבולת שועל שזיף",
+        "subpool": "spoonable",
+        "router_category": "cereal",
+        "router_subtype": "oatmeal",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290114311069",
+        "name": "מולר אקטיב לבן0% 25חלבון",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "protein_bar",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290115676051",
+        "name": "משקה אקטיביה עם ש.שועל",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290119377480",
+        "name": "יוגורט פרו עם שוקולד",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "confectionery_chocolate",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290119385768",
+        "name": "דנונה פרו קראנצ' פצפוץ שוקולד מריר",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "confectionery_chocolate",
+        "in_cultured_yogurt_subtypes": false
+      }
+    ],
+    "subtype_distribution": {
+      "yogurt": 70,
+      "null": 16,
+      "flavored_yogurt_dessert": 1,
+      "bio_yogurt": 3,
+      "froop_yogurt": 1,
+      "yogurt_mixin": 5,
+      "protein_yogurt": 19,
+      "dairy_dessert": 2,
+      "oatmeal": 1,
+      "protein_bar": 1,
+      "greek_yogurt": 1,
+      "confectionery_chocolate": 2
+    },
+    "n_not_in_cultured_yogurt_subtypes": 23,
+    "not_in_cultured_yogurt_subtypes_rows": [
+      {
+        "barcode": "4068028",
+        "name": "ציזיקי לשתיה",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "58030",
+        "name": "יופלה שטוזים משקה תות",
+        "subpool": "drinkable",
+        "router_category": "dessert",
+        "router_subtype": "flavored_yogurt_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "6664655",
+        "name": "אקטימל לבן מארז",
+        "subpool": "drinkable",
+        "router_category": "dairy_protein",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "6664693",
+        "name": "דנונה אפרסק3% שומן",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290102031276",
+        "name": "אקטימל תות בננה מארז",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290105364678",
+        "name": "משקה אקטיביה אפרסק",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290105965738",
+        "name": "דנונה לשתיה תות בננה",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107937542",
+        "name": "משקה אקטיביה תות 1.2%",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107938396",
+        "name": "מארז אקטימל תות",
+        "subpool": "drinkable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290107958035",
+        "name": "דנונה במתיקות מעודנת",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110329792",
+        "name": "מעדן סויה ביו אפרסק",
+        "subpool": "spoonable",
+        "router_category": "dessert",
+        "router_subtype": "dairy_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110329815",
+        "name": "מעדן סויה ביו מעודנת",
+        "subpool": "spoonable",
+        "router_category": "dessert",
+        "router_subtype": "dairy_dessert",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110552244",
+        "name": "משקה דנונה פרו20 ללת\"ס",
+        "subpool": "spoonable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110561352",
+        "name": "דנונה דל לקטוז 200 גרם",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290110573713",
+        "name": "דנונה מולטי  צ'יה",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290112341686",
+        "name": "אקטיביה 3% מארז",
+        "subpool": "spoonable",
+        "router_category": "default",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290112346797",
+        "name": "אקטיביה שיבולת שועל שזיף",
+        "subpool": "spoonable",
+        "router_category": "cereal",
+        "router_subtype": "oatmeal",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290114310536",
+        "name": "מולר אקטיב לייט וניל",
+        "subpool": "spoonable",
+        "router_category": "dairy_protein",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290114311069",
+        "name": "מולר אקטיב לבן0% 25חלבון",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "protein_bar",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290115676051",
+        "name": "משקה אקטיביה עם ש.שועל",
+        "subpool": "drinkable",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290119377480",
+        "name": "יוגורט פרו עם שוקולד",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "confectionery_chocolate",
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290119380923",
+        "name": "אקטימל לבן מארז",
+        "subpool": "drinkable",
+        "router_category": "dairy_protein",
+        "router_subtype": null,
+        "in_cultured_yogurt_subtypes": false
+      },
+      {
+        "barcode": "7290119385768",
+        "name": "דנונה פרו קראנצ' פצפוץ שוקולד מריר",
+        "subpool": "spoonable",
+        "router_category": "snack_bar_granola",
+        "router_subtype": "confectionery_chocolate",
+        "in_cultured_yogurt_subtypes": false
+      }
+    ]
+  },
+  "pool_shelf_stats": {
+    "spoonable": {
+      "n_total_products": 99,
+      "n_with_sugars_g": 85,
+      "median": 4.7,
+      "scale": 4.6,
+      "scale_source": "compute_shelf_stats(scale_type='iqr')",
+      "min_n_guard": 20,
+      "guard_n_pass": true,
+      "low_variance_guard_threshold": 3.0,
+      "guard_scale_pass": true,
+      "guard_pass_overall": true
+    },
+    "drinkable": {
+      "n_total_products": 23,
+      "n_with_sugars_g": 22,
+      "median": 4.95,
+      "scale": 1.63,
+      "scale_source": "compute_shelf_stats(scale_type='iqr')",
+      "min_n_guard": 20,
+      "guard_n_pass": true,
+      "low_variance_guard_threshold": 3.0,
+      "guard_scale_pass": false,
+      "guard_pass_overall": false
+    }
+  },
+  "pool_distributions": {
+    "spoonable": {
+      "n_scored": 99,
+      "n_out_of_scope": 0,
+      "min": 35.1,
+      "median": 65.6,
+      "max": 92.6,
+      "mean": 63.95,
+      "stdev": 15.42,
+      "grade_counts": {
+        "A": 10,
+        "B": 41,
+        "C": 24,
+        "D": 22,
+        "S": 2
+      }
+    },
+    "drinkable": {
+      "n_scored": 23,
+      "n_out_of_scope": 0,
+      "min": 34.2,
+      "median": 56.0,
+      "max": 77.2,
+      "mean": 56.06,
+      "stdev": 11.41,
+      "grade_counts": {
+        "B": 5,
+        "C": 13,
+        "D": 4,
+        "E": 1
+      }
+    }
+  },
+  "pool_errors": {
+    "spoonable": [],
+    "drinkable": []
+  },
+  "fermentation_spot_check": {
+    "n_checked": 23,
+    "n_misfires": 17,
+    "misfires": [
+      {
+        "barcode": "4068028",
+        "name": "ציזיקי לשתיה",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "55329",
+        "name": "משקה יוגורט תות-מלון",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "55336",
+        "name": "משקה יוגורט בננה אפרסק",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "55343",
+        "name": "יופלה משקה יוגורט טרופי",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "58030",
+        "name": "יופלה שטוזים משקה תות",
+        "router_category": "dessert",
+        "router_subtype": "flavored_yogurt_dessert",
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290019635567",
+        "name": "משקה יוגורט לאסי מנגו3%",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290102031276",
+        "name": "אקטימל תות בננה מארז",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290105364678",
+        "name": "משקה אקטיביה אפרסק",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290105965738",
+        "name": "דנונה לשתיה תות בננה",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290107937542",
+        "name": "משקה אקטיביה תות 1.2%",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290107938396",
+        "name": "מארז אקטימל תות",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110325114",
+        "name": "משקה יוגורט GO תות בננה",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110325121",
+        "name": "משקה יוגורט GO מנגו אננס",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110573737",
+        "name": "משקה יוגורט פרו תות ללס",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290115676051",
+        "name": "משקה אקטיביה עם ש.שועל",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290116932774",
+        "name": "משקה יוגורט גו בננה קרמל",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290116934228",
+        "name": "משקה יוגורט גו מלון תות",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      }
+    ],
+    "rows": [
+      {
+        "barcode": "4068028",
+        "name": "ציזיקי לשתיה",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "4068035",
+        "name": "אירן משקה יוגורט",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": true,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap) [R7 v1.1 Path B: yogurt_subtype]"
+      },
+      {
+        "barcode": "55329",
+        "name": "משקה יוגורט תות-מלון",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "55336",
+        "name": "משקה יוגורט בננה אפרסק",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "55343",
+        "name": "יופלה משקה יוגורט טרופי",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "58030",
+        "name": "יופלה שטוזים משקה תות",
+        "router_category": "dessert",
+        "router_subtype": "flavored_yogurt_dessert",
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "6664655",
+        "name": "אקטימל לבן מארז",
+        "router_category": "dairy_protein",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290019635567",
+        "name": "משקה יוגורט לאסי מנגו3%",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290020711007",
+        "name": "משקה יוגורט מלבי 3.5%",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": true,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap) [R7 v1.1 Path B: yogurt_subtype]"
+      },
+      {
+        "barcode": "7290020711090",
+        "name": "משקה יוגורט אסאי קוקוס",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": true,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap) [R7 v1.1 Path B: yogurt_subtype]"
+      },
+      {
+        "barcode": "7290102031276",
+        "name": "אקטימל תות בננה מארז",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290102393299",
+        "name": "יוגורט עיזים לשתייה",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": true,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap) [R7 v1.1 Path B: yogurt_subtype]"
+      },
+      {
+        "barcode": "7290105364678",
+        "name": "משקה אקטיביה אפרסק",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290105965738",
+        "name": "דנונה לשתיה תות בננה",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290107937542",
+        "name": "משקה אקטיביה תות 1.2%",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": "R-02 fermentation_bonus: +8 (direct, pre-cap)"
+      },
+      {
+        "barcode": "7290107938396",
+        "name": "מארז אקטימל תות",
+        "router_category": "default",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110325114",
+        "name": "משקה יוגורט GO תות בננה",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110325121",
+        "name": "משקה יוגורט GO מנגו אננס",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290110573737",
+        "name": "משקה יוגורט פרו תות ללס",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290115676051",
+        "name": "משקה אקטיביה עם ש.שועל",
+        "router_category": "beverage",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": true,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290116932774",
+        "name": "משקה יוגורט גו בננה קרמל",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290116934228",
+        "name": "משקה יוגורט גו מלון תות",
+        "router_category": "dairy_protein",
+        "router_subtype": "yogurt",
+        "has_solid_identity_marker": true,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": true,
+        "engine_expected_to_credit": true,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      },
+      {
+        "barcode": "7290119380923",
+        "name": "אקטימל לבן מארז",
+        "router_category": "dairy_protein",
+        "router_subtype": null,
+        "has_solid_identity_marker": false,
+        "would_be_excluded_as_fluid_milk_if_no_subtype_path": false,
+        "qualifies_via_yogurt_subtype_path": false,
+        "engine_expected_to_credit": false,
+        "engine_actually_fired": false,
+        "fermentation_note": null
+      }
+    ]
+  },
+  "nova_scoring_path_confirmation": {
+    "claim": "NOVA stays descriptive; not a new scoring input for this run",
+    "evidence": [
+      "nova_proxy.infer_nova(product, l3) never reads product.get('nova_proxy') (grep of nova_proxy.py: zero references) -- the engine independently re-derives its own NOVA proxy from ingredient/signal data, identical to every other live category (milk, cheese, etc.); BSIP1 Stage-1's 'nova_proxy' field is informational only and is not consumed here.",
+      "nova_level (engine-derived) already gates guardrail caps and the fermentation-credit eligibility check (nova_level<=3) inside score_engine.py for ALL categories uniformly -- this is pre-existing engine architecture, not something introduced or modified by this run.",
+      "This script adds zero new NOVA-based logic and does not modify score_engine.py."
+    ]
+  },
+  "no_bleed_confirmation": {
+    "claim": "No other category's published scores moved",
+    "basis": [
+      "This run performs ZERO writes to any file under 03_operations/bsip2/proto_v0/src (score_engine.py, constants.py, router_v2.py are read-only imports).",
+      "score_product() is invoked ONLY for the 122 yogurt BSIP1 records loaded from 02_products/yogurt_system/bsip1_task515 -- no milk/cheese/other-category product is scored in this process.",
+      "set_shelf_stats()/clear_shelf_stats() mutate an in-process global (_SHELF_STATS) that is discarded when this one-shot script process exits; it cannot affect any other (separate-process) category run, past or future."
+    ],
+    "score_engine_sha256": "535a9ed1b704e587546c2c314ef76abddf543310dcce0b7e74fb8e7f26453f34",
+    "constants_sha256": "024add660c2c1084cc74c422fe79aaa856c6162f1444e4cfdbecdc18e863a8e9",
+    "router_v2_sha256": "0d92ff493e8fc93a0008bbd17c023c9c129f996ac9cbc93ac2ff496f0fe18966",
+    "note": "These sha256 values are recorded so a future diff can prove the engine source was byte-identical to whatever milk/cheese were last scored against."
+  },
+  "ev105_proposal": {
+    "id": "EV-105",
+    "status": "PROPOSAL -- NOT LIVE -- not written to constants.py",
+    "requires": "Nutrition Agent D6 co-sign + Product Agent D7 co-sign before any constants.py edit or go-live",
+    "topic": "Yogurt sugar shelf-relative -- TWO-POOL split (spoonable vs drinkable), recomputed from the 122-product TASK-515 corpus. Supersedes the single-pool EV-088 constants (median=5.45, n=74, run_yogurt_006), which are STALE for this corpus and must not be reused.",
+    "floor_and_bands_inherited_unchanged_from_EV-088": {
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+      "note": "The absolute anti-immunity floor and the surcharge/relief band caps are NOT part of the 'recompute median/IQR' instruction and are left untouched."
+    },
+    "spoonable": {
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_MEDIAN": 4.7,
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_IQR_SCALE": 4.6,
+      "SUGAR_SHELF_REL_YOGURT_SPOONABLE_N": 85,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+      "guard_pass": true
+    },
+    "drinkable": {
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_MEDIAN": 4.95,
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_IQR_SCALE": 1.63,
+      "SUGAR_SHELF_REL_YOGURT_DRINKABLE_N": 22,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+      "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+      "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+      "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+      "guard_pass": false
+    }
+  },
+  "output_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515"
+}

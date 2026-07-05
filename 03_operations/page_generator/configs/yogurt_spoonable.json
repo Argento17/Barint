@@ -1,0 +1,37 @@
+{
+  "_comment": "TASK-515/515A Stage 3 — yogurt SPOONABLE subpool. Reads already-scored BSIP2 traces from bsip2_task515_v3/spoonable/products (D6 Nutrition + D7 Product co-signed EV-105v2-FINAL constants persisted to constants.py, additive only, no re-scoring here). BSIP1 corpus_dir = bsip1_task515 for name/brand/image/nutrition/ingredients lookup. No live baseline exists yet (new category build) -> baseline_json null. All copy fields render PENDING_COPY (two-gate authoring is a later stage).",
+  "category": "yogurt-spoonable",
+  "corpus_dirs": [
+    "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
+  ],
+  "run_products_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\spoonable\\products",
+  "baseline_json": null,
+  "retailer_scope": null,
+  "subpool_filter": null,
+  "dedup": {
+    "rule": "one_card_per_barcode",
+    "keep": "highest_priority_corpus"
+  },
+  "scoring": {
+    "flags": {
+      "BARI_RECAL_P0": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": "EV-105v2-FINAL spoonable stats (SUGAR_SHELF_REL_YOGURT_SPOONABLE_*) already baked into the bsip2_task515_v3/spoonable traces via in-process set_shelf_stats(); this config does not re-score.",
+    "bsip1_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
+    "corpus_filter": null,
+    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record.json (TASK-515/515A shipping run, D6+D7 co-signed EV-105v2-FINAL)"
+  },
+  "exclusions": [],
+  "extension_fields": [],
+  "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
+  "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
+  "_status": "SCORED -- NOT PUBLISHED. Copy = PENDING_COPY pending two-gate (Content + Adversarial QA) sign-off before go-live."
+}

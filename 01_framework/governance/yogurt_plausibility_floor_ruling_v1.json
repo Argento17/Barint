@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "ruling": "yogurt_plausibility_gate_floor",
+  "task": "TASK-515 / TASK-515A",
+  "date": "2026-07-05",
+  "author": "nutrition-agent",
+  "status": "recommended-floor; Data Agent to confirm exact cut against the final TASK-515 accounted-mass distribution before implementation; not yet patched into the shared gate",
+  "scope": {
+    "gate_type": "plausibility (data-admission) — NOT a BSIP2 scoring dimension",
+    "target_module": "03_operations/bsip0/scrape/_shared/plausibility_gate.py",
+    "effect": "Determines which yogurt SKUs enter the Stage-0 corpus. Does not touch grade assignment, does not create a new scoring signal, and moves no published score (yogurt is not yet live).",
+    "hard_constraint_confirmed": "FoodClass.DAIRY_SOLID (cheese) is UNCHANGED: accounted_mass floor stays 20.0g/100g, kcal_bounds stays (40,450). No cheese score is affected. This ruling is additive-only: two new FoodClass members."
+  },
+  "principle": "Yogurt (fermented milk, ~85-90% water) and hard/brined cheese (~40-60% water, concentrated by draining/pressing) are structurally different foods. Cheese's DAIRY_SOLID floor (20g accounted mass) reflects a concentrated solid; applying it to yogurt is a category-calibration error, not a data-quality signal — it false-positives on the majority of correctly-labeled yogurt. Yogurt earns its own FoodClass rather than borrowing cheese's.",
+  "new_food_classes": {
+    "DAIRY_SEMISOLID": {
+      "applies_to": "spoonable yogurt: plain, low-fat/skim, Greek/skyr/strained, flavored/fruit, protein-fortified. EXCLUDES labneh (see edge_case_ruling).",
+      "accounted_mass_floor_g_per_100g": 8.0,
+      "kcal_bounds": [30, 250],
+      "composition_basis": [
+        "USDA FDC 171284 Yogurt, plain, whole milk (SR Legacy): protein 3.47 + fat 3.25 + carb 4.66 = 11.38g accounted, 61 kcal",
+        "USDA FDC Yogurt, plain, low fat (12g protein/8oz): protein 5.25 + fat 1.55 + carb 7.04 = 13.84g, 63 kcal",
+        "USDA FDC Yogurt, plain, skim milk: protein 5.73 + fat 0.18 + carb 7.68 = 13.59g, 56 kcal",
+        "USDA FDC 2259794 Yogurt, Greek, plain, whole milk (Foundation): protein 8.78 + fat 4.39 + carb 4.75 = 17.92g",
+        "USDA FDC Yogurt parfait, lowfat, fruit+granola (proxy for flavored/added-sugar): protein 3.36 + fat 1.01 + carb 15.86 = 20.2g, 84 kcal",
+        "Codex Alimentarius STAN 243 (fermented milks): minimum milk-protein content ~2.7-3.0g/100g for a product to be labelled a fermented milk/yogurt",
+        "TASK-515 empirical corpus (this run, Shufersal, 104 plausible-looking spoonable records): accounted_mass median 16.1g, p10 11.5g, observed min 9.3g (one 196g record excluded as a genuine impossible-panel catch, unaffected by this floor)"
+      ],
+      "rationale": "All US reference 'plain' yogurts sit 11.4-17.9g; the TASK-515 corpus median (16.1g) and p10 (11.5g) track that range closely. The observed real minimum (9.3g) sits BELOW every US reference point, which is expected: Israeli 0%-fat 'diet' yogurt lines are typically less protein-fortified than the US 'high-protein Greek' wave (USDA skim/low-fat entries actually show HIGHER accounted mass than whole-milk plain, 13.6-13.9g vs 11.4g, because US skim formulations concentrate protein while only removing fat). A minimally-fortified diet yogurt at Codex-minimum protein (~3.5-4g) plus reduced-sugar residual lactose (~4-4.5g) mass-balances to ~7.5-8.5g, which is exactly where the real 9.3g observation sits. Floor = 8.0g/100g: below the observed real minimum (0.7-1.3g margin, room for one more lean legitimate SKU the 104-record sample didn't happen to catch), grounded in an explicit mass-balance floor (not a round number), and far below every richer/flavored/fortified reference point (11.4-20.2g)."
+    },
+    "DAIRY_CULTURED_DRINK": {
+      "applies_to": "drinkable yogurt subpool: yogurt drinks, drinkable kefir, ayran, lassi. Replaces the ad hoc mapping to generic FoodClass.BEVERAGE used in the TASK-515 finalize script — BEVERAGE (floor 2.0g, kcal 0-120) is calibrated for water/juice, not cultured milk, and its 120kcal ceiling is too tight for protein- or fat-bearing yogurt drinks.",
+      "accounted_mass_floor_g_per_100g": 4.0,
+      "kcal_bounds": [20, 150],
+      "composition_basis": [
+        "USDA FDC 170904 Kefir, lowfat, plain (Lifeway): protein 3.79 + fat 1.02 + carb 4.77 = 9.58g, 43 kcal — undiluted cultured drink, sits close to the spoonable range",
+        "USDA FDC Buttermilk, low fat, cultured: protein 3.46 + fat 1.08 + carb 4.81 = 9.36g (~43 kcal est.) — same undiluted-cultured-dairy anchor",
+        "Reasoned floor for the MORE diluted end of the subpool (ayran/lassi, typically yogurt cut roughly 1:1 to 2:1 with water + salt): diluting a base plain-yogurt accounted mass of ~11-14g by 50-65% mass-balances to ~4-7g"
+      ],
+      "rationale": "The drinkable subpool is heterogeneous: undiluted cultured drinks (kefir, buttermilk-style) sit near 9-10g, essentially spoonable-adjacent; water-diluted salty drinks (ayran, lassi) sit meaningfully lower by design. Floor = 4.0g/100g covers the diluted end with a small margin below the ~4-5g reasoned diluted-ayran range, without being so loose it re-admits near-water garbage. Kcal ceiling raised to 150 (from BEVERAGE's 120) to admit protein-/fat-bearing drinkable yogurts that a pure-juice ceiling would wrongly reject; floor lowered to 20 to admit genuinely dilute salty drinks below buttermilk's ~43kcal anchor."
+    }
+  },
+  "edge_case_ruling": {
+    "labneh": "Route to the EXISTING FoodClass.DAIRY_SOLID (cheese-calibrated: floor 20.0g, kcal 40-450), NOT either new yogurt class. Labneh is a strained/concentrated fermented product — its solids profile (post-straining) is structurally closer to soft cheese than to spoonable yogurt. This is already visible in the TASK-515 corpus as edge_case_flag='labneh' (7 SKUs). Using a yogurt-calibrated floor/kcal-ceiling for labneh risks under-rejecting truly implausible labneh panels (floor too low) and wrongly rejecting legitimate high-fat labneh under a yogurt kcal ceiling (labneh commonly runs 200-280+ kcal/100g, above DAIRY_SEMISOLID's 250 ceiling)."
+  },
+  "genuine_implausibility_line": {
+    "spoonable_below_g": 5.0,
+    "drinkable_below_g": 2.0,
+    "rationale": "Below 5.0g/100g accounted mass, no physiologically real yogurt formulation clears even the Codex-minimum milk-protein floor (~2.7-3.0g) plus any residual carbohydrate — a panel this low is necessarily a parse error, a per-serving-as-per-100g mislabel, or a wrong-product match, not a legitimate lean product. The 8.0g operative floor already sits above this line with margin, so the 5.0-8.0g band is the intentional conservative buffer (correctly discards borderline records; the TASK-515 corpus has zero real records in this band once the outlier is excluded). For drinkable, 2.0g is below what even a heavily water-diluted cultured milk drink can mass-balance to while still containing meaningful dairy solids — below that line the record is flavored water, not a yogurt drink."
+  },
+  "ancillary_note_not_actioned": "Fermentation converts some lactose to lactic acid, which is calorie-bearing but is not captured in the 'carbohydrate' column on an Israeli nutrition label (measured kcal reflects it; the carb figure does not). This can produce a modest systematic kcal-vs-Atwater-estimate gap specific to well-fermented, low-residual-sugar yogurt. The shared gate's existing 30% Atwater slack already absorbs this in every case checked here; flagged as a KB-level watch-item for Nutrition, not a rule change now.",
+  "evidence_tier": "Moderate — grounded in USDA FDC lab-measured reference composition (candidate/reference-only per the external-source firewall, not a value of record for any SKU) and the Codex Alimentarius minimum milk-protein standard for fermented milks; not a category-specific published empirical study. To be corroborated against the TASK-515 final full distribution when Data Agent's return lands, per this ruling's own instruction.",
+  "external_sources_used": [
+    {"source": "usda_fdc", "role": "reference composition ranges only, to justify a class-level floor — never a value of record for a specific SKU, per the EDPG firewall"},
+    {"source": "codex_alimentarius_stan_243", "role": "minimum milk-protein standard for fermented milks, cited from established food-standards literature"}
+  ],
+  "off_used": false
+}
