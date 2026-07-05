@@ -1,10 +1,14 @@
 {
-  "_comment": "Crackers category config — TASK-433 category split from bread (Crackers Category Constitution v1, Nutrition Agent, 2026-07-01). Corpus: 21 candidates identified in real_bread_retail_003_v1 raw BSIP0 scrape carrying literal 'קרקר' (cracker) identity in canonical_name_he — no matzah/breadsticks/rice-cake candidates present in this corpus (held-out categories per constitution do not appear in this scrape). 1 discarded (barcode 5317200, total nutrition+ingredients blackout confirmed by one-shot targeted re-scrape of the live Shufersal page — missing-data-discard rule). BSIP1: run_crackers_conform_001 (20 records, direct Shufersal scrape only, OFF=0). BSIP2: run_crackers_conform_001 (20 scored). Flag set: IDENTICAL to the pinned canonical bread invocation (grain/non-dairy vector) — crackers is a grain product family, same profile as bread/cereals (RECAL_P0=on, FAT_TECH=on, no shelf-rel, no dairy flags, no cereal sodium mode). Category routing: router_v2.classify_category already routes 'קרקר'-named products to category='cracker' (0.93 confidence, HARD_ANCHORS) with NO caller override — score_calorie_density() automatically uses CALORIE_DENSITY_TABLES['cracker'] via cd_table_key=category (score_engine.py:3636). Verified: the 6 products previously living inside bread_frontend_v3.json under _website_cluster=='crackers' were ALREADY scored under the 'cracker' table when published (same router mechanism fires regardless of which BSIP1 folder a record is loaded from) — fresh run reproduces all 6 at 0.000 delta (see run_record.json legacy_6_delta_report). This is the corroboration outcome from Crackers Category Constitution v1 Section 2.3, not a score change. Copy fields are PENDING_COPY — Content Agent authors consumer copy; Frontend Agent wires the registry/route next.",
+  "_comment": "Crackers category config — TASK-433 category split from bread (Crackers Category Constitution v1, Nutrition Agent, 2026-07-01), expanded TASK-516/517 (2026-07-05) to fold in a ricecakes/פריכיות pool per the Constitution's Rule-5 boundary test. Corpus is now TWO parallel BSIP1/BSIP2 run pairs combined at frontend-packaging time: (1) run_crackers_conform_001 — 21 candidates from real_bread_retail_003_v1 carrying literal 'קרקר' identity, 1 discarded (barcode 5317200, total blackout), 20 scored, 19 displayed (barcode 7290112968807 separately discarded post-rescore, insufficient_data, TASK-433 frontend discard) plus 6 legacy barcodes physically stored in this same directory pre-dating the bread/crackers split (all confirmed router category='cracker', see EV-104 RT-1 resolution — no gap, all correctly scored). (2) run_ricecakes_conform_001 — 36 candidates scraped fresh, 2 discarded (7296058000519 total blackout, 7296058000526 partial blackout/no ingredients), 34 scored and displayed. Combined: 54 scored, 53 displayed. Copy fields (insightLine, rowVerdict, expansion.comparisonContext/positiveSignals/limitingFactors) are AUTHORED for all 53 (TASK-517, two-gate signed off: Content Agent + Adversarial QA) — no longer PENDING_COPY. Scoring: EV-104 (2026-07-05) added PROTEIN_SCALE_TABLES['cracker'] (was falling back to 'default'), D7 co-signed (Product Agent) + Adversarial QA Condition-5 sign-off; 13/53 products moved one letter grade (8 B->A, 3 C->B, 2 D->C), 0 double jumps. Flag set unchanged from the original crackers invocation (grain/non-dairy vector, RECAL_P0=on, FAT_TECH=on, no shelf-rel). Category routing: router_v2.classify_category routes both 'קרקר'-named products AND 'פריכיות'-named products to category='cracker' (HARD_ANCHORS, confirmed live) — both pools share PROTEIN_SCALE_TABLES['cracker'] and CALORIE_DENSITY_TABLES['cracker'] automatically via cd_table_key=category. Known non-blocking gap: the 34 ricecakes products have no _website_cluster value (the existing wheat/spelt/rye taxonomy has no rice axis) — they render in the default view but not under shelf-filter chips until a rice-appropriate cluster is defined.",
   "category": "crackers",
   "corpus_dirs": [
-    "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output"
+    "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output",
+    "C:\\Bari\\03_operations\\bsip1\\run_ricecakes_conform_001\\output"
   ],
-  "run_products_dir": "C:\\Bari\\02_products\\crackers\\bsip2_outputs\\run_crackers_conform_001\\products",
+  "run_products_dir": [
+    "C:\\Bari\\02_products\\crackers\\bsip2_outputs\\run_crackers_conform_001\\products",
+    "C:\\Bari\\02_products\\crackers\\bsip2_outputs\\run_ricecakes_conform_001\\products"
+  ],
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\crackers_frontend_v1.json",
   "retailer_scope": ["shufersal"],
   "subpool_filter": null,
@@ -28,10 +32,38 @@
     "corpus_filter": null,
     "_source": "batch_run_crackers_conform_001.py (run_crackers_conform_001, grain flag set identical to canonical bread invocation, no shelf-rel)"
   },
+  "scoring_ricecakes": {
+    "flags": {
+      "BARI_RECAL_P0": "on",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "shelf_rel": null,
+    "bsip1_dir": "C:\\Bari\\03_operations\\bsip1\\run_ricecakes_conform_001\\output",
+    "corpus_filter": "C:\\Bari\\02_products\\crackers\\factory_run_002\\corpus_filter.json",
+    "_source": "batch_run_ricecakes_conform_001.py (run_ricecakes_conform_001, identical flag vector to the crackers batch, no shelf-rel; TASK-516/517)"
+  },
   "exclusions": [
     {
       "barcode": "5317200",
       "reason": "missing-data-discard: BSIP0 raw + one-shot targeted re-scrape (Shufersal P_5317200) both confirm no nutrition table / ingredients list on the retailer page — total data blackout, discarded per missing-data-discard rule."
+    },
+    {
+      "barcode": "7290112968807",
+      "reason": "insufficient_data post-rescore (TASK-433 frontend discard): unrecoverable per-serving/per-100g nutrition corruption, no clean unit/parse scaling factor found — nulled at BSIP1 source, missing-data-discard rule."
+    },
+    {
+      "barcode": "7296058000519",
+      "reason": "missing-data-discard (TASK-516): both nutrition and ingredients empty on live re-check — total data blackout."
+    },
+    {
+      "barcode": "7296058000526",
+      "reason": "missing-data-discard (TASK-516): nutrition present but ingredients still empty on live re-check — ingredient text is required for scoring, partial blackout discarded per the same rule."
     }
   ],
   "extension_fields": [],

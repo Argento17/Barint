@@ -1,17 +1,17 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-01T19:26:12.342943Z",
+  "trace_generated_at": "2026-07-05T08:57:07.451702Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_crackers_96086000966",
     "barcode": "96086000966",
     "product_name_he": "קרקר כוסמין מלא ושומשום",
-    "brand": null,
+    "brand": "אביב אורגניק",
     "source_retailers": [
       "shufersal"
     ],
-    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output\\bsip1_96086000966.json",
+    "bsip1_source_path": null,
     "audit_ref": "bsip0_real_bread_retail_003_v1",
     "bsip1_schema_version": "bsip1_v0_1",
     "load_errors": []
@@ -32,7 +32,7 @@
     "hard_anchor:קרקר"
   ],
   "nova_proxy": 2,
-  "nova_confidence": 0.2,
+  "nova_confidence": 0.25,
   "nova_confidence_band": "low",
   "nova_evidence_for": [
     "minimal_additives_and_processing_signals"
@@ -43,7 +43,6 @@
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=clean, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
     "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "no_ingredient_list: NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -57,12 +56,17 @@
     "sugars_g": null,
     "dietary_fiber_g": 10.0,
     "protein_g": 16.0,
-    "ingredient_count": 0,
-    "ingredient_list": [],
-    "ingredient_count_raw": 0,
+    "ingredient_count": 4,
+    "ingredient_list": [
+      "קמח כוסמין מלא (82%)",
+      "שומשום (15%)",
+      "מלח",
+      "תמצית אורגנו טבעית."
+    ],
+    "ingredient_count_raw": 4,
     "ingredient_sanitization": {
-      "raw_count": 0,
-      "clean_count": 0,
+      "raw_count": 4,
+      "clean_count": 4,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
@@ -169,7 +173,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 0,
+    "sanitized_ingredient_count": 4,
     "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -184,7 +188,12 @@
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 0.54,
-    "ingredient_list": []
+    "ingredient_list": [
+      "קמח כוסמין מלא (82%)",
+      "שומשום (15%)",
+      "מלח",
+      "תמצית אורגנו טבעית."
+    ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
@@ -239,10 +248,10 @@
   ],
   "dimension_scores": {
     "processing_quality": 64.0,
-    "nutrient_density": 74.8,
+    "nutrient_density": 89.0,
     "calorie_density": 70.0,
     "glycemic_quality": 100,
-    "protein_quality": 73.0,
+    "protein_quality": 95.0,
     "additive_quality": 100,
     "satiety_support": 93.8,
     "fat_quality": 90.5,
@@ -251,15 +260,15 @@
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 64.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=16.0g→73.0, fiber=10.0g→78.0, weighted 65/35=74.8",
+    "nutrient_density": "protein=16.0g→95.0, fiber=10.0g→78.0, weighted 65/35=89.0",
     "calorie_density": "kcal=418.0, category=cracker → 70",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(20.0) + wg(5) = 115.0",
-    "protein_quality": "protein=16.0g base=73.0, source=whole_food(×1.0) → 73.0",
+    "protein_quality": "protein=16.0g base=95.0, source=whole_food(×1.0) → 95.0",
     "additive_quality": "sprint1_additives=0 base=100 sw_pen=0→100",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (16.0×3 + 10.0×5) / 418.0 × 400 = 93.8",
     "fat_quality": "R3 leanness: fat=0.25g (<0.5) sat=None → 90.5",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=0 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -273,7 +282,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 81.64,
+  "weighted_dimension_score": 85.97,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -289,7 +298,7 @@
     },
     {
       "rule": "HIGH_SUGAR_25G_PLUS",
-      "cap": 68,
+      "cap": 60,
       "condition": false,
       "fired": false
     },
@@ -301,13 +310,13 @@
     },
     {
       "rule": "SNACK_BAR_RED_SUGAR_LABEL",
-      "cap": 63,
+      "cap": 55,
       "condition": false,
       "fired": false
     },
     {
       "rule": "ISRAELI_RED_LABEL_1_SUGAR",
-      "cap": 63,
+      "cap": 55,
       "condition": false,
       "fired": false
     },
@@ -368,7 +377,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 81.64,
+  "score_after_cap": 85.97,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -419,7 +428,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 81.64,
+  "score_after_penalty": 85.97,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -480,40 +489,39 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 81.64,
+  "score_after_floors": 85.97,
   "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-2",
+  "sugar_context_class": "SC-3",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 81.6,
+  "final_score_estimate": 86.0,
   "grade_estimate": "A",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
   ],
   "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
   ],
   "structural_class": {
     "primary": "B",
     "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.404,
+    "primary_confidence": 0.422,
     "secondary": "A",
     "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.285,
+    "secondary_confidence": 0.224,
     "class_weights": {
-      "A": 0.285,
-      "B": 0.404,
-      "C": 0.181,
-      "D": 0.0,
+      "A": 0.224,
+      "B": 0.422,
+      "C": 0.208,
+      "D": 0.016,
       "E": 0.13,
       "F": 0.0
     },
-    "is_between_worlds": true,
+    "is_between_worlds": false,
     "classification_notes": [
       "nova_2_signal",
       "no_additives_detected",
       "high_protein_quality",
-      "minimal_ingredients",
       "zero_additive_categories"
     ],
     "classifier_version": "structural_classifier_v1"

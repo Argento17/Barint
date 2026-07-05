@@ -464,6 +464,14 @@ PROTEIN_SCALE_TABLES = {
     "yogurt":            [(0,0),(2,20),(3.5,40),(5,58),(7,75),(9,90),(11,95),(99,100)],
     "bread":             [(0,0),(4,30),(6,45),(8,60),(10,72),(13,85),(99,95)],
     "snack_bar_granola": [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
+    # EV-104 (TASK-516/517 follow-up, 2026-07-05) — cracker/ricecake protein curve.
+    # Anchored on the real 53-product crackers shelf distribution (n=53, 100%
+    # coverage): min=5.5g, Q1=8.0g, median=9.0g, Q3=13.0g, max=16.0g. D7 co-signed
+    # by Product Agent (CO-SIGN APPROVED WITH CONDITIONS, all closed); Adversarial
+    # QA SIGN-OFF after independent re-derivation of all 13 resulting grade
+    # crossers (8 B->A, 3 C->B, 2 D->C, 0 double jumps) and a 306-product
+    # cross-category isolation check (5 other live categories, zero contamination).
+    "cracker":           [(0,0),(3,15),(5,30),(7,45),(9,58),(11,75),(13,85),(16,95),(99,100)],
     "default":           [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
 }
 

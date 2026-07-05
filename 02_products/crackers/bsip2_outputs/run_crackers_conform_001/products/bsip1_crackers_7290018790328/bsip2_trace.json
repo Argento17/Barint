@@ -1,17 +1,17 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-01T19:26:12.290317Z",
+  "trace_generated_at": "2026-07-05T08:57:07.383607Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_crackers_7290018790328",
     "barcode": "7290018790328",
     "product_name_he": "קרקר מרובע מלוח",
-    "brand": null,
+    "brand": "הדר",
     "source_retailers": [
       "shufersal"
     ],
-    "bsip1_source_path": "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output\\bsip1_7290018790328.json",
+    "bsip1_source_path": null,
     "audit_ref": "bsip0_real_bread_retail_003_v1",
     "bsip1_schema_version": "bsip1_v0_1",
     "load_errors": []
@@ -32,7 +32,7 @@
     "hard_anchor:קרקר"
   ],
   "nova_proxy": 4,
-  "nova_confidence": 0.2,
+  "nova_confidence": 0.4,
   "nova_confidence_band": "low",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)"
@@ -41,7 +41,6 @@
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=clean, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
     "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "no_ingredient_list: NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -55,12 +54,27 @@
     "sugars_g": null,
     "dietary_fiber_g": 1.5,
     "protein_g": 8.0,
-    "ingredient_count": 0,
-    "ingredient_list": [],
-    "ingredient_count_raw": 0,
+    "ingredient_count": 14,
+    "ingredient_list": [
+      "קמח חיטה (גלוטן)",
+      "שמן דקל",
+      "עמילן תירס",
+      "סוכרים (לבן, ענבים, פירות - פרוקטוז)",
+      "מלח (3%)",
+      "חומרי תפיחה (אמוניום ביקרבונט, פירופוספט, נתר ן ביקרבונט)",
+      "גלוטן חיטה",
+      "מים",
+      "לתת שעורה (גלוטן)",
+      "מתחלב: לציטין סויה",
+      "חומר לטיפול בקמח: סולפיט",
+      "אנזימים",
+      "חומרי טעם וריח",
+      "מעכב חמצון: תמצית רוזמרין."
+    ],
+    "ingredient_count_raw": 14,
     "ingredient_sanitization": {
-      "raw_count": 0,
-      "clean_count": 0,
+      "raw_count": 14,
+      "clean_count": 14,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
@@ -130,7 +144,7 @@
     ],
     "has_fruit_concentrate": false,
     "has_fermentation": false,
-    "product_type_dairy": true,
+    "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
@@ -183,7 +197,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 0,
+    "sanitized_ingredient_count": 14,
     "primary_fragmentation": "fractional",
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -198,7 +212,22 @@
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 0.48,
-    "ingredient_list": []
+    "ingredient_list": [
+      "קמח חיטה (גלוטן)",
+      "שמן דקל",
+      "עמילן תירס",
+      "סוכרים (לבן, ענבים, פירות - פרוקטוז)",
+      "מלח (3%)",
+      "חומרי תפיחה (אמוניום ביקרבונט, פירופוספט, נתר ן ביקרבונט)",
+      "גלוטן חיטה",
+      "מים",
+      "לתת שעורה (גלוטן)",
+      "מתחלב: לציטין סויה",
+      "חומר לטיפול בקמח: סולפיט",
+      "אנזימים",
+      "חומרי טעם וריח",
+      "מעכב חמצון: תמצית רוזמרין."
+    ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
@@ -253,27 +282,27 @@
   ],
   "dimension_scores": {
     "processing_quality": 44.0,
-    "nutrient_density": 31.2,
+    "nutrient_density": 38.7,
     "calorie_density": 55.0,
     "glycemic_quality": 93.0,
-    "protein_quality": 40.0,
+    "protein_quality": 51.5,
     "additive_quality": 48.0,
     "satiety_support": 26.9,
     "fat_quality": 90.5,
     "regulatory_quality": 60.0,
-    "whole_food_integrity": 30
+    "whole_food_integrity": 18
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 44.0 (EV-042 revised, TASK-181J)",
-    "nutrient_density": "protein=8.0g→40.0, fiber=1.5g→15.0, weighted 65/35=31.2",
+    "nutrient_density": "protein=8.0g→51.5, fiber=1.5g→15.0, weighted 65/35=38.7",
     "calorie_density": "kcal=469.0, category=cracker → 55",
     "glycemic_quality": "90 - sugar_penalty(0.0) + fiber(3.0) + wg(0) = 93.0",
-    "protein_quality": "protein=8.0g base=40.0, source=whole_food(×1.0) → 40.0",
+    "protein_quality": "protein=8.0g base=51.5, source=whole_food(×1.0) → 51.5",
     "additive_quality": "sprint1_additives=3 base=46 sw_pen=0 id_delta=+2→48.0 [F1 lecithin relief +2]",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.0×3 + 1.5×5) / 469.0 × 400 = 26.9",
     "fat_quality": "R3 leanness: fat=0.25g (<0.5) sat=None → 90.5",
     "regulatory_quality": "1 red label: ['sodium']",
-    "whole_food_integrity": "NOVA 4 base=30, ing_count=0 complexity_pen=0 → 30"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=14 complexity_pen=12 → 18"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -287,7 +316,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 52.54,
+  "weighted_dimension_score": 54.34,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -395,7 +424,7 @@
     }
   ],
   "binding_cap": 60,
-  "score_after_cap": 52.54,
+  "score_after_cap": 54.34,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -418,8 +447,8 @@
     {
       "rule": "LONG_INGREDIENT_LIST",
       "amount": 4,
-      "condition": "False",
-      "fired": false
+      "condition": "True",
+      "fired": true
     },
     {
       "rule": "SEED_OIL_PRESENT",
@@ -442,11 +471,17 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [],
-  "total_penalty_before_scaling": 0.0,
-  "total_penalty_after_scaling": 0.0,
+  "penalties_applied": [
+    {
+      "rule": "LONG_INGREDIENT_LIST",
+      "amount": 4,
+      "note": "ingredient_count=14"
+    }
+  ],
+  "total_penalty_before_scaling": 4.0,
+  "total_penalty_after_scaling": 4.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 52.54,
+  "score_after_penalty": 50.34,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -468,11 +503,15 @@
     },
     "processing_load": {
       "binding_cap": 72,
-      "coordinated_penalty": 0.0,
+      "coordinated_penalty": 4,
       "detail": {
-        "winner": null,
+        "winner": {
+          "rule": "LONG_INGREDIENT_LIST",
+          "amount": 4
+        },
         "supporters": [],
-        "total_before_budget": 0
+        "total_before_budget": 4,
+        "budget_applied": false
       }
     },
     "sodium_load": {
@@ -507,40 +546,40 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 52.54,
+  "score_after_floors": 50.34,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 52.5,
+  "final_score_estimate": 50.3,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'HIGH_SODIUM_700MG_PLUS']"
+    "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS', 'HIGH_SODIUM_700MG_PLUS']",
+    "PENALTIES: ['LONG_INGREDIENT_LIST']"
   ],
   "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.4)"
   ],
   "structural_class": {
     "primary": "E",
     "primary_label": "Engineered Wellness System",
-    "primary_confidence": 0.363,
-    "secondary": "F",
-    "secondary_label": "Structurally Void System",
-    "secondary_confidence": 0.259,
+    "primary_confidence": 0.38,
+    "secondary": "D",
+    "secondary_label": "Industrially Reconstructed",
+    "secondary_confidence": 0.26,
     "class_weights": {
-      "A": 0.104,
-      "B": 0.041,
-      "C": 0.0,
-      "D": 0.233,
-      "E": 0.363,
-      "F": 0.259
+      "A": 0.042,
+      "B": 0.042,
+      "C": 0.016,
+      "D": 0.26,
+      "E": 0.38,
+      "F": 0.26
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
       "whole_food_integrity_low",
-      "moderate_protein_quality",
-      "minimal_ingredients"
+      "moderate_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"
   },

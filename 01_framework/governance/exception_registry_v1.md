@@ -216,6 +216,117 @@ co-sign requirement).
 
 ---
 
+### EXCEPTION-003 — BSIP1 Reversed-Bracket-Nesting Repair (barcode 4267230, crackers/ricecakes)
+
+**Status:** Approved — Nutrition Agent finding + recommendation, Data Agent implementation
+(TASK-517, 2026-07-05).
+**Category:** קרקרים/פריכיות (Crackers, ricecakes expansion) — BSIP1 enrichment stage,
+one product record only.
+**Date approved:** 2026-07-05.
+**Authority:** Nutrition Agent (source-defect diagnosis + approved fix design). Not a
+scoring-rule change — no D6/D7 co-sign required (confirmed: score/grade unaffected,
+41.2/D before and after re-run).
+**Rule violated:** The "never rewrite BSIP1 text, missing-data-discard rather than
+correct" default posture (`missing_data_discard_rule`; also the general never-invent/
+never-clean-structural-data norm this Data Agent operates under). This entry documents
+why a narrow, signature-gated repair is the correct exception to that default here,
+rather than discarding the product.
+
+---
+
+**What it is:**
+
+A stack-based reverse-nesting detector plus a position-preserving character-swap repair
+(`detect_reversed_brackets()` / `normalize_reversed_brackets()` /
+`repair_reversed_brackets()` in
+`03_operations/bsip1/run_ricecakes_conform_001/build_ricecakes_bsip1.py`), applied to
+`ingredients_text_he` during BSIP1 enrichment. It fires ONLY when the detector proves the
+bracket nesting is inverted (a `)`/`}` appears before its matching opener is on the
+stack) — never as a blanket transform on every product's ingredient text.
+
+---
+
+**Why it is allowed (repair, not fabrication):**
+
+Barcode 4267230's `ingredients_text_he` carries a bracket-reversal bug present in
+Shufersal's OWN raw HTML source
+(`03_operations/bsip0/raw_store/shufersal/ricecakes/P_4267230/20260705T055346868812.html`,
+line 2790: `<div class="componentsText">...</div>`) — parentheses and curly braces are
+systematically mirrored/swapped at fixed positions (`(`<->`)`, `{`<->`}`), while every
+other character (letters, digits, punctuation, whitespace) is untouched and in its
+original order. Unscrambling with the inverse of that exact swap (itself a swap, since
+swapping twice is the identity) produces text with provably correct, balanced bracket
+nesting — confirmed by re-running the same detector against the repair's own output and
+finding zero remaining reverse-nesting flags. No character was invented, deleted, or
+reordered; only the open/close role of 4 bracket glyphs was corrected in place. This is
+the textbook difference between "fixing a known encoding/scrape artifact whose inverse
+transform is provable" (a repair) and "guessing what a missing value should be" (which
+the missing-data-discard rule correctly forbids and this repair does not do).
+
+**Scope confirmed non-systemic:** An independent stack-based scan was run against ALL 54
+BSIP1 records feeding the crackers comparison page (20 files in
+`run_crackers_conform_001/output` — 19 displayed + 1 pre-existing nutrition-nulled
+exclusion — plus 34 files in `run_ricecakes_conform_001/output`). The signature fired
+on exactly ONE record: barcode 4267230. Every other product's ingredient text has
+normal, correctly-ordered brackets (or none). This is a single-product scrape-side
+defect, not a scraper-template or corpus-wide issue — a blanket transform would have
+been wrong and unnecessary; the signature-gated design guarantees it never fires
+elsewhere unless the exact same fault pattern recurs.
+
+---
+
+**Effect on scoring (verified, not assumed):** BSIP2 was re-run for the full 34-product
+ricecakes batch before and after the fix. Barcode 4267230's `final_score_estimate` and
+`grade_estimate` are byte-identical before and after (41.2 / D) — the additive/marker
+extraction that drives scoring (e.g. E-322 lecithin detection) matches on substrings
+that don't depend on bracket direction, so the repair changes only the displayed
+ingredient text and the `ingredient_order` diagnostic breakdown (which went from an
+incorrectly depth-tracked count of 2 to the correct 5, matching BSIP2's own independent
+parse), not any scored signal. The other 33 ricecakes products' BSIP2 traces are
+byte-identical except the non-semantic `trace_generated_at` timestamp (verified by diff
+across all 34).
+
+---
+
+**Constraints preventing multiplication:**
+
+1. **Signature-gated, not barcode-gated.** The trigger is `detect_reversed_brackets()`,
+   a general stack-based proof of inverted nesting — not a hardcoded barcode check. It
+   will correctly no-op on every product that does not exhibit this exact fault, now or
+   in future corpus expansions of this script. It must never be replaced with a blanket
+   `.translate()` call unconditioned on the detector.
+2. **Position-preserving swap only.** The repair function may only swap `(`<->`)` and
+   `{`<->`}` in place. It must never reorder characters, insert/delete text, or "tidy up"
+   the result beyond what the pure swap produces (even where the swap yields a
+   cosmetically odd but faithful artifact, e.g. an adjacent empty `()` pair — see the
+   pinned unit test in `test_bracket_repair.py`, which documents this explicitly).
+3. **Full corpus scan required before reuse.** Before applying this same repair function
+   to any other category's BSIP1 script, a fresh stack-based scan of that category's
+   corpus must confirm the signature is genuinely present (not assumed by analogy) and
+   the fix must be logged as its own exception-registry entry — this entry does not
+   pre-authorize silent reuse.
+4. **Fully audited.** Every application logs before/after text into the BSIP1
+   `data_fixes_applied` array and the run record's `bracket_repairs_applied` list
+   (`run_ricecakes_conform_001/run_record.json`). A repair with no before/after log is a
+   process violation of this exception, not a valid use of it.
+5. **Not a precedent for skipping missing-data-discard.** This exception applies only
+   when the corruption's inverse transform is provable and mechanically checkable (as
+   here). It does not license repairing corruption whose original form cannot be proven
+   (e.g. the unrelated per-serving/per-100g corruption on barcode 7290112968807, which
+   remains correctly nulled per the missing-data-discard rule — that corruption has no
+   provable inverse, only a plausible scaling-factor guess, which is exactly what the
+   discard rule exists to forbid).
+
+---
+
+**Verification artifacts:**
+`03_operations/bsip1/run_ricecakes_conform_001/build_ricecakes_bsip1.py` (FIX 3),
+`03_operations/bsip1/run_ricecakes_conform_001/test_bracket_repair.py` (10/10 pinned
+tests incl. the exact barcode-4267230 string), `run_record.json` →
+`bracket_repairs_applied` (1 entry, barcode 4267230).
+
+---
+
 ## Rejected Exception Requests
 
 *None yet. This section will log exception requests that were reviewed and denied, with rationale, so future contributors understand the boundaries.*

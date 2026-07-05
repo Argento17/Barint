@@ -1,0 +1,443 @@
+{
+  "run_id": "run_ricecakes_conform_001",
+  "task": "TASK-516",
+  "generated_at": "2026-07-05T07:56:18.195544+00:00",
+  "bsip0_source": "C:\\Bari\\02_products\\crackers\\bsip0_ricecakes\\ricecakes_bsip0_raw_20260705T055211.json",
+  "output_dir": "C:\\Bari\\03_operations\\bsip1\\run_ricecakes_conform_001\\output",
+  "candidates_total": 36,
+  "records_written": 34,
+  "discarded": [
+    {
+      "barcode": "7296058000526",
+      "reason": "Partial blackout: nutrition present (358 kcal, 3.8g fat, 14.6g protein) but ingredients_raw empty in both the initial scrape and a targeted one-shot live re-check. A product missing ingredient text cannot be scored (matrix integrity / additive tiering / NOVA proxy all require it). Discard per missing-data-discard rule (found by Nutrition Agent review, 2026-07-05)."
+    },
+    {
+      "barcode": "7296058000519",
+      "reason": "Total blackout: BOTH nutrition AND ingredients empty in the initial scrape AND in a targeted one-shot live re-check of the retailer page itself. Same failure pattern as barcode 5317200 in the original crackers corpus. Discard per missing-data-discard rule."
+    }
+  ],
+  "brand_hits": [
+    {
+      "barcode": "7296073079019",
+      "brand": "ARDO",
+      "name": "פריכיות דקות קצח"
+    },
+    {
+      "barcode": "8423207208871",
+      "brand": "סלים דליס",
+      "name": "פריכיות תירס בטעם טבעי"
+    },
+    {
+      "barcode": "7290110560300",
+      "brand": "אנרג'י",
+      "name": "פריכיות משולש פלפל שחור"
+    },
+    {
+      "barcode": "4952792",
+      "brand": "הרדוף",
+      "name": "פריכיות אורז דקות אורגני"
+    },
+    {
+      "barcode": "7290119373352",
+      "brand": "אנרג'י",
+      "name": "פריכיות משולשות תפוא סלק"
+    },
+    {
+      "barcode": "7290112340122",
+      "brand": "אנרג'י",
+      "name": "הפריכיות הטעימות 3 דגנים"
+    },
+    {
+      "barcode": "7290118422129",
+      "brand": "אסם",
+      "name": "פריכיות מיני בצל מקורמל"
+    },
+    {
+      "barcode": "7290017325422",
+      "brand": "הרדוף",
+      "name": "פריכיות אורז מלא ללת\"מ"
+    },
+    {
+      "barcode": "7296073079002",
+      "brand": "ARDO",
+      "name": "פריכיות דקות אורז מלא"
+    },
+    {
+      "barcode": "7296073592440",
+      "brand": "ARDO",
+      "name": "פריכיות משולשים מלח ים"
+    },
+    {
+      "barcode": "7296073161479",
+      "brand": "ARDO",
+      "name": "פריכיות דקות תירס"
+    },
+    {
+      "barcode": "7296073420330",
+      "brand": "גרין",
+      "name": "פריכיות כוסמת ללא מלח"
+    },
+    {
+      "barcode": "7296073343202",
+      "brand": "ARDO",
+      "name": "פריכיות כוסמת"
+    },
+    {
+      "barcode": "7296073420323",
+      "brand": "גרין",
+      "name": "פריכיות כוסמת אורגנית"
+    },
+    {
+      "barcode": "9322969000022",
+      "brand": "ריל פודס",
+      "name": "פריכיות תירס +סויה כשל\"פ"
+    },
+    {
+      "barcode": "7296073450740",
+      "brand": "ARDO",
+      "name": "חטיפי פריכיות בטעם טבעי"
+    },
+    {
+      "barcode": "9322969000046",
+      "brand": "ריל פודס",
+      "name": "פריכיות תירס אורגניות"
+    },
+    {
+      "barcode": "7290019431794",
+      "brand": "עתיד ירוק",
+      "name": "פריכיות כוסמת עם קינואה"
+    },
+    {
+      "barcode": "9322969000039",
+      "brand": "ריל פודס",
+      "name": "פריכיות תירס+דגנים כשלפ"
+    },
+    {
+      "barcode": "7296073195269",
+      "brand": "גרין",
+      "name": "פריכיות אורז מלא+קינואה"
+    },
+    {
+      "barcode": "7296073343219",
+      "brand": "ARDO",
+      "name": "פריכיות אורז מלא"
+    },
+    {
+      "barcode": "7290020179043",
+      "brand": "עתיד ירוק",
+      "name": "פריכיות כוסמת עם טף"
+    },
+    {
+      "barcode": "7290112348999",
+      "brand": "אנרג'י",
+      "name": "פריכיות טעימות תירס דקות"
+    },
+    {
+      "barcode": "7290110560317",
+      "brand": "אנרג'י",
+      "name": "פריכיות משולשות מלח ים"
+    },
+    {
+      "barcode": "7296073151463",
+      "brand": "ARDO",
+      "name": "פריכיות דקות דל נתרן"
+    },
+    {
+      "barcode": "7290118426516",
+      "brand": "פיטנס",
+      "name": "פיטנס פריכיות דקות תירס"
+    },
+    {
+      "barcode": "4267230",
+      "brand": "ברמן",
+      "name": "פריכיות אורז מלא מצופות"
+    },
+    {
+      "barcode": "7290111564291",
+      "brand": "פיטנס",
+      "name": "פריכיות דק.+קינואה פיטנס"
+    },
+    {
+      "barcode": "7296073195252",
+      "brand": "גרין",
+      "name": "פריכיות אורז מלא"
+    },
+    {
+      "barcode": "7290018371275",
+      "brand": "השדה",
+      "name": "מיני פריכיות כוסמת"
+    },
+    {
+      "barcode": "9322969000015",
+      "brand": "ריל פודס",
+      "name": "פריכיות תירס כשל\"פ"
+    },
+    {
+      "barcode": "7296073106098",
+      "brand": "ARDO",
+      "name": "פריכיות דקות כוסמת"
+    },
+    {
+      "barcode": "7296073441335",
+      "brand": "ARDO",
+      "name": "פריכיות אורז מלא"
+    },
+    {
+      "barcode": "7290118426530",
+      "brand": "אסם",
+      "name": "פיטנס פריכיות דקות"
+    }
+  ],
+  "rule5_flags": [],
+  "bracket_repairs_applied": [
+    {
+      "barcode": "4267230",
+      "fix": "TASK517_reversed_bracket_repair",
+      "before": "פריכיות אורז)אורז חום,מלח(,ציפוי בטעם שוקולד}מכיל:סוכר,שמנים ושומנים מהצומח)מוקשים חלקית(אבקת קקאו,מתחלב:לציטין סויה)(E-322,חומרי טע     ם וריח{",
+      "after": "פריכיות אורז(אורז חום,מלח),ציפוי בטעם שוקולד{מכיל:סוכר,שמנים ושומנים מהצומח(מוקשים חלקית)אבקת קקאו,מתחלב:לציטין סויה()E-322,חומרי טע     ם וריח}"
+    }
+  ],
+  "results": [
+    {
+      "barcode": "7296073079019",
+      "name": "פריכיות דקות קצח",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "8423207208871",
+      "name": "פריכיות תירס בטעם טבעי",
+      "brand": "סלים דליס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290110560300",
+      "name": "פריכיות משולש פלפל שחור",
+      "brand": "אנרג'י",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "4952792",
+      "name": "פריכיות אורז דקות אורגני",
+      "brand": "הרדוף",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290119373352",
+      "name": "פריכיות משולשות תפוא סלק",
+      "brand": "אנרג'י",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290112340122",
+      "name": "הפריכיות הטעימות 3 דגנים",
+      "brand": "אנרג'י",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290118422129",
+      "name": "פריכיות מיני בצל מקורמל",
+      "brand": "אסם",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290017325422",
+      "name": "פריכיות אורז מלא ללת\"מ",
+      "brand": "הרדוף",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073079002",
+      "name": "פריכיות דקות אורז מלא",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073592440",
+      "name": "פריכיות משולשים מלח ים",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073161479",
+      "name": "פריכיות דקות תירס",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073420330",
+      "name": "פריכיות כוסמת ללא מלח",
+      "brand": "גרין",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073343202",
+      "name": "פריכיות כוסמת",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073420323",
+      "name": "פריכיות כוסמת אורגנית",
+      "brand": "גרין",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "9322969000022",
+      "name": "פריכיות תירס +סויה כשל\"פ",
+      "brand": "ריל פודס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073450740",
+      "name": "חטיפי פריכיות בטעם טבעי",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "9322969000046",
+      "name": "פריכיות תירס אורגניות",
+      "brand": "ריל פודס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290019431794",
+      "name": "פריכיות כוסמת עם קינואה",
+      "brand": "עתיד ירוק",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "9322969000039",
+      "name": "פריכיות תירס+דגנים כשלפ",
+      "brand": "ריל פודס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073195269",
+      "name": "פריכיות אורז מלא+קינואה",
+      "brand": "גרין",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073343219",
+      "name": "פריכיות אורז מלא",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290020179043",
+      "name": "פריכיות כוסמת עם טף",
+      "brand": "עתיד ירוק",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290112348999",
+      "name": "פריכיות טעימות תירס דקות",
+      "brand": "אנרג'י",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290110560317",
+      "name": "פריכיות משולשות מלח ים",
+      "brand": "אנרג'י",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073151463",
+      "name": "פריכיות דקות דל נתרן",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290118426516",
+      "name": "פיטנס פריכיות דקות תירס",
+      "brand": "פיטנס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "4267230",
+      "name": "פריכיות אורז מלא מצופות",
+      "brand": "ברמן",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290111564291",
+      "name": "פריכיות דק.+קינואה פיטנס",
+      "brand": "פיטנס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073195252",
+      "name": "פריכיות אורז מלא",
+      "brand": "גרין",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290018371275",
+      "name": "מיני פריכיות כוסמת",
+      "brand": "השדה",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "9322969000015",
+      "name": "פריכיות תירס כשל\"פ",
+      "brand": "ריל פודס",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073106098",
+      "name": "פריכיות דקות כוסמת",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7296073441335",
+      "name": "פריכיות אורז מלא",
+      "brand": "ARDO",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    },
+    {
+      "barcode": "7290118426530",
+      "name": "פיטנס פריכיות דקות",
+      "brand": "אסם",
+      "data_sufficiency": "sufficient",
+      "rule5_flag": false
+    }
+  ],
+  "enrichment_version": "bsip1_enrichment_v1",
+  "off_sources": 0,
+  "note": "TASK-516 crackers shelf expansion (Nutrition Agent GO + Product Agent GO-WITH-CONDITIONS, 2026-07-05). Rice/corn/buckwheat cake expansion of the crackers shelf, merged for BSIP2 with run_crackers_conform_001's existing 19 displayable products. OFF ban absolute; nutrition + ingredients from direct Shufersal scrape only; brand from ld+json Product.brand field (direct retailer attestation) via extract_brand + literal pass-through."
+}

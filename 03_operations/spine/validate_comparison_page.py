@@ -120,12 +120,26 @@ def main():
     if issues: fails.append(("counts", issues))
 
     # 5. ingredient sanity (truncation / trailing comma / marketing bleed)
+    # Genuine truncation leaves a POSITIVE signal at the END of the string: a dangling separator
+    # — a trailing comma, open bracket, or dash — because the scrape was cut mid-list. That is
+    # clause (a) below and it is the reliable, low-false-positive test. A legitimately SHORT
+    # whole-food list is COMPLETE and must NOT be flagged on length alone: single/dual-ingredient
+    # products ("כוסמת (99.5%), מלח" = buckwheat 99.5%, salt; "אורז חום מלא (100%)") run 16–36
+    # chars, end on a Hebrew letter or a matched ')', and are correctly parsed. The old
+    # `len(ing) < 40` clause flagged 15 such products on the crackers/ricecakes corpus — all false
+    # positives. Length is retained ONLY as a near-empty floor (< 5 chars) and even then just for
+    # fragments that don't end on a Hebrew letter, so a genuinely near-empty Latin/numeric stub is
+    # still caught without punishing short-but-real. (Note: a long string truncated mid-word on a
+    # Hebrew letter with no trailing separator — e.g. a 300-char scrape cut at a fixed length — is
+    # NOT detectable here and is out of scope for this gate; see the routed data-quality finding.)
     bad_ing = []
     for p in prods:
         ing = ((p.get("expansion", {}) or {}).get("ingredients") or "").strip()
         if not ing: continue
-        if ing[-1] in ",({-–—" or len(ing) < 40:
-            bad_ing.append((p["barcode"], "truncated/short", repr(ing[-18:])))
+        if ing[-1] in ",({-–—":
+            bad_ing.append((p["barcode"], "truncated (trailing separator)", repr(ing[-18:])))
+        elif len(ing) < 5 and not ("א" <= ing[-1] <= "ת"):
+            bad_ing.append((p["barcode"], "near-empty", repr(ing)))
         elif any(mk in ing for mk in BLEED_MARKERS):
             bad_ing.append((p["barcode"], "marketing/nutrition bleed", ""))
     print(f"[{'FAIL' if bad_ing else 'PASS'}] ingredient    ({len(bad_ing)} truncated/bleed)")
