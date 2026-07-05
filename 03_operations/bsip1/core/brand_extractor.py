@@ -1,5 +1,5 @@
 """
-BSIP1 Brand-from-Name Extraction — shared helper (TASK-433)
+BSIP1 Brand-from-Name Extraction — shared helper (TASK-433, extended TASK-516)
 
 Deterministic, conservative brand-token detector used by BOTH the crackers
 BSIP1 builder (run_crackers_conform_001) and the bread BSIP1 builder
@@ -23,6 +23,22 @@ Canonical display form is what ships in `brand` — chosen as the shortest
 literal token that positively identifies the manufacturer (matches how
 the 3 pre-existing bread brands were entered: "KRIT", "מאפיית אנג'ל" /
 "אנג'ל", "אסם" pattern).
+
+TASK-516 extension (crackers brand-extraction gap fix): a fill-rate census
+across every BSIP0 raw file in the repo showed the May-2026 bread-family
+scraper (source of the crackers corpus) never populated the retailer's
+structured `brand` field (0/258), while every scraper written since reads it
+from the product page's schema.org ld+json Product block at ~100% fill. The
+7 tokens above were bread-derived and only matched 2/19 crackers products
+(both "אסם", found in name text). A targeted live re-scrape of the SAME 21
+crackers product pages (03_operations/bsip1/run_crackers_conform_001/
+fetch_brand_patch.py, evidence banked to
+03_operations/bsip0/raw_store/shufersal/crackers/) recovered the retailer's
+own literal brand field for all 21/21 candidates. The 6 tokens below are
+those literal, retailer-attested strings — never inferred from product-name
+text (most do not even appear in the name string), never guessed, never
+OFF. See brand_patch_v1.json in the same directory for full provenance
+(source_url, fetch timestamp, content sha256 per barcode).
 """
 
 from __future__ import annotations
@@ -37,6 +53,13 @@ BRAND_TOKENS: list[tuple[str, str]] = [
     ("אסם", "אסם"),                 # Osem
     ("KRIT", "KRIT"),               # KRIT (Latin-script brand, already seen in bread v3)
     ("קריט", "KRIT"),               # KRIT Hebrew transliteration, if it ever appears
+    ("krit", "KRIT"),               # KRIT lowercase, as returned by Shufersal ld+json (TASK-516)
+    ("קופסת העוגיות של רחלי", "קופסת העוגיות של רחלי"),  # Rachel's Cookie Box (TASK-516, retailer brand field)
+    ("פיטנס", "פיטנס"),             # Fitness (TASK-516, retailer brand field)
+    ("הדר", "הדר"),                 # Hadar (TASK-516, retailer brand field)
+    ("ARDO", "ARDO"),               # ARDO (TASK-516, retailer brand field)
+    ("ריץ", "ריץ"),                 # Ritz (TASK-516, retailer brand field)
+    ("אביב אורגניק", "אביב אורגניק"),  # Aviv Organic (TASK-516, retailer brand field)
 ]
 
 

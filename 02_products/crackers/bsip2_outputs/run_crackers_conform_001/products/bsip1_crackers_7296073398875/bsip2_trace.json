@@ -1,13 +1,13 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-01T19:26:12.318207Z",
+  "trace_generated_at": "2026-07-05T05:44:36.942109Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_crackers_7296073398875",
     "barcode": "7296073398875",
     "product_name_he": "קרם קרקר",
-    "brand": null,
+    "brand": "ARDO",
     "source_retailers": [
       "shufersal"
     ],
@@ -32,7 +32,7 @@
     "hard_anchor:קרקר"
   ],
   "nova_proxy": 3,
-  "nova_confidence": 0.2,
+  "nova_confidence": 0.3,
   "nova_confidence_band": "low",
   "nova_evidence_for": [
     "additive_categories: 2, added_sugars: 1"
@@ -43,7 +43,6 @@
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=clean, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
     "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "no_ingredient_list: NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -57,12 +56,23 @@
     "sugars_g": null,
     "dietary_fiber_g": 2.0,
     "protein_g": 9.0,
-    "ingredient_count": 0,
-    "ingredient_list": [],
-    "ingredient_count_raw": 0,
+    "ingredient_count": 10,
+    "ingredient_list": [
+      "קמח חיטה",
+      "עמילן תירס",
+      "שמנים צמחיים (דקל, חמניות)",
+      "סוכרים (דקסטרוז, פרוקטוז)",
+      "גלוטן חיטה",
+      "מלח",
+      "שמרים",
+      "מתחלב: לציטין סויה",
+      "חומרי תפיחה : נתרן ואמוניום קרבונטים",
+      "מעכב חמצון: תמצית רוזמרין."
+    ],
+    "ingredient_count_raw": 10,
     "ingredient_sanitization": {
-      "raw_count": 0,
-      "clean_count": 0,
+      "raw_count": 10,
+      "clean_count": 10,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
@@ -132,7 +142,7 @@
     ],
     "has_fruit_concentrate": false,
     "has_fermentation": true,
-    "product_type_dairy": true,
+    "product_type_dairy": false,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
@@ -183,7 +193,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 0,
+    "sanitized_ingredient_count": 10,
     "primary_fragmentation": "fractional",
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -198,7 +208,18 @@
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 6.97,
-    "ingredient_list": []
+    "ingredient_list": [
+      "קמח חיטה",
+      "עמילן תירס",
+      "שמנים צמחיים (דקל, חמניות)",
+      "סוכרים (דקסטרוז, פרוקטוז)",
+      "גלוטן חיטה",
+      "מלח",
+      "שמרים",
+      "מתחלב: לציטין סויה",
+      "חומרי תפיחה : נתרן ואמוניום קרבונטים",
+      "מעכב חמצון: תמצית רוזמרין."
+    ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
@@ -261,7 +282,7 @@
     "satiety_support": 32.7,
     "fat_quality": 71.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 65
+    "whole_food_integrity": 61
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
@@ -273,7 +294,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (9.0×3 + 2.0×5) / 452.0 × 400 = 32.7",
     "fat_quality": "R3 leanness: fat=3.5g sat_fat absent (treated 0) → 71.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=0 complexity_pen=0 + ferm_bonus=5 → 65"
+    "whole_food_integrity": "NOVA 3 base=60, ing_count=10 complexity_pen=4 + ferm_bonus=5 → 61"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -287,7 +308,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 67.45,
+  "weighted_dimension_score": 67.29,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -387,7 +408,7 @@
     }
   ],
   "binding_cap": 94.8,
-  "score_after_cap": 67.45,
+  "score_after_cap": 67.29,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -444,7 +465,7 @@
   "total_penalty_before_scaling": 3.0,
   "total_penalty_after_scaling": 3.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 64.45,
+  "score_after_penalty": 64.29,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -509,11 +530,11 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 64.45,
+  "score_after_floors": 64.29,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 64.5,
+  "final_score_estimate": 64.3,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
@@ -521,28 +542,27 @@
     "PENALTIES: ['SEED_OIL_PRESENT']"
   ],
   "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
   ],
   "structural_class": {
     "primary": "D",
     "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.337,
+    "primary_confidence": 0.37,
     "secondary": "C",
     "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.307,
+    "secondary_confidence": 0.327,
     "class_weights": {
-      "A": 0.123,
+      "A": 0.049,
       "B": 0.049,
-      "C": 0.307,
-      "D": 0.337,
-      "E": 0.184,
+      "C": 0.327,
+      "D": 0.37,
+      "E": 0.204,
       "F": 0.0
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_3_signal",
-      "moderate_protein_quality",
-      "minimal_ingredients"
+      "moderate_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"
   },

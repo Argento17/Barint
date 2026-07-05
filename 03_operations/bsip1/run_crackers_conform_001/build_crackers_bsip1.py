@@ -36,6 +36,26 @@ OUTPUT_DIR = pathlib.Path(
 )
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+# TASK-516: brand patch — the May-2026 bread-family scraper (source of
+# BSIP0_PATH above) never populated the retailer's structured `brand` field
+# (0/258 fill, confirmed by census). fetch_brand_patch.py did a targeted live
+# re-scrape of the SAME 21 product pages and read the retailer's own ld+json
+# Product.brand field directly (literal, retailer-attested, not name-text
+# inference). Loaded here and consulted BEFORE falling back to the (always-
+# empty, for this corpus) BSIP0 `brand` field.
+BRAND_PATCH_PATH = pathlib.Path(
+    r"C:\Bari\03_operations\bsip1\run_crackers_conform_001\brand_patch_v1.json"
+)
+_brand_patch: dict[str, str] = {}
+if BRAND_PATCH_PATH.exists():
+    with open(BRAND_PATCH_PATH, encoding="utf-8") as _f:
+        _patch_doc = json.load(_f)
+    _brand_patch = {
+        bc: entry["brand_field"]
+        for bc, entry in _patch_doc.get("patch", {}).items()
+        if entry.get("brand_field")
+    }
+
 # --- Step 1 inclusion list (Crackers Category Constitution v1, Section 1) ---
 # All 21 candidates named in TASK-433 (task lists 20 distinct+1 repeat = 21
 # tokens; verified all 21 are unique barcodes present in the raw BSIP0 scrape
@@ -192,10 +212,16 @@ def build_bsip1_record(raw: dict) -> dict:
     """Convert a BSIP0 raw record to standard bsip1_v0_1 schema (crackers)."""
     barcode = str(raw.get("barcode", "")).strip()
     name_he = (raw.get("name_he") or "").strip()
-    brand_field_raw = (raw.get("brand") or "").strip()
+    # TASK-516: prefer the live-re-scraped retailer brand field (patch) over
+    # the BSIP0 raw `brand` field, which is empty for every record in this
+    # corpus (source scraper never captured it — see brand_extractor.py
+    # module docstring and fetch_brand_patch.py for the evidence trail).
+    brand_field_raw = (_brand_patch.get(barcode) or raw.get("brand") or "").strip()
 
-    # Deterministic brand-from-name extraction (shared helper; conservative;
-    # never invents). Confirmed tokens: מסטמכר / ברמן / אנג'ל / אסם / KRIT.
+    # Deterministic brand-from-name/brand-field extraction (shared helper;
+    # conservative; never invents). Confirmed tokens: מסטמכר / ברמן / אנג'ל /
+    # אסם / KRIT (TASK-433) + קופסת העוגיות של רחלי / פיטנס / הדר / ARDO /
+    # ריץ / אביב אורגניק (TASK-516, retailer brand field via live re-scrape).
     brand = extract_brand(name_he, brand_field_raw)
 
     nutr_raw = raw.get("nutrition", {}) or {}

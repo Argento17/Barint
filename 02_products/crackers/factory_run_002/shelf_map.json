@@ -1,0 +1,23 @@
+{
+  "run_id": "crackers_factory_run_002",
+  "task": "TASK-516",
+  "generated_at": "2026-07-05T00:00:00Z",
+  "status": "DRAFT — pending Product Agent approval (pipeline protocol Stage 1)",
+  "shelf_slug": "crackers",
+  "category_slug": "crackers",
+  "action": "shelf_expansion_same_page",
+  "mapping": [
+    {
+      "shelf_slug": "crackers",
+      "category_slug": "crackers",
+      "mapping_rationale": "EXISTING — unchanged. 19 displayable קרקר-identity products already live at /hashvaot/crackers (TASK-433). No change to this slice."
+    },
+    {
+      "shelf_slug": "ricecakes_extension_of_crackers",
+      "category_slug": "crackers",
+      "mapping_rationale": "NEW (TASK-516, owner-directed): פריכיות (rice/corn/buckwheat puffed cakes) and line extensions merge into the SAME crackers shelf/page — owner explicitly rejected a separate category page. Governed by Crackers Category Constitution v1 (Nutrition Agent, 2026-07-01), Section 1.1, which already lists 'קראנצ'ים / crisp-style savory snap crackers, rice/corn snap crackers (אורז תפוח, פריכיות אורז)' as IN-scope by the crackers boundary definition (same functional role: dry, snap, topping-base or standalone snack), subject to a Rule-5 boundary check at corpus-filter time (see corpus_filter.json)."
+    }
+  ],
+  "duplicate_check": "No overlap with any other live shelf/category — פריכיות does not appear anywhere in the existing 19-product crackers corpus (0 matches for 'פריכ' in the source bread_retail_003 scrape) and is not claimed by cereals/snack_bars/salty_snacks category configs (checked: EXCLUDE_SIGNALS in shufersal_cookies_coffee explicitly excludes 'פריכיות'; salty_snacks and snack_bars configs do not reference rice cakes).",
+  "notes": "This is a corpus-scope EXPANSION of an already-approved, already-live category (crackers), not a new category creation — Forbidden Actions item 'do not create a new category that duplicates an existing category's shelf scope' does not apply (this is explicitly the opposite: consolidating a related shelf into the existing one at the owner's direction to avoid category proliferation)."
+}

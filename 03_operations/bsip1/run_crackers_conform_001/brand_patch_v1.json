@@ -1,0 +1,158 @@
+{
+  "schema": "crackers_brand_patch_v1",
+  "task": "TASK-516",
+  "generated_at": "2026-07-05T05:43:21.214471+00:00",
+  "note": "Live targeted re-scrape of the same Shufersal product pages already in the crackers corpus, reading the retailer's schema.org ld+json Product.brand field (the original May-2026 bread-family scraper never captured this field; every scraper written since does). Literal, retailer-attested brand strings only -- never inferred from name text, never OFF, never invented.",
+  "off_sources": 0,
+  "candidates_fetched": 21,
+  "brands_recovered": 21,
+  "patch": {
+    "7290013740809": {
+      "brand_field": "קופסת העוגיות של רחלי",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F-%D7%A1%D7%9C%D7%A7/p/P_7290013740809",
+      "fetched_at": "2026-07-05T05:42:51.524210+00:00",
+      "content_sha256": "d8ef94c903c61d85d62588f026a11d454835d3a12cd163f7d556ac6911f3f1b6",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "74252": {
+      "brand_field": "אסם",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%A9%D7%95%D7%9E%D7%A9%D7%95%D7%9D-%D7%90%D7%A1%D7%9D/p/P_74252",
+      "fetched_at": "2026-07-05T05:42:53.007740+00:00",
+      "content_sha256": "c2c3cb10c419f8cb155faa9ec1b413800c6185ebab313e0a845f375e51adda8a",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290115205176": {
+      "brand_field": "פיטנס",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%9B%D7%A4%D7%A8%D7%99-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/p/P_7290115205176",
+      "fetched_at": "2026-07-05T05:42:54.478306+00:00",
+      "content_sha256": "730acb16b77236418825539c5769a859bfe1ae5c45e662ecf22ea2964f522c4a",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290018790328": {
+      "brand_field": "הדר",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%9E%D7%A8%D7%95%D7%91%D7%A2-%D7%9E%D7%9C%D7%95%D7%97/p/P_7290018790328",
+      "fetched_at": "2026-07-05T05:42:55.978459+00:00",
+      "content_sha256": "4ca365813927e1a1606b4753cf870662c34bcf9d7c88f455419c2c8402addf35",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290011489595": {
+      "brand_field": "הדר",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%98%D7%95%D7%A4%D7%96-%D7%A9%D7%95%D7%9E%D7%A9%D7%95%D7%9D/p/P_7290011489595",
+      "fetched_at": "2026-07-05T05:42:57.397052+00:00",
+      "content_sha256": "e656ee9e226e1e3f9b10caf7e425a5d88d1c762f673be7f45fe5db1e03e635d8",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7296073659952": {
+      "brand_field": "ARDO",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%9B%D7%A4%D7%A8%D7%99/p/P_7296073659952",
+      "fetched_at": "2026-07-05T05:42:59.009961+00:00",
+      "content_sha256": "508924977439f02c14503c61dace5d95455fa0a4dacc2c994208e171b8ba2e64",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7296073134442": {
+      "brand_field": "ARDO",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A4%D7%AA%D7%99%D7%AA/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%A4%D7%A8%D7%99%D7%9A-%D7%A2%D7%9D-%D7%A7%D7%9E%D7%97-%D7%A9%D7%99%D7%A4%D7%95%D7%9F/p/P_7296073134442",
+      "fetched_at": "2026-07-05T05:43:00.492109+00:00",
+      "content_sha256": "aaa288e17e4357cbe63c16dfd56789586e676e1795b248c8053f91ff5e8ffcac",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290112963918": {
+      "brand_field": "פיטנס",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%A8%D7%95%D7%96%D7%9E%D7%A8%D7%99%D7%9F-%D7%A4%D7%99%D7%98%D7%A0%D7%A1/p/P_7290112963918",
+      "fetched_at": "2026-07-05T05:43:01.945660+00:00",
+      "content_sha256": "47edd3be541198d7e5c59e491760f5b7cb83fc5c18c833645ddbf75bdc5b2b62",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "74375": {
+      "brand_field": "אסם",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%96%D7%94%D7%91-%D7%90%D7%A1%D7%9D/p/P_74375",
+      "fetched_at": "2026-07-05T05:43:03.637754+00:00",
+      "content_sha256": "fb3e989a9835ada9d01e6834d0339c123737bef6c371cc473d4cff91473c9282",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290112968807": {
+      "brand_field": "פיטנס",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%A4%D7%99%D7%98%D7%A0%D7%A1-%D7%A1%D7%9C%D7%A7/p/P_7290112968807",
+      "fetched_at": "2026-07-05T05:43:05.113288+00:00",
+      "content_sha256": "07483840642c925c57c6e33343a1d5bc26d92fe16bfbe3b6b1232f3ce75a116f",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "5317200": {
+      "brand_field": "הדר",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%98%D7%95%D7%A4%D7%96-%D7%9E%D7%9C%D7%97-%D7%94%D7%93%D7%A8/p/P_5317200",
+      "fetched_at": "2026-07-05T05:43:06.498227+00:00",
+      "content_sha256": "66cb1ca79be7dc02ed808ce4d2aeff84ad9adbe2ff8621ea0fcb095d58bb7519",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7296073398875": {
+      "brand_field": "ARDO",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8/p/P_7296073398875",
+      "fetched_at": "2026-07-05T05:43:07.997237+00:00",
+      "content_sha256": "f3922153df365753c96c483aba8391cbba111991883b30cc0c8046072a7e6e26",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "5000396021202": {
+      "brand_field": "ריץ",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8/p/P_5000396021202",
+      "fetched_at": "2026-07-05T05:43:09.413397+00:00",
+      "content_sha256": "2ad3757e8b5b8860d553e5cb4e44dcead23a040c1047712a34240407e1682c7d",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "8434165658523": {
+      "brand_field": "krit",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%A7%D7%A8%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8/p/P_8434165658523",
+      "fetched_at": "2026-07-05T05:43:10.848285+00:00",
+      "content_sha256": "4414b80dded0a9612028e4033316f74d82acb66dd4590045b8958dc8f960349a",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290013740823": {
+      "brand_field": "קופסת העוגיות של רחלי",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F-%D7%98%D7%91%D7%A2%D7%99/p/P_7290013740823",
+      "fetched_at": "2026-07-05T05:43:12.318081+00:00",
+      "content_sha256": "19a633e8bb0fad902c4a5b9a7ec42d16505c5151ff664e6e81d6df9f0c8fd970",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290112968821": {
+      "brand_field": "פיטנס",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%A4%D7%99%D7%98%D7%A0%D7%A1-%D7%91%D7%98%D7%98%D7%94/p/P_7290112968821",
+      "fetched_at": "2026-07-05T05:43:13.745501+00:00",
+      "content_sha256": "04a1287aaf0ca53581e2cb3dd580e3a18d87c677f46508a75942ec1051903382",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7296073134459": {
+      "brand_field": "ARDO",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A4%D7%AA%D7%99%D7%AA/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%A4%D7%A8%D7%99%D7%9A-%D7%91%D7%A1%D7%92%D7%A0%D7%95%D7%9F-%D7%A9%D7%95%D7%95%D7%93%D7%99/p/P_7296073134459",
+      "fetched_at": "2026-07-05T05:43:15.256735+00:00",
+      "content_sha256": "a92e738f69d103aa376797aeb9a4b78e050c347072614e6e9e005fa0c0daf71d",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7290013740083": {
+      "brand_field": "קופסת העוגיות של רחלי",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%92%D7%A0%D7%99%D7%9D-%D7%9C%D7%9C%D7%AA%22%D7%A1/p/P_7290013740083",
+      "fetched_at": "2026-07-05T05:43:16.690734+00:00",
+      "content_sha256": "70bf51c53daa29354db7c95205626680c5e6bbb546f8a14127d175587764da1b",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "7296073659945": {
+      "brand_field": "ARDO",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%97%D7%98%D7%99%D7%A4%D7%99%D7%9D-%D7%9E%D7%AA%D7%95%D7%A7%D7%99%D7%9D-%D7%95%D7%93%D7%92%D7%A0%D7%99-%D7%91%D7%95%D7%A7%D7%A8/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%93%D7%A7-%D7%A8%D7%95%D7%96%D7%9E%D7%A8%D7%99%D7%9F/p/P_7296073659945",
+      "fetched_at": "2026-07-05T05:43:18.141506+00:00",
+      "content_sha256": "86f2d97fba86cf0fce71371998a660e4773e1462b9b9a46b2aae2a783574fcf4",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "96086000577": {
+      "brand_field": "אביב אורגניק",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9C%D7%97%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D-%D7%95%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F-%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99/p/P_96086000577",
+      "fetched_at": "2026-07-05T05:43:19.587842+00:00",
+      "content_sha256": "630ee44c95dc5970d0634ef2cd6ee0807489a91e15cd62086b992744e87e26b9",
+      "method": "live_targeted_rescrape_ld_json"
+    },
+    "96086000966": {
+      "brand_field": "אביב אורגניק",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%90%D7%95%D7%A8%D7%92%D7%A0%D7%99-%D7%95%D7%91%D7%A8%D7%99%D7%90%D7%95%D7%AA/%D7%9C%D7%97%D7%9D-%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D-%D7%95%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA/%D7%A4%D7%A8%D7%99%D7%9B%D7%99%D7%95%D7%AA-%D7%95%D7%A7%D7%A8%D7%A7%D7%A8%D7%99%D7%9D/%D7%A7%D7%A8%D7%A7%D7%A8-%D7%9B%D7%95%D7%A1%D7%9E%D7%99%D7%9F-%D7%9E%D7%9C%D7%90-%D7%95%D7%A9%D7%95%D7%9E%D7%A9%D7%95%D7%9D/p/P_96086000966",
+      "fetched_at": "2026-07-05T05:43:21.212672+00:00",
+      "content_sha256": "f16d2b43b640ae11a016be658a801fb2adb58cd9c098c96f19adf927e04f81f9",
+      "method": "live_targeted_rescrape_ld_json"
+    }
+  }
+}
