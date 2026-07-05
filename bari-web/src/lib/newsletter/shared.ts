@@ -5,7 +5,7 @@ export const NEWSLETTER_MESSAGES = {
   invalidEmail: "הכניסו כתובת אימייל תקינה.",
 } as const;
 
-export const NEWSLETTER_SOURCES = ["homepage", "newsletter_page"] as const;
+export const NEWSLETTER_SOURCES = ["homepage", "newsletter_page", "hero"] as const;
 
 export type NewsletterSource = (typeof NEWSLETTER_SOURCES)[number];
 

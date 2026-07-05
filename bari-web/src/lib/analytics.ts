@@ -21,7 +21,13 @@ export type BariEventName =
   | "tier_card_expand"
   | "tier_card_collapse"
   | "scroll_past_additive_panel"
-  | "additive_panel_impression";
+  | "additive_panel_impression"
+  // Newsletter — fired ONLY on a confirmed-successful API response (result.ok
+  // === true), never on form_start/click. Distinguishes a real signup from
+  // GA4 Enhanced Measurement's auto-detected `form_submit`, which is known to
+  // be unreliable for forms that call preventDefault() + fetch() instead of
+  // a native submit/navigation (this form's pattern) — see newsletter-signup.tsx.
+  | "newsletter_signup";
 
 export type BariEventProperties = Record<string, string | number | boolean>;
 

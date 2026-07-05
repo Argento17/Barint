@@ -5,6 +5,7 @@ import { Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { fireEvent } from "@/lib/analytics";
 import {
   isValidEmail,
   NEWSLETTER_MESSAGES,
@@ -56,6 +57,10 @@ export function NewsletterSignup({ source }: NewsletterSignupProps) {
 
       if (result.ok) {
         setEmail("");
+        // Fired only on a confirmed-successful subscribe response — not on
+        // form_start/click — so it is distinguishable from GA4's automatic
+        // (and here, unreliable) form_submit signal.
+        fireEvent("newsletter_signup", { source });
       }
     } catch {
       setFeedback({
