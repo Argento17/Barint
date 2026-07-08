@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { ConsentManager } from "@/components/shared/consent-manager";
 import { GA4Script } from "@/components/shared/ga4-script";
-import { Analytics } from "@vercel/analytics/next";
+import { VercelAnalytics } from "@/components/shared/vercel-analytics";
 import { SiteStructuredData } from "@/components/seo/site-structured-data";
 import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
@@ -84,8 +84,10 @@ export default function RootLayout({
           for aggregate pageview/referrer/campaign totals only. If the privacy
           posture ever treats cookieless analytics as consent-requiring, gate
           this behind the ConsentManager like GA4Script. See privacy/page.tsx.
+          The wrapper (TASK-522) adds a beforeSend filter that drops /admin
+          pages and internal (owner/agent/dev) traffic from the counts.
         */}
-        <Analytics />
+        <VercelAnalytics />
         <SiteStructuredData />
       </body>
     </html>

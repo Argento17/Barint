@@ -26,6 +26,7 @@
 import Script from "next/script";
 import { useEffect, useState } from "react";
 import { getStoredConsent, onConsentChange } from "@/lib/consent";
+import { isInternalTraffic } from "@/lib/internal-traffic";
 
 // GA4 Measurement ID. Default is the production property (bari.digital);
 // a Vercel `NEXT_PUBLIC_GA_ID` env var overrides it if ever set. A GA
@@ -92,7 +93,14 @@ export function GA4Script() {
         // Library is loaded and consent is granted — send the first hit now.
         window.gtag("consent", "update", { analytics_storage: "granted" });
         window.gtag("js", new Date());
-        window.gtag("config", GA_ID, { anonymize_ip: true });
+        // traffic_type: 'internal' (TASK-522) tags owner/agent/dev/preview
+        // clients (see @/lib/internal-traffic) so a GA4 Admin-UI data filter
+        // can exclude them later — the owner activates that filter; this is
+        // just the parameter being sent. Absent entirely for real visitors.
+        window.gtag("config", GA_ID, {
+          anonymize_ip: true,
+          ...(isInternalTraffic() ? { traffic_type: "internal" } : {}),
+        });
       }}
     />
   );

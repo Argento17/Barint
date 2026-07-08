@@ -45,6 +45,7 @@ import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { InventoryGradeChip } from "./inventory-grade-chip";
 import type { BariGrade, BariProductVM, InventoryProductRowVM } from "@/lib/view-models";
 import { ExpansionSection } from "@/components/shared/expansion-section";
+import { fireEvent } from "@/lib/analytics";
 
 // ── Row type extended with optional buy URL (future-ready) ──────────────────
 
@@ -236,7 +237,15 @@ function ProductPageLink({ sku }: { sku: string | null }) {
 // when a per-product retailer URL is wired later, this links to the product's listing
 // on the chain's site. Dormant state = greyed + "בקרוב" tooltip (no inline text, to keep
 // the pill from clipping in the fixed-width column).
-function BuyAffordance({ buyUrl }: { buyUrl?: string | null }) {
+function BuyAffordance({
+  buyUrl,
+  barcode,
+  category,
+}: {
+  buyUrl?: string | null;
+  barcode?: string | null;
+  category?: string;
+}) {
   if (buyUrl) {
     return (
       <a
@@ -250,6 +259,12 @@ function BuyAffordance({ buyUrl }: { buyUrl?: string | null }) {
           color: "var(--bari-green-deep, #176F53)",
           background: "#FAFAF8",
         }}
+        onClick={() =>
+          fireEvent("outbound_click", {
+            barcode: barcode ?? "",
+            category: category ?? "",
+          })
+        }
       >
         <Store className="h-3 w-3" aria-hidden />
         צפייה ברשת
@@ -922,7 +937,7 @@ function DesktopRow({
         {/* Buy affordance (public only) — tighter horizontal padding so the pill fits */}
         {!isAdmin && (
           <td style={{ padding: "13px 12px" }}>
-            <BuyAffordance buyUrl={row.buyUrl} />
+            <BuyAffordance buyUrl={row.buyUrl} barcode={row.sku} category={row.categoryId} />
           </td>
         )}
 
@@ -1074,7 +1089,9 @@ function MobileRow({
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <InventoryGradeChip grade={row.grade} />
-          {showBuy && !hasExpansion && <BuyAffordance buyUrl={row.buyUrl} />}
+          {showBuy && !hasExpansion && (
+            <BuyAffordance buyUrl={row.buyUrl} barcode={row.sku} category={row.categoryId} />
+          )}
           {hasExpansion && detail && (
             <button
               id={triggerId}
