@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.843189Z",
+  "trace_generated_at": "2026-07-08T11:15:36.292618Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290119377411",
@@ -31,20 +31,20 @@
   "classification_basis": [
     "hard_anchor:דנונה פרו"
   ],
-  "nova_proxy": 3,
-  "nova_confidence": 0.35,
-  "nova_confidence_band": "low",
+  "nova_proxy": 4,
+  "nova_confidence": 0.82,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
-    "flavor_enhancer_detected (חומרי טעם וריח)"
+    "flavor_enhancer_detected (חומרי טעם וריח)",
+    "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
   ],
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
-    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "BSIP2-HC-001 sub-rule A (modified_starch): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
+    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis"
   ],
   "L1_observed_signals": {
     "energy_kcal": 88.0,
@@ -65,7 +65,7 @@
       "עמילן טפיוקה מעובד (E1442)",
       "מייצב (לוקוסט- בין גאם)",
       "חומרי טעם וריח",
-      "מווסת חומציות (חומצ ת לימון). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר"
+      "מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט"
     ],
     "ingredient_count_raw": 8,
     "ingredient_sanitization": {
@@ -128,10 +128,8 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 1,
-    "added_sugar_matches": [
-      "סוכר"
-    ],
+    "added_sugar_sources_count": 0,
+    "added_sugar_matches": [],
     "has_fruit_concentrate": false,
     "has_fermentation": true,
     "product_type_dairy": true,
@@ -169,11 +167,13 @@
     "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
-    "tax_emulsifier_medium": [],
+    "tax_emulsifier_medium": [
+      "modified_starch_stabilizer"
+    ],
     "tax_emulsifier_low": [],
     "tax_named_concern_additives": [],
-    "tax_native_starch": true,
-    "tax_modified_starch": false,
+    "tax_native_starch": false,
+    "tax_modified_starch": true,
     "tax_bha_present": false,
     "tax_bht_present": false,
     "has_collagen": false,
@@ -201,7 +201,7 @@
       "עמילן טפיוקה מעובד (E1442)",
       "מייצב (לוקוסט- בין גאם)",
       "חומרי טעם וריח",
-      "מווסת חומציות (חומצ ת לימון). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר"
+      "מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט"
     ]
   },
   "L4_interpreted_concerns": {
@@ -243,7 +243,7 @@
     },
     "se_note": null
   },
-  "confidence_score": 80,
+  "confidence_score": 90,
   "confidence_band": "high",
   "confidence_reductions": [
     {
@@ -253,14 +253,10 @@
     {
       "factor": "bsip1_trust_level=medium",
       "reduction": -5
-    },
-    {
-      "factor": "nova_confidence=low",
-      "reduction": -10
     }
   ],
   "dimension_scores": {
-    "processing_quality": 56.0,
+    "processing_quality": 35.0,
     "nutrient_density": 63.9,
     "calorie_density": 80.0,
     "glycemic_quality": 84.0,
@@ -269,10 +265,10 @@
     "satiety_support": 100,
     "fat_quality": 80.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 65
+    "whole_food_integrity": 35
   },
   "dimension_notes": {
-    "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=11.6g→88.0, fiber=1.9g→19.0, weighted 65/35=63.9",
     "calorie_density": "kcal=88.0, category=dairy_protein → 80",
     "glycemic_quality": "90 - sugar_penalty(9.8) + fiber(3.8) + wg(0) = 84.0",
@@ -281,7 +277,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (11.6×3 + 1.9×5) / 88.0 × 400 = 100",
     "fat_quality": "R3 leanness: fat=2.0g sat_fat absent (treated 0) → 80.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=8 complexity_pen=0 + ferm_bonus=5 → 65"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=8 complexity_pen=0 + ferm_bonus=5 → 35"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -295,7 +291,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 81.22,
+  "weighted_dimension_score": 68.86,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -353,9 +349,9 @@
     },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 87.2,
-      "condition": false,
-      "fired": false
+      "cap": 68.0,
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ADDITIVE_MARKERS_5_PLUS",
@@ -371,9 +367,9 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 94.8,
-      "condition": true,
-      "fired": true
+      "cap": 87.0,
+      "condition": false,
+      "fired": false
     },
     {
       "rule": "HIGH_SODIUM_700MG_PLUS",
@@ -390,16 +386,16 @@
   ],
   "caps_applied": [
     {
-      "rule": "ADDITIVE_MARKERS_3_PLUS",
-      "cap": 72
+      "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
+      "cap": 68.0
     },
     {
-      "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 94.8
+      "rule": "ADDITIVE_MARKERS_3_PLUS",
+      "cap": 72
     }
   ],
-  "binding_cap": 72,
-  "score_after_cap": 72,
+  "binding_cap": 68.0,
+  "score_after_cap": 68.0,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -450,7 +446,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 72.0,
+  "score_after_penalty": 65.0,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -471,7 +467,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 72,
+      "binding_cap": 68.0,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -511,37 +507,36 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 72.0,
+  "score_after_floors": 65.0,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 72.0,
+  "final_score_estimate": 65.0,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=72 from rules: ['ADDITIVE_MARKERS_3_PLUS', 'NOVA_PROXY_3_PROCESSED']"
+    "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"
   ],
-  "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.35)"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
-    "primary": "D",
-    "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.406,
-    "secondary": "E",
-    "secondary_label": "Engineered Wellness System",
-    "secondary_confidence": 0.312,
+    "primary": "E",
+    "primary_label": "Engineered Wellness System",
+    "primary_confidence": 0.381,
+    "secondary": "D",
+    "secondary_label": "Industrially Reconstructed",
+    "secondary_confidence": 0.345,
     "class_weights": {
-      "A": 0.042,
-      "B": 0.057,
-      "C": 0.182,
-      "D": 0.406,
-      "E": 0.312,
-      "F": 0.0
+      "A": 0.041,
+      "B": 0.056,
+      "C": 0.025,
+      "D": 0.345,
+      "E": 0.381,
+      "F": 0.152
     },
     "is_between_worlds": true,
     "classification_notes": [
-      "nova_3_signal",
+      "nova_4_signal",
+      "whole_food_integrity_low",
       "high_protein_quality"
     ],
     "classifier_version": "structural_classifier_v1"

@@ -1272,7 +1272,19 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "name_en": "Acesulfame potassium",
         "tier": "dose-dependent",
         "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
-        "match_patterns_he": ["אצסולפאם", "אצסולפם", "acesulfame", "אצסולפאם k", "אצסולפאם K"],
+        # TASK-515A RT-2/RT-3 fix (2026-07-05): bare-name-inside-"ממתיקים(...)" gap.
+        # Several yogurt-drinkable/spoonable labels spell this with samech (ס) —
+        # "אססולפאם" — instead of the tzadi (צ) form "אצסולפאם" already matched
+        # above. Both spellings denote the same additive (acesulfame potassium);
+        # this is a label-spelling variant, not a new substance. Evidence: raw
+        # ingredients_text_he on 7290110325121/114/7290116932774/934228 reads
+        # "ממתיקים (אספרטיים, אססולפאם k)" — samech form, previously unmatched.
+        # "א ססולפאם" is the same word with a stray OCR/scrape space.
+        "match_patterns_he": [
+            "אצסולפאם", "אצסולפם", "acesulfame",
+            "אצסולפאם k", "אצסולפאם K",
+            "אססולפאם", "א ססולפאם",
+        ],
         "cosmetic_mup": True,
     },
     "E466": {
@@ -1467,7 +1479,15 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "name_en": "Aspartame",
         "tier": "contested",
         "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
-        "match_patterns_he": ["אספרטם", "aspartame", "E951", "e951"],
+        # TASK-515A RT-2/RT-3 fix (2026-07-05): bare-name-inside-"ממתיקים(...)" gap.
+        # "אספרטיים" is the plural/alternate bare-name spelling of aspartame used on
+        # several yogurt-drinkable/spoonable labels (no E-number given on-pack) —
+        # same substance as "אספרטם" already matched above, not a new additive.
+        # "אספרטי ים" is the identical word with a stray OCR/scrape space.
+        "match_patterns_he": [
+            "אספרטם", "aspartame", "E951", "e951",
+            "אספרטיים", "אספרטי ים",
+        ],
         "cosmetic_mup": True,   # non-sugar sweetener
         # Established contested — IARC 2023 Group 2B vs JECFA 2023 genuine split.
         "score_eligible": True,

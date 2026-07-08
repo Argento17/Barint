@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.484577Z",
+  "trace_generated_at": "2026-07-08T11:15:36.260103Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290010471669",
@@ -38,14 +38,14 @@
     "flavor_enhancer_detected (חומרי טעם וריח)",
     "high_additive_category_count: 4",
     "very_long_ingredient_list: 19",
-    "BSIP2-HC-001 sub-rule B (phosphate_emulsifying_salt): phosphate_emulsifying_salt detected (E339/E450/E451/E452 or נתרן פוספט) + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
+    "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
   ],
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
-    "BSIP2-HC-001 sub-rule B (phosphate_emulsifying_salt): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
+    "BSIP2-HC-001 sub-rule A (modified_starch): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis"
   ],
   "L1_observed_signals": {
@@ -188,13 +188,15 @@
     "functional_fiber_trace_only": true,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
-    "tax_emulsifier_medium": [],
+    "tax_emulsifier_medium": [
+      "modified_starch_stabilizer"
+    ],
     "tax_emulsifier_low": [
       "guar_gum"
     ],
     "tax_named_concern_additives": [],
-    "tax_native_starch": true,
-    "tax_modified_starch": false,
+    "tax_native_starch": false,
+    "tax_modified_starch": true,
     "tax_bha_present": false,
     "tax_bht_present": false,
     "has_collagen": false,
@@ -500,7 +502,7 @@
   "total_penalty_before_scaling": 9.8,
   "total_penalty_after_scaling": 9.8,
   "penalty_scaling_note": null,
-  "score_after_penalty": 37.26,
+  "score_after_penalty": 34.26,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -574,12 +576,12 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 37.26,
+  "score_after_floors": 34.26,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 37.3,
-  "grade_estimate": "D",
+  "final_score_estimate": 34.3,
+  "grade_estimate": "E",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",

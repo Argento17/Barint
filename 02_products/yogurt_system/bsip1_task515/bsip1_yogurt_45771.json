@@ -136,5 +136,26 @@
     "אבקת חלב."
   ],
   "ingredient_count": 2,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_45771_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: same 9-row table, no sugars row, satfat=2.6 (distinct from twin 43944's 2.4, consistent with the ledger's near-duplicate note)",
+        "hazi_hinam": "no separate barcode variant located distinct from 43944's match; not independently re-confirmed beyond the twin",
+        "tiv_taam": "product not found",
+        "yohananof": "matched (\"יוגורט תנובה כד 3 ליטר 4%\", ברקוד 7290000045771); nutrition dialog: satfat=2.6 (exact match to Shufersal), no sugars row"
+      },
+      "verdict": "UNAVAILABLE on all retailers that carry this SKU (Shufersal, Yohananof confirmed independently); not stocked at Tiv Taam. Consistent with 43944 -- same manufacturer omission.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

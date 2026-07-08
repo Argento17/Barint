@@ -40,6 +40,10 @@ def main():
     ap.add_argument("--json", required=True)
     ap.add_argument("--traces", required=True, nargs="+", help="one or more run_dir/products dirs containing */bsip2_trace.json; first match wins on barcode collision")
     ap.add_argument("--http", action="store_true", help="also HTTP-check every imageUrl (slow)")
+    ap.add_argument("--local-origin", default="http://localhost:3000",
+                     help="dev-server origin used as a fallback check for scheme-less imageUrls when --http is set")
+    ap.add_argument("--public-dir", default=None,
+                     help="filesystem root for scheme-less imageUrls (default: <repo>/bari-web/public next to this script)")
     a = ap.parse_args()
 
     d = json.load(open(a.json, encoding="utf-8"))
@@ -120,11 +124,43 @@ def main():
     if issues: fails.append(("counts", issues))
 
     # 5. ingredient sanity (truncation / trailing comma / marketing bleed)
+    # NOTE (TASK-515A): a raw len<40 floor false-positives on genuinely short-but-
+    # complete lists (e.g. Ayran "חלב בקר מפוסטר, מלח" = pasteurized cow milk, salt
+    # — 2 real ingredients; same shape as butter's "cream, salt").
+    #
+    # NOTE (TASK-515, second pass): the len<40-AND-<2-comma-parts "bare fragment"
+    # guess above was ITSELF a false-positive generator, not a narrow yogurt-only
+    # quirk. A census of every already-shipped comparison JSON found it wrongly
+    # flagging single-ingredient staples with no comma at all: milk "חלב" (plain
+    # milk, 1 word), milk "חלב עיזים מפוסטר מהומגן", juices "מיץ תפוזים" / "מיץ
+    # רימונים" / "100% מיץ תפוזים סחוט טבעי" (×6), crackers "כוסמת אורגנית (100%)"
+    # / "אורז חום מלא (100%)" (×3), and yogurt "חלב כבשים מפוסטר" (pasteurized
+    # sheep milk — this ticket's case; BSIP1 raw scrape confirms the label reads
+    # "...מפוסטר" then immediately "מכיל חלב כבשים" (allergen line) then the
+    # nutrition table, i.e. the real printed ingredient list IS one item — see
+    # ingredients_raw_he in bsip1_yogurt_4068011.json). Comma-count says nothing
+    # about completeness: single-item foods are simply written without a comma.
+    # Checked against every category above: zero of these 12 were ever a real
+    # truncation; every ACTUAL truncation in the corpus (132 bread rows with
+    # mid-label cuts) ends on a dangling connector char and is still caught below.
+    #
+    # Principled rule: flag truncated/short iff the text ENDS IN A CONNECTOR char
+    # (a dangling "," "(" "{" "-" "–" "—" means the source was literally cut off
+    # mid-label — the reliable signal) OR the text is DEGENERATE — either near-
+    # empty (<3 chars: OCR noise, not a real ingredient name) or literally just a
+    # dangling Hebrew function word that grammatically requires a continuation
+    # ("מכיל"/contains, "עם"/with, "של"/of, "או"/or, ...) and could never be a
+    # complete ingredient statement on its own. A short-but-grammatically-whole
+    # noun/adjective phrase (any word count, comma or none) is a complete simple
+    # product and must PASS.
+    CONNECTOR_CHARS = ",({-–—"
+    DANGLING_FRAGMENT_WORDS = {"מכיל", "עם", "של", "או", "וגם", "וכן", "בתוספת", "המכיל", "ללא"}
     bad_ing = []
     for p in prods:
         ing = ((p.get("expansion", {}) or {}).get("ingredients") or "").strip()
         if not ing: continue
-        if ing[-1] in ",({-–—" or len(ing) < 40:
+        is_degenerate_fragment = len(ing) < 3 or ing in DANGLING_FRAGMENT_WORDS
+        if ing[-1] in CONNECTOR_CHARS or is_degenerate_fragment:
             bad_ing.append((p["barcode"], "truncated/short", repr(ing[-18:])))
         elif any(mk in ing for mk in BLEED_MARKERS):
             bad_ing.append((p["barcode"], "marketing/nutrition bleed", ""))
@@ -170,14 +206,43 @@ def main():
     print(f"[{'FAIL' if noimg else 'PASS'}] image present ({len(prods)-len(noimg)}/{len(prods)} have imageUrl)")
     if noimg: fails.append(("images", noimg))
     if a.http:
+        # RT-V1 fix (TASK-515A red-team): a scheme-less/relative imageUrl like
+        # "/products/x.webp" has no netloc, so urlopen(Request(u, method="HEAD"))
+        # raises ValueError("unknown url type") for EVERY same-origin self-hosted
+        # image — a guaranteed false FAIL regardless of whether the file is real.
+        # Fix: resolve scheme-less URLs (start with "/") against the filesystem
+        # under bari-web/public first (authoritative, no server dependency); if
+        # the file isn't found there, fall back to a HEAD check against a local
+        # dev origin (in case the asset is served dynamically / not yet built).
+        # Absolute http(s) URLs keep the original HEAD check unchanged.
         import urllib.request
+        from urllib.parse import urlparse
         dead = []
+        public_dir = a.public_dir or os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "..", "bari-web", "public"))
         for p in prods:
             u = p.get("imageUrl")
             if not u: continue
-            try:
-                urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=8)
-            except Exception:
+            parsed = urlparse(u)
+            if parsed.scheme in ("http", "https") and parsed.netloc:
+                try:
+                    urllib.request.urlopen(urllib.request.Request(u, method="HEAD"), timeout=8)
+                except Exception:
+                    dead.append(p["barcode"])
+            elif u.startswith("/"):
+                fs_path = os.path.join(public_dir, u.lstrip("/"))
+                ok = os.path.isfile(fs_path)
+                if not ok:
+                    try:
+                        urllib.request.urlopen(
+                            urllib.request.Request(a.local_origin.rstrip("/") + u, method="HEAD"), timeout=3)
+                        ok = True
+                    except Exception:
+                        ok = False
+                if not ok:
+                    dead.append(p["barcode"])
+            else:
+                # unrecognized scheme (not http(s), not root-relative) — genuinely unresolvable
                 dead.append(p["barcode"])
         print(f"[{'FAIL' if dead else 'PASS'}] image HTTP    ({len(dead)} dead)")
         if dead: fails.append(("image-http", dead))

@@ -42,6 +42,8 @@ Evidence registry:
 """
 from __future__ import annotations
 
+import re
+
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -336,6 +338,11 @@ for _syns, _canon, _frag in _STRUCTURAL_TERMS:
         _STRUCT_INDEX.append((_norm(syn), _ident))
 # Longer synonyms first so "עמילן מעובד" wins over "עמילן".
 _STRUCT_INDEX.sort(key=lambda kv: -len(kv[0]))
+# Regex for modified_starch with source qualifiers: "עמילן <src> מעובד/מותמר/שעבר עיבוד"
+# with 1-2 intervening words (no comma/paren crossing); לא-guard applied at match time.
+_MOD_STARCH_RE = re.compile(
+    r"עמילן\s+(?:[^\s,()]+\s+){1,2}(מעובד|שעבר\s+עיבוד|מותמר)"
+)
 
 
 # ---------------------------------------------------------------------------
@@ -376,6 +383,12 @@ def resolve_structural(term: Optional[str], category: Optional[str] = None) -> O
         return _BY_CANONICAL[c]
     t = _norm(term)
     if t:
+        # Regex check: "עמילן <source> מעובד/מותמר/שעבר עיבוד" with 1-2
+        # intervening words, no comma/paren crossing, not if לא in span.
+        m = _MOD_STARCH_RE.search(t)
+        if m and 'לא' not in m.group(0):
+            return _BY_CANONICAL.get("modified_starch")
+        # Normal longest-synonym substring match.
         for syn, ident in _STRUCT_INDEX:   # already longest-first
             if syn and syn in t:
                 return ident

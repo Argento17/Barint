@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.965009Z",
+  "trace_generated_at": "2026-07-08T11:15:36.322343Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290110573737",
@@ -32,20 +32,20 @@
     "hard_anchor:יוגורט"
   ],
   "nova_proxy": 4,
-  "nova_confidence": 0.55,
-  "nova_confidence_band": "medium",
+  "nova_confidence": 0.82,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "sweetener_detected"
+    "sweetener_detected",
+    "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [
     "fermentation_markers (consistent with NOVA 1-2)"
   ],
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
-    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "BSIP2-HC-001 sub-rule A (modified_starch): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
+    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis"
   ],
   "L1_observed_signals": {
     "energy_kcal": 59.0,
@@ -62,14 +62,14 @@
       "חלב מפוסטר",
       "חלבוני מי גבינה",
       "מים",
-      "מחית nתות (3.0%)",
-      "עמילן טפיוקה מעובד ( E-1442)",
-      "nחומרי טעם וריח",
+      "מחית תות (3.0%)",
+      "עמילן טפיוקה מעובד (E-1442)",
+      "חומרי טעם וריח",
       "מייצב (לוקוסט-בין גאם)",
-      "רכז nלי מון",
+      "רכז לימון",
       "מלח",
       "רכז גזר שחור",
-      "ממתיקים (אצסולפאם nk, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר"
+      "ממתיקים (אצסולפאם k, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש"
     ],
     "ingredient_count_raw": 11,
     "ingredient_sanitization": {
@@ -177,11 +177,13 @@
     "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
-    "tax_emulsifier_medium": [],
+    "tax_emulsifier_medium": [
+      "modified_starch_stabilizer"
+    ],
     "tax_emulsifier_low": [],
     "tax_named_concern_additives": [],
-    "tax_native_starch": true,
-    "tax_modified_starch": false,
+    "tax_native_starch": false,
+    "tax_modified_starch": true,
     "tax_bha_present": false,
     "tax_bht_present": false,
     "has_collagen": false,
@@ -205,14 +207,14 @@
       "חלב מפוסטר",
       "חלבוני מי גבינה",
       "מים",
-      "מחית nתות (3.0%)",
-      "עמילן טפיוקה מעובד ( E-1442)",
-      "nחומרי טעם וריח",
+      "מחית תות (3.0%)",
+      "עמילן טפיוקה מעובד (E-1442)",
+      "חומרי טעם וריח",
       "מייצב (לוקוסט-בין גאם)",
-      "רכז nלי מון",
+      "רכז לימון",
       "מלח",
       "רכז גזר שחור",
-      "ממתיקים (אצסולפאם nk, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר"
+      "ממתיקים (אצסולפאם k, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש"
     ]
   },
   "L4_interpreted_concerns": {
@@ -254,8 +256,8 @@
     },
     "se_note": null
   },
-  "confidence_score": 75,
-  "confidence_band": "medium",
+  "confidence_score": 85,
+  "confidence_band": "high",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
@@ -267,14 +269,6 @@
     },
     {
       "factor": "bsip1_trust_level=medium",
-      "reduction": -5
-    },
-    {
-      "factor": "nova_confidence=medium",
-      "reduction": -5
-    },
-    {
-      "factor": "d3_nonmaterial_gap (peripheral unresolved term; processing read pinned) (D3 → D6 −5, EV-042 bound_value_set_5; max-combined with D5)",
       "reduction": -5
     }
   ],
@@ -291,7 +285,7 @@
     "whole_food_integrity": 29
   },
   "dimension_notes": {
-    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(medium/non_material)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=7.9g→56.8; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 56.8",
     "calorie_density": "kcal=59.0, category=yogurt → 95",
     "glycemic_quality": "90 - sugar_penalty(8.5) + fiber(0.0) + wg(0) = 81.5 (sweetener tier-C)",
@@ -469,7 +463,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 65.37,
+  "score_after_penalty": 62.37,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -530,12 +524,12 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 65.37,
+  "score_after_floors": 62.37,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 65.4,
-  "grade_estimate": "B",
+  "final_score_estimate": 62.4,
+  "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']"

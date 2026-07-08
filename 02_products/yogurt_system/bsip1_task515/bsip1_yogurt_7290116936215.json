@@ -38,7 +38,7 @@
   "sodium_mg": 63.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז",
+  "ingredients_text_he": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
   "ingredients_raw_he": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז מכיל חלב ערכים תזונתיים 100 גרם 77 קל אנרגיה 10 גרם חלבונים 4.6 גרם פחמימות 63 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -74,7 +74,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז",
+  "ingredients_raw": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -151,7 +151,7 @@
     },
     {
       "position": 12,
-      "text": "ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז",
+      "text": "ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
       "percentage_declared": 0.5,
       "has_subgroup": true
     }
@@ -270,8 +270,46 @@
     "חומרי טעם וריח",
     "מווסת חומציות (רכז מיץ לימון)",
     "סירופ קרמל",
-    "ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז"
+    "ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז"
   ],
   "ingredient_count": 12,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוז",
+      "after": "רכיבי חלב (42%), חלב, מים, תפוחים מבושלים (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,ק רגינן), חומרי טעם וריח, מווסת חומציות (רכז מיץ לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
+      "fixes_applied": [
+        "strip stray newline-artifact 'n', insert separator space",
+        "collapse double/triple space"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ],
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290116936215_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g",
+        "fat_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row, no fat row (only protein/carbs/sodium/energy)",
+        "hazi_hinam": "matched (\"יוגורט יופלה GO עם שכבה בטעם פאי תפוחים בתחתית 1.5%\"); GS1 panel: no sugars row, no fat row",
+        "tiv_taam": "matched (\"יוגורט חלבון גו 20 ג...\"); no sugars row, no fat row",
+        "yohananof": "matched (ברקוד 7290116936215); identical panel (protein 10, carbs 4.6, sodium 63, energy 77); no sugars row, no fat row"
+      },
+      "verdict": "UNAVAILABLE for both sugars_g and fat_g -- confirmed absent on ALL 4 retailers (strongest possible confirmation: 4/4 independently agree neither field is declared for this SKU).",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

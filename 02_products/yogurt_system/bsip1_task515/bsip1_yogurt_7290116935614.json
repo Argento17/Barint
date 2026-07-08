@@ -143,5 +143,26 @@
     "אבקת חלב."
   ],
   "ingredient_count": 3,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290116935614_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row",
+        "hazi_hinam": "product not carried (no matching barcode/name in either yogurt subcategory)",
+        "tiv_taam": "not found (targeted search by barcode and by name, 0 matches)",
+        "yohananof": "matched (\"יוגורט גו חלבון יופלה בטעם טבעי 200 גרם\"); identical panel to Shufersal (protein 12.5, carbs 4.4, fat 2, sodium 72, energy 86); no sugars row; ingredients identical too ('רכיבי חלב (54%), חלב, אבקת חלב.')"
+      },
+      "verdict": "UNAVAILABLE on both retailers that carry this SKU (Shufersal, Yohananof, byte-identical panels); not stocked at Hazi Hinam or Tiv Taam.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

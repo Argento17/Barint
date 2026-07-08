@@ -38,7 +38,7 @@
   "sodium_mg": 65.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס. מאפיינים נוספים אורגני",
+  "ingredients_text_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס",
   "ingredients_raw_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס. מאפיינים נוספים אורגני ערכים תזונתיים 100 גרם 2.9 גרם סוכרים מתוך פחמימות 58 קל אנרגיה 3.4 גרם חלבונים 5 גרם פחמימות 2.3 גרם שומנים 8.9 מג כולסטרול 65 מג נתרן פחות מ 0.5 גרם חומצות שומן טרנס 146 מג סידן 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס. מאפיינים נוספים אורגני",
+  "ingredients_raw": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -89,7 +89,7 @@
     },
     {
       "position": 2,
-      "text": "חיידקי אצידופולוס. מאפיינים נוספים אורגני",
+      "text": "חיידקי אצידופולוס",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -133,8 +133,33 @@
   "additive_count": 0,
   "ingredients_list": [
     "חלב עיזים אורגני מפוסטר",
-    "חיידקי אצידופולוס. מאפיינים נוספים אורגני"
+    "חיידקי אצידופולוס"
   ],
   "ingredient_count": 2,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "_task515_header_bleed_strip": [
+    {
+      "task": "TASK-515/515A remediation -- Class-D header-bleed strip",
+      "fields": [
+        "ingredients_text_he",
+        "ingredients_raw (mirror)",
+        "ingredients_list",
+        "ingredient_order[].text"
+      ],
+      "marker": "מאפיינים נוספים",
+      "before_ingredients_text_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס. מאפיינים נוספים אורגני",
+      "after_ingredients_text_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס",
+      "ingredients_raw_he_untouched": true,
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_before": [
+        "חלב עיזים אורגני מפוסטר",
+        "חיידקי אצידופולוס. מאפיינים נוספים אורגני"
+      ],
+      "ingredients_list_after": [
+        "חלב עיזים אורגני מפוסטר",
+        "חיידקי אצידופולוס"
+      ],
+      "note": "Removed a trailing scraped website 'מאפיינים נוספים <claim>' UI-section-header clause (and any further bled allergen/marketing text after it) from the SCORED ingredient fields. Not an ingredient. ingredients_raw_he (true original scrape) preserved unchanged per remediation_ledger_task515_v1.json Class D ruling."
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.716719Z",
+  "trace_generated_at": "2026-07-05T14:31:01.419625Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290114310406",
@@ -73,7 +73,7 @@
       "רכז גזר",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "מווסתי חומציות (מלח לימון, חומצת לימון). מכיל חיידקי Bio nn מאפיינים נוספים דל לקטוז"
+      "מווסתי חומציות (מלח לימון, חומצת לימון). מכיל חיידקי Bio"
     ],
     "ingredient_count_raw": 16,
     "ingredient_sanitization": {
@@ -136,10 +136,9 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 2,
+    "added_sugar_sources_count": 1,
     "added_sugar_matches": [
-      "סוכר",
-      "לקטוז"
+      "סוכר"
     ],
     "has_fruit_concentrate": true,
     "has_fermentation": false,
@@ -227,7 +226,7 @@
       "רכז גזר",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "מווסתי חומציות (מלח לימון, חומצת לימון). מכיל חיידקי Bio nn מאפיינים נוספים דל לקטוז"
+      "מווסתי חומציות (מלח לימון, חומצת לימון). מכיל חיידקי Bio"
     ]
   },
   "L4_interpreted_concerns": {
@@ -422,8 +421,8 @@
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
@@ -472,11 +471,6 @@
   ],
   "penalties_applied": [
     {
-      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-      "amount": 5,
-      "note": "added_sugar_sources=2"
-    },
-    {
       "rule": "SUGAR_SHELF_REL_V1",
       "amount": 2,
       "note": "sugars_g=9.5 dist=4.85 r=1.054 band_penalty=2"
@@ -487,26 +481,21 @@
       "note": "ingredient_count=16"
     }
   ],
-  "total_penalty_before_scaling": 9.8,
-  "total_penalty_after_scaling": 9.8,
+  "total_penalty_before_scaling": 6.0,
+  "total_penalty_after_scaling": 6.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 35.29,
+  "score_after_penalty": 39.09,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
-      "coordinated_penalty": 5.8,
+      "coordinated_penalty": 2,
       "detail": {
         "winner": {
-          "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-          "amount": 5
+          "rule": "SUGAR_SHELF_REL_V1",
+          "amount": 2
         },
-        "supporters": [
-          {
-            "rule": "SUGAR_SHELF_REL_V1",
-            "scaled_to": 0.8
-          }
-        ],
-        "total_before_budget": 5.8,
+        "supporters": [],
+        "total_before_budget": 2,
         "budget_applied": false
       }
     },
@@ -564,16 +553,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 35.29,
+  "score_after_floors": 39.09,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 35.3,
+  "final_score_estimate": 39.1,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=60 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_5_PLUS']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'SUGAR_SHELF_REL_V1', 'LONG_INGREDIENT_LIST']"
+    "PENALTIES: ['SUGAR_SHELF_REL_V1', 'LONG_INGREDIENT_LIST']"
   ],
   "unresolved_flags": [],
   "structural_class": {

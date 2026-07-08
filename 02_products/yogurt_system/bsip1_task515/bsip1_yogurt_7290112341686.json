@@ -10,7 +10,8 @@
   "category": "yogurt_system",
   "subpool": "spoonable",
   "source_retailers": [
-    "shufersal"
+    "shufersal",
+    "tiv_taam"
   ],
   "retailer_prices": {
     "shufersal": 23.9
@@ -38,14 +39,12 @@
   "sodium_mg": 50.0,
   "dietary_fiber_g": 1.1,
   "calcium_mg": null,
-  "ingredients_text_he": null,
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
   "ingredients_raw_he": "ו",
   "allergens_contains": [],
   "allergens_may_contain": [],
-  "missing_fields": [
-    "ingredients_text_he"
-  ],
-  "data_sufficiency": "partial",
+  "missing_fields": [],
+  "data_sufficiency": "sufficient",
   "nutrition_consistency_status": "consistent",
   "consistency_checks": {
     "sugar_le_carbs": true,
@@ -73,30 +72,55 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": null,
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
   "ingredients_raw_provenance": {
-    "source": "missing",
+    "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
     "populated_at": "bsip1_enrichment_v1",
-    "missing": true,
-    "note": "No ingredient text available (bsip0_file_not_found)"
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
   },
-  "ingredient_order": [],
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "חלב מפוסטר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "רכיבי חלב",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+      "percentage_declared": null,
+      "has_subgroup": false
+    }
+  ],
   "extracted_additives": [],
   "extracted_flavors": [],
   "extracted_sweeteners": [],
   "extracted_protein_markers": [],
   "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "ביפידוס",
+      "category": "bifidobacterium",
+      "position": 3
+    }
+  ],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
-    "ingredient_count_parsed": 0,
+    "ingredient_count_parsed": 3,
     "additive_count": 0,
     "flavor_marker_count": 0,
     "sweetener_count": 0,
     "protein_marker_count": 0,
     "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 1,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": false,
@@ -104,9 +128,7 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": [
-    "ingredients_raw: no text available from any source"
-  ],
+  "enrichment_warnings": [],
   "nova_proxy": 1,
   "nova_confidence": 0.8,
   "nova_confidence_band": "medium",
@@ -115,7 +137,31 @@
   ],
   "detected_additives": [],
   "additive_count": 0,
-  "ingredients_list": [],
-  "ingredient_count": 0,
-  "ingredient_text_quality": "absent"
+  "ingredients_list": [
+    "חלב מפוסטר",
+    "רכיבי חלב",
+    "סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס."
+  ],
+  "ingredient_count": 3,
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290112341686_INGR",
+      "date": "2026-07-05T14:16:01.778731+00:00",
+      "reason": "Owner-directed 4-site rescrape (2026-07-05): ingredients_text_he was null (Shufersal raw scrape captured only stray junk 'vav', re-verified same on fresh Shufersal re-fetch this run -- genuine scrape defect on Shufersal's page structure for this SKU, not recoverable there).",
+      "field_corrected": "ingredients_text_he (+ derived enrichment/nova fields)",
+      "before": {
+        "ingredients_text_he": null
+      },
+      "after": {
+        "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס."
+      },
+      "recovered_from": "tiv_taam",
+      "recovery_method": "targeted free-text search by product name via tiv_taam v2 products API (discover_and_scrape), matched by exact barcode in API response",
+      "cross_check": "Shufersal re-fetch (raw HTML, same run) still returns only stray junk; Hazi Hinam did not carry this SKU; sugar(4.3)/fat(3.0)/energy(71) from Tiv Taam match Shufersal existing values exactly, corroborating this is the same correctly-identified product.",
+      "off_used": false,
+      "no_fabrication": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

@@ -38,7 +38,7 @@
   "sodium_mg": 33.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+  "ingredients_text_he": "חלב",
   "ingredients_raw_he": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+  "ingredients_raw": "חלב",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -83,47 +83,23 @@
   "ingredient_order": [
     {
       "position": 1,
-      "text": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 2,
-      "text": "אין להסתמך על הפירוט המופיע באתר",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 3,
-      "text": "יתכנו טעויות או אי התאמות",
-      "percentage_declared": null,
-      "has_subgroup": false
-    },
-    {
-      "position": 4,
-      "text": "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+      "text": "חלב",
       "percentage_declared": null,
       "has_subgroup": false
     }
   ],
   "extracted_additives": [],
   "extracted_flavors": [],
-  "extracted_sweeteners": [
-    {
-      "term": "סוכר",
-      "category": "added_sugar",
-      "position": 1
-    }
-  ],
+  "extracted_sweeteners": [],
   "extracted_protein_markers": [],
   "extracted_matrix_markers": [],
   "extracted_fermentation_markers": [],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
-    "ingredient_count_parsed": 4,
+    "ingredient_count_parsed": 1,
     "additive_count": 0,
     "flavor_marker_count": 0,
-    "sweetener_count": 1,
+    "sweetener_count": 0,
     "protein_marker_count": 0,
     "matrix_marker_count": 0,
     "fermentation_marker_count": 0,
@@ -135,20 +111,121 @@
   },
   "enrichment_version": "bsip1_enrichment_v1",
   "enrichment_warnings": [],
-  "nova_proxy": 2,
-  "nova_confidence": 0.72,
+  "nova_proxy": 1,
+  "nova_confidence": 0.8,
   "nova_confidence_band": "medium",
   "nova_notes": [
-    "added_sugar_or_natural_sweetener_only: NOVA2 proxy"
+    "minimal_ingredients_milk_cultures_only_or_no_ingredient_text: NOVA1 proxy"
   ],
   "detected_additives": [],
   "additive_count": 0,
   "ingredients_list": [
-    "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-    "אין להסתמך על הפירוט המופיע באתר",
-    "יתכנו טעויות או אי התאמות",
-    "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם."
+    "חלב"
   ],
-  "ingredient_count": 4,
-  "ingredient_text_quality": "good"
+  "ingredient_count": 1,
+  "ingredient_text_quality": "present",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_G8_FIX_7290116936581",
+      "date": "2026-07-05T09:54:21.126933+00:00",
+      "gate_finding": "G8 DATA-SANITY FAIL: ingredients field contains nutrition panel text (2+ tokens)",
+      "field_corrected": "ingredients_text_he (+ derived: ingredient_order, ingredients_list, ingredient_count, ingredient_text_quality, extracted_*, enrichment_summary, nova_proxy/confidence/band/notes, detected_additives, additive_count)",
+      "before": {
+        "ingredients_text_he": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "ingredients_list": [
+          "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
+          "אין להסתמך על הפירוט המופיע באתר",
+          "יתכנו טעויות או אי התאמות",
+          "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם."
+        ],
+        "ingredient_order": [
+          {
+            "position": 1,
+            "text": "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
+            "percentage_declared": null,
+            "has_subgroup": false
+          },
+          {
+            "position": 2,
+            "text": "אין להסתמך על הפירוט המופיע באתר",
+            "percentage_declared": null,
+            "has_subgroup": false
+          },
+          {
+            "position": 3,
+            "text": "יתכנו טעויות או אי התאמות",
+            "percentage_declared": null,
+            "has_subgroup": false
+          },
+          {
+            "position": 4,
+            "text": "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+            "percentage_declared": null,
+            "has_subgroup": false
+          }
+        ],
+        "ingredient_count": 4,
+        "extracted_sweeteners": [
+          {
+            "term": "סוכר",
+            "category": "added_sugar",
+            "position": 1
+          }
+        ],
+        "nova_proxy": 2,
+        "nova_confidence": 0.72,
+        "nova_confidence_band": "medium",
+        "nova_notes": [
+          "added_sugar_or_natural_sweetener_only: NOVA2 proxy"
+        ]
+      },
+      "after": {
+        "ingredients_text_he": "חלב",
+        "ingredients_list": [
+          "חלב"
+        ],
+        "ingredient_order": [
+          {
+            "position": 1,
+            "text": "חלב",
+            "percentage_declared": null,
+            "has_subgroup": false
+          }
+        ],
+        "ingredient_count": 1,
+        "extracted_sweeteners": [],
+        "nova_proxy": 1,
+        "nova_confidence": 0.8,
+        "nova_confidence_band": "medium",
+        "nova_notes": [
+          "minimal_ingredients_milk_cultures_only_or_no_ingredient_text: NOVA1 proxy"
+        ]
+      },
+      "root_cause": "trim_ingredients() len(trimmed)<5 defensive floor discarded the correct 3-char trim result ('חלב') and fell back to the untrimmed raw text (nutrition-panel + legal-disclaimer bleed). Source script patched (_GENUINE_SHORT_SINGLE_INGREDIENTS whole-string whitelist) for future rebuilds; this record hand-corrected to match what the patched script produces (verified via the actual patched trim_ingredients() call above).",
+      "ingredients_raw_he_untouched": true,
+      "method": "ingredient_enricher.enrich() + build_bsip1_yogurt_task515.classify_nova() re-run on corrected ingredients_text_he — same shared functions as the original build, no bespoke logic.",
+      "off_used": false,
+      "no_source_substitution": true,
+      "corrected_by": "data_agent"
+    },
+    {
+      "correction_id": "TASK515_RESCRAPE_7290116936581_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "ingredients_text_he (real, non-implausible list)"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: still declares only 'חלב' (milk) -- same as original scrape, confirmed not a trim bug",
+        "hazi_hinam": "product not carried (checked full dairy subcategory item lists 10864 + 11582, 124 items, no barcode match)",
+        "tiv_taam": "not found (targeted search by barcode and by product name, both 0 matches)",
+        "yohananof": "not found (scrape_one targeted search: product page/modal never located -- dialog_missing)"
+      },
+      "verdict": "UNAVAILABLE ACROSS ALL 4 RETAILERS. The 10g protein/100g declared under a single 'milk' ingredient remains physically implausible on every reachable source; no retailer discloses a fuller ingredient list (e.g. milk protein concentrate/isolate) for this barcode. This is a genuine cross-retailer data gap, not a Bari-side scrape defect. Recommend: retain the ledger's original discard(missing-data) resolution -- there is nothing further to recover.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

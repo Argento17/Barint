@@ -38,7 +38,7 @@
   "sodium_mg": 50.0,
   "dietary_fiber_g": 1.8,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חל ב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.n",
+  "ingredients_text_he": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.",
   "ingredients_raw_he": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חל ב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.n מכיל חלב,",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חל ב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.n",
+  "ingredients_raw": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -143,7 +143,7 @@
     },
     {
       "position": 11,
-      "text": "חומרי טעם וריח. מכיל חיידקי Bio.n",
+      "text": "חומרי טעם וריח. מכיל חיידקי Bio.",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -238,8 +238,24 @@
     "רכיבי חל ב",
     "סיבים תזונתיים",
     "סידן (טרי קלציום פוספט)",
-    "חומרי טעם וריח. מכיל חיידקי Bio.n"
+    "חומרי טעם וריח. מכיל חיידקי Bio."
   ],
   "ingredient_count": 11,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חל ב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.n",
+      "after": "חלב מפוסטר, שוקולד ממולא כדורי דגנים (11.2%) [שוקולד (75%) (חלב, לבן), קמח תירס, סוכר, מלח, חומר מייצב (אקאציה גאם)], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי Bio.",
+      "fixes_applied": [
+        "strip stray newline-artifact 'n' (end of string)",
+        "rejoin space-split word חל ב, -> חלב,"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ]
 }

@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.554971Z",
+  "trace_generated_at": "2026-07-05T14:31:01.294577Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290102393947",
@@ -36,6 +36,7 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
+    "high_additive_category_count: 4",
     "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [],
@@ -66,7 +67,7 @@
       "סיבים תזונתיים",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "מווסת ח ומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO.  מאפיינים נוספים דל לקטוז"
+      "מווסת חומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO"
     ],
     "ingredient_count_raw": 11,
     "ingredient_sanitization": {
@@ -107,8 +108,9 @@
     "sweetener_tier": null,
     "sweetener_matches": [],
     "sweetener_negation_suppressed": [],
-    "additive_marker_count": 3,
+    "additive_marker_count": 4,
     "additive_categories": [
+      "acidity_regulator",
       "flavor_enhancer",
       "stabilizer",
       "thickener"
@@ -127,10 +129,9 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 2,
+    "added_sugar_sources_count": 1,
     "added_sugar_matches": [
-      "סוכר",
-      "לקטוז"
+      "סוכר"
     ],
     "has_fruit_concentrate": false,
     "has_fermentation": false,
@@ -152,7 +153,7 @@
     "sprint1_neutral_emulsifier_found": [],
     "sprint1_prebiotic_gum_detected": false,
     "sprint1_prebiotic_gum_found": [],
-    "sprint1_additive_count": 3,
+    "sprint1_additive_count": 4,
     "sprint1_additive_correction": 0,
     "sprint1_additive_correction_notes": [],
     "sprint1_allulose_detected": false,
@@ -212,7 +213,7 @@
       "סיבים תזונתיים",
       "חומרי טעם וריח",
       "מייצב (פקטין)",
-      "מווסת ח ומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO.  מאפיינים נוספים דל לקטוז"
+      "מווסת חומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO"
     ]
   },
   "L4_interpreted_concerns": {
@@ -268,7 +269,7 @@
     "calorie_density": 88.0,
     "glycemic_quality": 68.5,
     "protein_quality": 28.2,
-    "additive_quality": 46.0,
+    "additive_quality": 28.0,
     "satiety_support": 69.3,
     "fat_quality": 79.6,
     "regulatory_quality": 95.0,
@@ -280,7 +281,7 @@
     "calorie_density": "kcal=88.0, category=yogurt → 88",
     "glycemic_quality": "90 - sugar_penalty(24.5) + fiber(1.0) + wg(0) = 66.5 + EV-006 viscous-fiber bonus(2)",
     "protein_quality": "protein=4.1g base=28.2, source=whole_food(×1.0) → 28.2",
-    "additive_quality": "sprint1_additives=3 base=46 sw_pen=0→46.0",
+    "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.1×3 + 0.5×5) / 88.0 × 400 = 67.3 + EV-006 viscous-fiber bonus(2)",
     "fat_quality": "fat_v1(fat=3.0g<8.0): sat=1.8g base=79.6-seed0-trans0=79.6",
     "regulatory_quality": "no Israeli red labels",
@@ -298,7 +299,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 53.34,
+  "weighted_dimension_score": 51.54,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -402,13 +403,13 @@
     }
   ],
   "binding_cap": 68.0,
-  "score_after_cap": 53.34,
+  "score_after_cap": 51.54,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
@@ -457,36 +458,26 @@
   ],
   "penalties_applied": [
     {
-      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-      "amount": 5,
-      "note": "added_sugar_sources=2"
-    },
-    {
       "rule": "SUGAR_SHELF_REL_V1",
       "amount": 2,
       "note": "sugars_g=9.8 dist=5.15 r=1.12 band_penalty=2"
     }
   ],
-  "total_penalty_before_scaling": 5.8,
-  "total_penalty_after_scaling": 5.8,
+  "total_penalty_before_scaling": 2.0,
+  "total_penalty_after_scaling": 2.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 43.54,
+  "score_after_penalty": 45.54,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
-      "coordinated_penalty": 5.8,
+      "coordinated_penalty": 2,
       "detail": {
         "winner": {
-          "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-          "amount": 5
+          "rule": "SUGAR_SHELF_REL_V1",
+          "amount": 2
         },
-        "supporters": [
-          {
-            "rule": "SUGAR_SHELF_REL_V1",
-            "scaled_to": 0.8
-          }
-        ],
-        "total_before_budget": 5.8,
+        "supporters": [],
+        "total_before_budget": 2,
         "budget_applied": false
       }
     },
@@ -540,36 +531,37 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 43.54,
+  "score_after_floors": 45.54,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 43.5,
+  "final_score_estimate": 45.5,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'SUGAR_SHELF_REL_V1']"
+    "PENALTIES: ['SUGAR_SHELF_REL_V1']"
   ],
   "unresolved_flags": [],
   "structural_class": {
-    "primary": "D",
-    "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.319,
-    "secondary": "F",
-    "secondary_label": "Structurally Void System",
+    "primary": "F",
+    "primary_label": "Structurally Void System",
+    "primary_confidence": 0.396,
+    "secondary": "E",
+    "secondary_label": "Engineered Wellness System",
     "secondary_confidence": 0.319,
     "class_weights": {
-      "A": 0.051,
-      "B": 0.051,
-      "C": 0.019,
-      "D": 0.319,
-      "E": 0.241,
-      "F": 0.319
+      "A": 0.042,
+      "B": 0.042,
+      "C": 0.016,
+      "D": 0.185,
+      "E": 0.319,
+      "F": 0.396
     },
     "is_between_worlds": true,
     "classification_notes": [
       "nova_4_signal",
+      "high_additive_load",
       "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"

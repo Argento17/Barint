@@ -38,7 +38,7 @@
   "sodium_mg": 52.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+  "ingredients_text_he": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
   "ingredients_raw_he": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס. מכיל חלב ערכים תזונתיים 100 גרם 2.7 גרם סוכרים מתוך פחמימות 53 קל אנרגיה 8.4 גרם חלבונים 3.5 גרם פחמימות 52 מג נתרן 100 מג סידן 0.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -74,7 +74,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+  "ingredients_raw": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -121,7 +121,7 @@
     },
     {
       "position": 7,
-      "text": "צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל))",
+      "text": "צבע מאכל (רכז תפוחים (במוצר כשר לפסח קרמל))",
       "percentage_declared": null,
       "has_subgroup": true
     },
@@ -265,11 +265,46 @@
     "בננה מבושלת (1.8%)",
     "עמילן מעובד (E-1422)",
     "מייצבים (פקטין, גואר גאם)",
-    "צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל))",
+    "צבע מאכל (רכז תפוחים (במוצר כשר לפסח קרמל))",
     "ממתיקים (אספרטיים, אססולפאם k)",
     "חומרי טעם וריח",
     "חומר משמר (E-202). בתוספת חיידקי ביפידוס."
   ],
   "ingredient_count": 10,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515a_ingredient_text_correction": [
+    {
+      "task": "TASK-515A Issue B",
+      "field": "ingredients_text_he (+ ingredients_raw mirror)",
+      "before": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל  (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+      "after": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), בננה מבושלת (1.8%), עמילן מעובד (E-1422), מייצבים (פקטין, גואר גאם), צבע מאכל (רכז תפוחים (במוצר כשר לפסח קרמל)), ממתיקים (אספרטיים, אססולפאם k), חומרי טעם וריח, חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+      "fixes_applied": [
+        "collapse double space"
+      ],
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable fragments were not present here so nothing was invented."
+    }
+  ],
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290116932774_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "fat_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: nutrition table has energy/protein/carbs/sodium/calcium/sugars(2.7, already known) but no fat row; the ingredient list's own text opens with 'יוגורט 0.7% שומן (76%)' (a 0.7%-fat yogurt component at 76% of the product) but no source computes this into a per-100g fat_g figure",
+        "hazi_hinam": "matched (\"משקה יוגורט יופלה GO בטעם בננה קרמל\"); GS1 panel: no fat row (sugar=0.75 reported here, conflicting with Shufersal/Yohananof's 2.7 -- flagged separately, not in scope since fat was the flagged field)",
+        "tiv_taam": "matched; no fat row; sugar=2.7 (agrees with Shufersal/Yohananof, not Hazi Hinam's 0.75)",
+        "yohananof": "matched (ברקוד 7290116932774, drinkable); identical panel (protein 8.4, carbs 3.5, sodium 52, energy 53, sugar=2.7 matching Shufersal/Tiv Taam); no fat row; also surfaces a 'מתוכן כפיות סוכר 0.75' (0.75 teaspoons of sugar) consumer-friendly conversion of the same 2.7g sugar figure -- not a separate fat value"
+      },
+      "verdict": "UNAVAILABLE for fat_g -- confirmed absent on ALL 4 retailers. Secondary finding (not in scope, flagged for Nutrition Agent): Hazi Hinam's sugar=0.75g/100g disagrees with the 3-source agreement (Shufersal/Tiv Taam/Yohananof) of 2.7g/100g for this same barcode; the 3-source value should be treated as more reliable, existing sugars_g=2.7 in the record is unaffected/correct.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

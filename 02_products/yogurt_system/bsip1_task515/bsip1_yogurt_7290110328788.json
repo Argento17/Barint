@@ -198,5 +198,26 @@
     "חומרי טעם וריח."
   ],
   "ingredient_count": 6,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290110328788_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row",
+        "hazi_hinam": "matched (\"יוגורט יופלה GO במרקם סמיך בטעם אפרסק 0%\"); GS1 panel has no sugars row",
+        "tiv_taam": "matched (\"יוגורט גו סמיך אפרסק\"); identical panel to Hazi Hinam/Shufersal; no sugars row",
+        "yohananof": "not found (dialog_missing)"
+      },
+      "verdict": "UNAVAILABLE on all 3 retailers that carry this SKU (Shufersal, Hazi Hinam, Tiv Taam, byte-identical panels); Yohananof lookup did not locate the product.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

@@ -38,7 +38,7 @@
   "sodium_mg": 40.0,
   "dietary_fiber_g": 1.8,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO.  מכיל שקדים",
+  "ingredients_text_he": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO. מכיל שקדים",
   "ingredients_raw_he": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO.n מכיל שקדים,",
   "allergens_contains": [
     "milk",
@@ -73,7 +73,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO.  מכיל שקדים",
+  "ingredients_raw": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO. מכיל שקדים",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -126,7 +126,7 @@
     },
     {
       "position": 8,
-      "text": "חומרי טעם וריח. מכיל חיידקי BIO.  מכיל שקדים",
+      "text": "חומרי טעם וריח. מכיל חיידקי BIO. מכיל שקדים",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -201,8 +201,23 @@
     "שקדים (2.1%)",
     "סיבים תזונתיים",
     "סידן (טרי קלציום פוספט)",
-    "חומרי טעם וריח. מכיל חיידקי BIO.  מכיל שקדים"
+    "חומרי טעם וריח. מכיל חיידקי BIO. מכיל שקדים"
   ],
   "ingredient_count": 8,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO.  מכיל שקדים",
+      "after": "חלב מפוסטר, סוכר, רכיבי חלב, בוטנים (3.8%), שקדים (2.1%), סיבים תזונתיים, סידן (טרי קלציום פוספט), חומרי טעם וריח. מכיל חיידקי BIO. מכיל שקדים",
+      "fixes_applied": [
+        "collapse double/triple space"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ]
 }

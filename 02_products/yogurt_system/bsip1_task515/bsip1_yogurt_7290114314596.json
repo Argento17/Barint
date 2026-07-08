@@ -38,7 +38,7 @@
   "sodium_mg": 50.0,
   "dietary_fiber_g": 2.9,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריחn מכיל בוטנים",
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריח מכיל בוטנים",
   "ingredients_raw_he": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריחn מכיל בוטנים,",
   "allergens_contains": [
     "milk",
@@ -73,7 +73,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריחn מכיל בוטנים",
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריח מכיל בוטנים",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -126,7 +126,7 @@
     },
     {
       "position": 8,
-      "text": "חומרי טעם וריחn מכיל בוטנים",
+      "text": "חומרי טעם וריח מכיל בוטנים",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -199,8 +199,23 @@
     "סיבים תזונתיים",
     "פצפוצי חלבון סויה (0.6%)",
     "שמן צמחי",
-    "חומרי טעם וריחn מכיל בוטנים"
+    "חומרי טעם וריח מכיל בוטנים"
   ],
   "ingredient_count": 8,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריחn מכיל בוטנים",
+      "after": "חלב מפוסטר, רכיבי חלב, בוטנים (6.3), סוכר, סיבים תזונתיים, פצפוצי חלבון סויה (0.6%), שמן צמחי, חומרי טעם וריח מכיל בוטנים",
+      "fixes_applied": [
+        "strip stray newline-artifact 'n'"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ]
 }

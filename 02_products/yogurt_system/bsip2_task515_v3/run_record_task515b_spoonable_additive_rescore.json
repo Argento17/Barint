@@ -1,0 +1,116 @@
+{
+  "run_id": "run_yogurt_task515b_spoonable_additive_rescoring",
+  "task": "TASK-515 -- apply the already-fixed sweetener d4 additive dictionary (constants.py samech-spelling E951/E950 patterns, landed for drinkable by TASK-515A) to the SPOONABLE pool, and determine whether any SCORE moves (unlike drinkable, spoonable additive_quality is NOT universally floored).",
+  "generated": "2026-07-05T10:34:38Z",
+  "run_type": "RE-SCORE (BSIP2 spoonable pool re-run under the official v3 pipeline path, scoped to spoonable only) -- verified 0-diff on every score/grade; not a display-only run by assumption, but confirmed display-only BY MEASUREMENT.",
+  "why_this_could_not_be_assumed_display_only": {
+    "drinkable_precedent": "all 4 drinkable GO products had additive_quality already at the floor (0), so re-detecting the sweetener e-numbers could not lower an already-floored dimension.",
+    "spoonable_reality": "additive_quality on the 12 affected spoonable barcodes ranged 13-67 (pre-rescore, read from bsip2_trace.json dimension_scores.additive_quality) -- NONE were floored at 0. This is why the task required an actual re-score with measurement, not an assumption of 0-diff by analogy."
+  },
+  "pre_rescore_verification": {
+    "method": "Read dimension_scores.additive_quality directly from the 12 barcodes' on-disk bsip2_trace.json BEFORE re-running BSIP2, and confirmed (via git diff against commit 2474b04a) that those files were byte-identical to the committed baseline except for trace_generated_at -- i.e. no prior re-score with the fixed constants.py had happened yet for spoonable.",
+    "floored_vs_not_split": {
+      "floored_at_0": 0,
+      "above_floor": 12,
+      "values": {
+        "7290110323585": 31.0, "7290110323592": 49.0, "7290110328627": 13.0,
+        "7290110328764": 31.0, "7290110328788": 67.0, "7290110329952": 31.0,
+        "7290116932484": 31.0, "7290116934402": 28.0, "7290116935621": 28.0,
+        "7290116936123": 31.0, "7290116936215": 13.0, "7290116936222": 13.0
+      }
+    }
+  },
+  "rescore_execution": {
+    "pipeline_path": "official v3 pipeline (03_operations/bsip2/proto_v0/src: signal_extractor.extract_signals -> router_v2.classify_category -> nova_proxy.infer_nova -> evaluation_scope.assign_evaluation_scope -> score_engine.score_product -> trace_writer.assemble_trace -> structural_classifier.classify_structural_class -> trace_writer.write_trace), IDENTICAL call sequence to run_bsip2_task515_v3.py, scoped to the spoonable pool ONLY (drinkable pool never loaded/scored/written by this run -- tree-safety guardrail: touch ONLY spoonable BSIP2 traces).",
+    "corpus": "same shipping-corpus exclusions as v3 (2 soy discards + 3 Nutrition-ruled display exclusions), spoonable pool = 94 products, unchanged from the v3 run.",
+    "shelf_stats": "sugars_g shelf-relative stats recomputed for the spoonable pool in-process (set_shelf_stats/clear_shelf_stats, same as v3); scoped to spoonable only, so drinkable's shelf stats are untouched by this run.",
+    "score_engine_py_touched": false,
+    "score_engine_py_sha256_vs_baseline_2474b04a": "0-diff (git diff empty)",
+    "constants_py_sha256": "e70689a7f901dd26919444054fea1964ebb895e2117c788f6a7c5bea3d962e6c",
+    "constants_py_note": "This is the SAME constants.py fix already landed for TASK-515A (drinkable); this run does not modify constants.py further -- only picks up the existing fix for the spoonable pool's first re-score."
+  },
+  "post_rescore_result": {
+    "n_moved": 0,
+    "moved_products": [],
+    "root_cause_of_0_diff": "signal_extractor.py's independent generic Hebrew sweetener catch-all ('ממתיק') already detected these sweeteners at scoring time and applied a tier-C penalty (dimension_notes.additive_quality shows 'sw tier-C_pen=15' on all 12 barcodes, BOTH before and after this re-score). The constants.py samech-spelling fix only affects e-number-level GRANULARITY used by score_engine.detect_additives_d4() for the DISPLAY-side d4_additives array (via render_fields.py) -- a separate code path from the generic scoring-side detection. Because the scoring-side penalty was already firing (just without the specific E950/E951 identification), correcting the display-side detection dictionary changes WHAT the page shows but not the computed additive_quality dimension score.",
+    "confirmation_all_12": {
+      "7290110323585": {"additive_quality_before": 31.0, "additive_quality_after": 31.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290110323592": {"additive_quality_before": 49.0, "additive_quality_after": 49.0, "final_before": 65.0, "final_after": 65.0, "grade_before": "B", "grade_after": "B"},
+      "7290110328627": {"additive_quality_before": 13.0, "additive_quality_after": 13.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290110328764": {"additive_quality_before": 31.0, "additive_quality_after": 31.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290110328788": {"additive_quality_before": 67.0, "additive_quality_after": 67.0, "final_before": 65.0, "final_after": 65.0, "grade_before": "B", "grade_after": "B"},
+      "7290110329952": {"additive_quality_before": 31.0, "additive_quality_after": 31.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290116932484": {"additive_quality_before": 31.0, "additive_quality_after": 31.0, "final_before": 68.0, "final_after": 68.0, "grade_before": "B", "grade_after": "B"},
+      "7290116934402": {"additive_quality_before": 28.0, "additive_quality_after": 28.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290116935621": {"additive_quality_before": 28.0, "additive_quality_after": 28.0, "final_before": 65.0, "final_after": 65.0, "grade_before": "B", "grade_after": "B"},
+      "7290116936123": {"additive_quality_before": 31.0, "additive_quality_after": 31.0, "final_before": 64.0, "final_after": 64.0, "grade_before": "C", "grade_after": "C"},
+      "7290116936215": {"additive_quality_before": 13.0, "additive_quality_after": 13.0, "final_before": 58.4, "final_after": 58.4, "grade_before": "C", "grade_after": "C"},
+      "7290116936222": {"additive_quality_before": 13.0, "additive_quality_after": 13.0, "final_before": 57.6, "final_after": 57.6, "grade_before": "C", "grade_after": "C"}
+    },
+    "full_pool_diff_vs_committed_baseline_2474b04a": {
+      "method": "Diffed every product's score+grade field (all 94) in the regenerated yogurt_spoonable_frontend_v1.json against git show 2474b04a:...yogurt_spoonable_frontend_v1.json",
+      "score_diffs": [],
+      "grade_diffs": [],
+      "missing_in_new": [],
+      "new_only": []
+    },
+    "conclusion": "DISPLAY-ONLY, 0-diff, byte/value-verified across all 94 spoonable products (not assumed -- measured by an actual re-score run under the real pipeline, per the task's explicit requirement)."
+  },
+  "nutrition_cosign_required": false,
+  "nutrition_cosign_reason": "No score or grade moved on any of the 12 affected barcodes, or on any of the other 82 spoonable products. Per the task's own gating condition (co-sign required only if a score moved), no co-sign is required. This differs from the drinkable case only in ROOT CAUSE (drinkable: floor already applied; spoonable: generic tier-C penalty already applied) -- the OUTCOME (0-diff) is the same.",
+  "g8_regression_check_7290116936581": {
+    "claim": "7290116936581 (BSIP1 G8 re-parse fix, unrelated to this additive fix) remains 89.9/A after this spoonable re-score.",
+    "result": "CONFIRMED: 89.9/A in both the regenerated bsip2_trace.json and the regenerated yogurt_spoonable_frontend_v1.json.",
+    "note": "This product's bsip2_trace.json already differed from the committed baseline before this run started (231 diff lines, from the BSIP1 ingredients_text_he truncation to a single 'חלב' ingredient) -- but final_score_estimate/grade_estimate were already 89.9/A in BOTH the pre-existing disk trace and the git-committed baseline (2474b04a), so this re-score run reproduces the same 89.9/A a third time under the corrected constants.py. No sweetener/additive signal is present on this product (single-ingredient milk), so it was never expected to move."
+  },
+  "d4_additives_verification": {
+    "method": "Read d4_additives array from the regenerated yogurt_spoonable_frontend_v1.json for all 12 affected barcodes.",
+    "result": "All 12 barcodes now show BOTH E951 (aspartame, name_he='אספרטם') and E950 (acesulfame-K, name_he='אצסולפאם K') entries, each with a non-empty explanation_he (populated from 01_framework/glass_box/w2_additive_copy_v1.md, authored in the prior task -- confirmed present for both E951 and E950, not the empty-string gap noted for E951 in the TASK-515A record, which has since been closed by Content Agent authoring)."
+  },
+  "gate_report": {
+    "path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\frontend_out\\yogurt_spoonable_frontend_v1_gates_report.md",
+    "result": "PASS 8/8 (G1 SCHEMA, G2 COVERAGE, G3 SCOPE, G4 OFF, G5 GRADE-INTEGRITY, G6 COPY-SAFETY, G7 PARITY=SKIP no baseline arg passed to generator, G8 DATA-SANITY)",
+    "off_check": "G4 OFF gate: 0 banned third-party nutrition-source markers detected in the regenerated JSON (source-token scan, per off_ban_hard_rule)."
+  },
+  "tree_safety_confirmation": {
+    "drinkable_files_touched_by_this_run": false,
+    "evidence": "git status short-count for 02_products/yogurt_system/bsip2_task515_v3/drinkable/ stayed at 23 modified files (same as the pre-existing TASK-515A state) before and after this run -- this run's script never imports/loads/writes anything under the drinkable pool.",
+    "copy_draft_files_touched": false,
+    "evidence_2": "yogurt_spoonable_COPY_DRAFT_v1.json and its gates report remain untracked (??) in git status, not modified -- this run only wrote to yogurt_spoonable_frontend_v1.json (the pre-copy generator output the config comment documents), never to any COPY_DRAFT file.",
+    "insightLine_status": "All 94 products' insightLine remain 'PENDING_COPY' (1 distinct value across the corpus) -- two-gate copy authoring untouched by this run.",
+    "no_git_operations": true,
+    "not_committed": "No git commit made per instructions."
+  },
+  "artifacts": {
+    "rescoring_script": {
+      "path": "C:\\Users\\HP\\AppData\\Local\\Temp\\claude\\c--Bari\\a38ba57d-1be4-41c7-888b-fe322923f97c\\scratchpad\\rerun_spoonable_task515b.py",
+      "note": "Scratch script (not committed to repo); mirrors run_bsip2_task515_v3.py exactly, scoped to spoonable pool only."
+    },
+    "yogurt_spoonable_config": {
+      "path": "C:\\Bari\\03_operations\\page_generator\\configs\\yogurt_spoonable.json",
+      "sha256": "f0dc6be0ac9b9108ca61ff78adffbbe7996e29b3f11911de6ca2c5956028a863"
+    },
+    "regenerated_spoonable_frontend_json": {
+      "path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\frontend_out\\yogurt_spoonable_frontend_v1.json",
+      "sha256": "5e55b97a7f15174ed055c3e0100aca708b818ddfe9aa19b5bd6a7b37f5f7d1e5"
+    },
+    "gates_report": {
+      "path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\frontend_out\\yogurt_spoonable_frontend_v1_gates_report.md",
+      "sha256": "620afbac3a25b4ae8ef5a2129175a4423442b07023bc0b77cfe94009604eb550"
+    },
+    "affected_bsip2_trace_sha256": {
+      "7290110323585": "d6aa8cd4788aadb0c6e9a2c2c28c9f03c4a6933f6dddfcceb5e8f400bdb6b94a",
+      "7290110323592": "4bd0403e2a52c9e10dcf2c59dc83436ede566b86f530f1d770b6f2f9c6c7ae55",
+      "7290110328627": "1466f77ab8496f0f3946b506fb6053520240248631d9a4a671336bd7e5c492bc",
+      "7290110328764": "db319e1cf418000f12552065b02019878c96a888a0c8a14184bd310f0281352a",
+      "7290110328788": "1d3fc7221a2e3559a2163c3dee45020db81f04af7be400f864cdbb28fe0d4773",
+      "7290110329952": "52b141ce56faa4befedc8a8dde6e91f2bd3f3fa4b3b78525b1f976b806a6135e",
+      "7290116932484": "42b6ff83d3481b14505ba51395f91ad8913483e38fec27434510bf21094c843d",
+      "7290116934402": "27974eb68b16a8d44d27c898faf896ee6413fbe24dff21a9cf9a1d4462662a1a",
+      "7290116935621": "c68bbd39d2a4169ff95b3d00dfb8881216cb088b9fa2dc7dd975e1dca3aa0ac7",
+      "7290116936123": "1fa9b473f67aaa9538652f369ce56c2785e18760e143f563b5aeb29adc11293d",
+      "7290116936215": "4028c2f2044a3d3d1c5241c70571d44c51114b47b9e29fb53bae12a05030fa5e",
+      "7290116936222": "874eb9795165f09250d73749b170a1c923d99f0e4406a526359e37047a9d2552"
+    }
+  }
+}

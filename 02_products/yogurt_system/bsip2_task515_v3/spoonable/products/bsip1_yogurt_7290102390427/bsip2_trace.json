@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.515391Z",
+  "trace_generated_at": "2026-07-05T14:31:01.257124Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290102390427",
@@ -36,7 +36,6 @@
   "nova_confidence_band": "high",
   "nova_evidence_for": [
     "flavor_enhancer_detected (חומרי טעם וריח)",
-    "multiple_added_sugar_sources: 3",
     "high_additive_category_count: 4",
     "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
@@ -72,7 +71,7 @@
       "חומרי טעם וריח",
       "סידן (טרי קלציום פוספט)",
       "מתחלב (E-472b)",
-      "מווסת חומציות (מלח לימון). מכיל חיידקי BIO.  מאפיינים נוספים דל לקטוז"
+      "מווסת חומציות (מלח לימון). מכיל חיידקי BIO"
     ],
     "ingredient_count_raw": 15,
     "ingredient_sanitization": {
@@ -134,10 +133,9 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 3,
+    "added_sugar_sources_count": 2,
     "added_sugar_matches": [
       "סוכר",
-      "לקטוז",
       "פרי"
     ],
     "has_fruit_concentrate": true,
@@ -219,7 +217,7 @@
       "חומרי טעם וריח",
       "סידן (טרי קלציום פוספט)",
       "מתחלב (E-472b)",
-      "מווסת חומציות (מלח לימון). מכיל חיידקי BIO.  מאפיינים נוספים דל לקטוז"
+      "מווסת חומציות (מלח לימון). מכיל חיידקי BIO"
     ]
   },
   "L4_interpreted_concerns": {
@@ -466,7 +464,7 @@
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
-      "note": "added_sugar_sources=3"
+      "note": "added_sugar_sources=2"
     },
     {
       "rule": "SUGAR_SHELF_REL_V1",

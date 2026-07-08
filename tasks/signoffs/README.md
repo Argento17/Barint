@@ -1,0 +1,1 @@
+Sign-off markers written by the orchestrator ONLY, after BOTH gates (Content Agent + Adversarial QA/Red-Team) pass. One <json-basename>.ok per comparison JSON: date + content-gate ref + red-team report path. Enforced by .claude/hooks/guard-two-gate-commit.ps1.

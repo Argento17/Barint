@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.818396Z",
+  "trace_generated_at": "2026-07-05T12:31:06.749697Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290116936581",
@@ -24,25 +24,23 @@
   ],
   "category": "dairy_protein",
   "category_confidence": 0.92,
-  "secondary_category": "snack_bar_granola",
-  "secondary_confidence": 0.07,
+  "secondary_category": "default",
+  "secondary_confidence": 0.1,
   "category_instability_flag": false,
   "category_confidence_band": "high",
   "classification_basis": [
     "hard_anchor:יוגורט"
   ],
-  "nova_proxy": 2,
-  "nova_confidence": 0.25,
-  "nova_confidence_band": "low",
+  "nova_proxy": 1,
+  "nova_confidence": 0.9,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
-    "minimal_additives_and_processing_signals"
+    "single_ingredient",
+    "no_additives_detected"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
-    "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
-    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "Single ingredient is strong NOVA 1 signal; undetected additives could change this"
   ],
   "L1_observed_signals": {
     "energy_kcal": 68.0,
@@ -54,22 +52,19 @@
     "sugars_g": 3.0,
     "dietary_fiber_g": null,
     "protein_g": 10.0,
-    "ingredient_count": 4,
+    "ingredient_count": 1,
     "ingredient_list": [
-      "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם."
+      "חלב"
     ],
-    "ingredient_count_raw": 4,
+    "ingredient_count_raw": 1,
     "ingredient_sanitization": {
-      "raw_count": 4,
-      "clean_count": 4,
+      "raw_count": 1,
+      "clean_count": 1,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
-    "ingredient_text_quality": "good",
+    "ingredient_text_quality": "present",
     "bsip1_trust_level": "medium",
     "bsip1_trust_score": 0.75,
     "bsip1_risk_flags": [],
@@ -167,8 +162,8 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 4,
-    "primary_fragmentation": "fractional",
+    "sanitized_ingredient_count": 1,
+    "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
     "sat_fat_inferred_basis": null,
@@ -183,10 +178,7 @@
     ],
     "fat_pct_of_kcal": 26.47,
     "ingredient_list": [
-      "חלב מכיל חלב ערכים תזונתיים 100 גרם 3 גרם סוכרים מתוך פחמימות 68 קל אנרגיה 10 גרם חלבונים 3 גרם פחמימות 2 גרם שומנים 33 מג נתרן 115 מג סידן הנתונים המדויקים מופיעים על גבי המוצר",
-      "אין להסתמך על הפירוט המופיע באתר",
-      "יתכנו טעויות או אי התאמות",
-      "יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם."
+      "חלב"
     ]
   },
   "L4_interpreted_concerns": {
@@ -228,8 +220,8 @@
     },
     "se_note": null
   },
-  "confidence_score": 75,
-  "confidence_band": "medium",
+  "confidence_score": 85,
+  "confidence_band": "high",
   "confidence_reductions": [
     {
       "factor": "missing: dietary_fiber_g",
@@ -242,14 +234,10 @@
     {
       "factor": "bsip1_trust_level=medium",
       "reduction": -5
-    },
-    {
-      "factor": "nova_confidence=low",
-      "reduction": -10
     }
   ],
   "dimension_scores": {
-    "processing_quality": 64.0,
+    "processing_quality": 95.0,
     "nutrient_density": 75.0,
     "calorie_density": 88.0,
     "glycemic_quality": 82.5,
@@ -258,10 +246,10 @@
     "satiety_support": 100,
     "fat_quality": 80.0,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 85
+    "whole_food_integrity": 100
   },
   "dimension_notes": {
-    "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 64.0 (EV-042 revised, TASK-181J)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 1 base=95 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 95.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=10.0g→75.0; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 75.0",
     "calorie_density": "kcal=68.0, category=yogurt → 88",
     "glycemic_quality": "90 - sugar_penalty(7.5) + fiber(0.0) + wg(0) = 82.5",
@@ -270,7 +258,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (10.0×3 + 0×5) / 68.0 × 400 = 100",
     "fat_quality": "R3 leanness: fat=2.0g sat_fat absent (treated 0) → 80.0",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 1 base=100, ing_count=1 complexity_pen=0 → 100"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -342,7 +330,7 @@
     },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 87.2,
+      "cap": 68.0,
       "condition": false,
       "fired": false
     },
@@ -360,7 +348,7 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 94.8,
+      "cap": 87.0,
       "condition": false,
       "fired": false
     },
@@ -488,42 +476,46 @@
     }
   },
   "floors_considered": [
-    "no_applicable_floor"
+    {
+      "floor_type": "nova1_single_ingredient",
+      "floor_value": 85,
+      "note": "floor=85 not binding (score=89.9)"
+    }
   ],
   "floors_applied": [],
   "score_after_floors": 89.9,
   "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-5",
+  "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
   "final_score_estimate": 89.9,
   "grade_estimate": "A",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "PRIMARY SIGNAL: processing_quality=64.0 (lowest dimension)"
+    "PRIMARY SIGNAL: nutrient_density=75.0 (lowest dimension)"
   ],
-  "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
-    "primary": "B",
-    "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.422,
-    "secondary": "A",
-    "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.224,
+    "primary": "A",
+    "primary_label": "Intact Whole Food",
+    "primary_confidence": 0.702,
+    "secondary": null,
+    "secondary_label": null,
+    "secondary_confidence": null,
     "class_weights": {
-      "A": 0.224,
-      "B": 0.422,
-      "C": 0.208,
-      "D": 0.016,
-      "E": 0.13,
+      "A": 0.702,
+      "B": 0.146,
+      "C": 0.0,
+      "D": 0.0,
+      "E": 0.153,
       "F": 0.0
     },
     "is_between_worlds": false,
     "classification_notes": [
-      "nova_2_signal",
+      "nova_1_signal",
       "no_additives_detected",
+      "whole_food_integrity_intact",
       "high_protein_quality",
+      "minimal_ingredients",
       "zero_additive_categories"
     ],
     "classifier_version": "structural_classifier_v1"

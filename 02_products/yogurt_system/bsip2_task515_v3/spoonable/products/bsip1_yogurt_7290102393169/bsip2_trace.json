@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.545171Z",
+  "trace_generated_at": "2026-07-05T14:31:01.286164Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290102393169",
@@ -68,7 +68,7 @@
       "רכז גזר",
       "חומרי טעם וריח",
       "מייצב (פקטי ן)",
-      "מווסתי חומציות (חומצת לימון, מלח לימון). מכיל חיידקי BIOn מאפיינים נוספים דל לקטוז"
+      "מווסתי חומציות (חומצת לימון, מלח לימון). מכיל חיידקי BIO"
     ],
     "ingredient_count_raw": 12,
     "ingredient_sanitization": {
@@ -130,10 +130,9 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 2,
+    "added_sugar_sources_count": 1,
     "added_sugar_matches": [
-      "סוכר",
-      "לקטוז"
+      "סוכר"
     ],
     "has_fruit_concentrate": true,
     "has_fermentation": false,
@@ -164,10 +163,14 @@
     "sprint1_humectant_polyols": [],
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
-    "functional_fiber_detected": false,
-    "functional_fiber_type": "none",
-    "functional_fiber_terms_matched": [],
-    "functional_fiber_viscous_terms": [],
+    "functional_fiber_detected": true,
+    "functional_fiber_type": "viscous",
+    "functional_fiber_terms_matched": [
+      "פקטין"
+    ],
+    "functional_fiber_viscous_terms": [
+      "פקטין"
+    ],
     "functional_fiber_prebiotic_terms": [],
     "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
@@ -210,7 +213,7 @@
       "רכז גזר",
       "חומרי טעם וריח",
       "מייצב (פקטי ן)",
-      "מווסתי חומציות (חומצת לימון, מלח לימון). מכיל חיידקי BIOn מאפיינים נוספים דל לקטוז"
+      "מווסתי חומציות (חומצת לימון, מלח לימון). מכיל חיידקי BIO"
     ]
   },
   "L4_interpreted_concerns": {
@@ -264,10 +267,10 @@
     "processing_quality": 35.0,
     "nutrient_density": 20.1,
     "calorie_density": 88.0,
-    "glycemic_quality": 67.2,
+    "glycemic_quality": 69.2,
     "protein_quality": 28.2,
     "additive_quality": 28.0,
-    "satiety_support": 67.3,
+    "satiety_support": 69.3,
     "fat_quality": 79.6,
     "regulatory_quality": 95.0,
     "whole_food_integrity": 22
@@ -276,10 +279,10 @@
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=4.1g→28.2, fiber=0.5g→5.0, weighted 65/35=20.1",
     "calorie_density": "kcal=88.0, category=yogurt → 88",
-    "glycemic_quality": "90 - sugar_penalty(23.8) + fiber(1.0) + wg(0) = 67.2",
+    "glycemic_quality": "90 - sugar_penalty(23.8) + fiber(1.0) + wg(0) = 67.2 + EV-006 viscous-fiber bonus(2)",
     "protein_quality": "protein=4.1g base=28.2, source=whole_food(×1.0) → 28.2",
     "additive_quality": "sprint1_additives=4 base=28 sw_pen=0→28.0",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.1×3 + 0.5×5) / 88.0 × 400 = 67.3",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (4.1×3 + 0.5×5) / 88.0 × 400 = 67.3 + EV-006 viscous-fiber bonus(2)",
     "fat_quality": "fat_v1(fat=3.0g<8.0): sat=1.8g base=79.6-seed0-trans0=79.6",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=12 complexity_pen=8 → 22"
@@ -296,7 +299,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 51.19,
+  "weighted_dimension_score": 51.55,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -400,13 +403,13 @@
     }
   ],
   "binding_cap": 68.0,
-  "score_after_cap": 51.19,
+  "score_after_cap": 51.55,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
@@ -455,36 +458,26 @@
   ],
   "penalties_applied": [
     {
-      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-      "amount": 5,
-      "note": "added_sugar_sources=2"
-    },
-    {
       "rule": "SUGAR_SHELF_REL_V1",
       "amount": 2,
       "note": "sugars_g=9.5 dist=4.85 r=1.054 band_penalty=2"
     }
   ],
-  "total_penalty_before_scaling": 5.8,
-  "total_penalty_after_scaling": 5.8,
+  "total_penalty_before_scaling": 2.0,
+  "total_penalty_after_scaling": 2.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 42.39,
+  "score_after_penalty": 46.55,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
-      "coordinated_penalty": 5.8,
+      "coordinated_penalty": 2,
       "detail": {
         "winner": {
-          "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-          "amount": 5
+          "rule": "SUGAR_SHELF_REL_V1",
+          "amount": 2
         },
-        "supporters": [
-          {
-            "rule": "SUGAR_SHELF_REL_V1",
-            "scaled_to": 0.8
-          }
-        ],
-        "total_before_budget": 5.8,
+        "supporters": [],
+        "total_before_budget": 2,
         "budget_applied": false
       }
     },
@@ -538,16 +531,16 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 42.39,
+  "score_after_floors": 46.55,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 42.4,
+  "final_score_estimate": 46.5,
   "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED', 'ADDITIVE_MARKERS_3_PLUS']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS', 'SUGAR_SHELF_REL_V1']"
+    "PENALTIES: ['SUGAR_SHELF_REL_V1']"
   ],
   "unresolved_flags": [],
   "structural_class": {

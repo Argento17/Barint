@@ -1,0 +1,1287 @@
+{
+  "task": "TASK-515/515A yogurt corpus remediation audit",
+  "generated_by": "Data Agent",
+  "scope": "READ-ONLY diagnosis -- no pipeline file modified, no rescoring performed, no commit",
+  "corpus_scanned": {
+    "bsip1_records_total": 122,
+    "traces_loaded": 120,
+    "already_excluded_pre_v3": [
+      "4068028",
+      "7290110329792",
+      "7290110329815",
+      "7290119377480",
+      "7290119385768"
+    ]
+  },
+  "ledger": {
+    "7290116936581": {
+      "barcode": "7290116936581",
+      "pool": "spoonable",
+      "name": "יוגורט GO סמיך 20ג חלבון",
+      "issue_classes": [
+        "A_source_implausible_single_ingredient"
+      ],
+      "evidence": {
+        "A_source_implausible_single_ingredient": {
+          "declared_ingredients_text_he": "חלב",
+          "declared_ingredients_raw_he_prefix": "חלב (identical to scored text -- confirmed against BSIP0 true scrape run_yogurt_task515_20260705T062308_corpus.json, same barcode: ingredients_raw = 'חלב'; nothing was cut, no restorable content exists)",
+          "protein_g_per_100g": 10.0,
+          "plausibility_check": "Plain milk delivers ~3.2-3.5g protein/100g; this SKU declares 10.0g/100g under a single-ingredient 'milk' label -- physically impossible without an undeclared milk-protein concentrate/isolate. The retailer source page itself under-declared the ingredient list; the BSIP1 pipeline did not truncate anything (raw==scored).",
+          "resulting_trace_scores": {
+            "nova_proxy": 1,
+            "nova_confidence": 0.9,
+            "additive_quality": 100,
+            "whole_food_integrity": 100,
+            "processing_quality": 95.0,
+            "grade": "A",
+            "final_score_estimate": 89.9
+          }
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- source ingredient declaration is implausible for the stated macro profile; per the missing_data_discard_rule this is a one-shot DISCARD case, not a re-source or fabricate-and-restore case (there is nothing to restore from)"
+      ],
+      "estimated_score_impact": {
+        "A_source_implausible_single_ingredient": "Currently A/89.9 on maximal best-case NOVA-1/whole-food-integrity=100. If the product actually contains milk protein concentrate/isolate (near-certain given the macros), a correctly-declared ingredient list would very likely drop NOVA to 2-3 and cut whole_food_integrity + processing_quality materially, plausibly a full grade band."
+      }
+    },
+    "7290102395224": {
+      "barcode": "7290102395224",
+      "pool": "spoonable",
+      "name": "יוגורט מולר נטורל 1.7%",
+      "issue_classes": [
+        "B_null_ingredients_bestcase"
+      ],
+      "evidence": {
+        "B_null_ingredients_bestcase": {
+          "missing_field": "ingredients_text_he (raw scrape was marketing prose / near-empty, correctly nulled per missing_data_discard_rule -- NOT a trim bug)",
+          "raw_content": "טבעיים יוגורט לבן קלאסי וקרמי שמשתלב בטבעיות בכל רגע. אם זה בתוספת פירות טריים או יבשים, גרנולה, דבש מתוק או פשוט ככה. כמו שהוא. מושלם. • 1.7% שומן",
+          "additive_quality": 100,
+          "whole_food_integrity": 85,
+          "grade": "B",
+          "final_score_estimate": 75
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null ingredient text drives additive_quality=100 + whole_food_integrity=85 best-case defaults with zero evidentiary basis"
+      ],
+      "estimated_score_impact": {
+        "B_null_ingredients_bestcase": "additive_quality best-cased at 100 (should be non-committal, not max); grade currently B (75)"
+      }
+    },
+    "7290102395231": {
+      "barcode": "7290102395231",
+      "pool": "spoonable",
+      "name": "יוגורט ביו נטורל 2.8%",
+      "issue_classes": [
+        "B_null_ingredients_bestcase"
+      ],
+      "evidence": {
+        "B_null_ingredients_bestcase": {
+          "missing_field": "ingredients_text_he (raw scrape was marketing prose / near-empty, correctly nulled per missing_data_discard_rule -- NOT a trim bug)",
+          "raw_content": "טבעיים יוגורט לבן קלאסי וקרמי שמשתלב בטבעיות בכל רגע. אם זה בתוספת פירות טריים או יבשים, גרנולה, דבש מתוק או פשוט ככה. כמו שהוא. מושלם. •2.8% שומן",
+          "additive_quality": 100,
+          "whole_food_integrity": 85,
+          "grade": "A",
+          "final_score_estimate": 80.8
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null ingredient text drives additive_quality=100 + whole_food_integrity=85 best-case defaults with zero evidentiary basis"
+      ],
+      "estimated_score_impact": {
+        "B_null_ingredients_bestcase": "additive_quality best-cased at 100 (should be non-committal, not max); grade currently A (80.8)"
+      }
+    },
+    "7290112341686": {
+      "barcode": "7290112341686",
+      "pool": "spoonable",
+      "name": "אקטיביה 3% מארז",
+      "issue_classes": [
+        "B_null_ingredients_bestcase"
+      ],
+      "evidence": {
+        "B_null_ingredients_bestcase": {
+          "missing_field": "ingredients_text_he (raw scrape was marketing prose / near-empty, correctly nulled per missing_data_discard_rule -- NOT a trim bug)",
+          "raw_content": "ו",
+          "additive_quality": 100,
+          "whole_food_integrity": 85,
+          "grade": "B",
+          "final_score_estimate": 79.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null ingredient text drives additive_quality=100 + whole_food_integrity=85 best-case defaults with zero evidentiary basis"
+      ],
+      "estimated_score_impact": {
+        "B_null_ingredients_bestcase": "additive_quality best-cased at 100 (should be non-committal, not max); grade currently B (79.0)"
+      }
+    },
+    "43944": {
+      "barcode": "43944",
+      "pool": "spoonable",
+      "name": "יוגורט בכד 4% שומן",
+      "issue_classes": [
+        "B_null_sugar_bestcase",
+        "C_near_duplicate_needs_review"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 70,
+          "confidence_band": "medium",
+          "grade": "B",
+          "final_score_estimate": 74.7
+        },
+        "C_near_duplicate_needs_review": {
+          "paired_with": "45771",
+          "name": "יוגורט בכד 4% שומן",
+          "diff": "fat_saturated_g 2.4 vs 2.6 (0.2g) -- otherwise identical (63kcal/4f/3.5c/null-sugar/3.2p/50Na)",
+          "note": "Both members are independently recommended for Class-B discard (null sugar) already -- dedup decision is moot for corpus composition, but Nutrition/Product should confirm whether this is one product mis-listed twice or two genuinely distinct batches."
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content",
+        "NEEDS_HUMAN_REVIEW (Nutrition/Product) -- not auto-resolved; both barcodes already route to discard via Class B regardless"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected",
+        "C_near_duplicate_needs_review": "moot for corpus size (both already discarded under Class B); relevant only if Class B discard is NOT adopted, in which case this dedup question re-opens"
+      }
+    },
+    "45771": {
+      "barcode": "45771",
+      "pool": "spoonable",
+      "name": "יוגורט בכד 4% שומן",
+      "issue_classes": [
+        "B_null_sugar_bestcase",
+        "C_near_duplicate_needs_review"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 70,
+          "confidence_band": "medium",
+          "grade": "B",
+          "final_score_estimate": 74.5
+        },
+        "C_near_duplicate_needs_review": {
+          "paired_with": "43944",
+          "name": "יוגורט בכד 4% שומן"
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content",
+        "NEEDS_HUMAN_REVIEW (Nutrition/Product) -- see 43944 entry"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected",
+        "C_near_duplicate_needs_review": "moot for corpus size (see 43944 entry)"
+      }
+    },
+    "5416415": {
+      "barcode": "5416415",
+      "pool": "spoonable",
+      "name": "יוגורט עזים טבעי 3%",
+      "issue_classes": [
+        "B_null_sugar_bestcase",
+        "B_null_fat_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 55,
+          "confidence_band": "low",
+          "grade": "B",
+          "final_score_estimate": 75
+        },
+        "B_null_fat_bestcase": {
+          "missing_field": "fat_g",
+          "fat_quality": 92.0,
+          "confidence_score": 55,
+          "confidence_band": "low",
+          "grade": "B",
+          "final_score_estimate": 75
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content",
+        "discard(missing-data) -- null fat drives fat_quality=92 best-case"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected",
+        "B_null_fat_bestcase": "fat_quality best-cased at 92.0"
+      }
+    },
+    "7290110321031": {
+      "barcode": "7290110321031",
+      "pool": "spoonable",
+      "name": "יופלה GO מועשר בחלבון",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 65,
+          "confidence_band": "medium",
+          "grade": "A",
+          "final_score_estimate": 89.9
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290110328788": {
+      "barcode": "7290110328788",
+      "pool": "spoonable",
+      "name": "יוגורט GO קרמי אפרסק",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 65,
+          "confidence_band": "medium",
+          "grade": "B",
+          "final_score_estimate": 65.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290110329952": {
+      "barcode": "7290110329952",
+      "pool": "spoonable",
+      "name": "יוגורט GO סמיך טעם קוקוס",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 92.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 64.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 92.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290110561352": {
+      "barcode": "7290110561352",
+      "pool": "spoonable",
+      "name": "דנונה דל לקטוז 200 גרם",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 70,
+          "confidence_band": "medium",
+          "grade": "A",
+          "final_score_estimate": 80.8
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116932484": {
+      "barcode": "7290116932484",
+      "pool": "spoonable",
+      "name": "יוגורט GO אוורירי וניל",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "B",
+          "final_score_estimate": 68.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116934402": {
+      "barcode": "7290116934402",
+      "pool": "spoonable",
+      "name": "יוגורט אוורירי GO מנגו",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 64.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116935614": {
+      "barcode": "7290116935614",
+      "pool": "spoonable",
+      "name": "יוגורט GO חלבון  25 גרם",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 65,
+          "confidence_band": "medium",
+          "grade": "A",
+          "final_score_estimate": 89.9
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116935621": {
+      "barcode": "7290116935621",
+      "pool": "spoonable",
+      "name": "יוגורט חלבון קרמיGO וניל",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 90.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "B",
+          "final_score_estimate": 65.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 90.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116936123": {
+      "barcode": "7290116936123",
+      "pool": "spoonable",
+      "name": "יוגורט GO אוורירי דובדבן",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 92.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 64.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 92.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116936215": {
+      "barcode": "7290116936215",
+      "pool": "spoonable",
+      "name": "יוגורט GO עוגת תפוחים",
+      "issue_classes": [
+        "B_null_sugar_bestcase",
+        "B_null_fat_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 92.0,
+          "confidence_score": 65,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 58.4
+        },
+        "B_null_fat_bestcase": {
+          "missing_field": "fat_g",
+          "fat_quality": 92.0,
+          "confidence_score": 65,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 58.4
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content",
+        "discard(missing-data) -- null fat drives fat_quality=92 best-case"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 92.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected",
+        "B_null_fat_bestcase": "fat_quality best-cased at 92.0"
+      }
+    },
+    "7290116936222": {
+      "barcode": "7290116936222",
+      "pool": "spoonable",
+      "name": "יוגורט GO אננס מקורמל",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 92.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 57.6
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 92.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116934228": {
+      "barcode": "7290116934228",
+      "pool": "drinkable",
+      "name": "משקה יוגורט גו מלון תות",
+      "issue_classes": [
+        "B_null_sugar_bestcase"
+      ],
+      "evidence": {
+        "B_null_sugar_bestcase": {
+          "missing_field": "sugars_g",
+          "glycemic_quality": 92.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 56.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null sugar drives glycemic_quality=90-92 best-case regardless of true sugar content"
+      ],
+      "estimated_score_impact": {
+        "B_null_sugar_bestcase": "glycemic_quality best-cased at 92.0 (near-ceiling); confidence already reduced (-10 per TASK-250 Ruling 1) but score itself is uncorrected"
+      }
+    },
+    "7290116932774": {
+      "barcode": "7290116932774",
+      "pool": "drinkable",
+      "name": "משקה יוגורט גו בננה קרמל",
+      "issue_classes": [
+        "B_null_fat_bestcase"
+      ],
+      "evidence": {
+        "B_null_fat_bestcase": {
+          "missing_field": "fat_g",
+          "fat_quality": 92.0,
+          "confidence_score": 75,
+          "confidence_band": "medium",
+          "grade": "C",
+          "final_score_estimate": 56.0
+        }
+      },
+      "recommended_resolution": [
+        "discard(missing-data) -- null fat drives fat_quality=92 best-case"
+      ],
+      "estimated_score_impact": {
+        "B_null_fat_bestcase": "fat_quality best-cased at 92.0"
+      }
+    },
+    "57149": {
+      "barcode": "57149",
+      "pool": "spoonable",
+      "name": "יוגורט ביו 3%",
+      "issue_classes": [
+        "C_duplicate"
+      ],
+      "evidence": {
+        "C_duplicate": {
+          "duplicate_of": "7290014758100",
+          "name": "יוגורט ביו 3%",
+          "nutrition_match": "byte-identical per-100g panel (64kcal/3f/1.95sf/4c/4sug/5.3p/50Na)"
+        }
+      },
+      "recommended_resolution": [
+        "dedup-drop(keep 7290014758100 -- EAN-13 canonical)"
+      ],
+      "estimated_score_impact": {
+        "C_duplicate": "Currently both score identically (redundant listing, not a score-distorting bug by itself, but double-counts one physical product in the displayed corpus)"
+      }
+    },
+    "7290014758100": {
+      "barcode": "7290014758100",
+      "pool": "spoonable",
+      "name": "יוגורט ביו 3%",
+      "issue_classes": [
+        "C_duplicate"
+      ],
+      "evidence": {
+        "C_duplicate": {
+          "canonical_for": "57149"
+        }
+      },
+      "recommended_resolution": [
+        "keep as canonical (EAN-13)"
+      ],
+      "estimated_score_impact": {
+        "C_duplicate": "none (canonical)"
+      }
+    },
+    "6664655": {
+      "barcode": "6664655",
+      "pool": "drinkable",
+      "name": "אקטימל לבן מארז",
+      "issue_classes": [
+        "C_duplicate"
+      ],
+      "evidence": {
+        "C_duplicate": {
+          "duplicate_of": "7290119380923",
+          "name": "אקטימל לבן מארז",
+          "nutrition_match": "byte-identical per-100g panel (52kcal/1.6f/1sf/5c/5sug/2.8p/30Na)"
+        }
+      },
+      "recommended_resolution": [
+        "dedup-drop(keep 7290119380923 -- EAN-13 canonical)"
+      ],
+      "estimated_score_impact": {
+        "C_duplicate": "redundant listing in drinkable pool"
+      }
+    },
+    "7290119380923": {
+      "barcode": "7290119380923",
+      "pool": "drinkable",
+      "name": "אקטימל לבן מארז",
+      "issue_classes": [
+        "C_duplicate"
+      ],
+      "evidence": {
+        "C_duplicate": {
+          "canonical_for": "6664655"
+        }
+      },
+      "recommended_resolution": [
+        "keep as canonical (EAN-13)"
+      ],
+      "estimated_score_impact": {
+        "C_duplicate": "none (canonical)"
+      }
+    },
+    "57132": {
+      "barcode": "57132",
+      "pool": "spoonable",
+      "name": "יוגורט ביו 1.5%",
+      "issue_classes": [
+        "C_duplicate"
+      ],
+      "evidence": {
+        "C_duplicate": {
+          "duplicate_of": "7290014758117",
+          "name": "יוגורט ביו 1.5% / 1.5% שומן",
+          "nutrition_match": "byte-identical per-100g panel (56kcal/1.5f/5.3c/5.3sug/5.2p/65Na)",
+          "cross_reference": "7290014758117 also carries a Class D contamination hit (diabetes-association seal text) that its clean twin 57132 does not -- see Class D entry for confirmed score divergence"
+        }
+      },
+      "recommended_resolution": [
+        "dedup-drop(keep 7290014758117 -- EAN-13 -- BUT ONLY AFTER its Class D strip-artifact fix is applied; do not drop 57132 until the canonical twin's ingredient text is clean, else the surviving listing ships the contaminated text)"
+      ],
+      "estimated_score_impact": {
+        "C_duplicate": "Confirmed real: A/80.6 (57132, NOVA2) vs B/78.4 (7290014758117, NOVA3) for what is the SAME physical product -- see Class D entry"
+      }
+    },
+    "7290014758117": {
+      "barcode": "7290014758117",
+      "pool": "spoonable",
+      "name": "יוגורט ביו 1.5% שומן",
+      "issue_classes": [
+        "D_contamination_confirmed_score_impact"
+      ],
+      "evidence": {
+        "D_contamination_confirmed_score_impact": {
+          "scored_ingredients_text_he": "חלב, אבקת חלב, חלבוני חלב, תוסף תזונה (סידן - טריקלציום ציטרט). BIO - בתוספת חיידקי ביפידוס. מאפיינים נוספים תו האגודה הישראלית לסוכרת",
+          "contamination": "'מאפיינים נוספים תו האגודה הישראלית לסוכרת' -- an Israeli Diabetes Association certification-seal claim, not an ingredient, scraped into the ingredient field",
+          "twin_barcode": "57132 (same product, clean ingredient text, no certification-seal bleed)",
+          "confirmed_divergence": {
+            "7290014758117": {
+              "nova_proxy": 3,
+              "nova_confidence": 0.3,
+              "processing_quality": 56.0,
+              "whole_food_integrity": 65,
+              "grade": "B",
+              "final_score_estimate": 78.4
+            },
+            "57132": {
+              "nova_proxy": 2,
+              "nova_confidence": 0.25,
+              "processing_quality": 64.0,
+              "whole_food_integrity": 90,
+              "grade": "A",
+              "final_score_estimate": 80.6
+            }
+          }
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the certification-seal clause from ingredients_text_he, then re-derive NOVA/processing_quality/whole_food_integrity; expect convergence toward the twin's NOVA2/A-grade values. THEN resolve the Class C dedup (drop 57132)."
+      ],
+      "estimated_score_impact": {
+        "D_contamination_confirmed_score_impact": "CONFIRMED: 2.2-point score gap + a full letter-grade split (A vs B) between two listings of the identical physical product, caused entirely by scrape contamination"
+      }
+    },
+    "5839078": {
+      "barcode": "5839078",
+      "pool": "spoonable",
+      "name": "יוגורט דנונה ביו 3%",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290016606522": {
+      "barcode": "7290016606522",
+      "pool": "spoonable",
+      "name": "יוגורט טבעי מחלב עיזים",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב עיזים אורגני מפוסטר, חיידקי אצידופולוס. מאפיינים נוספים אורגני",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102390427": {
+      "barcode": "7290102390427",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ קציפת תות",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, מים, פרי (9.8%) (תות שדה), סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, רכז מיץ לימון, רכז גזר שחור, חומרי טעם וריח, סידן (טרי קלציום פוספט), מתחלב (E-472b), מווסת חומציות (מלח לימון). מכיל חיידקי BIO. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102390465": {
+      "barcode": "7290102390465",
+      "pool": "spoonable",
+      "name": "מולר פרופ אפרסק פסיפלורה",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, אפרסק ופסיפלורה (10.3%*), סוכר, רכיבי חלב, פרוקטוז, עמילן מעובד (E-1442), סיבים תזונתיים, ג'לטין דגים, חומרי טעם וריח, סידן (טרי קלציום פוספאט), מווסתי חומציות (חומצת לימון, מלח לימון), מתחלב (E-472b), צבעי מאכל (כורכומין, מיצוי פפריקה). מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102390489": {
+      "barcode": "7290102390489",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ קציפת לימון",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, מים, פרי (6.2%*) (מיץ לימון), פרוקטוז, רכיבי חלב, סוכר, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, חומרי טעם וריח, סידן (טרי קלציום פוספט), מווסת חומציות (מלח לימון), מתחלב (E-472b), רכז מיץ תפוזים, מיצוי קרתמוס. מכיל חיידקי BIO. *לאחר שיחזור. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102391844": {
+      "barcode": "7290102391844",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ פירות יער",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, פירות (10.3%*) (תות שדה, פטל, אוכמניות), מים, סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, רכז פרי וירק (גזר שחור, היביסקוס), רכז מיץ לימון, חומרי טעם וריח, סידן (טרי קלציום פוספט), מתחלב (E-472b(' מווסת חומציות (מלח לימון). מכיל חיידקי BIO. *לאחר שיחזור. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102393169": {
+      "barcode": "7290102393169",
+      "pool": "spoonable",
+      "name": "יוגורט תות 3% שומן",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, תות שדה (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, רכז גזר, חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (חומצת לימון, מלח לימון). מכיל חיידקי BIO מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102393176": {
+      "barcode": "7290102393176",
+      "pool": "spoonable",
+      "name": "יוגורט אפרסק 3% שומן",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, אפרסק (9%), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מווסתי חומציות (חומצת לימון, מלח לימון), מייצב (פקטין). מכיל חיידקי BIO. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102393299": {
+      "barcode": "7290102393299",
+      "pool": "drinkable",
+      "name": "יוגורט עיזים לשתייה",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102393947": {
+      "barcode": "7290102393947",
+      "pool": "spoonable",
+      "name": "יוגורט קיווי 3% שומן",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, קיווי (9%*), פרוקטוז, מים, סוכר, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסת חומציות (מלח לימון). *לאחר שיחזור. מכיל חיידקי BIO. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290102399635": {
+      "barcode": "7290102399635",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ קוקוס ואננס",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, מים, פרי (9.9%*) (קרם קוקוס, אננס), סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, חומרי טעם וריח, סידן (טרי קלציום פוספט), מווסתי חומציות (חומצת לימון, מלח לימון), מתחלב (E-472b), צבע מאכל (בטא קרוטן), מיצוי קרתמוס. מכיל חיידקי BIO. *לאחר שיחזור. מאפיינים נוספים דל לקטוז מכיל רכיבי חלב",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290107958035": {
+      "barcode": "7290107958035",
+      "pool": "spoonable",
+      "name": "דנונה במתיקות מעודנת",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290110552244": {
+      "barcode": "7290110552244",
+      "pool": "drinkable",
+      "name": "משקה דנונה פרו20 ללת\"ס",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, חלבוני מי גבינה, עמילן טפיוקה מעובד (E-1442), רכיבי חלב, חומרי טעם וריח, מייצב (לוקוסט-בין גאם), מלח, מווסת חומציות (חומצת לימון), ממתיקים (אצסולפאם k, סוכרלוז). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290110573713": {
+      "barcode": "7290110573713",
+      "pool": "spoonable",
+      "name": "דנונה מולטי  צ'יה",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, רכיבי חלב, זרעי צ'יה (1.3%), סיבים תזונתיים, מינרלים [מגנזיום פוספט, סידן (טרי קלציום פוספאט), ברזל, אבץ], רכז לימון, ויטמין D. בתוספת חיידק פרוביוטי bifdus. דל לקטוז – פחות מ 0.5% לקטוז. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290110573737": {
+      "barcode": "7290110573737",
+      "pool": "drinkable",
+      "name": "משקה יוגורט פרו תות ללס",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, חלבוני מי גבינה, מים, מחית תות (3.0%), עמילן טפיוקה מעובד (E-1442), חומרי טעם וריח, מייצב (לוקוסט-בין גאם), רכז לימון, מלח, רכז גזר שחור, ממתיקים (אצסולפאם k, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114310406": {
+      "barcode": "7290114310406",
+      "pool": "spoonable",
+      "name": "יוגורט מוקצף תות",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, תות (6.1%), סוכר, מים, סיבים תזונתיים, עמילן, ג'לטין דגים, פרוקטוז, מתחלב (E-471), עמילן מעובד (E-1442), רכז מיץ לימון, סידן (טרי קלציום פוספט), רכז גזר, חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (מלח לימון, חומצת לימון). מכיל חיידקי Bio מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114310536": {
+      "barcode": "7290114310536",
+      "pool": "spoonable",
+      "name": "מולר אקטיב לייט וניל",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114311359": {
+      "barcode": "7290114311359",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ קציפת מנגו",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "רכיבים: חלב מפוסטר, מים, פרי (10.6%*) (מנגו), סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, רכז מיץ לימון, חומרי טעם וריח, מווסתי חומציות (חומצת לימון, מלח לימון), סידן (טרי קלציום פוספט), מתחלב (E-472b), מיצוי קרתמוס. מכיל חיידקי BIO. *לאחר שיחזור. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114312424": {
+      "barcode": "7290114312424",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ פסיפלורה",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, פרי (9%) (מיץ פסיפלורה*, קרם קוקוס), סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), מתחלב (E-472b) , ג'לטין דגים, מווסתי חומציות (חומצת לימון, מלח לימון), סידן (טרי קלציום פוספט), חומרי טעם וריח, צבע מאכל (בטא קרוטן). מכיל חיידקי BIO. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114312431": {
+      "barcode": "7290114312431",
+      "pool": "spoonable",
+      "name": "יוגורט פרופ מלונענע",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, פרי (7.8%)* (מלון), סוכר, רכיבי חלב, פרוקטוז, סיבים תזונתיים, עמילן מעובד (E-1442), ג'לטין דגים, רכז מיץ לימון, מיצוי קרתמוס, סידן (טרי קלציום פוספט), חומרי טעם וריח, צבע מאכל (קופרכלורופיל), מתחלב (E-472b), מווסת חומציות (מלח לימון). מכיל חיידקי BIO. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290114313070": {
+      "barcode": "7290114313070",
+      "pool": "spoonable",
+      "name": "יוגורט מוקצף אפרסק",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, פרי (6.1)* (מיץ אפרסק), סוכר, מים, סיבים תזונתיים, פרוקטוז, עמילן, ג'לטין דגים, עמילן מעובד (E-1422), מתחלב (E-471), מיצוי קרתמוס וגזר שחור, סידן (טרי קלציום פוספט), חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (חומצת לימון, מלח לימון).מכיל חיידקי Bio . *לאחר שיחזור מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119370177": {
+      "barcode": "7290119370177",
+      "pool": "spoonable",
+      "name": "דנונה פרו לת\"ס בננה טופי",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, חומרי טעם וריח, צבע מאכל (קרמל), עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז) , רכז לימון, מלח, מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119370955": {
+      "barcode": "7290119370955",
+      "pool": "spoonable",
+      "name": "דנונה פרו לל\"ס וניל עוג.",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח, מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119372997": {
+      "barcode": "7290119372997",
+      "pool": "spoonable",
+      "name": "דנונה פרו 20 רול קינמון",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, מים, קינמון, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם K, סוכרלוז), רכז לימון, מלח, מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119377404": {
+      "barcode": "7290119377404",
+      "pool": "spoonable",
+      "name": "דנונה פרו 25  לל\"ס וניל",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, מים, סיבים תזונתיים, חומרי טעם וריח, עמילן טפיוקה מעובד (E1442) , מייצב (לוקוסט- בין גאם), ממתיקים (אצסולפאם, K, סוכרלוז), מלח, מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119377411": {
+      "barcode": "7290119377411",
+      "pool": "spoonable",
+      "name": "דנונה פרו 25 גרם חלבון",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, מים, סיבים תזונתיים, עמילן טפיוקה מעובד (E1442), מייצב (לוקוסט- בין גאם), חומרי טעם וריח, מווסת חומציות (חומצת לימון). מכיל חיידקי יוגורט. מאפיינים נוספים ללא תוספת סוכר",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    },
+    "7290119386642": {
+      "barcode": "7290119386642",
+      "pool": "spoonable",
+      "name": "יוגורט מולטי פירות יער",
+      "issue_classes": [
+        "D_header_bleed_low_impact"
+      ],
+      "evidence": {
+        "D_header_bleed_low_impact": {
+          "scored_ingredients_text_he": "חלב מפוסטר, פירות יער (7.3%), (אוכמניות, תות שדה, דומדמניות), מים, רכיבי חלב, סיבים תזונתיים, רכז פרי המונק, מינרלים (מגנזיום פוספט, סידן (טרי קלציום פוספאט), ברזל, אבץ), עמילן טפיוקה מעובד (E1442), חומרי טעם וריח, רכז לימון, מייצב (לוקוסט- בין גאם), מלח, ויטמין D . בתוספת חיידק פרוביוטי Bifudus. מאפיינים נוספים דל לקטוז",
+          "contamination": "trailing \"מאפיינים נוספים <claim>\" (scraped 'additional characteristics' website section header, e.g. 'דל לקטוז' / 'ללא תוספת סוכר' / 'אורגני' / 'ניתן למיחזור') bled into the ingredient field"
+        }
+      },
+      "recommended_resolution": [
+        "strip-artifact -- remove the 'מאפיינים נוספים ...' trailing clause; low scoring risk in most cases (claim text rarely matches an additive/sweetener keyword) but is data hygiene debt and a latent risk if keyword dictionaries expand"
+      ],
+      "estimated_score_impact": {
+        "D_header_bleed_low_impact": "Not verified to move any score in this pass (unlike 7290014758117); flagged as hygiene debt, not a confirmed score bug"
+      }
+    }
+  },
+  "totals_by_class": {
+    "A": 1,
+    "B": 20,
+    "C_exact_dup_barcodes": 6,
+    "C_near_dup_flagged": 2,
+    "D_confirmed_impact": 1,
+    "D_header_bleed_low_impact": 27,
+    "D_kashrut_false_positive_no_action": 8
+  },
+  "resolution_tally": {
+    "discard(missing-data)": 22,
+    "dedup-drop": 3,
+    "strip-artifact": 28,
+    "needs_human_review": 2
+  },
+  "kashrut_pattern_false_positives_no_action_needed": [
+    "55336",
+    "58030",
+    "7290110321697",
+    "7290110323585",
+    "7290110328764",
+    "7290110328788",
+    "7290116932774",
+    "7290116934402"
+  ],
+  "corpus_composition_after_recommended_remediation": {
+    "spoonable": {
+      "n_before": 94,
+      "n_after": 74,
+      "sugar_median_before": 4.65,
+      "sugar_iqr_scale_before": 4.6,
+      "sugar_median_after": 5.0,
+      "sugar_iqr_scale_after": 4.6,
+      "guard_n_pass_before": true,
+      "guard_n_pass_after": true,
+      "guard_scale_pass_before": true,
+      "guard_scale_pass_after": true,
+      "guard_flip": false
+    },
+    "drinkable": {
+      "n_before": 23,
+      "n_after": 20,
+      "sugar_median_before": 4.95,
+      "sugar_iqr_scale_before": 1.85,
+      "sugar_median_after": 4.95,
+      "sugar_iqr_scale_after": 3.11,
+      "guard_n_pass_before": true,
+      "guard_n_pass_after": true,
+      "guard_scale_pass_before": false,
+      "guard_scale_pass_after": true,
+      "guard_flip": true
+    }
+  },
+  "notes": [
+    "Class A conclusion: comprehensive scan of ALL 122 ingredients_text_he vs ingredients_raw_he pairs found ZERO confirmed BSIP1 over-trim truncation bugs. An initial automated diff surfaced 10 candidates across two refinement passes; every one was manually verified as a false positive caused by scrape-artifact noise (stray literal 'n' from lost newlines, mid-word stray spaces, mid-list allergen parentheticals) -- in each case ALL real ingredient/allergen content was correctly preserved in ingredients_text_he.",
+    "The single known suspect case (7290116936581, 'GO 20g protein') is NOT a trim bug: both the BSIP1 ingredients_raw_he AND the true upstream BSIP0 scrape (run_yogurt_task515_20260705T062308_corpus.json) agree the source page declared only 'חלב'. This is a source-data implausibility (physically impossible protein density from milk alone), reclassified and carried in the ledger under its own key.",
+    "3 products have ingredients_text_he correctly nulled per the missing_data_discard_rule (raw was marketing prose or near-empty scrape junk, not a real ingredient declaration) -- these are NOT trim bugs, but they DO feed the confirmed Class B null-ingredients-bestcase pattern.",
+    "Class B (null->best-case) is the dominant, confirmed issue class: 20 barcodes where a null macro field (ingredients/sugar/fat) maps to a top-of-range sub-score. Zero null-protein cases exist in the corpus (0/122) so the hypothesized protein_quality best-case pattern does not occur here.",
+    "Class C: 3 confirmed exact-duplicate pairs (byte-identical per-100g panels under different barcodes) + 1 near-duplicate pair flagged for human judgment (43944/45771, differs only by 0.2g sat-fat).",
+    "Class D: 1 CONFIRMED-impact contamination case (7290014758117, diabetes-association seal text) with hard trace evidence of a 2.2-point / full-letter-grade divergence vs its clean twin (57132). 27 lower-risk 'מאפיינים נוספים' header-bleed cases (hygiene debt, no confirmed score movement found in this pass). 8 kashrut-substitution mentions were correctly ruled OUT as false positives (legitimate ingredient-swap declarations, not contamination) after inspection.",
+    "Guard-flip finding: the drinkable pool's sugar shelf-relative IQR guard is CURRENTLY FAILING (scale=1.85 < 3.0 threshold, per the live run_record.json) even before any remediation. Applying the recommended Class B/C actions to drinkable (drops 6664655, 7290116932774, 7290116934228; n: 23->20) FIXES it (scale recomputes to 3.11, guard_scale_pass flips false->true) -- but lands drinkable exactly at the min_n=20 floor with zero margin for any further discard. Spoonable's guard was already passing and remains passing after remediation (n: 94->74, scale unchanged at 4.6).",
+    "compute_shelf_stats() was imported directly from the live score_engine.py (read-only call, no edits) to avoid reimplementing the IQR/MAD scale formula by hand; before-values reproduce run_record.json's published 4.6 (spoonable) / 1.85 (drinkable) exactly, confirming the method match."
+  ]
+}

@@ -10,7 +10,9 @@
   "category": "yogurt_system",
   "subpool": "spoonable",
   "source_retailers": [
-    "shufersal"
+    "shufersal",
+    "hazi_hinam",
+    "tiv_taam"
   ],
   "retailer_prices": {
     "shufersal": 21.9
@@ -38,14 +40,12 @@
   "sodium_mg": 45.0,
   "dietary_fiber_g": 2.2,
   "calcium_mg": null,
-  "ingredients_text_he": null,
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים, סידן (סידן פחמתי). מכיל חיידקי BIO",
   "ingredients_raw_he": "טבעיים יוגורט לבן קלאסי וקרמי שמשתלב בטבעיות בכל רגע. אם זה בתוספת פירות טריים או יבשים, גרנולה, דבש מתוק או פשוט ככה. כמו שהוא. מושלם. •2.8% שומן",
   "allergens_contains": [],
   "allergens_may_contain": [],
-  "missing_fields": [
-    "ingredients_text_he"
-  ],
-  "data_sufficiency": "partial",
+  "missing_fields": [],
+  "data_sufficiency": "sufficient",
   "nutrition_consistency_status": "consistent",
   "consistency_checks": {
     "sugar_le_carbs": true,
@@ -62,7 +62,14 @@
     "single_source_only",
     "no_ingredient_text_or_marketing_bleed_discarded"
   ],
-  "conflicts_summary": [],
+  "conflicts_summary": [
+    {
+      "field": "sugars_g",
+      "note": "Hazi Hinam GS1 API reports sugar=0.75g/100g for this barcode during the TASK-515 rescrape cross-check, vs the already-established Shufersal/Tiv Taam value of 2.9g/100g (2 sources agree at 2.9, 1 source at 0.75). sugars_g was NOT a flagged field for this barcode (only ingredients_text_he was null) so no value change applied here -- flagged for Nutrition Agent awareness only.",
+      "flagged_by": "data_agent",
+      "date": "2026-07-05T14:16:01.778731+00:00"
+    }
+  ],
   "inferred_fields": [],
   "audit_ref": null,
   "provenance": {
@@ -73,40 +80,69 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": null,
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים, סידן (סידן פחמתי). מכיל חיידקי BIO",
   "ingredients_raw_provenance": {
-    "source": "missing",
+    "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
     "populated_at": "bsip1_enrichment_v1",
-    "missing": true,
-    "note": "No ingredient text available (bsip0_file_not_found)"
+    "missing": false,
+    "note": "BSIP0 unavailable (bsip0_file_not_found); using BSIP1 ingredients_text_he"
   },
-  "ingredient_order": [],
+  "ingredient_order": [
+    {
+      "position": 1,
+      "text": "חלב מפוסטר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 2,
+      "text": "רכיבי חלב",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 3,
+      "text": "סיבים תזונתיים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 4,
+      "text": "סידן (סידן פחמתי). מכיל חיידקי BIO",
+      "percentage_declared": null,
+      "has_subgroup": true
+    }
+  ],
   "extracted_additives": [],
   "extracted_flavors": [],
   "extracted_sweeteners": [],
   "extracted_protein_markers": [],
   "extracted_matrix_markers": [],
-  "extracted_fermentation_markers": [],
+  "extracted_fermentation_markers": [
+    {
+      "term": "חיידקי bio",
+      "category": "live_cultures",
+      "position": 4
+    }
+  ],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
-    "ingredient_count_parsed": 0,
+    "ingredient_count_parsed": 4,
     "additive_count": 0,
     "flavor_marker_count": 0,
     "sweetener_count": 0,
     "protein_marker_count": 0,
     "matrix_marker_count": 0,
-    "fermentation_marker_count": 0,
+    "fermentation_marker_count": 1,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
     "has_prebiotic_fiber": false,
-    "has_live_cultures": false,
+    "has_live_cultures": true,
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": [
-    "ingredients_raw: no text available from any source"
-  ],
+  "enrichment_warnings": [],
   "nova_proxy": 1,
   "nova_confidence": 0.8,
   "nova_confidence_band": "medium",
@@ -115,7 +151,32 @@
   ],
   "detected_additives": [],
   "additive_count": 0,
-  "ingredients_list": [],
-  "ingredient_count": 0,
-  "ingredient_text_quality": "absent"
+  "ingredients_list": [
+    "חלב מפוסטר",
+    "רכיבי חלב",
+    "סיבים תזונתיים",
+    "סידן (סידן פחמתי). מכיל חיידקי BIO"
+  ],
+  "ingredient_count": 4,
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290102395231_INGR",
+      "date": "2026-07-05T14:16:01.778731+00:00",
+      "reason": "Owner-directed 4-site rescrape (2026-07-05): ingredients_text_he was null (Shufersal raw was marketing prose, correctly nulled per missing_data_discard_rule, not a trim bug).",
+      "field_corrected": "ingredients_text_he (+ derived enrichment/nova fields)",
+      "before": {
+        "ingredients_text_he": null
+      },
+      "after": {
+        "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיבים תזונתיים, סידן (סידן פחמתי). מכיל חיידקי BIO"
+      },
+      "recovered_from": "hazi_hinam + tiv_taam (cross-verified, byte-identical ingredient text on both)",
+      "recovery_method": "Hazi Hinam: category browse (subcat 10864) matched by barcode, then GetItemGS1Details panel fetch. Tiv Taam: targeted free-text search by product name via v2 products API, matched by barcode.",
+      "cross_check": "Shufersal re-fetch (raw HTML, same run) confirms marketing-prose-only, no real ingredient list present there.",
+      "off_used": false,
+      "no_fabrication": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

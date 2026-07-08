@@ -38,7 +38,7 @@
   "sodium_mg": 31.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
+  "ingredients_text_he": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, אססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
   "ingredients_raw_he": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח. מכיל חלב ערכים תזונתיים 100 גרם 58 קל אנרגיה 10 גרם חלבונים 3.3 גרם פחמימות 0.4 גרם שומנים 31 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
+  "ingredients_raw": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, אססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -125,7 +125,7 @@
     },
     {
       "position": 8,
-      "text": "ממתיקים (אספרטיים, א ססולפאם K)",
+      "text": "ממתיקים (אספרטיים, אססולפאם K)",
       "percentage_declared": null,
       "has_subgroup": true
     },
@@ -253,10 +253,46 @@
     "פקטין",
     "לוקוסט בין גאם}",
     "עמילן מעובד (E1422 )",
-    "ממתיקים (אספרטיים, א ססולפאם K)",
+    "ממתיקים (אספרטיים, אססולפאם K)",
     "מווסת חומציות (חומצת לימון)",
     "חומרי טעם וריח."
   ],
   "ingredient_count": 10,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, א ססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
+      "after": "חלב, מים, קוקוס מבושל (0.67%), מייצבים {סיבים תזונתיים (אינולין), פקטין, לוקוסט בין גאם}, עמילן מעובד (E1422 ), ממתיקים (אספרטיים, אססולפאם K), מווסת חומציות (חומצת לימון), חומרי טעם וריח.",
+      "fixes_applied": [
+        "rejoin space-split word א ססולפאם -> אססולפאם"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ],
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290110329952_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row",
+        "hazi_hinam": "matched (\"יוגורט יופלה GO במרקם סמיך בטעם קוקוס 0%\"); GS1 panel has no sugars row",
+        "tiv_taam": "matched (\"יוגורט גו סמיך קוקוס\"); identical panel; no sugars row",
+        "yohananof": "not found (dialog_missing)"
+      },
+      "verdict": "UNAVAILABLE on all 3 retailers that carry this SKU; Yohananof lookup did not locate the product.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

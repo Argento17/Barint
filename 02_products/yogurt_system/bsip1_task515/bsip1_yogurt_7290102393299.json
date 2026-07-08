@@ -38,7 +38,7 @@
   "sodium_mg": 50.0,
   "dietary_fiber_g": 2.0,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים",
+  "ingredients_text_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין)",
   "ingredients_raw_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים מכיל חלב ערכים תזונתיים 100 גרם 2 גרם סיבים תזונתיים 3.8 גרם סוכרים מתוך פחמימות 67 קל אנרגיה 3.5 גרם חלבונים 3.8 גרם פחמימות 3.8 גרם שומנים 11.4 מג כולסטרול 50 מג נתרן 2.3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 130 מג סידן 1 כפיות סוכר 1 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים",
+  "ingredients_raw": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין)",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -89,7 +89,7 @@
     },
     {
       "position": 2,
-      "text": "סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים",
+      "text": "סיבים תזונתיים(אינולין)",
       "percentage_declared": null,
       "has_subgroup": true
     }
@@ -135,8 +135,33 @@
   "additive_count": 1,
   "ingredients_list": [
     "חלב עיזים מפוסטר",
-    "סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים"
+    "סיבים תזונתיים(אינולין)"
   ],
   "ingredient_count": 2,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "_task515_header_bleed_strip": [
+    {
+      "task": "TASK-515/515A remediation -- Class-D header-bleed strip",
+      "fields": [
+        "ingredients_text_he",
+        "ingredients_raw (mirror)",
+        "ingredients_list",
+        "ingredient_order[].text"
+      ],
+      "marker": "מאפיינים נוספים",
+      "before_ingredients_text_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים",
+      "after_ingredients_text_he": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין)",
+      "ingredients_raw_he_untouched": true,
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_before": [
+        "חלב עיזים מפוסטר",
+        "סיבים תזונתיים(אינולין) מאפיינים נוספים מכיל סיבים תזונתיים"
+      ],
+      "ingredients_list_after": [
+        "חלב עיזים מפוסטר",
+        "סיבים תזונתיים(אינולין)"
+      ],
+      "note": "Removed a trailing scraped website 'מאפיינים נוספים <claim>' UI-section-header clause (and any further bled allergen/marketing text after it) from the SCORED ingredient fields. Not an ingredient. ingredients_raw_he (true original scrape) preserved unchanged per remediation_ledger_task515_v1.json Class D ruling."
+    }
+  ]
 }

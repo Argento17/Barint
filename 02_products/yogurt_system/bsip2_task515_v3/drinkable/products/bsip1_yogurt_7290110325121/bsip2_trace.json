@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.954210Z",
+  "trace_generated_at": "2026-07-05T15:07:19.951238Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290110325121",
@@ -174,11 +174,14 @@
     "sprint1_penalty_polyol_count": 0,
     "sprint1_penalty_polyols": [],
     "functional_fiber_detected": true,
-    "functional_fiber_type": "prebiotic",
+    "functional_fiber_type": "both",
     "functional_fiber_terms_matched": [
-      "אוליגופרוקטוז"
+      "אוליגופרוקטוז",
+      "פקטין"
     ],
-    "functional_fiber_viscous_terms": [],
+    "functional_fiber_viscous_terms": [
+      "פקטין"
+    ],
     "functional_fiber_prebiotic_terms": [
       "אוליגופרוקטוז"
     ],
@@ -290,7 +293,7 @@
     "processing_quality": 35.0,
     "nutrient_density": 60.5,
     "calorie_density": 95.0,
-    "glycemic_quality": 82.8,
+    "glycemic_quality": 83.8,
     "protein_quality": 60.5,
     "additive_quality": 0,
     "satiety_support": 100,
@@ -302,10 +305,10 @@
     "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=8.4g→60.5; fiber not-applicable for category 'dairy_protein' (EV-027: protein-only, 65/35→100/0) → 60.5",
     "calorie_density": "kcal=53.0, category=yogurt → 95",
-    "glycemic_quality": "90 - sugar_penalty(8.2) + fiber(0.0) + wg(0) = 81.8 (sweetener tier-C) + EV-006 prebiotic-fiber bonus(1)",
+    "glycemic_quality": "90 - sugar_penalty(8.2) + fiber(0.0) + wg(0) = 81.8 (sweetener tier-C) + EV-006 both-fiber bonus(2)",
     "protein_quality": "protein=8.4g base=60.5, source=whole_food(×1.0) → 60.5",
     "additive_quality": "sprint1_additives=5 base=10 sw tier-C_pen=15 id_delta=-3→0 [F1 emulsifier_concern ['carrageenan'] → -3]",
-    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.4×3 + 0×5) / 53.0 × 400 = 100 + EV-006 prebiotic-fiber bonus(1)",
+    "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (8.4×3 + 0×5) / 53.0 × 400 = 100 + EV-006 both-fiber bonus(2)",
     "fat_quality": "R3 leanness: fat=0.5g sat_fat absent (treated 0) → 89.0",
     "regulatory_quality": "no Israeli red labels",
     "whole_food_integrity": "NOVA 4 base=30, ing_count=13 complexity_pen=10 + ferm_bonus=5 → 25"
@@ -322,7 +325,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 63.43,
+  "weighted_dimension_score": 63.55,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",

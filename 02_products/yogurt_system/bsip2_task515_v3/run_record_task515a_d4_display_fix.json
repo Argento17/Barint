@@ -1,0 +1,88 @@
+{
+  "run_id": "run_yogurt_task515a_d4_additive_display_fix",
+  "task": "TASK-515A -- d4_additives DISPLAY-COMPLETENESS fix (RT-2/RT-3 Adversarial QA finding, orchestrator-verified)",
+  "generated": "2026-07-05T10:34:38Z",
+  "run_type": "DISPLAY-ONLY FIX -- NOT a re-score. additive_quality dimension is unaffected by construction (see score_impact_verification below).",
+  "defect": {
+    "finding_source": "Adversarial QA Agent RT-2/RT-3, independently verified by orchestrator against the artifact",
+    "symptom": "d4_additives array omitted aspartame (E951) and acesulfame-K (E950) on 4 drinkable GO products, despite the ingredient string declaring 'ממתיקים (אספרטיים, אססולפאם k)' explicitly.",
+    "affected_go_barcodes": ["7290110325121", "7290110325114", "7290116932774", "7290116934228"],
+    "root_cause": "GLASSBOX_W2_ADDITIVES dictionary in constants.py matched aspartame/acesulfame-K only via their standard spellings ('אספרטם' / 'אצסולפם' with tzadi) or E-number. The 4 GO products (and 12 spoonable products, found by corpus-wide scan) declare the same additives via a bare-name variant spelling using samech instead of tzadi ('אספרטיים' / 'אססולפאם') and no E-number on-pack -- so detect_additives_d4()'s substring match against match_patterns_he never fired. Contrast: the 'Pro' drinks (7290110573737, 7290110552244) use the tzadi spelling ('אצסולפאם') already in the table, so they matched correctly -- confirming the gap is specifically the samech bare-name spelling, not a structural bug in detect_additives_d4() itself."
+  },
+  "fix": {
+    "file_changed": "03_operations/bsip2/proto_v0/src/constants.py",
+    "file_changed_sha256_post_fix": "e70689a7f901dd26919444054fea1964ebb895e2117c788f6a7c5bea3d962e6c",
+    "score_engine_py_touched": false,
+    "change_summary": "Added samech-spelling bare-name variants to match_patterns_he for two existing GLASSBOX_W2_ADDITIVES entries (no new entries, no tier/function_he/cosmetic_mup changes): E951 (aspartame) gained ['אספרטיים', 'אספרטי ים']; E950 (acesulfame-K) gained ['אססולפאם', 'א ססולפאם']. The extra two-token variants ('אספרטי ים', 'א ססולפאם') are the same words with a stray OCR/scrape space, found via corpus-wide scan on the same barcodes -- included so the same root-cause class doesn't require a second pass.",
+    "other_sweeteners_checked_no_gap_found": {
+      "sucralose_E955": "bare form 'סוכרלוז'/'סוכרלוזה' already in table -- 0 gap",
+      "steviol_stevia_E960": "bare form 'סטביה' already in table -- 0 gap",
+      "saccharin_E954": "no bare-name occurrence anywhere in the yogurt corpus (122 BSIP1 records scanned for 'סכרין'/'סוכרין') -- no fix needed",
+      "cyclamate_E952": "no bare-name occurrence anywhere in the yogurt corpus (scanned for 'ציקלמט'/'ציקלמאט'/'סיקלמט') -- no fix needed",
+      "neotame_advantame": "no bare-name occurrence anywhere in the yogurt corpus -- no fix needed"
+    }
+  },
+  "verification_method": {
+    "method": "score_engine.detect_additives_d4() run twice in isolated subprocess invocations (old constants.py from git commit e137239a swapped in, then restored to the fixed version) over every BSIP1 ingredient record in the drinkable+spoonable pools; e_number sets diffed old vs new per barcode.",
+    "why_not_whole_file_sha256_diff": "yogurt_drinkable_frontend_v1.json embeds a live _meta.generated timestamp, so no two generator runs -- including a true no-op re-run -- ever produce byte-identical files. Field-level diffing (per-product, per-key) is the correct comparison method here, not whole-file hashing.",
+    "drinkable_e_number_diff": {
+      "7290110325114": {"added": ["E950", "E951"], "removed": []},
+      "7290110325121": {"added": ["E950", "E951"], "removed": []},
+      "7290116932774": {"added": ["E950", "E951"], "removed": []},
+      "7290116934228": {"added": ["E950", "E951"], "removed": []},
+      "all_other_19_drinkable_barcodes": {"added": [], "removed": []}
+    },
+    "spoonable_e_number_diff_report_only_not_regenerated": {
+      "7290110323585": {"added": ["E950", "E951"]},
+      "7290110323592": {"added": ["E950", "E951"]},
+      "7290110328627": {"added": ["E950", "E951"]},
+      "7290110328764": {"added": ["E950", "E951"]},
+      "7290110328788": {"added": ["E950", "E951"]},
+      "7290110329952": {"added": ["E950", "E951"]},
+      "7290116932484": {"added": ["E950", "E951"]},
+      "7290116934402": {"added": ["E950", "E951"]},
+      "7290116935621": {"added": ["E950", "E951"]},
+      "7290116936123": {"added": ["E950", "E951"]},
+      "7290116936215": {"added": ["E950", "E951"]},
+      "7290116936222": {"added": ["E950", "E951"]},
+      "all_other_82_spoonable_barcodes": {"added": [], "removed": []},
+      "note": "yogurt_spoonable_frontend_v1.json was NOT regenerated per orchestrator instruction -- a Content agent is authoring copy against it. This list is for the orchestrator to trigger a spoonable regen after Content's copy pass returns."
+    },
+    "no_removed_additives_anywhere": true
+  },
+  "score_impact_verification": {
+    "claim": "0-diff on finalScore and grade for all 23 drinkable products, and 0-diff on every other output field except d4_additives.",
+    "method_1": "Reconstructed the pre-fix drinkable frontend JSON by git-stashing the constants.py fix, re-running generate_page.py to a scratch path, then diffing every top-level product field against the post-fix output.",
+    "method_1_result": {"score_diffs": [], "grade_diffs": [], "other_field_diffs": [], "d4_additives_diffs_barcodes": ["7290110325114", "7290116932774", "7290116934228", "7290110325121"]},
+    "method_2": "Diffed the post-fix output against the last git-committed version of yogurt_drinkable_frontend_v1.json (commit 2474b04a).",
+    "method_2_result": {"score_diffs": [], "grade_diffs": []},
+    "additive_quality_dimension_floor_confirmed": "dimension_scores.additive_quality = 0 (floored) on all 4 GO products' bsip2_trace.json, confirmed via sprint1_additives note ('sw tier-C_pen=15') already firing from signal_extractor.py's independent generic 'ממתיק' catch-all tier-C sweetener match -- i.e. the SCORE side already penalized these products at the floor before this fix; only the DISPLAY side (d4_additives, a separate code path via score_engine.detect_additives_d4 called from render_fields.py, never touched by this fix at the module level) was incomplete.",
+    "conclusion": "0-diff confirmed by two independent baselines. No Nutrition co-sign required per the task's own gating condition."
+  },
+  "known_residual_gap_not_fixed_here_flag_for_content_agent": {
+    "gap": "w2_additive_copy_v1.md (the consumer-facing explanation_he copy library) has NO entry for E951 (aspartame) at all -- confirmed by grep, 0 hits for 'E951' or 'אספרטם' in that file. Result: post-fix, the 4 GO products' d4_additives now correctly include an E951 entry with e_number/name_he/tier/function_he populated, but explanation_he is an empty string (render_fields.derive_d4_additives() does w2.get(e_num, '') -- the same behavior every other additive gets when its copy is missing; NOT a bug in this fix).",
+    "why_not_fixed_by_data_agent": "explanation_he is signed-off consumer-facing copy (see the 'Change from draft' review trail already present for E950/E466/etc in w2_additive_copy_v1.md) -- Data Agent does not author consumer copy (restricted lane; content sign-off hard rule). Fabricating this sentence would violate the two-gate rule.",
+    "action_needed": "Content Agent should author an explanation_he for E951 (aspartame) following the same voice/length pattern as the existing E950/E955 entries, then Adversarial QA signs off, before the drinkable page (or any future page carrying E951) is considered display-complete for aspartame specifically."
+  },
+  "artifacts": {
+    "constants_py": {
+      "path": "C:\\Bari\\03_operations\\bsip2\\proto_v0\\src\\constants.py",
+      "sha256": "e70689a7f901dd26919444054fea1964ebb895e2117c788f6a7c5bea3d962e6c"
+    },
+    "yogurt_drinkable_config": {
+      "path": "C:\\Bari\\03_operations\\page_generator\\configs\\yogurt_drinkable.json",
+      "sha256": "5da41041aecdb72444aa766ea07f3c10ea13aaa4c19f630396d23cdaed5060cc"
+    },
+    "regenerated_drinkable_frontend_json": {
+      "path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\frontend_out\\yogurt_drinkable_frontend_v1.json",
+      "sha256": "a4a2c82f87a8285ce2770ba08b3266373caf4eb34c8c1051dca6b1b322857af4",
+      "note": "sha256 will NOT match the orchestrator-stated prior baseline sha256 (f4caf86b8cf3b1aacabc8e1e931f37019a075549c034e77ad7141817f3cbe791) or the last git-committed version (b2d71ebb...) -- neither of those two whole-file hashes matched each other either, before I changed anything, because _meta.generated is a live timestamp baked into every regeneration. Whole-file hashing across generator runs is not a valid diff method for this pipeline; field-level diffing (done above, twice, independently) is."
+    },
+    "gates_report": {
+      "path": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\frontend_out\\yogurt_drinkable_frontend_v1_gates_report.md",
+      "sha256": "e29ea68542aff0a80894abae391371163dcbf2c561b70b6c7b634549b01b8415"
+    }
+  },
+  "off_check": "0 banned third-party nutrition-source markers found in regenerated drinkable JSON (source-token scan, per off_ban_hard_rule)",
+  "not_committed": "No git commit made per instructions."
+}

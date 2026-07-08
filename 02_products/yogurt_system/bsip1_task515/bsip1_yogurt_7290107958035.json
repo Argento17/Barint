@@ -38,7 +38,7 @@
   "sodium_mg": 49.0,
   "dietary_fiber_g": 2.0,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS",
   "ingredients_raw_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר מכיל חלב ערכים תזונתיים 100 גרם 2 גרם סיבים תזונתיים 4.6 גרם סוכרים מתוך פחמימות 63 קל אנרגיה 4.4 גרם חלבונים 4.8 גרם פחמימות 2 גרם שומנים 49 מג נתרן 147 מג סידן 4.6 סוכרים 1.25 מג נתרן מופחת 1.25 כפיות סוכר ערכים תזונתיים מנה 3 גרם סיבים תזונתיים 6.9 גרם סוכרים מתוך פחמימות 95 קל אנרגיה 6.6 גרם חלבונים 7.1 גרם פחמימות 3 גרם שומנים 74 מג נתרן 222 מג סידן 6.9 סוכרים 1.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -101,7 +101,7 @@
     },
     {
       "position": 4,
-      "text": "חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+      "text": "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -169,8 +169,52 @@
     "חלב מפוסטר",
     "רכיבי חלב",
     "סיביים תזונתיים",
-    "חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר"
+    "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS"
   ],
   "ingredient_count": 4,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח.  בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+      "after": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+      "fixes_applied": [
+        "collapse double/triple space"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ],
+  "_task515_header_bleed_strip": [
+    {
+      "task": "TASK-515/515A remediation -- Class-D header-bleed strip",
+      "fields": [
+        "ingredients_text_he",
+        "ingredients_raw (mirror)",
+        "ingredients_list",
+        "ingredient_order[].text"
+      ],
+      "marker": "מאפיינים נוספים",
+      "before_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר",
+      "after_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, סיביים תזונתיים, חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS",
+      "ingredients_raw_he_untouched": true,
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_before": [
+        "חלב מפוסטר",
+        "רכיבי חלב",
+        "סיביים תזונתיים",
+        "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ללא תוספת סוכר"
+      ],
+      "ingredients_list_after": [
+        "חלב מפוסטר",
+        "רכיבי חלב",
+        "סיביים תזונתיים",
+        "חומרי טעם וריח. בתוספת חיידק פרוביוטי BIFIDUS"
+      ],
+      "note": "Removed a trailing scraped website 'מאפיינים נוספים <claim>' UI-section-header clause (and any further bled allergen/marketing text after it) from the SCORED ingredient fields. Not an ingredient. ingredients_raw_he (true original scrape) preserved unchanged per remediation_ledger_task515_v1.json Class D ruling."
+    }
+  ]
 }

@@ -38,7 +38,7 @@
   "sodium_mg": 67.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%),  סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגי נן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn",
+  "ingredients_text_he": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגינן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
   "ingredients_raw_he": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%),  סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגי נן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn ערכים תזונתיים 100 גרם 77 קל אנרגיה 10 גרם חלבונים 4.6 גרם פחמימות 1.7 גרם שומנים 67 מג נתרן הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%),  סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגי נן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn",
+  "ingredients_raw": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגינן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -149,7 +149,7 @@
     },
     {
       "position": 12,
-      "text": "ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn",
+      "text": "ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
       "percentage_declared": 0.5,
       "has_subgroup": true
     }
@@ -268,8 +268,47 @@
     "חומרי טעם וריח",
     "מווסת חומציות (חומצת לימון)",
     "סירופ קרמל",
-    "ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn"
+    "ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז"
   ],
   "ingredient_count": 12,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%),  סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגי נן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל,   ממתיקים (אספרטיים, אססולפאם k).nדל לקטוז - עד 0.5% לקטוזn",
+      "after": "רכיבי חלב (42%), חלב, מים, אננס מבושל (6%), סיבים תזונתיים (פרוקטואוליגוסכריד), עמילן מעובד (E1442), אבקת חלב, ,מייצבים (פקטין,קרגינן), חומרי טעם וריח, מווסת חומציות (חומצת לימון), סירופ קרמל, ממתיקים (אספרטיים, אססולפאם k). דל לקטוז - עד 0.5% לקטוז",
+      "fixes_applied": [
+        "strip stray newline-artifact 'n', insert separator space",
+        "strip stray newline-artifact 'n' (end of string)",
+        "rejoin space-split word (פקטין,קרגי נן), -> (פקטין,קרגינן),",
+        "collapse double/triple space"
+      ],
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ],
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290116936222_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row (fat=1.7 already known/non-null, unaffected)",
+        "hazi_hinam": "matched (\"יוגורט יופלה GO עם שכבה בטעם אננס מקורמל בתחתית\"); no sugars row",
+        "tiv_taam": "matched (\"יוגורט חלבון גו 20 ג...\"); no sugars row",
+        "yohananof": "not found (dialog_missing)"
+      },
+      "verdict": "UNAVAILABLE on all 3 retailers that carry this SKU (Shufersal, Hazi Hinam, Tiv Taam agree); Yohananof lookup did not locate the product.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

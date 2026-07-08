@@ -38,7 +38,7 @@
   "sodium_mg": 40.0,
   "dietary_fiber_g": 1.0,
   "calcium_mg": null,
-  "ingredients_text_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכ ז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז",
+  "ingredients_text_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio",
   "ingredients_raw_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכ ז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז מכיל חלב ערכים תזונתיים 100 גרם 1 גרם סיבים תזונתיים 4.5 גרם סוכרים מתוך פחמימות 70 קל אנרגיה 12.5 גרם חלבונים 6.3 גרם פחמימות 0 גרם שומנים 40 מג נתרן 150 מג סידן 1.8 גרם רב כהלים 1 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכ ז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז",
+  "ingredients_raw": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -119,13 +119,13 @@
     },
     {
       "position": 7,
-      "text": "רכ ז פרי המונק",
+      "text": "רכז פרי המונק",
       "percentage_declared": null,
       "has_subgroup": false
     },
     {
       "position": 8,
-      "text": "חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז",
+      "text": "חומרי טעם וריח. מכיל חיידקי Bio",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -206,9 +206,62 @@
     "פרוקטוז",
     "ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה)",
     "סיבים תזונתיים",
-    "רכ ז פרי המונק",
-    "חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז"
+    "רכז פרי המונק",
+    "חומרי טעם וריח. מכיל חיידקי Bio"
   ],
   "ingredient_count": 8,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכ ז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז",
+      "after": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio. מאפיינים נוספים דל לקטוז",
+      "fixes_applied": [
+        "strip stray newline/tab-artifact 'tnnnn' suffix",
+        "rejoin space-split word רכ ז -> רכז"
+      ],
+      "ingredient_order_entries_touched": 2,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ],
+  "_task515_header_bleed_strip": [
+    {
+      "task": "TASK-515/515A remediation -- Class-D header-bleed strip",
+      "fields": [
+        "ingredients_text_he",
+        "ingredients_raw (mirror)",
+        "ingredients_list",
+        "ingredient_order[].text"
+      ],
+      "marker": "מאפיינים נוספים",
+      "before_ingredients_text_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio. מאפיינים נוספים דל לקטוז",
+      "after_ingredients_text_he": "רכיבים: חלב מפוסטר, רכיבי חלב, מים, פרוקטוז, ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה), סיבים תזונתיים, רכז פרי המונק, חומרי טעם וריח. מכיל חיידקי Bio",
+      "ingredients_raw_he_untouched": true,
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_before": [
+        "רכיבים: חלב מפוסטר",
+        "רכיבי חלב",
+        "מים",
+        "פרוקטוז",
+        "ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה)",
+        "סיבים תזונתיים",
+        "רכז פרי המונק",
+        "חומרי טעם וריח. מכיל חיידקי Bio. מאפיינים נוספים דל לקטוז"
+      ],
+      "ingredients_list_after": [
+        "רכיבים: חלב מפוסטר",
+        "רכיבי חלב",
+        "מים",
+        "פרוקטוז",
+        "ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה)",
+        "סיבים תזונתיים",
+        "רכז פרי המונק",
+        "חומרי טעם וריח. מכיל חיידקי Bio"
+      ],
+      "note": "Removed a trailing scraped website 'מאפיינים נוספים <claim>' UI-section-header clause (and any further bled allergen/marketing text after it) from the SCORED ingredient fields. Not an ingredient. ingredients_raw_he (true original scrape) preserved unchanged per remediation_ledger_task515_v1.json Class D ruling."
+    }
+  ]
 }

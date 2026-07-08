@@ -136,5 +136,26 @@
     "אבקת חלב."
   ],
   "ingredient_count": 2,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_43944_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: nutrition table lists energy/protein/carbs/fat/satfat/transfat/cholesterol/sodium/calcium but NO separate sugars row -- confirmed genuine, not a parse miss",
+        "hazi_hinam": "matched via barcode cross-reference (Hazi Hinam's full EAN '7290000043944' = this SKU's short code '43944', last 5 digits match, identical product name/nutrition/ingredients confirmed); GS1 panel also has no sugars row",
+        "tiv_taam": "product not found (targeted search by barcode and by name, 0 matches -- not carried)",
+        "yohananof": "matched (\"יוגורט תנובה כד 1.5 ליטר 4%\", barcode 7290000045771... 7290000043944); nutrition dialog lists the same 9 rows as Shufersal (incl. satfat=2.4 matching exactly) but no sugars row"
+      },
+      "verdict": "UNAVAILABLE on all 3 retailers that carry this SKU (Shufersal, Hazi Hinam, Yohananof); not stocked at Tiv Taam. 3-source agreement is strong evidence sugar is genuinely undeclared on this Tnuva jug-yogurt label, not a scrape defect.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

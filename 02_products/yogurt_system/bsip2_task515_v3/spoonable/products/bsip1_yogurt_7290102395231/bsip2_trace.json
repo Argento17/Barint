@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.565751Z",
+  "trace_generated_at": "2026-07-05T14:31:01.305192Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290102395231",
@@ -9,7 +9,9 @@
     "product_name_he": "יוגורט ביו נטורל 2.8%",
     "brand": null,
     "source_retailers": [
-      "shufersal"
+      "shufersal",
+      "hazi_hinam",
+      "tiv_taam"
     ],
     "bsip1_source_path": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515\\bsip1_yogurt_7290102395231.json",
     "audit_ref": null,
@@ -32,14 +34,15 @@
     "hard_anchor:יוגורט"
   ],
   "nova_proxy": 2,
-  "nova_confidence": 0.2,
+  "nova_confidence": 0.25,
   "nova_confidence_band": "low",
   "nova_evidence_for": [
     "minimal_additives_and_processing_signals"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
-    "no_ingredient_list: NOVA inference unreliable",
+    "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
+    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -53,17 +56,22 @@
     "sugars_g": 2.9,
     "dietary_fiber_g": 2.2,
     "protein_g": 5.6,
-    "ingredient_count": 0,
-    "ingredient_list": [],
-    "ingredient_count_raw": 0,
+    "ingredient_count": 4,
+    "ingredient_list": [
+      "חלב מפוסטר",
+      "רכיבי חלב",
+      "סיבים תזונתיים",
+      "סידן (סידן פחמתי). מכיל חיידקי BIO"
+    ],
+    "ingredient_count_raw": 4,
     "ingredient_sanitization": {
-      "raw_count": 0,
-      "clean_count": 0,
+      "raw_count": 4,
+      "clean_count": 4,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
-    "ingredient_text_quality": "absent",
+    "ingredient_text_quality": "good",
     "bsip1_trust_level": "medium",
     "bsip1_trust_score": 0.6,
     "bsip1_risk_flags": [],
@@ -114,7 +122,7 @@
     "added_sugar_matches": [],
     "has_fruit_concentrate": false,
     "has_fermentation": false,
-    "product_type_dairy": false,
+    "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
@@ -158,7 +166,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 0,
+    "sanitized_ingredient_count": 4,
     "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -173,7 +181,12 @@
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 39.38,
-    "ingredient_list": []
+    "ingredient_list": [
+      "חלב מפוסטר",
+      "רכיבי חלב",
+      "סיבים תזונתיים",
+      "סידן (סידן פחמתי). מכיל חיידקי BIO"
+    ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
@@ -214,13 +227,9 @@
     },
     "se_note": null
   },
-  "confidence_score": 60,
-  "confidence_band": "medium",
+  "confidence_score": 85,
+  "confidence_band": "high",
   "confidence_reductions": [
-    {
-      "factor": "missing: ingredient_list",
-      "reduction": -25
-    },
     {
       "factor": "bsip1_trust_level=medium",
       "reduction": -5
@@ -252,7 +261,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.6×3 + 2.2×5) / 64.0 × 400 = 100",
     "fat_quality": "fat_v1(fat=2.8g<8.0): sat=1.7g base=79.7-seed0-trans0=79.7",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=0 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 2 base=85, ing_count=4 complexity_pen=0 → 85"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -484,29 +493,28 @@
     "PRIMARY SIGNAL: nutrient_density=33.4 (lowest dimension)"
   ],
   "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
   ],
   "structural_class": {
     "primary": "B",
     "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.426,
+    "primary_confidence": 0.445,
     "secondary": "A",
     "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.301,
+    "secondary_confidence": 0.236,
     "class_weights": {
-      "A": 0.301,
-      "B": 0.426,
-      "C": 0.191,
-      "D": 0.0,
+      "A": 0.236,
+      "B": 0.445,
+      "C": 0.22,
+      "D": 0.016,
       "E": 0.082,
       "F": 0.0
     },
-    "is_between_worlds": true,
+    "is_between_worlds": false,
     "classification_notes": [
       "nova_2_signal",
       "no_additives_detected",
       "moderate_protein_quality",
-      "minimal_ingredients",
       "zero_additive_categories"
     ],
     "classifier_version": "structural_classifier_v1"

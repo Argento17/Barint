@@ -1,5 +1,5 @@
 {
-  "_comment": "TASK-515/515A Stage 3 -- yogurt DRINKABLE subpool. Reads already-scored BSIP2 traces from bsip2_task515_v3/drinkable/products. Sugar shelf-relative guard FAILED for this pool (scale 1.85 < 3.0 low-variance guard) -- ruled honest; per D6/D7 co-sign NO SUGAR_SHELF_REL_YOGURT_DRINKABLE_* constant was persisted, sugar stays UNSET / absolute-floor-only for drinkable (see EV-105v2-FINAL). This page REQUIRES the standard D13-approved sugar category-caveat box at go-live (content/frontend attach existing approved copy -- not authored by this config). No live baseline exists yet -> baseline_json null. All copy fields render PENDING_COPY.",
+  "_comment": "TASK-515/515A Stage 3 -- yogurt DRINKABLE subpool. Reads freshly re-scored BSIP2 traces from bsip2_task515_v3/drinkable/products. As of 2026-07-05, these traces were produced by run_bsip2_task515_v3a_d7_suppress_drinkable.py, which SUPERSEDES run_bsip2_task515_v3_remediation.py for this pool only (same 20-product membership). The sugar shelf-relative guard technically FLIPPED FAIL->PASS at n=20 (scale=3.11, just 0.11 above the 3.0 threshold), but Product Agent (D7) ruled this PASS is NOT ROBUST (C3: any single added product flips it back to FAIL) and directed CONSERVATIVE treatment: the guard is treated as FAIL this cycle. Sugar contributes ONLY via the EV-088 absolute floor (sugars_g>=12.0g -> cap 62); the shelf-relative surcharge/relief (SUGAR_SHELF_REL_V1) is suppressed for this pool via a run-script-level override, NOT an engine or constants.py change. No SUGAR_SHELF_REL_YOGURT_DRINKABLE_* constant exists in constants.py. The sugar category-caveat box therefore STILL APPLIES to this page (absolute-floor-only framing, same as EV-105v2-FINAL). No live baseline exists yet -> baseline_json null. All copy fields render PENDING_COPY.",
   "category": "yogurt-drinkable",
   "corpus_dirs": [
     "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
@@ -24,14 +24,28 @@
       "BARI_GRAD_SODIUM_V1": "off",
       "BARI_SODIUM_CEREAL": "off"
     },
-    "shelf_rel": "Guard FAILED for drinkable (scale 1.85 < 3.0) -- no shelf-relative sugar surcharge/relief constant exists for this pool by D6/D7 ruling; sugar sits at absolute-floor-only. This config does not re-score.",
+    "shelf_rel": "Guard computed PASS for drinkable at n=20 (scale=3.11 >= 3.0) but Product Agent (D7) ruled this margin non-robust and directed the guard be treated as FAIL this cycle -- SUPPRESSED. No SUGAR_SHELF_REL_YOGURT_DRINKABLE_* constant is persisted to constants.py. Sugar contributes only via the EV-088 absolute floor. This config does not re-score (reads the already-rescored traces).",
     "bsip1_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
     "corpus_filter": null,
-    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record.json (TASK-515/515A shipping run, D6+D7 co-signed EV-105v2-FINAL)"
+    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record_task515a_d7_suppress_drinkable.json (run_yogurt_task515_bsip2_v3a_d7_suppress_drinkable -- SCORED, D7-suppressed, PENDING Product/Nutrition final sign-off + Adversarial QA)"
   },
-  "exclusions": [],
+  "exclusions": [
+    {
+      "barcode": "7290116934228",
+      "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): משקה יוגורט גו מלון תות -- sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+    },
+    {
+      "barcode": "7290116932774",
+      "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): גו בננה-קרמל -- fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+    },
+    {
+      "barcode": "6664655",
+      "reason": "TASK-515 dedup-drop (unchanged from HIGH-2 ruling): אקטימל לבן מארז -- byte-identical duplicate SKU of barcode 7290119380923 (KEPT, canonical EAN-13)."
+    }
+  ],
   "extension_fields": [],
   "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
-  "_status": "SCORED -- NOT PUBLISHED. REQUIRES D13 sugar category-caveat box at go-live (guard fail, honest). Copy = PENDING_COPY pending two-gate sign-off."
+  "_task515_remediation_rescore": "TASK-515/515A remediation (2026-07-05): the 3 exclusions above reflect a CONFIRMED-unavailable rescrape finding (4-retailer targeted rescrape, acc0c9ac) rather than a single-panel discard. This generate_page.py run reads bsip2_task515_v3/drinkable/products/*/bsip2_trace.json files freshly WRITTEN by run_bsip2_task515_v3a_d7_suppress_drinkable.py (2026-07-05) -- an ACTUAL rescore of the same 20-product pool with the sugar shelf-relative surcharge/relief forced OFF per Product Agent (D7) ruling (the computed guard-PASS at n=20 was judged non-robust; C3 showed it flips to FAIL on any single added product). See run_record_task515a_d7_suppress_drinkable.json for the full record.",
+  "_status": "SCORED -- NOT PUBLISHED. Sugar shelf-relative surcharge/relief SUPPRESSED for this pool per D7 (guard treated as FAIL despite computed PASS); sugar contributes only via the EV-088 absolute floor. Grade distribution: B=6, C=9, D=4, E=1 (n=20; one product, barcode 55329, remains at 34.3 -- 0.7pt below the 35 D-floor -- even after suppression; flagged for Product/Nutrition review, see return record). Copy = PENDING_COPY pending two-gate sign-off. Score/grade moves vs committed baseline 2474b04a pending Nutrition + Product final co-sign."
 }

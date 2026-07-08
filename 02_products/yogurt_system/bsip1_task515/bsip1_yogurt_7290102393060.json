@@ -38,7 +38,7 @@
   "sodium_mg": 50.0,
   "dietary_fiber_g": 1.6,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (",
+  "ingredients_text_he": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (מכיל גלוטן), שמנים ושומנים מהצומח, קמח סויה,  דקסטרוזה, מתחלב (לציטין סויה ), קקאו, מעכב חמצון (מיצוי רוזמרין), צבע מאכל (קרמל), מלח, חומרי טעם וריח], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספאט ), חומרי טעם וריח.",
   "ingredients_raw_he": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (מכיל גלוטן), שמנים ושומנים מהצומח, קמח סויה,  דקסטרוזה, מתחלב (לציטין סויה ), קקאו, מעכב חמצון (מיצוי רוזמרין), צבע מאכל (קרמל), מלח, חומרי טעם וריח], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספאט ), חומרי טעם וריח. מכיל חיידקי Bio.n מכיל גלוטן חיטה,",
   "allergens_contains": [
     "milk",
@@ -74,7 +74,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (",
+  "ingredients_raw": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (מכיל גלוטן), שמנים ושומנים מהצומח, קמח סויה,  דקסטרוזה, מתחלב (לציטין סויה ), קקאו, מעכב חמצון (מיצוי רוזמרין), צבע מאכל (קרמל), מלח, חומרי טעם וריח], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספאט ), חומרי טעם וריח.",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -97,13 +97,134 @@
     },
     {
       "position": 3,
-      "text": "קמח חיטה (",
+      "text": "קמח חיטה (מכיל גלוטן)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 4,
+      "text": "שמנים ושומנים מהצומח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 5,
+      "text": "קמח סויה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 6,
+      "text": "דקסטרוזה",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 7,
+      "text": "מתחלב (לציטין סויה )",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 8,
+      "text": "קקאו",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 9,
+      "text": "מעכב חמצון (מיצוי רוזמרין)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 10,
+      "text": "צבע מאכל (קרמל)",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 11,
+      "text": "מלח",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 12,
+      "text": "חומרי טעם וריח]",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 13,
+      "text": "סוכר",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 14,
+      "text": "רכיבי חלב",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 15,
+      "text": "סיבים תזונתיים",
+      "percentage_declared": null,
+      "has_subgroup": false
+    },
+    {
+      "position": 16,
+      "text": "סידן (טרי קלציום פוספאט )",
+      "percentage_declared": null,
+      "has_subgroup": true
+    },
+    {
+      "position": 17,
+      "text": "חומרי טעם וריח.",
       "percentage_declared": null,
       "has_subgroup": false
     }
   ],
-  "extracted_additives": [],
-  "extracted_flavors": [],
+  "extracted_additives": [
+    {
+      "term": "לציטין סויה",
+      "category": "emulsifier",
+      "position": 7
+    },
+    {
+      "term": "צבע מאכל",
+      "category": "color",
+      "position": 10
+    },
+    {
+      "term": "לציטין",
+      "category": "emulsifier",
+      "position": 7
+    },
+    {
+      "term": "מתחלב",
+      "category": "emulsifier",
+      "position": 7
+    },
+    {
+      "term": "צבע",
+      "category": "color",
+      "position": 10
+    }
+  ],
+  "extracted_flavors": [
+    {
+      "term": "חומרי טעם וריח",
+      "category": "flavor_generic",
+      "position": 12
+    },
+    {
+      "term": "חומרי טעם",
+      "category": "flavor_generic",
+      "position": 12
+    }
+  ],
   "extracted_sweeteners": [
     {
       "term": "סוכר",
@@ -119,6 +240,11 @@
       "position": 3
     },
     {
+      "term": "דקסטרוז",
+      "category": "dextrose",
+      "position": 6
+    },
+    {
       "term": "קמח",
       "category": "flour_generic",
       "position": 3
@@ -127,12 +253,12 @@
   "extracted_fermentation_markers": [],
   "extracted_roasting_markers": [],
   "enrichment_summary": {
-    "ingredient_count_parsed": 3,
-    "additive_count": 0,
-    "flavor_marker_count": 0,
+    "ingredient_count_parsed": 17,
+    "additive_count": 5,
+    "flavor_marker_count": 2,
     "sweetener_count": 1,
     "protein_marker_count": 0,
-    "matrix_marker_count": 2,
+    "matrix_marker_count": 3,
     "fermentation_marker_count": 0,
     "roasting_marker_count": 0,
     "has_flavor_descriptor": false,
@@ -142,19 +268,51 @@
   },
   "enrichment_version": "bsip1_enrichment_v1",
   "enrichment_warnings": [],
-  "nova_proxy": 3,
-  "nova_confidence": 0.78,
+  "nova_proxy": 4,
+  "nova_confidence": 0.85,
   "nova_confidence_band": "high",
   "nova_notes": [
-    "stabilizer_additive_or_composite_matrix_component_detected: NOVA3 proxy"
+    "artificial_sweetener_or_flavor_compound_or_ge3_additives: NOVA4 proxy"
   ],
-  "detected_additives": [],
-  "additive_count": 0,
+  "detected_additives": [
+    "לציטין סויה",
+    "צבע מאכל",
+    "לציטין",
+    "מתחלב",
+    "צבע"
+  ],
+  "additive_count": 5,
   "ingredients_list": [
     "חלב מפוסטר",
     "גלילי ופל במילוי קרם (10.5%) [סוכר",
-    "קמח חיטה ("
+    "קמח חיטה (מכיל גלוטן)",
+    "שמנים ושומנים מהצומח",
+    "קמח סויה",
+    "דקסטרוזה",
+    "מתחלב (לציטין סויה )",
+    "קקאו",
+    "מעכב חמצון (מיצוי רוזמרין)",
+    "צבע מאכל (קרמל)",
+    "מלח",
+    "חומרי טעם וריח]",
+    "סוכר",
+    "רכיבי חלב",
+    "סיבים תזונתיים",
+    "סידן (טרי קלציום פוספאט )",
+    "חומרי טעם וריח."
   ],
-  "ingredient_count": 3,
-  "ingredient_text_quality": "good"
+  "ingredient_count": 17,
+  "ingredient_text_quality": "good",
+  "data_agent_correction_note": {
+    "task": "TASK-515 finalize -- partial-ingredients honesty trim",
+    "date": "2026-07-05T12:30:25.395824+00:00",
+    "finding": "ingredients_text_he was truncated by a false-positive match in build_bsip1_yogurt_task515.py's trim_ingredients() ALLERGEN_CUTOFF_MARKERS list: the substring 'מכיל גלוטן' occurs twice in the raw scrape -- once (correctly targeted) in a trailing boilerplate allergen sentence, and once as an ordinary in-list parenthetical qualifier ('קמח חיטה (מכיל גלוטן)'). text.find() matched the earlier (in-list) occurrence, cutting the string immediately after 'קמח חיטה (' and discarding the rest of the real ingredient list. NOT a BSIP0 scrape-fidelity gap -- ingredients_raw_he already held the fuller text at scrape time.",
+    "action": "ingredients_text_he replaced with the already-scraped ingredients_raw_he (== BSIP0 ingredients_raw), itself trimmed only at its own genuinely incomplete trailing fragment (a dangling allergen-declaration sentence ending in a trailing comma, implying at least milk/soy were cut off after it). No content was invented; nothing beyond what BSIP0 already scraped.",
+    "before_ingredients_text_he": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (",
+    "after_ingredients_text_he": "חלב מפוסטר, גלילי ופל במילוי קרם (10.5%) [סוכר, קמח חיטה (מכיל גלוטן), שמנים ושומנים מהצומח, קמח סויה,  דקסטרוזה, מתחלב (לציטין סויה ), קקאו, מעכב חמצון (מיצוי רוזמרין), צבע מאכל (קרמל), מלח, חומרי טעם וריח], סוכר, רכיבי חלב, סיבים תזונתיים, סידן (טרי קלציום פוספאט ), חומרי טעם וריח.",
+    "dropped_trailing_fragment_from_raw": " מכיל חיידקי Bio.n מכיל גלוטן חיטה,",
+    "ingredients_raw_he_unchanged": true,
+    "off_used": false,
+    "scope": "This barcode only -- build_bsip1_yogurt_task515.py itself NOT edited (would affect the full 94/23/122 corpus, out of this task's scope). Flagged as a systemic trim-heuristic bug for a future dedicated fix."
+  }
 }

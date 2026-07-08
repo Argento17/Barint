@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.848877Z",
+  "trace_generated_at": "2026-07-08T11:15:36.297329Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290119380916",
@@ -31,19 +31,18 @@
   "classification_basis": [
     "hard_anchor:יוגורט"
   ],
-  "nova_proxy": 3,
-  "nova_confidence": 0.3,
-  "nova_confidence_band": "low",
+  "nova_proxy": 4,
+  "nova_confidence": 0.82,
+  "nova_confidence_band": "high",
   "nova_evidence_for": [
-    "additive_categories: 1, added_sugars: 2",
-    "R4 v1.1: flavored/seasoned dairy variant → NOVA-2 retention forfeited (stays 3)"
+    "flavor_enhancer_detected (חומרי טעם וריח)",
+    "BSIP2-HC-001 sub-rule A (modified_starch): tax_modified_starch=True + dairy/cheese matrix → NOVA 4; industrial reconstitution of protein/fat matrix confirmed (processed cheese archetype); fermentation reflects cheese base input, not reconstituted product; NOVA 4 per Monteiro (TASK-REDLABEL-001)"
   ],
   "nova_evidence_against": [],
   "nova_uncertainty_notes": [
     "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
-    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
-    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
-    "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
+    "BSIP2-HC-001 sub-rule A (modified_starch): processed/reconstituted dairy rule; fermentation evidence from cheese base does not override this classification",
+    "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis"
   ],
   "L1_observed_signals": {
     "energy_kcal": 52.0,
@@ -108,11 +107,12 @@
     "sweetener_tier": null,
     "sweetener_matches": [],
     "sweetener_negation_suppressed": [],
-    "additive_marker_count": 1,
+    "additive_marker_count": 2,
     "additive_categories": [
+      "flavor_enhancer",
       "stabilizer"
     ],
-    "has_flavor_enhancer": false,
+    "has_flavor_enhancer": true,
     "has_artificial_color": false,
     "has_natural_color": false,
     "natural_color_hits": [],
@@ -151,7 +151,7 @@
     "sprint1_neutral_emulsifier_found": [],
     "sprint1_prebiotic_gum_detected": false,
     "sprint1_prebiotic_gum_found": [],
-    "sprint1_additive_count": 1,
+    "sprint1_additive_count": 2,
     "sprint1_additive_correction": 0,
     "sprint1_additive_correction_notes": [],
     "sprint1_allulose_detected": false,
@@ -175,13 +175,15 @@
     "functional_fiber_trace_only": false,
     "tax_emulsifier_concern": [],
     "tax_emulsifier_benign": [],
-    "tax_emulsifier_medium": [],
+    "tax_emulsifier_medium": [
+      "modified_starch_stabilizer"
+    ],
     "tax_emulsifier_low": [
       "guar_gum"
     ],
     "tax_named_concern_additives": [],
-    "tax_native_starch": true,
-    "tax_modified_starch": false,
+    "tax_native_starch": false,
+    "tax_modified_starch": true,
     "tax_bha_present": false,
     "tax_bht_present": false,
     "has_collagen": false,
@@ -250,45 +252,41 @@
       "protein_below_threshold": true,
       "fiber_below_threshold": false,
       "fat_below_threshold": true,
-      "engineered_signal_present": false
+      "engineered_signal_present": true
     },
     "se_note": null
   },
-  "confidence_score": 85,
+  "confidence_score": 95,
   "confidence_band": "high",
   "confidence_reductions": [
     {
       "factor": "bsip1_trust_level=medium",
       "reduction": -5
-    },
-    {
-      "factor": "nova_confidence=low",
-      "reduction": -10
     }
   ],
   "dimension_scores": {
-    "processing_quality": 56.0,
+    "processing_quality": 35.0,
     "nutrient_density": 17.6,
     "calorie_density": 95.0,
     "glycemic_quality": 82.9,
     "protein_quality": 15.3,
-    "additive_quality": 82.0,
+    "additive_quality": 64.0,
     "satiety_support": 100,
     "fat_quality": 82.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 54
+    "whole_food_integrity": 24
   },
   "dimension_notes": {
-    "processing_quality": "W4 D3 de-moralization: NOVA 3 base=65 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 56.0 (EV-042 revised, TASK-181J)",
+    "processing_quality": "W4 D3 de-moralization: NOVA 4 base=35 × confidence_scale(high)=1.0 → 50+(base-50)×scale = 35.0 (EV-042 revised, TASK-181J)",
     "nutrient_density": "protein=2.7g→18.0, fiber=1.7g→17.0, weighted 65/35=17.6",
     "calorie_density": "kcal=52.0, category=yogurt → 95",
     "glycemic_quality": "90 - sugar_penalty(12.5) + fiber(3.4) + wg(0) = 80.9 + EV-006 both-fiber bonus(2)",
     "protein_quality": "protein=2.7g base=18.0, source=mixed(×0.85) → 15.3",
-    "additive_quality": "sprint1_additives=1 base=82 sw_pen=0→82.0",
+    "additive_quality": "sprint1_additives=2 base=64 sw_pen=0→64.0",
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (2.7×3 + 1.7×5) / 52.0 × 400 = 100 + EV-006 both-fiber bonus(2)",
     "fat_quality": "fat_v1(fat=1.5g<8.0): sat=0.9g base=82.3-seed0-trans0=82.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 3 base=60, ing_count=11 complexity_pen=6 → 54"
+    "whole_food_integrity": "NOVA 4 base=30, ing_count=11 complexity_pen=6 → 24"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -302,7 +300,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 64.46,
+  "weighted_dimension_score": 58.31,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -360,9 +358,9 @@
     },
     {
       "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
-      "cap": 87.2,
-      "condition": false,
-      "fired": false
+      "cap": 68.0,
+      "condition": true,
+      "fired": true
     },
     {
       "rule": "ADDITIVE_MARKERS_5_PLUS",
@@ -378,9 +376,9 @@
     },
     {
       "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 94.8,
-      "condition": true,
-      "fired": true
+      "cap": 87.0,
+      "condition": false,
+      "fired": false
     },
     {
       "rule": "HIGH_SODIUM_700MG_PLUS",
@@ -397,12 +395,12 @@
   ],
   "caps_applied": [
     {
-      "rule": "NOVA_PROXY_3_PROCESSED",
-      "cap": 94.8
+      "rule": "NOVA_PROXY_4_ULTRA_PROCESSED",
+      "cap": 68.0
     }
   ],
-  "binding_cap": 94.8,
-  "score_after_cap": 64.46,
+  "binding_cap": 68.0,
+  "score_after_cap": 58.31,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -459,7 +457,7 @@
   "total_penalty_before_scaling": 5.0,
   "total_penalty_after_scaling": 5.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 58.46,
+  "score_after_penalty": 49.31,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -484,7 +482,7 @@
       }
     },
     "processing_load": {
-      "binding_cap": 94.8,
+      "binding_cap": 68.0,
       "coordinated_penalty": 0.0,
       "detail": {
         "winner": null,
@@ -524,38 +522,37 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 58.46,
+  "score_after_floors": 49.31,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-5",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 58.5,
-  "grade_estimate": "C",
+  "final_score_estimate": 49.3,
+  "grade_estimate": "D",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=94.8 from rules: ['NOVA_PROXY_3_PROCESSED']",
+    "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']",
     "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS']"
   ],
-  "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.3)"
-  ],
+  "unresolved_flags": [],
   "structural_class": {
-    "primary": "D",
-    "primary_label": "Industrially Reconstructed",
-    "primary_confidence": 0.423,
-    "secondary": "C",
-    "secondary_label": "Mechanically Fragmented",
-    "secondary_confidence": 0.197,
+    "primary": "F",
+    "primary_label": "Structurally Void System",
+    "primary_confidence": 0.34,
+    "secondary": "E",
+    "secondary_label": "Engineered Wellness System",
+    "secondary_confidence": 0.259,
     "class_weights": {
-      "A": 0.021,
-      "B": 0.162,
-      "C": 0.197,
-      "D": 0.423,
-      "E": 0.197,
-      "F": 0.0
+      "A": 0.02,
+      "B": 0.02,
+      "C": 0.156,
+      "D": 0.204,
+      "E": 0.259,
+      "F": 0.34
     },
-    "is_between_worlds": false,
+    "is_between_worlds": true,
     "classification_notes": [
-      "nova_3_signal"
+      "nova_4_signal",
+      "whole_food_integrity_low"
     ],
     "classifier_version": "structural_classifier_v1"
   }

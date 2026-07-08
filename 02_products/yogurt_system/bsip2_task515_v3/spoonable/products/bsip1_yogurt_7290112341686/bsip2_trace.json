@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.699979Z",
+  "trace_generated_at": "2026-07-05T14:31:01.406914Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290112341686",
@@ -9,7 +9,8 @@
     "product_name_he": "אקטיביה 3% מארז",
     "brand": null,
     "source_retailers": [
-      "shufersal"
+      "shufersal",
+      "tiv_taam"
     ],
     "bsip1_source_path": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515\\bsip1_yogurt_7290112341686.json",
     "audit_ref": null,
@@ -32,14 +33,17 @@
     "hard_anchor:אקטיביה"
   ],
   "nova_proxy": 2,
-  "nova_confidence": 0.2,
+  "nova_confidence": 0.25,
   "nova_confidence_band": "low",
   "nova_evidence_for": [
     "minimal_additives_and_processing_signals"
   ],
-  "nova_evidence_against": [],
+  "nova_evidence_against": [
+    "fermentation_markers (consistent with NOVA 1-2)"
+  ],
   "nova_uncertainty_notes": [
-    "no_ingredient_list: NOVA inference unreliable",
+    "EV-030: ingredient_data_degraded (quality=good, ingredients_list_missing=False, provenance=bsip1_text_fallback): NOVA 1 fast-path suppressed",
+    "provenance=bsip1_text_fallback: ingredient list reconstructed from page text, not label; NOVA inference unreliable",
     "NOVA inference is a proxy; validated NOVA classification requires expert ingredient analysis",
     "Hebrew ingredient text keyword matching has limited coverage for novel additive names"
   ],
@@ -53,17 +57,21 @@
     "sugars_g": 4.3,
     "dietary_fiber_g": 1.1,
     "protein_g": 5.2,
-    "ingredient_count": 0,
-    "ingredient_list": [],
-    "ingredient_count_raw": 0,
+    "ingredient_count": 3,
+    "ingredient_list": [
+      "חלב מפוסטר",
+      "רכיבי חלב",
+      "סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס."
+    ],
+    "ingredient_count_raw": 3,
     "ingredient_sanitization": {
-      "raw_count": 0,
-      "clean_count": 0,
+      "raw_count": 3,
+      "clean_count": 3,
       "dropped": [],
       "truncated": [],
       "note": "TASK-144 Fix1/EV-026: non-ingredient OCR/nutrition/disclaimer bleed removed before NOVA count inference"
     },
-    "ingredient_text_quality": "absent",
+    "ingredient_text_quality": "good",
     "bsip1_trust_level": "medium",
     "bsip1_trust_score": 0.6,
     "bsip1_risk_flags": [],
@@ -113,8 +121,8 @@
     "added_sugar_sources_count": 0,
     "added_sugar_matches": [],
     "has_fruit_concentrate": false,
-    "has_fermentation": false,
-    "product_type_dairy": false,
+    "has_fermentation": true,
+    "product_type_dairy": true,
     "has_fortification": false,
     "fortification_evidence": [],
     "trans_fat_status": "not_detected",
@@ -158,7 +166,7 @@
     "tax_bht_present": false,
     "has_collagen": false,
     "protein_matrix_form": null,
-    "sanitized_ingredient_count": 0,
+    "sanitized_ingredient_count": 3,
     "primary_fragmentation": null,
     "sat_fat_inferred": false,
     "sat_fat_inferred_value": null,
@@ -173,7 +181,11 @@
       "EV-005 humectant refinement: penalty_polyol_count excludes polyols in humectant groups"
     ],
     "fat_pct_of_kcal": 38.03,
-    "ingredient_list": []
+    "ingredient_list": [
+      "חלב מפוסטר",
+      "רכיבי חלב",
+      "סיבים תזונתיים. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס."
+    ]
   },
   "L4_interpreted_concerns": {
     "note": "L4 interpreted concerns are evaluated in score_engine and written to caps_applied / penalties_applied",
@@ -214,13 +226,9 @@
     },
     "se_note": null
   },
-  "confidence_score": 60,
-  "confidence_band": "medium",
+  "confidence_score": 85,
+  "confidence_band": "high",
   "confidence_reductions": [
-    {
-      "factor": "missing: ingredient_list",
-      "reduction": -25
-    },
     {
       "factor": "bsip1_trust_level=medium",
       "reduction": -5
@@ -240,7 +248,7 @@
     "satiety_support": 100,
     "fat_quality": 77.3,
     "regulatory_quality": 95.0,
-    "whole_food_integrity": 85
+    "whole_food_integrity": 90
   },
   "dimension_notes": {
     "processing_quality": "W4 D3 de-moralization: NOVA 2 base=85 × confidence_scale(low)=0.4 → 50+(base-50)×scale = 64.0 (EV-042 revised, TASK-181J)",
@@ -252,7 +260,7 @@
     "satiety_support": "(protein×3 + fiber×5) / max(50,kcal) × 400 = (5.2×3 + 1.1×5) / 71.0 × 400 = 100",
     "fat_quality": "fat_v1(fat=3.0g<8.0): sat=2.0g base=77.3-seed0-trans0=77.3",
     "regulatory_quality": "no Israeli red labels",
-    "whole_food_integrity": "NOVA 2 base=85, ing_count=0 complexity_pen=0 → 85"
+    "whole_food_integrity": "NOVA 2 base=85, ing_count=3 complexity_pen=0 + ferm_bonus=5 → 90"
   },
   "dimension_weights": {
     "processing_quality": 0.15,
@@ -266,7 +274,7 @@
     "regulatory_quality": 0.05,
     "whole_food_integrity": 0.04
   },
-  "weighted_dimension_score": 79.0,
+  "weighted_dimension_score": 79.2,
   "caps_considered": [
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SEVERE",
@@ -361,7 +369,7 @@
   ],
   "caps_applied": [],
   "binding_cap": null,
-  "score_after_cap": 79.0,
+  "score_after_cap": 79.2,
   "penalties_considered": [
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
@@ -412,7 +420,7 @@
   "total_penalty_before_scaling": 0.0,
   "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 79.0,
+  "score_after_penalty": 79.2,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
@@ -473,30 +481,30 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 79.0,
+  "score_after_floors": 79.2,
   "confidence_ceiling_applied": null,
   "sugar_context_class": "SC-2",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 79.0,
+  "final_score_estimate": 79.2,
   "grade_estimate": "B",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
     "PRIMARY SIGNAL: nutrient_density=27.6 (lowest dimension)"
   ],
   "unresolved_flags": [
-    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.2)"
+    "LOW_NOVA_CONFIDENCE: NOVA inference unreliable (0.25)"
   ],
   "structural_class": {
     "primary": "B",
     "primary_label": "Lightly Transformed Traditional",
-    "primary_confidence": 0.426,
+    "primary_confidence": 0.399,
     "secondary": "A",
     "secondary_label": "Intact Whole Food",
-    "secondary_confidence": 0.301,
+    "secondary_confidence": 0.372,
     "class_weights": {
-      "A": 0.301,
-      "B": 0.426,
-      "C": 0.191,
+      "A": 0.372,
+      "B": 0.399,
+      "C": 0.148,
       "D": 0.0,
       "E": 0.082,
       "F": 0.0
@@ -505,8 +513,8 @@
     "classification_notes": [
       "nova_2_signal",
       "no_additives_detected",
+      "whole_food_integrity_intact",
       "moderate_protein_quality",
-      "minimal_ingredients",
       "zero_additive_categories"
     ],
     "classifier_version": "structural_classifier_v1"

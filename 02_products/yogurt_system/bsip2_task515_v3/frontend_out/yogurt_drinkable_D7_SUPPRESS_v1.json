@@ -1,0 +1,2826 @@
+{
+  "_meta": {
+    "category": "yogurt-drinkable",
+    "config_sha256": "e4015b49df8a1e41e615df7d52794dda4bf4718ded6c236d3bf889e1d786baba",
+    "exclusions": [
+      {
+        "barcode": "6664655",
+        "product_id": "bsip1_yogurt_6664655",
+        "reason": "TASK-515 dedup-drop (unchanged from HIGH-2 ruling): אקטימל לבן מארז -- byte-identical duplicate SKU of barcode 7290119380923 (KEPT, canonical EAN-13)."
+      },
+      {
+        "barcode": "7290116932774",
+        "product_id": "bsip1_yogurt_7290116932774",
+        "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): גו בננה-קרמל -- fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+      },
+      {
+        "barcode": "7290116934228",
+        "product_id": "bsip1_yogurt_7290116934228",
+        "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): משקה יוגורט גו מלון תות -- sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+      }
+    ],
+    "generated": "2026-07-05T17:00:00Z",
+    "generator_version": "1.2.0",
+    "product_count": 20,
+    "retailer_breakdown": {
+      "shufersal": 20
+    },
+    "schema": "BariProductVM[]",
+    "schema_version": "v3",
+    "scored_count": 23,
+    "source_paths": {
+      "corpus_dirs": [
+        "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
+      ],
+      "run_products_dir": [
+        "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\drinkable\\products"
+      ]
+    },
+    "subpool_filter": null
+  },
+  "products": [
+    {
+      "barcode": "7290102393299",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 22.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 23.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 88.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 85.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 78.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין)",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 67.0,
+          "fat": 3.8,
+          "fiber": 2.0,
+          "protein": 3.5,
+          "sodium": 50.0,
+          "sugar": 3.8
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290102393299",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UZK56_Z_P_7290102393299_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "יוגורט עיזים לשתייה",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 77.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "4068035",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 16.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 81.8,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 77.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב בקר מפוסטר, מלח",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 50.0,
+          "fat": 3.0,
+          "fiber": null,
+          "protein": 2.5,
+          "sodium": 170.0,
+          "sugar": 3.3
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_4068035",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KTW26_Z_P_4068035_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "אירן משקה יוגורט",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 73.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290115676051",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 19.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 80.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 83.6,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 63.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, סוכר, סיבים תזונתיים, שיבולת שועל (1.8%), רכיבי חלב, רכז לימון, חומרי טעם וריח, מלח. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 53.0,
+          "fat": 1.4,
+          "fiber": 1.1,
+          "protein": 2.9,
+          "sodium": 77.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290115676051",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OAM50_Z_P_7290115676051_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה אקטיביה עם ש.שועל",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 72.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290020711090",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 20.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 20.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 88.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 75.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 71.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 41.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, סוכר, מחית אסאי וקסיס (מים, קסיס (3%), אסאי (1%)), קרם קוקוס (5%), תמצית טעם וריח.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 86.0,
+          "fat": 3.5,
+          "fiber": null,
+          "protein": 3.0,
+          "sodium": 55.0,
+          "sugar": 6.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290020711090",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LHZ38_Z_P_7290020711090_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט אסאי קוקוס",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 69.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290020711007",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 21.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 21.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 88.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 78.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 71.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 48.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, קרם קוקוס (5%), סוכר, תמצית טעם וריח, צבע מאכל (רכז גזר שחור).",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 80.0,
+          "fat": 3.5,
+          "fiber": null,
+          "protein": 3.2,
+          "sodium": 53.0,
+          "sugar": 4.8
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290020711007",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LEU36_Z_P_7290020711007_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט מלבי 3.5%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 68.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110573737",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 31.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 56.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 56.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 81.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 86.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 29.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E955",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך.",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, חלבוני מי גבינה, מים, מחית תות (3.0%), עמילן טפיוקה מעובד (E-1442), חומרי טעם וריח, מייצב (לוקוסט-בין גאם), רכז לימון, מלח, רכז גזר שחור, ממתיקים (אצסולפאם k, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 59.0,
+          "fat": 1.0,
+          "fiber": null,
+          "protein": 7.9,
+          "sodium": 74.0,
+          "sugar": 3.4
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290110573737",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFQ52_Z_P_7290110573737_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט פרו תות ללס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 65.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110552244",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 13.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 57.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 57.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 81.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 86.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 31.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E955",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך.",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, חלבוני מי גבינה, עמילן טפיוקה מעובד (E-1442), רכיבי חלב, חומרי טעם וריח, מייצב (לוקוסט-בין גאם), מלח, מווסת חומציות (חומצת לימון), ממתיקים (אצסולפאם k, סוכרלוז). מכיל חיידקי יוגורט",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 61.0,
+          "fat": 1.0,
+          "fiber": null,
+          "protein": 8.0,
+          "sodium": 78.0,
+          "sugar": 3.6
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110552244",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AKZ42_Z_P_7290110552244_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה דנונה פרו20 ללת\"ס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 63.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290107937542",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 18.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 80.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 63.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, מחית תות (6.7%), סוכר לבן, סיבים תזונתיים, רכיבי חלב, מייצב (לוקוסט-בין גאם), חומרי טעם וריח, מלח. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 47.0,
+          "fat": 1.2,
+          "fiber": 1.3,
+          "protein": 2.7,
+          "sodium": 56.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290107937542",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GNN56_Z_P_7290107937542_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה אקטיביה תות 1.2%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 61.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290105364678",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 18.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 80.1,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 61.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, מחית אפרסק (6.7%), סוכר לבן, סיבים תזונתיים, רכיבי חלב, מייצב (לוקוסט-בין גאם), חומרי טעם וריח, מלח, רכז לימון. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 47.0,
+          "fat": 1.2,
+          "fiber": 1.3,
+          "protein": 2.7,
+          "sodium": 56.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290105364678",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WNF58_Z_P_7290105364678_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה אקטיביה אפרסק",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 61.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290105965738",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 12.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 12.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 80.2,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 93.6,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, פירות (מחית תות,מחית בננה) (6%), סוכר, סיבים תזונתיים, חומרי טעם וריח, רכז לימון, מייצב (לוקוסט בין גאם). בתוספת חיידק פרוביוטי BIFIDUS.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 47.0,
+          "fat": 1.5,
+          "fiber": 1.2,
+          "protein": 1.9,
+          "sodium": 26.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290105965738",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BQX62_Z_P_7290105965738_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "דנונה לשתיה תות בננה",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 60.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290019635567",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 20.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 20.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 78.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 78.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מחית מנגו (16%), סוכר, תבלינים (0.08%) (קינמון, הל, ציפורן).",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 103.0,
+          "fat": 3.0,
+          "fiber": null,
+          "protein": 3.0,
+          "sodium": 80.0,
+          "sugar": 12.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290019635567",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GHS60_Z_P_7290019635567_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט לאסי מנגו3%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 57.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110325114",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 0.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 60.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 60.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 83.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 89.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 27.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E407",
+          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו.",
+          "function_he": "מייצב / חומר מסמיך ממקור אצות",
+          "name_he": "קרגינן",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E951",
+          "explanation_he": "אספרטם הוא ממתיק ללא קלוריות נפוץ; IARC סיווגה בסולם סיכון בינלאומי, אך JECFA אישרה מחדש את הרף המאושר לצריכה יומית.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+          "name_he": "אספרטם",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "יוגורט 0.7% שומן (0.76%) (חלב), מים, פירות מבושלים (6.4%) {תות (3.2%), בננה (3.2%)}, חלבוני חלב (6%), מייצבים (פקטין, קרגינן), עמילן מעובד (E-1442), צבע מאכל (רכז גזר שחור), חומרי טעם וריח, מווסת חומציות (חומצת לימון), ממתיקים (אספרטיים, אססולפאם k), חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 54.0,
+          "fat": 0.5,
+          "fiber": null,
+          "protein": 8.4,
+          "sodium": 55.0,
+          "sugar": 3.6
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110325114",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CLF36_Z_P_7290110325114_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט GO תות בננה",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 57.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290119380923",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 44.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 18.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 15.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 82.1,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 81.4,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 24.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלבוני מי גבינה), אבקת חלב, רכז פרי המונק, חומרי טעם וריח, ויטמין D, חיידקי L.casei DN114 (חלב).",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 52.0,
+          "fat": 1.6,
+          "fiber": 1.8,
+          "protein": 2.8,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290119380923",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IPO54_Z_P_7290119380923_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "אקטימל לבן מארז",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 55.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290107938396",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 44.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 17.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 15.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 82.9,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 82.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 24.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, מחית תות (2%), סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלב מי גבינה), אבקת חלב, חומרי טעם וריח, רכז פרי המונק, חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם), עמילן טפיוקה מעובד, ויטמין D, חיידקי L.CASEI DN114-001.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 52.0,
+          "fat": 1.5,
+          "fiber": 1.7,
+          "protein": 2.7,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290107938396",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUJ64_Z_P_7290107938396_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "מארז אקטימל תות",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 52.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110325121",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 0.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 60.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 60.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 83.8,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 89.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 25.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E407",
+          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו.",
+          "function_he": "מייצב / חומר מסמיך ממקור אצות",
+          "name_he": "קרגינן",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E951",
+          "explanation_he": "אספרטם הוא ממתיק ללא קלוריות נפוץ; IARC סיווגה בסולם סיכון בינלאומי, אך JECFA אישרה מחדש את הרף המאושר לצריכה יומית.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+          "name_he": "אספרטם",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), פירות מבושלים (6.3%) {מנגו (4.2%), אננס (2.1%)}, מייצבים (אוליגופרוקטוז, פקטין, קרגינן), עמילן מעובד (E-1442), מווסת חומציות (חומצת לימון), חומרי טעם וריח, ממתיקים (אספרטיים, אססולפאם k), חומר משמר (E-202). בתוספת חיידקי ביפידוס. 20 גרם חלבון בבקבוק, מתוכם 16 גרם חלבוני מי גבינה, 4 גרם קזאינים .",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 53.0,
+          "fat": 0.5,
+          "fiber": null,
+          "protein": 8.4,
+          "sodium": 53.0,
+          "sugar": 3.3
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110325121",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CLM34_Z_P_7290110325121_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט GO מנגו אננס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 52.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290102031276",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 44.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 17.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 15.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 81.9,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 82.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 16.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים מאומתים",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, מחיות פרי (2.2%) (תות, בננה), (2%), סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלבוני מי גבינה), אבקת חלב, חומרי טעם וריח, רכז פרי המונק, חומר מייצב (לוקוסט בין -גאם), רכז לימון, ויטמין D, חיידקי DN114-001 L.casei (חלב).",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 51.0,
+          "fat": 1.5,
+          "fiber": 1.7,
+          "protein": 2.7,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_7290102031276",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FLL40_Z_P_7290102031276_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "אקטימל תות בננה מארז",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 49.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "55336",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 28.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 68.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 48.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 31.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "72% יוגורט 2% שומן, מים, סוכר, 3.3% אפרסק מבושל, 2.8% בננה מבושלת, מייצבים (פקטין, גואר גאם*), עמילן מעובד (E1422), חומרי טעם וריח, מווסת חומציות (חומצת לימון), חומר משמר (E202). בתוספת חיידקי ביפידוס. *במוצר כשר לפסח: לוקוסט בין גאם",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 62.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.4,
+          "sodium": 39.0,
+          "sugar": 9.6
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_55336",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CVH22_Z_P_55336_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט בננה אפרסק",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 36.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "55343",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 28.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 67.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 46.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 33.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "יוגורט 72% יוגורט 2% שומן, מים, סוכר, 6% פירות טרופים מבושלים (1.5% פסיפלורה, 1.5% אננס, 1.5% מנגו, 1.5% אפרסק), מייצב (פקטין), עמילן מעובד (E1442), מווסת חומציות (חומצת לימון), חומרי טעם וריח, חומר משמר (E202). בתוספת חיידקי ביפידוס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 65.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.4,
+          "sodium": 38.0,
+          "sugar": 9.9
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_55343",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CVO20_Z_P_55343_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "יופלה משקה יוגורט טרופי",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 36.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "58030",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 10.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 15.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 15.3,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 72.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 49.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 31.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E333",
+          "explanation_he": "ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן.",
+          "function_he": "מלח ציטרט — מקור סידן / מייצב",
+          "name_he": "סידן ציטרט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "68% יוגורט 2.2% שומן, מים, תות מבושל (6%), סוכר, מייצבים (פקטין, גואר גאם* ),עמילן מעובד (E-1422), תוסף תזונה (סידן - טריקלציום ציטרט), חומרי טעם וריח, צבע מאכל (רכז גזר שחור), מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. *במוצר כשר לפסח: לוקוסט בין גאם",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 58.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.3,
+          "sodium": 41.0,
+          "sugar": 8.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_58030",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GUX16_Z_P_58030_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "יופלה שטוזים משקה תות",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 35.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "55329",
+      "bariInterpretation": [
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 7.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 16.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 67.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 50.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 47.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "PENDING_COPY",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 29.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "PENDING_COPY"
+      ],
+      "brand": null,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "PENDING_COPY",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E407",
+          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו.",
+          "function_he": "מייצב / חומר מסמיך ממקור אצות",
+          "name_he": "קרגינן",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "PENDING_COPY",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "PENDING_COPY",
+          "good": [
+            "PENDING_COPY"
+          ],
+          "takeaway": "PENDING_COPY",
+          "watchOut": [],
+          "whyRated": "PENDING_COPY"
+        },
+        "ingredients": "יוגורט 72% יוגורט 2% שומן, מים, סוכר, 3% תות מבושל, 3% מלון מבושל, מייצבים (פקטין, קרגינן), עמילן מעובד (E1442), חומרי טעם וריח, צבע מאכל (מיץ מרוכז מגזר סגול), מווסת חומציות (חומצת לימון), חומר משמר (E202). בתוספת חיידקי ביפידוס.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 64.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.4,
+          "sodium": 38.0,
+          "sugar": 9.8
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "E",
+      "id": "bsip1_yogurt_55329",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CVA24_Z_P_55329_1.png",
+      "insightLine": "PENDING_COPY",
+      "name": "משקה יוגורט תות-מלון",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "PENDING_COPY",
+      "score": 34.3,
+      "source_traceability_status": "resolved"
+    }
+  ]
+}

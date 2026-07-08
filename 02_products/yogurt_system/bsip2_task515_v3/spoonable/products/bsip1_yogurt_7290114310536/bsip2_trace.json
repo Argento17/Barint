@@ -1,7 +1,7 @@
 {
   "bsip2_version": "proto_v0",
   "algorithm_version": "0.4.1",
-  "trace_generated_at": "2026-07-05T08:53:31.722064Z",
+  "trace_generated_at": "2026-07-05T14:31:01.423802Z",
   "specification_version": "bsip2_concept_v1 + score_resolution_contract_SRC-v1",
   "input_reference": {
     "canonical_product_id": "bsip1_yogurt_7290114310536",
@@ -63,8 +63,8 @@
       "פרוקטוז",
       "ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה)",
       "סיבים תזונתיים",
-      "רכ ז פרי המונק",
-      "חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז"
+      "רכז פרי המונק",
+      "חומרי טעם וריח. מכיל חיידקי Bio"
     ],
     "ingredient_count_raw": 8,
     "ingredient_sanitization": {
@@ -128,12 +128,11 @@
     "protein_source_basis": [
       "no isolate markers detected"
     ],
-    "added_sugar_sources_count": 2,
+    "added_sugar_sources_count": 1,
     "added_sugar_matches": [
-      "לקטוז",
       "פרי"
     ],
-    "has_fruit_concentrate": false,
+    "has_fruit_concentrate": true,
     "has_fermentation": false,
     "product_type_dairy": true,
     "has_fortification": false,
@@ -205,8 +204,8 @@
       "פרוקטוז",
       "ממתיקים טבעיים (אריתריטול טבעי, סטיביול גליקוזיד טבעי מצמח הסטיביה)",
       "סיבים תזונתיים",
-      "רכ ז פרי המונק",
-      "חומרי טעם וריח. מכיל חיידקי Bio.tnnnn מאפיינים נוספים דל לקטוז"
+      "רכז פרי המונק",
+      "חומרי טעם וריח. מכיל חיידקי Bio"
     ]
   },
   "L4_interpreted_concerns": {
@@ -409,8 +408,8 @@
     {
       "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
       "amount": 5,
-      "condition": "True",
-      "fired": true
+      "condition": "False",
+      "fired": false
     },
     {
       "rule": "HIGH_CAL_HIGH_SUGAR_SOFT",
@@ -451,29 +450,19 @@
       "note": "only applies to cereal category"
     }
   ],
-  "penalties_applied": [
-    {
-      "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-      "amount": 5,
-      "note": "added_sugar_sources=2"
-    }
-  ],
-  "total_penalty_before_scaling": 5.0,
-  "total_penalty_after_scaling": 5.0,
+  "penalties_applied": [],
+  "total_penalty_before_scaling": 0.0,
+  "total_penalty_after_scaling": 0.0,
   "penalty_scaling_note": null,
-  "score_after_penalty": 59.0,
+  "score_after_penalty": 64.0,
   "concern_family_coordination": {
     "sugar_load": {
       "binding_cap": null,
-      "coordinated_penalty": 5,
+      "coordinated_penalty": 0.0,
       "detail": {
-        "winner": {
-          "rule": "MULTIPLE_ADDED_SUGAR_MARKERS",
-          "amount": 5
-        },
+        "winner": null,
         "supporters": [],
-        "total_before_budget": 5,
-        "budget_applied": false
+        "total_before_budget": 0
       }
     },
     "calorie_load": {
@@ -526,16 +515,15 @@
     "no_applicable_floor"
   ],
   "floors_applied": [],
-  "score_after_floors": 59.0,
+  "score_after_floors": 64.0,
   "confidence_ceiling_applied": null,
-  "sugar_context_class": "SC-5",
+  "sugar_context_class": "SC-4",
   "hp_nova_weight": 1.0,
-  "final_score_estimate": 59.0,
+  "final_score_estimate": 64.0,
   "grade_estimate": "C",
   "data_sufficiency": "sufficient",
   "explanation_drivers": [
-    "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']",
-    "PENALTIES: ['MULTIPLE_ADDED_SUGAR_MARKERS']"
+    "DOMINANT: Binding cap=68.0 from rules: ['NOVA_PROXY_4_ULTRA_PROCESSED']"
   ],
   "unresolved_flags": [],
   "structural_class": {

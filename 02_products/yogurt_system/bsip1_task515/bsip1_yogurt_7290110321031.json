@@ -162,5 +162,26 @@
     "9.3 גרם קזאינים"
   ],
   "ingredient_count": 5,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290110321031_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: no sugars row (protein/carbs/fat/sodium/calcium only)",
+        "hazi_hinam": "product not carried",
+        "tiv_taam": "matched (\"יופלה 200 מל GO\"); no sugars row; ingredients text leaks a protein breakdown ('20 גרם חלבון בגביע, מתוכם 10.7 גרם חלבוני מי גבינה, 9.3 גרם קזאינים') but no sugar figure",
+        "yohananof": "matched (ברקוד 7290110321031); identical panel to Shufersal/Tiv Taam (protein 10, carbs 3.8, fat 2, sodium 69, calcium 167, energy 72); no sugars row"
+      },
+      "verdict": "UNAVAILABLE on all 3 retailers that carry this SKU (Shufersal, Tiv Taam, Yohananof all agree, byte-identical panel); not stocked at Hazi Hinam. Strong 3-source confirmation of genuine absence.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

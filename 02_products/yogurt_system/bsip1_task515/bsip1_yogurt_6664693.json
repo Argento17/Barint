@@ -38,7 +38,7 @@
   "sodium_mg": 36.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונ תיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
+  "ingredients_text_he": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונתיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
   "ingredients_raw_he": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונ תיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS. מכיל חלב ערכים תזונתיים 100 גרם 8.9 גרם סוכרים מתוך פחמימות 83 קל אנרגיה 3.1 גרם חלבונים 10 גרם פחמימות 3 גרם שומנים 10 מג כולסטרול 36 מג נתרן 2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 101 מג סידן 3 סוכרים 2.25 כפיות סוכר 5.9 מתוכם סוכר מוסף ערכים תזונתיים מנה 13.4 גרם סוכרים מתוך פחמימות 125 קל אנרגיה 4.7 גרם חלבונים 14.9 גרם פחמימות 4.5 גרם שומנים 14.9 מג כולסטרול 55 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 152 מג סידן 3.25 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונ תיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
+  "ingredients_raw": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונתיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -247,5 +247,20 @@
     "מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS."
   ],
   "ingredient_count": 10,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונ תיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
+      "after": "חלב מפוסטר, מים,אפרסק (6%), סוכר, רכיבי חלב, עמילן טפיוקה מעובד (E-1442), מייצבים (פקטין,לוקוסט-בין גאם), חומרי טעם וריח, סיבים תזונתיים, מווסת חומציות (חומצה מאלית). בתוספת חיידק BIFIDUS.",
+      "fixes_applied": [
+        "rejoin space-split word תזונ תיים, -> תזונתיים,"
+      ],
+      "ingredient_order_entries_touched": 0,
+      "ingredients_list_rebuilt": false,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ]
 }

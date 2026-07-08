@@ -125,5 +125,27 @@
     ".חלב עיזים מפוסטר.מיצב טבעי"
   ],
   "ingredient_count": 1,
-  "ingredient_text_quality": "present"
+  "ingredient_text_quality": "present",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_5416415_ABSENT_CONFIRMED",
+      "date": "2026-07-05T14:17:14.707788+00:00",
+      "action": "no_value_change -- rescrape-provenance note only",
+      "fields_targeted": [
+        "sugars_g",
+        "fat_g"
+      ],
+      "per_site_result": {
+        "shufersal": "re-fetched fresh this run: nutrition table has energy/protein/carbs/sodium/calcium only -- no fat, no sugar row (identical to original scrape)",
+        "hazi_hinam": "product not carried (no goat-yogurt / 'עזים' item in either yogurt subcategory, 124 items scanned)",
+        "tiv_taam": "not found (targeted search by barcode and by name, 0 matches)",
+        "yohananof": "not found (scrape_one targeted search: dialog_missing)"
+      },
+      "verdict": "UNAVAILABLE ACROSS ALL 4 RETAILERS for both sugars_g and fat_g. Only Shufersal carries this SKU at all, and its own page genuinely omits both fields.",
+      "off_used": false,
+      "no_fabrication": true,
+      "no_estimate_applied": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

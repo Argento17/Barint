@@ -38,7 +38,7 @@
   "sodium_mg": 40.0,
   "dietary_fiber_g": 0.5,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bion",
+  "ingredients_text_he": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bio",
   "ingredients_raw_he": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bion מכיל חלב ערכים תזונתיים 100 גרם 0.5 גרם סיבים תזונתיים 9.9 גרם סוכרים מתוך פחמימות 86 קל אנרגיה 4.1 גרם חלבונים 10.3 גרם פחמימות 3 גרם שומנים 9 מג כולסטרול 40 מג נתרן 1.8 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 115 מג סידן 2.5 כפיות סוכר 3 מתוכם סוכר מוסף הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bion",
+  "ingredients_raw": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bio",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -143,13 +143,13 @@
     },
     {
       "position": 11,
-      "text": "מווסתי חו מציות (חומצת לימון, מלח לימון)",
+      "text": "מווסתי חומציות (חומצת לימון, מלח לימון)",
       "percentage_declared": null,
       "has_subgroup": true
     },
     {
       "position": 12,
-      "text": "מיצוי קרתמוס. מכיל חיידקי Bion",
+      "text": "מיצוי קרתמוס. מכיל חיידקי Bio",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -244,9 +244,25 @@
     "סיבים תזונתיים",
     "חומרי טעם וריח",
     "מייצב (פקטין)",
-    "מווסתי חו מציות (חומצת לימון, מלח לימון)",
-    "מיצוי קרתמוס. מכיל חיידקי Bion"
+    "מווסתי חומציות (חומצת לימון, מלח לימון)",
+    "מיצוי קרתמוס. מכיל חיידקי Bio"
   ],
   "ingredient_count": 12,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_task515_spoonable_ingredient_text_correction": [
+    {
+      "task": "TASK-515 spoonable ingredient-text artifact cleanup",
+      "field": "ingredients_text_he (+ ingredients_raw mirror + ingredient_order[].text + ingredients_list)",
+      "before": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חו מציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bion",
+      "after": "חלב מפוסטר, מנגו (9%), פרוקטוז, סוכר, מים, רכיבי חלב, עמילן מעובד (E-1422), סיבים תזונתיים, חומרי טעם וריח, מייצב (פקטין), מווסתי חומציות (חומצת לימון, מלח לימון), מיצוי קרתמוס. מכיל חיידקי Bio",
+      "fixes_applied": [
+        "strip stray newline-artifact 'n' (end of string)",
+        "rejoin space-split word חו מציות -> חומציות"
+      ],
+      "ingredient_order_entries_touched": 2,
+      "ingredients_list_rebuilt": true,
+      "ingredients_raw_he_untouched": true,
+      "note": "Cosmetic scrape-artifact normalization only (stray newline-as-'n', space-split words, double-space collapse). No content added/removed/substituted; unreadable/garbled fragments (e.g. mismatched bidi parens) were left untouched, not invented or repaired."
+    }
+  ]
 }

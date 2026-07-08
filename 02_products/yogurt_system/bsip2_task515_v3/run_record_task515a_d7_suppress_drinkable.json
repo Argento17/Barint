@@ -1,0 +1,65 @@
+{
+  "run_id": "run_yogurt_task515_bsip2_v3a_d7_suppress_drinkable",
+  "task": "TASK-515A D7 suppression rescore -- drinkable pool sugar shelf-relative surcharge/relief forced OFF (guard treated as FAIL per Product Agent D7 ruling), absolute floor (EV-088) unaffected. Spoonable NOT processed by this script.",
+  "generated": "2026-07-05T15:07:19.842949+00:00",
+  "run_type": "SCORED -- NOT PUBLISHED (co-sign package; go-live gated by orchestrator)",
+  "engine": "proto_v0 score_engine.py -- UNMODIFIED (uniform-baseline doctrine)",
+  "supersedes_for_drinkable_only": "run_yogurt_task515_bsip2_v3_remediation (same 20-product drinkable pool membership; ONLY the sugar shelf-relative surcharge/relief mechanism differs -- forced OFF here)",
+  "corpus": {
+    "source_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
+    "n_loaded_raw": 122,
+    "n_discarded_total": 24,
+    "n_in_shipping_corpus_all_pools": 98,
+    "drinkable_n": 20,
+    "drinkable_target": 20,
+    "drinkable_matches_target": true,
+    "spoonable_n_present_but_not_processed": 78
+  },
+  "drinkable_sugar_shelf_rel_stats": {
+    "n_total_products": 20,
+    "n_with_sugars_g": 20,
+    "median": 4.95,
+    "scale": 3.11,
+    "scale_source": "compute_shelf_stats(scale_type='iqr')",
+    "min_n_guard": 20,
+    "guard_n_pass": true,
+    "low_variance_guard_threshold": 3.0,
+    "guard_scale_pass": true,
+    "computed_guard_pass_overall": true,
+    "d7_suppression_applied": true,
+    "d7_suppression_rationale": "Product Agent (D7) ruled the computed PASS (scale=3.11 at n=20, margin 0.11 above the 3.0 guard) is NOT ROBUST -- C3 showed adding any single product flips it to FAIL. D7 = CONSERVATIVE: treat as FAIL this cycle. Sugar contributes ONLY via the EV-088 absolute floor (sugars_g>=12.0g -> cap 62), never via the shelf-relative surcharge/relief. No SUGAR_SHELF_REL_YOGURT_DRINKABLE_* constant is written.",
+    "effective_guard_pass_used_for_scoring": false
+  },
+  "drinkable_distribution": {
+    "n_scored": 20,
+    "n_out_of_scope": 0,
+    "min": 34.3,
+    "median": 58.9,
+    "max": 77.2,
+    "mean": 56.95,
+    "stdev": 13.11,
+    "grade_counts": {
+      "B": 6,
+      "C": 9,
+      "D": 4,
+      "E": 1
+    }
+  },
+  "drinkable_errors": [],
+  "no_bleed_confirmation": {
+    "claim": "Zero writes to score_engine.py / constants.py / router_v2.py this run (read-only imports). The suppression mechanism lives entirely in THIS run script (D7_SUPPRESS_SHELF_REL_POOLS gating whether set_shelf_stats('sugars_g', ...) is called before the drinkable scoring loop) -- score_engine.py's own existing 'stats not set -> delta=0' early-return branch (shelf_relative_differentiator, ~line 478-480) does the rest, unmodified.",
+    "score_engine_sha256": "535a9ed1b704e587546c2c314ef76abddf543310dcce0b7e74fb8e7f26453f34",
+    "constants_sha256": "e70689a7f901dd26919444054fea1964ebb895e2117c788f6a7c5bea3d962e6c",
+    "router_v2_sha256": "9da6f3b7b86a82c4e655fe2768dcf018b478999a8fea4ab0364c21274103e3f9",
+    "score_engine_0diff_vs_2474b04a_baseline": true,
+    "router_v2_0diff_vs_2474b04a_baseline": true,
+    "constants_0diff_vs_v3_remediation_run": true
+  },
+  "d7_ruling": {
+    "decision": "CONSERVATIVE -- suppress shelf-relative sugar for the drinkable pool",
+    "mechanism": "run-script-level per-pool override (D7_SUPPRESS_SHELF_REL_POOLS); set_shelf_stats('sugars_g', ...) never called while scoring drinkable -> EV-088 surcharge/relief returns delta=0 for every drinkable product (score_engine.py's own existing 'stats not set' branch); EV-088 floor (flat 12.0g threshold, cap 62) is untouched and continues to fire.",
+    "constant_written_to_constants_py": false,
+    "note": "Per instruction: do NOT write SUGAR_SHELF_REL_YOGURT_DRINKABLE_* this cycle."
+  },
+  "output_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\drinkable"
+}

@@ -24,7 +24,7 @@
     "fat_trans_g": null,
     "sodium_mg": 48.0,
     "carbohydrates_g": 4.5,
-    "sugars_g": null,
+    "sugars_g": 4.5,
     "dietary_fiber_g": null,
     "protein_g": 5.2
   },
@@ -34,7 +34,7 @@
   "fat_trans_g": null,
   "protein_g": 5.2,
   "carbohydrates_g": 4.5,
-  "sugars_g": null,
+  "sugars_g": 4.5,
   "sodium_mg": 48.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
@@ -156,5 +156,25 @@
     "בתוספת חיידק פרוביוטי Bifidus."
   ],
   "ingredient_count": 4,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "bsip1_correction_log": [
+    {
+      "correction_id": "TASK515_RESCRAPE_7290110561352_SUGAR",
+      "date": "2026-07-05T14:16:01.778731+00:00",
+      "reason": "Owner-directed 4-site rescrape (2026-07-05): sugars_g was null in the original TASK-515 BSIP1 build despite the value being genuinely present in Shufersal's own raw HTML nutrition list -- a transient capture miss in the original run, not a genuine retailer-side absence (this SKU differs from the GO-line products where sugar truly is undeclared on every retailer).",
+      "field_corrected": "normalized_nutrition_per_100g.sugars_g, sugars_g",
+      "before": {
+        "sugars_g": null
+      },
+      "after": {
+        "sugars_g": 4.5
+      },
+      "recovered_from": "shufersal (fresh re-fetch of the same product page, this run)",
+      "recovery_method": "direct requests.get() of https://www.shufersal.co.il/online/he/p/p_7290110561352 + _shared/bsip0_nutrition.py::parse_nutrition_list -- same shared parser as the original acquisition, re-run fresh",
+      "plausibility": "PASS (plausibility_gate.check_panel, FoodClass.DAIRY_SEMISOLID): accounted_mass=12.7g >= 8g floor, kcal=67 in [30,250], Atwater est=65.8 vs kcal 67 (1.8% diff). sugars_g(4.5)==carbohydrates_g(4.5) exactly -- consistent with a lactose-free product (lactose enzymatically split into glucose+galactose, both counted as sugars under standard label convention, so carbs==sugar is expected and corroborating, not suspicious).",
+      "off_used": false,
+      "no_fabrication": true,
+      "corrected_by": "data_agent"
+    }
+  ]
 }

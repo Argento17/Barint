@@ -1,5 +1,5 @@
 {
-  "_comment": "TASK-515/515A Stage 3 — yogurt SPOONABLE subpool. Reads already-scored BSIP2 traces from bsip2_task515_v3/spoonable/products (D6 Nutrition + D7 Product co-signed EV-105v2-FINAL constants persisted to constants.py, additive only, no re-scoring here). BSIP1 corpus_dir = bsip1_task515 for name/brand/image/nutrition/ingredients lookup. No live baseline exists yet (new category build) -> baseline_json null. All copy fields render PENDING_COPY (two-gate authoring is a later stage).",
+  "_comment": "TASK-515/515A Stage 3 — yogurt SPOONABLE subpool. Reads freshly re-scored BSIP2 traces from bsip2_task515_v3/spoonable/products, produced by run_bsip2_task515_v3_remediation.py (owner-ruled corpus remediation: 16 owner-directed dump + 3 dedup on top of the v3 shipping corpus; 27 Class-D header-bleed products stripped in BSIP1 before this rescore). Pool: 94 -> 78. BSIP1 corpus_dir = bsip1_task515 for name/brand/image/nutrition/ingredients lookup. No live baseline exists yet (new category build) -> baseline_json null. All copy fields render PENDING_COPY (two-gate authoring is a later stage).",
   "category": "yogurt-spoonable",
   "corpus_dirs": [
     "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
@@ -24,14 +24,31 @@
       "BARI_GRAD_SODIUM_V1": "off",
       "BARI_SODIUM_CEREAL": "off"
     },
-    "shelf_rel": "EV-105v2-FINAL spoonable stats (SUGAR_SHELF_REL_YOGURT_SPOONABLE_*) already baked into the bsip2_task515_v3/spoonable traces via in-process set_shelf_stats(); this config does not re-score.",
+    "shelf_rel": "EV-105v3-REMEDIATION spoonable stats (n=78, median=4.65, scale=4.6, guard PASS -- unchanged from EV-105v2-FINAL's median/scale, recomputed on the smaller corpus) baked into the bsip2_task515_v3/spoonable traces via in-process set_shelf_stats(); this config does not re-score.",
     "bsip1_dir": "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515",
     "corpus_filter": null,
-    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record.json (TASK-515/515A shipping run, D6+D7 co-signed EV-105v2-FINAL)"
+    "_source": "02_products/yogurt_system/bsip2_task515_v3/run_record.json (run_yogurt_task515_bsip2_v3_remediation -- SCORED, PENDING D6/D7 co-sign)"
   },
-  "exclusions": [],
+  "exclusions": [
+    {"barcode": "7290116936581", "reason": "TASK-515 owner-directed dump: field unrecoverable across all 4 retailers (rescrape acc0c9ac). Class A source-implausible single-ingredient milk declaration (10.0g/100g protein) -- missing_data_discard_rule."},
+    {"barcode": "43944", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "45771", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "5416415", "reason": "TASK-515 owner-directed dump: sugars_g + fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290110321031", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290110328788", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290110329952", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116932484", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116934402", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116935614", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116935621", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116936123", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116936215", "reason": "TASK-515 owner-directed dump: sugars_g + fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "7290116936222", "reason": "TASK-515 owner-directed dump: sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac)."},
+    {"barcode": "57149", "reason": "TASK-515 dedup-drop: byte-identical duplicate of canonical EAN-13 7290014758100 (KEPT)."},
+    {"barcode": "7290014758117", "reason": "TASK-515 dedup-drop (owner ruling): byte-identical duplicate of clean twin 57132 (KEPT); also carried confirmed Class-D diabetes-seal contamination -- dropping removes both the duplicate and the contamination in one action."}
+  ],
   "extension_fields": [],
   "render_fields": ["novaGroup", "confidence_level", "d4_additives"],
   "boundary_policy": "C:\\Bari\\01_framework\\governance\\grade_boundary_policy_v1.json",
-  "_status": "SCORED -- NOT PUBLISHED. Copy = PENDING_COPY pending two-gate (Content + Adversarial QA) sign-off before go-live."
+  "_status": "SCORED -- NOT PUBLISHED. TASK-515 remediation rescore applied (94->78). Copy = PENDING_COPY pending two-gate (Content + Adversarial QA) sign-off before go-live. Score/grade moves vs committed baseline 2474b04a pending Nutrition + Product co-sign."
 }

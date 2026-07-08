@@ -197,13 +197,23 @@ def trim_ingredients(raw: str):
     # trailing dangling period/comma cleanup
     trimmed = trimmed.rstrip(", ").strip()
 
-    if len(trimmed) < 5:
+    if len(trimmed) < 5 and trimmed not in _GENUINE_SHORT_SINGLE_INGREDIENTS:
         # trim produced near-nothing (shouldn't happen given corpus content) — fall
         # back to the untrimmed raw text rather than losing the ingredient list.
+        # EXCEPTION (TASK-515 G8 fix, barcode 7290116936581): a handful of plain
+        # single-ingredient dairy products declare only "חלב" (milk, 3 chars) before
+        # the "מכיל חלב" allergen marker / nutrition-panel bleed. That is a real,
+        # complete ingredient list, not "near nothing" — whitelisted exactly, not by
+        # substring, so this never masks a genuine truncation elsewhere.
         trimmed = raw.strip()
         hit_marker = False
 
     return trimmed, hit_marker, stray_fixed
+
+
+# Whole-string whitelist only (never substring) — real single-ingredient declarations
+# short enough to trip the "near nothing" length floor above.
+_GENUINE_SHORT_SINGLE_INGREDIENTS = {"חלב"}
 
 
 _MARKETING_NOT_INGREDIENT_PHRASES = ["משתלב", "בכל רגע", "מושלם", "כמו שהוא", "וקרמי"]

@@ -38,7 +38,7 @@
   "sodium_mg": 48.0,
   "dietary_fiber_g": null,
   "calcium_mg": null,
-  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור",
+  "ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS",
   "ingredients_raw_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור מכיל חלב ערכים תזונתיים 100 גרם 4.5 גרם סוכרים מתוך פחמימות 70 קל אנרגיה 5.2 גרם חלבונים 4.5 גרם פחמימות 3 גרם שומנים 11.3 מג כולסטרול 48 מג נתרן 2 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 158 מג סידן 4.5 סוכרים 1 כפיות סוכר ערכים תזונתיים מנה 6.7 גרם סוכרים מתוך פחמימות 105 קל אנרגיה 7.9 גרם חלבונים 6.7 גרם פחמימות 4.5 גרם שומנים 17 מג כולסטרול 72 מג נתרן 3 גרם מתוכם שומן רווי פחות מ 0.5 גרם חומצות שומן טרנס 237 מג סידן 1.75 כפיות סוכר הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
   "allergens_contains": [
     "milk"
@@ -72,7 +72,7 @@
   },
   "enrichment_timestamp": "2026-07-05T07:52:42.512761+00:00",
   "run_id": "run_yogurt_task515_bsip1",
-  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור",
+  "ingredients_raw": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS",
   "ingredients_raw_provenance": {
     "source": "bsip1_text_fallback",
     "bsip0_status": "bsip0_file_not_found",
@@ -95,7 +95,7 @@
     },
     {
       "position": 3,
-      "text": "בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור",
+      "text": "בתוספת חיידק פרוביוטי BIFIDUS",
       "percentage_declared": null,
       "has_subgroup": false
     }
@@ -145,8 +145,35 @@
   "ingredients_list": [
     "חלב מפוסטר",
     "רכיבי חלב",
-    "בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור"
+    "בתוספת חיידק פרוביוטי BIFIDUS"
   ],
   "ingredient_count": 3,
-  "ingredient_text_quality": "good"
+  "ingredient_text_quality": "good",
+  "_task515_header_bleed_strip": [
+    {
+      "task": "TASK-515/515A remediation -- Class-D header-bleed strip",
+      "fields": [
+        "ingredients_text_he",
+        "ingredients_raw (mirror)",
+        "ingredients_list",
+        "ingredient_order[].text"
+      ],
+      "marker": "מאפיינים נוספים",
+      "before_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור",
+      "after_ingredients_text_he": "חלב מפוסטר, רכיבי חלב, בתוספת חיידק פרוביוטי BIFIDUS",
+      "ingredients_raw_he_untouched": true,
+      "ingredient_order_entries_touched": 1,
+      "ingredients_list_before": [
+        "חלב מפוסטר",
+        "רכיבי חלב",
+        "בתוספת חיידק פרוביוטי BIFIDUS. מאפיינים נוספים ניתן למיחזור"
+      ],
+      "ingredients_list_after": [
+        "חלב מפוסטר",
+        "רכיבי חלב",
+        "בתוספת חיידק פרוביוטי BIFIDUS"
+      ],
+      "note": "Removed a trailing scraped website 'מאפיינים נוספים <claim>' UI-section-header clause (and any further bled allergen/marketing text after it) from the SCORED ingredient fields. Not an ingredient. ingredients_raw_he (true original scrape) preserved unchanged per remediation_ledger_task515_v1.json Class D ruling."
+    }
+  ]
 }

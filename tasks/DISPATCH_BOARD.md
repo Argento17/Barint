@@ -22,6 +22,17 @@ Supplements first; NO morph to other areas in v1. **Brief drafted → 4 consults
 All creatine-thread work PARKED on owner stop (nothing pushed/merged; live site unchanged).
 Launch-hardening (cycles 1–6) fully shipped. Nothing frozen; every live category re-flows on a switch.
 
+## ✅ TASK-522 analytics measurement fix (2026-07-08, owner-driven) — CLOSED, PR open for owner merge (@ 0ac57c20)
+Owner traffic report exposed the measurement gap: GA4 (consent-gated) sees ~5% of what Vercel's
+cookieless counter sees (18 users/28d vs 318 visitors/7d; social = FB/IG, all landing on `/`).
+Package: `beforeSend` filter (drop /admin + internal), `internal-traffic.ts` (`?bari_internal=1`
+persistent flag + localhost/preview auto-detect), GA4 `traffic_type=internal`, `outbound_click`
+on buyUrl, `utm_convention_v1.md`. Frontend Agent built on the DIVERGED local tree → orchestrator
+targeted-ported onto origin/master in worktree `C:\bari_wt_t522`, branch
+`frontend/task522-analytics-measurement`. Orchestrator caught 2 agent errors in the UTM doc
+(dead yogurt route example; false "Vercel lacks UTM reporting" claim). Consent posture untouched.
+Next: build → push → PR URL to owner + 5-min GA4-UI checklist (retention/GSC/key-events/filter).
+
 ## ✅ TASK-507 explore-next module (2026-07-04, marketing-driven) — CLOSED, PR open for owner merge (@ c67c5c7a)
 GA4 (7d): hub-entry sessions (/, /hashvaot index, /catalog) browse 7–19 pages; leaf-entry (where all
 social/paid traffic lands) = **1.0 pages/session** → paid clicks dead-end. Data-driven "עוד השוואות"
@@ -210,7 +221,228 @@ Drinkable self-gate 8/8 PASS; spoonable G1-G6 PASS + **G8 FAIL on 1 product** (b
 into ingredients — pre-existing BSIP1 scrape defect → BSIP1 re-parse or exclude before its copy). Images: spoonable 90/94
 (4 missing → "data could not be retrieved" / self-host follow-up), drinkable 23/23. Not committed.
 
-### ⏸️ CHECKPOINT — DATA/SCORING/GENERATION PHASE COMPLETE; COPY+RENDER phase = fresh session (CLAUDE.md "fresh chat per phase")
+### ▶️ COPY+RENDER PHASE RUNNING (owner 2026-07-05: "commit and create the 3 pages per our guidelines")
+Data foundation COMMITTED `2474b04a` (541 files, engine 0-diff, +TASK-513 DOI fix). Now driving stages 4–9 ×2 + GLP-1 guide.
+**OWNER RESCRAPE RULING (2026-07-05, binding): no partial values.** 4-site rescrape recovered 4, DUMPED 16 unrecoverable →
+CLEAN corpus **spoonable 78 / drinkable 20** (no null-nutrient scored best-case). Both pages re-scored on real data only.
+Guard-flip (drinkable) resolved CONSERVATIVE (D7-suppress sugar shelf-rel; 55329 stays E on additive/NOVA grounds — honest,
+ships per no-cap-grades). Exclusion registry `bsip1_task515/excluded_products_task515.json`; ledger `remediation_ledger_task515_v1.json`.
+**BOTH PAGES CONTENT-SIGNED + WIRED + RENDERING (orchestrator-verified):**
+- SPOONABLE `/hashvaot/yogurt` — 78 products, self-hosted images, gate-2 PASS. FINAL_v2 sha 83590cb7.
+- DRINKABLE `/hashvaot/yogurt-drinks` — 20 products (B6/C9/D4/E1), self-hosted 20/20, 0 PENDING, 0 hotlinks, gates PASS.
+  FINAL_v3 sha ba5f7a10. **FIRST LIVE E-GRADE** = barcode 55329 (34.3); gradePalette.E already wired (no Design gap). VERIFIED by orchestrator.
+**TERMINAL RED-TEAM ROUND 1 ✅ BOTH RETURNED (verified) — 0 CRITICAL both pages, CONDITIONAL PASS:**
+- SPOONABLE (a8add6aa): Track V fully GREEN (78/78 render, score==trace, 0 PENDING, no overflow, gates PASS). 1 HIGH + 2 MEDIUM,
+  all copy, all on 2 S-products. HIGH-1 = 336712 rowVerdict claims processing "יצא נקי" but processing_quality=64/med + LOW_NOVA_CONF
+  (confidence chip already honestly "נתונים בבדיקה" → HIGH not CRITICAL). M1 336712 "הפשוט ביותר" false-uniqueness (7 products ≤2 ing).
+  M2 565527 frames 336712 as "leader/ceiling" over a 2.0pt noise gap. → **Content fix DISPATCHED a6bb69e6.**
+- DRINKABLE (a0210ddc): Track V substantively GREEN (20/20 render, score==trace, E-card #A52121 distinct, all 6 prior QA fixes + caveat
+  VERIFIED applied). 0 CRITICAL / 2 HIGH / 4 MEDIUM. **RT-C1 (the load-bearing one) RESOLVED by orchestrator verification:** the −4.0 that
+  creates the first live E (55329 38.28→34.28) = genuine **emulsifier_complexity_penalty (ECS-v1/EV-045)** at score_engine.py:3927 —
+  carrageenan (concern) + modified-starch-stabilizer (medium), both ON-LABEL; polyol_count=0 rules out polyol. E is HONEST, engine
+  byte-identical, score==trace. NOT a CRITICAL. RT-C2 (0.9pt E/D boundary) = inherent to banded grades, copy doesn't dramatize → ACKNOWLEDGED
+  in-lane (banded thresholds always have a noise-level boundary pair; not a distortion). RT-C4 (d4 shows E1422 vs label E1442 on 4 products,
+  consumer card) + RT-V1 (validate --http false-fails schemeless relative imageUrls) + RT-C1 provenance → **Data fix DISPATCHED ac8ba301.**
+  RT-C5 (55329 copy headlines suppressed sugar not the real additive/emulsifier driver) → Content re-author NEXT on Data return.
+- **Score-neutral infra → own tasks + digest:** trace_writer omits emulsifier_complexity_penalty from serialized penalties_applied (benign
+  arithmetic, load-bearing for a public E → serialize + regen); RT-C3 55329 trace nova_evidence carries copy-pasted "processed cheese" text +
+  natural-color-as-artificial (score 0-diff); RT-V1 spine instrument.
+**RED-TEAM ROUND 2 (verified):**
+- SPOONABLE (a53a194d): 3 round-1 findings RESOLVED, 0 regression, 0 CRITICAL — but the MEDIUM-2 rewrite INTRODUCED a NEW HIGH **RT-R2-1**: copy names literal grade letter "S" ("מדורגים S"/"מוצרי S"/"ציון S") on the 2 flagship products while the FROZEN ScoreChip folds ≥80→"A" site-wide (corpus.ts:51-63, no S branch) → visible chip/copy contradiction; violates documented invariant yogurt-spoonable-page-data.ts:22-24. → **Content ROUND 3 DISPATCHED a9b2c680** (remove literal S, restore no-S-in-copy invariant; align to site-wide chip convention — NOT capping the grade, S lives in score/trace). **Governance follow-up (non-blocking, own task):** does owner "Honest S-grades ship" require a display-layer S slot on the frozen chip SITE-WIDE? → Product/Nutrition (touches frozen ScoreChip = above red-team authority; NOT a yogurt-local gate).
+  **Standing spoonable D10 blockers (pre-existing, NOT round-2 regressions):** (i) images 74/78 (4 missing: 7290110558284/561352/112330390/578053) → validate_comparison_page.py hard-fails imageUrl → Data fetch-or-Product-waive/dump; (ii) ingredient 4068011 "חלב כבשים מפוסטר" single-token flagged truncated = likely validator FALSE-POS (legit 1-ingredient sheep-milk yogurt) → Data confirm. Both block the go-live battery until resolved/waived (own Data dispatch after round-3).
+- DRINKABLE ROUND 2 (a6409fe4, verified): RT-C5 + RT-C4 + RT-V1 all RESOLVED, RT-C1/C2 confirmed, 0 regression, 0 CRITICAL, render clean (validate --http now EXIT 0, images 20/20). **NEW HIGH RT-2H1:** classifier misses "עמילן טפיוקה מעובד" (modified TAPIOCA starch) on 3 products (573737/552244/938396) — detects plain "עמילן מעובד" but not the tapioca variant → tax_modified_starch=False → understated additive card+count, 938396 copy over-claims "שני מייצבים טבעיים" while a modified starch is on-label, AND additive_quality possibly under-counted → grade could be understated. **Honest-data call: fix detection properly, don't ship understated additive scores on a "protein-at-cost-of-additives" page.** → **Data DIAGNOSIS+BLAST-RADIUS ✅ RETURNED (verified, MEASURE-ONLY, engine byte-identical):** root cause = ingredient_taxonomy.py:283-338/366-382 contiguous-substring match — "עמילן מעובד" not contiguous in "עמילן טפיוקה מעובד" → falls through to bare "עמילן" → **mis-classified as native_starch (benign)**, so ECS-v1 modified_starch_stabilizer −3 penalty never fires → score ~3pt too HIGH. **BLAST RADIUS = 27 live-indexed products / 5 pages** (drinkable 3, spoonable 13, hummus 3, cakes_hard_cookies 7, crackers 1); **6 cross a grade boundary** (drinkable 573737 B→C + 938396 C→D; spoonable 7290010471669 D→E + 578572 C→D + 119377404 B→C; crackers 7290011489595 C→D). Proposed fix = source-tolerant matcher `עמילן(?:\s+\S+){1,2}\s+מעובד` w/ `לא מעובד` negative-lookaround. **BOTH yogurt pages affected → neither ships on understated grades. Fix = ENGINE change → TRIPWIRE 1 (changes published scores; crackers/hummus/cakes are LIVE).**
+🟠 **FORK ROUTED (mandatory pre-tripwire):** Nutrition co-sign (a15f130b — fix correctness + is the −3 ECS penalty genuinely earned by modified starch + grade-move honesty) + **C3 P509** (independent challenge: fix-now-split vs defer; does touching the engine need owner sign-off; false-positive risk; other source-variants). **Provisional plan (pending both):** yogurt is PRE-LAUNCH (no published score protected) → apply fix + re-score yogurt + re-author affected copy + red-team = autonomous w/ Nutrition co-sign (precedent: whitespace-fragility fix). LIVE 3-category re-flow (hummus/cakes/crackers regenerate+redeploy, crackers crosses a grade) = tripwire-2 consumer deploy → **OWNER DIGEST item, queued, non-blocking** (live pages keep serving committed JSON until owner approves). Do NOT apply engine fix until C3+Nutrition green.
+**BLOCKS:** both yogurt pages' round-3 red-team + owner-ready + the GLP-1 guide (page 3 uses final yogurt scores) all wait on the RT-2H1 fix decision.
+**C3 P509 ✅ RETURNED (verified, advisory): fix-now-split ENDORSED.** Fix the classifier + rescore pre-launch yogurt now; HOLD live-cat (hummus/cakes/crackers) regen+redeploy for owner approval (published scores move). Guardrails: phrase-boundary-safe regex (no comma-crossing), preserve native `לא מעובד`, scan other source-qualified variants (pectin/gelatin/lecithin), full cross-corpus baseline diff, prove no live page/API auto-reflows. Do NOT reopen ECS −3 weight in this bug fix (crossings prove classifier mattered, not that penalty is wrong). Bari live pages serve committed STATIC JSON (no runtime engine) → applying engine fix changes 0 live pages until deliberate regen+redeploy. **BOTH CO-SIGNS GRANTED (persisted `TAPIOCA_STARCH_FIX_COSIGN.md`):** Nutrition YES w/ 2 hardenings
+(comma-boundary guard + symmetric 3-synonym treatment + לא-מעובד precheck, all corpus-verified vs real
+strings) · Product D7 YES same conditions + log C3's pectin/gelatin/lecithin scan as its own follow-up.
+Yogurt go-live impact: does NOT change go/no-go, changes what "go" is built on — both ship, only on
+corrected grades; 938396 copy over-claim ("שני מייצבים טבעיים") must re-author regardless of the fix.
+**Owner-digest line drafted (Product):** "classifier bug undercounted a real on-label additive on 3
+live categories — fixing it drops hummus/cakes/crackers by up to one grade on 4 products (all more
+accurate); recommend approving regen+redeploy once hardening lands, no rush, live pages unaffected
+until you say go."
+**ROUTING CORRECTION (mid-session):** dispatch.py hardcodes REPO_ROOT=C:\Bari for all cloud C1 lanes
+(no worktree-target support) + the dirty-tree guard blocks GROK/CURSOR/GEMINI on this tree right now
+→ worktree-isolation plan abandoned as unsupported by the router. Routed to **C2 (P510, DeepSeek)**
+instead — correct lane: Nutrition handed an exact regex + exact 3-synonym list + 7 concrete test
+cases = zero-inference mechanical implementation, not C1 judgment. C2 rides the no-stash HTTP path
+(dirty-tree-safe). **P510 ✅ RETURNED + orchestrator-VERIFIED:** ingredient_taxonomy.py patched exactly
+per spec (only file touched, engine/constants/frontend/copy untouched); orchestrator independently
+re-ran all 7 regression tests → 7/7 PASS. Cross-corpus diff = **28 flips, not 27** — C2 correctly
+STOPPED and reported rather than fudging the number (2 cakes_hard_cookies barcodes
+7290123330280/334 flagged "OCR-corrupted" and excluded from the original a2e82720 blast-radius scan).
+**Orchestrator ruling (verified vs raw BSIP1 text):** both are genuine, unambiguous E1442
+modified-potato-starch declarations; the "n" chars are pervasive scrape-noise scattered through the
+WHOLE ingredient string (e.g. "שומןnדקל"="שומן דקל"), not specific to the starch mention — not
+ambiguous. **28 is the correct total; the original scan under-counted by 2** (overly-conservative OCR
+filter). Both live/displayed (62/62 cakes page). Folds into the already-queued live-3-category
+re-flow (cakes_hard_cookies), not a yogurt blocker.
+**P511 (C2) ✅ RETURNED-UNVERIFIED → orchestrator caught a real gap, fixed directly.** Re-score of the
+16 barcodes landed correctly (score==trace PASS both pages 20/20+78/78, all 5 expected grade
+crossings confirmed exact: drinkable 573737 B→C + 938396 C→D; spoonable 471669 D→E + 578572 C→D +
+377404 B→C; both wired/source JSON pairs byte-synced, counts intact 20+78, traces genuinely
+regenerated w/ fresh timestamps, 0 cross-contamination into live categories — confirmed the
+cakes/hummus 'M' files are unrelated pre-existing dirt from 2026-07-05, not this fix). **BUT: C2 only
+completed HALF the spec** — it fixed the invisible score math but left the CONSUMER-FACING d4
+additive-card entry missing on 9 of 16 products (incl. all 3 drinkable ones — the exact page RT-2H1
+originated on). Orchestrator independently verified all 16 barcodes' raw ingredient text genuinely
+declares "עמילן טפיוקה מעובד", confirmed the correct E-number (E1442, per the RT-C4 tapioca convention)
+per-product against BSIP1 raw text, and **added the missing card entry directly** (all 4 files, 9
+products, exact template match to the 7 already-correct entries) rather than risk a 3rd C2
+round-trip on data multiple red-team rounds have already hardened. Both pages re-verified PASS after
+(drinkable 20/20, spoonable 78/78; drinkable's 7 "manual-review" superlative WARNs are pre-existing
+advisory noise on barcodes OUTSIDE the 16, not a regression — verdict PASS).
+**Lesson logged:** C2/DeepSeek is reliable for narrow, single-file, fully-enumerated specs (P510) but
+silently under-delivers on multi-part specs touching multiple files/fields (P511) — always independently
+verify EVERY named deliverable against the artifact, not just the headline claim; don't trust the model's
+own completion narrative.
+**Content re-author ✅ RETURNED + orchestrator-VERIFIED:** 938396 priority fix correct (honestly
+distinguishes the 2 genuinely-natural stabilizers guar/locust-bean-gum from the 3rd, modified starch,
+explicitly flagged non-natural) · 4/5 grade-crossers needed + got a copy fix (377404 was already
+accurate) · 6/11 non-crossers needed + got additive-count fixes, including one Content caught beyond
+brief (7290119386642 was naming entirely WRONG additives — "flavor agent+stabilizer" vs actual
+phosphates+modified-starch) · both file-pairs re-verified byte-synced · both go-live batteries
+independently re-run PASS (20/20, 78/78, 0 mismatch) · all 5 crossers' score/grade independently
+spot-checked exact-match, 0 drift from the copy edit. **RT-2H1 FULLY CLOSED** — classifier fixed,
+28-product blast radius correctly measured, 16 yogurt-scoped products re-scored + re-carded +
+re-authored, both pages honest and consistent top to bottom.
+**DRINKABLE ROUND 3 (FINAL) ✅ RETURNED + orchestrator-VERIFIED: OWNER-READY.** 0 open CRITICAL, 0 open
+HIGH. All Round 1/2 fixes (RT-C5/RT-C4/RT-V1/RT-2H1) confirmed resolved, 0 regression. Full sweep
+GREEN: run_gates.py exit 0, validate_comparison_page.py --http exit 0 (8/8 gates), rank_check.py 0
+FALSE, real-DOM render 375px+desktop 0 console errors, first live E (55329) renders distinct #A52121.
+1 MEDIUM found (RT-3M1: 55329 made two mutually-inconsistent "two stabilizers" claims — row-copy said
+carrageenan+modified-starch, expansion said pectin+carrageenan — both undercounting the true 3
+stabilizer agents on-label) → **fixed directly (Content, no 4th round spun)**, unified to the honest
+3-agent list, orchestrator re-verified all mentions now agree + battery still PASS.
+**D10 challenge-gate report materialized** (`02_products/yogurt_system/reports/
+red_team_yogurt_drinkable_task515A_v3.md`) — red-team agents don't self-author report files per
+protocol; orchestrator wrote it from the verified round-by-round findings. run_gates.py re-confirmed
+exit 0 / "Overall: PASS" against the final state. **DRINKABLE PAGE IS OWNER-READY.**
+**SPOONABLE ROUND 3 (FINAL) ✅ RETURNED + orchestrator-VERIFIED: OWNER-READY.** 0 open CRITICAL, 0 open
+HIGH. All Round 1/2 fixes (HIGH-1 processing over-claim, 2 MEDIUMs, RT-R2-1 literal-S, superlative
+false-max, RT-2H1 tapioca on 13 products incl 3 grade crossers) confirmed resolved, 0 regression. Full
+sweep GREEN: run_gates.py exit 0, rank_check.py 0 FALSE, score/grade-vs-trace 0/78 mismatch, 0
+grade-monotonicity violations, real-DOM render 0 console errors/78 rows/no overflow, expand/collapse
+works. 2 pre-existing non-blocking MEDIUMs found (d4-card undercounts truthful copy on 3 untouched
+products; minor caveat-box phrasing nit) — both routed, neither introduced this session, neither
+blocks. D10 report materialized (`red_team_yogurt_spoonable_task515_v3.md`); run_gates.py re-confirmed
+exit 0 / "Overall: PASS". **SPOONABLE PAGE IS OWNER-READY. BOTH YOGURT PAGES OWNER-READY.**
+**RT-3M1 fix ✅ verified clean.** Both yogurt pages fully closed, 0 open findings anywhere.
+**Follow-ups REGISTERED to registry (2026-07-08):** TASK-523 (HIGH, BLOCKED on owner) live 3-category
+re-flow — hummus/cakes_hard_cookies/crackers, 12 products flip native→modified_starch (28 total
+blast-radius minus the 16 already-applied to yogurt), 4 cross a grade boundary, all downward/more-
+accurate, held for owner consumer-deploy approval (tripwire 2) · TASK-524 (MEDIUM) trace_writer
+ECS-penalty serialization gap · TASK-525 (MEDIUM) signal_extractor whitespace-fragility (systemic,
+Nutrition-recommended) · TASK-526 (MEDIUM) bari-grade-badge legacy-import boundary violation
+(pre-existing, no render risk) · TASK-527 (MEDIUM) brined-cheeses 14 + milk 3 score==trace/ingredient
+mismatches on LIVE pages (surfaced incidentally by the validator fix; pre-existing, untriaged).
+**TASK-504A ✅ Product GO ruling (orchestrator-verified against live JSONs, exact-match on every cited
+number):** both original CRITICALs resolved by the yogurt corpus (RT-1: 23/78 spoonable clear ≥8g
+protein/100g in a real bimodal tier — not a low-cal-filter artifact, top product 13.1g/133kcal; RT-2:
+real high-protein dairy now in-corpus). **Scope: spoonable primary/backbone (78), drinkable folded in
+as a secondary "on-the-go" callout only (3/20 clear the threshold — too thin for a standalone
+section)**, cut a standalone drinkable section (reversal condition: future corpus growth or usage
+data). **Bars:** protein-density CONFIRM · sodium CONFIRM w/ real bands (spoonable 20/48/121mg,
+drinkable 20/53/170mg w/ 1 ayran-style outlier) · **added-sugar NEEDS REDESIGN** — the planned field
+`added_sugar_sources_count` doesn't exist in the actual JSON (orchestrator-verified 0 hits); raw
+sugar_g alone conflates natural lactose with added sugar (S-grade plain yogurt = 3.3g pure lactose) →
+routed to Nutrition to redesign around the real `limitingFactors` field. **satiety_support stays
+DROPPED**, re-confirmed with sharper evidence (still calorie/ratio-driven one layer down: 2.5g-protein
+product scores satiety=100, 3.2g-protein scores 60). **Framing UNCHANGED** (no GLP-1 badge, no drug
+qualifier, omit-not-hedge, general-adult) — risk travels with topic not corpus, correctly not
+loosened. **0 new tripwire** (display-only, reuses shipped zero-open-finding scores).
+**Nutrition bar spec ✅ RETURNED + orchestrator-VERIFIED (exact match on every number re-derived):**
+Bar 1 protein — LOCKED absolute grams (not ratio; corpus has a genuine 6.5→10.0g dead zone, ratio-vs-
+absolute question moot here), threshold ≥8g/100g (23/78 spoonable). Bar 2 sodium — LOCKED real bands
+(low ≤35 / moderate 36-65 / elevated >65mg, calibrated off spoonable's natural gap-breaks; drinkable
+genuinely skews saltier, not a banding artifact). Bar 3 sugar — REDESIGNED (original field genuinely
+absent, raw sugar_g genuinely unusable — no-added max 5.3g overlaps added-sugar min 3.1g) → 3-way
+word-boundary keyword+d4_additives classifier (caught + fixed 2 real substring-collision traps:
+סוכר⊂סוכרלוز, פרוקטוז⊂אוליגופרוקטוז). satiety_support — CONFIRMED DROPPED, independently reproduced
+worse than reported (2.5g-protein product scores 100, 6.3g-protein product scores 43.4 — inverse-
+calorie proxy, not a protein signal).
+**Content GATE-1 copy ✅ RETURNED + orchestrator-VERIFIED:** all 4 shortlist products (S/S/A/B grades)
++ all 3 drinkable-callout products (all C, all confirmed carrying E950/E951/E955 artificial sweetener)
+independently re-pulled from live JSON — every number exact match. Guardrail scan clean: 1 GLP mention
+(hero context only, no product attachment), 0 Ozempic/Wegovy/nausea/fiber/hydration/framework-jargon.
+Honest "protein tier ≠ grade" caveat uses a real example (7290119377411, B-grade despite 11.6g protein,
+correctly attributed to its 2 real limiting additives).
+**QA GATE-2 DISPATCHED (ae3333ce):** independent adversarial re-derivation of every claim (not
+trusting Content's self-report) — shortlist/callout numbers, sugar-bucket word-boundary safety,
+sodium bands, the "all 3 use artificial sweeteners" claim, shortlist completeness vs the full 78-corpus,
+guardrail zero-tolerance scan.
+**GATE-2 ✅ RETURNED — FAIL (2 findings, correctly caught two real defects).** Everything else PASS:
+all data claims exactly reproduced independently (shortlist 4/4, drinkable-callout 3/3 incl artificial-
+sweetener confirmation, protein/sodium/sugar aggregates all exact-match under a boundary-safe scan),
+guardrails 6/6 clean, shortlist proven the genuine complete intersection (not cherry-picked — the
+corpus-max-protein product correctly excluded for carrying added sugar). **RT-1 (HIGH, orchestrator-
+confirmed):** categoryCaveat + shortlist[3] both mis-identify 7290119377411's 2 score-limiting
+additives as "modified starch + stabilizer" — the REAL d4_additives are modified starch (E1422) +
+citric acid (E330, contested tier); the product's OWN existing comparison-page copy deliberately stays
+generic ("שני תוספים... מגבילים") — Content added a specific wrong identification. → **Content fix
+DISPATCHED aa337949.** **RT-2 (HIGH):** hero's lean-mass/protein science claims (25-39% lean-mass-loss,
+≥1.2g/kg protein) have no on-disk evidence record (orchestrator confirmed: 0 hits searching for any
+prior TASK-504A citation file) — medication-adjacent topic needs a real, verified citation before
+owner sight (zero-fabrication citation gate applies). → **Research verify+cite DISPATCHED a9c19d27**
+(real PMIDs only, reword if literature doesn't support the exact figures as written).
+**RT-1 fix ✅ verified** (orchestrator: 0 wrong-claim occurrences remain, both strings now correctly
+generic matching the product's own comparison-page convention). **RT-2 evidence ✅ verified**
+(`GLP1_GUIDE_SCIENCE_COSIGN_v1.md`, 11 real PMIDs, primary source PMID:41877354 = 2026 meta-analysis
+20 RCTs/15,782 participants reports "25%-39%" near-verbatim; both hero claims ruled DEFENSIBLE AS
+WRITTEN, no reword needed. Orchestrator independently ran `verify_citations.py` C0 gate + spot-checked
+both load-bearing PMIDs directly — 0 fabricated, 2 heuristic false-positive MISMATCHes on real PMIDs
+[the gate's domain-word check doesn't recognize incretin/GLP-1 vocabulary as nutrition-topic — logged
+TASK-528, LOW]). **QA RE-GATE DISPATCHED (a6fa9494)** — final GATE-2 pass/fail before Frontend build.
+**GATE-2 RE-CHECK ✅ PASS.** Both RT-1 + RT-2 confirmed resolved (RT-1: genericized text matches real
+d4_additives E1422+E330 exactly, matches trace + product's own shipped comparison-page copy; RT-2:
+evidence record responsive, "no reword" verdict sanity-checked and holds). Regression scan clean (0
+new blockers, all shortlist/drinkable numbers still exact-match). **CONTENT TWO-GATE COMPLETE.**
+2 more follow-ups registered: TASK-529 (MEDIUM) — separate pre-existing E-number/label mismatch on
+7290119377411 found while re-verifying (E1442+locust-bean-gum in display text vs E1422+E330 scored —
+different product, unrelated to RT-2H1's 16); TASK-530 (LOW) — Product to decide if hero science
+claims need a visible on-page citation before PUBLIC launch (not a build blocker now).
+**Frontend build ✅ RETURNED + orchestrator-VERIFIED.** `/madrichim/yogurt-glp1` live locally, noindex,
+23/23 copy fields byte-verbatim in DOM, reuses frozen ScoreChip+CategoryNoteBox (0 new visual
+primitives), 200/rtl-he/no-overflow/0-page-console-errors, both fullListNote links resolve 200.
+**Frontend correctly disclosed a spec-conflict (not silently decided):** frozen chip has no S slot →
+the 2 S-grade products' badges render "A" (matching the live comparison page's own fold + the copy's
+own gradeNote promise of identity). **Orchestrator caught the deeper implication:** the signed-off
+copy's prose for those same 2 products literally says "דירוג S" — the IDENTICAL defect class (RT-R2-1)
+already caught+fixed once this session on the spoonable comparison page, now recurring on the guide.
+Slipped through BOTH content gates (neither checked prose-vs-badge visual consistency specifically).
+→ **Content fix DISPATCHED (a6f4e4d4)**, same established fix pattern (genericize, no letter-grade
+claim in prose), applied to BOTH the source + built copy files.
+TASK-504A.md registry reconciled (was stale, described the rejected milk-shelf attempt; now reflects
+the yogurt-corpus rebuild + full gate trail).
+**S-vs-A fix ✅ verified.** Both files byte-synced (sha256 4da1beef...), items 0/1 now say "one of the
+two highest-scoring products" with 0 letter-grade claims, item 2's accurate "מדירוג S" self-limitation
+reference correctly untouched, item 3's RT-1 fix intact.
+**Terminal red-team DISPATCHED (ab2221aa):** first round on the new page — full guardrail re-scan,
+render-verify, 8+ copy-fidelity spot-checks, shortlist-completeness re-derivation vs full 78-corpus,
+honesty/proportionality challenge on the "highest-scoring" framing.
+**Terminal red-team ✅ RETURNED: OWNER-READY = YES.** 0 CRITICAL, 0 HIGH. All 3 session fixes confirmed
+live (RT-1 additive identity, RT-2 evidence record, S-vs-A copy/chip mismatch). Shortlist independently
+re-derived as the complete correct intersection (4/4 across full 78-corpus, 0 wrongly omitted). 0 drug
+names/medical claims/badges/omitted-topic leaks anywhere in visible output. 1 MEDIUM (TASK-531, VM
+over-serialization, consumer-invisible+noindex) + 1 LOW (TASK-532) routed, non-blocking. D10 report
+materialized (`red_team_yogurt_glp1_guide_task504a_v1.md`). TASK-504A.md registry updated to
+owner-ready, final gate = owner index/robots flip only.
+**🎉 ALL 3 PAGES THE OWNER ASKED FOR ARE NOW OWNER-READY:** /hashvaot/yogurt (78, spoonable) ·
+/hashvaot/yogurt-drinks (20, drinkable) · /madrichim/yogurt-glp1 (guide, noindex pending owner flip).
+**NEXT:** scoped commit (yogurt data/scoring/copy + engine classifier fix + validator improvements +
+guide, EXCLUDING ambient unrelated dirty files) → owner digest (tripwires, follow-up tasks, C2-trust
+lesson, image-migration decision, live 3-cat re-flow approval ask).
+**Digest queue:** live 3-cat re-flow decision (TASK-523) · 18-file wholesale image migration (9-cat
+TASK-478 gap the script did wholesale) · guard margin-buffer/hysteresis precedent (C3+Product) ·
+infra: http.py stdlib-shadow, TASK-524/525/526/527 · first live E (honest, verified) · **C2-trust
+lesson**: DeepSeek/C2 reliable on narrow single-file fully-enumerated specs (P510 classifier patch,
+7/7 tests independently re-verified) but silently under-delivered on a multi-part spec touching
+4 files (P511 re-score — got score/grade right, silently skipped 9/16 consumer-facing additive-card
+entries) — always independently verify EVERY named deliverable against the artifact, never trust the
+model's own completion narrative, regardless of task tier.
+
+### ⏸️ (superseded) CHECKPOINT — DATA/SCORING/GENERATION PHASE COMPLETE
 Both yogurt pages exist as fully-scored, co-signed, tripwire-safe frontend JSON with placeholder copy. **RESUME (via /roadmap):**
 (1) fix/exclude the G8 spoonable product 7290116936581 + acquire the 4 self-hosted images; (2) **TWO-GATE COPY ×2** — Content
 authors Hebrew (insightLine/rowVerdict/consumerTakeaway/expansion + hero/prologue/category-notes) → Adversarial QA gate; the
