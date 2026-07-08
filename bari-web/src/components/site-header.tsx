@@ -22,6 +22,7 @@ const navLinks = [
   { label: "קטלוג", href: "/catalog" },
   { label: "בלוג", href: "/blog" },
   { label: "מדריכים", href: "/#guides" },
+  { label: "חדשות", href: "/news" },
 ] as const;
 
 export function SiteHeader() {

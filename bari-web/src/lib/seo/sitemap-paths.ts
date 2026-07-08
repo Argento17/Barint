@@ -27,6 +27,8 @@ export const ALL_INDEXABLE_PATHS = [
   "/blog/sugar-alcohols",
   "/blog/food-dyes",
   "/blog/ultra-processed-food",
+  "/news",
+  "/news/of-poultry-report",
   "/research/glass-box",
   "/research/bread-transparency-shufersal",
   "/methodology",
