@@ -253,6 +253,32 @@ _FOOD_NUTRITION_WORDS = frozenset({
     # protein quality study keywords
     "digestible indispensable amino acid", "diaas", "score", "protein source",
     "animals", "pig", "pea protein", "soy protein",
+    # ---------------------------------------------------------------------------
+    # TASK-528: medical / pharmacology / body-composition literature
+    # GLP-1 agonists, incretins, and weight-management drugs sit at the
+    # intersection of food/nutrition science and clinical pharmacology.  Papers
+    # on these topics are legitimate Bari evidence sources but their titles
+    # contain none of the food-domain words above, causing false MISMATCH.
+    # Adding these terms expands the positive-signal vocabulary WITHOUT touching
+    # _RED_FLAG_WORDS (which remains unchanged and still blocks unrelated fields
+    # such as stroke/leukemia/schizophrenia/ophthalmology).
+    # ---------------------------------------------------------------------------
+    # GLP-1 / incretin pharmacology
+    "glp-1", "glp1", "glp-1ra", "glp-1 receptor", "incretin", "incretins",
+    "semaglutide", "liraglutide", "tirzepatide", "dulaglutide", "exenatide",
+    "ozempic", "wegovy", "mounjaro", "victoza", "trulicity",
+    "sglt2", "sglt-2", "sglt2i", "dpp-4", "dpp4",
+    # body composition / lean mass (common in weight-loss RCTs cited by Bari)
+    "lean mass", "lean body mass", "fat mass", "body composition",
+    "muscle mass", "skeletal muscle", "sarcopenia", "sarcopenic",
+    "fat-free mass", "fat free mass", "body weight",
+    # weight management / obesity pharmacotherapy outcomes
+    "weight loss", "weight reduction", "weight management",
+    "bariatric", "anti-obesity", "adipose", "adiposity",
+    # clinical trial / meta-analysis terms for pharmacology studies
+    "network meta-analysis", "pharmacotherapy", "pharmacological",
+    "clinical trial", "randomised controlled", "randomized controlled",
+    "intervention", "placebo-controlled",
 })
 
 # Words that, if they appear in the RESOLVED title but NOT anywhere in the
@@ -305,14 +331,25 @@ def _topic_consistent(context: str, real_title: str,
         return True, "context too short for heuristic — conservative PASS (flag for human)"
 
     # Rule 4: if the resolved title itself contains very generic food-science terms
-    # (the context may be thin but the paper is clearly on-topic)
+    # (the context may be thin but the paper is clearly on-topic).
+    # TASK-528: also accept medical/pharmacology/body-composition titles that are
+    # legitimate Bari evidence sources (GLP-1/incretin/lean-mass/weight-loss RCTs).
     generic_ok = any(w in title_lower for w in (
         "food", "dietary", "nutrition", "nutrient", "diet", "protein",
         "amino acid", "digestib", "fatty acid", "cancer", "cardiovascular",
         "additive", "sorbic", "nitrate", "nitrite", "preservative", "emulsifier",
+        # GLP-1 / incretin pharmacology (TASK-528)
+        "glp-1", "glp1", "incretin", "semaglutide", "liraglutide", "tirzepatide",
+        "dulaglutide", "exenatide", "sglt2", "sglt-2", "dpp-4", "dpp4",
+        # body composition / lean mass (TASK-528)
+        "lean mass", "lean body mass", "body composition", "fat mass",
+        "muscle mass", "skeletal muscle", "sarcopenia",
+        # weight management outcomes (TASK-528)
+        "weight loss", "weight reduction", "anti-obesity", "adiposity",
+        "pharmacotherapy",
     ))
     if generic_ok:
-        return True, f"resolved title contains food/nutrition term; context is '{context[:60]}...'"
+        return True, f"resolved title contains food/nutrition/pharmacology term; context is '{context[:60]}...'"
 
     return False, "no shared nutrition/food domain words between context and resolved paper"
 
