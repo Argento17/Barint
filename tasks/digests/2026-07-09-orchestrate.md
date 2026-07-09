@@ -11,16 +11,21 @@ ready-and-safe autonomous surface was thin; most forward moves are tripwire- or 
 
 ---
 
-## Dispatched (native Sonnet, background, propose-RETURNED)
-| Task | Lane | Agent | Scope | Risk posture |
-|---|---|---|---|---|
-| TASK-527 | C1 Adversarial QA | a0e1b21 | READ-ONLY diagnosis of brined(14)+milk(3) `score==trace` / ingredient-truncation mismatches on LIVE pages; classify **DISPLAY-ONLY vs SCORE-AFFECTING** | Zero-mutation; report-only; OFF-ban guard |
-| TASK-528 | C1 Data | a71e1d3 | Additive fix of `verify_citations.py` domain-word false-positives on GLP-1/incretin PMIDs; fabrication detection must stay intact + regression test | Single validator file + test; non-consumer, non-score |
-
-Both re-invoke me on completion → I verify each claim against the artifact before any close. TASK-527's
-SCORE-AFFECTING bucket, if non-empty, is a tripwire-1 owner item (park, do not fix).
+## Dispatched (native Sonnet, background) — both RETURNED, verified, CLOSED this run
+| Task | Lane | Agent | Outcome |
+|---|---|---|---|
+| TASK-527 | C1 Adversarial QA | a0e1b21 | Diagnosis verified → CLOSED. 0 confirmed SCORE-AFFECTING; surfaced 1 tripwire-1 (TASK-545, below). |
+| TASK-528 | C1 Data | a71e1d3 | Fix verified (10/10 test re-run, additive-only) → CLOSED + committed `01a90daa`. |
 
 ## Closed (verified against artifacts — controls re-run live this session)
+- **TASK-528** — `verify_citations.py` GLP-1/incretin false-positive fix. Purely additive (26 medical/
+  body-composition terms + Rule-4 `generic_ok`); `_RED_FLAG_WORDS`/Rule-1/Rule-3/author-year corroboration
+  untouched (read the full diff). Re-ran the new regression test myself: 10/10 exit 0 — 5/5 real PMIDs
+  (incl the bug case 41877354) now pass, 3/3 negative controls still MISMATCH. Committed `01a90daa`.
+- **TASK-527** — live-mismatch diagnosis (read-only, report `task527_..._v1.md` sha `1f25d94`). 0 confirmed
+  SCORE-AFFECTING. Brined 14 mismatches = DISPLAY-ONLY (stale pre-reflow traces; frontend `_meta.reflow`
+  TASK-438 authoritative — I confirmed the grade_movers match). Milk 18/18 scores match the frozen
+  `run_005_headpin`; the 1 "truncation" is a harmless trailing-comma scrape artifact. Committed `48e64b5c`.
 - **TASK-541** — ENGINE three-layer copy enforcement. L1: `enforce_clean()` RAISED on the exact
   owner-cited data-state phrase; `--selftest` PASS (57 template entries, exit 0); 25 banned phrases in
   `copy_constants.py`. L2: `validate_copy_authored.py` — real shipped yogurt PASS (spoonable 78 /
@@ -45,7 +50,16 @@ SCORE-AFFECTING bucket, if non-empty, is a tripwire-1 owner item (park, do not f
   deploy. Unblock = co-sign dispatch, but it lands display changes on LIVE pages → supervised.
 
 ## Parked for owner (tripwires — halted, not touched)
-- **TASK-542 (NEW finding this run)** — the new copy gate caught a **real live defect**: `brined_cheeses`
+- **TASK-545 (NEW, tripwire-1 — the one to look at first)** — the TASK-527 diagnosis found the LIVE milk
+  page shows rice drink `8000215204219` at **46.3/D**, but `run_005_headpin/AUTHORITATIVE.md` documents an
+  **owner-approved, twice-confirmed manual override of 52.3/C** (TASK-169C + TASK-180A 2026-06-04, "the
+  override WINS over the frozen-engine value... any future rebuild MUST re-apply"). The live value is
+  neither the override (52.3/C) nor the engine value (49.4/D) → the override was **silently lost in the
+  `task409_rederive_milk_20260626` rebuild**. A live published score is contradicting a documented frozen
+  invariant. Registered BLOCKED, owner-gated; I did NOT touch it. Needs data-agent root-cause (which file
+  renders the live milk route; how the rebuild dropped the override) → then owner confirms the correct
+  value before any re-apply.
+- **TASK-542 (finding earlier this run)** — the new copy gate caught a **real live defect**: `brined_cheeses`
   (LIVE on origin/master) narrates score mechanism on **4 rows**, not the 1 registered:
   `7290108509755` "הגורם המגביל" · `7296073641964`/`7290114314015` "מוריד את הציון" · `4861360`
   "מגביל את הציון". Fix = Content two-gate → **owner merge (tripwire 2)**. Scope corrected in registry.
@@ -74,7 +88,16 @@ SCORE-AFFECTING bucket, if non-empty, is a tripwire-1 owner item (park, do not f
 - Low-pri backlog untouched: TASK-528 (dispatched this run), TASK-529/531/532 (yogurt/guide micro follow-ups),
   TASK-524/525/526 (score-neutral infra), TASK-514 (EV-017 grounds-language), sitemap-completeness micro-pass.
 
-## Wall
-Out of ready work that is safe to run unattended. Two native-Sonnet dispatches (527/528) are in flight and
-will re-invoke for verify+close. Everything else is tripwire-, deploy-, co-sign-, or cloud-lane-gated →
-handed to the owner's supervised morning kick above.
+## Wall — run complete
+Both dispatches (527/528) returned, were verified against artifacts, and closed. **5 tasks closed on
+evidence this run** (541, 536, 540, 528, 527); 1 tripwire-1 surfaced and parked (545); TASK-542 scope
+corrected. Out of ready work that is safe to run unattended — everything remaining is tripwire-, deploy-,
+co-sign-, or cloud-lane-gated → the owner's supervised morning kick above.
+
+**Top of the owner's morning list:** TASK-545 (live milk score contradicts an owner-approved override —
+verify the correct rice-drink value) · the 3 yogurt pages localhost review → merge · TASK-523 re-flow
+go/no-go · TASK-542 brined+milk live banned-phrase copy fix.
+
+Commits on `task506` this run: `ed656ad` (closes 541/536/540 + board + digest), `01a90daa` (TASK-528
+fix + test), `48e64b5c` (TASK-527 report + close + TASK-545). Nothing pushed, no consumer deploy, no
+published score moved.
