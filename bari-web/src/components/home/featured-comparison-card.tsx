@@ -15,12 +15,15 @@ export function FeaturedComparisonCard({ className = "" }: { className?: string 
   const { vitabix, lyon } = duel;
 
   return (
-    /* Shell provides the outer frame and shadow -- card itself stays clean */
+    /* Unified to the /hashvaot hub finding-card chrome (owner-approved 2026-07-09):
+       rounded-2xl, neutral border, soft shadow, hover-lift + accent top-bar. */
     <Link
       href={duel.href}
-      className={`group block w-full overflow-hidden rounded-[1.5rem] bg-white transition-opacity duration-200 hover:opacity-95 ${className}`}
+      className={`group relative block w-full overflow-hidden rounded-2xl border border-[rgba(17,19,24,0.09)] bg-white shadow-[0_1px_2px_rgba(17,19,24,0.05)] transition-[transform,box-shadow] duration-200 hover:-translate-y-[3px] hover:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${className}`}
       dir="rtl"
     >
+      <div className="h-[0.4rem] w-full shrink-0 bg-[#1F8F6A]" aria-hidden />
+
       {/* === Top grid: story | product A | VS | product B === */}
       <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_auto_auto]">
 

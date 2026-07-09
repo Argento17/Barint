@@ -40,7 +40,7 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
     <Link
       href={href}
       className={cn(
-        "group/card block transition-[transform] duration-500 ease-out hover:-translate-y-1",
+        "group/card block transition-[transform] duration-500 ease-out hover:-translate-y-[3px] motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
       )}
     >
@@ -58,7 +58,7 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
         updatedLabel={formatComparisonUpdatedLine(chocolateBarsCorpusMeta.generated)}
         asLinkChild
         theme={{ accent: "#3D2314", photo: "/hashvaot/themes/chocolate-bars.jpg" }}
-        className="group-hover/card:border-[#3D2314]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(61,35,20,0.28),0_0_60px_-26px_rgba(61,35,20,0.08)]"
+        className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>
   );

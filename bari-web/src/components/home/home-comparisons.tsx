@@ -112,12 +112,9 @@ export function HomeComparisons() {
           </Link>
         </div>
 
-        {/* Comparison shell -- white rounded frame, padding, soft shadow */}
-        <div
-          className="reveal-up mb-10 mx-auto rounded-[34px] border border-black/[0.06] bg-white/[0.86] p-6 shadow-[0_16px_48px_-20px_rgba(17,19,24,0.14)] backdrop-blur-sm md:p-8"
-          style={{ maxWidth: "1180px" }}
-          dir="rtl"
-        >
+        {/* Featured comparison card owns its own chrome (hub finding-card
+            language) -- this wrapper only centers/constrains width. */}
+        <div className="reveal-up mb-10 mx-auto" style={{ maxWidth: "1180px" }} dir="rtl">
           <FeaturedComparisonCard />
         </div>
 

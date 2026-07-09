@@ -71,12 +71,18 @@ export function ComparisonIntelligenceHero({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[1.35rem]",
+        "relative overflow-hidden rounded-2xl",
         "min-h-[22rem]",
-        "border border-[#1A1D24]/[0.08] shadow-[0_32px_100px_-60px_rgba(17,19,24,0.35)] ring-1 ring-[#FFFFFF]/80",
+        "border border-[rgba(17,19,24,0.09)] bg-white shadow-[0_1px_2px_rgba(17,19,24,0.05)]",
         className
       )}
     >
+      {/* accent top-bar — reference hub card language (owner-approved 2026-07-09) */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-[0.4rem]"
+        style={{ background: theme?.accent ?? "#1F8F6A" }}
+        aria-hidden
+      />
       <div
         className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,#FDFDF8_0%,#F4F6F3_42%,#EEF5F1_100%)]"
         aria-hidden
@@ -147,7 +153,10 @@ export function ComparisonIntelligenceHero({
           </span>
         </div>
 
-        <h1 className="mt-5 text-balance text-2xl font-extrabold leading-[1.12] tracking-[-0.045em] text-[#12151A] sm:text-[1.75rem] lg:text-[2rem] lg:tracking-[-0.05em]">
+        <h1
+          className="mt-5 text-balance text-2xl font-extrabold leading-[1.12] tracking-[-0.045em] text-[#12151A] sm:text-[1.75rem] lg:text-[2rem] lg:tracking-[-0.05em]"
+          style={{ fontFamily: "var(--font-heading, var(--font-sans))" }}
+        >
           {title}
         </h1>
 

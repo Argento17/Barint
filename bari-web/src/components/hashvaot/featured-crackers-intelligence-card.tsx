@@ -39,7 +39,7 @@ export function FeaturedCrackersIntelligenceCard({ href, description }: Props) {
     <Link
       href={href}
       className={cn(
-        "group/card block transition-[transform] duration-500 ease-out hover:-translate-y-1",
+        "group/card block transition-[transform] duration-500 ease-out hover:-translate-y-[3px] motion-reduce:transition-none motion-reduce:hover:translate-y-0",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
       )}
     >
@@ -57,7 +57,7 @@ export function FeaturedCrackersIntelligenceCard({ href, description }: Props) {
         updatedLabel={formatComparisonUpdatedLine(crackersCorpusMeta.generated)}
         asLinkChild
         theme={{ accent: "#BF8F4A", photo: "/hashvaot/themes/crackers.jpg" }}
-        className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
+        className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>
   );

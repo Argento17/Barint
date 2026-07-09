@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
 import { featuredArticle, secondaryArticles } from "@/lib/blog/blog-index-content";
+import { cn } from "@/lib/utils";
 
 import { HomeContainer } from "./section-frame";
 
@@ -47,13 +48,26 @@ export function HomeGuides() {
           {teasers.map((article) => (
             <article
               key={article.slug}
-              className="flex h-full min-h-[11.5rem] flex-col rounded-[1.25rem] border border-black/[0.07] bg-[#FFFFFF]/80 p-5"
+              className={cn(
+                "relative flex h-full min-h-[11.5rem] flex-col overflow-hidden",
+                "rounded-2xl border border-[rgba(17,19,24,0.09)] bg-white p-5 pt-[calc(1.25rem+0.4rem)]",
+                "shadow-[0_1px_2px_rgba(17,19,24,0.05)]",
+                !article.comingSoon && [
+                  "transition-[transform,box-shadow] duration-200",
+                  "hover:-translate-y-[3px] hover:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]",
+                  "motion-reduce:transition-none motion-reduce:hover:translate-y-0",
+                ]
+              )}
             >
+              <div className="absolute inset-x-0 top-0 h-[0.4rem] bg-[#1F8F6A]" aria-hidden />
               <p className="text-xs font-bold text-[#167A58]">{article.categoryLabel}</p>
-              <h3 className="mt-2 text-lg font-extrabold leading-snug text-[#111318]">
+              <h3
+                className="mt-2 text-lg font-extrabold leading-snug text-[#111318]"
+                style={{ fontFamily: "var(--font-heading, var(--font-sans))" }}
+              >
                 {article.title}
               </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4E5663]">
+              <p className="mt-2 flex-1 text-base leading-relaxed text-[#4E5663]">
                 {article.description}
               </p>
               <p className="mt-2 text-xs text-[#5E6560]">{article.readTime}</p>

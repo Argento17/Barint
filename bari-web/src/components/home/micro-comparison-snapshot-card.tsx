@@ -2,16 +2,19 @@
 
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import type { CarouselCard } from "@/lib/home/homepage-carousel-schema";
 import { CardVisualBand } from "./carousel-card-visuals";
 import { cn } from "@/lib/utils";
 
-// -- Card shell ────────────────────────────────────────────────────────────────
+// -- Card shell — unified to the /hashvaot hub finding-card language
+// (owner-approved 2026-07-09): rounded-2xl, neutral border, soft shadow,
+// hover-lift handled by the outer motion.div (below) so this shell only
+// owns the static chrome + hover shadow. ────────────────────────────────
 
 const CARD_SHELL =
-  "group block h-full min-h-[20rem] w-[92vw] max-w-[44rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[42rem] flex flex-col";
+  "group block h-full min-h-[20rem] w-[92vw] max-w-[44rem] shrink-0 snap-center overflow-hidden rounded-2xl border border-[rgba(17,19,24,0.09)] bg-white shadow-[0_1px_2px_rgba(17,19,24,0.05)] transition-[box-shadow] duration-200 hover:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)] sm:w-[42rem] flex flex-col";
 
 const CONTENT_PAD = "px-4 py-3 md:px-5 flex flex-col flex-1";
 
@@ -56,13 +59,17 @@ function CompactScoreRow({ card }: { card: CarouselCard }) {
 // -- Card layout ───────────────────────────────────────────────────────────────
 
 export function HomepageCardItem({ card }: { card: CarouselCard }) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      whileHover={{ y: -2 }}
+      whileHover={reduceMotion ? undefined : { y: -3 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       className="h-full"
     >
       <Link href={card.href} className={CARD_SHELL}>
+        {/* accent top-bar — reference hub card language */}
+        <div className="h-[0.4rem] w-full shrink-0" style={{ background: card.accent }} aria-hidden />
         {/* Visual band -- type-specific, no theme photos */}
         <CardVisualBand card={card} />
 
