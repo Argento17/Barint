@@ -14,7 +14,6 @@ export interface HashvaotCategory {
   description?: string;
   comingSoonSubtext?: string;
   accent: string;
-  heroStat?: { value: string; label: string };
   /** Live-card CTA label override. Absent → "לכל ההשוואות" (hashvaot default).
    *  The madrichim hub sets "מדריך קנייה" — reused verbatim from the live blog CTAs. */
   ctaLabel?: string;
@@ -30,24 +29,30 @@ export const PERSONAL_CARE_COMING_SOON_SUBTEXT =
 
 export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
   {
-    id: "supermarket",
-    title: "מה שכתוב על האריזה — ומה שכתוב ברכיבים",
-    status: "live",
-    countLabel: "18 השוואות",
-    href: "/hashvaot/supermarket",
-    description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
-    accent: "#BC6A33",
-    heroStat: { value: "השוואות פעילות", label: "מוצרי סופרמרקט" },
-  },
-  {
     id: "supplements",
-    title: "תוספי תזונה — ספיגה ואפקטיביות, לא רק מה שעל הקפסולה",
+    title: "תוספי תזונה",
     status: "live",
     countLabel: "1 השוואה",
     href: "/hashvaot/supplements",
     description: "תוספי תזונה מנותחים באופן שונה ממוצרי מזון — ספיגה, אפקטיביות ועוד",
-    accent: "#4A7B8C",
-    heroStat: { value: "השוואות פעילות", label: "תוספי תזונה" },
+    accent: "#1F8F6A",
+  },
+  {
+    id: "supermarket",
+    title: "מוצרי סופרמרקט",
+    status: "live",
+    countLabel: "18 השוואות",
+    href: "/hashvaot/supermarket",
+    description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
+    accent: "#2F7A4F",
+  },
+  {
+    id: "personal-care",
+    title: "טיפוח אישי",
+    status: "building",
+    href: "/hashvaot/personal-care",
+    comingSoonSubtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
+    accent: "#6E9C88",
   },
   {
     id: "raw-foods",
@@ -56,14 +61,6 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     href: "/hashvaot/raw-foods",
     comingSoonSubtext: RAW_FOODS_COMING_SOON_SUBTEXT,
     accent: "#7A8C5E",
-  },
-  {
-    id: "personal-care",
-    title: "טיפוח אישי",
-    status: "building",
-    href: "/hashvaot/personal-care",
-    comingSoonSubtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
-    accent: "#8B7BA8",
   },
 ];
 
