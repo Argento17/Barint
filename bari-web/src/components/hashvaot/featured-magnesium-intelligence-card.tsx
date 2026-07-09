@@ -59,7 +59,7 @@ export function FeaturedMagnesiumIntelligenceCard({ href, description }: Props) 
         ]}
         updatedLabel="עודכן יוני 2026"
         asLinkChild
-        theme={{ accent: "#4A7B8C", photo: "/hashvaot/themes/magnesium.jpg" }}
+        theme={{ accent: "#07936F", photo: "/hashvaot/themes/magnesium.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
     </Link>

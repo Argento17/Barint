@@ -14,7 +14,6 @@ export interface HashvaotCategory {
   description?: string;
   comingSoonSubtext?: string;
   accent: string;
-  heroStat?: { value: string; label: string };
 }
 
 // DRAFT — pending Content + QA sign-off
@@ -28,23 +27,21 @@ export const PERSONAL_CARE_COMING_SOON_SUBTEXT =
 export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
   {
     id: "supplements",
-    title: "תוספי תזונה — ספיגה ואפקטיביות, לא רק מה שעל הקפסולה",
+    title: "תוספי תזונה",
     status: "live",
     countLabel: "1 השוואה",
     href: "/hashvaot/supplements",
     description: "תוספי תזונה מנותחים באופן שונה ממוצרי מזון — ספיגה, אפקטיביות ועוד",
     accent: "#1F8F6A",
-    heroStat: { value: "השוואות פעילות", label: "תוספי תזונה" },
   },
   {
     id: "supermarket",
-    title: "מה שכתוב על האריזה — ומה שכתוב ברכיבים",
+    title: "מוצרי סופרמרקט",
     status: "live",
-    countLabel: "16 השוואות",
+    countLabel: "18 השוואות",
     href: "/hashvaot/supermarket",
     description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
-    accent: "#A63F2A",
-    heroStat: { value: "השוואות פעילות", label: "מוצרי סופרמרקט" },
+    accent: "#2F7A4F",
   },
   {
     id: "personal-care",
@@ -52,7 +49,7 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     status: "building",
     href: "/hashvaot/personal-care",
     comingSoonSubtext: PERSONAL_CARE_COMING_SOON_SUBTEXT,
-    accent: "#8B7BA8",
+    accent: "#6E9C88",
   },
   {
     id: "raw-foods",
