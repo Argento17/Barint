@@ -46,7 +46,7 @@ export function BariBrandLogo({ className, surface = "light", mark = true, imgCl
       aria-label="Bari"
     >
       <Image
-        src="/bari-logo-optimized.webp"
+        src="/bari-logo-optimized.png"
         alt="Bari"
         width={180}
         height={88}

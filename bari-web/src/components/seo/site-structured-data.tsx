@@ -15,10 +15,10 @@ export function SiteStructuredData() {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: "Bari",
-        alternateName: "ברי",
-        legalName: "ברי טכנולוגיות",
+        alternateName: "בארי",
+        legalName: "Bari Technologies",
         url: SITE_URL,
-        logo: `${SITE_URL}/bari-logo-optimized.webp`,
+        logo: `${SITE_URL}/bari-logo-optimized.png`,
         description:
           "אינטליגנציית מזון ישראלית: דירוגים והשוואות שקופות למוצרים על בסיס נתונים.",
       },

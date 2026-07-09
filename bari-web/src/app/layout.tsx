@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { HomeFooter } from "@/components/home/home-footer";
 import { ConsentManager } from "@/components/shared/consent-manager";
 import { GA4Script } from "@/components/shared/ga4-script";
+import { VercelAnalytics } from "@/components/shared/vercel-analytics";
 import { SiteStructuredData } from "@/components/seo/site-structured-data";
 import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
       "אינטליגנציית מזון ישראלית: אלגוריתמים, דירוגים והשוואות שקופות שמבוססות על נתונים.",
     locale: "he_IL",
     type: "website",
-    images: [{ url: "/bari-logo-optimized.webp", width: 512, height: 512 }],
+    images: [{ url: "/bari-logo-optimized.png", width: 512, height: 512 }],
   },
   twitter: {
     card: "summary",
@@ -73,6 +74,7 @@ export default function RootLayout({
         <HomeFooter />
         <ConsentManager />
         <GA4Script />
+        <VercelAnalytics />
         <SiteStructuredData />
       </body>
     </html>
