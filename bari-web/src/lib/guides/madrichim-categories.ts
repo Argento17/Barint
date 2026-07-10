@@ -25,17 +25,18 @@ import type { HashvaotCategory } from "@/lib/hashvaot/hashvaot-categories";
 
 // Title/description below are ported verbatim from the gate-1-approved copy
 // (magnesium_guide_copy_v1.md H1 + intro first sentence) — not newly authored.
-// ctaLabel reuses the live blog CTA string "מדריך קנייה" verbatim.
+// countLabel matches the finding-card redesign (b0c3ed53): splitCountLabel renders
+// "N מוצרים נבדקו" as value + label. ctaLabel reuses the live blog CTA string verbatim.
 export const MADRICHIM_CATEGORIES: HashvaotCategory[] = [
   {
     id: "magnesium-guide",
     title: "איך לבחור מגנזיום",
     status: "live",
     href: "/madrichim/magnesium",
+    countLabel: "18 מוצרים נבדקו",
     description:
       "בדקנו 18 תוספי מגנזיום מהמדף הישראלי לפי שישה דברים שבאמת קובעים אם תוסף מגנזיום שווה את הכסף.",
     accent: "#1F8F6A",
-    heroStat: { value: "18", label: "מוצרים נבדקו" },
     ctaLabel: "מדריך קנייה",
   },
   {
@@ -45,10 +46,10 @@ export const MADRICHIM_CATEGORIES: HashvaotCategory[] = [
     title: "יוגורט עתיר חלבון: מדריך לבחירה",
     status: "live",
     href: "/madrichim/yogurt-glp1",
+    countLabel: "78 מוצרים נבדקו",
     description:
       "מדריך לבחירת יוגורט עתיר חלבון מתוך המדף הישראלי, ממוין לפי חלבון, נתרן וסוכר, מבוסס על הציונים שכבר פורסמו בהשוואת היוגורט.",
     accent: "#6E9C88",
-    heroStat: { value: "78", label: "מוצרים נבדקו" },
     ctaLabel: "מדריך קנייה",
   },
 ];

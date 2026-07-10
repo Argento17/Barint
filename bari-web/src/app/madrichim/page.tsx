@@ -49,6 +49,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+import { BlogEditorialBackdrop } from "@/components/blog/blog-editorial-backdrop";
 import { HomeContainer } from "@/components/home/section-frame";
 import { HashvaotCategoryBox } from "@/components/hashvaot/hashvaot-category-box";
 import { MADRICHIM_CATEGORIES } from "@/lib/guides/madrichim-categories";
@@ -68,10 +69,12 @@ export default function MadrichimIndexPage() {
   return (
     <main
       className={cn(
-        "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
+        "relative min-h-screen overflow-hidden bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
       )}
     >
+      {/* Same wavy editorial stripes every content hub uses (news/blog) — site-wide style. */}
+      <BlogEditorialBackdrop />
       <HomeContainer className="relative py-14 md:py-20">
         {/* OLI as explorer, top-left of the hub (RTL: opposite the title block).
             Decorative — same idiom as the homepage LUMO (home-guides.tsx). */}
