@@ -32,7 +32,7 @@ const PARTIAL_PAGE_DISCLOSURE =
 // TASK-384 FIX: collapseMobile prop — on mobile (<md), shows only the first paragraph
 // with a "קרא עוד" toggle; remaining paragraphs expand inline. Content stays in DOM for
 // SEO. Desktop (md+) is always fully expanded regardless of the prop.
-function CategoryNoteBox({ note, collapseMobile = false }: { note: string; collapseMobile?: boolean }) {
+export function CategoryNoteBox({ note, collapseMobile = false }: { note: string; collapseMobile?: boolean }) {
   const [expanded, setExpanded] = useState(false);
   const paragraphs = note.split(/\n\n+/);
   const hasMore = collapseMobile && paragraphs.length > 1;
