@@ -5,8 +5,9 @@
   "corpus_dirs": [
     "C:\\Bari\\03_operations\\bsip1\\score_bars_task362_20260620_143230\\output"
   ],
-  "run_products_dir": "C:\\Bari\\02_products\\snack_bars\\bsip2_outputs\\score_bars_task362_20260620_143230\\products",
-  "_run_products_dir_note": "PHASE-1 REPRO (2026-07-01): traces from score_bars_task362 flattened to bsip1_{bc}/bsip2_trace.json layout. Produces 18/21 exact vs snacks_frontend_v5; 3 score drifts are task413 updates. run_snack_bars_001 traces (pre-task362 corpus) are WRONG for v5 and retained on origin only as historical artifact.",
+  "run_products_dir": "C:\\Bari\\_rescore_staging\\snacks_task413_staging\\products",
+  "_run_products_dir_note": "PHASE-1 REPRO (2026-07-01): traces from score_bars_task362 flattened to bsip1_{bc}/bsip2_trace.json layout. Produced 18/21 exact vs snacks_frontend_v5; 3 score drifts were task413 updates (see below).",
+  "_task563_repoint": "TASK-563 (2026-07-10, data-agent): repointed run_products_dir from bsip2_outputs/score_bars_task362.../products (the phase-1 dir, 18/21 exact + 3 drifters) -> _rescore_staging/snacks_task413_staging/products (the task413 re-derived flat traces, already staged by an earlier session per its own staging_config.json but never applied to this live config). VERIFIED: all 21/21 displayed products exact-match (diff=0.000) via input_reference.barcode-indexed bsip2_trace.json, including the 3 barcodes _meta.task413_rederive.score_updates_applied names (7290100659090, 6009684861000, 8423207208703). corpus_dirs unchanged (already correct -- same BSIP1 source this staged run reads).",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\snacks_frontend_v5.json",
   "retailer_scope": ["yohananof", "carrefour"],
   "subpool_filter": null,

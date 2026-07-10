@@ -5,7 +5,8 @@
     "C:\\Bari\\02_products\\hard_cheeses\\bsip1_task412"
   ],
   "_corpus_dirs_provenance": "TASK-429 (2026-07-01): corpus source PINNED to bsip1_task412 — it covers all 31 published v4 barcodes (bsip1_outputs covers only 12/31, and produces WRONG scores for 4 of the 12 it does have, e.g. 7290110320850 -> 67.0 vs published 62.6). Proven to byte-reproduce hard_cheeses_frontend_v4 (31/31, 0.000 drift, 0 grade moves) via _t429_reproduce.py. Prior corpus_dirs=bsip1_outputs was the stale root cause of the A/85-vs-B/67 invocation contradiction.",
-  "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hc_task412_rt4_fix\\products",
+  "run_products_dir": "C:\\Bari\\02_products\\hard_cheeses\\bsip2_outputs\\run_hc_task418_clean\\products",
+  "_task563_repoint": "TASK-563 (2026-07-10, data-agent): repointed run_products_dir from run_hc_task412_rt4_fix -> run_hc_task418_clean. VERIFIED: run_hc_task418_clean/products/*/bsip2_trace.json (indexed by input_reference.barcode) exact-matches ALL 31/31 published hard_cheeses_frontend_v4.json scores (final_score_estimate vs JSON score, diff=0.000 every row, incl. the 67.0-capped rows). run_hc_task412_rt4_fix predates the HC_DAIRY_SATFAT_NA_CAP_600_VALUE 63->67 cap fix (see _meta.fixes 'FIX-V5: rt4_fix sodium cap 63->67') so its trace no longer matches the live page (diffs up to 8.0pt, e.g. barcode 4137311 76.8 live vs 70.8 old-trace). run_hc_task418_clean (generated 2026-07-01T13:10Z, corpus_dir bsip1_task412 -- same corpus already configured here) is the run that actually applied the cap fix and is the one that reproduces the live page byte-for-byte on score. No score changed by this edit -- config now points at the run that already matches what is published.",
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\hard_cheeses_frontend_v4.json",
   "retailer_scope": [
     "yohananof"
