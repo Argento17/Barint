@@ -47,6 +47,7 @@ import {
   type GuideBucket,
   type GuideGaugeGeometry,
   type GuideLadderGeometry,
+  type GuideBarResult,
   type GuidePageVM,
   type GuideProductVM,
 } from "@/lib/view-models";
@@ -81,7 +82,7 @@ function bars(
     safety: s,
     labelTransparency: l,
   };
-  return GUIDE_BAR_ORDER.map((bar) => ({ bar, state: byKey[bar] }));
+  return GUIDE_BAR_ORDER.map((bar): GuideBarResult => ({ bar, state: byKey[bar] }));
 }
 
 // ─── Threshold geometry (TASK-504C spec §2/§3) — ONE object per bar, shared by every
@@ -171,6 +172,12 @@ const MAGNESIUM_TRANSPARENCY_LADDER: GuideLadderGeometry = {
   ],
 };
 
+// TASK-575 gate-2 HIGH-1 ruling (nutrition spec §11, copy package Slot 11.1) — the
+// SAME generic tooltip/expansion sentence for all 8 `evidence_limited` formAbsorption
+// rows (#2, #4, #5, #6, #7, #8, #10, #15). Verbatim.
+const EVIDENCE_LIMITED_FORM_NOTE_HE =
+  "הצורה הכימית ידועה ומצוינת על התווית. הראיות לדירוג הספיגה שלה בביטחון, מול ציטראט, מוגבלות מדי כרגע.";
+
 function ladderValueLabel(geometry: GuideLadderGeometry, tierIndex: number | null): string {
   if (tierIndex === null) return BAR_STATE_LABELS_HE.cannot_verify;
   return geometry.tiers[tierIndex].label;
@@ -196,8 +203,17 @@ function buildProduct(opts: {
   /** TASK-575 (magnesium guide v2, copy package Slot 6) — per-row severity classifier,
    *  group-(c)/"fails" bucket only. Verbatim, optional. */
   classifierHe?: string;
+  /** TASK-575 gate-2 HIGH-1 ruling (nutrition spec §11, copy package Slot 11.1's
+   *  "longer tooltip/expansion variant") — the SAME generic sentence for all 8
+   *  `evidence_limited` formAbsorption rows, rendered as `GuideBarResult.note` (the
+   *  per-row expander's bar-detail caption, "· {note}"). Verbatim, optional. */
+  formNote?: string;
 }): GuideProductVM {
   const barsResult = bars(...opts.states);
+  if (opts.formNote) {
+    const formEntry = barsResult.find((b) => b.bar === "formAbsorption");
+    if (formEntry) formEntry.note = opts.formNote;
+  }
   const byKey = new Map(barsResult.map((b) => [b.bar, b] as const));
   const formTier = tierIndexFromState(byKey.get("formAbsorption")!.state);
   const transparencyTier = tierIndexFromState(byKey.get("labelTransparency")!.state);
@@ -268,15 +284,18 @@ const products: GuideProductVM[] = [
     oneLinerHe:
       'מגנזיום ציטראט+B6, סופהרב נותן 250 מ"ג מגנזיום יסודי במנה היומית המצוינת על התווית, בצורת ציטראט: אחת הצורות שה-NIH ODS מונה במפורש כבעלות ספיגה טובה יותר מאוקסיד. הצורה והתיוג נקיים. המינון נמצא בדיוק בגובה סף 250 מ"ג ליום שמעליו EFSA ממליצה על תשומת לב לאי-נוחות עיכולית אפשרית.',
   }),
-  // 2 — Altman Bisglycinate (250mg bisglycinate) — Group (c), tolerance-note only
+  // 2 — Altman Bisglycinate (250mg bisglycinate) — Group (c), tolerance-note only.
+  // formAbsorption evidence_limited per TASK-575 gate-2 §11 ruling (was pass) — group
+  // membership UNCHANGED (driven by safety=flag, never by form; §11 "do NOT change").
   buildProduct({
     barcode: "7290019444480",
     bucket: GROUP_C,
-    states: ["flag", "pass", "cannot_verify", "cannot_verify", "flag", "pass"],
+    states: ["flag", "evidence_limited", "cannot_verify", "cannot_verify", "flag", "pass"],
     doseMg: 250,
     doseValueLabel: '250 מ"ג',
     formHe: "ביסגליצינט",
     classifierHe: "צורה נקייה, הערת סבילות בלבד",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
       'מגנזיום ביסגליצינט, אלטמן נותן אותו מינון: 250 מ"ג מגנזיום יסודי במנה היומית, בצורת ביסגליצינט. הצורה והתיוג נקיים כאן גם, והמינון נמצא באותו סף 250 מ"ג לתשומת לב עיכולית. ביסגליצינט נחשב בפועל צורה בעלת ספיגה טובה, אבל ה-NIH ODS לא מזכיר אותה בשמה בכלל, וההוכחה הישירה חלשה מכדי לדרג את הספיגה שלה בביטחון לצד ציטראט.',
   }),
@@ -291,63 +310,79 @@ const products: GuideProductVM[] = [
     oneLinerHe:
       'מגנזיום ציטראט 120, אלטמן נותן 200 מ"ג מגנזיום יסודי במנה היומית, בצורת ציטראט. הצורה, הבטיחות והתיוג נקיים לגמרי. 200 מ"ג נמצא מעל החציון של 15 המוצרים עם מינון יסודי ברור (190 מ"ג), אך עדיין בחצי הנמוך של הטווח המלא (76 עד 520 מ"ג).',
   }),
-  // 4 — Nutricare WELL (168mg bisglycinate) — Group (b)
+  // 4 — Nutricare WELL (168mg bisglycinate) — Group (b). formAbsorption evidence_limited
+  // per TASK-575 gate-2 §11 ruling (was pass) — group membership UNCHANGED (was already
+  // dose-driven, never form-driven). No classifierHe (Slot 6/11.3: extension scoped to
+  // the 4 MOVED rows only, not the 3 original Group-(b) bisglycinate rows).
   buildProduct({
     barcode: "7290018439043",
     bucket: GROUP_B,
-    states: ["flag", "pass", "cannot_verify", "cannot_verify", "pass", "pass"],
+    states: ["flag", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 168,
     doseValueLabel: '168 מ"ג',
     formHe: "ביסגליצינט",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
       'מגנזיום WELL, נוטריקר נותן 168 מ"ג מגנזיום יסודי במנה היומית, בצורת ביסגליצינט: צורה שנחשבת בפועל בעלת ספיגה טובה, אבל ההוכחה הישירה לכך מוגבלת מכדי לדרג אותה בביטחון לצד ציטראט. הבטיחות והתיוג נקיים. 168 מ"ג נמצא מתחת לחציון של 15 המוצרים עם מינון יסודי ברור (190 מ"ג), באמצע-התחתון של הטווח המלא.',
   }),
-  // 5 — NT L.C. Anti Leg Cramps (190mg hydroxide) — Group (c), weaker-absorption form
+  // 5 — NT L.C. Anti Leg Cramps (190mg hydroxide) — Group (b) (MOVED from Group (c)
+  // per TASK-575 gate-2 §11 ruling: formAbsorption FLAG→evidence_limited, which is
+  // neutral for §2 grouping purposes, so this row falls through Tier 1 to its own
+  // determinate dose finding → Group (b)).
   buildProduct({
     barcode: "7290010207640",
-    bucket: GROUP_C,
-    states: ["flag", "flag", "cannot_verify", "cannot_verify", "pass", "pass"],
+    bucket: GROUP_B,
+    states: ["flag", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 190,
     doseValueLabel: '190 מ"ג',
     formHe: "הידרוקסיד",
-    classifierHe: "צורה בקבוצת ספיגה לא ודאית",
+    classifierHe: "צורה ידועה, ראיות מוגבלות לדירוג",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
-      'אנטי לג קרמפס, NT L.C. נותן 190 מ"ג מגנזיום יסודי במנה היומית, בדיוק בחציון של 15 המוצרים עם מינון יסודי ברור, בצורת הידרוקסיד. הבטיחות והתיוג נקיים, אבל הידרוקסיד שייך לקבוצת צורות שהראיות לגביהן מוגבלות מכדי לדרג את הספיגה שלהן בביטחון. שם המוצר מתמקד בעוויתות שרירים: סקירת קוקריין משנת 2020 (Garrison et al., PMID 32956536) בדקה בדיוק את זה אצל מבוגרים עם עוויתות שרירים רגילות (שאינן קשורות להריון או לפעילות גופנית). הסקירה לא מצאה תמיכה קלינית משמעותית למגנזיום כתוסף מונע באוכלוסייה הזו.',
+      'אנטי לג קרמפס, NT L.C. נותן 190 מ"ג מגנזיום יסודי במנה היומית, בדיוק בחציון של 15 המוצרים עם מינון יסודי ברור, בצורת הידרוקסיד. הבטיחות והתיוג נקיים. הצורה ידועה, אך הראיות לדירוג הספיגה שלה בביטחון מוגבלות. שם המוצר מתמקד בעוויתות שרירים: סקירת קוקריין משנת 2020 (Garrison et al., PMID 32956536) בדקה בדיוק את זה אצל מבוגרים עם עוויתות שרירים רגילות (שאינן קשורות להריון או לפעילות גופנית). הסקירה לא מצאה תמיכה קלינית משמעותית למגנזיום כתוסף מונע באוכלוסייה הזו.',
   }),
-  // 6 — Full-Mag Hadas (122mg bisglycinate) — Group (b), the "600" correction
+  // 6 — Full-Mag Hadas (122mg bisglycinate) — Group (b), the "600" correction.
+  // formAbsorption evidence_limited per TASK-575 gate-2 §11 ruling (was pass) — group
+  // membership UNCHANGED (was already dose-driven). No classifierHe (11.3 scope).
   buildProduct({
     barcode: "7290001943700",
     bucket: GROUP_B,
-    states: ["fail", "pass", "cannot_verify", "cannot_verify", "pass", "pass"],
+    states: ["fail", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 122,
     doseValueLabel: '122 מ"ג',
     formHe: "ביסגליצינט",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
       'ביסגליצינט 600 כמוסות, פול-מג הדס נותן 122 מ"ג מגנזיום יסודי במנה היומית, בצורת ביסגליצינט: אותה צורה שנחשבת בפועל טובה לספיגה, אך ההוכחה הישירה לכך מוגבלת מכדי לדרג אותה בביטחון. ה-600 בשם המוצר הוא מספר הכמוסות באריזה בלבד. זה אינו מיליגרם מגנזיום, וזה מצוין בבירור על התווית. הצורה, הבטיחות והתיוג נקיים. 122 מ"ג נמצא ברבע התחתון של הטווח שנבדק (76 עד 520 מ"ג).',
   }),
-  // 7 — Tink Malate (136mg malate) — Group (c), weaker-absorption form
+  // 7 — Tink Malate (136mg malate) — Group (b) (MOVED from Group (c) per TASK-575
+  // gate-2 §11 ruling — same fall-through-to-dose logic as #5).
   buildProduct({
     barcode: "7290015318532",
-    bucket: GROUP_C,
-    states: ["fail", "flag", "cannot_verify", "cannot_verify", "pass", "pass"],
+    bucket: GROUP_B,
+    states: ["fail", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 136,
     doseValueLabel: '136 מ"ג',
     formHe: "מלאט",
-    classifierHe: "צורה בקבוצת ספיגה לא ודאית",
+    classifierHe: "צורה ידועה, ראיות מוגבלות לדירוג",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
-      'מגנזיום מלאט, טינק נותן 136 מ"ג מגנזיום יסודי במנה היומית, בצורת מלאט. מלאט שייך לקבוצת צורות שהראיות לגביהן מוגבלות מכדי לדרג את הספיגה שלהן בביטחון, טוב יותר מאוקסיד אך לא באותה רמת ראיות כמו ציטראט. הבטיחות והתיוג נקיים; 136 מ"ג נמצא בחלק התחתון של הטווח שנבדק.',
+      'מגנזיום מלאט, טינק נותן 136 מ"ג מגנזיום יסודי במנה היומית, בצורת מלאט. הבטיחות והתיוג נקיים; 136 מ"ג נמצא בחלק התחתון של הטווח שנבדק (76 עד 520 מ"ג). הצורה ידועה, אך הראיות לדירוג הספיגה שלה בביטחון מוגבלות.',
   }),
-  // 8 — Nutricare Malate (~135mg malate) — Group (c), weaker-absorption form + label gap
+  // 8 — Nutricare Malate (~135mg malate) — Group (b) (MOVED from Group (c) per
+  // TASK-575 gate-2 §11 ruling). Note: label-transparency FLAG (700mg compound mass,
+  // no elemental conversion) stays a real, separate, unaffected finding.
   buildProduct({
     barcode: "7290001066973",
-    bucket: GROUP_C,
-    states: ["fail", "flag", "cannot_verify", "cannot_verify", "pass", "flag"],
+    bucket: GROUP_B,
+    states: ["fail", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "flag"],
     doseMg: 135,
     doseValueLabel: 'כ-135 מ"ג',
     formHe: "מלאט",
-    classifierHe: "צורה בקבוצת ספיגה לא ודאית, פער תיוג נוסף",
+    classifierHe: "צורה ידועה, ראיות מוגבלות לדירוג; פער תיוג נוסף",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
-      'מגנזיום מלאט, נוטריקר נותן כ-135 מ"ג מגנזיום יסודי במנה היומית, גם הוא בצורת מלאט, מאותה קבוצת ראיות מוגבלות כמו המוצר הקודם. יש כאן גם פער תיוג: האריזה מציינת רק את משקל התרכובת (700 מ"ג מלאט), בלי לחשב את הכמות היסודית בעצמה, כך שהקורא צריך לחשב את זה בחוץ.',
+      'מגנזיום מלאט, נוטריקר נותן כ-135 מ"ג מגנזיום יסודי במנה היומית, גם הוא בצורת מלאט. הבטיחות תקינה. יש כאן גם פער תיוג: האריזה מציינת רק את משקל התרכובת (700 מ"ג מלאט), בלי לחשב את הכמות היסודית בעצמה. הצורה עצמה ידועה, אך הראיות לדירוג הספיגה שלה בביטחון מוגבלות, כמו אצל מוצר המלאט הקודם.',
   }),
   // 9 — Solgar Ca+Mg+D3 (100mg oxide+citrate blend) — Group (b), dominant reason
   buildProduct({
@@ -360,17 +395,19 @@ const products: GuideProductVM[] = [
     oneLinerHe:
       'סידן ומגנזיום +D3, סולגר נותן 100 מ"ג מגנזיום יסודי במנה היומית, מספר שכן מצוין בבירור על התווית. 100 מ"ג נמצא בחלק התחתון של הטווח שנבדק. הצורה היא תערובת אוקסיד וציטראט ביחס שלא מפורסם, כך שאי אפשר לדרג את הספיגה של התערובת הספציפית הזו בנפרד.',
   }),
-  // 10 — Nutricare Taurate (76mg taurate) — Group (c), weaker-absorption form
+  // 10 — Nutricare Taurate (76mg taurate) — Group (b) (MOVED from Group (c) per
+  // TASK-575 gate-2 §11 ruling).
   buildProduct({
     barcode: "7290018439579",
-    bucket: GROUP_C,
-    states: ["fail", "flag", "cannot_verify", "cannot_verify", "pass", "pass"],
+    bucket: GROUP_B,
+    states: ["fail", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 76,
     doseValueLabel: '76 מ"ג',
     formHe: "טאוראט",
-    classifierHe: "צורה בקבוצת ספיגה לא ודאית",
+    classifierHe: "צורה ידועה, ראיות מוגבלות לדירוג",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
-      'מגנזיום טאוראט, נוטריקר נותן 76 מ"ג מגנזיום יסודי במנה היומית, המינון הנמוך ביותר בין 15 המוצרים עם מינון יסודי ברור. טאוראט שייך לאותה קבוצת ראיות מוגבלות כמו מלאט. הבטיחות והתיוג נקיים.',
+      'מגנזיום טאוראט, נוטריקר נותן 76 מ"ג מגנזיום יסודי במנה היומית, המינון הנמוך ביותר בין 15 המוצרים עם מינון יסודי ברור, בצורת טאוראט. הבטיחות והתיוג נקיים. הצורה ידועה, אך הראיות לדירוג הספיגה שלה בביטחון מוגבלות, כמו אצל צורת המלאט.',
   }),
   // 11 — Nutricare Oxide-520 (520mg oxide) — Group (c), weaker form + crosses UL
   buildProduct({
@@ -420,14 +457,17 @@ const products: GuideProductVM[] = [
     oneLinerHe:
       'מגנזיום באלאנס, אלטמן נותן 450 מ"ג מגנזיום יסודי במנה היומית, בצורת אוקסיד, עם אותו ממצא ספיגה ואותה חציית סף בטיחות כמו שני המוצרים הקודמים. אשווגנדה וולריאן מופיעים גם הם על התווית, אבל הם לא חלק מהבדיקה של המגנזיום עצמו.',
   }),
-  // 15 — Nutricare Nano Liposomal (88mg bisglycinate base) — Group (b)
+  // 15 — Nutricare Nano Liposomal (88mg bisglycinate base) — Group (b). formAbsorption
+  // evidence_limited per TASK-575 gate-2 §11 ruling (was pass) — group membership
+  // UNCHANGED (was already dose-driven). No classifierHe (11.3 scope).
   buildProduct({
     barcode: "7290001065594",
     bucket: GROUP_B,
-    states: ["fail", "pass", "cannot_verify", "cannot_verify", "pass", "pass"],
+    states: ["fail", "evidence_limited", "cannot_verify", "cannot_verify", "pass", "pass"],
     doseMg: 88,
     doseValueLabel: '88 מ"ג',
     formHe: "ביסגליצינט",
+    formNote: EVIDENCE_LIMITED_FORM_NOTE_HE,
     oneLinerHe:
       'נאנו מגנזיום ליפוזומלי, נוטריקר נותן 88 מ"ג מגנזיום יסודי במנה היומית, בצורת בסיס ביסגליצינט: צורה שנחשבת בפועל טובה לספיגה, אך ההוכחה הישירה לכך מוגבלת מכדי לדרג אותה בביטחון. הבטיחות והתיוג נקיים. 88 מ"ג הוא המינון השני הנמוך ביותר בין 15 המוצרים עם מינון יסודי ברור. הכיתוב "נאנו ליפוזומלי" על האריזה הוא טענת שיווק נפרדת: לא מצאנו במקורות שבדקנו עדות לשיפור ספיגה מעבר לצורת הבסיס עצמה.',
   }),
@@ -534,11 +574,16 @@ export const magnesiumGuide: GuidePageVM = {
   // body[3]-body[7]'s five per-product paragraphs (duplicating each product's own
   // oneLinerHe) are DELETED per the package's explicit instruction ("product detail
   // now lives only in each product's own oneLinerHe, never duplicated here").
+  // title/body[0] AMENDED per SLOT 11 / §11 MEDIUM-1 (gate-2 ruling, 2026-07-10):
+  // "צורה כימית מומלצת" rescoped to citrate alone — citrate and bisglycinate no
+  // longer share an evaluative adjective in the same clause (the old text incorrectly
+  // paired them as equally "recommended"; only citrate has a direct NIH ODS citation
+  // for better absorption, per nutrition spec §5 Bucket 1 vs Bucket 3).
   headlineFinding: {
     title:
-      "בין 18 תוספי המגנזיום שבדקנו, אף אחד לא משלב מינון בחצי העליון של הטווח, צורה כימית מומלצת ובטיחות ותיוג נקיים בו-זמנית.",
+      "בין 18 תוספי המגנזיום שבדקנו, אף אחד לא משלב מינון בחצי העליון של הטווח, צורת ציטראט ובטיחות ותיוג נקיים בו-זמנית.",
     body: [
-      'כל מוצר שמגיע למינון הגבוה בטווח שנבדק (450 עד 520 מ"ג) עושה זאת בצורת אוקסיד, צורה שה-NIH ODS מונה במפורש כבעלת ספיגה נמוכה יותר מציטראט, אספרטט, לקטט וכלוריד. כל מוצר בצורה כימית מומלצת יותר, כמו ציטראט או ביסגליצינט, נשאר מתחת ל-250 מ"ג. אף אחד מ-18 המוצרים שנבדקו לא משלב בו-זמנית מינון בחצי העליון של הטווח, צורה כימית מומלצת ובטיחות ותיוג נקיים. זה ממצא על השוק הנוכחי עצמו, מעבר לפערי הנתונים במחיר או בבדיקת צד שלישי.',
+      'כל מוצר שמגיע למינון הגבוה בטווח שנבדק (450 עד 520 מ"ג) עושה זאת בצורת אוקסיד, צורה שה-NIH ODS מונה במפורש כבעלת ספיגה נמוכה יותר מציטראט, אספרטט, לקטט וכלוריד. שני המוצרים היחידים בצורה עם עדות מבוססת לספיגה טובה יותר, ציטראט, נשארים מתחת ל-250 מ"ג. ביסגליצינט, הצורה הנפוצה השנייה בקטגוריה, מופיע במוצרים שנעים בין 88 ל-250 מ"ג, אך הראיות לדירוג הספיגה שלו בביטחון מוגבלות מדי כדי לצרף אותו לאותה קבוצה. אף אחד מ-18 המוצרים שנבדקו לא משלב בו-זמנית מינון בחצי העליון של הטווח, צורת ציטראט ובטיחות ותיוג נקיים. זה ממצא על השוק הנוכחי עצמו, מעבר לפערי הנתונים במחיר או בבדיקת צד שלישי.',
       'בגלל זה אין כאן קבוצה אחת שכל מוצר "טוב" צריך להימצא בה. המוצרים מחולקים לפי הממצא האמיתי שיש לגביהם: מוצרים שההסתייגות היחידה עליהם היא מינון יסודי נמוך יותר מתוך הטווח שנבדק, מוצרים עם הסתייגות קבועה על הצורה הכימית או על סבילות עיכולית, ומוצר אחד שאי אפשר לדעת עליו מספיק מהתווית כדי לשייך אותו לאחת משלוש הקבוצות האלה.',
       "מחיר למנה ובדיקת צד שלישי לא נכללים בשיוך הזה כלל. הם לא נבדקו לאף אחד מ-18 המוצרים, וזה מפורט בנפרד למטה.",
     ],
@@ -573,10 +618,15 @@ export const magnesiumGuide: GuidePageVM = {
   // TASK-575 copy package Slot 5 — the 4 group ONE-LINE captions. `clears_all`'s
   // caption doubles as its empty-state line (spec §2: "renders its empty-state
   // caption" — the group is always empty for this 18-product corpus today).
+  // `passes_with_flag` REWRITTEN per SLOT 11.2 (gate-2 ruling, 2026-07-10): the old
+  // caption made a blanket "form is clean" claim that was true for the original 5
+  // members but is not true for 7 of the new 9 (only #3 is confirmed-good citrate;
+  // #9 is an undisclosed blend, cannot_verify; the remaining 7 are evidence_limited).
+  // `fails` caption text is UNCHANGED (still accurate for the remaining 8 — SLOT 11.2).
   groupCaptionsHe: {
     clears_all: "אף מוצר מתוך 18 שנבדקו לא נמצא כאן. זה עצמו הממצא המרכזי של המדריך — מפורט למעלה.",
     passes_with_flag:
-      'הצורה הכימית, הבטיחות והתיוג נקיים אצל המוצרים האלה. ההסתייגות היחידה: מינון יסודי נמוך יותר מתוך הטווח שנבדק (76 עד 520 מ"ג בין 18 המוצרים).',
+      "מינון יסודי נמוך יותר מתוך הטווח שנבדק הוא המשותף לתשעת המוצרים האלה, ללא הסתייגות בטיחות או תיוג. הצורה הכימית ידועה אצל כולם: ציטראט (מוצר אחד) נתמך בעדות מבוססת לספיגה טובה, אצל שאר הצורות הראיות לדירוג הספיגה בביטחון עדיין מוגבלות, ואצל מוצר אחד (תערובת שני רכיבים) היחס בתערובת אינו מפורסם כך שהספיגה שלו אינה ניתנת לדירוג כלל.",
     fails:
       "אצל המוצרים האלה יש ממצא קבוע על הצורה הכימית עצמה, או מינון שנמצא בגובה הסף לתשומת לב עיכולית. ממצא כזה לא משתנה כמה שלוקחים מהמנה המצוינת על התווית.",
     cannot_assess: "התווית של המוצר הזה לא מגלה מספיק כדי לדעת אילו מגנזיום, כמה, או שניהם.",

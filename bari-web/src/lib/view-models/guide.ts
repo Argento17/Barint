@@ -12,6 +12,10 @@
 // Hard constraints carried from the plan (do not relax without a plan amendment):
 //   - No numeric score, no A–E letter grade, anywhere in a guide.
 //   - Bar states are PASS / FLAG / FAIL / CANNOT_VERIFY only — never a 5th "graded" state.
+//     AMENDED (TASK-575, Nutrition D6 + Product D7 co-sign, nutrition spec §11, gate-2
+//     HIGH-1 ruling 2026-07-10): a 5th state, EVIDENCE_LIMITED, is added — but it is NOT
+//     a graded/ordinal state (it never sits on the fail/flag/pass ladder; see
+//     GuideBarState below). This is a scoped, ruled exception, not a silent relaxation.
 //   - Buckets group products; they are NOT an ordinal ranking within a bucket.
 //   - Benchmark placement is always product-vs-EXTERNAL-STANDARD (dose range, cert bar,
 //     benchmark median price) — never product-vs-field ordering (that recreates ranking
@@ -56,8 +60,24 @@ export const GUIDE_BAR_LABELS_HE: Record<GuideBarKey, string> = {
 };
 
 // ─── Bar state — the verdict-layer primitive (plan §1) ─────────────────────────────
-// Exactly 4 states. No 5th "graded" tier. No numeric value ever attached.
-export type GuideBarState = "pass" | "flag" | "fail" | "cannot_verify";
+// 4 ordinal states (pass/flag/fail/cannot_verify) + 1 non-ordinal state
+// (evidence_limited, TASK-575 gate-2 HIGH-1 ruling). No numeric value ever attached.
+//
+// `evidence_limited` is a SEPARATE code path from `cannot_verify`, by design (nutrition
+// spec §11): `cannot_verify` means the FACT itself is unknown/undisclosed (missing-data
+// discard discipline — state why, never assume). `evidence_limited` means the fact IS
+// known and disclosed (e.g. the chemical form), but the literature does not support
+// ranking it with confidence against the forms that DO have a direct, named citation
+// (spec §5 Bucket 3). Rendering requirement (behavioral, exact per the ruling): must
+// render OFF the fail/flag/pass ordinal ladder entirely — not at "flag"/בינונית (that
+// tier itself asserts a confident middle ranking) and not at "pass"/גבוהה — using a
+// neutral treatment from the SAME family as `cannot_verify` (same non-ordinal
+// footprint), but visually AND textually distinct from it: `cannot_verify`'s label
+// asserts missing data ("לא ניתן לאמת"), which would be false here — the fact is not
+// missing, only its ranking confidence is limited. Merging these two states into one
+// code path or label is exactly the class of finding gate-2 would re-raise (spec §11
+// "Unchanged" note).
+export type GuideBarState = "pass" | "flag" | "fail" | "cannot_verify" | "evidence_limited";
 
 export interface GuideBarResult {
   bar: GuideBarKey;

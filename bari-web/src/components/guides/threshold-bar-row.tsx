@@ -47,6 +47,14 @@ import { cn } from "@/lib/utils";
  * new fact, it is the rubric's own state definition read as a 0-based worst→best
  * index. cannot_verify → null (no tier is knowable). Exported so guide data files can
  * derive `tierIndex` from an already-computed bar state instead of hand-duplicating it.
+ *
+ * TASK-575 gate-2 HIGH-1 ruling (nutrition spec §11) — `evidence_limited` ALSO maps to
+ * null (off-ladder), same as `cannot_verify`, but for a different reason: not because
+ * the tier is unknowable, but because asserting ANY of the three tiers (including
+ * "MODERATE"/flag) would itself be the over-confident ranking claim the ruling exists
+ * to remove. The renderer distinguishes the two null-tier states visually/textually
+ * downstream (ThresholdMarkerFallback variant) — this function only decides
+ * ladder-position (both are off-ladder), never the fallback's appearance.
  */
 export function tierIndexFromState(state: GuideBarState): number | null {
   switch (state) {
@@ -57,6 +65,7 @@ export function tierIndexFromState(state: GuideBarState): number | null {
     case "pass":
       return 2;
     case "cannot_verify":
+    case "evidence_limited":
     default:
       return null;
   }
@@ -298,19 +307,47 @@ function ThresholdMarker({
 // Honest CANNOT_VERIFY fallback — UNCHANGED by the v2 marker upgrade (v2 §2.3: a
 // bigger "we don't know" glyph would work against its own purpose of reading as
 // visually quieter than a real data point). Hollow, dashed, fixed mid-track.
-function ThresholdMarkerFallback() {
+//
+// TASK-575 gate-2 HIGH-1 ruling (nutrition spec §11) adds a SECOND, visually distinct
+// off-ladder fallback for `evidence_limited`: a SOLID neutral-gray disc (not hollow,
+// not dashed) at the same mid-track position and footprint. The shape distinction is
+// deliberate and carries real meaning, same "shape, not just color" discipline as the
+// rest of this component (WCAG 1.4.1): hollow/dashed = "we don't know this fact at
+// all" (cannot_verify); solid/filled = "we know this fact, we are just not confident
+// enough in the literature to rank it" (evidence_limited) — the fact is not missing,
+// so the marker must not LOOK like it is missing (spec §11: "must not read as missing
+// data"). Neither variant sits at a ladder tier position — both are fixed mid-track.
+function ThresholdMarkerFallback({ variant = "unknown" }: { variant?: "unknown" | "evidence_limited" }) {
+  const shared = {
+    left: "50%",
+    // Same footprint as the solid ThresholdMarker (~18px visible) so all three marker
+    // states read as the SAME SIZE on the track — the honest signal is carried by
+    // shape (dashed/hollow vs. solid vs. filled-circle), not by being smaller/bigger.
+    width: "18px",
+    height: "18px",
+    transform: "translate(-50%, -50%)",
+  } as const;
+
+  if (variant === "evidence_limited") {
+    return (
+      <div
+        aria-hidden
+        className="absolute top-1/2 rounded-full"
+        style={{
+          ...shared,
+          border: "1.5px solid #4E5663",
+          background: "#C7CBC7",
+        }}
+      />
+    );
+  }
+
   return (
     <div
       aria-hidden
       className="absolute top-1/2 rounded-full"
       style={{
-        // Same footprint as the solid ThresholdMarker (~18px visible) so the two
-        // read as the SAME SIZE on the track — the honest "we don't know" signal is
-        // carried by the dashed/hollow shape, not by being smaller (owner 2026-07-05).
-        left: "50%",
-        width: "18px",
-        height: "18px",
-        transform: "translate(-50%, -50%)",
+        ...shared,
         border: "1.5px dashed #4E5663",
         background: "transparent",
       }}
@@ -360,7 +397,7 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
         {render.markerPct != null ? (
           <ThresholdMarker pct={render.markerPct} state={state} clamped={render.clamped} />
         ) : (
-          <ThresholdMarkerFallback />
+          <ThresholdMarkerFallback variant={state === "evidence_limited" ? "evidence_limited" : "unknown"} />
         )}
 
         {/* TASK-575 — reference lines (e.g. corpus median): a thin dashed vertical line

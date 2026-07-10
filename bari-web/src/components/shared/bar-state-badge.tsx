@@ -1,8 +1,10 @@
 // Bar-state UI primitive (TASK-504, verdict-color spec v1 — final polish).
 //
-// Renders one of exactly 4 explicit states for a supplement-guide bar: PASS / FLAG /
-// FAIL / CANNOT_VERIFY. This is NOT the A–E ScoreChip grade system — no letter grade,
-// no numeric score, ever. Guides retire ordinal scoring entirely (plan §1).
+// Renders one of 5 explicit states for a supplement-guide bar: PASS / FLAG / FAIL /
+// CANNOT_VERIFY / EVIDENCE_LIMITED (the 5th added TASK-575, gate-2 HIGH-1 ruling,
+// nutrition spec §11 — see GuideBarState in view-models/guide.ts for the full
+// rationale). This is NOT the A–E ScoreChip grade system — no letter grade, no numeric
+// score, ever. Guides retire ordinal scoring entirely (plan §1).
 //
 // Color source note (owner-directed semantic-color pass,
 // 03_operations/reports/design/magnesium_guide_verdict_color_spec_v1.md §3): this
@@ -24,7 +26,7 @@
 // microcopy — Content Agent + two-gate sign-off owns the shipped wording per the
 // content sign-off hard rule.
 
-import { Check, TriangleAlert, X, HelpCircle } from "lucide-react";
+import { Check, TriangleAlert, X, HelpCircle, Info } from "lucide-react";
 
 import type { GuideBarState } from "@/lib/view-models";
 
@@ -33,6 +35,10 @@ export const BAR_STATE_LABELS_HE: Record<GuideBarState, string> = {
   flag: "עם דגל",
   fail: "לא עומד",
   cannot_verify: "לא ניתן לאמת",
+  // TASK-575 gate-2 HIGH-1 ruling (nutrition spec §11) — copy package Slot 11.1,
+  // wired verbatim. Matches the length class of "גבוהה"/"בינונית"/"נמוכה" by design
+  // (Content's own note) but must never sit ON that ladder — see tierIndexFromState.
+  evidence_limited: "ראיות מוגבלות לדירוג",
 };
 
 // Shared semantic verdict palette (verdict-color spec v1 §3) — ONE object reused by
@@ -44,6 +50,13 @@ export const BAR_STATE_LABELS_HE: Record<GuideBarState, string> = {
 // (spec §3 "Delta from gradePalette" table: no hex here is byte-identical to any
 // gradePalette entry). Measured contrast (text on own bg): pass 6.73:1, flag 5.56:1,
 // fail 6.29:1, cannot_verify 6.71:1 — all clear the 4.5:1 AA floor (spec §1.2 table).
+// TASK-575 gate-2 HIGH-1 ruling — `evidence_limited` reuses the EXACT SAME neutral
+// bg/border/text as `cannot_verify` (nutrition spec §11: "the same non-ordinal
+// treatment cannot_verify already receives" — same neutral treatment FAMILY, never a
+// new color axis, per the guide's frozen "color is never the only signal" rule below).
+// Icon is the ONE deliberate visual difference (Info, not HelpCircle) — colorblind-safe
+// redundant shape signal distinguishing "known but unranked" from "unknown" without
+// adding a color.
 export const GUIDE_BAR_TONE: Record<
   GuideBarState,
   { bg: string; border: string; text: string; icon: typeof Check }
@@ -52,6 +65,7 @@ export const GUIDE_BAR_TONE: Record<
   flag: { bg: "#FCEFD6", border: "#A8650033", text: "#8A5300", icon: TriangleAlert },
   fail: { bg: "#FBE4E1", border: "#B3261E33", text: "#A02318", icon: X },
   cannot_verify: { bg: "#F3F4F2", border: "#D8DDD9", text: "#4E5663", icon: HelpCircle },
+  evidence_limited: { bg: "#F3F4F2", border: "#D8DDD9", text: "#4E5663", icon: Info },
 };
 
 export function BarStateBadge({

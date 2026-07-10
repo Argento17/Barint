@@ -23,8 +23,9 @@
 
 import type { HashvaotCategory } from "@/lib/hashvaot/hashvaot-categories";
 
-// Title/description below are ported verbatim from the gate-1-approved copy
-// (magnesium_guide_copy_v1.md H1 + intro first sentence) — not newly authored.
+// Title/description below are ported verbatim from the gate-1 copy packages
+// (magnesium: mag_guide_v2_copy_package.md Slot 10a, TASK-575 — the v1 "שישה
+// דברים"/worth-the-money framing is retired) — not newly authored.
 // countLabel matches the finding-card redesign (b0c3ed53): splitCountLabel renders
 // "N מוצרים נבדקו" as value + label. ctaLabel reuses the live blog CTA string verbatim.
 export const MADRICHIM_CATEGORIES: HashvaotCategory[] = [
@@ -35,7 +36,7 @@ export const MADRICHIM_CATEGORIES: HashvaotCategory[] = [
     href: "/madrichim/magnesium",
     countLabel: "18 מוצרים נבדקו",
     description:
-      "בדקנו 18 תוספי מגנזיום מהמדף הישראלי לפי שישה דברים שבאמת קובעים אם תוסף מגנזיום שווה את הכסף.",
+      "בדקנו 18 תוספי מגנזיום לפי ארבעה דברים שאפשר לבדוק ישירות מהתווית: מינון יסודי, צורה כימית, בטיחות ושקיפות התיוג.",
     accent: "#1F8F6A",
     ctaLabel: "מדריך קנייה",
   },

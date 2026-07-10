@@ -21,15 +21,15 @@ import { magnesiumGuide } from "@/lib/guides/magnesium-guide-data";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
 
-// Meta description sourced verbatim from the gate-1-approved copy doc
-// (03_operations/reports/content/magnesium_guide_copy_v1.md, "תיאור מטא" heading) —
-// TASK-504B RT-2 fix: the prior inline-authored string used the banned ranking word
-// "דירוג" and antithesis phrasing ("לא דירוג, לא ציון"). This string is derived from
-// the gated H1 + intro and gate-tracked in the copy doc, not authored here.
+// Meta description sourced VERBATIM from the gate-1 v2 copy package, Slot 10b
+// (02_products/supplements/magnesium/mag_guide_v2_copy_package.md) — TASK-575
+// gate-2 CRITICAL-1 fix: the prior v1 string carried the retired model (named
+// third-party testing + price as assessed criteria) and the unscoped
+// "מהמדף הישראלי" market claim. Not authored here.
 export const metadata: Metadata = {
   title: "איך לבחור מגנזיום | Bari",
   description:
-    "בארי בדקה 18 תוספי מגנזיום מהמדף הישראלי לפי מינון מגנזיום יסודי, צורה כימית נספגת, בדיקת צד שלישי והוגנות מחיר, כדי להראות מה לחפש על התווית לפני שקונים.",
+    "בארי בדקה 18 תוספי מגנזיום הנמכרים בישראל לפי מינון מגנזיום יסודי, צורה כימית, בטיחות ושקיפות תיוג, כדי להראות מה לחפש על התווית לפני שקונים.",
   robots: { index: false, follow: true },
 };
 
