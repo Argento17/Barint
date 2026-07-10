@@ -71,7 +71,11 @@ Reaching each capability (all dispatches run_in_background):
 - **BUILD-HEAVY / BUILD-LIGHT** — primary: Codex (`gpt-5.6 sol`/`terra`) via the `build_heavy`/
   `build_light` functions in `03_operations\router\dispatch.py`, `codex exec` in a worktree, sandbox
   `workspace-write`. Fallback: the owning domain subagent via the **`Agent`** tool (`model: sonnet`,
-  explicit pin) on the trigger above.
+  explicit pin) on the trigger above. **Sandbox-git rule (audit 2026-07-10, E3):** a sandboxed Codex
+  in a git worktree CANNOT commit or push — the worktree's `.git` file points outside the sandbox
+  (it will invent a fallback git-dir if asked). Spec the lane to leave a clean working tree + the
+  return contract; the ORCHESTRATOR commits and pushes after verification. Pass multi-line specs via
+  the lane function's `prompt` arg (delivered over stdin — never rely on argv).
 - **GRUNT** — primary: Codex (`gpt-5.6 luna`) via `grunt_primary`; mechanical, **zero-judgment-call**
   work only — count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
   bookkeeping. Route to GRUNT ONLY when the output is 100% determined by a stated rule — if the task
