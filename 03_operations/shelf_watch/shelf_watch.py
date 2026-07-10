@@ -17,6 +17,26 @@ Hard rules enforced here (standing owner rulings — do not relax without a new 
   - Retailer scope for this pilot = Shufersal only (both live corpora are 100% Shufersal
     identity — see design doc section 2 for why this is a deliberate scope-fit, not a gap).
 
+KNOWN HISTORY (TASK-590, 2026-07-10) — nutrition_drift was silently disabled from launch
+until this fix: ``fetch_shufersal_product`` chained ``bn.parse_nutrition_list(soup)``
+(bare keys: "energy", "fat", "sodium", ...) straight into ``bn.parse_nutrition_numeric(...)``
+(requires "_raw"-suffixed keys: "energy_kcal_raw", "fat_raw", ...). Every nutrition field
+therefore parsed to ``None`` on every run since this pilot went live (TASK-570) — masked
+because ``run_canary()``'s health check is ``bool(nutrition)``, and a dict with keys but
+all-``None`` values is still truthy, so the canary always reported "healthy". Escalated via
+TASK-582 (found while fixing the unrelated 01_acquire_shufersal.py 404), fixed here by
+routing through the shared, correct chain ``bn.parse_nutrition_list_numeric(soup)``.
+CONSEQUENCE FOR PAST RUNS: every ``no_change`` / ``cosmetic`` classification issued before
+this fix is UNTRUSTWORTHY for nutrition specifically — the new-fetch side of every
+nutrition comparison was always ``None``, so ``diff_nutrition`` always skipped it
+(never asserted a change, never a false positive — just a silent false negative on every
+field, every week). Ingredient-change detection was NOT affected (text-based, independent
+code path) — the 2 genuine bread ingredient findings from the first real run stand.
+Past runs are not rewritten/re-baselined by this fix; only future runs get real nutrition
+comparisons. See also: baseline_backfill handling in ``classify_product`` below, added so
+the FIRST real-nutrition run for any given product/field is reported distinctly from a
+genuine drift, not conflated with it.
+
 Usage (from C:\\Bari):
   python 03_operations\\shelf_watch\\shelf_watch.py                # real run
   python 03_operations\\shelf_watch\\shelf_watch.py --canary-only  # just run the health check
@@ -288,9 +308,14 @@ def fetch_shufersal_product(barcode: str) -> dict:
         return {"status": "page_gone", "reason": f"gtin_mismatch: resolved to {ld_gtin}", "barcode": barcode,
                 "final_url": r.url}
 
-    # Nutrition — the shared canonical parser (same module every Shufersal BSIP0 scraper uses).
-    nutr_raw = bn.parse_nutrition_list(soup)
-    nutr_numeric = bn.parse_nutrition_numeric(nutr_raw)
+    # Nutrition — the shared canonical parser (same module every Shufersal BSIP0 scraper
+    # uses). MUST go through parse_nutrition_list_numeric(), NOT parse_nutrition_list() +
+    # parse_nutrition_numeric() composed directly — that direct chain silently returns
+    # None for every field (TASK-590: parse_nutrition_list returns bare keys like "energy";
+    # parse_nutrition_numeric requires "_raw"-suffixed keys like "energy_kcal_raw"). This
+    # exact bug disabled nutrition_drift detection on every shelf_watch run to date — see
+    # the module docstring "KNOWN HISTORY" note.
+    nutr_numeric = bn.parse_nutrition_list_numeric(soup)
 
     ingredients_raw = extract_ingredients(soup)
 
@@ -374,6 +399,20 @@ def diff_ingredients(baseline_text: str, new_text: str) -> dict:
 
 
 def diff_nutrition(baseline: dict, new: dict) -> dict:
+    """Compare baseline (published-corpus) nutrition to a fresh fetch.
+
+    Returns ``{"deltas": {...}, "backfilled": [...]}``:
+      - ``deltas``: fields present on BOTH sides whose values differ beyond
+        ``NUTRITION_EPSILON`` — genuine nutrition_drift candidates.
+      - ``backfilled`` (TASK-590): fields the fresh fetch has a real (non-None) value
+        for, but that ``baseline`` never recorded a key for at all (``load_baseline()``
+        only inserts a key when the source value is not None — a missing key is a
+        field that was never observed, not a None value). There is no prior value to
+        have drifted from, so these are reported distinctly and are NEVER counted as
+        drift — added so the FIRST real-nutrition reading for a field (e.g. right
+        after the TASK-590 all-None parse bug is fixed) cannot be mistaken for a
+        product change.
+    """
     deltas = {}
     for field, base_val in baseline.items():
         new_val = new.get(field)
@@ -381,7 +420,8 @@ def diff_nutrition(baseline: dict, new: dict) -> dict:
             continue  # field absent in fresh fetch -> not asserted as a change, just missing
         if abs(float(new_val) - float(base_val)) > NUTRITION_EPSILON:
             deltas[field] = {"baseline": base_val, "new": new_val, "delta": round(new_val - base_val, 3)}
-    return deltas
+    backfilled = sorted(f for f, v in new.items() if v is not None and f not in baseline)
+    return {"deltas": deltas, "backfilled": backfilled}
 
 
 def classify_product(barcode: str, category: str, baseline: dict, fetch_result: dict) -> dict:
@@ -390,18 +430,25 @@ def classify_product(barcode: str, category: str, baseline: dict, fetch_result: 
         return {
             "barcode": barcode, "category": category, "name": name,
             "class": fetch_result["status"], "reason": fetch_result.get("reason"),
-            "nutrition_diff": {}, "ingredients_diff": {}, "notes": fetch_result.get("final_url"),
+            "nutrition_diff": {"deltas": {}, "backfilled": []}, "ingredients_diff": {},
+            "notes": fetch_result.get("final_url"),
         }
 
     nutr_diff = diff_nutrition(baseline["nutrition"], fetch_result["nutrition"])
     ingr_diff = diff_ingredients(baseline["ingredients"], fetch_result["ingredients"])
 
-    if nutr_diff:
+    if nutr_diff["deltas"]:
         cls = "nutrition_drift"
     elif ingr_diff["changed"] and not ingr_diff["cosmetic_only"]:
         cls = "ingredient_change"
     elif ingr_diff["changed"] and ingr_diff["cosmetic_only"]:
         cls = "cosmetic"
+    elif nutr_diff["backfilled"]:
+        # No drift, no ingredient change — but at least one nutrition field has its
+        # first-ever real (non-None) reading against this baseline. Reported so it is
+        # visible in the run (and distinguishable in a future diff), never treated as
+        # a change to alert on (TASK-590).
+        cls = "nutrition_baseline_backfill"
     else:
         cls = "no_change"
 
@@ -421,9 +468,16 @@ def run_canary() -> dict:
     results = []
     for category, barcode in CANARY_BARCODES:
         r = fetch_shufersal_product(barcode)
-        healthy = r["status"] == "scraped" and bool(r.get("nutrition"))
+        nutr = r.get("nutrition") or {}
+        # TASK-590: `bool(nutr)` is truthy even when every value in the dict is None —
+        # this exact weak check reported "healthy" on every run while nutrition parsing
+        # was silently all-None (the bug this task fixes). Require at least one REAL
+        # (non-None) nutrition value, not just a non-empty dict of Nones.
+        nutrition_field_count = sum(1 for v in nutr.values() if v is not None)
+        healthy = r["status"] == "scraped" and nutrition_field_count > 0
         results.append({"category": category, "barcode": barcode, "status": r["status"],
-                         "healthy": healthy, "reason": r.get("reason")})
+                         "healthy": healthy, "reason": r.get("reason"),
+                         "nutrition_field_count": nutrition_field_count})
     all_healthy = all(r["healthy"] for r in results)
     return {"healthy": all_healthy, "results": results}
 
@@ -509,8 +563,65 @@ def selftest() -> int:
 
     # nutrition_drift: any numeric change beyond epsilon
     d = diff_nutrition({"sodium_mg": 110.0, "energy_kcal": 342.0}, {"sodium_mg": 95.0, "energy_kcal": 342.02})
-    if "sodium_mg" not in d or "energy_kcal" in d:
-        print("FAIL: diff_nutrition epsilon/detection"); ok = False
+    if "sodium_mg" not in d["deltas"] or "energy_kcal" in d["deltas"]:
+        print("FAIL: diff_nutrition epsilon/detection", d); ok = False
+
+    # baseline_backfill (TASK-590): a field the baseline never recorded at all (absent
+    # key, not None — load_baseline() only inserts a key when the source value is not
+    # None) must NOT be reported as drift when the fresh fetch has a real value for it.
+    d_bf = diff_nutrition({"energy_kcal": 342.0}, {"energy_kcal": 342.0, "fiber_g": 10.0})
+    if d_bf["deltas"] or d_bf["backfilled"] != ["fiber_g"]:
+        print("FAIL: diff_nutrition backfill not isolated from drift", d_bf); ok = False
+
+    rec_bf = classify_product(
+        "1", "breakfast_cereals",
+        {"name": "x", "nutrition": {"energy_kcal": 342.0}, "ingredients": "a"},
+        {"status": "scraped", "nutrition": {"energy_kcal": 342.0, "fiber_g": 10.0},
+         "ingredients": "a"},
+    )
+    if rec_bf["class"] != "nutrition_baseline_backfill":
+        print("FAIL: classify_product did not report baseline_backfill", rec_bf); ok = False
+
+    # TASK-590 regression: parse_nutrition_list_numeric on a REAL captured Shufersal
+    # nutritionList fixture (barcode 5010029000061, values captured live under TASK-582)
+    # must yield non-None numeric fields. This is the exact defect: composing
+    # parse_nutrition_list() + parse_nutrition_numeric() directly (the old shelf_watch.py
+    # code) returns all-None on this same fixture; parse_nutrition_list_numeric() must not.
+    from bs4 import BeautifulSoup
+    fixture_html = """
+    <li>
+      <div class="nutritionListTitle"><div class="subInfo">ל-100 גרם</div></div>
+      <div class="nutritionList">
+        <div class="nutritionItem"><div class="number">342</div><div class="name">קל</div><div class="text">אנרגיה</div></div>
+        <div class="nutritionItem"><div class="number">2</div><div class="name">גרם</div><div class="text">שומנים</div></div>
+        <div class="nutritionItem"><div class="number">0.6</div><div class="name">גרם</div><div class="text">שומן רווי</div></div>
+        <div class="nutritionItem"><div class="number">69</div><div class="name">גרם</div><div class="text">פחמימות</div></div>
+        <div class="nutritionItem"><div class="number">4.2</div><div class="name">גרם</div><div class="text">סוכרים</div></div>
+        <div class="nutritionItem"><div class="number">10</div><div class="name">גרם</div><div class="text">סיבים תזונתיים</div></div>
+        <div class="nutritionItem"><div class="number">12</div><div class="name">גרם</div><div class="text">חלבון</div></div>
+        <div class="nutritionItem"><div class="number">110</div><div class="name">מג</div><div class="text">נתרן</div></div>
+      </div>
+    </li>
+    """
+    fixture_soup = BeautifulSoup(fixture_html, "html.parser")
+    expected = {
+        "energy_kcal": 342.0, "fat_g": 2.0, "fat_saturated_g": 0.6, "carbohydrates_g": 69.0,
+        "sugars_g": 4.2, "dietary_fiber_g": 10.0, "protein_g": 12.0, "sodium_mg": 110.0,
+    }
+    fixture_out = bn.parse_nutrition_list_numeric(fixture_soup)
+    for field, want in expected.items():
+        got = fixture_out.get(field)
+        if got is None or abs(got - want) > 0.01:
+            print(f"FAIL: parse_nutrition_list_numeric fixture field {field}: "
+                  f"want {want}, got {got} (full: {fixture_out})")
+            ok = False
+
+    # OLD (broken) chain must still reproduce the all-None defect on this fixture — proves
+    # the fixture actually exercises the bug this task fixes, not a no-op.
+    old_chain = bn.parse_nutrition_numeric(bn.parse_nutrition_list(fixture_soup))
+    if any(v is not None for k, v in old_chain.items() if not k.startswith("_")):
+        print("FAIL: old direct-chain fixture check — expected all-None, got", old_chain)
+        ok = False
 
     # cosmetic: reordering + punctuation only
     base = "חיטה, מלח, סוכר"
@@ -536,6 +647,24 @@ def selftest() -> int:
                             {"status": "scrape_failed", "reason": "timeout"})
     if rec["class"] != "scrape_failed":
         print("FAIL: scrape_failed pass-through", rec); ok = False
+
+    # TASK-590 regression: run_canary()'s health check must NOT report "healthy" on a
+    # scraped page whose nutrition dict is non-empty but all-None (the exact shape the
+    # all-None parse bug produced on every run to date — this is what let the bug hide).
+    global fetch_shufersal_product  # noqa: PLW0603 — test-local monkeypatch, restored after
+    _real_fetch = fetch_shufersal_product
+    try:
+        fetch_shufersal_product = lambda barcode: {  # noqa: E731
+            "status": "scraped", "barcode": barcode,
+            "nutrition": {"energy_kcal": None, "fat_g": None, "sodium_mg": None},
+            "ingredients": "x",
+        }
+        canary_all_none = run_canary()
+    finally:
+        fetch_shufersal_product = _real_fetch
+    if canary_all_none["healthy"]:
+        print("FAIL: run_canary() reported healthy on an all-None nutrition dict", canary_all_none)
+        ok = False
 
     print("SELFTEST", "PASS" if ok else "FAIL")
     return 0 if ok else 1

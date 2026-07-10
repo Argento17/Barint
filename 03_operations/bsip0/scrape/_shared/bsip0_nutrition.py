@@ -343,6 +343,44 @@ def parse_nutrition_list(soup) -> dict[str, str]:
     return parse_nutrition_rows(extract_nutrition_rows(soup))
 
 
+# ── bare-key -> "_raw"-key adapter (TASK-590) ──────────────────────────────────
+#
+# ``parse_nutrition_list`` returns BARE field names ("energy", "fat", "sodium", ...).
+# ``parse_nutrition_numeric`` requires the "_raw"-suffixed key contract
+# ``shufersal_cereals/01_scrape_cereals.py`` builds inline ("energy_kcal_raw",
+# "fat_raw", ...). Chaining the two functions directly WITHOUT this rename silently
+# returns None for every field — found live in TWO independent callers
+# (``03_operations/bsip0/scrape/shufersal/01_acquire_shufersal.py``, TASK-582, and
+# ``03_operations/shelf_watch/shelf_watch.py``, TASK-590, where it disabled the live
+# weekly monitor's nutrition_drift signal entirely). ``bare_to_raw_keys`` /
+# ``parse_nutrition_list_numeric`` are the ONE shared, correct chain — purely
+# additive (nothing existing calls them), so this cannot change the behaviour of any
+# caller that already builds its own "_raw" dict inline (01_scrape_cereals.py,
+# 01_acquire_shufersal.py) — those are untouched.
+def bare_to_raw_keys(bare: dict[str, str]) -> dict[str, str]:
+    """Rename ``parse_nutrition_list``'s bare keys to the "_raw"-suffixed contract
+    ``parse_nutrition_numeric`` expects. NOTE the one non-generic rename: ``"energy"``
+    (bare) -> ``"energy_kcal_raw"``, not a uniform ``f"{k}_raw"`` suffix."""
+    return {
+        "energy_kcal_raw": bare.get("energy", ""),
+        "protein_raw": bare.get("protein", ""),
+        "carbs_raw": bare.get("carbs", ""),
+        "fat_raw": bare.get("fat", ""),
+        "fiber_raw": bare.get("fiber", ""),
+        "sodium_raw": bare.get("sodium", ""),
+        "sugar_raw": bare.get("sugar", ""),
+        "saturated_fat_raw": bare.get("saturated_fat", ""),
+    }
+
+
+def parse_nutrition_list_numeric(soup) -> dict:
+    """The correct one-call chain: ``parse_nutrition_list(soup)`` -> rename to "_raw"
+    keys -> ``parse_nutrition_numeric(...)``. Use this instead of composing
+    ``parse_nutrition_list`` + ``parse_nutrition_numeric`` directly — that direct
+    chain is the TASK-582/TASK-590 all-None defect class."""
+    return parse_nutrition_numeric(bare_to_raw_keys(parse_nutrition_list(soup)))
+
+
 def extract_nutrition_raw(soup) -> dict:
     """Capture the raw nutrition source for offline replay of future parser fixes.
 

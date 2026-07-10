@@ -49,6 +49,10 @@ launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If
   read, objective, boundaries/guards (**include the OFF-ban guard on anything data-adjacent**), exact
   return format, and **"do not close — propose RETURNED."** End every authored prompt with the
   machine-readable return contract (`01_framework\operations\return_contract_v1.md`).
+  **Quantitative budgets are code, not prose (audit 2026-07-10):** a numeric cap in a spec (live
+  requests, files touched, runtime) gets treated as soft by every lane — two consecutive disclosed
+  overages on TASK-582/590 prove it. Spec the cap INTO the deliverable's code path (e.g. "the canary
+  runner must assert requests <= N and hard-fail past it"), not as an instruction sentence.
 - Registry Work without an id → register first: `python C:\Bari\tasks\new_task.py …` (writes the TASK
   file; then add the move to `DISPATCH_BOARD.md`).
 - **Route by capability, not by lane name.** Run the move through the Layer-1 ordered questions in
