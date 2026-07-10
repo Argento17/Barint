@@ -2,7 +2,10 @@
 id: TASK-564
 title: Schema lag: page_output_schema_v1.json still requires comparisonContext (owner had it removed) + limitingFactors null
 owner: frontend-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-07-10
+close_reason: >
+  Orchestrator-verified 2026-07-10, commit 5b5b70d6 (branch task564-schema-lag, pushed; PR awaits owner). Schema updated to the MEASURED live shape across all 16 shelves (scan evidence in close commit): comparisonContext optional per owner-directed removal; positiveSignals/limitingFactors nullable; limitingFactors string OR {text,magnitude} (942/247 live); d3_processing_signal object|null 10-key (schema still claimed engine does not emit it); AdditiveEntry + cosmetic_mup (94 entries); filterTags/milkProductType(+Label)/volumeMl optional. G1 5/16 -> 10/16. Remaining 6 shelves fail on raw INTERNAL fields shipped in served JSONs (_scoring_trace, nutrition_per_100g, duplicate name_he/image_url) - real data-hygiene defect, deliberately NOT whitelisted -> TASK-572. Golden page passes G1. Structural prevention = TASK-569 (VM-generated schema).
 priority: MEDIUM
 created_at: 2026-07-10
 depends_on: []

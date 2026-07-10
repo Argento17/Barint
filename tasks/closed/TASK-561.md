@@ -2,7 +2,10 @@
 id: TASK-561
 title: Bread live-route cutover decision: re-point bread config baseline_json v3 -> v4 (or re-derive)
 owner: product-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-07-10
+close_reason: >
+  Orchestrator-verified 2026-07-10, commit 5b5b70d6 (branch task564-schema-lag, pushed; PR awaits owner). Product Agent decision (a) APPLIED: baseline_json v3 -> v4. Return claim CORRECTED by independent diff: v4 NOT byte-identical to v3 today (15/23 shared barcodes differ incl. grade flip 2079927 A->B; v4 re-scored post-creation, served run_id task409_rederive_bread_20260626 has no on-disk products dir; closest run task483 22/23 worst 0.2). run_products_dir NOT re-pointed - bread lineage logged NOT FULLY RECOVERABLE under TASK-563. Bread conformance exception removed; conformance 16/16, empty exception list. Zero score movement today; -0.8 router drift surfaces at next real re-score per re-flow policy.
 priority: HIGH
 created_at: 2026-07-10
 depends_on: []

@@ -2,7 +2,10 @@
 id: TASK-563
 title: Published pages are not re-derivable from the traces their configs reference (14/16 live shelves)
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
+closed_at: 2026-07-10
+close_reason: >
+  Orchestrator-verified 2026-07-10. Data Agent census + remediation: 2 shelves RE-POINTED to the real persisted trace runs (hard_cheeses -> run_hc_task418_clean 31/31 exact; snacks -> snacks_task413_staging 21/21 exact) - orchestrator independently re-ran G5 on both = PASS, committed d187a92c; 5 shelves already conformed; bread handled under TASK-561. 8 shelves NOT RECOVERABLE by construction: _task409_rederive_v2.py scored in-memory and wrote into live JSON without persisting traces (brined_cheeses, cakes, cereals, cheese, chocolate_bars, chocolate_tablets, cookies_coffee, protein_bars). Published numbers presumed correct; per-product provenance for those 8 does not exist on disk. OWNER DECISION PENDING (digest): uniform re-derive (moves published numbers = tripwire, movement table first) OR formally accept published-JSON-as-record; forward-protection already live (conformance_gate 16/16 + G5 wired for the 11 recoverable). First return failed C0 (malformed contract keys) -> CHANGES_REQUESTED -> agent fixed; validator now exit 0, re-verified by orchestrator. Bonus finding routed: granola consumerExplanation-as-string crashes run_gates (folded into TASK-574 lane). Paper-trail state: 11/16 shelves auditable, 8... see above.
 priority: CRITICAL
 created_at: 2026-07-10
 depends_on: []
