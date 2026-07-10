@@ -458,9 +458,10 @@ class LaneResult:
 # ============================================================================
 
 def log_telemetry_v5(*, task: str, capability: str, model_used: str, was_fallback: bool,
-                      trigger: str, exit_criterion_met: bool) -> None:
-    """Append one JSON line: {ts, task, capability, model_used, was_fallback, trigger,
-    exit_criterion_met}. Never raises — telemetry is best-effort by design and must
+                     trigger: str, exit_criterion_met: bool, event: str = "dispatch_end",
+                     duration_s: float | None = None, tokens_used: int | None = None) -> None:
+    """Append one JSON line.  Old rows without ``event`` remain valid for readers.
+    Never raises — telemetry is best-effort by design and must
     never be why a real dispatch fails."""
     try:
         TELEMETRY_V5_LOG.parent.mkdir(parents=True, exist_ok=True)
@@ -476,11 +477,24 @@ def log_telemetry_v5(*, task: str, capability: str, model_used: str, was_fallbac
             "was_fallback": bool(was_fallback),
             "trigger": trigger or "",
             "exit_criterion_met": bool(exit_criterion_met),
+            "event": event,
         }
+        if duration_s is not None:
+            rec["duration_s"] = duration_s
+        if tokens_used is not None:
+            rec["tokens_used"] = tokens_used
         with open(TELEMETRY_V5_LOG, "a", encoding="utf-8") as f:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
     except Exception as e:  # noqa: BLE001 — telemetry is best-effort by design
         print(f"[dispatch] telemetry write failed (non-fatal): {e}", file=sys.stderr)
+
+
+def log_dispatch_start(*, task: str, capability: str, model_used: str,
+                       was_fallback: bool = False) -> None:
+    """Record a lane entry before anything that may invoke its external runner."""
+    log_telemetry_v5(task=task, capability=capability, model_used=model_used,
+                     was_fallback=was_fallback, trigger="", exit_criterion_met=False,
+                     event="dispatch_start")
 
 
 # ============================================================================
@@ -738,27 +752,36 @@ def challenge_gpt(message: str, *, task: str, was_fallback: bool = False,
     being used as the FALLBACK challenger (producer was Codex/GPT, so claude-opus-4-8
     was primary and is unavailable) — Invariant 3 same-vendor-risk must stay auditable.
     """
+    log_dispatch_start(task=task, capability="CHALLENGE", model_used="openai/gpt-5.5-pro",
+                       was_fallback=was_fallback)
+    started = time.monotonic()
     exit_code, output = run_via_opencode_api(message=message, model_id="gpt-5.5-pro",
                                               provider_id="openai", timeout=timeout)
+    duration_s = time.monotonic() - started
     ok = exit_code == 0 and bool(output.strip())
     result = LaneResult(exit_code, output, "openai/gpt-5.5-pro", was_fallback,
                          "" if ok else "Producer-vendor outage", ok)
     log_telemetry_v5(task=task, capability="CHALLENGE", model_used=result.model_used,
                       was_fallback=was_fallback, trigger=result.trigger,
-                      exit_criterion_met=ok)
+                       exit_criterion_met=ok, duration_s=duration_s)
     return result
 
 
 def evidence_research_fallback(message: str, *, task: str, timeout: int = 120) -> LaneResult:
     """EVIDENCE-RESEARCH fallback pipe — openai/gpt-5.5 via opencode HTTP. Layer 2
     fallback trigger: API error or timeout 120s (default timeout matches the law)."""
+    log_dispatch_start(task=task, capability="EVIDENCE-RESEARCH", model_used="openai/gpt-5.5",
+                       was_fallback=True)
+    started = time.monotonic()
     exit_code, output = run_via_opencode_api(message=message, model_id="gpt-5.5",
                                               provider_id="openai", timeout=timeout)
+    duration_s = time.monotonic() - started
     ok = exit_code == 0 and bool(output.strip())
     result = LaneResult(exit_code, output, "openai/gpt-5.5", True,
                          "" if ok else "API error or timeout 120s", ok)
     log_telemetry_v5(task=task, capability="EVIDENCE-RESEARCH", model_used=result.model_used,
-                      was_fallback=True, trigger=result.trigger, exit_criterion_met=ok)
+                       was_fallback=True, trigger=result.trigger, exit_criterion_met=ok,
+                       duration_s=duration_s)
     return result
 
 
@@ -767,6 +790,9 @@ def grunt_text_fallback(message: str, *, task: str, timeout: int = DEFAULT_TIMEO
     gpt-5.4-mini-fast via opencode HTTP, sub-falling back to openai/gpt-5.4-mini if the
     -fast tier errors."""
     model_id = "gpt-5.4-mini-fast"
+    log_dispatch_start(task=task, capability="GRUNT", model_used=f"openai/{model_id}",
+                       was_fallback=True)
+    started = time.monotonic()
     exit_code, output = run_via_opencode_api(message=message, model_id=model_id,
                                               provider_id="openai", timeout=timeout)
     if exit_code != 0:
@@ -778,7 +804,8 @@ def grunt_text_fallback(message: str, *, task: str, timeout: int = DEFAULT_TIMEO
                          "" if ok else "API/CLI error, or any output failing its validator once",
                          ok)
     log_telemetry_v5(task=task, capability="GRUNT", model_used=result.model_used,
-                      was_fallback=True, trigger=result.trigger, exit_criterion_met=ok)
+                       was_fallback=True, trigger=result.trigger, exit_criterion_met=ok,
+                       duration_s=time.monotonic() - started)
     return result
 
 
@@ -790,6 +817,22 @@ def grunt_text_fallback(message: str, *, task: str, timeout: int = DEFAULT_TIMEO
 
 _CODEX_EXE_DEFAULT = Path(os.environ.get("APPDATA", "")) / "npm" / "codex.cmd"
 _CODEX_ALLOWED_SANDBOX = {"read-only", "workspace-write"}
+_CODEX_TOKEN_PATTERNS = (
+    re.compile(r"\btoken usage\s*[:=]\s*([\d,]+)\b", re.IGNORECASE),
+    re.compile(r"\btokens? used\s*[:=]\s*([\d,]+)\b", re.IGNORECASE),
+)
+
+
+def _parse_codex_tokens(output: str) -> int | None:
+    """Best-effort extraction from Codex CLI's end-of-run usage summary."""
+    try:
+        for pattern in _CODEX_TOKEN_PATTERNS:
+            match = pattern.search(output or "")
+            if match:
+                return int(match.group(1).replace(",", ""))
+    except Exception:  # noqa: BLE001 — telemetry parsing must never affect a lane
+        pass
+    return None
 
 
 def _resolve_codex_cmd() -> Path:
@@ -806,7 +849,7 @@ def _resolve_codex_cmd() -> Path:
 
 
 def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout: int,
-                     search: bool = False) -> tuple[int, str]:
+                     search: bool = False) -> tuple[int, str, int | None]:
     """Low-level `codex exec` invocation.
 
     CLI-version note (verified 2026-07-10 against codex-cli 0.144.1): `codex exec
@@ -847,19 +890,22 @@ def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout
                                input=prompt)
     except subprocess.TimeoutExpired as e:
         partial = (e.stdout or "") if isinstance(e.stdout, str) else ""
-        return 1, f"TIMEOUT after {timeout}s.\n{partial}"
+        output = f"TIMEOUT after {timeout}s.\n{partial}"
+        return 1, output, _parse_codex_tokens(output)
     output = (proc.stdout or "")
     if proc.stderr and proc.stderr.strip():
         output += "\n\n--- STDERR ---\n" + proc.stderr
-    return proc.returncode, output
+    return proc.returncode, output, _parse_codex_tokens(output)
 
 
 def _dispatch_codex_build(capability: str, prompt: str, *, task: str, cwd: Path, sandbox: str,
                            timeout: int, search: bool = False) -> LaneResult:
     model = resolve_primary_model(capability)  # raises ModelNotPinnedError while PIN-AT-AUTH
     git_before = git_status_porcelain(cwd)
-    exit_code, output = _run_codex_exec(prompt, model=model, sandbox=sandbox, cwd=cwd,
-                                         timeout=timeout, search=search)
+    started = time.monotonic()
+    exit_code, output, tokens_used = _run_codex_exec(prompt, model=model, sandbox=sandbox,
+                                                       cwd=cwd, timeout=timeout, search=search)
+    duration_s = time.monotonic() - started
     git_after = git_status_porcelain(cwd)
     empty_diff = sandbox == "workspace-write" and git_before == git_after
     if exit_code != 0:
@@ -871,7 +917,8 @@ def _dispatch_codex_build(capability: str, prompt: str, *, task: str, cwd: Path,
     ok = exit_code == 0 and not empty_diff
     result = LaneResult(exit_code, output, model, False, trigger, ok)
     log_telemetry_v5(task=task, capability=capability, model_used=model, was_fallback=False,
-                      trigger=trigger, exit_criterion_met=ok)
+                       trigger=trigger, exit_criterion_met=ok, duration_s=duration_s,
+                       tokens_used=tokens_used)
     return result
 
 
@@ -880,6 +927,8 @@ def build_heavy(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAUL
     """BUILD-HEAVY (Layer 1 Q4): coding with any complexity signal. `codex exec`,
     sandbox workspace-write, explicit --cd <worktree>. `worktree` is required — this
     never dispatches against the live tree."""
+    log_dispatch_start(task=task, capability="BUILD-HEAVY",
+                       model_used=MODEL_BINDING["BUILD-HEAVY"]["primary"])
     return _dispatch_codex_build("BUILD-HEAVY", prompt, task=task, cwd=worktree,
                                   sandbox="workspace-write", timeout=timeout)
 
@@ -888,6 +937,8 @@ def build_light(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAUL
                  ) -> LaneResult:
     """BUILD-LIGHT (Layer 1 Q5): coding with no complexity signal. Same pipe as
     BUILD-HEAVY."""
+    log_dispatch_start(task=task, capability="BUILD-LIGHT",
+                       model_used=MODEL_BINDING["BUILD-LIGHT"]["primary"])
     return _dispatch_codex_build("BUILD-LIGHT", prompt, task=task, cwd=worktree,
                                   sandbox="workspace-write", timeout=timeout)
 
@@ -897,6 +948,7 @@ def grunt_primary(prompt: str, *, task: str, worktree: Path, timeout: int = DEFA
     """GRUNT primary (Layer 1 Q6): mechanical non-code work. `codex exec`, sandbox
     workspace-write — deliberately the cheapest Codex tier; the cross-vendor fallback is
     claude-haiku-4-5 (MODEL_BINDING['GRUNT'])."""
+    log_dispatch_start(task=task, capability="GRUNT", model_used=MODEL_BINDING["GRUNT"]["primary"])
     return _dispatch_codex_build("GRUNT", prompt, task=task, cwd=worktree,
                                   sandbox="workspace-write", timeout=timeout)
 
@@ -906,6 +958,8 @@ def engineering_research(prompt: str, *, task: str, cwd: Path = REPO_ROOT,
     """ENGINEERING-RESEARCH (Layer 1 Q8): GitHub/libraries/frameworks/APIs/
     implementation patterns. `codex exec -c tools.web_search=true`, read-only sandbox — never writes.
     See `_run_codex_exec` docstring for a known --search CLI-version caveat."""
+    log_dispatch_start(task=task, capability="ENGINEERING-RESEARCH",
+                       model_used=MODEL_BINDING["ENGINEERING-RESEARCH"]["primary"])
     return _dispatch_codex_build("ENGINEERING-RESEARCH", prompt, task=task, cwd=cwd,
                                   sandbox="read-only", timeout=timeout, search=True)
 
@@ -993,14 +1047,18 @@ def vision_longread(prompt: str, *, task: str, cwd: Path = REPO_ROOT,
     rendered pages. report-only contract — returns the report TEXT (str), nothing else.
     Refuses BEFORE dispatch (raises GeminiScopeRefusal) if the prompt reads as a request
     for code or consumer copy."""
+    log_dispatch_start(task=task, capability="VISION-LONGREAD",
+                       model_used=MODEL_BINDING["VISION-LONGREAD"]["primary"])
     _refuse_if_code_or_copy_request(prompt)
     model = resolve_primary_model("VISION-LONGREAD")  # raises ModelNotPinnedError while PIN-AT-AUTH
+    started = time.monotonic()
     exit_code, output = _run_gemini_cli(prompt, model=model, cwd=cwd, timeout=timeout)
+    duration_s = time.monotonic() - started
     ok = exit_code == 0 and bool(output.strip())
     log_telemetry_v5(task=task, capability="VISION-LONGREAD", model_used=model,
                       was_fallback=False,
                       trigger="" if ok else "CLI hang > 10 min, crash, or empty output",
-                      exit_criterion_met=ok)
+                       exit_criterion_met=ok, duration_s=duration_s)
     if not ok:
         raise RuntimeError(
             f"VISION-LONGREAD dispatch failed (exit {exit_code}); report text empty or the "
@@ -1195,8 +1253,8 @@ def cmd_selftest_codex(timeout: int) -> int:
             "do not read or edit any files.")
     started = datetime.now(timezone.utc)
     try:
-        exit_code, output = _run_codex_exec(PONG, model=model, sandbox="read-only",
-                                             cwd=REPO_ROOT, timeout=timeout)
+        exit_code, output, _tokens_used = _run_codex_exec(PONG, model=model, sandbox="read-only",
+                                                           cwd=REPO_ROOT, timeout=timeout)
     except FileNotFoundError as e:
         print(f"[selftest-codex] FAIL — {e}", file=sys.stderr)
         return 1
@@ -1245,6 +1303,49 @@ def cmd_selftest_gemini(timeout: int) -> int:
     return 1
 
 
+def cmd_selftest_telemetry() -> int:
+    """Offline telemetry check: mocked Codex runner and a temporary JSONL log only."""
+    import tempfile
+
+    global TELEMETRY_V5_LOG, _run_codex_exec, git_status_porcelain
+    original_log = TELEMETRY_V5_LOG
+    original_runner = _run_codex_exec
+    original_git_status = git_status_porcelain
+    with tempfile.TemporaryDirectory() as tmp:
+        TELEMETRY_V5_LOG = Path(tmp) / "router_v5_log.jsonl"
+        try:
+            _run_codex_exec = lambda *_a, **_kw: (0, "done\nToken usage: 1,234", 1234)
+            # Make the second status observation differ without invoking git.
+            def fake_status(_cwd: Path) -> str:
+                fake_status.called = not fake_status.called
+                return "before" if fake_status.called else "after"
+            fake_status.called = False
+            git_status_porcelain = fake_status
+            build_light("offline telemetry test", task="TASK-589-telemetry", worktree=Path(tmp))
+            rows = [json.loads(line) for line in TELEMETRY_V5_LOG.read_text(encoding="utf-8").splitlines()]
+            start_ok = len(rows) == 2 and rows[0].get("event") == "dispatch_start"
+            end_ok = (rows[-1].get("event") == "dispatch_end" and
+                      isinstance(rows[-1].get("duration_s"), float) and
+                      rows[-1].get("tokens_used") == 1234)
+
+            _run_codex_exec = lambda *_a, **_kw: (_ for _ in ()).throw(RuntimeError("mock crash"))
+            try:
+                build_light("offline crash test", task="TASK-589-crash", worktree=Path(tmp))
+            except RuntimeError:
+                pass
+            rows = [json.loads(line) for line in TELEMETRY_V5_LOG.read_text(encoding="utf-8").splitlines()]
+            crash_start_ok = rows[-1].get("task") == "TASK-589-crash" and rows[-1].get("event") == "dispatch_start"
+            token_parse_ok = _parse_codex_tokens("Token usage: 9,876") == 9876
+            ok = start_ok and end_ok and crash_start_ok and token_parse_ok
+            print("[selftest-telemetry] " + ("PASS" if ok else "FAIL") +
+                  " — start row, end duration/tokens, and pre-run crash entry")
+            return 0 if ok else 1
+        finally:
+            TELEMETRY_V5_LOG = original_log
+            _run_codex_exec = original_runner
+            git_status_porcelain = original_git_status
+
+
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 def main() -> None:
@@ -1264,7 +1365,9 @@ def main() -> None:
                               "capability_router_v5.md.")
     parser.add_argument("--selftest-route", action="store_true",
                          help="Run the route() fixture battery and assert expected "
-                              "capabilities.")
+                               "capabilities.")
+    parser.add_argument("--selftest-telemetry", action="store_true",
+                        help="Offline mocked-runner check for start/end telemetry rows.")
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT,
                          help=f"Timeout in seconds for CLI/HTTP selftests "
                               f"(default: {DEFAULT_TIMEOUT}).")
@@ -1274,6 +1377,8 @@ def main() -> None:
         sys.exit(cmd_selftest_table())
     if args.selftest_route:
         sys.exit(cmd_selftest_route())
+    if args.selftest_telemetry:
+        sys.exit(cmd_selftest_telemetry())
     if args.selftest:
         sys.exit(cmd_selftest(args.timeout))
     if args.selftest_codex:
@@ -1282,7 +1387,7 @@ def main() -> None:
         sys.exit(cmd_selftest_gemini(args.timeout))
 
     parser.error("no action given — pass one of --selftest / --selftest-codex / "
-                 "--selftest-gemini / --selftest-table / --selftest-route.")
+                  "--selftest-gemini / --selftest-table / --selftest-route / --selftest-telemetry.")
 
 
 if __name__ == "__main__":
