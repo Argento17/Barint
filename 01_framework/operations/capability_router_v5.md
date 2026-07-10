@@ -90,12 +90,20 @@ ChatGPT-subscription OAuth (`codex login`), then written here in place of the pl
 Status 2026-07-10: CLI v0.144.1 installed; currently authed with a **pay-per-token API key**
 (wrong billing path — subscription OAuth pending owner). Config default: `gpt-5.5`, reasoning
 `medium`. Sandbox tiers available: `read-only` / `workspace-write` / `danger-full-access`
-(never use the third).
+(never use the third). **Build-time caveat (2026-07-10):** on 0.144.1, `--search` is a
+top-level flag only — `codex exec --search` errors. The ENGINEERING-RESEARCH invocation gets
+re-verified and corrected at pin time (TASK-584).
 
-² **PIN-AT-AUTH (Gemini):** gemini CLI v0.46.0 installed but crashes at user setup — stale
-auth from the 2026-06-18 CLI migration. Owner re-login required (`gemini` interactive →
-Google OAuth), then the exact model ID from a PONG round-trip replaces the placeholder.
-Headless calls require `GEMINI_CLI_TRUST_WORKSPACE=true`.
+² **PIN-AT-AUTH (Gemini) — CORRECTED 2026-07-10 after live probing:** the working binary for
+this subscription is **Antigravity (`%LOCALAPPDATA%\agy\bin\agy.exe`, v1.1.0 present)**, auth
+in Windows Credential Manager (Target=gemini:antigravity). The npm `gemini` CLI v0.46.0
+crashes with IneligibleTier/UNSUPPORTED_CLIENT on this account — that client is simply not
+supported on this tier; **no plan upgrade needed, no owner re-login proven necessary yet.**
+Live agy sentinel-file round-trip FAILED 2026-07-10 (lane flaky since 07-08). Until revived,
+VISION-LONGREAD stays pin-gated (fails loudly, falls back to claude-sonnet-5 per binding).
+Revival = TASK-584: repoint the lane to agy, fix headless flags, sentinel selftest green,
+pin the exact model ID, and update this doc's Layer-2 pipe cell + code together (the
+--selftest-table byte-match keeps them honest).
 
 ---
 
