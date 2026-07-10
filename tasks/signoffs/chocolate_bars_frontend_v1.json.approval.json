@@ -1,0 +1,22 @@
+{
+  "copy_id": "chocolate_bars_frontend_v1",
+  "file": "bari-web/src/data/comparisons/chocolate_bars_frontend_v1.json",
+  "sha256": "df69ebe37d03a02efe82e308ca047f94f9ffa17cb355230fc732eb4f673ef76e",
+  "gates": {
+    "content_agent": {
+      "agent": "Content Agent",
+      "date": "2026-07-10",
+      "evidence": "Content Agent (content-574-gate) — SIGN-OFF. Recursive structural diff, 6 files x 2 trees (12 pairs): 936 diff entries, 100% removed internal keys, 0 added/changed values, 0 expansion-subtree touches; expansion.consumerExplanation byte-identical."
+    },
+    "red_team": {
+      "agent": "Adversarial QA / Red-Team",
+      "date": "2026-07-10",
+      "evidence": "Adversarial QA (qa-574-gate) — SIGN-OFF. 5 attack angles: structural diff clean both trees; reader hunt 0 live readers of stripped fields; tsc --noEmit exit 0 vs stripped JSONs; 0 score/grade/rank changes. Caveat: next build not runnable in worktree (node_modules absent), type layer verified via tsc in main tree. MEDIUM informational: public /data/comparisons/[slug] API payload now omits nutrition_per_100g/_scoring_trace (consistent with task intent; fixes a _scoring_trace leak on that endpoint)."
+    }
+  },
+  "approved_at": "2026-07-10",
+  "task": "TASK-574",
+  "migrated_from": "chocolate_bars_frontend_v1.json.ok",
+  "migration_note": "sha256 pinned to HEAD content at migration time by migrate_signoffs.py (TASK-567); original approval predates hash pinning",
+  "legacy_marker_text": "TASK-574 two-gate sign-off — chocolate_bars_frontend_v1.json\ndate: 2026-07-10\nscope: display-neutral strip of raw internal fields (no consumer copy authored or altered)\ncontent_gate: Content Agent (content-574-gate) — SIGN-OFF. Recursive structural diff, 6 files x 2 trees (12 pairs): 936 diff entries, 100% removed internal keys, 0 added/changed values, 0 expansion-subtree touches; expansion.consumerExplanation byte-identical.\nred_team_gate: Adversarial QA (qa-574-gate) — SIGN-OFF. 5 attack angles: structural diff clean both trees; reader hunt 0 live readers of stripped fields; tsc --noEmit exit 0 vs stripped JSONs; 0 score/grade/rank changes. Caveat: next build not runnable in worktree (node_modules absent), type layer verified via tsc in main tree. MEDIUM informational: public /data/comparisons/[slug] API payload now omits nutrition_per_100g/_scoring_trace (consistent with task intent; fixes a _scoring_trace leak on that endpoint).\napplies_to: local staged diff (C:\\Bari) AND worktree commit e3512d1e (branch task574-raw-fields, pushed)"
+}

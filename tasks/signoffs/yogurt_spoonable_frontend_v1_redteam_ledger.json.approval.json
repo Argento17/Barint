@@ -1,0 +1,22 @@
+{
+  "copy_id": "yogurt_spoonable_frontend_v1_redteam_ledger",
+  "file": "bari-web/src/data/comparisons/yogurt_spoonable_frontend_v1_redteam_ledger.json",
+  "sha256": "bb33a919dba16407e2960f3d6bd196bd11ad4d08ade8498dfc3e1da74b4fe534",
+  "gates": {
+    "content_agent": {
+      "agent": "Content Agent",
+      "date": "2026-07-08",
+      "evidence": "Content Agent authored + signed off across 4 rounds (initial round-1 fixes for HIGH-1 processing over-claim + 2 MEDIUM false-superlatives; round-2 literal-grade-letter removal RT-R2-1; round-3 superlative false-max fix; RT-2H1 tapioca-starch-fix copy re-authoring on 6 affected products incl 7290119377411/938396-class over-claim correction) -- every string orchestrator-verified against artifacts, not trusted at face value"
+    },
+    "red_team": {
+      "agent": "Adversarial QA / Red-Team",
+      "date": "2026-07-08",
+      "evidence": "Adversarial QA terminal red-team, 3 rounds (loop-capped), 0 open CRITICAL / 0 open HIGH at close. Round 1: HIGH-1 + 2 MEDIUM found+fixed. Round 2: 3 findings resolved 0 regression, but a new HIGH (RT-R2-1, S-in-copy vs frozen A-chip) surfaced and was fixed. Round 3 (final): all fixes confirmed resolved incl RT-2H1's 13-product tapioca-starch classifier fix (3 grade crossers), full deterministic sweep GREEN (run_gates.py exit 0, rank_check.py 0 false, score/grade-vs-trace 0/78 mismatch, real-DOM render 0 console errors). Report: 02_products/yogurt_system/reports/red_team_yogurt_spoonable_task515_v3.md. Full RT-2H1 engine-fix provenance + Nutrition+Product co-sign + independent C3 challenge: 02_products/yogurt_system/bsip2_task515_v3/TAPIOCA_STARCH_FIX_COSIGN.md"
+    }
+  },
+  "approved_at": "2026-07-08",
+  "task": "TASK-515",
+  "migrated_from": "yogurt_spoonable_frontend_v1_redteam_ledger.json.ok",
+  "migration_note": "sha256 pinned to HEAD content at migration time by migrate_signoffs.py (TASK-567); original approval predates hash pinning",
+  "legacy_marker_text": "2026-07-08 | TASK-515 spoonable yogurt (78 products), owner-ready after 3 red-team rounds + RT-2H1 engine-fix rescore | content-gate: Content Agent authored + signed off across 4 rounds (initial round-1 fixes for HIGH-1 processing over-claim + 2 MEDIUM false-superlatives; round-2 literal-grade-letter removal RT-R2-1; round-3 superlative false-max fix; RT-2H1 tapioca-starch-fix copy re-authoring on 6 affected products incl 7290119377411/938396-class over-claim correction) -- every string orchestrator-verified against artifacts, not trusted at face value | red-team: Adversarial QA terminal red-team, 3 rounds (loop-capped), 0 open CRITICAL / 0 open HIGH at close. Round 1: HIGH-1 + 2 MEDIUM found+fixed. Round 2: 3 findings resolved 0 regression, but a new HIGH (RT-R2-1, S-in-copy vs frozen A-chip) surfaced and was fixed. Round 3 (final): all fixes confirmed resolved incl RT-2H1's 13-product tapioca-starch classifier fix (3 grade crossers), full deterministic sweep GREEN (run_gates.py exit 0, rank_check.py 0 false, score/grade-vs-trace 0/78 mismatch, real-DOM render 0 console errors). Report: 02_products/yogurt_system/reports/red_team_yogurt_spoonable_task515_v3.md. Full RT-2H1 engine-fix provenance + Nutrition+Product co-sign + independent C3 challenge: 02_products/yogurt_system/bsip2_task515_v3/TAPIOCA_STARCH_FIX_COSIGN.md"
+}

@@ -1,0 +1,22 @@
+{
+  "copy_id": "yogurt_drinkable_frontend_v1_redteam_ledger",
+  "file": "bari-web/src/data/comparisons/yogurt_drinkable_frontend_v1_redteam_ledger.json",
+  "sha256": "ca4b57341ccccaa97c263b134f15604230758722f599875e9c42cf26e6853095",
+  "gates": {
+    "content_agent": {
+      "agent": "Content Agent",
+      "date": "2026-07-08",
+      "evidence": "Content Agent authored + signed off across 3 rounds (initial round-1 fixes for RT-C5 55329 driver-honesty rewrite, RT-C4 additive-card E-number correction, RT-V1 instrument fix; RT-2H1 tapioca-starch-fix re-authoring on 3 affected products incl the 938396 \"two natural stabilizers\" false-claim correction to honest 3-stabilizer count; post-round-3 RT-3M1 fix unifying 55329's inconsistent stabilizer-count claims to the true 3-agent list) -- every string orchestrator-verified against artifacts, not trusted at face value"
+    },
+    "red_team": {
+      "agent": "Adversarial QA / Red-Team",
+      "date": "2026-07-08",
+      "evidence": "Adversarial QA terminal red-team, 3 rounds (loop-capped), 0 open CRITICAL / 0 open HIGH at close. Round 1: 0 CRITICAL/2 HIGH/4 MEDIUM, including the first-live-E (barcode 55329, 34.3) verified honest -- score==trace, engine byte-identical, E rests on a genuine earned emulsifier-complexity penalty (carrageenan+modified-starch, on-label), not a null/missing-data artifact. Round 2: fixes confirmed but a new HIGH (RT-2H1, tapioca-starch classifier miss) surfaced, root-caused, co-signed by Nutrition+Product, independently challenged by C3, fixed. Round 3 (final): full deterministic sweep GREEN (run_gates.py exit 0, validate_comparison_page.py --http exit 0 all 8 gates, rank_check.py 0 false, real-DOM render 0 console errors, E-card renders visually distinct #A52121). Report: 02_products/yogurt_system/reports/red_team_yogurt_drinkable_task515A_v3.md. Full RT-2H1 engine-fix provenance: 02_products/yogurt_system/bsip2_task515_v3/TAPIOCA_STARCH_FIX_COSIGN.md"
+    }
+  },
+  "approved_at": "2026-07-08",
+  "task": "TASK-515",
+  "migrated_from": "yogurt_drinkable_frontend_v1_redteam_ledger.json.ok",
+  "migration_note": "sha256 pinned to HEAD content at migration time by migrate_signoffs.py (TASK-567); original approval predates hash pinning",
+  "legacy_marker_text": "2026-07-08 | TASK-515A drinkable yogurt (20 products), owner-ready after 3 red-team rounds + RT-2H1 engine-fix rescore + first-ever live E-grade shipped honestly | content-gate: Content Agent authored + signed off across 3 rounds (initial round-1 fixes for RT-C5 55329 driver-honesty rewrite, RT-C4 additive-card E-number correction, RT-V1 instrument fix; RT-2H1 tapioca-starch-fix re-authoring on 3 affected products incl the 938396 \"two natural stabilizers\" false-claim correction to honest 3-stabilizer count; post-round-3 RT-3M1 fix unifying 55329's inconsistent stabilizer-count claims to the true 3-agent list) -- every string orchestrator-verified against artifacts, not trusted at face value | red-team: Adversarial QA terminal red-team, 3 rounds (loop-capped), 0 open CRITICAL / 0 open HIGH at close. Round 1: 0 CRITICAL/2 HIGH/4 MEDIUM, including the first-live-E (barcode 55329, 34.3) verified honest -- score==trace, engine byte-identical, E rests on a genuine earned emulsifier-complexity penalty (carrageenan+modified-starch, on-label), not a null/missing-data artifact. Round 2: fixes confirmed but a new HIGH (RT-2H1, tapioca-starch classifier miss) surfaced, root-caused, co-signed by Nutrition+Product, independently challenged by C3, fixed. Round 3 (final): full deterministic sweep GREEN (run_gates.py exit 0, validate_comparison_page.py --http exit 0 all 8 gates, rank_check.py 0 false, real-DOM render 0 console errors, E-card renders visually distinct #A52121). Report: 02_products/yogurt_system/reports/red_team_yogurt_drinkable_task515A_v3.md. Full RT-2H1 engine-fix provenance: 02_products/yogurt_system/bsip2_task515_v3/TAPIOCA_STARCH_FIX_COSIGN.md"
+}

@@ -3,11 +3,14 @@
 # COMMIT boundary: a git commit that STAGES consumer-facing comparison JSON is blocked unless a
 # sign-off marker exists for each staged file. ASCII-only file (PS 5.1 reads no-BOM as ANSI).
 #
-# Marker convention (written by the ORCHESTRATOR only, after BOTH gates pass):
-#   C:\Bari\tasks\signoffs\<json-basename>.ok   (e.g. milk_frontend_v1.json.ok)
-# containing one line: date + content-gate ref + red-team report path.
-# The marker must be NEWER than the JSON file.
-# Exit 2 = block. Fails open on script error (never blocks unrelated work).
+# Record convention (written by the ORCHESTRATOR only, after BOTH gates pass):
+#   C:\Bari\tasks\signoffs\<json-basename>.approval.json  (TASK-567, sha256-pinned;
+#   format: 01_framework/operations/signoff_record_v1.md). The STAGED blob of each
+#   comparison JSON must hash to the record's pinned sha256 -- one changed byte voids
+#   the approval. Verified by 03_operations/validators/verify_signoffs.py --staged.
+#   Legacy <json-basename>.ok markers are still accepted WITH a DEPRECATION warning.
+# Exit 2 = block. Fails open ONLY on infra error (never blocks unrelated work) -- and
+# even then falls back to the pre-567 existence check, so the gate never gets weaker.
 #
 # 2026-07-04 fix: gate on STAGED files only (a commit never includes unstaged working-tree
 #   changes -- the old `git status --porcelain` inclusion produced false-positives that blocked
@@ -52,21 +55,61 @@ try {
     $candidates = @($staged) | Where-Object { $_ -match "bari-web/src/data/comparisons/.*\.json$" } | Sort-Object -Unique
     if (-not $candidates -or $candidates.Count -eq 0) { exit 0 }
 
-    $missing = @()
-    foreach ($f in $candidates) {
-        $base = Split-Path $f -Leaf
-        $marker = Join-Path $markerRoot "tasks\signoffs\$base.ok"
-        $full = Join-Path $commitRepo ($f -replace "/", "\")
-        if (-not (Test-Path $marker)) { $missing += "$base (no marker tasks\signoffs\$base.ok)"; continue }
-        if ((Test-Path $full) -and ((Get-Item $marker).LastWriteTime -lt (Get-Item $full).LastWriteTime)) {
-            $missing += "$base (marker older than the JSON - re-run both gates)"
+    # 2026-07-10 (TASK-567): sha256-pinned approval records replace the existence/mtime
+    # .ok check. The verifier hashes the STAGED index blob (exactly what this commit will
+    # contain) and blocks unless it equals the approved sha256. Legacy .ok markers pass
+    # with a DEPRECATION warning. Verifier exit: 0=pass, 1=violation(block), other=infra
+    # (fail over to the legacy existence check below -- never weaker than pre-567).
+    $verified = $false
+    $verifier = Join-Path $markerRoot "03_operations\validators\verify_signoffs.py"
+    $signoffDir = Join-Path $markerRoot "tasks\signoffs"
+    if (Test-Path $verifier) {
+        $fileArgs = ""
+        foreach ($f in $candidates) { $fileArgs += " ""$f""" }
+        # cmd /c wrapper: PS 5.1 wraps native stderr into ErrorRecords under EAP=Stop,
+        # which would throw into the outer catch and silently fail OPEN. cmd absorbs it.
+        $tmpOut = Join-Path $env:TEMP ("signoff_verify_{0}.txt" -f [Guid]::NewGuid().ToString("N"))
+        cmd /c "python ""$verifier"" --staged --allow-legacy-ok --repo ""$commitRepo"" --signoffs ""$signoffDir""$fileArgs > ""$tmpOut"" 2>&1"
+        $vcode = $LASTEXITCODE
+        $vout = @()
+        if (Test-Path $tmpOut) { $vout = @(Get-Content $tmpOut); Remove-Item $tmpOut -Force -ErrorAction SilentlyContinue }
+        if ($vcode -eq 0) {
+            $verified = $true
+            foreach ($line in $vout) {
+                if ("$line" -match "^(DEPRECATION|WARN)") { [Console]::Error.WriteLine("guard-two-gate-commit.ps1: $line") }
+            }
+        } elseif ($vcode -eq 1) {
+            [Console]::Error.WriteLine("BLOCKED by guard-two-gate-commit.ps1: staged comparison JSON fails the sha256-pinned two-gate sign-off check (Content Agent + Adversarial QA / Red-Team; CLAUDE.md hard rule 2026-06-20; TASK-567):")
+            foreach ($line in $vout) { [Console]::Error.WriteLine("  $line") }
+            [Console]::Error.WriteLine("After BOTH gates pass on the CURRENT bytes, the orchestrator writes tasks\signoffs\<json-basename>.approval.json (format: 01_framework/operations/signoff_record_v1.md), then commit.")
+            exit 2
+        } else {
+            [Console]::Error.WriteLine("guard-two-gate-commit.ps1: verify_signoffs.py unavailable (exit $vcode) -- falling back to legacy marker existence check.")
         }
     }
-    if ($missing.Count -gt 0) {
-        [Console]::Error.WriteLine("BLOCKED by guard-two-gate-commit.ps1: comparison JSON staged without two-gate sign-off (Content Agent + Adversarial QA / Red-Team; CLAUDE.md hard rule 2026-06-20):")
-        foreach ($m in $missing) { [Console]::Error.WriteLine("  > $m") }
-        [Console]::Error.WriteLine("After BOTH gates pass, the orchestrator writes tasks\signoffs\<json-basename>.ok (date + content-gate ref + red-team report path), then commit.")
-        exit 2
+    if (-not $verified) {
+        # Legacy fallback (pre-TASK-567 behavior, infra failures only): record/marker must
+        # EXIST; .ok markers additionally must be newer than the JSON. Weaker than the hash
+        # check but exactly as strong as the old gate -- and it accepts .approval.json
+        # existence so a python outage cannot hard-block properly signed-off work.
+        $missing = @()
+        foreach ($f in $candidates) {
+            $base = Split-Path $f -Leaf
+            $record = Join-Path $markerRoot "tasks\signoffs\$base.approval.json"
+            $marker = Join-Path $markerRoot "tasks\signoffs\$base.ok"
+            $full = Join-Path $commitRepo ($f -replace "/", "\")
+            if (Test-Path $record) { continue }
+            if (-not (Test-Path $marker)) { $missing += "$base (no record tasks\signoffs\$base.approval.json and no legacy marker)"; continue }
+            if ((Test-Path $full) -and ((Get-Item $marker).LastWriteTime -lt (Get-Item $full).LastWriteTime)) {
+                $missing += "$base (legacy marker older than the JSON - re-run both gates)"
+            }
+        }
+        if ($missing.Count -gt 0) {
+            [Console]::Error.WriteLine("BLOCKED by guard-two-gate-commit.ps1: comparison JSON staged without two-gate sign-off (Content Agent + Adversarial QA / Red-Team; CLAUDE.md hard rule 2026-06-20):")
+            foreach ($m in $missing) { [Console]::Error.WriteLine("  > $m") }
+            [Console]::Error.WriteLine("After BOTH gates pass, the orchestrator writes tasks\signoffs\<json-basename>.approval.json (format: 01_framework/operations/signoff_record_v1.md), then commit.")
+            exit 2
+        }
     }
 
     # 2026-07-08 (TASK-541, owner ruling): third enforcement layer -- staged comparison JSON must
