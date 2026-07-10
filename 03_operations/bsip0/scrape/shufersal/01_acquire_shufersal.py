@@ -1,13 +1,27 @@
 """
-Shufersal BSIP0 storefront scraper — crawlee + DefaultFingerprintGenerator.
+Shufersal BSIP0 storefront scraper — direct-by-barcode requests + BeautifulSoup.
 
 Architecture:
   1. il_prices feed (prices.shufersal.co.il) → barcodes + names + prices [identity]
-  2. crawlee PlaywrightCrawler + DefaultFingerprintGenerator → product pages [nutrition]
-  3. OFF → fallback for international barcodes only
+  2. requests + BeautifulSoup, direct product-by-barcode URL → product pages [nutrition]
 
-The TLS fingerprint block (BLOCKED_TLS_FINGERPRINT_FAKE_200) is bypassed by
-crawlee's browser fingerprint injection. Raw Playwright / Firecrawl still blocked.
+FIX HISTORY (TASK-582, 2026-07-10): the previous URL template
+(``https://www.shufersal.co.il/online/he/A{barcode}``) 404s on every request — stale.
+The verified-live pattern is ``https://www.shufersal.co.il/online/he/p/p_{barcode}``,
+confirmed working by 03_operations/shelf_watch/shelf_watch.py::fetch_shufersal_product
+(live canary runs 2026-07-10). This script's request layer now mirrors that exact
+fetch construction (URL template, headers, status/maintenance/ld+json-gtin checks) —
+plain ``requests``, no browser/crawlee needed; the old crawlee+DefaultFingerprintGenerator
+architecture (kept for a TLS-fingerprint block that a corrected direct URL does not hit)
+is removed. Nutrition parsing now uses the shared canonical parser
+(03_operations/bsip0/scrape/_shared/bsip0_nutrition.py) that every other Shufersal
+BSIP0 scraper uses, instead of the previous ad-hoc whole-page regex scan — this avoids
+resurrecting the EV-026/EV-029 fat-field-overwrite bug class the shared module exists
+to prevent.
+
+OFF is NOT a source anywhere in this script (project-wide ban, TASK-238) — the earlier
+docstring's "OFF fallback" line described something never implemented in code and has
+been removed as part of this fix.
 
 Run from C:\Bari:
     python 03_operations/bsip0/scrape/shufersal/01_acquire_shufersal.py --category juices --limit 40
@@ -17,25 +31,34 @@ import sys
 sys.stdout.reconfigure(encoding="utf-8")
 
 import argparse
-import asyncio
 import json
 import re
-import sys
-from datetime import datetime, timedelta, timezone
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 
-from crawlee.crawlers import PlaywrightCrawler, PlaywrightCrawlingContext
-from crawlee.fingerprint_suite import (
-    DefaultFingerprintGenerator,
-    HeaderGeneratorOptions,
-    ScreenOptions,
-)
+import requests
+from bs4 import BeautifulSoup
+
+sys.path.insert(0, str(Path(__file__).parents[1] / "_shared"))
+import bsip0_nutrition as bn  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Config
 # ---------------------------------------------------------------------------
 
-SHUFERSAL_PRODUCT_URL = "https://www.shufersal.co.il/online/he/A{barcode}"
+SHUFERSAL_BASE = "https://www.shufersal.co.il"
+SHUFERSAL_PRODUCT_URL = SHUFERSAL_BASE + "/online/he/p/p_{barcode}"
+HTTP_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept-Language": "he-IL,he;q=0.9",
+    "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
+}
+REQUEST_TIMEOUT = 25
+REQUEST_DELAY_S = 0.6
 
 CATEGORY_QUERIES: dict[str, list[str]] = {
     "juices": ["מיץ", "מיצים", "נקטר", "משקה פירות", "סחוט", "smoothie"],
@@ -77,39 +100,122 @@ def build_output_path(category: str, run_id: str) -> Path:
     return out_dir / f"bsip0_shufersal_{category}_{run_id}.json"
 
 
-def extract_nutrition_from_html(html: str) -> dict:
-    """Best-effort extraction of nutrition values from Shufersal product page HTML."""
-    nutrition: dict = {}
-    text = re.sub(r"<[^>]+>", " ", html)
-    text = re.sub(r"\s+", " ", text)
+def extract_ingredients(soup: BeautifulSoup) -> str:
+    """Shufersal product-page ingredients. PRIMARY: div.componentsText (the precise
+    container confirmed live — see shelf_watch.py::extract_ingredients for the same
+    approach). FALLBACK: the class-substring selectors this script already carried
+    (INGREDIENT_SELECTORS), then a broad 'רכיב' text search."""
+    container = soup.select_one("div.componentsText")
+    if container is not None:
+        return container.get_text(" ", strip=True)
 
-    # Patterns: "שומן 5.5 גרם", "אנרגיה 152 קק\"ל"
-    patterns = {
-        "energy_kcal": [r"אנרגיה[^\d]{0,10}([\d.]+)\s*(?:קק|kcal|kJ)", r"([\d.]+)\s*קק\"?ל"],
-        "fat_g": [r"שומן[^\d]{0,10}([\d.]+)\s*ג"],
-        "saturated_fat_g": [r"(?:שומן\s+)?רווי[^\d]{0,10}([\d.]+)\s*ג"],
-        "carbs_g": [r"פחמימות[^\d]{0,10}([\d.]+)\s*ג"],
-        "sugars_g": [r"(?:מתוכם\s+)?סוכרים[^\d]{0,10}([\d.]+)\s*ג"],
-        "protein_g": [r"חלבון[^\d]{0,15}([\d.]+)\s*ג"],
-        "sodium_mg": [r"נתרן[^\d]{0,10}([\d.]+)\s*מ"],
-        "fiber_g": [r"(?:סיבים|סיבות)[^\d]{0,15}([\d.]+)\s*ג"],
-        "calcium_mg": [r"סידן[^\d]{0,10}([\d.]+)\s*מ"],
-    }
-    for field, pats in patterns.items():
-        for pat in pats:
-            m = re.search(pat, text, re.IGNORECASE)
+    for sel in INGREDIENT_SELECTORS:
+        el = soup.select_one(sel)
+        if el is not None:
+            text = el.get_text(" ", strip=True)
+            if text:
+                return text
+
+    ingr_label = soup.find(string=re.compile(r"רכיב"))
+    if ingr_label:
+        parent = ingr_label.find_parent()
+        broad = parent.find_parent() if parent else None
+        if broad:
+            full_text = broad.get_text(separator=" ", strip=True)
+            m = re.search(r"רכיב[ים:]*\s*(.*)", full_text, re.DOTALL)
             if m:
-                try:
-                    nutrition[field] = float(m.group(1))
-                    break
-                except ValueError:
-                    pass
-    return nutrition
+                return m.group(1).strip()
+    return ""
 
 
 # ---------------------------------------------------------------------------
-# Crawler
+# Fetch (requests + BeautifulSoup, direct-by-barcode URL — TASK-582 fix).
+# Mirrors 03_operations/shelf_watch/shelf_watch.py::fetch_shufersal_product, the
+# verified-live fetch construction (URL template, headers, status/maintenance/
+# ld+json-gtin checks). Returns a status envelope, never raises.
 # ---------------------------------------------------------------------------
+
+def fetch_shufersal_product(barcode: str) -> dict:
+    url = SHUFERSAL_PRODUCT_URL.format(barcode=barcode)
+    try:
+        r = requests.get(url, headers=HTTP_HEADERS, timeout=REQUEST_TIMEOUT, allow_redirects=True)
+    except Exception as e:
+        return {"status": "scrape_failed", "reason": f"request_exception: {str(e)[:200]}", "barcode": barcode}
+
+    if r.status_code == 404:
+        return {"status": "page_gone", "reason": "http_404_on_direct_barcode_url", "barcode": barcode,
+                "final_url": r.url}
+    if r.status_code != 200:
+        return {"status": "scrape_failed", "reason": f"http_{r.status_code}", "barcode": barcode}
+
+    text = r.text
+    if len(text) < 5000 and any(s in text.lower() for s in ("maintenance", "אתר בתחזוקה", "בתחזוקה")):
+        return {"status": "scrape_failed", "reason": "maintenance_page", "barcode": barcode}
+    if any(sig in text for sig in BLOCK_SIGNALS):
+        return {"status": "scrape_failed", "reason": "block_signal_detected", "barcode": barcode}
+
+    soup = BeautifulSoup(text, "html.parser")
+
+    ld_gtin = ""
+    for script in soup.find_all("script", type="application/ld+json"):
+        try:
+            ld = json.loads(script.string)
+        except Exception:
+            continue
+        if ld.get("@type") == "Product":
+            ld_gtin = ld.get("gtin13", ld.get("gtin", "")) or ""
+            break
+
+    if not ld_gtin:
+        return {"status": "scrape_failed", "reason": "no_ld_json_product_block", "barcode": barcode,
+                "final_url": r.url}
+    if str(ld_gtin).strip() != barcode:
+        return {"status": "page_gone", "reason": f"gtin_mismatch: resolved to {ld_gtin}", "barcode": barcode,
+                "final_url": r.url}
+
+    title = soup.title.get_text(strip=True) if soup.title else ""
+    product_name = title.split("|")[0].strip() if "|" in title else title
+
+    # Nutrition — the shared canonical parser (same module every other Shufersal BSIP0
+    # scraper uses; see module docstring for why this replaces the old ad-hoc regex scan).
+    # parse_nutrition_list() returns bare field names ("fat", "sodium", "energy", ...);
+    # parse_nutrition_numeric() requires the "_raw"-suffixed key contract
+    # shufersal_cereals/01_scrape_cereals.py uses (the live cereals corpus builder) —
+    # note "energy" (bare) -> "energy_kcal_raw", NOT a generic f"{k}_raw" suffix.
+    # Passing parse_nutrition_list()'s output straight into parse_nutrition_numeric()
+    # without this exact rename silently returns None for every field (found live while
+    # canary-testing this fix, TASK-582 — same latent gap present in shelf_watch.py's
+    # identical direct-chain call; flagged separately, not fixed here as shelf_watch.py
+    # is out of this task's scope).
+    nutr_bare = bn.parse_nutrition_list(soup)
+    nutr_for_numeric = {
+        "energy_kcal_raw": nutr_bare.get("energy", ""),
+        "protein_raw": nutr_bare.get("protein", ""),
+        "carbs_raw": nutr_bare.get("carbs", ""),
+        "fat_raw": nutr_bare.get("fat", ""),
+        "fiber_raw": nutr_bare.get("fiber", ""),
+        "sodium_raw": nutr_bare.get("sodium", ""),
+        "sugar_raw": nutr_bare.get("sugar", ""),
+        "saturated_fat_raw": nutr_bare.get("saturated_fat", ""),
+    }
+    nutrition = {k: v for k, v in bn.parse_nutrition_numeric(nutr_for_numeric).items()
+                 if not k.startswith("_") and v is not None}
+
+    ingredients_text = extract_ingredients(soup)
+
+    sufficient = bool(nutrition.get("energy_kcal") or nutrition.get("fat_g") or nutrition.get("protein_g"))
+
+    return {
+        "status": "scraped",
+        "barcode": barcode,
+        "final_url": r.url,
+        "name": product_name,
+        "nutrition": nutrition,
+        "ingredients_raw_he": ingredients_text,
+        "sufficient": sufficient,
+        "fetched_at": datetime.now(timezone.utc).isoformat(),
+    }
+
 
 class ShufersalScraper:
     def __init__(self, barcodes: list[str], category: str):
@@ -117,97 +223,32 @@ class ShufersalScraper:
         self.category = category
         self.results: dict[str, dict] = {}
 
-    async def run(self) -> list[dict]:
-        fp_gen = DefaultFingerprintGenerator(
-            header_options=HeaderGeneratorOptions(browsers=["chrome"]),
-            screen_options=ScreenOptions(min_width=1280, min_height=720),
-        )
-        crawler = PlaywrightCrawler(
-            fingerprint_generator=fp_gen,
-            headless=True,
-            browser_type="chromium",
-            browser_new_context_options={
-                "locale": "he-IL",
-                "timezone_id": "Asia/Jerusalem",
-                "extra_http_headers": {"Accept-Language": "he-IL,he;q=0.9,en-US;q=0.7"},
-                "permissions": [],
-            },
-            navigation_timeout=timedelta(seconds=30),
-            max_requests_per_crawl=len(self.barcodes),
-            max_session_rotations=5,
-        )
-
-        @crawler.router.default_handler
-        async def handler(context: PlaywrightCrawlingContext) -> None:
-            page = context.page
-            await page.wait_for_load_state("domcontentloaded")
-            await page.wait_for_timeout(3000)
-
-            content = await page.content()
-            url = page.url
-            barcode = url.split("/A")[-1].split("?")[0] if "/A" in url else "unknown"
-
-            # Check for block
-            if any(sig in content for sig in BLOCK_SIGNALS):
-                print(f"  [{barcode}] BLOCKED — fingerprint injection failed on this request")
-                return
-
-            # Extract page title / product name
-            title = await page.title()
-            product_name = title.split("|")[0].strip() if "|" in title else title
-
-            # Try nutrition selectors
-            nutrition_html = ""
-            for sel in NUTRITION_SELECTORS:
-                el = page.locator(sel).first
-                try:
-                    if await el.count() > 0 and await el.is_visible(timeout=500):
-                        nutrition_html = await el.inner_html()
-                        break
-                except Exception:
-                    pass
-
-            # Try ingredient selectors
-            ingredient_html = ""
-            for sel in INGREDIENT_SELECTORS:
-                el = page.locator(sel).first
-                try:
-                    if await el.count() > 0:
-                        ingredient_html = await el.inner_html()
-                        break
-                except Exception:
-                    pass
-
-            # If no structured selectors, fall back to full page content parsing
-            if not nutrition_html:
-                nutrition_html = content
-
-            nutrition = extract_nutrition_from_html(nutrition_html)
-            ingredients_text = re.sub(r"<[^>]+>", " ", ingredient_html).strip() if ingredient_html else ""
-
-            sufficient = bool(nutrition.get("energy_kcal") or nutrition.get("fat_g") or nutrition.get("protein_g"))
-
-            record = {
-                "barcode": barcode,
-                "name": product_name,
-                "category": self.category,
-                "retailer": "shufersal",
-                "source_url": url,
-                "nutrition": nutrition,
-                "ingredients_raw_he": ingredients_text,
-                "sufficient": sufficient,
-                "provenance": {
-                    "panel_source": "shufersal_storefront",
-                    "verification_status": "candidate",
-                    "fetched_at": datetime.now(timezone.utc).isoformat(),
-                },
-            }
-            self.results[barcode] = record
-            status = "OK" if sufficient else "no_panel"
-            print(f"  [{barcode}] {status} — {product_name[:50]}")
-
-        urls = [SHUFERSAL_PRODUCT_URL.format(barcode=b) for b in self.barcodes]
-        await crawler.run(urls)
+    def run(self) -> list[dict]:
+        for i, barcode in enumerate(self.barcodes, 1):
+            r = fetch_shufersal_product(barcode)
+            if r["status"] == "scraped":
+                record = {
+                    "barcode": barcode,
+                    "name": r["name"],
+                    "category": self.category,
+                    "retailer": "shufersal",
+                    "source_url": r["final_url"],
+                    "nutrition": r["nutrition"],
+                    "ingredients_raw_he": r["ingredients_raw_he"],
+                    "sufficient": r["sufficient"],
+                    "provenance": {
+                        "panel_source": "shufersal_storefront",
+                        "verification_status": "candidate",
+                        "fetched_at": r["fetched_at"],
+                    },
+                }
+                self.results[barcode] = record
+                status = "OK" if r["sufficient"] else "no_panel"
+                print(f"  [{barcode}] {status} — {r['name'][:50]}")
+            else:
+                print(f"  [{barcode}] {r['status']} — {r.get('reason')}")
+            if i < len(self.barcodes):
+                time.sleep(REQUEST_DELAY_S)
         return list(self.results.values())
 
 
@@ -215,7 +256,7 @@ class ShufersalScraper:
 # Entry point
 # ---------------------------------------------------------------------------
 
-async def main(category: str, limit: int) -> None:
+def main(category: str, limit: int) -> None:
     sys.path.insert(0, str(Path(__file__).parents[4]))
     from integrations.clients.il_prices import fetch_items, CHAINS
 
@@ -243,7 +284,7 @@ async def main(category: str, limit: int) -> None:
     print(f"Found {len(relevant)} matching items, scraping {len(barcodes)} unique barcodes")
 
     scraper = ShufersalScraper(barcodes=barcodes, category=category)
-    results = await scraper.run()
+    results = scraper.run()
 
     sufficient = [r for r in results if r["sufficient"]]
     run_id = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -258,7 +299,7 @@ async def main(category: str, limit: int) -> None:
         "products": results,
         "meta": {
             "scraper": "01_acquire_shufersal.py",
-            "unlock_method": "crawlee_1.7_DefaultFingerprintGenerator",
+            "unlock_method": "requests_bs4_direct_barcode_url (TASK-582 fix)",
             "generated_at": datetime.now(timezone.utc).isoformat(),
         },
     }
@@ -272,4 +313,4 @@ if __name__ == "__main__":
     parser.add_argument("--category", default="juices", choices=list(CATEGORY_QUERIES.keys()))
     parser.add_argument("--limit", type=int, default=40)
     args = parser.parse_args()
-    asyncio.run(main(args.category, args.limit))
+    main(args.category, args.limit)
