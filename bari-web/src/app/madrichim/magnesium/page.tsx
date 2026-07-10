@@ -18,16 +18,22 @@ import type { Metadata } from "next";
 import { HomeContainer } from "@/components/home/section-frame";
 import { GuidePageTemplate } from "@/components/guides/guide-page-template";
 import { magnesiumGuide } from "@/lib/guides/magnesium-guide-data";
-import { MAG_V3_METADATA_DESCRIPTION_HE } from "@/lib/guides/magnesium-guide-copy-v3";
+// MAG_V3_METADATA_DESCRIPTION_HE (the prior three-dimension metadata description) is
+// intentionally not imported -- TASK-580 gate-2 RT-4: it contradicted the page's own
+// visible intro ("ארבעה דברים", v3.1-SLOT-2) by still saying "שלושה דברים". See the
+// `metadata.description` comment below for the fix. Still exported from
+// magnesium-guide-copy-v3.ts for rollback/provenance; just unused at this call site.
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
 
-// TASK-577 wiring phase: meta description sourced VERBATIM from the signed v3 copy
-// package, §3 (02_products/supplements/magnesium/mag_guide_v3_copy_package.md,
-// sha256 668fdaee57449e8514c12d2fded3ed653a391a7cc0f5a49fd7919b622160f2dd) —
-// supersedes the v2 4-criteria frame this task's dispatch says "burned us in v2
-// gate-2." Scoped to "18 תוספי מגנזיום... שבדקה," no "מהמדף הישראלי"
-// market-completeness claim. Not authored here.
+// TASK-577 wiring phase (HISTORICAL — superseded for `description` by the TASK-580
+// gate-2 RT-4 comment at the field itself, below): meta description sourced VERBATIM
+// from the signed v3 copy package, §3 (02_products/supplements/magnesium/
+// mag_guide_v3_copy_package.md, sha256
+// 668fdaee57449e8514c12d2fded3ed653a391a7cc0f5a49fd7919b622160f2dd) — supersedes the
+// v2 4-criteria frame this task's dispatch says "burned us in v2 gate-2." Scoped to
+// "18 תוספי מגנזיום... שבדקה," no "מהמדף הישראלי" market-completeness claim. Not
+// authored here. `title` below is still governed by this paragraph, unchanged.
 //
 // TASK-577 fix round (2026-07-10): title corrected to the owner-dictated H1
 // ("איך לבחור תוסף מגנזיום") — the copy package has no H1/title slot (package gap),
@@ -36,7 +42,19 @@ import { cn } from "@/lib/utils";
 // openGraph.title is a generic, site-wide string, unrelated to this page).
 export const metadata: Metadata = {
   title: "איך לבחור תוסף מגנזיום | Bari",
-  description: MAG_V3_METADATA_DESCRIPTION_HE,
+  // description: TASK-580 gate-2 RT-4 fix -- restores intro/metadata consistency.
+  // The visible intro now reads "ארבעה דברים" (v3.1-SLOT-2, TASK-580 commit
+  // 9223fb69), but this metadata description still said "שלושה דברים" -- a page
+  // contradicting its own <meta> tag. Fix: reuse the ALREADY two-gate-signed
+  // four-dimension description from mag_guide_v2_copy_package.md SLOT 10b (sha256
+  // of that package unchanged by this task -- REUSED-v2 signed string, not new
+  // copy), extracted programmatically from its fenced block, byte-exact. Part of
+  // the same שלושה→ארבעה bundle as the SLOT-2 intro -- pending owner acceptance
+  // of that numeral change (Content's SLOT-2 addendum return: "requires the
+  // owner's explicit acceptance before it ships -- proposed here, not settled").
+  // Not pushed past this local branch pending that acceptance + Red-Team gate-2.
+  description:
+    'בארי בדקה 18 תוספי מגנזיום הנמכרים בישראל לפי מינון מגנזיום יסודי, צורה כימית, בטיחות ושקיפות תיוג, כדי להראות מה לחפש על התווית לפני שקונים.',
   robots: { index: false, follow: true },
 };
 
