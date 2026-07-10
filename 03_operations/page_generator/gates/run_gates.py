@@ -293,6 +293,29 @@ def _validate_node(node, schema, root_schema, path, errors):
                 _validate_node(node, resolved, root_schema, path, errors)
         return
 
+    # anyOf / oneOf (TASK-581): the generated schema (ts-json-schema-generator, adopted
+    # as the canonical page_output_schema_v1.json — TASK-581) represents every TS union
+    # type as anyOf, including simple nullable-ref unions like `grade: RawGrade | null`
+    # and the legacy `{text,magnitude}` vs plain-string limitingFactors union. Before this
+    # fix, neither keyword was handled at all: a node under an anyOf/oneOf schema fell
+    # through with schema_type=None (no "type" key at this level), so NO type/enum/object
+    # check ever ran on it — this is the exact class of bug that let
+    # limitingFactors[].magnitude ship as int on chocolate_bars/chocolate_tablets/snacks
+    # while the (old) hand schema declared it string-only and G1 never caught it. Node
+    # must match at least one branch to be valid; oneOf is treated with the same
+    # "at least one" semantics as anyOf (a lightweight gate favors catching real type
+    # errors over draft-07's stricter "exactly one" — this generator's branches are
+    # disjoint by type/shape in practice, so the distinction has no live effect).
+    branches = schema.get("anyOf") or schema.get("oneOf")
+    if branches:
+        for branch in branches:
+            branch_errors = []
+            _validate_node(node, branch, root_schema, path, branch_errors)
+            if not branch_errors:
+                return  # matched a branch — valid, nothing more to check at this node
+        errors.append(f"{path}: value does not match any of {len(branches)} anyOf/oneOf branch(es)")
+        return
+
     # type check
     schema_type = schema.get("type")
     if schema_type:

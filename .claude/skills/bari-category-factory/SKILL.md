@@ -151,6 +151,28 @@ copy) so they are caught by ONE command, not by a red-team block.
 - **Error log** — orchestrator errors + each gate's findings, each with who-caught-it and closure status.
 - **Codification list** — fixes/gates to add so the class of error never recurs.
 
+### 13. Schema Conformance Checklist (mandatory — TASK-581, before any PR)
+
+**A new or edited shelf JSON is not PR-ready until all three pass.** This is the CI-enforced
+floor (`.github/workflows/page_schema_gate.yml`) — a non-conforming shelf now goes red in CI,
+not just at review time.
+
+- [ ] **Schema-valid.** `npm run validate-page-schema` (bari-web/) passes for this category —
+      ajv against the canonical schema (`bari-web/schema/page-output-schema.generated.json`,
+      generated from `src/lib/contracts/comparison-page-contract.ts` — the single source of
+      truth; `03_operations/page_generator/contract/page_output_schema_v1.json` is a synced
+      copy, never hand-edited — regenerate both with `npm run verify-schema-sync`).
+- [ ] **No raw internal fields leaked to the served JSON.** No `_scoring_trace`,
+      `nutrition_per_100g`, duplicate `name_he`/`image_url` keys, `_d4_copy_flag`, or similar
+      pipeline-internal fields (cite TASK-574 — a prior leak on the public
+      `/data/comparisons/[slug]` endpoint). Underscore-prefixed fields are allowed **only** if
+      already whitelisted in the contract (see `comparison-page-contract.ts`'s provenance
+      fields) — an unlisted `_foo` key is a leak, not a convention.
+- [ ] **Signed off.** A `tasks/signoffs/<json-basename>.approval.json` record exists with
+      `sha256` matching the exact committed bytes (TASK-567 / `signoff_record_v1.md`) —
+      **both** gates present: Content Agent + Adversarial QA/Red-Team. Written by the
+      orchestrator only, after both sign, never by the building agent.
+
 ---
 
 ## Forbidden Actions
@@ -167,6 +189,7 @@ copy) so they are caught by ONE command, not by a red-team block.
 - Do not declare a page owner-ready before the C3↔Red-Team bracket returns zero open CRITICAL (Stage 11)
 - Do not deliver a page without its Orchestrator After-Action Report (Stage 12)
 - Do not route mechanical JSON/data passes (count recompute, string sanitization, field-strip) to C1 inline — those go to **C2** (cheapest capable lane); log the lane split in the report
+- Do not open a PR touching a shelf JSON before the Stage 13 checklist passes (schema-valid, no leaked internal fields, sha256-pinned sign-off) — `page_schema_gate.yml` will fail it in CI regardless
 
 ---
 
@@ -191,7 +214,8 @@ At each stage, produce a structured JSON artifact named as specified above. Afte
     "d4_additive_wiring": "pass | fail | skipped",
     "terminal_page_validation": "pass | fail | skipped",
     "terminal_redteam_c3_bracket": "pass | fail | skipped",
-    "orchestrator_after_action_report": "emitted | missing"
+    "orchestrator_after_action_report": "emitted | missing",
+    "schema_conformance_checklist": "pass | fail | skipped"
   },
   "blocking_issues": [],
   "warnings": [],
@@ -218,3 +242,4 @@ At each stage, produce a structured JSON artifact named as specified above. Afte
 | Terminal Page Validation | Orchestrator (`validate_comparison_page.py`) |
 | Terminal Red-Team + C3 Bracket | Red-Team Agent + C3 (router) |
 | Orchestrator After-Action Report | Orchestrator |
+| Schema Conformance Checklist | Frontend Agent (schema/leak checks) + Orchestrator (sign-off record) |

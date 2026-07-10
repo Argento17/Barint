@@ -81,8 +81,14 @@ export interface RawExpansion {
   ingredients: string | null;
   confidenceLabel: string;
   servingNote: string;
-  /** Present 681/681; value is `[]` or `null` on categories that ship no signals yet. */
-  positiveSignals?: string[] | null;
+  /** TASK-581 CORRECTION: the KEY is present on 681/681 live products (0 absent) —
+   *  non-optional. Value is `[]` on most, `null` on 3 low-data products (TASK-564:
+   *  brined_cheeses bc-047/048/043 — verified directly, not inferred). TASK-569 had
+   *  marked this optional (`?`), conflating "TS optional key" with "nullable value";
+   *  the hand-maintained schema's `required: [...,"positiveSignals"]` was already
+   *  correct (required + nullable are independent axes — required means the key
+   *  exists, the `| null` union covers the 3 null values). */
+  positiveSignals: string[] | null;
   /** Present 678/681 (all but 3 low-data products, TASK-564). Legacy string[] or the
    *  richer {text,magnitude}[] shape — see RawLimitingFactorEntry. */
   limitingFactors?: (string | RawLimitingFactorEntry)[] | null;
@@ -95,9 +101,14 @@ export interface RawExpansion {
   /** Present on 409/681 (14/18 categories). De-cross-referencing (TASK-546) means this
    *  is optional going forward — never re-require without an owner ruling (TASK-564). */
   comparisonContext?: string | null;
-  /** Declared on BariExpansionVM (sourceLine, consumerExplanation) but not observed on
-   *  ANY live product in the current 18-category corpus. Kept optional/typed so a future
-   *  emission does not immediately violate the contract. */
+  /** TASK-581 CORRECTION: 0/681 live occurrences (verified by grep across every
+   *  *_frontend_v*.json in src/data/comparisons/, not just the 18 live ones — this
+   *  field has NEVER shipped, in any category, ever). Declared on BariExpansionVM
+   *  (view-models/index.ts:61, "footer omits source field" when absent) but the raw
+   *  pipeline does not emit it today. Kept optional/typed as forward-compat only, so a
+   *  future emission does not immediately violate the contract (and does not trip
+   *  `additionalProperties:false` on the day it ships) — NOT "the pipeline emits this
+   *  today" as TASK-569's diff-report summary implied. */
   sourceLine?: string | null;
   consumerExplanation?: {
     whyRated: string;
@@ -168,16 +179,36 @@ export interface RawD3ProcessingSignal {
 
 // ─── Metrics (display-only) ──────────────────────────────────────────────────────────
 // LIVE FINDING (TASK-569): the current hand-maintained schema's comment claims metrics
-// is "Synthesized by page-data layer, not in source JSON" — that is stale. `metrics` IS
-// present in the raw milk_frontend_v1.json (18/18 milk products: { protein_g, sugar_g }).
+// is "Synthesized by page-data layer, not in source JSON" — that is stale for
+// protein_g/sugar_g: `metrics` IS present in the raw milk_frontend_v1.json (18/18 milk
+// products: { protein_g, sugar_g } — the only two keys ever observed, on milk only).
+//
+// TASK-581 CORRECTION: `fiber_g`/`additive_count`/`base_pct`/`sodium_mg` below have
+// ZERO occurrences in ANY live or historical *_frontend_v*.json (verified by grep
+// across every file in src/data/comparisons/, not just the 18 live ones) — they were
+// carried over from `BariProductMetricsVM` (view-models/index.ts), a DIFFERENT,
+// downstream, page-data-synthesized shape, not observed raw-JSON evidence. Kept as
+// optional/nullable so a future raw emission doesn't immediately violate the contract,
+// but this is NOT "the pipeline emits this today" (TASK-569's diff-report language
+// overstated it) — additive_count/base_pct are explicitly still-unbuilt per the VM's own
+// comment ("NOT yet exposed by BSIP → Data Agent dependency").
+//
+// `fat_saturated_g` REMOVED (TASK-581): confirmed by reading
+// cookies-coffee-page-data.ts:57 (`fat_saturated_g: p.expansion?.nutrition?.satFat ?? null`)
+// that this key is SYNTHESIZED by the page-data transform from `expansion.nutrition.satFat`
+// — it never exists in the raw JSON. Same category of field as `rowReason` (already
+// correctly excluded below): a page-data output, out of scope for this raw-JSON contract.
 export interface RawMetrics {
   protein_g?: number | null;
+  /** 0/681 live — not observed in any raw dataset (VM-only field, not raw). */
   fiber_g?: number | null;
+  /** 0/681 live — VM comment: "NOT yet exposed by BSIP → Data Agent dependency." */
   additive_count?: number | null;
+  /** 0/681 live — VM comment: "NOT in current label data → Data Agent dependency." */
   base_pct?: number | null;
   sugar_g?: number | null;
+  /** 0/681 live — not observed in any raw dataset (VM-only field, not raw). */
   sodium_mg?: number | null;
-  fat_saturated_g?: number | null;
 }
 
 // ─── Bari interpretation entry (both pipeline-version shapes) ───────────────────────
@@ -265,9 +296,19 @@ export interface RawComparisonProduct {
   metrics?: RawMetrics;
 
   // ── Deep-dive fields (TASK-332) — yogurt_drinkable/yogurt_spoonable ───────────────
-  /** Present 67/681; always `[]` in current data (shape reserved for future authoring). */
+  /** Present 67/681 (yogurt_drinkable/yogurt_spoonable); always `[]`, never null when
+   *  present (0/67 null — verified). Shape reserved for future authoring. */
   bariInterpretation?: RawBariInterpretationEntry[];
+  /** Present 67/681 (yogurt_drinkable/yogurt_spoonable); never null when present. */
   bestUseCases?: string[];
+  /** TASK-581 CORRECTION: 0/681 live — this is NOT part of the same 67/681 group as
+   *  bariInterpretation/bestUseCases above (TASK-569's shared comment wrongly implied
+   *  it was). Verified live: granola/crackers/cookies_coffee `_meta` changelog text
+   *  explicitly records "TASK-488 ... removed top-level consumerTakeaway, bestUseCases,
+   *  bariInterpretation, and expansion.consumerExplanation from all products" — this
+   *  field was deliberately deleted project-wide and has never returned. Type kept as
+   *  declared (string, no null) for schema completeness; genuinely unfalsifiable
+   *  against live data since it never appears. */
   consumerTakeaway?: string;
 
   /** Declared in the hand-maintained schema (S-grade explanation) but NOT observed on
