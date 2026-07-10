@@ -1,22 +1,22 @@
 "use client";
 
-// GuidePageTemplateV3 — TASK-577 (magnesium guide v3 STRUCTURAL rebuild).
+// GuidePageTemplateV3 — TASK-577 (magnesium guide v3, wiring phase).
 //
 // Assembles the owner-dictated page order (2026-07-10 readability ruling), top to
 // bottom:
 //   1. H1 + ONE intro sentence                              (GuideHeaderV3)
 //   2. "מה גילינו" box, 4 bullets                            (GuideBulletBox, boxed)
 //   3. Products immediately — 4 descriptive groups            (GuideProductGroupsV3)
-//      + the market-information-gaps box (ONE occurrence)
+//      + the market-information-gaps box (ONE occurrence, signed compact copy)
 //   4. "איך לקרוא תווית מגנזיום", 3 bullets                   (GuideBulletBox, plain)
 //   5. Collapsed education + sources accordion                 (native <details>)
 //   6. MethodologyFooter (project-wide standard, unchanged)
 //
 // Purely additive — mounted only when `guide.useV3Layout` is true (see
 // guide-page-template.tsx's branch). Every string rendered here is either
-// owner-dictated verbatim or an existing gate-2-approved v2 string carried through
-// unchanged (see magnesium-guide-data.ts for the per-field provenance comments); this
-// component authors none of it.
+// owner-dictated verbatim or the signed gate-1 copy package
+// (mag_guide_v3_copy_package.md), wired via magnesium-guide-data.ts /
+// magnesium-guide-copy-v3.ts; this component authors none of it.
 
 import { GuideHeaderV3 } from "@/components/guides/guide-header-v3";
 import { GuideBulletBox } from "@/components/guides/guide-bullet-box";
@@ -64,7 +64,8 @@ export function GuidePageTemplateV3({
         groupLabelsHe={guide.groupV3LabelsHe}
         suppressedBars={guide.suppressedBars}
         thresholdGeometry={guide.thresholdGeometry}
-        suppressedBarsDisclosureHe={guide.suppressedBarsDisclosureHe}
+        marketGapsHe={guide.marketGapsCompactHe}
+        expanderLabels={guide.expanderLabelsV3}
         wide
       />
 
@@ -80,13 +81,13 @@ export function GuidePageTemplateV3({
 
       {/* Collapsed education + sources accordion (dispatch item 6). Native
           <details>/<summary> — no JS required, works before hydration, and needs no
-          new disclosure primitive. Folds ALL of educationSpine (not only the
-          citation list) in here: the owner's own dispatch requires safety-load-bearing
-          facts (UL 350 context, evidence_limited meaning) to "survive inside
-          disclosures/collapsed sections, not vanish" — that prose lives only in these
-          sections, so collapsing (never deleting) is what satisfies both constraints
-          without inventing new copy. Reuses the SAME `לפרטים` toggle label as the
-          per-product disclosure for one consistent vocabulary on the page. */}
+          new disclosure primitive. Folds ALL of educationSpine (REUSED-v2 per copy
+          package §6 — every section confirmed unchanged/signed, none physically
+          re-merged) in here: safety-load-bearing facts (UL 350 context,
+          evidence_limited meaning) "survive inside disclosures/collapsed sections,
+          not vanish" per structure spec §D's survival list — that prose lives only in
+          these sections, so collapsing (never deleting) is what satisfies both
+          constraints. Title is the signed copy package §5 string. */}
       {guide.educationSpine.length > 0 ? (
         <div className={cn("px-4 pb-2", comparisonWebSectionPaddingClass())} dir="rtl">
           <details
@@ -97,7 +98,7 @@ export function GuidePageTemplateV3({
               className="cursor-pointer list-none px-4 py-3 text-[13px] font-bold text-[#111318] marker:content-none [&::-webkit-details-marker]:hidden"
               data-testid="guide-education-sources-toggle"
             >
-              {GUIDE_V3_DETAILS_LABEL_HE}
+              {guide.collapsedEvidenceSectionTitleHe ?? GUIDE_V3_DETAILS_LABEL_HE}
             </summary>
             <div className="border-t border-black/[0.05]">
               <GuideEducationSpine sections={guide.educationSpine} wide={false} />

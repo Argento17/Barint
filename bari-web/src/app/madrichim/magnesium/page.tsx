@@ -18,18 +18,19 @@ import type { Metadata } from "next";
 import { HomeContainer } from "@/components/home/section-frame";
 import { GuidePageTemplate } from "@/components/guides/guide-page-template";
 import { magnesiumGuide } from "@/lib/guides/magnesium-guide-data";
+import { MAG_V3_METADATA_DESCRIPTION_HE } from "@/lib/guides/magnesium-guide-copy-v3";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
 
-// Meta description sourced VERBATIM from the gate-1 v2 copy package, Slot 10b
-// (02_products/supplements/magnesium/mag_guide_v2_copy_package.md) — TASK-575
-// gate-2 CRITICAL-1 fix: the prior v1 string carried the retired model (named
-// third-party testing + price as assessed criteria) and the unscoped
-// "מהמדף הישראלי" market claim. Not authored here.
+// TASK-577 wiring phase: meta description sourced VERBATIM from the signed v3 copy
+// package, §3 (02_products/supplements/magnesium/mag_guide_v3_copy_package.md,
+// sha256 668fdaee57449e8514c12d2fded3ed653a391a7cc0f5a49fd7919b622160f2dd) —
+// supersedes the v2 4-criteria frame this task's dispatch says "burned us in v2
+// gate-2." Scoped to "18 תוספי מגנזיום... שבדקה," no "מהמדף הישראלי"
+// market-completeness claim. Not authored here.
 export const metadata: Metadata = {
   title: "איך לבחור מגנזיום | Bari",
-  description:
-    "בארי בדקה 18 תוספי מגנזיום הנמכרים בישראל לפי מינון מגנזיום יסודי, צורה כימית, בטיחות ושקיפות תיוג, כדי להראות מה לחפש על התווית לפני שקונים.",
+  description: MAG_V3_METADATA_DESCRIPTION_HE,
   robots: { index: false, follow: true },
 };
 

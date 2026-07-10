@@ -526,6 +526,33 @@ export interface GuidePageVM {
    * bullets, after the products. Owner-dictated verbatim, both heading and bullets.
    */
   howToReadLabelHe?: { heading: string; bullets: string[] } | null;
+
+  // ── TASK-577 wiring phase (2026-07-10) — signed gate-1 copy package fields ────────
+  // Additive to the structural-rebuild block above. All optional/nullable — absent
+  // falls back to the v3 components' own structural default labels.
+
+  /**
+   * Compact market-information-gaps copy (copy package §4) — the v3-only replacement
+   * for `suppressedBarsDisclosureHe` (which stays byte-identical for v2 rollback).
+   * Rendered in exactly one place: the market-gaps box, after the product groups.
+   */
+  marketGapsCompactHe?: string | null;
+
+  /**
+   * Collapsed education+sources accordion title (copy package §5) — the `<summary>`
+   * label for the one accordion that folds the full education spine (dose/safety,
+   * form evidence, sources) into a single disclosure per structure spec §D's
+   * survival list.
+   */
+  collapsedEvidenceSectionTitleHe?: string | null;
+
+  /**
+   * Per-card `לפרטים` disclosure toggle labels (copy package §5) — collapsed/expanded
+   * pair for GuideProductRowV3's own detail toggle, mirroring v2's `expanderLabels`
+   * shape. Distinct from `expanderLabels` above (the v2 field) so a guide can carry
+   * both during the v2→v3 transition without either overwriting the other.
+   */
+  expanderLabelsV3?: { collapsed: string; expanded: string } | null;
 }
 
 // ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) ──────────────────────────────
@@ -534,11 +561,10 @@ export interface GuidePageVM {
 // This block is purely ADDITIVE — every v2 field above is untouched and stays wired
 // for `GuidePageTemplate`'s existing branch; `GuidePageVM.useV3Layout` (below) is the
 // single opt-in switch a guide flips to render through the new structure instead.
-// Structure only — the Hebrew strings that ship through these fields are either (a)
-// the owner's own dictated text, ported verbatim (see magnesium-guide-data.ts for the
-// per-string provenance comment), or (b) the existing v2 string kept as a temporary
-// placeholder pending the real v3 copy package (marked `COPY-SLOT-v3` at the call
-// site) — this file authors none of it.
+// Structure only — the Hebrew strings that ship through these fields are the owner's
+// own dictated text or the signed gate-1 copy package (mag_guide_v3_copy_package.md),
+// ported verbatim (see magnesium-guide-data.ts / magnesium-guide-copy-v3.ts for the
+// per-string provenance) — this file authors none of it.
 
 /**
  * TASK-577 — provisional per-product group for the v3 "immediately show products"
@@ -558,12 +584,13 @@ export type GuideV3Group = "g1" | "g2" | "g3" | "g4";
 export const GUIDE_V3_GROUP_ORDER: readonly GuideV3Group[] = ["g1", "g2", "g3", "g4"] as const;
 
 /**
- * TASK-577 — the ONE sanctioned toggle label for every v3 progressive-disclosure
- * control on this page (per-product card detail, and the collapsed education+sources
- * accordion) — owner-dictated verbatim in the TASK-577 dispatch itself ("moves under a
- * 'לפרטים' disclosure"). Centralized here (not re-typed at each call site) so every
- * disclosure on the page reads identically, same EXCEPTION-003-style discipline as
- * GUIDE_RECOMMENDATION_TIER_LABELS_HE above.
+ * TASK-577 STRUCTURAL-PHASE FALLBACK ONLY — used only when a guide has not wired the
+ * signed `collapsedEvidenceSectionTitleHe` / `expanderLabelsV3` fields (below). Once
+ * wired (magnesium, as of the TASK-577 wiring phase), the signed gate-1 copy package
+ * strings ("לפרטים ומקורות" / "לפרטים המלאים" / "הסתר פרטים") take precedence — see
+ * GuidePageVM.collapsedEvidenceSectionTitleHe / expanderLabelsV3 below. Kept as a
+ * defensive default so the v3 template/row components never render with no label at
+ * all before a guide's copy package lands.
  */
 export const GUIDE_V3_DETAILS_LABEL_HE = "לפרטים";
 
@@ -597,10 +624,10 @@ export interface GuideCardVisibleFacts {
   servingsPerDayLabel?: string | null;
   /**
    * "מה חשוב לדעת: …" — the label prefix itself is owner-dictated verbatim (TASK-577
-   * dispatch, item 4). The sentence after it is COPY-SLOT-v3: every product below
-   * carries its existing (gate-2-approved) v2 `oneLinerHe` here as a temporary
-   * placeholder, pending the real one-line "what matters" copy from the v3 content
-   * package — never newly authored in this file.
+   * dispatch, item 4; = copy package §1.5's card eyebrow, structural UI label, not a
+   * factual claim). TASK-577 wiring phase: the sentence after it is now the SIGNED,
+   * gate-1 AUTHORED one-liner (mag_guide_v3_copy_package.md §2), wired verbatim per
+   * product — no longer a v2 `oneLinerHe` placeholder.
    */
   whatMattersHe: string;
 }

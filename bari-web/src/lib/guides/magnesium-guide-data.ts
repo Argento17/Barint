@@ -57,6 +57,16 @@ import { BAR_STATE_LABELS_HE } from "@/components/shared/bar-state-badge";
 import { tierIndexFromState } from "@/components/guides/threshold-bar-row";
 import { computeSuppressedBars } from "@/lib/guides/guide-suppression";
 import { magnesiumProducts } from "@/lib/comparisons/magnesium-page-data";
+import {
+  MAG_V3_INTRO_HE,
+  MAG_V3_WHAT_WE_FOUND_HE,
+  MAG_V3_GROUP_LABELS_HE,
+  MAG_V3_HOW_TO_READ_HE,
+  MAG_V3_ONE_LINER_BY_BARCODE,
+  MAG_V3_MARKET_GAPS_COMPACT_HE,
+  MAG_V3_COLLAPSED_SECTION_TITLE_HE,
+  MAG_V3_EXPANDER_LABELS_HE,
+} from "@/lib/guides/magnesium-guide-copy-v3";
 
 // ─── Product identity lookup (name/brand/imageUrl only — see header) ───────────────
 function identity(id: string) {
@@ -517,63 +527,76 @@ const products: GuideProductVM[] = [
   }),
 ];
 
-// ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) — provisional group mapping ──
-// No `mag_guide_v3_structure_spec.md` existed at build time (checked
-// C:\Bari\02_products\supplements\magnesium\ — only the v2 copy package + nutrition
-// spec are present). Per the dispatch's own explicit fallback instruction, this
-// mapping applies the stated provisional rule as an ordered cascade (first match
-// wins), read off each product's ALREADY-COMPUTED bar states/form/dose above — it
-// invents no new fact about any product, only groups the existing ones:
-//   1. form is citrate or bisglycinate AND labelTransparency = pass (clean label) → g1
-//   2. otherwise, dose is known/verifiable (not the "לא ניתן לאימות" dose-unclear
-//      case) and the form is not pure oxide → g2 ("relatively low amount" is the
-//      dominant, form-independent finding for this remaining set)
-//   3. otherwise, form is pure oxide with a verifiable dose → g3
-//   4. otherwise (dose itself is not verifiable from the label at all,
-//      doseValueLabel === "לא ניתן לאימות") → g4
-// Result for the current 18-product corpus: g1=6 (#1,2,3,4,6,15), g2=5 (#5,7,8,9,10),
-// g3=4 (#11,12,13,14), g4=3 (#16,17,18) — 6+5+4+3=18, every product assigned exactly
-// once. This SUPERSEDES nothing about `bucket` (v2, still intact above) — `groupV3`
-// is a parallel, additive field. Expect this table to be replaced wholesale once
-// Nutrition's real v3 spec lands; the shape (one GuideV3Group per product) does not
-// change.
+// ─── TASK-577 wiring phase — SIGNED group mapping (supersedes the provisional table) ──
+// Source of truth: mag_guide_v3_structure_spec.md §A.3 (the full 18/18 table),
+// Nutrition D6 + Product D7 co-signed, sha256
+// cc0cc76fc147955b802befbad64ab3a479d152a76d1915d38dfcfb3ea5ab6a84. This REPLACES the
+// earlier provisional cascade this file shipped before the spec existed — the
+// provisional table's own header comment predicted exactly this ("Expect this table
+// to be replaced wholesale once Nutrition's real v3 spec lands").
+//
+// §A.2's precedence rule (Tier 1 known-poor-absorption-form checked before Tier 2
+// nothing-knowable, before Tier 3 clean-citrate/bisglycinate, before Tier 4 default)
+// moves #16 and #17 into Heading 3 ("מבוססי אוקסיד") — the provisional table had
+// placed them in g4 because it prioritized dose-unclear over form-known; the signed
+// spec's Tier 1 explicitly checks form first (§A.4 DEVIATION 4: "a precedence-
+// resolution call, not a literal-text mismatch"). #17 is carbonate, not literally
+// oxide — grouped under Heading 3 by chemical-class analogy only, weaker evidence
+// basis than oxide's direct NIH ODS citation (§A.4 DEVIATION 3) — Product D7 made
+// this a MANDATORY on-card disambiguation, fulfilled by #17's own one-liner (see
+// MAG_V3_ONE_LINER_BY_BARCODE in magnesium-guide-copy-v3.ts).
+//
+// Signed distribution (§A.3): Heading 1 = 6/18 (#1,2,3,4,6,15), Heading 2 = 5/18
+// (#5,7,8,9,10), Heading 3 = 6/18 (#11,12,13,14,16,17), Heading 4 = 1/18 (#18).
+// Sum check: 6+5+6+1 = 18. ✓ Matched by barcode against the spec's own product table,
+// not by array index.
 const V3_GROUP_BY_BARCODE: Record<string, GuideV3Group> = {
-  "7290013464248": "g1", // 1 — Supherb Citrate+B6 (citrate, clean label)
-  "7290019444480": "g1", // 2 — Altman Bisglycinate (bisglycinate, clean label)
-  "7290011899967": "g1", // 3 — Altman Citrate 120 (citrate, clean label)
-  "7290018439043": "g1", // 4 — Nutricare WELL (bisglycinate, clean label)
-  "7290010207640": "g2", // 5 — NT L.C. Anti Leg Cramps (hydroxide, low dose)
-  "7290001943700": "g1", // 6 — Full-Mag Hadas (bisglycinate, clean label)
-  "7290015318532": "g2", // 7 — Tink Malate (malate, low dose)
-  "7290001066973": "g2", // 8 — Nutricare Malate (malate, low dose; extra label gap noted via classifierHe)
-  "0033984005181": "g2", // 9 — Solgar Ca+Mg+D3 (undisclosed oxide+citrate blend, low dose)
-  "7290018439579": "g2", // 10 — Nutricare Taurate (taurate, lowest verifiable dose)
-  "7290001065662": "g3", // 11 — Nutricare Oxide-520 (oxide, verifiable dose)
-  "7290017218564": "g3", // 12 — Altman Oxide-520 (oxide, verifiable dose)
-  "7290013142894": "g3", // 13 — Altman Magnesium UP (oxide, verifiable dose)
-  "7290019444206": "g3", // 14 — Altman Magnesium Balance (oxide, verifiable dose)
-  "7290001065594": "g1", // 15 — Nutricare Nano Liposomal (bisglycinate base, clean label)
-  "7290015318426": "g4", // 16 — Tink Oxide-520, no elemental/compound qualifier (dose unverifiable)
-  "7290015429245": "g4", // 17 — Amorphicure pH Magnesium (dose unverifiable)
-  "7290118816065": "g4", // 18 — TRIOMAG (dose AND form unresolved)
+  "7290013464248": "g1", // 1 — Supherb Citrate+B6 (citrate, clean label) — Heading 1
+  "7290019444480": "g1", // 2 — Altman Bisglycinate (bisglycinate, clean label) — Heading 1
+  "7290011899967": "g1", // 3 — Altman Citrate 120 (citrate, clean label) — Heading 1
+  "7290018439043": "g1", // 4 — Nutricare WELL (bisglycinate, clean label) — Heading 1
+  "7290010207640": "g2", // 5 — NT L.C. Anti Leg Cramps (hydroxide, low dose) — Heading 2
+  "7290001943700": "g1", // 6 — Full-Mag Hadas (bisglycinate, clean label) — Heading 1
+  "7290015318532": "g2", // 7 — Tink Malate (malate, low dose) — Heading 2
+  "7290001066973": "g2", // 8 — Nutricare Malate (malate, low dose; extra label gap) — Heading 2
+  "0033984005181": "g2", // 9 — Solgar Ca+Mg+D3 (blend, dominant fact = disclosed low elemental dose) — Heading 2, §A.4 DEVIATION 2
+  "7290018439579": "g2", // 10 — Nutricare Taurate (taurate, lowest verifiable dose) — Heading 2
+  "7290001065662": "g3", // 11 — Nutricare Oxide-520 (oxide, verifiable dose) — Heading 3
+  "7290017218564": "g3", // 12 — Altman Oxide-520 (oxide, verifiable dose) — Heading 3
+  "7290013142894": "g3", // 13 — Altman Magnesium UP (oxide, verifiable dose) — Heading 3
+  "7290019444206": "g3", // 14 — Altman Magnesium Balance (oxide, verifiable dose) — Heading 3
+  "7290001065594": "g1", // 15 — Nutricare Nano Liposomal (bisglycinate base, clean label) — Heading 1
+  "7290015318426": "g3", // 16 — Tink Oxide-520 (form known = oxide; dose ambiguity ≠ grouping driver) — Heading 3, §A.4 DEVIATION 4 [MOVED from provisional g4]
+  "7290015429245": "g3", // 17 — Amorphicure pH Magnesium (carbonate, grouped w/ oxide by chemical-class analogy) — Heading 3, §A.4 DEVIATION 3 [MOVED from provisional g4]
+  "7290118816065": "g4", // 18 — TRIOMAG (the one product where nothing is knowable — form AND dose unresolved) — Heading 4
 };
 
-// Mechanical derivation only — never a second, independently-authored source of
-// truth for a fact already computed above (same discipline as `benchmarks` in
-// buildProduct). `whatMattersHe` is the one genuine COPY-SLOT-v3: the product's
-// existing oneLinerHe stands in for the real one-line "what matters" copy until the
-// v3 content package lands (see GuideCardVisibleFacts header comment in view-models).
+// `elementalDoseLabel`/`formLabel` stay a mechanical derivation — never a second,
+// independently-authored source of truth for a fact already computed above (same
+// discipline as `benchmarks` in buildProduct). `whatMattersHe` is now the SIGNED,
+// gate-1 AUTHORED one-liner (mag_guide_v3_copy_package.md §2, wired verbatim via
+// MAG_V3_ONE_LINER_BY_BARCODE) — no longer the v2 oneLinerHe placeholder. Fails loud
+// (throws) if a product's barcode is missing from the signed map, matching the
+// existing `identity()` fail-loud discipline above — a silent fallback to the old
+// v2 string would ship unsigned-for-v3 copy without anyone noticing.
 function visibleFactsV3For(product: GuideProductVM): GuideCardVisibleFacts {
   const dose = product.benchmarks?.doseAdequacy;
   const form = product.benchmarks?.formAbsorption;
+  const whatMattersHe = MAG_V3_ONE_LINER_BY_BARCODE[product.id];
+  if (!whatMattersHe) {
+    throw new Error(
+      `magnesium-guide-data: no signed v3 one-liner for product id ${product.id} in MAG_V3_ONE_LINER_BY_BARCODE`
+    );
+  }
   return {
     elementalDoseLabel:
       dose?.value != null ? `${dose.valueLabel} מגנזיום יסודי` : (dose?.valueLabel ?? "לא ניתן לאימות"),
     formLabel: form?.valueLabel ?? "לא ניתן לאמת",
-    // TASK-577 — genuine data gap, see GuideCardVisibleFacts header comment. Never
-    // fabricated: absent for all 18 products in this build.
+    // TASK-577 — genuine data gap (spec §B / Product D7 amendment #4: fully absent
+    // from the rendered card, never a placeholder). Never fabricated: absent for all
+    // 18 products in this build.
     servingsPerDayLabel: null,
-    whatMattersHe: product.oneLinerHe, // COPY-SLOT-v3
+    whatMattersHe,
   };
 }
 
@@ -801,39 +824,41 @@ export const magnesiumGuide: GuidePageVM = {
   // keep the v2 string temporarily. Nothing here is newly authored prose.
   useV3Layout: true,
 
-  // Item 1 — the ONE intro sentence under the H1. OWNER-DICTATED, verbatim.
-  introSentenceHe:
-    "בדקנו 18 מוצרים מהמדף הישראלי. שלושה דברים חשובים במיוחד: כמות המגנזיום היסודי, הצורה הכימית ובהירות התווית.",
+  // Item 1.1 — the ONE intro sentence under the H1. OWNER-DICTATED, verbatim, ships
+  // as-is per instruction. FLAG (package §1.1, HIGH, unresolved — owner call, not
+  // Frontend's to silently patch): "מהמדף הישראלי" reintroduces the exact
+  // market-completeness phrase v2 spec §8 killed. Surfaced in this task's return.
+  introSentenceHe: MAG_V3_INTRO_HE,
 
-  // Item 2 — "מה גילינו" box, 4 bullets. OWNER-DICTATED, verbatim (heading + all 4).
-  whatWeFoundHe: {
-    heading: "מה גילינו",
-    bullets: [
-      "מספר גדול על האריזה לא תמיד מייצג את כמות המגנזיום בפועל.",
-      "ציטראט הוא הצורה עם התמיכה הברורה ביותר מבין המוצרים שבדקנו.",
-      "מוצרים רבים מבוססים על אוקסיד, שנספג פחות.",
-      "בחלק מהמוצרים קשה להבין מהתווית כמה מגנזיום באמת מקבלים.",
-    ],
-  },
+  // Item 1.2 — "מה גילינו" box, 4 bullets. OWNER-DICTATED, verbatim. FLAG (package
+  // §1.2, MEDIUM, unresolved — owner call): bullet 3's "מוצרים רבים" is the exact
+  // vague-count pattern spec §C's own wording-hazard note warned against for this
+  // finding (precise count is 6/18). Surfaced in this task's return.
+  whatWeFoundHe: MAG_V3_WHAT_WE_FOUND_HE,
 
-  // Item 3 — the 4 v3 group section headers. OWNER-DICTATED, verbatim. Product
-  // MEMBERSHIP itself is on each product's own `groupV3` field (see the
-  // V3_GROUP_BY_BARCODE provisional mapping + its header comment above).
-  groupV3LabelsHe: {
-    g1: "ציטראט או ביסגליצינט עם תווית ברורה",
-    g2: "כמות נמוכה יחסית",
-    g3: "מבוססי אוקסיד",
-    g4: "לא ניתן להבין מהתווית",
-  },
+  // Item 1.3 — the 4 v3 group section headers. OWNER-DICTATED, verbatim, matches
+  // spec §A.1 exactly. Product MEMBERSHIP is on each product's own `groupV3` field —
+  // see the SIGNED V3_GROUP_BY_BARCODE mapping above (spec §A.3, D6+D7 co-signed).
+  groupV3LabelsHe: MAG_V3_GROUP_LABELS_HE,
 
-  // Item 5 — "איך לקרוא תווית מגנזיום", 3 bullets. OWNER-DICTATED, verbatim
-  // (heading + all 3).
-  howToReadLabelHe: {
-    heading: "איך לקרוא תווית מגנזיום",
-    bullets: [
-      'חפשו "מגנזיום יסודי", לא רק את משקל התרכובת.',
-      "בדקו את הצורה: ציטראט, ביסגליצינט, אוקסיד וכדומה.",
-      "בדקו כמה כמוסות נדרשות לקבלת הכמות הרשומה.",
-    ],
-  },
+  // Item 1.4 — "איך לקרוא תווית מגנזיום", 3 bullets. OWNER-DICTATED, verbatim.
+  howToReadLabelHe: MAG_V3_HOW_TO_READ_HE,
+
+  // Item 4 — compact market-information-gaps copy (package §4, AUTHORED, condenses
+  // v2's 4-sentence `suppressedBarsDisclosureHe` to 3 sentences per the owner's
+  // less-text direction). `suppressedBarsDisclosureHe` above stays byte-identical
+  // for v2 rollback; this is the v3-only replacement, rendered in exactly one place
+  // (the market-gaps box, after the groups) by GuideProductGroupsV3.
+  marketGapsCompactHe: MAG_V3_MARKET_GAPS_COMPACT_HE,
+
+  // Item 5 — collapsed education+sources accordion title (package §5, AUTHORED).
+  collapsedEvidenceSectionTitleHe: MAG_V3_COLLAPSED_SECTION_TITLE_HE,
+
+  // Item 5 — per-card `לפרטים` disclosure toggle labels (package §5, AUTHORED;
+  // generic on purpose per the package's own note — whether the v2 gauge-specific
+  // "הצג/הסתר את הסולמות" labels apply instead is an open Design/Frontend call this
+  // package explicitly does not decide; keeping the generic pair since the v3 build
+  // keeps the gauges inside the SAME disclosure as the badges/classifier, not a
+  // gauge-only toggle).
+  expanderLabelsV3: MAG_V3_EXPANDER_LABELS_HE,
 };

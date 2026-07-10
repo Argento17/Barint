@@ -1,17 +1,19 @@
 "use client";
 
-// GuideProductGroupsV3 — TASK-577 (magnesium guide v3 STRUCTURAL rebuild).
+// GuideProductGroupsV3 — TASK-577 (magnesium guide v3, wiring phase).
 //
-// Renders `products` grouped by the provisional `groupV3` key
-// (GUIDE_V3_GROUP_ORDER), immediately after the intro + "what we found" box — no
-// methodology section before them, no prose product summaries before the cards
-// (dispatch item 3). Section headers are a flat, neutral, un-toned treatment — same
-// idiom as v2's `GroupSectionHeader` (guide-product-table.tsx), reused rather than
-// re-invented, since these are still descriptive sections, not a ranking.
+// Renders `products` grouped by the SIGNED `groupV3` key (GUIDE_V3_GROUP_ORDER, per
+// mag_guide_v3_structure_spec.md §A.3, D6+D7 co-signed), immediately after the intro
+// + "what we found" box — no methodology section before them, no prose product
+// summaries before the cards (dispatch item 3). Section headers are a flat, neutral,
+// un-toned treatment — same idiom as v2's `GroupSectionHeader`
+// (guide-product-table.tsx), reused rather than re-invented, since these are still
+// descriptive sections, not a ranking.
 //
 // The guide-level market-information-gaps box (dispatch item 7 — "ONE occurrence of
-// each explanation, not two") renders once, after the groups — identical content/box
-// styling to the v2 `guide-market-gaps-box`, just relocated to sit under the v3 tree.
+// each explanation, not two") renders once, after the groups, using the SIGNED
+// compact copy (mag_guide_v3_copy_package.md §4) — never the v2 4-sentence
+// `suppressedBarsDisclosureHe`, which stays reserved for v2 rollback only.
 
 import type {
   GuideBarKey,
@@ -59,14 +61,20 @@ export function GuideProductGroupsV3({
   groupLabelsHe,
   suppressedBars,
   thresholdGeometry,
-  suppressedBarsDisclosureHe,
+  marketGapsHe,
+  expanderLabels,
   wide = false,
 }: {
   products: GuideProductVM[];
   groupLabelsHe?: Partial<Record<GuideV3Group, string>>;
   suppressedBars?: GuideBarKey[];
   thresholdGeometry?: Partial<Record<GuideBarKey, GuideThresholdGeometry>>;
-  suppressedBarsDisclosureHe?: string | null;
+  /** Signed compact market-gaps copy (GuidePageVM.marketGapsCompactHe, copy package
+   *  §4) — rendered in exactly one place, after the groups. */
+  marketGapsHe?: string | null;
+  /** Signed per-card disclosure toggle labels (GuidePageVM.expanderLabelsV3, copy
+   *  package §5), threaded to every GuideProductRowV3. */
+  expanderLabels?: { collapsed: string; expanded: string } | null;
   wide?: boolean;
 }) {
   const groups = groupByV3(products);
@@ -95,6 +103,7 @@ export function GuideProductGroupsV3({
                     rank={i + 1}
                     suppressedBars={suppressedBars}
                     thresholdGeometry={thresholdGeometry}
+                    expanderLabels={expanderLabels}
                   />
                 ))}
               </div>
@@ -103,9 +112,9 @@ export function GuideProductGroupsV3({
         })}
       </div>
 
-      {/* Market-information-gaps box — ONE occurrence (dispatch item 7). Identical
-          content/styling to v2's `guide-market-gaps-box`. */}
-      {suppressedBars && suppressedBars.length > 0 && suppressedBarsDisclosureHe ? (
+      {/* Market-information-gaps box — ONE occurrence (dispatch item 7), signed
+          compact copy. */}
+      {suppressedBars && suppressedBars.length > 0 && marketGapsHe ? (
         <div
           className="mt-8 rounded-2xl border p-4"
           style={{ borderColor: "#E2E5E2", background: "#F7F8F6" }}
@@ -113,7 +122,7 @@ export function GuideProductGroupsV3({
           data-testid="guide-market-gaps-box-v3"
         >
           <p className="text-[12px] leading-[1.6]" style={{ color: "#4E5663" }}>
-            {suppressedBarsDisclosureHe}
+            {marketGapsHe}
           </p>
         </div>
       ) : null}

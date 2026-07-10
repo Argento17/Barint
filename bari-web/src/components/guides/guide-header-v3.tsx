@@ -71,7 +71,12 @@ export function GuideHeaderV3({
       </div>
 
       {introSentenceHe ? (
-        <p className="mt-3 max-w-2xl text-[13px] leading-[1.6] text-[#3E444A]">{introSentenceHe}</p>
+        <p
+          className="mt-3 max-w-2xl text-[13px] leading-[1.6] text-[#3E444A]"
+          data-testid="guide-intro-sentence"
+        >
+          {introSentenceHe}
+        </p>
       ) : null}
 
       {updatedLabel ? (

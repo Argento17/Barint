@@ -1,12 +1,23 @@
 "use client";
 
-// GuideProductRowV3 — TASK-577 (magnesium guide v3 STRUCTURAL rebuild).
+// GuideProductRowV3 — TASK-577 (magnesium guide v3, wiring phase).
 //
 // Owner-dictated card contract (dispatch item 4): exactly 4 visible lines — elemental
 // mg, chemical form, labelled servings/day, and one "מה חשוב לדעת: …" line.
-// EVERYTHING else this guide can show about a product (bar-state badges, the
-// classifier pill, the full 4-bar threshold-gauge stack) moves under the row's own
-// `לפרטים` disclosure, collapsed by default.
+// EVERYTHING else this guide can show about a product (bar-state badges, the full
+// 4-bar threshold-gauge stack) moves under the row's own `לפרטים` disclosure,
+// collapsed by default.
+//
+// TASK-577 wiring phase (orphan-string finding): the v2-era `classifierHe` pill
+// (e.g. "צורה בספיגה נמוכה, חוצה סף בטיחות") is NOT rendered here — the signed
+// mag_guide_v3_copy_package.md does not cover it as a v3 slot (silent on it
+// entirely), and every product's substantive classifier finding (form/label/safety
+// caveats) is now carried in the signed §2 one-liner itself (`facts.whatMattersHe`),
+// including the Product-D7-MANDATORY carbonate disambiguation on #17. Rendering an
+// unsigned-for-v3 string would violate the wiring phase's "every string comes
+// verbatim from the gate-1 package" rule — flagged in this task's return rather than
+// silently kept or silently deleted from the data (the `classifierHe` field itself
+// stays intact on GuideProductVM for v2 rollback, just unused by this component).
 //
 // This is a deliberate, owner-directed departure from the v2 row's C3 guardrail P508
 // ("the compact badge row is ALWAYS visible, un-gated by the expander") — that
@@ -77,12 +88,17 @@ export function GuideProductRowV3({
   rank,
   suppressedBars,
   thresholdGeometry,
+  expanderLabels,
 }: {
   product: GuideProductVM;
   /** 1-based position within its group — zebra tone only, never a rank number. */
   rank: number;
   suppressedBars?: GuideBarKey[];
   thresholdGeometry?: Partial<Record<GuideBarKey, GuideThresholdGeometry>>;
+  /** Signed copy package §5 collapsed/expanded pair (GuidePageVM.expanderLabelsV3).
+   *  Falls back to the structural-phase GUIDE_V3_DETAILS_LABEL_HE default (same
+   *  label both states) when absent. */
+  expanderLabels?: { collapsed: string; expanded: string } | null;
 }) {
   const [open, setOpen] = useState(false);
   const facts = product.visibleFactsV3;
@@ -95,6 +111,7 @@ export function GuideProductRowV3({
       className={cn("rounded-2xl border border-black/[0.06] p-4", comparisonRowStripeClass(rank))}
       dir="rtl"
       data-testid="guide-product-row-v3"
+      data-product-id={product.id}
     >
       <div className="flex items-start gap-3">
         <GuideProductThumbnailV3 imageUrl={product.imageUrl} name={product.name} />
@@ -148,7 +165,11 @@ export function GuideProductRowV3({
             className="mt-2.5 flex min-h-[40px] w-full items-center justify-center gap-1 border-t text-[12px] font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#167A58]"
             style={{ borderColor: "rgba(17,19,24,0.05)", color: "#4E5663" }}
           >
-            <span>{GUIDE_V3_DETAILS_LABEL_HE}</span>
+            <span>
+              {open
+                ? (expanderLabels?.expanded ?? GUIDE_V3_DETAILS_LABEL_HE)
+                : (expanderLabels?.collapsed ?? GUIDE_V3_DETAILS_LABEL_HE)}
+            </span>
             <ChevronDown
               aria-hidden
               strokeWidth={1.75}
@@ -164,22 +185,9 @@ export function GuideProductRowV3({
             <div className="bari-cmp-expclip">
               {open ? (
                 <div className="pt-2.5">
-                  {product.classifierHe ? (
-                    <p className="mb-2">
-                      <span
-                        className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold"
-                        style={{
-                          backgroundColor: "#F3F4F2",
-                          color: "#5A6168",
-                          border: "1px solid rgba(17,19,24,0.08)",
-                        }}
-                        data-testid="guide-row-v3-classifier"
-                      >
-                        {product.classifierHe}
-                      </span>
-                    </p>
-                  ) : null}
-
+                  {/* TASK-577 wiring phase: the v2 classifierHe pill is intentionally
+                      NOT rendered here — see this file's header comment (orphan-string
+                      finding; substance now lives in facts.whatMattersHe). */}
                   <div className="flex flex-wrap gap-1.5" data-testid="guide-row-v3-badge-row">
                     {visibleBars.map((barKey) => {
                       const result = barByKey.get(barKey);
