@@ -2,9 +2,28 @@
 id: TASK-519
 title: Investigate bread engine score drift: 17/31 products don't reproduce on fresh re-score
 owner: data-agent
-status: RETURNED
+status: CLOSED
 priority: HIGH
 created_at: 2026-07-05
+closed_at: 2026-07-10
+close_reason: >
+  Diagnosis complete + orchestrator-verified (2026-07-10 unattended 3AM). ROOT CAUSE
+  CONFIRMED = NOT a live bug: the 17/31 bread re-score mismatches are an artifact of
+  this working branch (task506) lagging origin/master, NOT engine non-determinism and
+  NOT a defect on the LIVE tree. Independently verified two load-bearing facts:
+  (1) `git rev-list --left-right --count origin/master...task506` = 232 behind / 51
+  ahead (worse than the diagnosis's cited 39 — branch has fallen further behind since);
+  (2) `git merge-base --is-ancestor de8c7801 HEAD` = MISSING — the co-signed TASK-476
+  input_loader.get_ingredients() fix (commit de8c7801, shipped to origin/master
+  2026-07-03) is absent here, exactly the mechanism the diagnosis names. origin/master
+  is the LIVE deploy target and is self-consistent by deploy discipline; users are
+  unaffected. DoD (root-cause the drift) satisfied. The diagnosis's flagged REAL OPEN
+  RISK — a deliberate reconciliation of this branch's dirty engine drafts
+  (input_loader.py / router_v2.py) that carry BOTH a stale incomplete fix AND
+  in-progress local-only TASK-515 yogurt anchors — is NOT closed here: it touches
+  score-affecting engine files with mixed live work (tripwire-1-adjacent) and per the
+  diagnosis's own recommendation needs a supervised deliberate merge, not an automated
+  fix. Parked for owner as the branch-reconciliation item (see digest 2026-07-10).
 depends_on: []
 blocks: []
 category_id: null

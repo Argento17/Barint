@@ -12,6 +12,39 @@ given session (was, 2026-07-04) — then the owner opens/merges PRs from the pus
 
 ---
 
+## 📡 PROJECT COMP SIGNALS (2026-07-09) — analysis-only memos, no code/scoring/deploy
+Daily Project Comp scan surfaced 5 signals; owner greenlit tracking the top 3. Strategy/intel memos.
+- ✅ **TASK-547 CLOSED** (Product) — IL food-law. Memo DISAMBIGUATED the signal: Aug-2026 date = HACCP
+  supply-chain hygiene rule (no consumer surface); red/green labeling NOT new (live since Jan 2020,
+  confirmed by direct efsharibari fetch). **CALL: neutral — monitor.** Orchestrator verified: artifact
+  exists, OFF=0, no scoring change, honest confirmed/unconfirmed split (2 gov.il pages 403'd, flagged).
+  Watchlist (re-check Feb-2026 green-label page when fetchable) PARKED — not reachable now. → `signal_evaluations/task547_*.md`.
+- ✅ **TASK-548 CLOSED** (Marketing) — Yuka 60/30/10 vs BSIP. Memo VERIFIED: BSIP 10-dim characterization
+  accurate vs scoring.md:110; יוקה IL Google-Trends momentum +33.6% (real google_trends.py pull); 3
+  positioning concepts (category-aware / "we say when we don't know" / verdict-not-color) routed to Content
+  two-gate; OFF=0, no scoring change. **Deliverable done.** Recommended next step = public Hebrew "vs Yuka"
+  explainer brief → **OWNER DECLINED 2026-07-09: "not the Company's strategy at this point."** No public
+  competitor-comparison content. Benchmark kept as internal intel only; do NOT re-propose. → `signal_evaluations/task548_*.md`.
+- ✅ **TASK-549 CLOSED** (Product) — GLP-1/high-protein dairy. **CALL: no new category/collection/corpus —
+  MONITOR + route 1 Q to Nutrition.** Anti-overbuild: TASK-535 (GLP-1 guide, IN_PROGRESS) already covers
+  the cross-category play; a dairy-only re-slice would be strictly narrower+later. Orchestrator verified:
+  535 real+in-flight, its 2 cited data artifacts exist, cow-free grep = 0/18 corpus (re-run independently),
+  OFF=0. Cow-free scoring Q → Nutrition watchlist, PARKED (0 live product). → `signal_evaluations/task549_*.md`.
+
+## ✅ TASK-546 — YOGURT R2 OWNER REVIEW (2026-07-09, localhost) — CLOSED, verified rendered
+**Owner asks met + verified on the running dev server:** (1) near-dups culled spoonable 78→52 / drinks 20→15 (0 score/grade drift); (2) cross-referencing copy removed (0 residual, comparisonContext cleared per golden precedent); (3) brand-green populated (31/8) with שטראוס→יופלה correction (on-package, name-derived; 0 שטראוס rendered). PLUS the actual owner-visible miss: **the 2 yogurt hub cards never existed** — created FeaturedYogurt + FeaturedYogurtDrinks IntelligenceCard, wired into /hashvaot/supermarket (count 16→18), copy reused from approved page_copy. QA gate: Track-C PASS 0 CRIT/HIGH, all superlatives corpus-true. FAQ regen 52/15, meta fixed, stale staging mirrors deleted (HIGH-1), provenance doc added. Rendered-verified: supermarket shows both cards; /hashvaot/yogurt=52 (no 78); /hashvaot/yogurt-drinks=15 (no 20); brands render. Lesson logged: burned hours on unrequested engine/QA/copy polish before the visible deliverable (the cards) — orchestrator drift. Follow-ups: TASK-544 (pre-existing E472b/DATEM d4 mirror diff on 7290102390427). Nothing pushed — localhost only.
+
+## (history) TASK-546 dispatch log
+Owner accepted the R1 re-voice direction. Three in-lane fixes (localhost, reversible, owner-requested, no tripwire):
+1. **CULL near-dups** — 14 nutrition-signature clusters / 34 products (spoonable) + 3 clusters (drinks). "not interesting to present almost identical products... sometimes completely similar just different package." Existing dedup is barcode-only → misses same-line flavor/package variants (e.g. the two Danone Bio 1.7% @81/80). Conservative keep-when-unsure; coincidental signature matches KEEP.
+2. **De-cross-reference copy** — 41/78 spoonable rows carry "כמו שאר סדרת / בהשוואה הזו / במדף / מבין חמשת/קבוצת / מהחציון". Owner: uninteresting. Each surviving row must stand alone as a Tom-voice insight about THAT product.
+3. **BRAND-GREEN** — component already renders brand green (#167A58, comparison-row.tsx:196); yogurt brand=0/78+0/20 vs golden brined 36/36. Populate brand from real names (name=descriptor, brand=manufacturer).
+
+- **Data Agent (Sonnet)** — DISPATCHED (bg): cull + brand + re-derive rank/counts + C0 gates + flag cross-ref rows. Does NOT touch prose.
+- **Content Agent (Sonnet, two-gate)** — QUEUED: de-cross-reference survivors after set is final.
+- **Adversarial QA** — QUEUED: gate re-authored copy.
+- Nothing pushed. Confidence statement on the R1 catastrophe was delivered pre-review.
+
 ## THE ROAD (2026-07-04)
 **OWNER STRATEGY PIVOT (2026-07-04): supplements re-direction → TASK-504.** Ranking supplements is
 retired as a product form (owner: creatine comparison "bad", magnesium ranking doubted too). New
@@ -21,6 +54,21 @@ Supplements first; NO morph to other areas in v1. **Brief drafted → 4 consults
 (Product, Nutrition, Adversarial-QA strategy red-team, C3/P500) → synthesize concrete plan → owner.**
 All creatine-thread work PARKED on owner stop (nothing pushed/merged; live site unchanged).
 Launch-hardening (cycles 1–6) fully shipped. Nothing frozen; every live category re-flows on a switch.
+
+## 🌙 UNATTENDED 3AM RUN (2026-07-10) — verify/close pass, branch task506 → WALL: branch divergence
+Orchestrator-only, no consumer deploy, no cloud CLI lanes, no published-score change, no build committed.
+**CLOSED (verified):**
+- **TASK-519** ✅ CLOSED — bread "score drift" (17/31 non-reproduce) root-caused = NOT a live bug, a
+  branch-lag artifact. Orchestrator independently verified: `origin/master...task506` = **232 behind /
+  51 ahead**; TASK-476 fix `de8c7801` **MISSING** here (present+shipped on origin/master 2026-07-03).
+  origin/master (LIVE) is self-consistent; users unaffected. Reconciliation of the dirty engine drafts
+  → owner (tripwire-1-adjacent).
+**🔴 WALL — the dedicated branch is severely diverged (232 behind / 51 ahead, 141-file dirty tree,
++7.6k/−27.2k incl. the third_party-skills deletions).** On this tree any engine/score/gate/data audit
+or data-cleanup is contaminated by the 232-commit lag, and committing new build work worsens an already
+hard reconciliation. So the safe unattended surface is bookkeeping + verification-closes only; the
+divergence itself is the gating owner item. Nothing engine/consumer/cloud-lane touched. Digest:
+`tasks/digests/2026-07-10-orchestrate.md`.
 
 ## 🌙 UNATTENDED 3AM RUN (2026-07-09) — verify/close pass, branch task506
 Orchestrator-only, no consumer deploy, no cloud CLI lanes, no published-score change.
