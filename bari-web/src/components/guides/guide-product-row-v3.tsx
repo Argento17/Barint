@@ -225,13 +225,18 @@ export function GuideProductRowV3({
           </div>
 
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+            {/* TASK-577 fix round: the null-price fallback ("מחיר לא זמין") is
+                removed — per-product data-state narration, identical on all 18 cards,
+                and a duplicate of the market-gaps box (the one sanctioned
+                price-gap statement). When pricing is null the price element is
+                entirely absent, not a placeholder. Today all 18 products have
+                pricing: null, so this element never renders — that is correct, not
+                a bug: the gap is disclosed once, guide-level, not per-row. */}
             {product.pricing ? (
               <span className="text-[13px] font-bold text-[#111318]">
                 {product.pricing.pricePerEffectiveUnitLabel}
               </span>
-            ) : (
-              <span className="text-[13px] text-[#6E756D]">מחיר לא זמין</span>
-            )}
+            ) : null}
             <GuideBuyButton buyUrl={product.buyUrl} />
           </div>
         </div>

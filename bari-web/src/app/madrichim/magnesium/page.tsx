@@ -28,8 +28,14 @@ import { cn } from "@/lib/utils";
 // supersedes the v2 4-criteria frame this task's dispatch says "burned us in v2
 // gate-2." Scoped to "18 תוספי מגנזיום... שבדקה," no "מהמדף הישראלי"
 // market-completeness claim. Not authored here.
+//
+// TASK-577 fix round (2026-07-10): title corrected to the owner-dictated H1
+// ("איך לבחור תוסף מגנזיום") — the copy package has no H1/title slot (package gap),
+// so the owner's own dictated text wins over the leftover v2 string this carried.
+// No openGraph/twitter override exists on this route (checked — the root layout's
+// openGraph.title is a generic, site-wide string, unrelated to this page).
 export const metadata: Metadata = {
-  title: "איך לבחור מגנזיום | Bari",
+  title: "איך לבחור תוסף מגנזיום | Bari",
   description: MAG_V3_METADATA_DESCRIPTION_HE,
   robots: { index: false, follow: true },
 };
@@ -37,10 +43,19 @@ export const metadata: Metadata = {
 // Content sign-off status: gate 1 (Content Agent) complete, gate 2 (Adversarial QA /
 // Red-Team) PENDING — magnesium_guide_copy_v1.md header, verified at build time
 // (03_operations/reports/content/magnesium_guide_copy_v1.md line 3).
-const METHODOLOGY_LINES = [
-  "בארי קוראת תוויות. בארי אינה בודקת במעבדה. כל המינונים המוצגים הם מה שכתוב על האריזה הישראלית. המידע כאן הוא לצורך היכרות בלבד. הוא אינו תחליף לייעוץ רפואי.",
-];
-
+//
+// TASK-577 fix round (2026-07-10): the page-level `methodologyLines` pass to
+// GuidePageTemplate is REMOVED — it rendered the exact same disclaimer sentence
+// ("בארי קוראת תוויות. בארי אינה בודקת במעבדה...") a second time, byte-identical to
+// the string already at the top of the guide's own "מקורות" section
+// (magnesium-guide-data.ts, educationSpine[5].body[0]), which is REUSED-v2 signed
+// content living inside the v3 collapsed education+sources accordion. The fix
+// instruction is explicit: keep exactly the one occurrence at the top of מקורות,
+// remove the other render. `GuidePageTemplate`'s `methodologyLines` param stays
+// optional/project-wide (its own doc comment already frames it that way) — this is a
+// per-guide decision not to double-render a fact this guide's own copy package
+// already places elsewhere, not a change to the canonical MethodologyFooter
+// component itself.
 export default function MagnesiumGuidePage() {
   return (
     <main
@@ -50,7 +65,7 @@ export default function MagnesiumGuidePage() {
       )}
     >
       <HomeContainer className="py-6">
-        <GuidePageTemplate guide={magnesiumGuide} methodologyLines={METHODOLOGY_LINES} />
+        <GuidePageTemplate guide={magnesiumGuide} />
       </HomeContainer>
     </main>
   );

@@ -617,7 +617,12 @@ const bandExcludedBars: GuideBarKey[] = [];
 
 export const magnesiumGuide: GuidePageVM = {
   slug: "magnesium",
-  h1: "איך לבחור מגנזיום",
+  // TASK-577 fix round (2026-07-10) — the copy package has no H1 slot (a genuine
+  // package gap, not an oversight); the owner dictated this exact H1 directly to the
+  // orchestrator, verbatim, superseding the leftover v2 string this field carried
+  // ("איך לבחור מגנזיום" → "איך לבחור תוסף מגנזיום" — adds "תוסף"/supplement, matching
+  // page.tsx's metadata.title). Owner text wins over an absent package slot.
+  h1: "איך לבחור תוסף מגנזיום",
   subtitle: null,
   // TASK-504C add-on — hero mascot (owner-supplied asset, optimized + self-hosted,
   // see this task's return for the source/optimization chain). Alt text FINAL —
