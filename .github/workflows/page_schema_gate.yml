@@ -1,0 +1,94 @@
+# Page Schema Gate (TASK-581) — follow-up to TASK-569 (generated page JSON schema).
+#
+# The TS contract (bari-web/src/lib/contracts/comparison-page-contract.ts) is the single
+# source of truth for the page-output JSON Schema. `npm run generate-page-schema` derives
+# the canonical schema (bari-web/schema/page-output-schema.generated.json); `npm run
+# sync-ops-schema` copies that same content to the ops-consumer path
+# (03_operations/page_generator/contract/page_output_schema_v1.json, read by
+# run_gates.py's G1 SCHEMA gate). Two jobs enforce the two failure classes TASK-581 was
+# opened to close permanently:
+#
+#   1. changed-comparison-json-schema — a NEW or EDITED shelf JSON that doesn't conform
+#      to the canonical schema goes red in CI (ajv, a complete draft-07 validator — not
+#      G1's historically-incomplete hand-rolled one). This is the "future shelves must
+#      conform" gate the task exists to build.
+#   2. schema-lag-check — if the TS contract changes but nobody regenerates/resyncs the
+#      committed schema files, CI goes red. This is what makes "hand schema lags the
+#      pipeline" (the TASK-569/TASK-581 root cause) structurally impossible going forward.
+name: Page Schema Gate
+
+on:
+  pull_request:
+    paths:
+      - "bari-web/src/data/comparisons/**"
+      - "bari-web/src/lib/contracts/comparison-page-contract.ts"
+      - "bari-web/schema/**"
+      - "bari-web/scripts/schema/**"
+      - "bari-web/package.json"
+      - "03_operations/page_generator/contract/page_output_schema_v1.json"
+      - ".github/workflows/page_schema_gate.yml"
+  workflow_dispatch: {}
+
+jobs:
+  changed-comparison-json-schema:
+    # Only files CHANGED IN THE PR are gated (git diff base...HEAD) — same convention as
+    # signoff_gate.yml / c0_return_gate.yml: legacy/untouched shelves never fail a PR that
+    # didn't touch them.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: npm ci
+        working-directory: bari-web
+        run: npm ci
+
+      - name: Regenerate canonical schema from the TS contract
+        working-directory: bari-web
+        run: npm run generate-page-schema
+
+      - name: ajv-validate comparison JSON changed in this PR
+        run: |
+          set -e
+          mapfile -t files < <(git diff --name-only --diff-filter=ACMR \
+            "${{ github.event.pull_request.base.sha }}...HEAD" -- 'bari-web/src/data/comparisons/*_frontend_v*.json')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No comparison JSON changed in this PR — nothing to gate."
+            exit 0
+          fi
+          echo "Validating: ${files[*]}"
+          node bari-web/scripts/schema/validate-changed.mjs "${files[@]}"
+
+  schema-lag-check:
+    # Regenerates + resyncs from the committed TS contract and fails if the result
+    # differs from what's committed at either schema path — proves the two schema files
+    # are byte-identical-by-construction to the TS contract on every PR, permanently.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: npm ci
+        working-directory: bari-web
+        run: npm ci
+
+      - name: Regenerate + sync ops-path schema from the TS contract
+        working-directory: bari-web
+        run: npm run verify-schema-sync
+
+      - name: Fail if regeneration produced a diff vs the committed schema files
+        run: |
+          if ! git diff --exit-code -- \
+            bari-web/schema/page-output-schema.generated.json \
+            03_operations/page_generator/contract/page_output_schema_v1.json; then
+            echo "::error::Committed schema files are out of sync with bari-web/src/lib/contracts/comparison-page-contract.ts. Run 'npm run verify-schema-sync' in bari-web/ and commit both changed files."
+            exit 1
+          fi

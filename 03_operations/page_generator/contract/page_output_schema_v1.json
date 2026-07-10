@@ -1,435 +1,889 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "bari-page-output-v1",
-  "title": "Bari Category Page Output v1",
-  "description": "JSON Schema derived from the union of granola_frontend_v1.json and snacks_frontend_v2.json (the two working BariProductVM-based corpora). Milk uses a separate legacy format (milk-comparison.json) not covered here.",
-  "type": "object",
-  "required": ["_meta", "products"],
-  "properties": {
-    "_meta": {
-      "type": "object",
-      "required": ["generated", "category", "product_count"],
-      "properties": {
-        "generated": {
-          "type": "string",
-          "description": "ISO-8601 generation timestamp"
-        },
-        "category": {
-          "type": "string",
-          "description": "Category slug matching the registry"
-        },
-        "product_count": {
-          "type": "integer",
-          "description": "Number of product objects in the products array"
-        },
-        "scored_count": {
-          "type": "integer",
-          "description": "Number of products with a non-null score"
-        },
-        "schema": {
-          "type": "string",
-          "description": "Schema identifier, e.g. BariProductVM[]"
-        },
-        "version": {
-          "type": "string",
-          "description": "Export version string"
-        },
-        "expansion": {
-          "type": "string",
-          "description": "Expansion system identifier, e.g. interpretive_expansion_system_v2"
-        },
-        "source_run_id": {
-          "type": "string",
-          "description": "Source scrape/run identifier"
-        },
-        "scope_note": {
-          "type": "string",
-          "description": "Hebrew scope/editorial note"
-        },
-        "editorial_note": {
-          "type": "string",
-          "description": "Editorial curation note"
-        },
-        "provenance": {
-          "type": "string",
-          "description": "Score/corpus provenance changelog"
-        },
-        "production_pass": {
-          "type": "string",
-          "description": "Production pipeline changelog"
-        }
-      }
-    },
-    "products": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["id", "name", "score", "grade", "insightLine", "confidence", "expansion"],
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "Unique product identifier (bsip1_<type>_<barcode> or snk-NNN format)"
-          },
-          "name": {
-            "type": "string",
-            "description": "Hebrew product display name"
-          },
-          "imageUrl": {
-            "type": ["string", "null"],
-            "description": "Product image URL; null when unavailable"
-          },
-          "score": {
-            "type": ["number", "null"],
-            "description": "Bari score 0-100; null for INSUFFICIENT products (float accepted)"
-          },
-          "grade": {
-            "type": ["string", "null"],
-            "description": "Letter grade S/A/B/C/D/E or null"
-          },
-          "insightLine": {
-            "type": "string",
-            "description": "Pre-authored one-line consumer insight"
-          },
-          "confidence": {
-            "type": "string",
-            "enum": ["full", "partial", "insufficient", "verified"],
-            "description": "Data confidence level (3-state v2 + verified for milk)"
-          },
-          "expansion": {
-            "type": "object",
-            "required": ["nutrition", "ingredients", "confidenceLabel", "servingNote", "positiveSignals"],
-            "properties": {
-              "nutrition": {
-                "type": ["object", "null"],
-                "description": "Per-100g nutrition values. All sub-fields nullable: null = data unavailable. Present on every product (may be all-null).",
-                "properties": {
-                  "energyKcal": { "type": ["number", "null"] },
-                  "protein": { "type": ["number", "null"] },
-                  "sugar": { "type": ["number", "null"] },
-                  "fat": { "type": ["number", "null"] },
-                  "fiber": { "type": ["number", "null"] },
-                  "sodium": { "type": ["number", "null"] },
-                  "carbs": { "type": ["number", "null"] },
-                  "satFat": { "type": ["number", "null"] }
-                },
-                "additionalProperties": false
-              },
-              "ingredients": {
-                "type": ["string", "null"],
-                "description": "Full ingredients text. Null when unavailable."
-              },
-              "confidenceLabel": {
-                "type": "string",
-                "description": "Pre-rendered Hebrew confidence label"
-              },
-              "servingNote": {
-                "type": "string",
-                "description": "Serving size annotation, e.g. ל-100 גרם"
-              },
-              "positiveSignals": {
-                "type": ["array", "null"],
-                "items": { "type": "string" },
-                "description": "1-3 observable strengths (Hebrew strings). Null on rare low-data products (3 measured live, TASK-564); copy completeness is G2's job, shape is this schema's."
-              },
-              "limitingFactors": {
-                "type": ["array", "null"],
-                "items": {
-                  "oneOf": [
-                    { "type": "string" },
-                    {
-                      "type": "object",
-                      "required": ["text", "magnitude"],
-                      "properties": {
-                        "text": { "type": "string" },
-                        "magnitude": { "type": "string" }
-                      },
-                      "additionalProperties": false
-                    }
-                  ]
-                },
-                "description": "0-2 compositional limits. Items are Hebrew strings (legacy) or {text, magnitude} objects (947/247 split measured live, TASK-564). Absent or null when no limits identified."
-              },
-              "unknowns": {
-                "type": "array",
-                "items": { "type": "string" },
-                "description": "Data gaps Bari could not verify (Hebrew). Category-level invariant."
-              },
-              "caveats": {
-                "type": "array",
-                "items": { "type": "string" },
-                "description": "Product-level caveats (Hebrew). Not yet present in any corpus."
-              },
-              "bottomLine": {
-                "type": "string",
-                "description": "Editorial synthesis — בשורה התחתונה (Hebrew). Category-level invariant."
-              },
-              "comparisonContext": {
-                "type": ["string", "null"],
-                "description": "OPTIONAL since 2026-07-10 (TASK-564): cross-referencing copy was deliberately removed on owner direction (TASK-546 de-cross-referencing) — a required comparisonContext made the golden page fail its own schema. Never re-add as required without an owner ruling."
-              },
-              "consumerExplanation": {
-                "description": "Extension field: structured consumer explanation (pre-copy or object)."
-              }
-            },
-            "additionalProperties": false
-          },
-          "rowVerdict": {
-            "type": "string",
-            "description": "2-3 sentence editorial verdict on the collapsed row. Category-level invariant."
-          },
-          "rowReason": {
-            "type": "object",
-            "description": "Short strongest +/− for collapsed row. Synthesized by page-data layer, not in source JSON.",
-            "properties": {
-              "positive": { "type": ["string", "null"] },
-              "limiting": { "type": ["string", "null"] }
-            },
-            "additionalProperties": false
-          },
-          "metrics": {
-            "type": "object",
-            "description": "Display-only metric block. Synthesized by page-data layer, not in source JSON.",
-            "properties": {
-              "protein_g": { "type": ["number", "null"] },
-              "fiber_g": { "type": ["number", "null"] },
-              "sugar_g": { "type": ["number", "null"] },
-              "sodium_mg": { "type": ["number", "null"] }
-            },
-            "additionalProperties": false
-          },
-          "retailer": {
-            "type": "string",
-            "description": "Source retailer slug"
-          },
-          "brand": {
-            "type": ["string", "null"],
-            "description": "Manufacturer/brand name, display-only. Null/absent when unknown (never fabricated). Live in bread/hummus/cheese/granola/snacks/etc. since TASK-431 and the 2026-06-27 brand-beside-title rollout (c666b4f3); added here to close a schema-lag gap (G1 previously failed on every category already shipping it)."
-          },
-          "barcode": {
-            "type": "string",
-            "description": "Product barcode (13-digit Israeli or internal code)"
-          },
-          "source_traceability_status": {
-            "type": "string",
-            "description": "Traceability of source product data"
-          },
-          "d4_additives": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/AdditiveEntry" },
-            "description": "D4 additive tier entries. Empty array when not gated."
-          },
-          "d3_processing": {
-            "$ref": "#/definitions/BariProcessingSignalVM",
-            "description": "D3 processing signal. Absent when not gated."
-          },
-          "glassBox": {
-            "$ref": "#/definitions/BariGlassBoxVM",
-            "description": "Glass Box D5/D6 presentation state. Absent when not gated."
-          },
-          "s_grade_explanation": {
-            "type": "string",
-            "description": "Pre-authored Hebrew explanation for S-grade products. Absent on non-S grades."
-          },
-          "confidence_label_he": {
-            "type": "string",
-            "description": "Backend-prerendered Hebrew confidence label"
-          },
-          "confidence_tooltip_he": {
-            "type": "string",
-            "description": "Backend-prerendered Hebrew confidence tooltip"
-          },
-          "confidence_sub_reason": {
-            "type": ["string", "null"],
-            "description": "Metadata-only sub-reason enum. Non-rendering."
-          },
-          "novaGroup": {
-            "type": ["integer", "null"],
-            "description": "NOVA group 1–4; null when not assessed. (TASK-316 render field)"
-          },
-          "sugarPer100ml": {
-            "type": ["number", "null"],
-            "description": "Sugars per 100ml for liquid categories (juices). (TASK-316 render field)"
-          },
-          "kcalPer100ml": {
-            "type": ["number", "null"],
-            "description": "Calories per 100ml for liquid categories (juices). (TASK-316 render field)"
-          },
-          "retailers": {
-            "type": ["array", "null"],
-            "items": { "type": "string" },
-            "description": "Retailer availability list (juices). (TASK-316 render field)"
-          },
-          "_source_retailers": {
-            "type": ["array", "null"],
-            "items": { "type": "string" },
-            "description": "Source retailer list (cakes schema alias). (TASK-316 render field)"
-          },
-          "subPool": {
-            "type": ["string", "null"],
-            "description": "Juice sub-pool classification. (TASK-316 render field)"
-          },
-          "_category_routed": {
-            "type": ["string", "null"],
-            "description": "Cakes category routing decision from trace.category. (TASK-316 render field)"
-          },
-          "_product_type": {
-            "type": ["string", "null"],
-            "description": "Hummus product sub-type (e.g. hummus_spread, matbucha). (TASK-316 render field)"
-          },
-          "_has_phvo": {
-            "type": ["boolean", "null"],
-            "description": "True if PHVO/PHCS detected in L3 inferred classifications. (TASK-316 render field)"
-          },
-          "confidence_level": {
-            "type": ["string", "null"],
-            "description": "Data sufficiency label (sufficient/partial/insufficient). (TASK-316 render field)"
-          },
-          "filterTags": {
-            "type": "array",
-            "items": { "type": "string" },
-            "description": "Optional category shelf-filter tags (added 2026-07-10, TASK-564: shipping live on milk, schema lagged)."
-          },
-          "milkProductType": {
-            "type": ["string", "null"],
-            "description": "Optional milk-category product type key (TASK-564 lag fix)."
-          },
-          "milkProductTypeLabel": {
-            "type": ["string", "null"],
-            "description": "Optional milk-category Hebrew type label (TASK-564 lag fix)."
-          },
-          "volumeMl": {
-            "type": ["number", "null"],
-            "description": "Optional beverage volume in ml (TASK-564 lag fix: shipping live on juices)."
-          },
-          "d3_processing_signal": {
-            "type": ["object", "null"],
-            "description": "D3 processing signal. Was hard-typed null when trace_writer did not emit it (TASK-316 era); the engine now ships a structured signal on live pages (57 products measured, identical 10-key shape) — schema updated 2026-07-10 (TASK-564).",
-            "properties": {
-              "nova_class": { "type": ["number", "null"] },
-              "confidence": { "type": ["string", "null"] },
-              "confidence_note": { "type": ["string", "null"] },
-              "uncertainty_materiality": { "type": ["string", "null"] },
-              "materiality_note": { "type": ["string", "null"] },
-              "population_correlation": { "type": ["number", "null"] },
-              "modifier": { "type": ["number", "null"] },
-              "modifier_note": { "type": ["string", "null"] },
-              "note_he": { "type": ["string", "null"] },
-              "note_he_mobile": { "type": ["string", "null"] }
-            },
-            "additionalProperties": false
-          },
-          "_isChildrens": {
-            "type": ["boolean", "null"],
-            "description": "Extension field: children's product classification."
-          },
-          "_subpool": {
-            "type": ["string", "null"],
-            "description": "Extension field: granola/cereal sub-pool."
-          },
-          "_wholeGrainClaim": {
-            "type": ["boolean", "null"],
-            "description": "Extension field: whole-grain claim present."
-          },
-          "bariInterpretation": {
-            "type": ["array", "null"],
-            "description": "Extension field: per-dimension interpretation entries (pre-copy)."
-          },
-          "bestUseCases": {
-            "type": ["array", "null"],
-            "items": { "type": "string" },
-            "description": "Extension field: recommended use-case tags."
-          },
-          "consumerTakeaway": {
-            "type": ["string", "null"],
-            "description": "Extension field: consumer takeaway (pre-copy placeholder)."
-          },
-          "_website_cluster": {
-            "description": "Internal website-clustering hint (consumed by frontend page-data; not consumer-rendered scoring data). Whitelisted 2026-06-18 — was a stray-property G1 failure."
-          },
-          "_novaGroup": {
-            "type": ["integer", "null"],
-            "description": "Extension field: NOVA group (underscore-prefixed variant used by hard_cheeses + milk extension_fields config). Whitelisted 2026-06-18 — was a stray-property G1 failure."
-          },
-          "_subPool": {
-            "type": ["string", "null"],
-            "description": "Extension field: sub-pool classification (underscore-prefixed variant used by hard_cheeses + milk extension_fields config). Whitelisted 2026-06-18 — was a stray-property G1 failure."
-          },
-          "rank": {
-            "type": "integer",
-            "description": "1-based rank of this product within the displayed shelf (scored by Bari score descending). Present on every scored product. Whitelisted 2026-06-22 — ShelfContextSection component requires it; confirmed present on all live categories."
-          },
-          "categoryTotal": {
-            "type": "integer",
-            "description": "Total number of displayed products in this category page. Used by ShelfContextSection to render 'X out of Y' shelf context. Whitelisted 2026-06-22 — confirmed present on all live categories."
-          },
-          "nameHe": {
-            "type": ["string", "null"],
-            "description": "Hebrew product display name authored by Content (nameHe required per category; null only when genuinely unretrievable). Whitelisted 2026-07-01 for crackers go-live — TASK-433."
-          },
-          "_hash_no_rank": {
-            "type": ["string", "null"],
-            "description": "Internal provenance hash of the product record excluding rank (membership-correction reproducibility marker; not consumer-rendered). Whitelisted 2026-07-01 — emitted by bread_frontend_v4 membership correction, TASK-433."
-          }
-        },
-        "additionalProperties": false
-      }
-    },
-    "page_copy": {
-      "description": "Page-level authored copy block (consumed by frontend page-data; not a per-product scoring field). Whitelisted 2026-06-18 — was a stray-property G1 failure."
-    },
-    "generatedAt": {
-      "type": "string",
-      "description": "Root-level ISO-8601 generation timestamp used by juices' flat top-level schema (no _meta wrapper for this value — juices-page-data.ts:20,45,77 reads this directly for the rendered 'updated on' date, distinct from and NOT redundant with _meta.generated). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
-    },
-    "totalProducts": {
-      "type": "integer",
-      "description": "Root-level product count used by juices' flat top-level schema (no _meta wrapper — juices-page-data.ts:21,47 reads this directly). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
-    }
-  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "additionalProperties": false,
   "definitions": {
-    "AdditiveEntry": {
-      "type": "object",
-      "required": ["e_number", "name_he", "tier", "function_he", "explanation_he"],
+    "RawAdditiveEntry": {
+      "additionalProperties": false,
       "properties": {
-        "e_number": { "type": "string" },
-        "name_he": { "type": "string" },
-        "tier": { "type": "string", "enum": ["functional", "likely-neutral", "dose-dependent", "contested", "disclosure-gap", "unclassified"] },
-        "function_he": { "type": "string" },
-        "explanation_he": { "type": "string" },
-        "cosmetic_mup": { "type": "boolean", "description": "Optional since 2026-07-10 (TASK-564): cosmetic/MUP marker already shipping on 94 live additive entries; schema lagged (same class as the TASK-431 brand-field lag)." }
+        "cosmetic_mup": {
+          "description": "Present on 94/2039 additive entries (chocolate_bars/chocolate_tablets/snacks).",
+          "type": "boolean"
+        },
+        "e_number": {
+          "type": "string"
+        },
+        "explanation_he": {
+          "type": "string"
+        },
+        "function_he": {
+          "type": "string"
+        },
+        "name_he": {
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/definitions/RawAdditiveTier"
+        }
       },
-      "additionalProperties": false
+      "required": [
+        "e_number",
+        "name_he",
+        "tier",
+        "function_he",
+        "explanation_he"
+      ],
+      "type": "object"
     },
-    "BariGlassBoxVM": {
-      "type": "object",
-      "required": ["gateState"],
-      "properties": {
-        "gateState": { "type": "string", "enum": ["unconstrained", "demote", "withhold"] },
-        "disclosureCodes": { "type": "array", "items": { "type": "string" } },
-        "withheld": { "type": "boolean" },
-        "gatedScore": { "type": "number" },
-        "gatedGrade": { "type": "string", "enum": ["S", "A", "B", "C", "D", "E"] },
-        "partialNote": { "type": ["string", "null"] },
-        "withholdReason": { "type": ["string", "null"] },
-        "disclosureNotes": { "type": "array", "items": { "type": "string" } }
-      },
-      "additionalProperties": false
+    "RawAdditiveTier": {
+      "enum": [
+        "functional",
+        "likely-neutral",
+        "dose-dependent",
+        "contested",
+        "disclosure-gap",
+        "unclassified"
+      ],
+      "type": "string"
     },
-    "BariProcessingSignalVM": {
-      "type": "object",
-      "required": ["confidence", "note_he"],
+    "RawBariInterpretationEntry": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "interpretation": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            },
+            "strength": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "score",
+            "strength",
+            "interpretation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "type": "string"
+            },
+            "explanation_he": {
+              "type": "string"
+            },
+            "label_he": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "dimension",
+            "score",
+            "label_he",
+            "explanation_he"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "RawComparisonProduct": {
+      "additionalProperties": false,
       "properties": {
-        "nova_class": { "type": "integer" },
-        "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
-        "population_correlation": { "type": "number" },
-        "modifier": { "type": "number" },
-        "modifier_note": { "type": "string" },
-        "note_he": { "type": ["string", "null"] },
-        "note_he_mobile": { "type": ["string", "null"] },
-        "confidence_note": { "type": ["string", "null"] }
+        "_category_routed": {
+          "description": "Present 122/681 (cakes_hard_cookies, cookies_coffee).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_has_phvo": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "_hash_no_rank": {
+          "description": "Present 216/681. Membership-correction reproducibility marker.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_isChildrens": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "_product_type": {
+          "description": "Present 57/681 (hummus).",
+          "type": "string"
+        },
+        "_source_retailers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "_subpool": {
+          "description": "Present 42/681 (cereals, granola).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_website_cluster": {
+          "description": "Present 42/681 (bread, crackers).",
+          "type": "string"
+        },
+        "_wholeGrainClaim": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "bariInterpretation": {
+          "description": "Present 67/681 (yogurt_drinkable/yogurt_spoonable); always `[]`, never null when present (0/67 null — verified). Shape reserved for future authoring.",
+          "items": {
+            "$ref": "#/definitions/RawBariInterpretationEntry"
+          },
+          "type": "array"
+        },
+        "bestUseCases": {
+          "description": "Present 67/681 (yogurt_drinkable/yogurt_spoonable); never null when present.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "brand": {
+          "description": "Present 606/681; null/absent = unknown, never fabricated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "categoryTotal": {
+          "description": "Present 591/681.",
+          "type": "number"
+        },
+        "confidence": {
+          "$ref": "#/definitions/RawConfidence"
+        },
+        "confidence_label_he": {
+          "type": "string"
+        },
+        "confidence_level": {
+          "description": "Present 250/681 (bread/cereals/cheese/crackers/granola/milk/yogurt_drinkable/yogurt_spoonable).",
+          "type": "string"
+        },
+        "confidence_sub_reason": {
+          "description": "Metadata-only, non-rendering. Present 663/681 (absent on milk).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_tooltip_he": {
+          "type": "string"
+        },
+        "consumerTakeaway": {
+          "description": "TASK-581 CORRECTION: 0/681 live — this is NOT part of the same 67/681 group as bariInterpretation/bestUseCases above (TASK-569's shared comment wrongly implied it was). Verified live: granola/crackers/cookies_coffee `_meta` changelog text explicitly records \"TASK-488 ... removed top-level consumerTakeaway, bestUseCases, bariInterpretation, and expansion.consumerExplanation from all products\" — this field was deliberately deleted project-wide and has never returned. Type kept as declared (string, no null) for schema completeness; genuinely unfalsifiable against live data since it never appears.",
+          "type": "string"
+        },
+        "d3_processing_signal": {
+          "$ref": "#/definitions/RawD3ProcessingSignal"
+        },
+        "d4_additives": {
+          "description": "Present 680/681 — the sole exception is hummus product bsip1_7290010154265, which omits the key entirely (TASK-569 finding; not this task's job to fix).",
+          "items": {
+            "$ref": "#/definitions/RawAdditiveEntry"
+          },
+          "type": "array"
+        },
+        "expansion": {
+          "$ref": "#/definitions/RawExpansion"
+        },
+        "filterTags": {
+          "description": "Present 18/681 (milk only).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "glassBox": {
+          "$ref": "#/definitions/RawGlassBox",
+          "description": "Present 57/681 (hummus only)."
+        },
+        "grade": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RawGrade"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "Nullable per pipeline contract (schema/VM); no live product currently has null.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "insightLine": {
+          "type": "string"
+        },
+        "kcalPer100ml": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "metrics": {
+          "$ref": "#/definitions/RawMetrics"
+        },
+        "milkProductType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "milkProductTypeLabel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameHe": {
+          "description": "Present 53/681 (crackers only). Content-authored Hebrew display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "novaGroup": {
+          "description": "Present 364/681 (brined_cheeses/cakes_hard_cookies/cheese/cookies_coffee/juices/milk/yogurt_drinkable/yogurt_spoonable).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "rank": {
+          "description": "Present 614/681 (absent on yogurt_drinkable, yogurt_spoonable).",
+          "type": "number"
+        },
+        "retailer": {
+          "description": "Present 553/681 (13/18 categories; absent on chocolate_bars, chocolate_tablets, juices, protein_combined, snacks).",
+          "type": "string"
+        },
+        "retailers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Present 17/681 (juices only)."
+        },
+        "rowVerdict": {
+          "description": "Present 659/681.",
+          "type": "string"
+        },
+        "s_grade_explanation": {
+          "description": "Declared in the hand-maintained schema (S-grade explanation) but NOT observed on ANY of the 4 live S-grade products across all 18 categories — dead in the current corpus. Kept optional/typed rather than dropped so a future emission is still valid.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Nullable for INSUFFICIENT-confidence products; no live product currently has null.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "source_traceability_status": {
+          "description": "Present 320/681 (bread/cereals/cheese/crackers/hard_cheeses/hummus/yogurt_drinkable/yogurt_spoonable).",
+          "type": "string"
+        },
+        "subPool": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sugarPer100ml": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "volumeMl": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
       },
-      "additionalProperties": false
+      "required": [
+        "id",
+        "name",
+        "barcode",
+        "imageUrl",
+        "score",
+        "grade",
+        "confidence",
+        "confidence_label_he",
+        "confidence_tooltip_he",
+        "insightLine",
+        "expansion"
+      ],
+      "type": "object"
+    },
+    "RawConfidence": {
+      "enum": [
+        "full",
+        "partial",
+        "insufficient",
+        "verified"
+      ],
+      "type": "string"
+    },
+    "RawD3ProcessingSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "materiality_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "modifier_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note_he": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note_he_mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nova_class": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "population_correlation": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "uncertainty_materiality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "nova_class",
+        "confidence",
+        "confidence_note",
+        "uncertainty_materiality",
+        "materiality_note",
+        "population_correlation",
+        "modifier",
+        "modifier_note",
+        "note_he",
+        "note_he_mobile"
+      ],
+      "type": "object"
+    },
+    "RawExpansion": {
+      "additionalProperties": false,
+      "properties": {
+        "bottomLine": {
+          "description": "Present only on cookies_coffee (117/681) in current data.",
+          "type": "string"
+        },
+        "caveats": {
+          "description": "Present only on hummus (57/681) in current data.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "comparisonContext": {
+          "description": "Present on 409/681 (14/18 categories). De-cross-referencing (TASK-546) means this is optional going forward — never re-require without an owner ruling (TASK-564).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidenceLabel": {
+          "type": "string"
+        },
+        "consumerExplanation": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "context": {
+                  "type": "string"
+                },
+                "good": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "takeaway": {
+                  "type": "string"
+                },
+                "watchOut": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "whyRated": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "whyRated",
+                "good",
+                "watchOut",
+                "context",
+                "takeaway"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ingredients": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "limitingFactors": {
+          "anyOf": [
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/RawLimitingFactorEntry"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Present 678/681 (all but 3 low-data products, TASK-564). Legacy string[] or the richer {text,magnitude}[] shape — see RawLimitingFactorEntry."
+        },
+        "nutrition": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RawNutrition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positiveSignals": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "TASK-581 CORRECTION: the KEY is present on 681/681 live products (0 absent) — non-optional. Value is `[]` on most, `null` on 3 low-data products (TASK-564: brined_cheeses bc-047/048/043 — verified directly, not inferred). TASK-569 had marked this optional (`?`), conflating \"TS optional key\" with \"nullable value\"; the hand-maintained schema's `required: [...,\"positiveSignals\"]` was already correct (required + nullable are independent axes — required means the key exists, the `| null` union covers the 3 null values)."
+        },
+        "servingNote": {
+          "type": "string"
+        },
+        "sourceLine": {
+          "description": "TASK-581 CORRECTION: 0/681 live occurrences (verified by grep across every\n*_frontend_v*.json in src/data/comparisons/, not just the 18 live ones — this field has NEVER shipped, in any category, ever). Declared on BariExpansionVM (view-models/index.ts:61, \"footer omits source field\" when absent) but the raw pipeline does not emit it today. Kept optional/typed as forward-compat only, so a future emission does not immediately violate the contract (and does not trip `additionalProperties:false` on the day it ships) — NOT \"the pipeline emits this today\" as TASK-569's diff-report summary implied.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unknowns": {
+          "description": "Present only on hummus (57/681) in current data; category-level invariant per category.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "nutrition",
+        "ingredients",
+        "confidenceLabel",
+        "servingNote",
+        "positiveSignals"
+      ],
+      "type": "object"
+    },
+    "RawGlassBox": {
+      "additionalProperties": false,
+      "properties": {
+        "disclosureCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disclosureNotes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gateState": {
+          "$ref": "#/definitions/RawGlassBoxGate"
+        },
+        "gatedGrade": {
+          "$ref": "#/definitions/RawGrade"
+        },
+        "gatedScore": {
+          "type": "number"
+        },
+        "partialNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "withheld": {
+          "type": "boolean"
+        },
+        "withholdReason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "gateState"
+      ],
+      "type": "object"
+    },
+    "RawGlassBoxGate": {
+      "enum": [
+        "unconstrained",
+        "demote",
+        "withhold"
+      ],
+      "type": "string"
+    },
+    "RawGrade": {
+      "enum": [
+        "S",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "type": "string"
+    },
+    "RawLimitingFactorEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "magnitude": {
+          "type": [
+            "number",
+            "string"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "magnitude"
+      ],
+      "type": "object"
+    },
+    "RawMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "additive_count": {
+          "description": "0/681 live — VM comment: \"NOT yet exposed by BSIP → Data Agent dependency.\"",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "base_pct": {
+          "description": "0/681 live — VM comment: \"NOT in current label data → Data Agent dependency.\"",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fiber_g": {
+          "description": "0/681 live — not observed in any raw dataset (VM-only field, not raw).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "protein_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sodium_mg": {
+          "description": "0/681 live — not observed in any raw dataset (VM-only field, not raw).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sugar_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "RawNutrition": {
+      "additionalProperties": false,
+      "properties": {
+        "carbs": {
+          "description": "Present on 237/681 (bread/brined_cheeses/cakes_hard_cookies/cereals/cheese/hard_cheeses/milk).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "energyKcal": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fat": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fiber": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "protein": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "satFat": {
+          "description": "Present on 370/681 (bread/brined_cheeses/cakes_hard_cookies/cereals/cheese/cookies_coffee/hard_cheeses/juices/milk).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sodium": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sugar": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "energyKcal",
+        "protein",
+        "sugar",
+        "fat",
+        "fiber",
+        "sodium"
+      ],
+      "type": "object"
+    },
+    "RawPageCopy": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "RawPageMeta": {
+      "additionalProperties": {},
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "editorial_note": {
+          "type": "string"
+        },
+        "expansion": {
+          "type": "string"
+        },
+        "generated": {
+          "type": "string"
+        },
+        "product_count": {
+          "type": "number"
+        },
+        "production_pass": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "scope_note": {
+          "type": "string"
+        },
+        "scored_count": {
+          "type": "number"
+        },
+        "source_run_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "generated",
+        "product_count"
+      ],
+      "type": "object"
     }
-  }
+  },
+  "properties": {
+    "_meta": {
+      "$ref": "#/definitions/RawPageMeta"
+    },
+    "generatedAt": {
+      "description": "Root-level (no _meta wrapper) — juices only. Distinct from _meta.generated; read directly by juices-page-data.ts for the rendered \"updated on\" date (TASK-574).",
+      "type": "string"
+    },
+    "page_copy": {
+      "$ref": "#/definitions/RawPageCopy",
+      "description": "Present on 7/18 datasets — see RawPageCopy."
+    },
+    "products": {
+      "items": {
+        "$ref": "#/definitions/RawComparisonProduct"
+      },
+      "type": "array"
+    },
+    "totalProducts": {
+      "description": "Root-level (no _meta wrapper) — juices only (TASK-574).",
+      "type": "number"
+    }
+  },
+  "required": [
+    "_meta",
+    "products"
+  ],
+  "type": "object",
+  "$comment": "GENERATED FILE — DO NOT HAND-EDIT (TASK-581). Source of truth: bari-web/src/lib/contracts/comparison-page-contract.ts. Regenerate + resync with `npm run verify-schema-sync` from bari-web/ (chains generate-page-schema + sync-ops-schema). CI's schema-lag-check job (.github/workflows/page_schema_gate.yml) fails the build if this file drifts from what regeneration produces — hand edits will be reverted or will fail CI. Consumed at runtime by 03_operations/page_generator/gates/run_gates.py (G1 SCHEMA gate).",
+  "title": "Bari Category Page Output v1 (generated)",
+  "description": "JSON Schema for the RAW served comparison JSON under bari-web/src/data/comparisons/*_frontend_v*.json (before the page-data.ts transform runs). Generated from comparison-page-contract.ts — see $comment."
 }
