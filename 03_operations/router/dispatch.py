@@ -74,7 +74,7 @@ Usage
 -----
   python dispatch.py --selftest            # PONG through opencode (openai/gpt-5.4-mini-fast)
   python dispatch.py --selftest-codex       # PONG through `codex exec`; skipped while PIN-AT-AUTH
-  python dispatch.py --selftest-gemini      # sentinel-file PONG through `gemini -p`
+  python dispatch.py --selftest-gemini      # stdout-token PONG through `agy --print`
   python dispatch.py --selftest-table       # doc<->code byte-match assertion
   python dispatch.py --selftest-route       # route() fixture battery
   python dispatch.py --selftest --timeout 300   # override the shared timeout
@@ -224,12 +224,12 @@ LAYER2_TABLE: list[tuple[str, str, str, str, str]] = [
      "`codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback",
      "API/CLI error, or any output failing its validator once"),
     ("EVIDENCE-RESEARCH", "gpt-5.5 + web search", "Claude Research Agent (sonnet pin)",
-     "Codex CLI `--search` / opencode API", "API error or timeout 120s"),
+     "Codex web-search config / opencode API", "API error or timeout 120s"),
     ("ENGINEERING-RESEARCH", "codex gpt-5.6-terra + web search¹",
-     "Claude Research Agent (sonnet pin)", "`codex exec --search`, read-only sandbox", "same"),
-    ("VISION-LONGREAD", "Gemini subscription model (PIN-AT-AUTH²)",
+     "Claude Research Agent (sonnet pin)", "`codex exec -c tools.web_search=true`, read-only sandbox", "same"),
+    ("VISION-LONGREAD", "Gemini 3.1 Pro (High) via agy²",
      "claude-sonnet-5 subagent reading screenshots",
-     "`gemini -p` headless, `GEMINI_CLI_TRUST_WORKSPACE=true`, report-only",
+     "`agy --print` headless, report-only",
      "CLI hang > 10 min, crash, or empty output"),
     ("DOMAIN-JUDGMENT", "claude-fable-5", "claude-opus-4-8", "Nutrition/Product agents, pinned",
      "Spawn failure"),
@@ -375,7 +375,7 @@ MODEL_BINDING: dict[str, dict[str, str]] = {
     },
     "EVIDENCE-RESEARCH": {
         "primary": "gpt-5.5", "fallback": "claude-sonnet-5 (Research Agent)",
-        "pipe": "Codex CLI --search / opencode API",
+        "pipe": "Codex web-search config / opencode API",
         "fallback_trigger": "API error or timeout 120s",
     },
     "ENGINEERING-RESEARCH": {
@@ -384,8 +384,8 @@ MODEL_BINDING: dict[str, dict[str, str]] = {
         "fallback_trigger": "API error or timeout 120s",
     },
     "VISION-LONGREAD": {
-        "primary": "PIN-AT-AUTH", "fallback": "claude-sonnet-5 (subagent reading screenshots)",
-        "pipe": "gemini -p headless, GEMINI_CLI_TRUST_WORKSPACE=true, report-only",
+        "primary": "Gemini 3.1 Pro (High)", "fallback": "claude-sonnet-5 (subagent reading screenshots)",
+        "pipe": "agy --print headless, report-only",
         "fallback_trigger": "CLI hang > 10 min, crash, or empty output",
     },
     "DOMAIN-JUDGMENT": {
@@ -832,7 +832,7 @@ def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout
     codex_exe = _resolve_codex_cmd()
     cmd = [str(codex_exe), "exec", "-s", sandbox, "-C", str(cwd), "-m", model]
     if search:
-        cmd.append("--search")
+        cmd += ["-c", "tools.web_search=true"]  # verified 2026-07-10; top-level --search does not exist on `exec`
     cmd.append(prompt)
     print(f"[codex] Invoking `codex exec` (sandbox={sandbox}, model={model}, cwd={cwd})...",
           flush=True)
@@ -898,7 +898,7 @@ def grunt_primary(prompt: str, *, task: str, worktree: Path, timeout: int = DEFA
 def engineering_research(prompt: str, *, task: str, cwd: Path = REPO_ROOT,
                           timeout: int = DEFAULT_TIMEOUT) -> LaneResult:
     """ENGINEERING-RESEARCH (Layer 1 Q8): GitHub/libraries/frameworks/APIs/
-    implementation patterns. `codex exec --search`, read-only sandbox — never writes.
+    implementation patterns. `codex exec -c tools.web_search=true`, read-only sandbox — never writes.
     See `_run_codex_exec` docstring for a known --search CLI-version caveat."""
     return _dispatch_codex_build("ENGINEERING-RESEARCH", prompt, task=task, cwd=cwd,
                                   sandbox="read-only", timeout=timeout, search=True)
@@ -937,15 +937,19 @@ def _refuse_if_code_or_copy_request(prompt: str) -> None:
 
 
 def _resolve_gemini_cmd() -> Path:
-    if _GEMINI_EXE_DEFAULT.exists():
-        return _GEMINI_EXE_DEFAULT
+    """Antigravity CLI (`agy`) — the ONLY supported Gemini client for this subscription.
+    The npm `gemini` CLI is UNSUPPORTED_CLIENT on this account tier (law doc fn.2);
+    never fall back to it."""
+    agy = Path(os.path.expandvars(r"%LOCALAPPDATA%gyingy.exe"))
+    if agy.exists():
+        return agy
     import shutil as _shutil
-    alt = _shutil.which("gemini")
+    alt = _shutil.which("agy")
     if alt:
         return Path(alt)
     raise FileNotFoundError(
-        f"Gemini CLI not found at {_GEMINI_EXE_DEFAULT} or on PATH. "
-        "Install: npm install -g @google/gemini-cli, then run `gemini` once to sign in."
+        f"Antigravity CLI not found at {agy} or on PATH. Reinstall Antigravity, then "
+        "verify with: agy models (auth lives in Windows Credential Manager)."
     )
 
 
@@ -956,11 +960,11 @@ def _run_gemini_cli(prompt: str, *, model: str | None, cwd: Path, timeout: int
     model is None/placeholder so the CLI's own default is used instead of a nonsense
     flag value."""
     gemini_exe = _resolve_gemini_cmd()
-    cmd = [str(gemini_exe), "--skip-trust", "--approval-mode", "plan"]
+    cmd = [str(gemini_exe)]
     if model and model != "PIN-AT-AUTH":
-        cmd += ["-m", model]
-    cmd += ["-p", prompt]
-    env = dict(os.environ, GEMINI_CLI_TRUST_WORKSPACE="true")
+        cmd += ["--model", model]
+    cmd += ["--print", prompt]  # agy 1.1: --print = single-prompt headless; bare -p WITHOUT a value prints help
+    env = dict(os.environ)
     hard_timeout = min(timeout, GEMINI_HARD_TIMEOUT_SECONDS)
     print(f"[gemini] Invoking `gemini -p` (cwd={cwd}, hard timeout {hard_timeout}s)...",
           flush=True)
@@ -1203,77 +1207,35 @@ def cmd_selftest_codex(timeout: int) -> int:
 
 
 def cmd_selftest_gemini(timeout: int) -> int:
-    """Sentinel-file PONG through `gemini -p` (not a bare stdout PONG check: real-world
-    gemini-cli stdout is noisy — banner/tool-fallback lines mixed in — so a file the
-    model must explicitly create is the robust signal, same rationale the retired agy
-    selftest used). Detects and reports the KNOWN pending-auth state cleanly: exit 75
-    (EX_TEMPFAIL), never a hang, never an uncaught traceback. Hard-capped at 10 minutes
-    regardless of the requested timeout (Layer 2 VISION-LONGREAD fallback trigger)."""
-    import tempfile
+    """Stdout-token PONG through the REAL lane runner (`_run_gemini_cli` -> `agy --print`).
+    agy 1.1 print mode returns the model response on stdout (with occasional narration
+    lines), so a unique token containment check is the signal; the old sentinel-file
+    design targeted the retired npm gemini client and is obsolete (TASK-585). Clean
+    failures only: never a hang (10-min hard cap), never an uncaught traceback."""
     import uuid
     token = "GEMINI_OK_" + uuid.uuid4().hex[:8]
-    ws = Path(tempfile.gettempdir()) / ("gemini_selftest_" + uuid.uuid4().hex[:8])
-    ws.mkdir(parents=True, exist_ok=True)
-    sentinel = ws / "result.txt"
-    msg = (f"Create a file named result.txt in the current directory whose only contents "
-           f"are exactly this single line: {token}")
+    msg = f"Reply with exactly one line containing only this token: {token}"
     hard_timeout = min(timeout, GEMINI_HARD_TIMEOUT_SECONDS)
-    print(f"[selftest-gemini] Probing gemini CLI (report-only VISION-LONGREAD pipe) via a "
-          f"sentinel-file task, hard timeout {hard_timeout}s...")
+    print(f"[selftest-gemini] Probing the VISION-LONGREAD pipe (agy --print), hard timeout "
+          f"{hard_timeout}s...")
     print("-" * 60)
     try:
-        gemini_exe = _resolve_gemini_cmd()
+        model = MODEL_BINDING["VISION-LONGREAD"]["primary"]
+        started = datetime.now(timezone.utc)
+        exit_code, output = _run_gemini_cli(msg, model=model, cwd=REPO_ROOT,
+                                             timeout=hard_timeout)
+        elapsed = (datetime.now(timezone.utc) - started).total_seconds()
     except FileNotFoundError as e:
         print(f"[selftest-gemini] FAIL — {e}", file=sys.stderr)
         return 1
-    cmd = [str(gemini_exe), "--skip-trust", "-p", msg]
-    env = dict(os.environ, GEMINI_CLI_TRUST_WORKSPACE="true")
-    started = datetime.now(timezone.utc)
-    try:
-        proc = subprocess.run(cmd, cwd=str(ws), capture_output=True, text=True,
-                               encoding="utf-8", errors="replace", timeout=hard_timeout,
-                               env=env, stdin=subprocess.DEVNULL, shell=False)
-    except subprocess.TimeoutExpired:
-        print(f"[selftest-gemini] FAIL — gemini CLI hung past the {hard_timeout}s hard cap "
-              f"(Layer 2 VISION-LONGREAD fallback trigger: CLI hang > 10 min). Killed.",
-              file=sys.stderr)
-        return 1
-    finished = datetime.now(timezone.utc)
-    elapsed = (finished - started).total_seconds()
-    combined = (proc.stdout or "") + "\n" + (proc.stderr or "")
-    got = sentinel.read_text(encoding="utf-8").strip() if sentinel.exists() else ""
     print("-" * 60)
-    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code {proc.returncode}")
-    print(f"[selftest-gemini] Sentinel {'PRESENT' if sentinel.exists() else 'MISSING'} at "
-          f"{sentinel}; content: {got!r}")
-
-    if token in got:
-        print("[selftest-gemini] PASS — gemini CLI authenticated and completed the "
-              "sentinel-file task.")
+    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code {exit_code}")
+    if token in output:
+        print(f"[selftest-gemini] PASS — agy answered through the lane runner "
+              f"(model pin: {model}).")
         return 0
-
-    if re.search(r"IneligibleTierError|UNSUPPORTED_CLIENT|migrate to the Antigravity", combined):
-        print(
-            "[selftest-gemini] PENDING-AUTH (clean, expected; EX_TEMPFAIL) — "
-            "IneligibleTierError: this Google account's free tier ('Gemini Code Assist for "
-            "individuals') is retired; the CLI's OWN error says migrate to Antigravity, NOT "
-            "re-login into this same client. Re-running `gemini` interactive OAuth will NOT "
-            "fix this on the free tier. Owner decision needed: either put this account on an "
-            "eligible paid Gemini plan and re-auth `gemini`, or confirm the router should "
-            "target Antigravity (agy) instead — capability_router_v5.md footnote 2 assumed a "
-            "simple re-login; that is not what is actually broken (verified 2026-07-10).",
-            file=sys.stderr,
-        )
-        return 75
-    if re.search(r"not running in a trusted directory|GEMINI_CLI_TRUST_WORKSPACE", combined):
-        print(
-            "[selftest-gemini] PENDING-AUTH (clean; EX_TEMPFAIL) — workspace trust not applied "
-            "even with GEMINI_CLI_TRUST_WORKSPACE=true; check gemini-cli version/flag drift.",
-            file=sys.stderr,
-        )
-        return 75
-    print(f"[selftest-gemini] FAIL — sentinel not written and no known pending-auth marker "
-          f"matched. stdout/stderr tail:\n{combined[-1500:]}", file=sys.stderr)
+    print(f"[selftest-gemini] FAIL — token not in agy output. Tail:\n{output[-1500:]}",
+          file=sys.stderr)
     return 1
 
 
@@ -1290,8 +1252,7 @@ def main() -> None:
     parser.add_argument("--selftest-codex", action="store_true",
                          help="PONG round-trip through `codex exec`; skipped while PIN-AT-AUTH.")
     parser.add_argument("--selftest-gemini", action="store_true",
-                         help="Sentinel-file PONG through `gemini -p`; clean failure while "
-                              "auth is broken.")
+                         help="Stdout-token PONG through `agy --print` via the real lane runner.")
     parser.add_argument("--selftest-table", action="store_true",
                          help="Assert LAYER1_TABLE/LAYER2_TABLE byte-match "
                               "capability_router_v5.md.")

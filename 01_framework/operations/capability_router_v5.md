@@ -78,9 +78,9 @@ router.
 | BUILD-HEAVY | codex gpt-5.6-sol¹ | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
 | BUILD-LIGHT | codex gpt-5.6-terra¹ | claude-sonnet-5 agent | same | same |
 | GRUNT | codex gpt-5.6-luna¹ | claude-haiku-4-5 (Agent tool) | `codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback | API/CLI error, or any output failing its validator once |
-| EVIDENCE-RESEARCH | gpt-5.5 + web search | Claude Research Agent (sonnet pin) | Codex CLI `--search` / opencode API | API error or timeout 120s |
-| ENGINEERING-RESEARCH | codex gpt-5.6-terra + web search¹ | Claude Research Agent (sonnet pin) | `codex exec --search`, read-only sandbox | same |
-| VISION-LONGREAD | Gemini subscription model (PIN-AT-AUTH²) | claude-sonnet-5 subagent reading screenshots | `gemini -p` headless, `GEMINI_CLI_TRUST_WORKSPACE=true`, report-only | CLI hang > 10 min, crash, or empty output |
+| EVIDENCE-RESEARCH | gpt-5.5 + web search | Claude Research Agent (sonnet pin) | Codex web-search config / opencode API | API error or timeout 120s |
+| ENGINEERING-RESEARCH | codex gpt-5.6-terra + web search¹ | Claude Research Agent (sonnet pin) | `codex exec -c tools.web_search=true`, read-only sandbox | same |
+| VISION-LONGREAD | Gemini 3.1 Pro (High) via agy² | claude-sonnet-5 subagent reading screenshots | `agy --print` headless, report-only | CLI hang > 10 min, crash, or empty output |
 | DOMAIN-JUDGMENT | claude-fable-5 | claude-opus-4-8 | Nutrition/Product agents, pinned | Spawn failure |
 | CHALLENGE | claude-opus-4-8 **when producer was Codex/GPT** · gpt-5.5-pro **when producer was Claude or Gemini** | the other one | Agent tool (opus pin) / opencode API | Producer-vendor outage |
 | GENERAL | claude-sonnet-5 (explicit pin) | claude-haiku-4-5 for trivial | Agent tool | Spawn failure |
@@ -94,20 +94,22 @@ GRUNT). On subscription there is no per-token bill, but costlier tiers burn plan
 faster — routing grunt to luna is a quota decision, not just hygiene. Known CLI bug
 (openai/codex#31873): the interactive `/model` picker does not list the 5.6 tiers but `-m`
 accepts them — the router always passes `-m`, so unaffected. Sandbox tiers: `read-only` /
-`workspace-write` / `danger-full-access` (never use the third). **Standing caveat:** on
-0.144.1 `--search` is top-level-only — `codex exec --search` errors; ENGINEERING-RESEARCH
-invocation re-verified in TASK-585.
+`workspace-write` / `danger-full-access` (never use the third). **Web-search invocation RESOLVED (TASK-585):**
+`codex exec -c tools.web_search=true` is the verified working form (live-probed: returned a
+real current answer on luna); the top-level `--search` flag does not exist on `exec`. Outside
+a git repo add `--skip-git-repo-check`.
 
-² **PIN-AT-AUTH (Gemini) — CORRECTED 2026-07-10 after live probing:** the working binary for
-this subscription is **Antigravity (`%LOCALAPPDATA%\agy\bin\agy.exe`, v1.1.0 present)**, auth
-in Windows Credential Manager (Target=gemini:antigravity). The npm `gemini` CLI v0.46.0
-crashes with IneligibleTier/UNSUPPORTED_CLIENT on this account — that client is simply not
-supported on this tier; **no plan upgrade needed, no owner re-login proven necessary yet.**
-Live agy sentinel-file round-trip FAILED 2026-07-10 (lane flaky since 07-08). Until revived,
-VISION-LONGREAD stays pin-gated (fails loudly, falls back to claude-sonnet-5 per binding).
-Revival = TASK-584: repoint the lane to agy, fix headless flags, sentinel selftest green,
-pin the exact model ID, and update this doc's Layer-2 pipe cell + code together (the
---selftest-table byte-match keeps them honest).
+² **PINNED + REVIVED 2026-07-10 (TASK-585).** The working binary for this subscription is
+**Antigravity (`%LOCALAPPDATA%\agy\bin\agy.exe`, v1.1.0)**, auth in Windows Credential
+Manager — alive, no owner action was needed. The npm `gemini` CLI is UNSUPPORTED_CLIENT on
+this account tier; never target it. Earlier "lane dead" probes failed because agy 1.1
+changed its CLI surface: bare `-p <prompt>` prints the help screen; the correct headless
+form is `agy --model "<name>" --print "<prompt>"` (stdout = the report; ~5-min default print
+timeout; 10-min hard cap in the router). Live PONGs verified: default = gemini-3.5-flash-medium;
+pinned primary answers as **Gemini 3.1 Pro (High)**. Available tiers (`agy models`):
+Gemini 3.5 Flash (Low/Medium/High), Gemini 3.1 Pro (Low/High), plus non-Gemini models we do
+not route to (cross-vendor lanes already exist for those vendors). Report-only contract
+unchanged: this lane writes zero code and zero consumer copy.
 
 ---
 

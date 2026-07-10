@@ -35,7 +35,7 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+REPO_ROOT = Path(r"C:\Bari")
 JOURNAL_DIR = REPO_ROOT / "tasks" / "_journal"
 LOCK_PATH = JOURNAL_DIR / "dispatch.lock"
 DEFAULT_STALE_SECONDS = 1800  # a lock older than this is presumed abandoned (crashed run)
@@ -148,7 +148,7 @@ def already_done(run_id: str, step: str) -> dict | None:
 
 
 # ── tree-wipe guard ──────────────────────────────────────────────────────────
-CLOUD_LANES = {"C1-GROK", "C1-CURSOR", "C1-GEMINI"}  # lanes that git-stash the whole tree
+CLOUD_LANES = {"C1-GROK", "C1-CURSOR", "C1-GEMINI"}  # v4.2 HISTORY: all three retired by Capability Router v5 (2026-07-10); v5 CLI lanes (codex exec / agy --print) never git-stash the tree and run in worktrees per the law doc. Set kept only so old journal entries parse.
 
 
 def tree_is_dirty(repo: Path = REPO_ROOT) -> tuple[bool, int]:
