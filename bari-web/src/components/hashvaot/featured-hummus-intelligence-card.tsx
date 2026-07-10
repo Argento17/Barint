@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   hummusCorpusMeta,
   hummusProducts,
   hummusPrologueSentences,
 } from "@/lib/comparisons/hummus-comparison-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -30,9 +30,8 @@ type Props = {
 export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? hummusPrologueSentences[0];
 
-  const displayedCount = hummusProducts.length;
-  const scoredCount = hummusProducts.filter((product) => product.score != null).length;
-  const aGradeCount = hummusProducts.filter((product) => product.grade === "A").length;
+  const stats = deriveComparisonCardStats(hummusProducts, hummusCorpusMeta.generated);
+  const aGradeCount = stats.gradeCounts.A;
 
   const aGradeInsightLine =
     aGradeCount > 0
@@ -66,11 +65,11 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(cardDescription)}
         insightLines={insightLines}
         stats={[
-          { value: displayedCount, label: "מוצרים בהשוואה" },
-          { value: scoredCount, label: "קיבלו ציון" },
+          { value: stats.productCount, label: "מוצרים בהשוואה" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
           { value: aGradeCount, label: "בציון A" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(hummusCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/hummus.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   hardCheesesCorpusMeta,
   hardCheesesProducts,
 } from "@/lib/comparisons/hard-cheeses-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -39,8 +39,7 @@ export function FeaturedHardCheesesIntelligenceCard({ href, description }: Props
     .filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : HARD_CHEESES_INSIGHT_LINES).map(stripCardDigits);
 
-  const bCount = hardCheesesProducts.filter((p) => p.grade === "B").length;
-  const scoredCount = hardCheesesProducts.filter((p) => p.score != null).length;
+  const stats = deriveComparisonCardStats(hardCheesesProducts, hardCheesesCorpusMeta.generated);
 
   return (
     <Link
@@ -57,11 +56,11 @@ export function FeaturedHardCheesesIntelligenceCard({ href, description }: Props
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: hardCheesesProducts.length, label: "מוצרים נותחו" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: bCount, label: "בציון B" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.B, label: "בציון B" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(hardCheesesCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/hard-cheeses.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

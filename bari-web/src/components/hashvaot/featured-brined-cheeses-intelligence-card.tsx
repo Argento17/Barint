@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   brinedCheesesCorpusMeta,
   brinedCheesesProducts,
 } from "@/lib/comparisons/brined-cheeses-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -39,9 +39,7 @@ export function FeaturedBrinedCheesesIntelligenceCard({ href, description }: Pro
     .filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : BRINED_CHEESES_INSIGHT_LINES).map(stripCardDigits);
 
-  const aCount = brinedCheesesProducts.filter((p) => p.grade === "A").length;
-  const bCount = brinedCheesesProducts.filter((p) => p.grade === "B").length;
-  const scoredCount = brinedCheesesProducts.filter((p) => p.score != null).length;
+  const stats = deriveComparisonCardStats(brinedCheesesProducts, brinedCheesesCorpusMeta.generated);
 
   return (
     <Link
@@ -58,12 +56,12 @@ export function FeaturedBrinedCheesesIntelligenceCard({ href, description }: Pro
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: brinedCheesesProducts.length, label: "מוצרים נותחו" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aCount, label: "בציון A" },
-          { value: bCount, label: "בציון B" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.A, label: "בציון A" },
+          { value: stats.gradeCounts.B, label: "בציון B" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(brinedCheesesCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{
           accent: "#176F53",

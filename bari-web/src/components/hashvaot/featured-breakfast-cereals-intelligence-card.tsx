@@ -5,11 +5,11 @@ import Link from "next/link";
 import {
   ComparisonIntelligenceHero,
 } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   cerealsCorpusMeta,
   cerealsProducts,
 } from "@/lib/comparisons/cereals-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -38,8 +38,7 @@ type Props = {
 };
 
 export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: Props) {
-  const cerealsBCount = cerealsProducts.filter((p) => p.grade === "B").length;
-  const cerealsDCount = cerealsProducts.filter((p) => p.grade === "D").length;
+  const stats = deriveComparisonCardStats(cerealsProducts, cerealsCorpusMeta.generated);
 
   return (
     <Link
@@ -56,11 +55,11 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
         description={stripCardDigits(description)}
         insightLines={INSIGHT_LINES}
         stats={[
-          { value: cerealsProducts.length, label: "מוצרים נותחו" },
-          { value: cerealsDCount, label: "בציון D" },
-          { value: cerealsBCount, label: "בציון B" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
+          { value: stats.gradeCounts.D, label: "בציון D" },
+          { value: stats.gradeCounts.B, label: "בציון B" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(cerealsCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ photo: "/hashvaot/themes/breakfast-cereals.jpg", accent: "#1F8F6A" }}
         className="group-hover/card:border-[#7A8C5E]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(122,140,94,0.28),0_0_60px_-26px_rgba(122,140,94,0.08)]"

@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   cookiesCoffeeCorpusMeta,
   cookiesCoffeeProducts,
 } from "@/lib/comparisons/cookies-coffee-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -38,9 +38,7 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
     .filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : COOKIES_COFFEE_INSIGHT_LINES).map(stripCardDigits);
 
-  const cCount = cookiesCoffeeProducts.filter((p) => p.grade === "C").length;
-  const dCount = cookiesCoffeeProducts.filter((p) => p.grade === "D").length;
-  const eCount = cookiesCoffeeProducts.filter((p) => p.grade === "E").length;
+  const stats = deriveComparisonCardStats(cookiesCoffeeProducts, cookiesCoffeeCorpusMeta.generated);
 
   return (
     <Link
@@ -57,12 +55,12 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: cookiesCoffeeProducts.length, label: "מוצרים נותחו" },
-          { value: eCount, label: "בציון E" },
-          { value: cCount, label: "בציון C" },
-          { value: dCount, label: "בציון D" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
+          { value: stats.gradeCounts.E, label: "בציון E" },
+          { value: stats.gradeCounts.C, label: "בציון C" },
+          { value: stats.gradeCounts.D, label: "בציון D" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(cookiesCoffeeCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{
           accent: "#1F8F6A",

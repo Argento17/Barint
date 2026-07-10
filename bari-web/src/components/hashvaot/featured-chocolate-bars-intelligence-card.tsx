@@ -3,11 +3,14 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   chocolateBarsCorpusMeta,
   chocolateBarsProducts,
 } from "@/lib/comparisons/chocolate-bars-comparison-page-data";
+import {
+  deriveComparisonCardStats,
+  deriveMetricRange,
+} from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +39,14 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
   const insightLines = chocolateBarsProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : CHOCOLATE_BARS_INSIGHT_LINES).map(stripCardDigits);
 
+  const stats = deriveComparisonCardStats(chocolateBarsProducts, chocolateBarsCorpusMeta.generated);
+  const sugarRange = deriveMetricRange(
+    chocolateBarsProducts.map((p) => p.expansion?.nutrition?.sugar)
+  );
+  const sugarRangeLabel = sugarRange
+    ? `${Math.round(sugarRange.low)}–${Math.round(sugarRange.high)}`
+    : "—";
+
   return (
     <Link
       href={href}
@@ -51,11 +62,11 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: chocolateBarsProducts.length, label: "בדף ההשוואה" },
-          { value: "E", label: "ציון כל המוצרים" },
-          { value: "27–60", label: "גרם סוכר ל-100 גרם" },
+          { value: stats.productCount, label: "בדף ההשוואה" },
+          { value: stats.ceilingGrade ?? "—", label: "ציון כל המוצרים" },
+          { value: sugarRangeLabel, label: "גרם סוכר ל-100 גרם" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(chocolateBarsCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/chocolate-bars.jpg" }}
         className="group-hover/card:border-[#3D2314]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(61,35,20,0.28),0_0_60px_-26px_rgba(61,35,20,0.08)]"

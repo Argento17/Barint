@@ -24,9 +24,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # TASK-579: bumped 20 -> 24. validate-card-stats.mjs dynamic-imports
+      # src/lib/derived/comparison-card-stats.ts directly (no build step) and relies on
+      # Node's native TypeScript type-stripping, which does not exist on Node 20 at all
+      # (a bare .ts import fails immediately with ERR_UNKNOWN_FILE_EXTENSION) and needs
+      # >=23.6 to run flag-free (or >=22.6 with --experimental-strip-types). 24 matches
+      # the version this was verified against locally. Next 16.2.6 / this job's other
+      # steps have no Node-20-specific dependency, so this is a same-job version bump,
+      # not a broader infra change.
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
           cache-dependency-path: bari-web/package-lock.json
 
@@ -42,6 +50,12 @@ jobs:
       # dev mode: live-category failures warn (972-error backlog = TASK-462 follow-up under owner copy freeze); new/un-wired datasets still hard-fail. --handoff stays the manual handoff gate.
       - name: Validate corpus (all datasets, dev mode)
         run: node scripts/validate-corpus.mjs --all
+
+      # TASK-579: parity fixture for /hashvaot featured-card derived stats — re-derives
+      # ComparisonCardStats straight from the raw comparison JSON via the real shared
+      # module (src/lib/derived/comparison-card-stats.ts), not a reimplementation.
+      - name: Validate featured-card derived stats
+        run: npm run validate-card-stats
 
   python-tests:
     runs-on: ubuntu-latest
