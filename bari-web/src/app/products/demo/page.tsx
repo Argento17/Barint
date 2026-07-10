@@ -796,7 +796,7 @@ export default function ProductPage() {
                 <AccordionContent className="px-5 pb-6 sm:px-6">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="rounded-2xl bg-[#FFFFFF]/70 p-5 ring-1 ring-black/[0.08] transition duration-300 hover:bg-[#FFFFFF]/82">
-                      <p className="text-xs font-semibold text-[#1F8F6A]/80">
+                      <p className="text-xs font-semibold text-[#176F53]">
                         סוכרים מוספים
                       </p>
                       <p className="mt-2 text-2xl font-semibold tabular-nums text-[#111318]">
@@ -805,7 +805,7 @@ export default function ProductPage() {
                       <p className="mt-1 text-xs text-[#7A817C]">ל־100 גרם</p>
                     </div>
                     <div className="rounded-2xl bg-[#FFFFFF]/70 p-5 ring-1 ring-black/[0.08] transition duration-300 hover:bg-[#FFFFFF]/82">
-                      <p className="text-xs font-semibold text-[#1F8F6A]/80">
+                      <p className="text-xs font-semibold text-[#176F53]">
                         סוכר כולל
                       </p>
                       <p className="mt-2 text-2xl font-semibold tabular-nums text-[#111318]">

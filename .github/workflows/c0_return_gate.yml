@@ -1,0 +1,50 @@
+# C0 return-contract gate (TASK-559) — CI-resident version of the orchestrator's
+# manual C0 step. Any PR that adds or modifies a return under tasks/returns/ gets
+# its contract validated deterministically (schema, artifact sha256, counts form,
+# distribution markers, citations). Only files CHANGED IN THE PR are validated:
+# legacy returns predate the gate, and artifact hashes legitimately drift after a
+# return's branch merges and the tree moves on (verified live on P554_contract.md).
+name: C0 Return Gate
+
+on:
+  pull_request:
+    paths:
+      - "tasks/returns/**"
+      - "03_operations/validators/validate_return.py"
+      - ".github/workflows/c0_return_gate.yml"
+  workflow_dispatch: {}
+
+jobs:
+  validate-returns:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validator selftest
+        run: python 03_operations/validators/validate_return.py --selftest
+
+      - name: C0 gate on return files changed in this PR
+        run: |
+          set -e
+          mapfile -t files < <(git diff --name-only --diff-filter=AM \
+            "${{ github.event.pull_request.base.sha }}...HEAD" -- 'tasks/returns/*.md')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No return .md files changed in this PR — nothing to gate."
+            exit 0
+          fi
+          rc=0
+          for f in "${files[@]}"; do
+            echo "::group::C0 gate: $f"
+            if ! python 03_operations/validators/validate_return.py --md "$f"; then
+              echo "::error file=$f::C0 return-contract gate FAILED (see check output)"
+              rc=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $rc

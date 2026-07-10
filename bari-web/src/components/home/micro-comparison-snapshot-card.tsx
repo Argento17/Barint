@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
@@ -8,18 +8,18 @@ import type { CarouselCard } from "@/lib/home/homepage-carousel-schema";
 import { CardVisualBand } from "./carousel-card-visuals";
 import { cn } from "@/lib/utils";
 
-// -- Card shell ────────────────────────────────────────────────────────────────
+// -- Card shell ----------------------------------------------------------------
 
 const CARD_SHELL =
   "group block h-full min-h-[20rem] w-[92vw] max-w-[44rem] shrink-0 snap-center rounded-[1.5rem] border border-black/[0.08] bg-[#FFFFFF] overflow-hidden shadow-[0_20px_60px_-48px_rgba(17,19,24,0.2)] transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-[#1F8F6A]/22 hover:shadow-[0_24px_64px_-40px_rgba(31,143,106,0.2)] sm:w-[42rem] flex flex-col";
 
 const CONTENT_PAD = "px-4 py-3 md:px-5 flex flex-col flex-1";
 
-// -- Eyebrow badge colours ─────────────────────────────────────────────────────
+// -- Eyebrow badge colours -----------------------------------------------------
 
 const BADGE_COLORS: Record<string, string> = {
-  "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4": "bg-[#E8F5EF] text-[#1F8F6A]",
-  "\u05DE\u05D5\u05E6\u05E8 \u05DE\u05D5\u05D1\u05D9\u05DC": "bg-[#E8F5EF] text-[#1F8F6A]",
+  "\u05D4\u05E9\u05D5\u05D5\u05D0\u05D4": "bg-[#E8F5EF] text-[#176F53]",
+  "\u05DE\u05D5\u05E6\u05E8 \u05DE\u05D5\u05D1\u05D9\u05DC": "bg-[#E8F5EF] text-[#176F53]",
   "\u05D3\u05D5\u05D7 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4": "bg-[#F1F5F9] text-[#475569]",
   "\u05DE\u05DE\u05E6\u05D0 \u05E7\u05D8\u05D2\u05D5\u05E8\u05D9\u05D4": "bg-[#FEF3C7] text-[#92400E]",
   "\u05D7\u05E7\u05D9\u05E8\u05EA \u05DE\u05E8\u05DB\u05D9\u05D1": "bg-[#F0FAFA] text-[#0E7490]",
@@ -31,7 +31,7 @@ function badgeClass(eyebrow: string): string {
   return BADGE_COLORS[eyebrow] ?? "bg-[#F1F5F9] text-[#475569]";
 }
 
-// -- Score row (comparison only) ───────────────────────────────────────────────
+// -- Score row (comparison only) -----------------------------------------------
 
 function CompactScoreRow({ card }: { card: CarouselCard }) {
   if (!card.leftProduct || !card.rightProduct) return null;
@@ -53,7 +53,7 @@ function CompactScoreRow({ card }: { card: CarouselCard }) {
   );
 }
 
-// -- Card layout ───────────────────────────────────────────────────────────────
+// -- Card layout ---------------------------------------------------------------
 
 export function HomepageCardItem({ card }: { card: CarouselCard }) {
   return (
@@ -101,7 +101,7 @@ export function HomepageCardItem({ card }: { card: CarouselCard }) {
 
             {card.metric && (
               <p
-                className="text-[0.65rem] font-bold tabular-nums text-[#1F8F6A]"
+                className="text-[0.65rem] font-bold tabular-nums text-[#176F53]"
                 dir="rtl"
               >
                 {card.metric}
@@ -110,7 +110,7 @@ export function HomepageCardItem({ card }: { card: CarouselCard }) {
           </div>
 
           {/* Footer link */}
-          <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#1F8F6A] opacity-70 transition-opacity group-hover:opacity-100">
+          <p className="mt-3 flex items-center justify-end gap-1 text-xs font-bold text-[#176F53] opacity-70 transition-opacity group-hover:opacity-100">
             {"\u05DC\u05E4\u05E8\u05D8\u05D9\u05DD"}
             <ChevronLeft className="size-3.5" aria-hidden />
           </p>

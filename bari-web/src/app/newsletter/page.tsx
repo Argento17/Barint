@@ -24,7 +24,7 @@ export default function NewsletterPage() {
             <div className="relative z-10">
               <NewsletterIcon />
               <div className="mx-auto mb-10 max-w-3xl text-center">
-                <p className="text-xs font-bold tracking-[0.16em] text-[#1F8F6A]/80">הניוזלטר של Bari</p>
+                <p className="text-xs font-bold tracking-[0.16em] text-[#176F53]">הניוזלטר של Bari</p>
                 <h1 className="mt-3 text-balance text-3xl font-extrabold tracking-[-0.045em] text-[#111318] md:text-5xl">
                   הצטרפו לניוזלטר של Bari
                 </h1>
