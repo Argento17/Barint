@@ -3,7 +3,7 @@ document: blog_backlog_v1
 purpose: Standing backlog of evergreen blog / editorial pillar ideas for Bari, each
   grounded in verified research. An idea here is a DRAFT brief — it ships only through
   the normal two-gate (Content Agent + Adversarial QA sign-off). Authoring engine is
-  lane-agnostic (Sonnet / Cursor / Grok); Gemini last for Hebrew editorial.
+  authored via the CONTENT capability (Claude, per capability_router_v5.md); Gemini prohibited from Hebrew editorial.
 owner: content-agent
 created_at: 2026-06-24
 status: living

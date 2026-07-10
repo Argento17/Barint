@@ -1,3 +1,7 @@
+> **SUPERSEDED 2026-07-10 by [`capability_router_v5.md`](capability_router_v5.md)** — the
+> owner-approved Capability Router v5 (TASK-583). Grok/Cursor/DeepSeek lanes are KILLED;
+> route by capability, bind models in Layer 2. This file is history only.
+
 # Bari Router v4.2 — Orchestrator Routing Law
 
 *Owner-directed 2026-06-14. Canonical routing law for all dispatched work. Supersedes
