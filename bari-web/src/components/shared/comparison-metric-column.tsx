@@ -205,6 +205,26 @@ export const SUGAR_METRIC: MetricSpec = {
   ariaUnit: "גרם סוכר ל-100 מ״ל",
 };
 
+// Spoonable-yogurt protein metric (TASK-515): DAIRY_PROTEIN_METRIC's 0–8g scale (tuned
+// for drinkable yogurt, real range 1.9–8.4g) clips this shelf badly — spoonable's real
+// range is 2.5–13.1g/100g, with 23/78 products (skyr/high-protein "פרו"-style cups) over
+// 8g. A 0–8 scale would peg all 23 at 100%, erasing the exact differentiation the protein
+// column exists to show. scaleMax 14 gives the 13.1g top product headroom without
+// false-clipping. good ≥8g marks the genuine high-protein tier (skyr/Greek-style,
+// ~30% of the shelf); poor ≤4g marks the low end (near decile-2, 3.4g). Per-100g basis
+// (solids, not per-100ml like drinkable).
+export const SPOONABLE_PROTEIN_METRIC: MetricSpec = {
+  key: "protein_g",
+  label: "חלבון",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 14,
+  good: 8,
+  poor: 4,
+  ariaUnit: "גרם חלבון ל-100 גרם",
+};
+
 // Granola sugar metric (TASK-385): replaces FIBER_METRIC as the category headline.
 // Fiber is gameable via added chicory/inulin and creates fiber-vs-grade inversions on
 // this shelf (products with 14g fiber land at B; products with 5g also land at B).
