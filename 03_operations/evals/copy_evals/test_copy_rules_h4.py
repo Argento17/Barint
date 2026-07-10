@@ -115,12 +115,28 @@ def main() -> int:
     _check("400 מ\"ג in 1 field", "rowVerdict only",
            any(h["value"].startswith("400") for h in hits), False, failures)
 
+    # QA sign-off finding (2026-07-10): sodium spelled "מיליגרם" in full was
+    # invisible to the old pattern. The same sodium figure across two fields MUST
+    # now fire, and "660 מ\"ג" vs "660 מיליגרם" must normalize to one value.
+    sodium = {
+        "insightLine": "נתרן גבוה יחסית, 660 מיליגרם.",
+        "rowVerdict": "הנתרן עומד על 660 מ\"ג ל-100 גרם, מהגבוהים במדף.",
+    }
+    sodium_hits = R.find_cross_field_value_repetition(sodium)
+    _check("660 מיליגרם/מ\"ג cross-field", "full-word sodium repetition normalizes",
+           any(h["value"] == '660מ"ג' for h in sodium_hits), True, failures)
+
     print("cross_field_value_repetition — must stay silent")
     # "100%" is a composition claim, not a nutrition value. Counting it once
     # inflated this rule's site-wide reading from 34% to 57%.
     pct = {"insightLine": "100% קמח חיטה מלא.", "rowVerdict": "100% דגן מלא, בלי תוספות."}
     _check("100% composition", "not a nutrition value",
            bool(R.find_cross_field_value_repetition(pct)), False, failures)
+    # "ל-100 גרם" is the serving framing every row shares — a unit, not a value.
+    # Its repetition across fields is never the defect.
+    per100 = {"insightLine": "27 גרם שומן ל-100 גרם.", "rowVerdict": "והחלבון 25 גרם ל-100 גרם."}
+    _check("per-100g framing", "shared serving unit, not a repeated value",
+           bool(R.find_cross_field_value_repetition(per100)), False, failures)
     # Same figure twice inside ONE field is rule_number_density's job, not this one.
     one = {"rowVerdict": "12 גרם חלבון ועוד 12 גרם פחמימות."}
     _check("same value, one field", "within-field, not cross-field",

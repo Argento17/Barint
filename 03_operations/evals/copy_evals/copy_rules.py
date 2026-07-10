@@ -323,15 +323,31 @@ def stock_phrase_hard_fires(text: str) -> bool:
 # A nutrition figure = number + a mass/energy/percent unit. The unit is REQUIRED:
 # a bare "100%" in "100% קמח חיטה" is a composition claim, not a nutrition value,
 # and counting it inflated an early measurement of this rule from 34% to 57%.
+#
+# "מיליגרם" (sodium spelled in full) MUST precede "גרם" in the alternation, and
+# the whole-word variants must be listed, or the engine matches "גרם" inside
+# "מיליגרם" and captures the wrong token. This gap was live: the QA sign-off on
+# the TASK-576 data-state drafts (2026-07-10) found 4 products repeating the
+# sodium figure across insightLine+rowVerdict that this rule reported CLEAN,
+# because the drafts wrote "660 מיליגרם" and the old pattern missed it entirely
+# (and mis-captured the "ל-100 גרם" framing instead). Detector-blindness is the
+# same failure class the whole gate program exists to kill — fixed + tested here.
 NUTRITION_VALUE_RE = re.compile(
-    r"\d+(?:\.\d+)?\s*(?:גרם|גר['’]|מ\"ג|מ״ג|מג|קלוריות|קק\"ל|קק״ל)"
+    r"\d+(?:\.\d+)?\s*(?:מיליגרם|מיליגר['’]|גרם|גר['’]|מ\"ג|מ״ג|מג|קלוריות|קק\"ל|קק״ל)"
 )
+
+# Per-100g serving framing ("ל-100 גרם") is boilerplate every row shares — it is a
+# UNIT, not a product-specific value, so its repetition across fields is never the
+# H4-P3 defect. Strip it before scanning so it cannot false-positive.
+_PER_100G_RE = re.compile(r"ל-?\s*100\s*גרם")
 
 
 def _normalize_value(token: str) -> str:
-    """Collapse spacing and unit spelling so '5 גרם' and '5גרם' are one value."""
+    """Collapse spacing and unit spelling so '5 גרם' and '5גרם' are one value,
+    and '660 מיליגרם' / '660 מ"ג' land on the same normalized key."""
     t = re.sub(r"\s+", "", token)
-    t = t.replace("מ״ג", 'מ"ג').replace("קק״ל", 'קק"ל').replace("גר’", "גר'")
+    t = (t.replace("מ״ג", 'מ"ג').replace("קק״ל", 'קק"ל').replace("גר’", "גר'")
+          .replace("מיליגרם", 'מ"ג').replace("מיליגר'", 'מ"ג').replace("מיליגר’", 'מ"ג'))
     return t
 
 
@@ -346,6 +362,7 @@ def find_cross_field_value_repetition(fields: dict[str, str]) -> list[dict]:
     for fname, text in fields.items():
         if not isinstance(text, str) or not text.strip():
             continue
+        text = _PER_100G_RE.sub(" ", text)  # drop the shared serving framing first
         for tok in NUTRITION_VALUE_RE.findall(text):
             seen.setdefault(_normalize_value(tok), set()).add(fname)
     return [
