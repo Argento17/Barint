@@ -1,65 +1,95 @@
-"""
-dispatch.py — Bari C2 dispatch router
-======================================
-Routes P-numbered prompt files to the correct execution lane.
-C2 (DeepSeek via opencode) is dispatched programmatically.
-C1 (Claude) is dispatched natively via the orchestrator.
+r"""
+dispatch.py — Bari Capability Router v5 (TASK-583)
+====================================================
+Implements `01_framework/operations/capability_router_v5.md` LITERALLY.
 
-Implementation
---------------
-opencode is a TUI/console application; its `opencode run` command does not emit
-output through stdout/stderr when invoked non-interactively (no TTY available in
-subprocess).  The correct headless API is the HTTP server:
+**That document is law.** It supersedes Router v4.2 (BAND=FUNCTION) and every prior
+lane/model memory that conflicts with it. If this file and the doc ever disagree, the
+doc wins — fix the code, not the doc (the doc changes only on an explicit owner ruling).
+`--selftest-table` asserts the two stay byte-matched on the Layer 1 and Layer 2 tables
+(the doc's own operational-appendix law).
 
-  1. Spawn `opencode serve --port PORT` as a background process.
-  2. Subscribe to the SSE event stream at GET /api/event (persists for the session).
-  3. Create a new session via POST /api/session.
-  4. Send the prompt message via POST /session/{id}/message  (SSE stream; events
-     arrive on the /api/event channel).
-  5. Collect all SSE events until `session.idle` arrives, then tear down.
-  6. Poll GET /api/session/{id}/message for the final assistant message.
+What v5 is
+----------
+A capability-routing library + a selftest CLI:
+  - `route(TaskAttributes) -> Capability`   — Layer 1's ordered questions, first match wins.
+  - `MODEL_BINDING`                          — Layer 2's model table, runtime-usable.
+  - `resolve_challenge_model(vendor)`        — the cross-vendor CHALLENGE resolver.
+  - Lane functions that actually dispatch: `build_heavy`, `build_light`, `grunt_primary`,
+    `engineering_research` (all via `codex exec`), `vision_longread` (via `gemini -p`,
+    report-only), `challenge_gpt` / `evidence_research_fallback` / `grunt_text_fallback`
+    (all via the kept opencode HTTP pipe).
 
-Discovered model IDs (via `opencode models`):
-  opencode/deepseek-v4-flash-free   ← C2 target (authenticated via opencode proxy)
-  openai/gpt-5.4-mini               ← authenticated (OpenAI OAuth)
+What v5 is NOT
+---------------
+It is no longer the v4.2 P-number/route-tag dispatcher. `find_prompt_file`,
+`parse_route`, `strip_owner_meta`, `ROUTING_POLICY`/`recommend_route`, DISPATCH_BOARD
+ticking, and `write_return_file` are RETIRED along with the v4.2 lanes they fed —
+Layer 1 routes by structured task attributes ("checkable from the task spec, never a
+vibe call"), never by regex-sniffing free text or a `(route: ...)` tag in a prompt
+file. `tasks/prompts/*.md` and `tasks/DISPATCH_BOARD.md` are untouched by this script
+now; historic P-number prompts are archival. (Known fallout: `.claude/commands/
+orchestrate.md` and the `.claude/agents/*.md` files still document the old per-lane
+`python dispatch.py PNN (route: <tag>)` usage for the retired v4.2 lanes below — that is
+stale as of this rewrite and needs its own fast-follow pass; not done here because it
+was not in this task's scope and touches 9 governed docs.)
 
-Lanes
------
-  C2        → DeepSeek via opencode HTTP API (mechanical / zero-judgment)
-  C1-GROK   → xAI Grok Build CLI (C1-grade spec-complete work, repo access;
-              owner's SuperGrok subscription; route tag `(route: C1-GROK)`).
-  C1-CURSOR → Cursor headless agent CLI (cursor-agent), owner's Cursor Pro
-              subscription. C1-grade executor: repo access + file edits.
-              REACTIVATED 2026-06-18 (was retired 2026-06-14 → Grok; owner
-              renewed the subscription). Route tag `(route: C1-CURSOR)`.
-  C1-GEMINI → Google Gemini CLI (C1-grade judgment work, repo access;
-              owner route tag C1-GEMINI
-  C3        → OpenAI (gpt-5.5) via opencode HTTP API — the orchestrator's
-              independent outside-the-family ADVISOR (red-team 2nd opinion,
-              fresh-eyes Hebrew copy review, critique). Advice only: never edits
-              files, produces data, or closes work. Programmatic — NOT owner-paste.
-  C1        → native Claude subagent — the orchestrator dispatches, not this script
+Kill list (Layer 0 invariant 7 — retired forever, never re-add without an owner ruling)
+-----------------------------------------------------------------------------------------
+See `capability_router_v5.md` Layer 0 Invariant 7 for the exact, named kill list (three
+retired CLI lanes + all anonymous opencode free-proxy models). None of those tools,
+their CLIs, their config/auth helpers, or their model ids are referenced anywhere below
+by design — this file only names the two vendor-authenticated paths it actually
+dispatches through (`codex exec`, `gemini -p`) plus the kept opencode HTTP pipe.
+
+PIN-AT-AUTH convention
+-----------------------
+`MODEL_BINDING[...]["primary"]` is the literal string `"PIN-AT-AUTH"` for every
+Codex-backed capability (BUILD-HEAVY, BUILD-LIGHT, GRUNT, ENGINEERING-RESEARCH) and for
+VISION-LONGREAD (Gemini), because:
+  - Codex (`codex-cli` 0.144.1, verified 2026-07-10): authenticated via a pay-per-token
+    API key — the WRONG billing path. The owner must complete ChatGPT-subscription OAuth
+    (`codex login`) before real spend is safe. `resolve_primary_model()` raises
+    `ModelNotPinnedError` rather than silently dispatching against the wrong plan.
+  - Gemini (`gemini-cli` 0.46.0, verified 2026-07-10): `gemini -p` fails with
+    `IneligibleTierError` / `UNSUPPORTED_CLIENT` ("migrate to the Antigravity suite") —
+    NOT a simple stale-session issue. A plain re-login on this account's free tier will
+    NOT clear it (this is the same wall that caused the 2026-06-18 migration to the
+    Antigravity CLI in the v4.2 file this one replaces). Flagging precisely so nobody
+    re-tries a plain re-login expecting it to work — see `resolve_primary_model()` and
+    `cmd_selftest_gemini()`.
+Once the owner completes the real step, replace the placeholder with the exact tier ID
+in `MODEL_BINDING` AND in `capability_router_v5.md` footnote 1/2 (doc and code must stay
+byte-matched — rerun `--selftest-table`).
+
+Exit code convention (all `--selftest*` flags)
+------------------------------------------------
+  0  = PASS
+  1  = FAIL (a real problem)
+  3  = DispatchBusy — another dispatch.py holds the single-instance opencode lock
+  75 = EX_TEMPFAIL — external dependency not ready (PIN-AT-AUTH skip, or a clean
+       pending-auth failure); not a router bug, nothing to fix in this file
 
 Usage
 -----
-  python dispatch.py P35                  # dispatch P35 (C2 / C1-CURSOR / C1-GEMINI by route tag)
-  python dispatch.py P35 --dry-run        # show the command without running
-  python dispatch.py --selftest           # send a PONG round-trip through opencode
-  python dispatch.py --selftest-gemini    # send a PONG through the Gemini CLI
-  python dispatch.py --selftest-grok      # send a PONG through the Grok CLI
-  python dispatch.py P35 --timeout 3600   # custom timeout in seconds (default: 1800)
+  python dispatch.py --selftest            # PONG through opencode (openai/gpt-5.4-mini-fast)
+  python dispatch.py --selftest-codex       # PONG through `codex exec`; skipped while PIN-AT-AUTH
+  python dispatch.py --selftest-gemini      # sentinel-file PONG through `gemini -p`
+  python dispatch.py --selftest-table       # doc<->code byte-match assertion
+  python dispatch.py --selftest-route       # route() fixture battery
+  python dispatch.py --selftest --timeout 300   # override the shared timeout
 
-Rules
------
-- Only touches: 03_operations/router/, tasks/returns/, tasks/DISPATCH_BOARD.md
-- Never dispatches a prompt during --dry-run
-- Never touches any other repo file
-- No network beyond what opencode itself does
-- No OFF (Open Food Facts) anything, ever
+Rules (unchanged from v4.2)
+-----------------------------
+- Only touches: 03_operations/router/, its own telemetry directory.
+- No network beyond what opencode/codex/gemini themselves do.
+- No OFF (Open Food Facts) anything, ever.
+- Never `danger-full-access` for any Codex sandbox, ever (Layer 0 law).
 """
 
+from __future__ import annotations
+
 import argparse
-import hashlib
 import json
 import os
 import re
@@ -70,120 +100,54 @@ import threading
 import time
 import urllib.error
 import urllib.request
+from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Force UTF-8 output on Windows so Unicode characters in prompt files
-# (arrows, Hebrew, etc.) don't crash the console encoder.
+# Force UTF-8 output on Windows so Unicode characters (arrows, Hebrew, footnote
+# superscripts) don't crash the console encoder.
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-# ── Constants ────────────────────────────────────────────────────────────────
+# ── Paths ────────────────────────────────────────────────────────────────────
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent  # C:\Bari
-PROMPTS_DIR = REPO_ROOT / "tasks" / "prompts"
-RETURNS_DIR = REPO_ROOT / "tasks" / "returns"
-DISPATCH_BOARD = REPO_ROOT / "tasks" / "DISPATCH_BOARD.md"
-
-# Discovered via `opencode models` — the DeepSeek model available through
-# opencode's own proxy (no separate API key required).
-C2_MODEL_ID = "deepseek-v4-flash-free"
-C2_PROVIDER_ID = "opencode"
-
-# ── C3 lane (independent strong reviewer) ────────────────────────────────────
-# C3 = the orchestrator's outside-the-family advisor (red-team 2nd opinions,
-# fresh-eyes Hebrew copy review, Deep-Research-style critique). Reachable
-# PROGRAMMATICALLY through the same opencode HTTP path as C2, but against a
-# strong OpenAI model authenticated via OpenAI OAuth — NOT owner-paste.
-# Advice-only: never edits files, never produces product/nutrition data,
-# never closes work. The orchestrator dispatches it itself.
-C3_MODEL_ID = "gpt-5.5"
-C3_PROVIDER_ID = "openai"
-
-# ── Cursor lane (C1-CURSOR) — REACTIVATED 2026-06-18 ─────────────────────────
-# Retired 2026-06-14 (→ Grok) then brought back 2026-06-18 when the owner renewed
-# the Cursor Pro subscription. The C1-CURSOR route tag dispatches here again, a
-# co-equal C1 builder alongside Sonnet / Gemini / Grok.
-# Cursor's headless agent CLI ("cursor-agent"), authenticated via the owner's
-# Cursor subscription.  C1-grade executor: real repo access + file edits.
-# The top-level wrapper (%LOCALAPPDATA%\cursor-agent\agent.cmd) has a
-# version-dir regex bug (rejects the YYYY.MM.DD-HH-MM-SS-hash naming), so we
-# resolve the newest version directory ourselves and invoke its cmd directly.
-_CURSOR_VERSIONS_DIR = (
-    Path(os.environ.get("LOCALAPPDATA", "")) / "cursor-agent" / "versions"
-)
-# Dated builds only (e.g. 2026.06.29-2ad2186). The versions dir also collects
-# stray entries (dist-package, *.zip) whose node.exe is a wrong-platform binary
-# ("Exec format error") — never candidates.
-_CURSOR_VERSION_DIR_RE = re.compile(r"^\d{4}\.\d{2}\.\d{2}-")
-
-
-def find_cursor_agent_cmd() -> Path:
-    """Resolve the newest installed cursor-agent.cmd. Raises if not found."""
-    if not _CURSOR_VERSIONS_DIR.exists():
-        raise FileNotFoundError(
-            f"cursor-agent not installed (no {_CURSOR_VERSIONS_DIR}). "
-            "Install: irm 'https://cursor.com/install?win32=true' | iex"
-        )
-    candidates = sorted(
-        (d for d in _CURSOR_VERSIONS_DIR.iterdir()
-         if d.is_dir()
-         and _CURSOR_VERSION_DIR_RE.match(d.name)
-         and (d / "cursor-agent.cmd").exists()
-         and (d / "node.exe").exists()),
-        key=lambda d: d.name,
-        reverse=True,
-    )
-    if not candidates:
-        raise FileNotFoundError(
-            f"No cursor-agent version directories under {_CURSOR_VERSIONS_DIR}"
-        )
-    return candidates[0] / "cursor-agent.cmd"
-# Gemini lane — migrated 2026-06-19 to the Antigravity CLI (agy).
-# Google retired the old `gemini` CLI for Pro/Ultra/free tiers on 2026-06-18
-# (IneligibleTier / UNSUPPORTED_CLIENT — "migrate to Antigravity"). `agy` is the
-# Go-based successor and honours the owner's Google AI Pro plan via OAuth (token
-# lives in the Windows Credential Manager, Target=gemini:antigravity — there is
-# no credential FILE to point at). Critically, agy is an *agentic* coder
-# (plan + edit files), NOT a text-in/text-out model: in headless `-p` mode it
-# returns its work as FILE CHANGES, not stdout (a trivial "say PONG" prompt yields
-# empty stdout). So this lane is Build-only; _dispatch_gemini reads git_before/after
-# as the real signal, and --selftest-gemini verifies via a sentinel file.
-# Pro quota is ~200 requests / 24h rolling (throttles, never bills overage).
-_GEMINI_CMD_DEFAULT = Path(os.path.expandvars(r"%LOCALAPPDATA%\agy\bin\agy.exe"))
-
-def find_gemini_cmd() -> Path:
-    if _GEMINI_CMD_DEFAULT.exists(): return _GEMINI_CMD_DEFAULT
-    import shutil as _shutil
-    alt=_shutil.which("agy")
-    if alt: return Path(alt)
-    raise FileNotFoundError(
-        f"Antigravity CLI (agy) not found at {_GEMINI_CMD_DEFAULT}. "
-        f"Install: irm https://antigravity.google/cli/install.ps1 | iex, "
-        f"then run `agy` once to log in with the Google AI Pro account."
-    )
-# opencode on Windows is installed as a .ps1 wrapper around the actual exe.
-# Python subprocess cannot invoke .ps1 files directly; we use the underlying
-# exe.  Resolved once at import time so the script fails fast if not found.
-_OPENCODE_EXE = Path(
-    r"C:\Users\HP\AppData\Roaming\npm\node_modules\opencode-ai\bin\opencode.exe"
-)
-if not _OPENCODE_EXE.exists():
-    import shutil as _shutil
-    _alt = _shutil.which("opencode")
-    if _alt and Path(_alt).suffix.lower() == ".exe":
-        _OPENCODE_EXE = Path(_alt)
+CAPABILITY_ROUTER_DOC = REPO_ROOT / "01_framework" / "operations" / "capability_router_v5.md"
+TELEMETRY_V5_LOG = REPO_ROOT / "03_operations" / "router" / "telemetry" / "router_v5_log.jsonl"
 
 DEFAULT_TIMEOUT = 1800  # seconds
-SERVER_PORT_RANGE = (19000, 19999)  # range to search for a free port
+GEMINI_HARD_TIMEOUT_SECONDS = 600  # 10-minute hard cap (Layer 2 VISION-LONGREAD fallback trigger)
+SERVER_PORT_RANGE = (19000, 19999)
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Single-instance guard (Layer 0 hazard: never two dispatch.py in parallel) ────────────────
+# The concrete, documented hazard is opencode-specific: every opencode-HTTP call spawns its own
+# local `opencode serve`; two concurrent dispatch.py processes racing their own `serve`
+# instances cross-contaminate sessions/returns (dispatch_journal.py's own docstring). `codex
+# exec` and `gemini -p` are one-shot subprocesses with no shared local server, so they are not
+# in scope for this lock — locking them would add friction with no matching hazard. If the
+# durability module is unavailable for any reason, fall back to a no-op context manager so the
+# router never depends on it to function; the guard is defense in depth, not a hard dependency.
+try:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agentos"))
+    from dispatch_journal import dispatch_lock, DispatchBusy  # type: ignore
+except Exception:  # noqa: BLE001 — the guard must never be why the router fails to import
+    class DispatchBusy(RuntimeError):
+        """Fallback stand-in when dispatch_journal is unavailable — never actually raised."""
+
+    from contextlib import contextmanager
+
+    @contextmanager
+    def dispatch_lock(*_a, **_kw):
+        yield
+
+
+# ── Generic helpers ──────────────────────────────────────────────────────────
 
 def git_status_porcelain(repo: Path) -> str:
-    """Return the output of `git status --porcelain` in the repo."""
+    """Return the output of `git status --porcelain` in `repo`."""
     result = subprocess.run(
         ["git", "status", "--porcelain"],
         cwd=str(repo),
@@ -195,16 +159,7 @@ def git_status_porcelain(repo: Path) -> str:
     return result.stdout.strip()
 
 
-def sha256_file(path: Path) -> str:
-    """Return hex SHA-256 of a file."""
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(65536), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def find_free_port(start: int = 19000, end: int = 19999) -> int:
+def find_free_port(start: int = SERVER_PORT_RANGE[0], end: int = SERVER_PORT_RANGE[1]) -> int:
     """Find an available TCP port in the given range."""
     for port in range(start, end):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -213,218 +168,345 @@ def find_free_port(start: int = 19000, end: int = 19999) -> int:
                 return port
             except OSError:
                 continue
-    raise RuntimeError(f"No free port found in {start}–{end}")
+    raise RuntimeError(f"No free port found in {start}-{end}")
 
 
-# ── Telemetry (owner 2026-06-19: instrument the router) ──────────────────────
-# Every real dispatch appends ONE JSON line here. This turns the orchestrator
-# audit standard (lane ledger: lane · wall · outcome) from aspiration into data,
-# and makes router rule 8 ("~100% one lane = routing failure") measurable instead
-# of asserted. Token usage is NOT captured — the CLI lanes (cursor/agy/grok) do
-# not emit usage, so `tokens` is null (honest UNTRACKED), a future enhancement
-# where the opencode SSE `usage` event is available. Telemetry is wrapped so it
-# can NEVER break a live dispatch.
-TELEMETRY_LOG = REPO_ROOT / "03_operations" / "router" / "telemetry" / "dispatch_log.jsonl"
+# ============================================================================
+# LAW TRANSCRIPTION — capability_router_v5.md Layer 1 + Layer 2, verbatim.
+# `--selftest-table` parses the .md file itself and asserts these two constants
+# byte-match its Layer 1 / Layer 2 markdown tables. Edit the .md first (owner
+# ruling required), then mirror the edit here — never the other way around.
+# ============================================================================
+
+# (n, question, capability, exit_criterion) — order IS the FIRST-MATCH-WINS order.
+LAYER1_TABLE: list[tuple[int, str, str, str]] = [
+    (1, "Output fully determined by written rules, validator exists?", "DETERMINISTIC",
+     "Validator exit 0"),
+    (2, "Needs decomposition, architecture, or ambiguous scope?", "PLANNING",
+     "Written spec with acceptance criteria + the re-routing decision for the implementation"),
+    (3, "Produces consumer-facing Hebrew copy?", "CONTENT",
+     "Copy validators pass AND both gates signed, sha256-pinned"),
+    (4, "Coding with ANY complexity signal (checklist below)?", "BUILD-HEAVY",
+     "Builds clean, tests pass, reviewed diff, return contract validates"),
+    (5, "Coding with NO complexity signal?", "BUILD-LIGHT", "Same as BUILD-HEAVY"),
+    (6, "Mechanical non-code work (renames, fills, conversions)?", "GRUNT",
+     "Re-verified by validator/orchestrator; zero unexplained diffs"),
+    (7, "Evidence research (papers, regulation, government sources, nutrition science, "
+        "competitors)?", "EVIDENCE-RESEARCH",
+     "Every claim carries a source; citations pass verify_citations.py"),
+    (8, "Engineering research (GitHub, libraries, frameworks, APIs, implementation patterns)?",
+     "ENGINEERING-RESEARCH",
+     "Recommendation names exact versions + licenses + a working proof snippet"),
+    (9, "Bulk one-pass reading, or judging images / rendered pages?", "VISION-LONGREAD",
+     "Structured report produced (only artifact type accepted)"),
+    (10, "Scoring or nutrition philosophy?", "DOMAIN-JUDGMENT",
+     "Reasoned recommendation citing the governing framework docs"),
+    (11, "Needs an independent second opinion (or follows any delivery above)?", "CHALLENGE",
+     "Verdict with evidence, produced cross-vendor per Invariant 3"),
+    (12, "Anything else", "GENERAL", "Return contract validates"),
+]
+
+# (capability, primary_exact, fallback_exact, pipe, fallback_trigger) — raw doc prose,
+# byte-for-byte, INCLUDING markdown (backticks, bold, footnote superscripts). This is the
+# doc-sync copy; MODEL_BINDING (below) holds the clean, runtime-usable derivative.
+LAYER2_TABLE: list[tuple[str, str, str, str, str]] = [
+    ("PLANNING", "claude-fable-5", "claude-opus-4-8", "Main chat / Plan agent",
+     "Model unavailable"),
+    ("CONTENT", "claude-fable-5", "claude-sonnet-5", "Content Agent, pinned",
+     "Spawn failure or 2 consecutive rejected drafts"),
+    ("BUILD-HEAVY", "Codex — top coding tier (PIN-AT-AUTH¹)",
+     "claude-sonnet-5 (Frontend/Data agent)",
+     "`codex exec` in a worktree, sandbox `workspace-write`",
+     "Nonzero exit, empty diff, sandbox refusal, or auth pending"),
+    ("BUILD-LIGHT", "Codex — cheap/fast tier (PIN-AT-AUTH¹)", "claude-sonnet-5 agent", "same",
+     "same"),
+    ("GRUNT", "Codex — cheapest tier (PIN-AT-AUTH¹)", "claude-haiku-4-5 (Agent tool)",
+     "`codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback",
+     "API/CLI error, or any output failing its validator once"),
+    ("EVIDENCE-RESEARCH", "gpt-5.5 + web search", "Claude Research Agent (sonnet pin)",
+     "Codex CLI `--search` / opencode API", "API error or timeout 120s"),
+    ("ENGINEERING-RESEARCH", "Codex + web search (PIN-AT-AUTH¹)",
+     "Claude Research Agent (sonnet pin)", "`codex exec --search`, read-only sandbox", "same"),
+    ("VISION-LONGREAD", "Gemini subscription model (PIN-AT-AUTH²)",
+     "claude-sonnet-5 subagent reading screenshots",
+     "`gemini -p` headless, `GEMINI_CLI_TRUST_WORKSPACE=true`, report-only",
+     "CLI hang > 10 min, crash, or empty output"),
+    ("DOMAIN-JUDGMENT", "claude-fable-5", "claude-opus-4-8", "Nutrition/Product agents, pinned",
+     "Spawn failure"),
+    ("CHALLENGE",
+     "claude-opus-4-8 **when producer was Codex/GPT** · gpt-5.5-pro **when producer was "
+     "Claude or Gemini**",
+     "the other one", "Agent tool (opus pin) / opencode API", "Producer-vendor outage"),
+    ("GENERAL", "claude-sonnet-5 (explicit pin)", "claude-haiku-4-5 for trivial", "Agent tool",
+     "Spawn failure"),
+]
 
 
-def log_telemetry(*, p_number: str, route: str, engine: str,
-                  started=None, finished=None, exit_code: int = 0,
-                  git_before: str = "", git_after: str = "",
-                  tokens=None, note: str = "") -> None:
-    """Append one telemetry record. Never raises — telemetry must not break dispatch."""
+# ============================================================================
+# ROUTER CORE — route(TaskAttributes) -> Capability
+# ============================================================================
+
+@dataclass
+class TaskAttributes:
+    """Structured answers to the Layer 1 ordered questions. Every field is a named
+    boolean/str the CALLER sets from the task spec — "checkable from the task spec,
+    never a vibe call" (capability_router_v5.md, complexity checklist). `route()` asks
+    them in doc order and returns on the first True: Layer 1's "FIRST MATCH WINS".
+    """
+    # Q1 — DETERMINISTIC
+    deterministic_validator_exists: bool = False
+    # Q2 — PLANNING (sits above ALL implementation; an ambiguous build never reaches a
+    # builder directly)
+    needs_planning: bool = False
+    # Q3 — CONTENT
+    consumer_hebrew_copy: bool = False
+    # Q4/Q5 — BUILD-HEAVY / BUILD-LIGHT. One gate (is this coding at all?), then the
+    # complexity checklist below splits it. Named booleans per the task spec — never a
+    # vibe call:
+    is_coding: bool = False
+    cross_module: bool = False   # Touches >= 2 modules/packages
+    migration: bool = False      # Any migration (schema, data, framework)
+    refactor: bool = False       # A refactor intended to preserve behavior
+    ui_plus_data: bool = False   # A feature spanning UI + data layers
+    over_one_day: bool = False   # PLANNING estimated it above ~1 day
+    # Q6 — GRUNT
+    mechanical: bool = False
+    # Q7 — EVIDENCE-RESEARCH
+    evidence_research: bool = False
+    # Q8 — ENGINEERING-RESEARCH
+    engineering_research: bool = False
+    # Q9 — VISION-LONGREAD
+    vision_longread: bool = False
+    # Q10 — DOMAIN-JUDGMENT
+    domain_judgment: bool = False
+    # Q11 — CHALLENGE
+    needs_challenge: bool = False
+    producer_vendor: str | None = None  # feeds resolve_challenge_model() when needs_challenge
+
+
+def has_complexity_signal(attrs: TaskAttributes) -> bool:
+    """Complexity checklist (Layer 1 Q4 note): ANY single signal routes BUILD-HEAVY."""
+    return any((attrs.cross_module, attrs.migration, attrs.refactor,
+                attrs.ui_plus_data, attrs.over_one_day))
+
+
+def route(attrs: TaskAttributes) -> str:
+    """THE router. Implements Layer 1's ordered questions literally — first match wins.
+    Returns a Capability name (a LAYER1_TABLE capability / a MODEL_BINDING key)."""
+    if attrs.deterministic_validator_exists:       # Q1
+        return "DETERMINISTIC"
+    if attrs.needs_planning:                       # Q2
+        return "PLANNING"
+    if attrs.consumer_hebrew_copy:                 # Q3
+        return "CONTENT"
+    if attrs.is_coding:                             # Q4 / Q5
+        return "BUILD-HEAVY" if has_complexity_signal(attrs) else "BUILD-LIGHT"
+    if attrs.mechanical:                            # Q6
+        return "GRUNT"
+    if attrs.evidence_research:                     # Q7
+        return "EVIDENCE-RESEARCH"
+    if attrs.engineering_research:                  # Q8
+        return "ENGINEERING-RESEARCH"
+    if attrs.vision_longread:                       # Q9
+        return "VISION-LONGREAD"
+    if attrs.domain_judgment:                       # Q10
+        return "DOMAIN-JUDGMENT"
+    if attrs.needs_challenge:                       # Q11
+        return "CHALLENGE"
+    return "GENERAL"                                 # Q12
+
+
+def resolve_challenge_model(producer_vendor: str | None) -> tuple[str, str]:
+    """Cross-vendor CHALLENGE resolver (Layer 2 CHALLENGE row + Layer 0 Invariant 3:
+    whoever challenges is from a different company than whoever produced). Returns
+    (primary_challenger, fallback_challenger).
+
+    claude-opus-4-8 challenges when the producer was Codex/GPT (OpenAI family);
+    gpt-5.5-pro challenges when the producer was Claude or Gemini. The doc's fallback is
+    "the other one" — note that for an OpenAI-family producer, the fallback
+    (gpt-5.5-pro) is SAME-VENDOR as the producer; that degradation is only acceptable on
+    the documented trigger ("Producer-vendor outage", i.e. the cross-vendor challenger
+    itself is unreachable) and MUST be logged (was_fallback=True) so it is auditable,
+    never silent — see `challenge_gpt(..., was_fallback=...)`.
+    """
+    openai_family = {"codex", "gpt", "openai", "gpt-5.5", "gpt-5.5-pro"}
+    v = (producer_vendor or "").strip().lower()
+    if v in openai_family:
+        return "claude-opus-4-8", "gpt-5.5-pro"
+    return "gpt-5.5-pro", "claude-opus-4-8"  # claude / gemini / unknown producer
+
+
+# ============================================================================
+# MODEL_BINDING — Layer 2, runtime-usable derivative of LAYER2_TABLE.
+# ============================================================================
+
+class ModelNotPinnedError(RuntimeError):
+    """Raised when a MODEL_BINDING primary is still the PIN-AT-AUTH placeholder — the
+    caller tried to dispatch real work through an unpinned lane. Layer 2 footnotes 1/2
+    name the exact owner step; resolve_primary_model() repeats it so it is actionable
+    from a stack trace alone (Layer 0 Invariant 5: fail loudly, never silently
+    downgrade)."""
+
+
+MODEL_BINDING: dict[str, dict[str, str]] = {
+    "PLANNING": {
+        "primary": "claude-fable-5", "fallback": "claude-opus-4-8",
+        "pipe": "Main chat / Plan agent", "fallback_trigger": "Model unavailable",
+    },
+    "CONTENT": {
+        "primary": "claude-fable-5", "fallback": "claude-sonnet-5",
+        "pipe": "Content Agent, pinned",
+        "fallback_trigger": "Spawn failure or 2 consecutive rejected drafts",
+    },
+    "BUILD-HEAVY": {
+        "primary": "PIN-AT-AUTH", "fallback": "claude-sonnet-5",
+        "pipe": "codex exec in a worktree, sandbox workspace-write",
+        "fallback_trigger": "Nonzero exit, empty diff, sandbox refusal, or auth pending",
+    },
+    "BUILD-LIGHT": {
+        "primary": "PIN-AT-AUTH", "fallback": "claude-sonnet-5",
+        "pipe": "codex exec in a worktree, sandbox workspace-write",
+        "fallback_trigger": "Nonzero exit, empty diff, sandbox refusal, or auth pending",
+    },
+    "GRUNT": {
+        "primary": "PIN-AT-AUTH", "fallback": "claude-haiku-4-5",
+        "pipe": "codex exec, sandbox workspace-write; deliberately cross-vendor fallback",
+        "fallback_trigger": "API/CLI error, or any output failing its validator once",
+    },
+    "EVIDENCE-RESEARCH": {
+        "primary": "gpt-5.5", "fallback": "claude-sonnet-5 (Research Agent)",
+        "pipe": "Codex CLI --search / opencode API",
+        "fallback_trigger": "API error or timeout 120s",
+    },
+    "ENGINEERING-RESEARCH": {
+        "primary": "PIN-AT-AUTH", "fallback": "claude-sonnet-5 (Research Agent)",
+        "pipe": "codex exec --search, read-only sandbox",
+        "fallback_trigger": "API error or timeout 120s",
+    },
+    "VISION-LONGREAD": {
+        "primary": "PIN-AT-AUTH", "fallback": "claude-sonnet-5 (subagent reading screenshots)",
+        "pipe": "gemini -p headless, GEMINI_CLI_TRUST_WORKSPACE=true, report-only",
+        "fallback_trigger": "CLI hang > 10 min, crash, or empty output",
+    },
+    "DOMAIN-JUDGMENT": {
+        "primary": "claude-fable-5", "fallback": "claude-opus-4-8",
+        "pipe": "Nutrition/Product agents, pinned", "fallback_trigger": "Spawn failure",
+    },
+    "CHALLENGE": {
+        "primary": "claude-opus-4-8 or gpt-5.5-pro (see resolve_challenge_model)",
+        "fallback": "the other one",
+        "pipe": "Agent tool (opus pin) / opencode API",
+        "fallback_trigger": "Producer-vendor outage",
+    },
+    "GENERAL": {
+        "primary": "claude-sonnet-5", "fallback": "claude-haiku-4-5",
+        "pipe": "Agent tool", "fallback_trigger": "Spawn failure",
+    },
+}
+
+
+def resolve_primary_model(capability: str) -> str:
+    """Layer 2 lookup: the primary model id bound to `capability`. Raises
+    ModelNotPinnedError (never silently substitutes the fallback) if the primary is
+    still a PIN-AT-AUTH placeholder."""
+    if capability not in MODEL_BINDING:
+        raise KeyError(f"{capability!r} is not a known Capability (see LAYER1_TABLE).")
+    primary = MODEL_BINDING[capability]["primary"]
+    if primary == "PIN-AT-AUTH":
+        if capability == "VISION-LONGREAD":
+            owner_step = (
+                "`gemini` interactive login (Google OAuth) against an ELIGIBLE Gemini plan. "
+                "NOTE (verified 2026-07-10): the currently-configured Google account hits "
+                "IneligibleTierError/UNSUPPORTED_CLIENT ('migrate to the Antigravity suite'), "
+                "so a plain re-login on the free tier will NOT clear this — the owner must "
+                "either put this account on an eligible paid Gemini plan or confirm the router "
+                "should target Antigravity instead. See capability_router_v5.md footnote 2, "
+                "then `python dispatch.py --selftest-gemini`."
+            )
+        else:
+            owner_step = (
+                "ChatGPT-subscription OAuth via `codex login` — confirm with "
+                "`codex login status` that it shows a subscription, not an API key "
+                "(verified 2026-07-10: authenticated via a pay-per-token API key, the WRONG "
+                "billing path). Then read the exact tier id and replace "
+                f"MODEL_BINDING[{capability!r}]['primary'] here, and update "
+                "capability_router_v5.md footnote 1 to match (doc and code must stay "
+                "byte-matched — rerun --selftest-table)."
+            )
+        raise ModelNotPinnedError(
+            f"{capability}: primary model is still the PIN-AT-AUTH placeholder — refusing to "
+            f"dispatch. Owner step: {owner_step}"
+        )
+    return primary
+
+
+@dataclass
+class LaneResult:
+    """Structured result from a capability dispatch. Every lane function returns this
+    except `vision_longread()`, which returns bare report text per its literal
+    report-only contract."""
+    exit_code: int
+    output: str
+    model_used: str
+    was_fallback: bool
+    trigger: str
+    exit_criterion_met: bool
+
+
+# ============================================================================
+# TELEMETRY v5 — one JSON line per dispatch.
+# ============================================================================
+
+def log_telemetry_v5(*, task: str, capability: str, model_used: str, was_fallback: bool,
+                      trigger: str, exit_criterion_met: bool) -> None:
+    """Append one JSON line: {ts, task, capability, model_used, was_fallback, trigger,
+    exit_criterion_met}. Never raises — telemetry is best-effort by design and must
+    never be why a real dispatch fails."""
     try:
-        TELEMETRY_LOG.parent.mkdir(parents=True, exist_ok=True)
-        gi = TELEMETRY_LOG.parent / ".gitignore"
+        TELEMETRY_V5_LOG.parent.mkdir(parents=True, exist_ok=True)
+        gi = TELEMETRY_V5_LOG.parent / ".gitignore"
         if not gi.exists():
             gi.write_text("# router telemetry — runtime data, not committed\n*\n!.gitignore\n",
-                          encoding="utf-8")
-        wall_ms = (int((finished - started).total_seconds() * 1000)
-                   if (started and finished) else None)
-        outcome = "ok" if exit_code == 0 else ("lane_outage" if exit_code == 75 else "fail")
+                           encoding="utf-8")
         rec = {
-            "ts": (finished or datetime.now(timezone.utc)).isoformat(),
-            "p": p_number, "route": route, "engine": engine,
-            "wall_ms": wall_ms, "exit": exit_code, "outcome": outcome,
-            "tree_changed": (git_before != git_after) if (git_before or git_after) else None,
-            "tokens": tokens,
+            "ts": datetime.now(timezone.utc).isoformat(),
+            "task": task,
+            "capability": capability,
+            "model_used": model_used,
+            "was_fallback": bool(was_fallback),
+            "trigger": trigger or "",
+            "exit_criterion_met": bool(exit_criterion_met),
         }
-        if note:
-            rec["note"] = note
-        with open(TELEMETRY_LOG, "a", encoding="utf-8") as f:
+        with open(TELEMETRY_V5_LOG, "a", encoding="utf-8") as f:
             f.write(json.dumps(rec, ensure_ascii=False) + "\n")
     except Exception as e:  # noqa: BLE001 — telemetry is best-effort by design
         print(f"[dispatch] telemetry write failed (non-fatal): {e}", file=sys.stderr)
 
 
-# ── Deterministic routing policy (owner 2026-06-19) ──────────────────────────
-# "Routing deterministic by default" + "agents default to the C1 cloud lane, not
-# Sonnet." The DEFAULT is a cloud C1 builder (Cursor); native Sonnet (route "C1")
-# is RESERVED for the documented carve-outs — Hebrew editorial copy, the
-# nutrition/regulatory firewall, and adversarial reasoning — so reaching for
-# native Sonnet is an explicit, logged opt-out, not the silent default (the
-# native-subagent trap). First pattern that matches wins; order matters.
-ROUTING_POLICY = [
-    ("C1", "Hebrew editorial / voice copy → Content lane = native Sonnet (content_lane_sonnet_not_gemini)",
-     r"voice|tone|editorial|\bcopy\b|insightline|rowverdict|hebrew|ניסוח|קופי|כותרת|נוסח"),
-    ("C1", "regulatory / health / nutrition claim → Nutrition firewall = native Sonnet",
-     r"regulat|nutrition|health claim|additive warning|southampton|efsa|allergen|רגולצ|בריאות|תזונ"),
-    ("C1", "adversarial reasoning / red-team / methodology challenge → native Sonnet",
-     r"red.?team|adversar|challenge the|methodolog|defensib|stress.?test"),
-    ("C2", "zero-judgment bulk / mechanical audit → DeepSeek (cheap)",
-     r"\bbulk\b|stale.?string|\brename\b|find.?and.?replace|json field|\bcount\b|\btally\b|\bgrep\b|\bsweep\b|dedup"),
-    ("C1-GEMINI", "long-context / repo-wide / tests → Gemini",
-     r"repo.?wide|across all|every (page|file|category)|\btest(s|ing)?\b|coverage|migrat"),
-    ("C1-GROK", "design / image / UI spike → Grok",
-     r"\bdesign\b|\bimage\b|illustration|mockup|visual concept|\bmood\b"),
-    ("C3", "independent review / research / 2nd opinion → ChatGPT (advice only, never closes)",
-     r"second opinion|fresh eyes|\bcritique\b|sanity check|\bresearch\b|outside opinion"),
-    ("C1-CURSOR", "spec-complete code with repo access → Cursor",
-     r"implement|component|\.tsx|\.ts\b|\broute\b|\bbuild\b|refactor|\bwire\b|adapter|\bfix\b|frontend"),
-]
-DEFAULT_LANE = ("C1-CURSOR",
-                "default builder = cloud C1 (Cursor); native Sonnet requires an explicit opt-out "
-                "reason (agent_os_redesign_direction)")
+# ============================================================================
+# opencode HTTP plumbing — KEPT from v4.2, repointed. opencode is a TUI app; its
+# `opencode run` emits nothing over stdout/stderr non-interactively (no TTY in a
+# subprocess), so the headless path is the HTTP server:
+#   1. Spawn `opencode serve --port PORT`.
+#   2. Subscribe to the SSE stream at GET /api/event.
+#   3. Create a session via POST /api/session.
+#   4. Send the message via POST /session/{id}/message (SSE).
+#   5. Collect events until `session.idle`, then tear down.
+#   6. Poll GET /api/session/{id}/message for the final assistant message.
+# Authenticated models used by this file (via `opencode models`): openai/gpt-5.5-pro
+# (CHALLENGE-GPT), openai/gpt-5.5 (EVIDENCE-RESEARCH fallback), openai/gpt-5.4-mini-fast
+# falling back to openai/gpt-5.4-mini (GRUNT text-fallback / --selftest).
+# ============================================================================
 
+_OPENCODE_EXE = Path(
+    r"C:\Users\HP\AppData\Roaming\npm\node_modules\opencode-ai\bin\opencode.exe"
+)
+if not _OPENCODE_EXE.exists():
+    import shutil as _shutil
+    _alt = _shutil.which("opencode")
+    if _alt and Path(_alt).suffix.lower() == ".exe":
+        _OPENCODE_EXE = Path(_alt)
 
-def recommend_route(task_text: str) -> tuple[str, str]:
-    """Deterministic lane recommendation. Returns (lane, reason). Pure function."""
-    t = (task_text or "").lower()
-    for lane, reason, pat in ROUTING_POLICY:
-        if re.search(pat, t, re.IGNORECASE):
-            return lane, reason
-    return DEFAULT_LANE
-
-
-def cmd_route(target: str) -> int:
-    """Print the deterministic lane recommendation for a P-number or free text."""
-    text = target
-    if re.fullmatch(r"[Pp]\d+", target.strip()):
-        try:
-            text = strip_owner_meta(find_prompt_file(target.upper()))
-        except (FileNotFoundError, ValueError) as e:
-            print(f"[route] ERROR: {e}", file=sys.stderr)
-            return 1
-    lane, reason = recommend_route(text)
-    print(f"[route] recommended lane: {lane}")
-    print(f"[route] reason: {reason}")
-    if lane == "C1":
-        print("[route] dispatch: native Sonnet via the orchestrator (Agent tool) — a reserved opt-out")
-    else:
-        print(f"[route] dispatch: tag the prompt '(route: {lane})' then `python dispatch.py <Pnum>`")
-    return 0
-
-
-def cmd_ledger(limit: int = 0) -> int:
-    """Print the lane-split ledger from telemetry (audit rule 8)."""
-    if not TELEMETRY_LOG.exists():
-        print(f"[ledger] no telemetry yet at {TELEMETRY_LOG}")
-        return 0
-    rows = []
-    with open(TELEMETRY_LOG, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                rows.append(json.loads(line))
-            except Exception:
-                pass
-    if limit:
-        rows = rows[-limit:]
-    from collections import defaultdict
-    agg = defaultdict(lambda: {"n": 0, "ok": 0, "fail": 0, "outage": 0, "wall_ms": 0})
-    for r in rows:
-        a = agg[r.get("route", "?")]
-        a["n"] += 1
-        oc = r.get("outcome")
-        a["ok" if oc == "ok" else ("outage" if oc == "lane_outage" else "fail")] += 1
-        if isinstance(r.get("wall_ms"), int):
-            a["wall_ms"] += r["wall_ms"]
-    total = sum(a["n"] for a in agg.values())
-    print(f"[ledger] {total} dispatches across {len(agg)} lanes  ({TELEMETRY_LOG})")
-    print(f"{'lane':<12}{'n':>5}{'pct':>6}{'ok':>5}{'fail':>5}{'outage':>7}{'wall_s':>9}")
-    for k, a in sorted(agg.items(), key=lambda kv: -kv[1]["n"]):
-        pct = (a["n"] / total * 100) if total else 0
-        print(f"{k:<12}{a['n']:>5}{pct:>5.0f}%{a['ok']:>5}{a['fail']:>5}{a['outage']:>7}{a['wall_ms']/1000:>9.1f}")
-    if total >= 5:
-        top_k, top_a = max(agg.items(), key=lambda kv: kv[1]["n"])
-        if top_a["n"] / total >= 0.9:
-            print(f"[ledger] ⚠ {top_k} = {top_a['n']/total*100:.0f}% of dispatches — "
-                  f"router rule 8: ~100% one lane is a routing-failure signal.")
-    return 0
-
-
-def find_prompt_file(p_number: str) -> Path:
-    """
-    Locate tasks/prompts/P{N}_*.md for a given P-number (e.g. 'P35').
-    Returns the Path if found, raises FileNotFoundError otherwise.
-    """
-    pattern = f"{p_number}_*.md"
-    matches = list(PROMPTS_DIR.glob(pattern))
-    if not matches:
-        raise FileNotFoundError(
-            f"No prompt file found matching {PROMPTS_DIR / pattern}"
-        )
-    if len(matches) > 1:
-        raise ValueError(
-            f"Ambiguous: multiple files match {pattern}: {matches}"
-        )
-    return matches[0]
-
-
-def parse_route(prompt_path: Path) -> str:
-    """
-    Read the first line of the prompt file and extract the route.
-    Expected format:  # P35 / Some title (route: C2)
-    Returns 'C1', 'C2', or 'C1-CURSOR'. Raises ValueError if not found.
-    """
-    with open(prompt_path, "r", encoding="utf-8") as f:
-        first_line = f.readline().strip()
-
-    match = re.search(r'\(route:\s*(C1-GROK|C1-CURSOR|C1-GEMINI|C[123])\)', first_line, re.IGNORECASE)
-    if not match:
-        raise ValueError(
-            f"Cannot parse route from title line: {first_line!r}\n"
-            f"Expected format: # P35 / Title (route: C2 | C1 | C1-GROK | C1-GEMINI)"
-        )
-    return match.group(1).upper()
-
-
-def strip_owner_meta(prompt_path: Path) -> str:
-    """
-    Strip the owner-facing meta block from the prompt.
-
-    The meta block is defined as everything between the title line (line 1)
-    and the first `---` separator.  Specifically:
-      - Line 1: the title (kept for context, then discarded)
-      - Lines 2..N: the ➡️ OWNER block (discarded)
-      - The `---` line itself (discarded)
-      - Everything after the first `---`: the agent task body (kept)
-
-    If no `---` is found the entire file content (minus the title line)
-    is returned as-is.
-    """
-    with open(prompt_path, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-
-    # Find the first occurrence of a `---` separator line
-    sep_index = None
-    for i, line in enumerate(lines):
-        if line.strip() == "---":
-            sep_index = i
-            break
-
-    if sep_index is None:
-        # No separator found — skip title, return the rest
-        body = "".join(lines[1:]).strip()
-    else:
-        # Skip everything up to and including the `---`
-        body = "".join(lines[sep_index + 1:]).strip()
-
-    return body
-
-
-# ── opencode HTTP API client ──────────────────────────────────────────────────
 
 def _api_call(base_url: str, path: str, method: str = "GET",
               body: dict | None = None, timeout: int = 30) -> dict:
@@ -449,10 +531,8 @@ def _wait_for_server(base_url: str, retries: int = 30, interval: float = 0.5) ->
 
 
 class SSEReader:
-    """
-    Reads Server-Sent Events from a streaming HTTP response.
-    Runs in a background thread; events are accumulated and streamed to console.
-    """
+    """Reads Server-Sent Events from a streaming HTTP response in a background thread;
+    events are accumulated and streamed to console."""
 
     def __init__(self, url: str, timeout: int):
         self.url = url
@@ -472,10 +552,7 @@ class SSEReader:
             self._thread.join(timeout=5)
 
     def _read(self):
-        req = urllib.request.Request(
-            self.url,
-            headers={"Accept": "text/event-stream"},
-        )
+        req = urllib.request.Request(self.url, headers={"Accept": "text/event-stream"})
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as resp:
                 event_data: list[str] = []
@@ -486,15 +563,12 @@ class SSEReader:
                     if line.startswith("data: "):
                         event_data.append(line[6:])
                     elif line == "" and event_data:
-                        # End of event block
                         raw = "".join(event_data)
                         try:
                             evt = json.loads(raw)
                             with self._lock:
                                 self.events.append(evt)
-                            # Stream to console
-                            evt_type = evt.get("type", "unknown")
-                            print(f"[SSE] {evt_type}", flush=True)
+                            print(f"[SSE] {evt.get('type', 'unknown')}", flush=True)
                         except json.JSONDecodeError:
                             pass
                         event_data = []
@@ -515,44 +589,26 @@ class SSEReader:
         return False
 
 
-def run_via_opencode_api(
-    message: str,
-    model_id: str,
-    provider_id: str,
-    timeout: int,
-) -> tuple[int, str]:
-    """
-    Dispatch a message to opencode via the headless HTTP API.
+def run_via_opencode_api(message: str, model_id: str, provider_id: str,
+                          timeout: int) -> tuple[int, str]:
+    """Dispatch a message to opencode via the headless HTTP API. Returns (exit_code,
+    combined_output_text). Wrapped in the single-instance guard (see module header)."""
+    with dispatch_lock():
+        return _run_via_opencode_api_inner(message, model_id, provider_id, timeout)
 
-    Returns (exit_code, combined_output_text).
 
-    Flow:
-      1. Spawn `opencode serve --port PORT`
-      2. Wait for server ready
-      3. Subscribe to /api/event SSE stream
-      4. Create session
-      5. Send message via /session/{id}/message (streaming POST — returns SSE)
-      6. Wait for session.idle event (or timeout)
-      7. Collect final assistant text from message list
-      8. Tear down server
-    """
+def _run_via_opencode_api_inner(message: str, model_id: str, provider_id: str,
+                                 timeout: int) -> tuple[int, str]:
     if not _OPENCODE_EXE.exists():
-        raise FileNotFoundError(
-            f"opencode executable not found at {_OPENCODE_EXE}."
-        )
+        raise FileNotFoundError(f"opencode executable not found at {_OPENCODE_EXE}.")
 
     port = find_free_port()
     base_url = f"http://127.0.0.1:{port}"
 
-    # 1. Start opencode serve
     serve_proc = subprocess.Popen(
         [str(_OPENCODE_EXE), "serve", "--port", str(port)],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        cwd=str(REPO_ROOT),
-        text=True,
-        encoding="utf-8",
-        errors="replace",
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=str(REPO_ROOT),
+        text=True, encoding="utf-8", errors="replace",
     )
     print(f"[opencode] Server starting on port {port} (pid={serve_proc.pid})", flush=True)
 
@@ -561,18 +617,15 @@ def run_via_opencode_api(
     sse_reader: SSEReader | None = None
 
     try:
-        # 2. Wait for server ready
         if not _wait_for_server(base_url):
             raise RuntimeError("opencode server did not start in time.")
         print("[opencode] Server ready.", flush=True)
 
-        # 3. Subscribe to global SSE event stream
         deadline = time.time() + timeout
         sse_reader = SSEReader(f"{base_url}/api/event", timeout=timeout)
         sse_reader.start()
-        time.sleep(0.5)  # give SSE connection a moment to establish
+        time.sleep(0.5)  # give the SSE connection a moment to establish
 
-        # 4. Create session
         session_resp = _api_call(
             base_url, "/api/session", method="POST",
             body={"model": {"id": model_id, "providerID": provider_id}},
@@ -580,22 +633,13 @@ def run_via_opencode_api(
         session_id = session_resp["data"]["id"]
         print(f"[opencode] Session created: {session_id}", flush=True)
 
-        # 5. Send the message (this POST returns a streaming SSE response;
-        #    we don't parse it inline — events arrive on /api/event instead).
         msg_url = f"{base_url}/session/{session_id}/message"
-        msg_body = json.dumps(
-            {"parts": [{"type": "text", "text": message}]}
-        ).encode("utf-8")
+        msg_body = json.dumps({"parts": [{"type": "text", "text": message}]}).encode("utf-8")
         msg_req = urllib.request.Request(
-            msg_url,
-            data=msg_body,
-            headers={"Content-Type": "application/json"},
-            method="POST",
+            msg_url, data=msg_body, headers={"Content-Type": "application/json"}, method="POST",
         )
-        print(f"[opencode] Sending message ({len(message)} chars)…", flush=True)
+        print(f"[opencode] Sending message ({len(message)} chars)...", flush=True)
 
-        # Read the streaming response from the message endpoint itself
-        # (it also streams SSE events directly).
         try:
             with urllib.request.urlopen(msg_req, timeout=min(timeout, 300)) as resp:
                 event_data: list[str] = []
@@ -611,7 +655,6 @@ def run_via_opencode_api(
                             print(f"[MSG-SSE] {evt_type}", flush=True)
                             if evt_type == "session.idle":
                                 break
-                            # Collect text parts from assistant messages
                             if evt_type in ("message.part", "message.part.updated"):
                                 part = evt.get("data", {}).get("part", {})
                                 if part.get("type") == "text":
@@ -624,19 +667,15 @@ def run_via_opencode_api(
         except Exception as e:
             print(f"[opencode] Message stream ended: {e}", flush=True)
 
-        # 6. Also wait for idle on the background SSE channel (belt+suspenders)
         idle = sse_reader.wait_for_idle(session_id, deadline)
         if not idle:
             print("[opencode] WARNING: session.idle not received before timeout.", flush=True)
 
-        # 7. Collect final messages via the message list endpoint
         try:
             msg_list = _api_call(base_url, f"/api/session/{session_id}/message")
-            msgs = msg_list.get("data", [])
-            for msg in msgs:
+            for msg in msg_list.get("data", []):
                 role = msg.get("role", "")
-                parts = msg.get("parts") or []
-                for part in parts:
+                for part in (msg.get("parts") or []):
                     if part.get("type") == "text":
                         text = part.get("text", "").strip()
                         if text:
@@ -644,21 +683,16 @@ def run_via_opencode_api(
         except Exception as e:
             print(f"[opencode] Could not fetch final messages: {e}", flush=True)
 
-        # Deduplicate output parts
         seen: set[str] = set()
         deduped: list[str] = []
         for p in output_parts:
             if p not in seen:
                 seen.add(p)
                 deduped.append(p)
-        combined = "\n".join(deduped)
 
-        # Extract final assistant text from SSE events (belt+suspenders)
         with sse_reader._lock:
             all_events = list(sse_reader.events)
 
-        # Find the last message.part.updated event with type=text — that's
-        # the completed assistant response text.
         for evt in reversed(all_events):
             if evt.get("type") in ("message.part.updated", "message.part"):
                 part = (evt.get("data") or {}).get("part", {})
@@ -666,15 +700,13 @@ def run_via_opencode_api(
                     text = part.get("text", "").strip()
                     if text and text not in seen:
                         seen.add(text)
-                        deduped.insert(0, text)  # prepend — this is the main response
+                        deduped.insert(0, text)
                         output_parts.append(text)
                     break
 
         sse_summary = "\n".join(
-            f"  {e.get('type', '?')}: {json.dumps(e.get('data', {}))[:200]}"
-            for e in all_events
+            f"  {e.get('type', '?')}: {json.dumps(e.get('data', {}))[:200]}" for e in all_events
         )
-        # Rebuild combined with the potentially updated deduped list
         combined = "\n".join(deduped) + "\n\n--- SSE Events ---\n" + sse_summary
 
     except Exception as e:
@@ -685,896 +717,605 @@ def run_via_opencode_api(
     finally:
         if sse_reader:
             sse_reader.stop()
-        # Gracefully shut down the server
         try:
             serve_proc.terminate()
             serve_proc.wait(timeout=5)
         except Exception:
             serve_proc.kill()
-        print(f"[opencode] Server stopped.", flush=True)
+        print("[opencode] Server stopped.", flush=True)
 
     return exit_code, combined
 
 
-# ── Cursor CLI execution ─────────────────────────────────────────────────────
+# ── opencode-backed capability functions ──────────────────────────────────────
 
-def run_via_cursor_cli(message: str, timeout: int) -> tuple[int, str]:
+def challenge_gpt(message: str, *, task: str, was_fallback: bool = False,
+                   timeout: int = DEFAULT_TIMEOUT) -> LaneResult:
+    """CHALLENGE lane, GPT side — pinned openai/gpt-5.5-pro via opencode HTTP. The
+    caller runs resolve_challenge_model() first; when it picks gpt-5.5-pro, dispatch
+    here. When it picks claude-opus-4-8 instead, that side goes through the orchestrator
+    Agent tool, outside this script's reach. Pass was_fallback=True if gpt-5.5-pro is
+    being used as the FALLBACK challenger (producer was Codex/GPT, so claude-opus-4-8
+    was primary and is unavailable) — Invariant 3 same-vendor-risk must stay auditable.
     """
-    Dispatch a message to Cursor's headless agent CLI (print mode).
-
-    The CLI runs with cwd=REPO_ROOT and full repo access, so dispatch messages
-    should reference the prompt file by path rather than inline a long body
-    (Windows command lines cap at ~32K chars).
-
-    Returns (exit_code, combined_output_text).
-    """
-    cursor_cmd = find_cursor_agent_cmd()
-    # Flag ORDER matters: global flags must precede `-p <message>`, otherwise
-    # cursor-agent swallows them as part of the prompt and the workspace-trust
-    # prompt still blocks file writes (P46 diagnosis 2026-06-13).
-    cmd = [
-        str(cursor_cmd),
-        "--force",                     # allow commands without TUI approval
-        "--trust",                     # trust the workspace dir without prompting
-        "--output-format", "text",
-        "-p", message,                 # print mode: non-interactive, prompt LAST
-    ]
-    print(f"[cursor] Invoking {cursor_cmd.parent.name}\\cursor-agent.cmd "
-          f"({len(message)} chars)…", flush=True)
-    try:
-        proc = subprocess.run(
-            cmd,
-            cwd=str(REPO_ROOT),
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=timeout,
-            shell=False,
-        )
-        output = (proc.stdout or "")
-        if proc.stderr and proc.stderr.strip():
-            output += "\n\n--- STDERR ---\n" + proc.stderr
-        if _looks_like_quota_exhaustion(output, proc.returncode):
-            banner = (
-                "⛔ C1-CURSOR LANE DOWN — Cursor usage limit appears exhausted.\n"
-                "Orchestrator: re-route this P-number to native C1 (Agent tool); "
-                "mark the lane DOWN on the board until the quota resets.\n\n"
-            )
-            print("[cursor] ⛔ Usage limit detected — lane should be marked DOWN; "
-                  "re-route to native C1.", flush=True)
-            return 75, banner + output  # 75 = EX_TEMPFAIL: retry elsewhere
-        return proc.returncode, output
-    except subprocess.TimeoutExpired as e:
-        partial = (e.stdout or "") if isinstance(e.stdout, str) else ""
-        return 1, f"TIMEOUT after {timeout}s.\n{partial}"
-
-
-
-def run_via_gemini_cli(message: str, timeout: int, executor: bool = True):
-    agy_cmd=find_gemini_cmd()
-    # agy (Antigravity CLI) flags differ from the retired gemini CLI:
-    #   --dangerously-skip-permissions = auto-approve every tool/file action (the
-    #       executor analog of Grok --force / Cursor --force / old gemini yolo).
-    #   --print-timeout <godur>        = how long agy waits internally; keep it just
-    #       under our subprocess wall so we get a clean exit, not a hard kill.
-    # agy has no read-only/plan mode, so `executor` no longer toggles flags; the
-    # selftest path verifies success via a sentinel file instead of stdout text.
-    inner = max(30, timeout - 15)
-    cmd=[str(agy_cmd),"--dangerously-skip-permissions","--print-timeout",f"{inner}s","-p",message]
-    print(f"[gemini/agy] Invoking {agy_cmd.name} ({len(message)} chars)...", flush=True)
-    try:
-        proc=subprocess.run(cmd,cwd=str(REPO_ROOT),capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=timeout,shell=False)
-        output=(proc.stdout or "")
-        if proc.stderr and proc.stderr.strip():
-            output += '\n\n--- STDERR ---\n' + proc.stderr
-        if _looks_like_quota_exhaustion(output, proc.returncode):
-            return 75, "LANE DOWN" + '\n' + output
-        return proc.returncode, output
-    except subprocess.TimeoutExpired as e:
-        partial=(e.stdout or "") if isinstance(e.stdout,str) else ""
-        return 1, "TIMEOUT after %ss.%s%s" % (timeout, '\n', partial)
-
-def _looks_like_quota_exhaustion(output: str, exit_code: int) -> bool:
-    """Heuristic: did the Cursor CLI refuse because the subscription quota ran out?"""
-    if exit_code == 0:
-        return False
-    lowered = output.lower()
-    markers = (
-        "usage limit", "usage-limit", "rate limit", "rate-limited",
-        "quota", "out of requests", "upgrade your plan", "plan limit",
-        "limit reached", "too many requests", "429",
-        "resource_exhausted",
-    )
-    return any(m in lowered for m in markers)
-
-
-def build_cursor_bootstrap(p_number: str, prompt_path: Path) -> str:
-    """
-    Short bootstrap message for the Cursor lane: point the agent at the prompt
-    file instead of inlining the body (avoids the Windows cmdline length cap,
-    and Cursor has repo access anyway).
-    """
-    rel = prompt_path.relative_to(REPO_ROOT).as_posix()
-    return (
-        f"You are executing Bari task prompt {p_number}.\n"
-        f"1. Read the file {rel} in this repo.\n"
-        f"2. Ignore everything above the first '---' separator (owner-facing meta).\n"
-        f"3. Execute the task body below the separator exactly as written, "
-        f"including its rules and deliverables.\n"
-        f"4. Hard rule: NEVER use Open Food Facts (OFF) as a data source for "
-        f"anything. Unknown is acceptable; OFF is not.\n"
-        f"5. When done, print a return block summarizing what you changed "
-        f"(files + what to verify), per the prompt's return-format instructions."
-    )
-
-
-# ── File writing ──────────────────────────────────────────────────────────────
-
-def write_return_file(
-    p_number: str,
-    prompt_path: Path,
-    model_id: str,
-    provider_id: str,
-    started: datetime,
-    finished: datetime,
-    exit_code: int,
-    output: str,
-    git_before: str,
-    git_after: str,
-) -> Path:
-    """Write the return file to tasks/returns/P{N}_return.md."""
-    RETURNS_DIR.mkdir(parents=True, exist_ok=True)
-    return_path = RETURNS_DIR / f"{p_number}_return.md"
-    model_full = f"{provider_id}/{model_id}"
-
-    # Compute changed-files diff
-    before_set = set(git_before.splitlines()) if git_before else set()
-    after_set = set(git_after.splitlines()) if git_after else set()
-    new_lines = sorted(after_set - before_set)
-    removed_lines = sorted(before_set - after_set)
-
-    changed_section = []
-    if new_lines:
-        changed_section.append("### New / modified since dispatch")
-        for line in new_lines:
-            changed_section.append(f"  {line}")
-    if removed_lines:
-        changed_section.append("### Removed / cleaned since dispatch")
-        for line in removed_lines:
-            changed_section.append(f"  {line}")
-    if not new_lines and not removed_lines:
-        changed_section.append("*(no changes detected)*")
-
-    content = f"""# Return: {p_number}
-
-> ⚠️ **STATUS: RETURNED-UNVERIFIED.** Raw agent output captured by the router.
-> Nothing here is accepted, closed, or true until the ORCHESTRATOR verifies every
-> claim against artifacts (Return Contract v1). The router never closes.
-> (Law added after P35 was face-value-closed with contradictions inside it.)
-
-| Field | Value |
-|---|---|
-| Prompt file | `{prompt_path.relative_to(REPO_ROOT)}` |
-| Model | `{model_full}` |
-| Started | {started.isoformat()} |
-| Finished | {finished.isoformat()} |
-| Exit code | {exit_code} |
-
----
-
-## Output
-
-```
-{output.strip() if output.strip() else "(empty)"}
-```
-
----
-
-## CHANGED-FILES (git status delta)
-
-### Before dispatch
-
-```
-{git_before if git_before else "(clean)"}
-```
-
-### After dispatch
-
-```
-{git_after if git_after else "(clean)"}
-```
-
-### Delta
-
-{chr(10).join(changed_section)}
-"""
-
-    with open(return_path, "w", encoding="utf-8") as f:
-        f.write(content)
-
-    return return_path
-
-
-def tick_dispatch_board(p_number: str) -> bool:
-    """
-    In tasks/DISPATCH_BOARD.md, change `- [ ] P{N}` to `- [x] P{N}` on its
-    signal line.  If already ticked, leaves it.  Returns True if a change was made.
-    """
-    if not DISPATCH_BOARD.exists():
-        print(f"[dispatch] WARNING: DISPATCH_BOARD not found at {DISPATCH_BOARD}", file=sys.stderr)
-        return False
-
-    with open(DISPATCH_BOARD, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    pattern = re.compile(
-        r'(- \[ \] )(' + re.escape(p_number) + r'(?:\b|\s|$))',
-        re.MULTILINE,
-    )
-    new_content, count = pattern.subn(r'- [x] \2', content)
-
-    if count > 0:
-        with open(DISPATCH_BOARD, "w", encoding="utf-8") as f:
-            f.write(new_content)
-        print(f"[dispatch] Board ticked: {p_number} marked done.", flush=True)
-        return True
-    else:
-        print(f"[dispatch] Board: {p_number} already ticked or not found as unchecked.", flush=True)
-        return False
-
-
-# ── Subcommands ───────────────────────────────────────────────────────────────
-
-def cmd_dispatch(p_number: str, dry_run: bool, timeout: int) -> int:
-    """Main dispatch flow for a P-number."""
-    p_number = p_number.upper()
-
-    # Step 1: locate prompt file
-    try:
-        prompt_path = find_prompt_file(p_number)
-    except FileNotFoundError as e:
-        print(f"[dispatch] ERROR: {e}", file=sys.stderr)
-        return 1
-
-    print(f"[dispatch] Prompt file: {prompt_path}")
-
-    # Step 1b: parse route — explicit (route:) tag wins; otherwise fall back to the
-    # deterministic routing policy (owner 2026-06-19: routing deterministic by default,
-    # default = cloud C1, not native Sonnet). An untagged prompt used to hard-error.
-    try:
-        route = parse_route(prompt_path)
-    except ValueError:
-        route, _reason = recommend_route(strip_owner_meta(prompt_path))
-        print(f"[dispatch] No (route:) tag → deterministic default lane: {route}")
-        print(f"[dispatch]   reason: {_reason}")
-        print(f"[dispatch]   (native Sonnet is a reserved opt-out; the default is a cloud C1 lane)")
-
-    print(f"[dispatch] Route: {route}")
-
-    # W4 (TASK-423): refuse a tree-wiping cloud lane when the working tree is dirty — a cloud
-    # lane's `git stash -u` runs on the WHOLE tree and would wipe uncommitted/untracked work
-    # (the documented 82-file wipe). Guarded so it can never itself break dispatch.
-    if not dry_run:
-        try:
-            sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agentos"))
-            from dispatch_journal import guard_tree_for_cloud_lane
-            _refuse = guard_tree_for_cloud_lane(route)
-            if _refuse:
-                print(f"[dispatch] {_refuse}", file=sys.stderr)
-                return 3
-        except Exception:  # noqa: BLE001 — durability guard is best-effort, never fatal
-            pass
-
-    if route == "C1":
-        print("[dispatch] C1 → dispatch natively via orchestrator")
-        return 0
-
-    if route == "C1-GROK":
-        return _dispatch_grok(p_number, prompt_path, dry_run, timeout)
-
-    if route == "C1-CURSOR":
-        # REACTIVATED 2026-06-18 — owner renewed the Cursor Pro subscription.
-        # Cursor rejoins C1 Build alongside Sonnet / Gemini / Grok. Routes to its
-        # own lane again (was transiently aliased to C1-GROK while retired).
-        return _dispatch_cursor(p_number, prompt_path, dry_run, timeout)
-
-    if route == "C1-GEMINI":
-        return _dispatch_gemini(p_number, prompt_path, dry_run, timeout)
-
-    # C2 and C3 both ride the opencode HTTP path; only the target model differs.
-    if route == "C3":
-        active_model_id, active_provider_id = C3_MODEL_ID, C3_PROVIDER_ID
-    else:  # C2
-        active_model_id, active_provider_id = C2_MODEL_ID, C2_PROVIDER_ID
-
-    # Step 2: strip owner meta block
-    task_body = strip_owner_meta(prompt_path)
-    print(f"[dispatch] Task body ({len(task_body)} chars) — meta stripped OK.")
-
-    # Step 3: git status before
-    git_before = git_status_porcelain(REPO_ROOT)
-
-    # Build the dry-run command description
-    cmd_desc = (
-        f"opencode serve --port <FREE> && POST /api/session "
-        f"model={active_provider_id}/{active_model_id} && "
-        f"POST /session/{{id}}/message (SSE)"
-    )
-
-    if dry_run:
-        print("\n[dispatch] DRY-RUN — would execute (opencode HTTP API):")
-        print(f"  {cmd_desc}")
-        print("\n[dispatch] Task body (first 500 chars):")
-        print(task_body[:500])
-        print("\n[dispatch] Git status before:")
-        print(git_before if git_before else "(clean)")
-        return 0
-
-    # Step 4: invoke opencode via HTTP API
-    started = datetime.now(timezone.utc)
-    print(f"\n[dispatch] Invoking opencode at {started.isoformat()} …")
-    print(f"[dispatch] Model: {active_provider_id}/{active_model_id}")
-    print(f"[dispatch] Timeout: {timeout}s")
-    print("-" * 60)
-
-    exit_code, output = run_via_opencode_api(
-        message=task_body,
-        model_id=active_model_id,
-        provider_id=active_provider_id,
-        timeout=timeout,
-    )
-    finished = datetime.now(timezone.utc)
-
-    print("-" * 60)
-    print(f"[dispatch] Finished at {finished.isoformat()}, exit code: {exit_code}")
-
-    # Step 6: git status after
-    git_after = git_status_porcelain(REPO_ROOT)
-
-    # Step 5: write return file
-    return_path = write_return_file(
-        p_number=p_number,
-        prompt_path=prompt_path,
-        model_id=active_model_id,
-        provider_id=active_provider_id,
-        started=started,
-        finished=finished,
-        exit_code=exit_code,
-        output=output,
-        git_before=git_before,
-        git_after=git_after,
-    )
-    print(f"[dispatch] Return file written: {return_path}")
-
-    # Step 7: auto-tick board
-    tick_dispatch_board(p_number)
-
-    log_telemetry(p_number=p_number, route=route,
-                  engine=f"{active_provider_id}/{active_model_id}",
-                  started=started, finished=finished, exit_code=exit_code,
-                  git_before=git_before, git_after=git_after)
-    return exit_code
-
-
-def _dispatch_cursor(p_number: str, prompt_path: Path, dry_run: bool,
-                     timeout: int) -> int:
-    """Dispatch flow for the C1-CURSOR lane."""
-    bootstrap = build_cursor_bootstrap(p_number, prompt_path)
-    git_before = git_status_porcelain(REPO_ROOT)
-
-    if dry_run:
-        try:
-            cursor_cmd = find_cursor_agent_cmd()
-            print(f"\n[dispatch] DRY-RUN — would execute:\n  {cursor_cmd} "
-                  f"-p <bootstrap> --output-format text --force")
-        except FileNotFoundError as e:
-            print(f"\n[dispatch] DRY-RUN — cursor-agent NOT available: {e}")
-        print(f"\n[dispatch] Bootstrap message:\n{bootstrap}")
-        return 0
-
-    started = datetime.now(timezone.utc)
-    print(f"\n[dispatch] Invoking cursor-agent at {started.isoformat()} …")
-    print(f"[dispatch] Timeout: {timeout}s")
-    print("-" * 60)
-
-    exit_code, output = run_via_cursor_cli(bootstrap, timeout)
-    finished = datetime.now(timezone.utc)
-
-    print("-" * 60)
-    print(f"[dispatch] Finished at {finished.isoformat()}, exit code: {exit_code}")
-
-    git_after = git_status_porcelain(REPO_ROOT)
-    return_path = write_return_file(
-        p_number=p_number,
-        prompt_path=prompt_path,
-        model_id="agent-cli",
-        provider_id="cursor",
-        started=started,
-        finished=finished,
-        exit_code=exit_code,
-        output=output,
-        git_before=git_before,
-        git_after=git_after,
-    )
-    print(f"[dispatch] Return file written: {return_path}")
-    tick_dispatch_board(p_number)
-    log_telemetry(p_number=p_number, route="C1-CURSOR", engine="cursor/agent-cli",
-                  started=started, finished=finished, exit_code=exit_code,
-                  git_before=git_before, git_after=git_after)
-    return exit_code
-
-
-
-def _dispatch_gemini(p_number, prompt_path, dry_run, timeout):
-    bootstrap=build_cursor_bootstrap(p_number,prompt_path)
-    git_before=git_status_porcelain(REPO_ROOT)
-    if dry_run: return 0
-    started=datetime.now(timezone.utc); exit_code,output=run_via_gemini_cli(bootstrap,timeout); finished=datetime.now(timezone.utc)
-    git_after=git_status_porcelain(REPO_ROOT)
-    write_return_file(p_number=p_number,prompt_path=prompt_path,model_id="cli",provider_id="gemini",started=started,finished=finished,exit_code=exit_code,output=output,git_before=git_before,git_after=git_after)
-    tick_dispatch_board(p_number)
-    log_telemetry(p_number=p_number, route="C1-GEMINI", engine="gemini/agy",
-                  started=started, finished=finished, exit_code=exit_code,
-                  git_before=git_before, git_after=git_after)
-    return exit_code
-
-
-# ── Grok lane (C1-GROK) ──────────────────────────────────────────────────────
-# xAI "Grok Build" CLI ("grok"), authenticated via the owner's SuperGrok
-# subscription (one-time browser OAuth: `grok login`; creds persist in ~/.grok,
-# so headless `grok -p` reuses them, flat-rate). C1-grade executor: real repo
-# access + file edits. Replaced the retired Cursor lane on 2026-06-14.
-_GROK_CMD_DEFAULT = Path(os.environ.get("USERPROFILE", "")) / ".grok" / "bin" / "grok.exe"
-
-
-_GROK_AUTH_JSON = Path(os.environ.get("USERPROFILE", "")) / ".grok" / "auth.json"
-
-
-def find_grok_cmd() -> Path:
-    if _GROK_CMD_DEFAULT.exists(): return _GROK_CMD_DEFAULT
+    exit_code, output = run_via_opencode_api(message=message, model_id="gpt-5.5-pro",
+                                              provider_id="openai", timeout=timeout)
+    ok = exit_code == 0 and bool(output.strip())
+    result = LaneResult(exit_code, output, "openai/gpt-5.5-pro", was_fallback,
+                         "" if ok else "Producer-vendor outage", ok)
+    log_telemetry_v5(task=task, capability="CHALLENGE", model_used=result.model_used,
+                      was_fallback=was_fallback, trigger=result.trigger,
+                      exit_criterion_met=ok)
+    return result
+
+
+def evidence_research_fallback(message: str, *, task: str, timeout: int = 120) -> LaneResult:
+    """EVIDENCE-RESEARCH fallback pipe — openai/gpt-5.5 via opencode HTTP. Layer 2
+    fallback trigger: API error or timeout 120s (default timeout matches the law)."""
+    exit_code, output = run_via_opencode_api(message=message, model_id="gpt-5.5",
+                                              provider_id="openai", timeout=timeout)
+    ok = exit_code == 0 and bool(output.strip())
+    result = LaneResult(exit_code, output, "openai/gpt-5.5", True,
+                         "" if ok else "API error or timeout 120s", ok)
+    log_telemetry_v5(task=task, capability="EVIDENCE-RESEARCH", model_used=result.model_used,
+                      was_fallback=True, trigger=result.trigger, exit_criterion_met=ok)
+    return result
+
+
+def grunt_text_fallback(message: str, *, task: str, timeout: int = DEFAULT_TIMEOUT) -> LaneResult:
+    """GRUNT text-fallback pipe (non-file, text-only mechanical work) — openai/
+    gpt-5.4-mini-fast via opencode HTTP, sub-falling back to openai/gpt-5.4-mini if the
+    -fast tier errors."""
+    model_id = "gpt-5.4-mini-fast"
+    exit_code, output = run_via_opencode_api(message=message, model_id=model_id,
+                                              provider_id="openai", timeout=timeout)
+    if exit_code != 0:
+        model_id = "gpt-5.4-mini"
+        exit_code, output = run_via_opencode_api(message=message, model_id=model_id,
+                                                  provider_id="openai", timeout=timeout)
+    ok = exit_code == 0 and bool(output.strip())
+    result = LaneResult(exit_code, output, f"openai/{model_id}", True,
+                         "" if ok else "API/CLI error, or any output failing its validator once",
+                         ok)
+    log_telemetry_v5(task=task, capability="GRUNT", model_used=result.model_used,
+                      was_fallback=True, trigger=result.trigger, exit_criterion_met=ok)
+    return result
+
+
+# ============================================================================
+# Codex lane — BUILD-HEAVY / BUILD-LIGHT / GRUNT-primary / ENGINEERING-RESEARCH.
+# All via `codex exec`. Sandbox is always explicit and validated against an allow-list —
+# Layer 0 law: NEVER `danger-full-access`, regardless of caller input.
+# ============================================================================
+
+_CODEX_EXE_DEFAULT = Path(os.environ.get("APPDATA", "")) / "npm" / "codex.cmd"
+_CODEX_ALLOWED_SANDBOX = {"read-only", "workspace-write"}
+
+
+def _resolve_codex_cmd() -> Path:
+    if _CODEX_EXE_DEFAULT.exists():
+        return _CODEX_EXE_DEFAULT
     import shutil as _shutil
-    alt = _shutil.which("grok")
-    if alt: return Path(alt)
+    alt = _shutil.which("codex")
+    if alt:
+        return Path(alt)
     raise FileNotFoundError(
-        f"Grok CLI not found at {_GROK_CMD_DEFAULT}. "
-        "Install: irm https://x.ai/cli/install.ps1 | iex  then: grok login"
+        f"Codex CLI not found at {_CODEX_EXE_DEFAULT} or on PATH. "
+        "Install per current OpenAI docs, then `codex login`."
     )
 
 
-def _grok_is_authenticated() -> bool:
-    """Session token in ~/.grok/auth.json (browser/OAuth login) or an XAI_API_KEY
-    fallback. Without either, headless `grok -p` blocks on the interactive welcome
-    screen and burns the whole timeout — so we pre-check and fail fast instead."""
-    if os.environ.get("XAI_API_KEY"):
-        return True
-    try:
-        return _GROK_AUTH_JSON.exists() and _GROK_AUTH_JSON.stat().st_size > 2
-    except OSError:
-        return False
+def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout: int,
+                     search: bool = False) -> tuple[int, str]:
+    """Low-level `codex exec` invocation.
 
-
-_GROK_CONFIG_TOML = Path(os.environ.get("USERPROFILE", "")) / ".grok" / "config.toml"
-
-
-def _toml_set_bool(text: str, table: str, key: str, value: bool) -> str:
-    """Idempotently set `key = true/false` under `[table]` in a TOML string.
-    `key` is unique across our two settings, so a global key match is safe:
-    replace it in place if present, else insert under the table header, else
-    append the table. Avoids the duplicate-table-header TOML error."""
-    v = "true" if value else "false"
-    if re.search(rf"(?m)^\s*{key}\s*=", text):
-        return re.sub(rf"(?m)^(\s*{key}\s*=).*$", rf"\1 {v}", text)
-    if re.search(rf"(?m)^\s*\[{re.escape(table)}\]\s*$", text):
-        return re.sub(rf"(?m)^(\[{re.escape(table)}\]\s*)$", rf"\1\n{key} = {v}", text, count=1)
-    sep = "" if (text == "" or text.endswith("\n")) else "\n"
-    return text + f"{sep}\n[{table}]\n{key} = {v}\n"
-
-
-def _ensure_grok_hardening() -> tuple[bool, str]:
-    """Guarantee ~/.grok/config.toml disables the whole-repo cloud upload BEFORE any
-    dispatch. Grok Build defaults to codebase_indexing=true, which on session start
-    bulk-uploads a ~800MB reference snapshot of the repo to xAI cloud (the C:\\Bari
-    02_products tree) → hangs the lane AND exfiltrates the proprietary Agent OS brain.
-    A Grok update / re-login can silently reset config.toml back to that default, so we
-    re-assert it every dispatch: self-heal if drifted, FAIL CLOSED if we cannot confirm
-    it (never send the repo to the cloud on an unverified config). Returns (ok, note)."""
-    want_ok = lambda d: (
-        (d.get("features", {}) or {}).get("codebase_indexing") is False
-        and (d.get("tools", {}) or {}).get("respect_gitignore") is True
-    )
-    try:
-        import tomllib
-    except ModuleNotFoundError:
-        tomllib = None
-    text = ""
-    try:
-        if _GROK_CONFIG_TOML.exists():
-            text = _GROK_CONFIG_TOML.read_text(encoding="utf-8")
-    except OSError as e:
-        return False, f"cannot read {_GROK_CONFIG_TOML}: {e}"
-
-    if tomllib is not None:
-        try:
-            if want_ok(tomllib.loads(text)):
-                return True, "already hardened"
-        except Exception:
-            pass  # malformed/partial → fall through to repair
-
-    # Repair (idempotent) and re-validate.
-    patched = _toml_set_bool(text, "features", "codebase_indexing", False)
-    patched = _toml_set_bool(patched, "tools", "respect_gitignore", True)
-    try:
-        _GROK_CONFIG_TOML.parent.mkdir(parents=True, exist_ok=True)
-        _GROK_CONFIG_TOML.write_text(patched, encoding="utf-8")
-    except OSError as e:
-        return False, f"cannot write {_GROK_CONFIG_TOML}: {e}"
-    if tomllib is None:
-        return True, "repaired (unverified: no tomllib)"
-    try:
-        if want_ok(tomllib.loads(patched)):
-            return True, "repaired"
-    except Exception as e:
-        return False, f"repair produced invalid TOML: {e}"
-    return False, "could not harden config.toml (manual fix needed)"
-
-
-def run_via_grok_cli(message: str, timeout: int) -> tuple[int, str]:
-    """Dispatch to the Grok Build CLI in headless single-turn mode.
-
-    --always-approve auto-approves every tool execution (the executor flag,
-    mirrors Cursor's --force / Gemini's --approval-mode=yolo). -p prints the
-    response and exits. Runs with cwd=REPO_ROOT (full repo access), so the
-    bootstrap references the prompt file by path rather than inlining it.
+    CLI-version note (verified 2026-07-10 against codex-cli 0.144.1): `codex exec
+    --search` itself errors ("unexpected argument found") — `--search` is currently
+    wired only to the top-level interactive `codex` command, not the `exec` subcommand;
+    `codex features list` has no stable enabled-by-default web-search feature to
+    substitute via --enable either (search_tool/tool_search=removed,
+    standalone_web_search=under development, web_search_cached/request=deprecated). This
+    function still issues the law-prescribed `--search` flag when `search=True`
+    (capability_router_v5.md Layer 2 ENGINEERING-RESEARCH pipe cell, byte-matched by
+    --selftest-table) so the LAW and the CODE state the same intent; it will surface
+    this exact CLI error if ever actually invoked. Harmless today —
+    ENGINEERING-RESEARCH sits behind the same PIN-AT-AUTH gate as every other Codex
+    lane, so it cannot dispatch for real until the owner pins a model anyway.
+    Re-verify --search against the then-current codex-cli version at pin time (fast-
+    follow, not a blocker for TASK-583).
     """
-    grok_cmd = find_grok_cmd()
-    if not _grok_is_authenticated():
-        banner = (
-            "⛔ C1-GROK LANE NOT ACTIVATED — no ~/.grok/auth.json and no XAI_API_KEY.\n"
-            "Owner one-time step: run `grok login` (browser OAuth, SuperGrok account; "
-            "use `grok login --device-auth` on a browserless box), then "
-            "`python dispatch.py --selftest-grok` must PASS before routing work here.\n"
+    if sandbox not in _CODEX_ALLOWED_SANDBOX:
+        raise ValueError(
+            f"sandbox={sandbox!r} is not permitted — Layer 0 law forbids danger-full-access; "
+            f"allowed: {sorted(_CODEX_ALLOWED_SANDBOX)}"
         )
-        print("[grok] ⛔ Not authenticated — run `grok login` (fast-fail, no dispatch).", flush=True)
-        return 75, banner
-    hardened, note = _ensure_grok_hardening()
-    if not hardened:
-        banner = (
-            "⛔ C1-GROK BLOCKED — could not confirm the repo-upload guard is OFF.\n"
-            f"  {note}\n"
-            "Refusing to dispatch: with codebase_indexing on, Grok bulk-uploads the whole\n"
-            "C:\\Bari repo to xAI cloud. Fix ~/.grok/config.toml manually:\n"
-            "  [features]\n  codebase_indexing = false\n  [tools]\n  respect_gitignore = true\n"
-        )
-        print(f"[grok] ⛔ Config guard failed ({note}) — fail-closed, no dispatch.", flush=True)
-        return 75, banner
-    if note != "already hardened":
-        print(f"[grok] config hardening: {note} (codebase_indexing=false, respect_gitignore=true).", flush=True)
-    cmd = [
-        str(grok_cmd),
-        "--always-approve",            # auto-approve all tool executions
-        "--output-format", "plain",
-        "-p", message,                 # single-turn headless prompt
-    ]
-    # Hardening (2026-06-14): Grok Build bulk-uploads a whole-repo "reference
-    # snapshot" to xAI cloud on session start. ~/.grok/config.toml disables it
-    # ([features] codebase_indexing=false, [tools] respect_gitignore=true). We
-    # also force gitignore filtering via env as belt-and-suspenders so a reset
-    # config.toml can't silently re-enable the ~800MB upload of the 02_products
-    # tree. Without this the lane hangs AND exfiltrates the proprietary repo.
-    env = dict(os.environ, GROK_RESPECT_GITIGNORE="1")
-    print(f"[grok] Invoking {grok_cmd.name} ({len(message)} chars)…", flush=True)
+    codex_exe = _resolve_codex_cmd()
+    cmd = [str(codex_exe), "exec", "-s", sandbox, "-C", str(cwd), "-m", model]
+    if search:
+        cmd.append("--search")
+    cmd.append(prompt)
+    print(f"[codex] Invoking `codex exec` (sandbox={sandbox}, model={model}, cwd={cwd})...",
+          flush=True)
     try:
-        proc = subprocess.run(
-            cmd, cwd=str(REPO_ROOT), capture_output=True, text=True,
-            encoding="utf-8", errors="replace", timeout=timeout, shell=False, env=env,
-        )
-        output = (proc.stdout or "")
-        if proc.stderr and proc.stderr.strip():
-            output += "\n\n--- STDERR ---\n" + proc.stderr
-        # Not-logged-in detection → the lane is unactivated, not a task failure.
-        low = output.lower()
-        if ("not logged in" in low or "please log in" in low or "grok login" in low
-                or "unauthorized" in low or "authenticate" in low) and proc.returncode != 0:
-            banner = (
-                "⛔ C1-GROK LANE NOT ACTIVATED — Grok CLI is not signed in.\n"
-                "Owner one-time step: run `grok login` (browser OAuth, SuperGrok account), "
-                "then `python dispatch.py --selftest-grok` must PASS before routing work here.\n\n"
-            )
-            print("[grok] ⛔ Not authenticated — run `grok login`.", flush=True)
-            return 75, banner + output
-        if _looks_like_quota_exhaustion(output, proc.returncode):
-            banner = (
-                "⛔ C1-GROK LANE DOWN — SuperGrok usage limit appears exhausted.\n"
-                "Orchestrator: re-route this P-number to native C1 (Agent tool); "
-                "mark the lane DOWN on the board until the quota resets.\n\n"
-            )
-            print("[grok] ⛔ Usage limit detected — re-route to native C1.", flush=True)
-            return 75, banner + output
-        return proc.returncode, output
+        proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=timeout, shell=False)
     except subprocess.TimeoutExpired as e:
         partial = (e.stdout or "") if isinstance(e.stdout, str) else ""
         return 1, f"TIMEOUT after {timeout}s.\n{partial}"
+    output = (proc.stdout or "")
+    if proc.stderr and proc.stderr.strip():
+        output += "\n\n--- STDERR ---\n" + proc.stderr
+    return proc.returncode, output
 
 
-def _dispatch_grok(p_number, prompt_path, dry_run, timeout):
-    """Dispatch flow for the C1-GROK lane."""
-    bootstrap = build_cursor_bootstrap(p_number, prompt_path)
-    git_before = git_status_porcelain(REPO_ROOT)
-    if dry_run:
-        try:
-            grok_cmd = find_grok_cmd()
-            print(f"\n[dispatch] DRY-RUN — would execute:\n  {grok_cmd} "
-                  f"--always-approve --output-format plain -p <bootstrap>")
-        except FileNotFoundError as e:
-            print(f"\n[dispatch] DRY-RUN — grok NOT available: {e}")
-        print(f"\n[dispatch] Bootstrap message:\n{bootstrap}")
-        return 0
-    started = datetime.now(timezone.utc)
-    print(f"\n[dispatch] Invoking grok at {started.isoformat()} …  Timeout: {timeout}s")
-    print("-" * 60)
-    exit_code, output = run_via_grok_cli(bootstrap, timeout)
-    finished = datetime.now(timezone.utc)
-    print("-" * 60)
-    print(f"[dispatch] Finished at {finished.isoformat()}, exit code: {exit_code}")
-    git_after = git_status_porcelain(REPO_ROOT)
-    return_path = write_return_file(
-        p_number=p_number, prompt_path=prompt_path, model_id="build-cli",
-        provider_id="grok", started=started, finished=finished,
-        exit_code=exit_code, output=output, git_before=git_before, git_after=git_after,
+def _dispatch_codex_build(capability: str, prompt: str, *, task: str, cwd: Path, sandbox: str,
+                           timeout: int, search: bool = False) -> LaneResult:
+    model = resolve_primary_model(capability)  # raises ModelNotPinnedError while PIN-AT-AUTH
+    git_before = git_status_porcelain(cwd)
+    exit_code, output = _run_codex_exec(prompt, model=model, sandbox=sandbox, cwd=cwd,
+                                         timeout=timeout, search=search)
+    git_after = git_status_porcelain(cwd)
+    empty_diff = sandbox == "workspace-write" and git_before == git_after
+    if exit_code != 0:
+        trigger = "Nonzero exit"
+    elif empty_diff:
+        trigger = "empty diff"
+    else:
+        trigger = ""
+    ok = exit_code == 0 and not empty_diff
+    result = LaneResult(exit_code, output, model, False, trigger, ok)
+    log_telemetry_v5(task=task, capability=capability, model_used=model, was_fallback=False,
+                      trigger=trigger, exit_criterion_met=ok)
+    return result
+
+
+def build_heavy(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAULT_TIMEOUT
+                 ) -> LaneResult:
+    """BUILD-HEAVY (Layer 1 Q4): coding with any complexity signal. `codex exec`,
+    sandbox workspace-write, explicit --cd <worktree>. `worktree` is required — this
+    never dispatches against the live tree."""
+    return _dispatch_codex_build("BUILD-HEAVY", prompt, task=task, cwd=worktree,
+                                  sandbox="workspace-write", timeout=timeout)
+
+
+def build_light(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAULT_TIMEOUT
+                 ) -> LaneResult:
+    """BUILD-LIGHT (Layer 1 Q5): coding with no complexity signal. Same pipe as
+    BUILD-HEAVY."""
+    return _dispatch_codex_build("BUILD-LIGHT", prompt, task=task, cwd=worktree,
+                                  sandbox="workspace-write", timeout=timeout)
+
+
+def grunt_primary(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAULT_TIMEOUT
+                   ) -> LaneResult:
+    """GRUNT primary (Layer 1 Q6): mechanical non-code work. `codex exec`, sandbox
+    workspace-write — deliberately the cheapest Codex tier; the cross-vendor fallback is
+    claude-haiku-4-5 (MODEL_BINDING['GRUNT'])."""
+    return _dispatch_codex_build("GRUNT", prompt, task=task, cwd=worktree,
+                                  sandbox="workspace-write", timeout=timeout)
+
+
+def engineering_research(prompt: str, *, task: str, cwd: Path = REPO_ROOT,
+                          timeout: int = DEFAULT_TIMEOUT) -> LaneResult:
+    """ENGINEERING-RESEARCH (Layer 1 Q8): GitHub/libraries/frameworks/APIs/
+    implementation patterns. `codex exec --search`, read-only sandbox — never writes.
+    See `_run_codex_exec` docstring for a known --search CLI-version caveat."""
+    return _dispatch_codex_build("ENGINEERING-RESEARCH", prompt, task=task, cwd=cwd,
+                                  sandbox="read-only", timeout=timeout, search=True)
+
+
+# ============================================================================
+# Gemini lane — VISION-LONGREAD only. Report-only: refuses (raises) BEFORE dispatch if
+# the prompt reads as a request for code or consumer copy (Layer 0 Prohibition 8:
+# "Gemini writes zero consumer copy and zero code — reports only").
+# ============================================================================
+
+_GEMINI_EXE_DEFAULT = Path(os.environ.get("APPDATA", "")) / "npm" / "gemini.cmd"
+
+_CODE_OR_COPY_REFUSAL_PATTERN = re.compile(
+    r"\b(write|generate|produce|author|create|draft)\b[^.\n]{0,60}"
+    r"\b(code|component|function|script|patch|diff|pull\s?request|"
+    r"copy|headline|tagline|insight\s?line|row\s?verdict|"
+    r"hebrew\s+(?:copy|text|string)|consumer.facing\s+(?:text|copy|string))\b",
+    re.IGNORECASE,
+)
+
+
+class GeminiScopeRefusal(RuntimeError):
+    """Raised BEFORE any gemini dispatch — Layer 0 Prohibition 8."""
+
+
+def _refuse_if_code_or_copy_request(prompt: str) -> None:
+    m = _CODE_OR_COPY_REFUSAL_PATTERN.search(prompt or "")
+    if m:
+        raise GeminiScopeRefusal(
+            f"VISION-LONGREAD refuses this prompt before dispatch — it reads as a request for "
+            f"code or consumer copy ({m.group(0)!r} matched). Layer 0 Prohibition 8: 'Gemini "
+            f"writes zero consumer copy and zero code (reports only).' Route code to a BUILD "
+            f"lane and copy to CONTENT (Content Agent) instead."
+        )
+
+
+def _resolve_gemini_cmd() -> Path:
+    if _GEMINI_EXE_DEFAULT.exists():
+        return _GEMINI_EXE_DEFAULT
+    import shutil as _shutil
+    alt = _shutil.which("gemini")
+    if alt:
+        return Path(alt)
+    raise FileNotFoundError(
+        f"Gemini CLI not found at {_GEMINI_EXE_DEFAULT} or on PATH. "
+        "Install: npm install -g @google/gemini-cli, then run `gemini` once to sign in."
     )
-    print(f"[dispatch] Return file written: {return_path}")
-    tick_dispatch_board(p_number)
-    log_telemetry(p_number=p_number, route="C1-GROK", engine="grok/build-cli",
-                  started=started, finished=finished, exit_code=exit_code,
-                  git_before=git_before, git_after=git_after)
-    return exit_code
 
 
-def cmd_selftest_grok(timeout: int) -> int:
-    """PONG round-trip through the Grok CLI to verify the lane works."""
-    PONG = ("Reply with the single word PONG and do nothing else. "
-            "Do not use any tools, do not read or edit any files.")
-    print("[selftest-grok] Sending PONG to grok …")
+def _run_gemini_cli(prompt: str, *, model: str | None, cwd: Path, timeout: int
+                     ) -> tuple[int, str]:
+    """Low-level headless `gemini -p` invocation. report-only: caller treats stdout as
+    the report. Never passes a PIN-AT-AUTH placeholder as -m; omit -m entirely when
+    model is None/placeholder so the CLI's own default is used instead of a nonsense
+    flag value."""
+    gemini_exe = _resolve_gemini_cmd()
+    cmd = [str(gemini_exe), "--skip-trust", "--approval-mode", "plan"]
+    if model and model != "PIN-AT-AUTH":
+        cmd += ["-m", model]
+    cmd += ["-p", prompt]
+    env = dict(os.environ, GEMINI_CLI_TRUST_WORKSPACE="true")
+    hard_timeout = min(timeout, GEMINI_HARD_TIMEOUT_SECONDS)
+    print(f"[gemini] Invoking `gemini -p` (cwd={cwd}, hard timeout {hard_timeout}s)...",
+          flush=True)
+    try:
+        proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=hard_timeout,
+                               env=env, stdin=subprocess.DEVNULL, shell=False)
+    except subprocess.TimeoutExpired as e:
+        partial = (e.stdout or "") if isinstance(e.stdout, str) else ""
+        return 1, f"TIMEOUT after {hard_timeout}s (10-min hard cap).\n{partial}"
+    output = (proc.stdout or "")
+    if proc.stderr and proc.stderr.strip():
+        output += "\n\n--- STDERR ---\n" + proc.stderr
+    return proc.returncode, output
+
+
+def vision_longread(prompt: str, *, task: str, cwd: Path = REPO_ROOT,
+                     timeout: int = GEMINI_HARD_TIMEOUT_SECONDS) -> str:
+    """VISION-LONGREAD lane (Layer 1 Q9): bulk one-pass reading, or judging images /
+    rendered pages. report-only contract — returns the report TEXT (str), nothing else.
+    Refuses BEFORE dispatch (raises GeminiScopeRefusal) if the prompt reads as a request
+    for code or consumer copy."""
+    _refuse_if_code_or_copy_request(prompt)
+    model = resolve_primary_model("VISION-LONGREAD")  # raises ModelNotPinnedError while PIN-AT-AUTH
+    exit_code, output = _run_gemini_cli(prompt, model=model, cwd=cwd, timeout=timeout)
+    ok = exit_code == 0 and bool(output.strip())
+    log_telemetry_v5(task=task, capability="VISION-LONGREAD", model_used=model,
+                      was_fallback=False,
+                      trigger="" if ok else "CLI hang > 10 min, crash, or empty output",
+                      exit_criterion_met=ok)
+    if not ok:
+        raise RuntimeError(
+            f"VISION-LONGREAD dispatch failed (exit {exit_code}); report text empty or the "
+            f"lane errored:\n{output[:1000]}"
+        )
+    return output
+
+
+# ============================================================================
+# LAW-DOC PARSER — capability_router_v5.md's Layer 1 / Layer 2 markdown tables, for
+# --selftest-table's byte-match assertion.
+# ============================================================================
+
+def _extract_section_lines(lines: list[str], start_pat: str, end_pat: str) -> list[str]:
+    start_idx = None
+    for i, ln in enumerate(lines):
+        if re.match(start_pat, ln):
+            start_idx = i
+            break
+    if start_idx is None:
+        raise ValueError(f"section heading not found: {start_pat!r}")
+    end_idx = len(lines)
+    for i in range(start_idx + 1, len(lines)):
+        if re.match(end_pat, lines[i]):
+            end_idx = i
+            break
+    return lines[start_idx:end_idx]
+
+
+def _parse_md_table_rows(section_lines: list[str]) -> list[list[str]]:
+    """Header + separator + data rows -> data rows only, as lists of stripped cell
+    strings (outer pipes discarded)."""
+    table_lines = [ln.strip() for ln in section_lines if ln.strip().startswith("|")]
+    if len(table_lines) < 2:
+        return []
+    data_lines = table_lines[2:]  # drop header row + |---|---| separator row
+    return [[c.strip() for c in ln.strip("|").split("|")] for ln in data_lines]
+
+
+def load_law_tables(md_path: Path | None = None) -> tuple[list[list[str]], list[list[str]]]:
+    """Parse capability_router_v5.md's Layer 1 and Layer 2 markdown tables into row
+    lists — the source of truth --selftest-table checks LAYER1_TABLE/LAYER2_TABLE
+    against."""
+    md_path = md_path or CAPABILITY_ROUTER_DOC
+    lines = md_path.read_text(encoding="utf-8").splitlines()
+    layer1_lines = _extract_section_lines(lines, r"^## Layer 1\b", r"^## Layer 2\b")
+    layer2_lines = _extract_section_lines(lines, r"^## Layer 2\b", r"^## Operational appendix\b")
+    return _parse_md_table_rows(layer1_lines), _parse_md_table_rows(layer2_lines)
+
+
+# ============================================================================
+# SELFTESTS
+# ============================================================================
+
+def _rows_equal_report(label: str, code_rows: list[list[str]], doc_rows: list[list[str]]) -> bool:
+    ok = code_rows == doc_rows
+    if ok:
+        print(f"[selftest-table] {label}: {len(code_rows)} rows byte-match "
+              f"capability_router_v5.md. OK")
+        return True
+    print(f"[selftest-table] {label}: MISMATCH", file=sys.stderr)
+    for i, (c, d) in enumerate(zip(code_rows, doc_rows)):
+        if c != d:
+            print(f"  row {i}: code={c!r}", file=sys.stderr)
+            print(f"  row {i}:  doc={d!r}", file=sys.stderr)
+    if len(code_rows) != len(doc_rows):
+        print(f"  row count differs: code={len(code_rows)} doc={len(doc_rows)}", file=sys.stderr)
+    return False
+
+
+def cmd_selftest_table() -> int:
+    """Byte-match law (capability_router_v5.md operational appendix): the routing table
+    in code must match this document's Layer 1 / Layer 2 tables exactly."""
+    try:
+        doc_layer1, doc_layer2 = load_law_tables()
+    except (OSError, ValueError) as e:
+        print(f"[selftest-table] FAIL — could not load/parse {CAPABILITY_ROUTER_DOC}: {e}",
+              file=sys.stderr)
+        return 1
+
+    code_layer1 = [[str(n), q, cap, exit_c] for (n, q, cap, exit_c) in LAYER1_TABLE]
+    code_layer2 = [list(row) for row in LAYER2_TABLE]
+
+    ok1 = _rows_equal_report("Layer 1", code_layer1, doc_layer1)
+    ok2 = _rows_equal_report("Layer 2", code_layer2, doc_layer2)
+    ok = ok1 and ok2
+    print(f"[selftest-table] {'PASS' if ok else 'FAIL'}")
+    return 0 if ok else 1
+
+
+@dataclass
+class RouteFixture:
+    name: str
+    attrs: TaskAttributes
+    expected: str
+
+
+ROUTE_FIXTURES: list[RouteFixture] = [
+    RouteFixture("deterministic_validator",
+                 TaskAttributes(deterministic_validator_exists=True), "DETERMINISTIC"),
+    RouteFixture("ambiguous_build_request",
+                 TaskAttributes(needs_planning=True, is_coding=True, cross_module=True),
+                 "PLANNING"),  # PLANNING must win even though complexity signals are present
+    RouteFixture("hebrew_copy_task", TaskAttributes(consumer_hebrew_copy=True), "CONTENT"),
+    RouteFixture("two_module_refactor",
+                 TaskAttributes(is_coding=True, cross_module=True, refactor=True),
+                 "BUILD-HEAVY"),
+    RouteFixture("single_file_bugfix", TaskAttributes(is_coding=True), "BUILD-LIGHT"),
+    RouteFixture("one_file_rename", TaskAttributes(mechanical=True), "GRUNT"),
+    RouteFixture("nutrition_evidence_lookup",
+                 TaskAttributes(evidence_research=True), "EVIDENCE-RESEARCH"),
+    RouteFixture("library_api_lookup",
+                 TaskAttributes(engineering_research=True), "ENGINEERING-RESEARCH"),
+    RouteFixture("bulk_screenshot_judging",
+                 TaskAttributes(vision_longread=True), "VISION-LONGREAD"),
+    RouteFixture("sodium_scoring_philosophy",
+                 TaskAttributes(domain_judgment=True), "DOMAIN-JUDGMENT"),
+    RouteFixture("second_opinion_on_codex_diff",
+                 TaskAttributes(needs_challenge=True, producer_vendor="codex"), "CHALLENGE"),
+    RouteFixture("offbeat_task_no_signal", TaskAttributes(), "GENERAL"),
+    RouteFixture("deterministic_beats_everything",
+                 TaskAttributes(deterministic_validator_exists=True, needs_planning=True,
+                                 is_coding=True, mechanical=True),
+                 "DETERMINISTIC"),  # ordering proof: Q1 beats Q2/Q4/Q6
+    RouteFixture("build_beats_challenge_when_both_set",
+                 TaskAttributes(is_coding=True, needs_challenge=True),
+                 "BUILD-LIGHT"),  # ordering proof: Q4/Q5 beats Q11
+]
+
+
+def cmd_selftest_route() -> int:
+    """Run the route() fixture battery and assert expected Capabilities."""
+    ok = True
+    for fx in ROUTE_FIXTURES:
+        got = route(fx.attrs)
+        status = "ok" if got == fx.expected else "WRONG"
+        if got != fx.expected:
+            ok = False
+        print(f"[selftest-route] {fx.name:<34} expected={fx.expected:<14} got={got:<14} "
+              f"{status}")
+    print(f"[selftest-route] {'PASS' if ok else 'FAIL'} ({len(ROUTE_FIXTURES)} fixtures)")
+    return 0 if ok else 1
+
+
+def cmd_selftest(timeout: int) -> int:
+    """Send a harmless PONG round-trip through opencode (openai/gpt-5.4-mini-fast — the
+    GRUNT text-fallback model) to verify the opencode HTTP pipe works end to end."""
+    PONG_MESSAGE = "Reply with the single word PONG and do nothing else. Do not use any tools."
+    model_id, provider_id = "gpt-5.4-mini-fast", "openai"
+    print(f"[selftest] Sending PONG to {provider_id}/{model_id} (opencode HTTP)...")
     print("-" * 60)
     started = datetime.now(timezone.utc)
     try:
-        exit_code, output = run_via_grok_cli(PONG, timeout)
-    except FileNotFoundError as e:
-        print(f"[selftest-grok] FAIL — {e}", file=sys.stderr)
-        return 1
+        exit_code, output = run_via_opencode_api(message=PONG_MESSAGE, model_id=model_id,
+                                                  provider_id=provider_id, timeout=timeout)
+    except DispatchBusy as e:
+        print(f"[selftest] ABORTED — {e}", file=sys.stderr)
+        return 3
     finished = datetime.now(timezone.utc)
     print("-" * 60)
-    print(f"[selftest-grok] Finished in {(finished-started).total_seconds():.1f}s, "
+    print(f"[selftest] Finished in {(finished - started).total_seconds():.1f}s, "
           f"exit code: {exit_code}")
-    print(f"[selftest-grok] Output:\n{output[:1000]}")
-    stdout_part = output.split("\n\n--- STDERR ---\n")[0]
-    if exit_code == 0 and "PONG" in stdout_part.upper():
-        print("[selftest-grok] PASS — PONG received.")
-        return 0
-    print("[selftest-grok] FAIL — PONG not detected.\n"
-          "  Checklist: (1) `grok login` done (browser OAuth, SuperGrok account)?\n"
-          "  (2) SuperGrok tier covers the CLI beta (Heavy / X Premium Plus)?\n"
-          "  (3) flags drifted? run: grok --help and check -p / --always-approve.",
-          file=sys.stderr)
-    return 1
-def cmd_selftest_cursor(timeout: int) -> int:
-    """PONG round-trip through the Cursor CLI to verify the lane works."""
-    PONG_MESSAGE = ("Reply with the single word PONG and do nothing else. "
-                    "Do not use any tools, do not read or edit any files.")
-    print("[selftest-cursor] Sending PONG to cursor-agent …")
-    print("-" * 60)
-    started = datetime.now(timezone.utc)
-    try:
-        exit_code, output = run_via_cursor_cli(PONG_MESSAGE, timeout)
-    except FileNotFoundError as e:
-        print(f"[selftest-cursor] FAIL — {e}", file=sys.stderr)
-        return 1
-    finished = datetime.now(timezone.utc)
-    print("-" * 60)
-    elapsed = (finished - started).total_seconds()
-    print(f"[selftest-cursor] Finished in {elapsed:.1f}s, exit code: {exit_code}")
-    print(f"[selftest-cursor] Output:\n{output[:1000]}")
-    # Require a clean exit AND the token in stdout (stderr is appended after
-    # the '--- STDERR ---' marker; error dumps can coincidentally contain it).
-    stdout_part = output.split("\n\n--- STDERR ---\n")[0]
-    if exit_code == 0 and "PONG" in stdout_part.upper():
-        print("[selftest-cursor] PASS — PONG received.")
+    print(f"[selftest] Output:\n{output[:1000]}")
+    if "PONG" in output.upper():
+        print("[selftest] PASS — PONG received.")
         return 0
     print(
-        "[selftest-cursor] FAIL — PONG not detected.\n"
-        "  Checklist: (1) machine rebooted after Smart App Control was turned\n"
-        "  off? (2) authenticated? run: cursor-agent login  (3) flags drifted?\n"
-        "  run: cursor-agent --help and check -p / --output-format / --force.",
+        "[selftest] WARN — PONG not detected in output.\n"
+        "  This may indicate the agent responded but output capture is incomplete,\n"
+        "  or openai/gpt-5.4-mini-fast is unavailable/not authenticated via opencode.\n"
+        "  Check the SSE events above for session.idle confirmation.",
         file=sys.stderr,
     )
     return 1
 
 
+def cmd_selftest_codex(timeout: int) -> int:
+    """PONG round-trip via `codex exec` — SKIPPED (not FAILED, exit 75/EX_TEMPFAIL)
+    while BUILD-LIGHT's primary is still the PIN-AT-AUTH placeholder, so this never
+    spends against the wrong (pay-per-token) billing path. Once pinned, this actually
+    dispatches a real PONG (sandbox read-only, so it cannot write anything)."""
+    print("[selftest-codex] Checking MODEL_BINDING['BUILD-LIGHT'] pin state before "
+          "dispatching...")
+    try:
+        model = resolve_primary_model("BUILD-LIGHT")
+    except ModelNotPinnedError as e:
+        print(f"[selftest-codex] SKIPPED (EX_TEMPFAIL) — {e}")
+        return 75
+    print(f"[selftest-codex] Pinned model: {model}. Sending PONG via `codex exec`...")
+    print("-" * 60)
+    PONG = ("Reply with the single word PONG and do nothing else. Do not use any tools, "
+            "do not read or edit any files.")
+    started = datetime.now(timezone.utc)
+    try:
+        exit_code, output = _run_codex_exec(PONG, model=model, sandbox="read-only",
+                                             cwd=REPO_ROOT, timeout=timeout)
+    except FileNotFoundError as e:
+        print(f"[selftest-codex] FAIL — {e}", file=sys.stderr)
+        return 1
+    finished = datetime.now(timezone.utc)
+    print("-" * 60)
+    print(f"[selftest-codex] Finished in {(finished - started).total_seconds():.1f}s, "
+          f"exit code: {exit_code}")
+    print(f"[selftest-codex] Output:\n{output[:1000]}")
+    if exit_code == 0 and "PONG" in output.upper():
+        print("[selftest-codex] PASS — PONG received.")
+        return 0
+    print("[selftest-codex] FAIL — PONG not detected.", file=sys.stderr)
+    return 1
+
 
 def cmd_selftest_gemini(timeout: int) -> int:
-    # agy is an agentic coder with no text-to-stdout in -p mode, so a "say PONG"
-    # check is meaningless (always empty). Instead we hand it a tiny, isolated
-    # build task — write a sentinel token into result.txt inside a throwaway temp
-    # dir — and verify the FILE. This exercises the real path: Pro-plan auth +
-    # tool execution + file write. The temp cwd also keeps the probe away from the
-    # Bari brain (agy uploads its workspace to Google's cloud).
-    import tempfile, uuid
-    token = "AGY_OK_" + uuid.uuid4().hex[:8]
-    ws = Path(tempfile.gettempdir()) / ("agy_selftest_" + uuid.uuid4().hex[:8])
+    """Sentinel-file PONG through `gemini -p` (not a bare stdout PONG check: real-world
+    gemini-cli stdout is noisy — banner/tool-fallback lines mixed in — so a file the
+    model must explicitly create is the robust signal, same rationale the retired agy
+    selftest used). Detects and reports the KNOWN pending-auth state cleanly: exit 75
+    (EX_TEMPFAIL), never a hang, never an uncaught traceback. Hard-capped at 10 minutes
+    regardless of the requested timeout (Layer 2 VISION-LONGREAD fallback trigger)."""
+    import tempfile
+    import uuid
+    token = "GEMINI_OK_" + uuid.uuid4().hex[:8]
+    ws = Path(tempfile.gettempdir()) / ("gemini_selftest_" + uuid.uuid4().hex[:8])
     ws.mkdir(parents=True, exist_ok=True)
     sentinel = ws / "result.txt"
-    msg = ("Create a file named result.txt in the current directory whose only "
-           f"contents are exactly this single line: {token}")
-    print("[selftest-gemini] Probing agy (Antigravity / Google AI Pro) via a sentinel-file build task ...")
+    msg = (f"Create a file named result.txt in the current directory whose only contents "
+           f"are exactly this single line: {token}")
+    hard_timeout = min(timeout, GEMINI_HARD_TIMEOUT_SECONDS)
+    print(f"[selftest-gemini] Probing gemini CLI (report-only VISION-LONGREAD pipe) via a "
+          f"sentinel-file task, hard timeout {hard_timeout}s...")
     print("-" * 60)
     try:
-        agy_cmd = find_gemini_cmd()
+        gemini_exe = _resolve_gemini_cmd()
     except FileNotFoundError as e:
-        print(f"[selftest-gemini] FAIL - {e}", file=sys.stderr); return 1
-    inner = max(30, timeout - 15)
-    cmd = [str(agy_cmd), "--dangerously-skip-permissions", "--print-timeout", f"{inner}s", "-p", msg]
+        print(f"[selftest-gemini] FAIL — {e}", file=sys.stderr)
+        return 1
+    cmd = [str(gemini_exe), "--skip-trust", "-p", msg]
+    env = dict(os.environ, GEMINI_CLI_TRUST_WORKSPACE="true")
     started = datetime.now(timezone.utc)
     try:
         proc = subprocess.run(cmd, cwd=str(ws), capture_output=True, text=True,
-                              encoding="utf-8", errors="replace", timeout=timeout, shell=False)
+                               encoding="utf-8", errors="replace", timeout=hard_timeout,
+                               env=env, stdin=subprocess.DEVNULL, shell=False)
     except subprocess.TimeoutExpired:
-        print(f"[selftest-gemini] FAIL - agy timed out after {timeout}s.", file=sys.stderr); return 1
+        print(f"[selftest-gemini] FAIL — gemini CLI hung past the {hard_timeout}s hard cap "
+              f"(Layer 2 VISION-LONGREAD fallback trigger: CLI hang > 10 min). Killed.",
+              file=sys.stderr)
+        return 1
     finished = datetime.now(timezone.utc)
     elapsed = (finished - started).total_seconds()
+    combined = (proc.stdout or "") + "\n" + (proc.stderr or "")
     got = sentinel.read_text(encoding="utf-8").strip() if sentinel.exists() else ""
     print("-" * 60)
-    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code: {proc.returncode}")
-    print(f"[selftest-gemini] Sentinel {'PRESENT' if sentinel.exists() else 'MISSING'} at {sentinel}; content: {got!r}")
-    if proc.stderr and proc.stderr.strip():
-        print("[selftest-gemini] (stderr tail) " + proc.stderr.strip()[-300:])
+    print(f"[selftest-gemini] Finished in {elapsed:.1f}s, exit code {proc.returncode}")
+    print(f"[selftest-gemini] Sentinel {'PRESENT' if sentinel.exists() else 'MISSING'} at "
+          f"{sentinel}; content: {got!r}")
+
     if token in got:
-        print("[selftest-gemini] PASS - agy authenticated on Pro and completed the build task.")
+        print("[selftest-gemini] PASS — gemini CLI authenticated and completed the "
+              "sentinel-file task.")
         return 0
-    print("[selftest-gemini] FAIL - sentinel not written. Likely causes: agy not "
-          "logged in (token lives in Windows Credential Manager, Target=gemini:antigravity "
-          "- run `agy` once to sign in with the Google AI Pro account), or the ~200/24h "
-          "Pro quota is exhausted.", file=sys.stderr)
-    return 1
-def cmd_selftest(timeout: int) -> int:
-    """
-    Send a harmless PONG round-trip through opencode to verify the pipe works.
-    """
-    PONG_MESSAGE = "Reply with the single word PONG and do nothing else. Do not use any tools."
-    print(f"[selftest] Sending PONG to {C2_PROVIDER_ID}/{C2_MODEL_ID} …")
-    print("-" * 60)
 
-    started = datetime.now(timezone.utc)
-    exit_code, output = run_via_opencode_api(
-        message=PONG_MESSAGE,
-        model_id=C2_MODEL_ID,
-        provider_id=C2_PROVIDER_ID,
-        timeout=timeout,
-    )
-    finished = datetime.now(timezone.utc)
-
-    print("-" * 60)
-    elapsed = (finished - started).total_seconds()
-    print(f"[selftest] Finished in {elapsed:.1f}s, exit code: {exit_code}")
-    print(f"[selftest] Output:\n{output[:1000]}")
-
-    if "PONG" in output.upper():
-        print("[selftest] PASS — PONG received.")
-        return 0
-    else:
+    if re.search(r"IneligibleTierError|UNSUPPORTED_CLIENT|migrate to the Antigravity", combined):
         print(
-            "[selftest] WARN — PONG not detected in output.\n"
-            "  This may indicate the agent responded but output capture is incomplete,\n"
-            "  or the opencode/deepseek model is unavailable/not authenticated.\n"
-            "  Check the SSE events above for session.idle confirmation.",
+            "[selftest-gemini] PENDING-AUTH (clean, expected; EX_TEMPFAIL) — "
+            "IneligibleTierError: this Google account's free tier ('Gemini Code Assist for "
+            "individuals') is retired; the CLI's OWN error says migrate to Antigravity, NOT "
+            "re-login into this same client. Re-running `gemini` interactive OAuth will NOT "
+            "fix this on the free tier. Owner decision needed: either put this account on an "
+            "eligible paid Gemini plan and re-auth `gemini`, or confirm the router should "
+            "target Antigravity (agy) instead — capability_router_v5.md footnote 2 assumed a "
+            "simple re-login; that is not what is actually broken (verified 2026-07-10).",
             file=sys.stderr,
         )
-        return 1
+        return 75
+    if re.search(r"not running in a trusted directory|GEMINI_CLI_TRUST_WORKSPACE", combined):
+        print(
+            "[selftest-gemini] PENDING-AUTH (clean; EX_TEMPFAIL) — workspace trust not applied "
+            "even with GEMINI_CLI_TRUST_WORKSPACE=true; check gemini-cli version/flag drift.",
+            file=sys.stderr,
+        )
+        return 75
+    print(f"[selftest-gemini] FAIL — sentinel not written and no known pending-auth marker "
+          f"matched. stdout/stderr tail:\n{combined[-1500:]}", file=sys.stderr)
+    return 1
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Bari C2 dispatch router — routes P-numbered prompts to DeepSeek via opencode.",
+        description="Bari Capability Router v5 — implements capability_router_v5.md (law).",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument(
-        "p_number",
-        nargs="?",
-        help="P-number to dispatch, e.g. P35",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="Parse and build the command without executing it.",
-    )
-    parser.add_argument(
-        "--selftest",
-        action="store_true",
-        help="Send a harmless PONG message through opencode to verify the pipe.",
-    )
-    parser.add_argument(
-        "--selftest-cursor",
-        action="store_true",
-        help="Send a harmless PONG through the Cursor CLI (C1-CURSOR lane).",
-    )
-    parser.add_argument(
-        "--selftest-gemini",
-        action="store_true",
-        help="Send a harmless PONG through the Gemini CLI (C1-GEMINI lane).",
-    )
-    parser.add_argument(
-        "--selftest-grok",
-        action="store_true",
-        help="Send a harmless PONG through the Grok CLI (C1-GROK lane).",
-    )
-    parser.add_argument(
-        "--timeout",
-        type=int,
-        default=DEFAULT_TIMEOUT,
-        help=f"Timeout in seconds for the opencode invocation (default: {DEFAULT_TIMEOUT}).",
-    )
-    parser.add_argument(
-        "--route",
-        metavar="P-NUMBER|TEXT",
-        help="Print the deterministic lane recommendation for a P-number or free text, then exit.",
-    )
-    parser.add_argument(
-        "--ledger",
-        action="store_true",
-        help="Print the lane-split telemetry ledger (audit rule 8) and exit.",
-    )
-    parser.add_argument(
-        "--ledger-limit",
-        type=int,
-        default=0,
-        help="With --ledger, only aggregate the last N dispatches (0 = all).",
-    )
-
+    parser.add_argument("--selftest", action="store_true",
+                         help="PONG round-trip through opencode (openai/gpt-5.4-mini-fast).")
+    parser.add_argument("--selftest-codex", action="store_true",
+                         help="PONG round-trip through `codex exec`; skipped while PIN-AT-AUTH.")
+    parser.add_argument("--selftest-gemini", action="store_true",
+                         help="Sentinel-file PONG through `gemini -p`; clean failure while "
+                              "auth is broken.")
+    parser.add_argument("--selftest-table", action="store_true",
+                         help="Assert LAYER1_TABLE/LAYER2_TABLE byte-match "
+                              "capability_router_v5.md.")
+    parser.add_argument("--selftest-route", action="store_true",
+                         help="Run the route() fixture battery and assert expected "
+                              "capabilities.")
+    parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT,
+                         help=f"Timeout in seconds for CLI/HTTP selftests "
+                              f"(default: {DEFAULT_TIMEOUT}).")
     args = parser.parse_args()
 
-    if args.ledger:
-        sys.exit(cmd_ledger(args.ledger_limit))
-
-    if args.route:
-        sys.exit(cmd_route(args.route))
-
+    if args.selftest_table:
+        sys.exit(cmd_selftest_table())
+    if args.selftest_route:
+        sys.exit(cmd_selftest_route())
     if args.selftest:
         sys.exit(cmd_selftest(args.timeout))
-
-    if args.selftest_cursor:
-        sys.exit(cmd_selftest_cursor(args.timeout))
-
+    if args.selftest_codex:
+        sys.exit(cmd_selftest_codex(args.timeout))
     if args.selftest_gemini:
         sys.exit(cmd_selftest_gemini(args.timeout))
 
-    if args.selftest_grok:
-        sys.exit(cmd_selftest_grok(args.timeout))
-
-    if not args.p_number:
-        parser.error("p_number is required unless --selftest is used.")
-
-    # W4 (TASK-423): serialize dispatch under a fail-fast lock — two concurrent dispatch.py
-    # runs share one opencode server and cross-contaminate returns. Journal the run for the
-    # ledger + replay. Guarded: if the durability module is unavailable, fall back to the
-    # original direct call so the router never depends on it.
-    try:
-        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "agentos"))
-        from dispatch_journal import dispatch_lock, journal, DispatchBusy
-    except Exception:  # noqa: BLE001
-        sys.exit(cmd_dispatch(args.p_number, dry_run=args.dry_run, timeout=args.timeout))
-
-    try:
-        with dispatch_lock():
-            journal(args.p_number.upper(), "dispatch_start", dry_run=args.dry_run)
-            code = cmd_dispatch(args.p_number, dry_run=args.dry_run, timeout=args.timeout)
-            journal(args.p_number.upper(), "step_done", step="dispatch", exit=code)
-            sys.exit(code)
-    except DispatchBusy as e:
-        print(f"[dispatch] {e}", file=sys.stderr)
-        sys.exit(3)
+    parser.error("no action given — pass one of --selftest / --selftest-codex / "
+                 "--selftest-gemini / --selftest-table / --selftest-route.")
 
 
 if __name__ == "__main__":
