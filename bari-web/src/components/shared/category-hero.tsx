@@ -25,7 +25,7 @@ export function CategoryHero({
 }) {
   const content = (
     <>
-      <p className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
+      <p className="font-mono text-[0.62rem] font-bold uppercase tracking-[0.24em] text-[#176F53]">
         {eyebrow}
       </p>
       <h1
