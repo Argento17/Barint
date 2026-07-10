@@ -219,6 +219,56 @@ def rule_number_density(text: str) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
+# nutrition_value_citation — OWNER RULING 2026-07-10, HARD, corpus-wide overhaul.
+#
+# "No more citing nutritional values — that's it." Consumer copy DESCRIBES the
+# food; it never recites the nutrition panel. This is the rule two rewrite rounds
+# and both content gates missed, because every other detector asked "is it true /
+# legal / non-repeating?" and none asked "is this a description or a spec sheet?"
+# It is now deterministic and HARD: any nutrition-panel figure in consumer prose
+# fails the build. Turn the number into experience instead — high sodium → "מלוחה",
+# high fat → "עשירה", low fat → "רזה". A figure never appears.
+#
+# What counts as a nutritional value (banned): a number bound to a mass/energy
+# unit (גרם / מיליגרם / מ"ג / קלוריות / קק"ל), OR a percent bound to a NUTRIENT
+# (32% שומן, 5% סוכר, נתרן ... %). What is NOT a nutritional value (allowed):
+# an INGREDIENT proportion (18% שקדים, 34% קמח כוסמין) — that describes what the
+# food is made of, not its panel; and a bare grade/rank. The nutrient-percent arm
+# only fires next to a nutrient word, so ingredient percentages pass.
+# ---------------------------------------------------------------------------
+
+# Nutrient lexicon for the percent arm (panel nutrients, not ingredients).
+_NUTRIENTS = (
+    "שומן\\s+רווי|שומן|סוכר|סוכרים|חלבון|חלבונים|נתרן|מלח|"
+    "פחמימות|פחמימה|סיבים|סיבים\\s+תזונתיים|קלוריות|קלוריה|אנרגיה"
+)
+
+NUTRITION_VALUE_CITATION_RE = re.compile(
+    # number + mass/energy unit: "26 גרם", "660 מיליגרם", "453 קלוריות", '5 מ"ג'
+    r"\d+(?:\.\d+)?\s*(?:מיליגרם|מיליגר['’]|גרם|גר['’]|מ\"ג|מ״ג|מג|קלוריות|קק\"ל|קק״ל)"
+    # nutrient + percent, either order: "32% שומן", "השומן ... מגיעה ל-32%"
+    rf"|\d+(?:\.\d+)?\s*%\s*(?:{_NUTRIENTS})"
+    rf"|(?:{_NUTRIENTS}).{{0,15}}?\d+(?:\.\d+)?\s*%"
+)
+
+
+def rule_nutrition_value_citation(text: str) -> dict | None:
+    hits = NUTRITION_VALUE_CITATION_RE.findall(text)
+    if not hits:
+        return None
+    return {"rule": "nutrition_value_citation", "count": len(hits),
+            "terms": sorted({h if isinstance(h, str) else h[0]
+                             for h in NUTRITION_VALUE_CITATION_RE.findall(text)})}
+
+
+def nutrition_value_citation_hard_fires(text: str) -> bool:
+    """Gate-safe check. HARD: any nutrition-panel figure in consumer prose fails.
+    Ingredient proportions (18% שקדים) pass — the percent arm requires a nutrient
+    word, so an ingredient noun after % never fires."""
+    return NUTRITION_VALUE_CITATION_RE.search(text) is not None
+
+
+# ---------------------------------------------------------------------------
 # grade_in_prose — owner ban (H4-P7). The grade is the badge, never the sentence.
 # ---------------------------------------------------------------------------
 

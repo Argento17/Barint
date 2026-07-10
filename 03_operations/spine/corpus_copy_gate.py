@@ -126,6 +126,8 @@ def scan_shelf(data: dict) -> dict[str, int]:
                 counts["antithesis"] += 1
             if R.sodium_term_hard_fires(text):
                 counts["sodium_term"] += 1
+            if R.nutrition_value_citation_hard_fires(text):
+                counts["nutrition_value_citation"] += 1
             # Advisory — reported, never gated.
             if R.rule_em_dash(text):
                 counts["_em_dash_advisory"] += text.count("—")
@@ -142,6 +144,7 @@ GATED_RULES = frozenset({
     "banned_phrase", "banned_pattern", "malformed_shape", "grade_in_prose",
     "ingredient_count", "stock_phrase", "antithesis",
     "cross_field_value_repetition", "sodium_term",
+    "nutrition_value_citation",  # OWNER RULING 2026-07-10: no cited nutrition values
 })
 
 
