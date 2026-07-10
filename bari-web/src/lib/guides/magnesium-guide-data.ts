@@ -571,14 +571,45 @@ const V3_GROUP_BY_BARCODE: Record<string, GuideV3Group> = {
   "7290118816065": "g4", // 18 — TRIOMAG (the one product where nothing is knowable — form AND dose unresolved) — Heading 4
 };
 
+// TASK-577 gate-2 fix (RT-2, MEDIUM) — the visible "צורה כימית" card fact and the
+// formAbsorption ABSORPTION-RATING are different facts, and for exactly 2 of 18
+// products (#9, #18) the mechanical derivation below (reading the card's form
+// straight off `benchmarks.formAbsorption.valueLabel`) conflated them: both
+// products' form_absorption bar state is `cannot_verify` (the absorption of an
+// undisclosed-ratio/undisclosed-form blend genuinely cannot be ranked), so the
+// mechanical derivation rendered the bar's cannot_verify FALLBACK LABEL
+// ("לא ניתן לאמת") as if the FORM ITSELF were unknown. For #9 the form is not
+// unknown — it's a disclosed oxide+citrate blend, only the internal ratio is
+// undisclosed (the card's own signed one-liner already says so: "הצורה היא תערובת
+// אוקסיד וציטראט ביחס לא מפורסם") — so the card was self-contradicting. #18 is the
+// one product where the form genuinely IS undisclosed (3-form blend, no ratio at
+// all), which is a different, stronger claim than #9's.
+//
+// Fix: an explicit override, sourced VERBATIM from mag_guide_v3_structure_spec.md
+// §B (D6+D7 co-signed, sha256
+// cc0cc76fc147955b802befbad64ab3a479d152a76d1915d38dfcfb3ea5ab6a84), for exactly
+// these 2 barcodes — the other 16 products keep the mechanical derivation unchanged
+// (their form IS the same fact as the bar's valueLabel). This touches ONLY the
+// visible card-face `formLabel` computed below — `product.benchmarks.formAbsorption`
+// itself (which drives the disclosure's ThresholdBarRow gauge/caption) is
+// completely untouched: the absorption RATING correctly stays cannot_verify there,
+// since an unknown-ratio/unknown-form blend's absorption still cannot be ranked.
+const V3_FORM_LABEL_OVERRIDE_BY_BARCODE: Record<string, string> = {
+  "0033984005181": "תערובת (אוקסיד + ציטראט, יחס לא מפורסם)", // #9 — Solgar Ca+Mg+D3, spec §B row 9
+  "7290118816065": "תערובת בלתי מפורשת (ציטראט/ביסגליצינט/טאוראט)", // #18 — TRIOMAG, spec §B row 18
+};
+
 // `elementalDoseLabel`/`formLabel` stay a mechanical derivation — never a second,
 // independently-authored source of truth for a fact already computed above (same
-// discipline as `benchmarks` in buildProduct). `whatMattersHe` is now the SIGNED,
-// gate-1 AUTHORED one-liner (mag_guide_v3_copy_package.md §2, wired verbatim via
-// MAG_V3_ONE_LINER_BY_BARCODE) — no longer the v2 oneLinerHe placeholder. Fails loud
-// (throws) if a product's barcode is missing from the signed map, matching the
-// existing `identity()` fail-loud discipline above — a silent fallback to the old
-// v2 string would ship unsigned-for-v3 copy without anyone noticing.
+// discipline as `benchmarks` in buildProduct) — EXCEPT the 2 barcodes in
+// V3_FORM_LABEL_OVERRIDE_BY_BARCODE above (RT-2 fix), which use the spec's own
+// distinct form-name fact instead of the bar's cannot_verify fallback label.
+// `whatMattersHe` is the SIGNED, gate-1 AUTHORED one-liner (mag_guide_v3_copy_package.md
+// §2, wired verbatim via MAG_V3_ONE_LINER_BY_BARCODE) — no longer the v2 oneLinerHe
+// placeholder. Fails loud (throws) if a product's barcode is missing from the signed
+// map, matching the existing `identity()` fail-loud discipline above — a silent
+// fallback to the old v2 string would ship unsigned-for-v3 copy without anyone
+// noticing.
 function visibleFactsV3For(product: GuideProductVM): GuideCardVisibleFacts {
   const dose = product.benchmarks?.doseAdequacy;
   const form = product.benchmarks?.formAbsorption;
@@ -591,7 +622,7 @@ function visibleFactsV3For(product: GuideProductVM): GuideCardVisibleFacts {
   return {
     elementalDoseLabel:
       dose?.value != null ? `${dose.valueLabel} מגנזיום יסודי` : (dose?.valueLabel ?? "לא ניתן לאימות"),
-    formLabel: form?.valueLabel ?? "לא ניתן לאמת",
+    formLabel: V3_FORM_LABEL_OVERRIDE_BY_BARCODE[product.id] ?? (form?.valueLabel ?? "לא ניתן לאמת"),
     // TASK-577 — genuine data gap (spec §B / Product D7 amendment #4: fully absent
     // from the rendered card, never a placeholder). Never fabricated: absent for all
     // 18 products in this build.
