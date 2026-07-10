@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   juicesCorpusMeta,
   juicesProducts,
 } from "@/lib/comparisons/juices-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -39,8 +39,7 @@ export function FeaturedJuicesIntelligenceCard({ href, description }: Props) {
     .filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : JUICES_INSIGHT_LINES).map(stripCardDigits);
 
-  const aCount = juicesProducts.filter((p) => p.grade === "A").length;
-  const scoredCount = juicesProducts.filter((p) => p.score != null).length;
+  const stats = deriveComparisonCardStats(juicesProducts, juicesCorpusMeta.generated);
 
   return (
     <Link
@@ -57,11 +56,11 @@ export function FeaturedJuicesIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: juicesProducts.length, label: "מוצרים נותחו" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aCount, label: "בציון A" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.A, label: "בציון A" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(juicesCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/juices.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

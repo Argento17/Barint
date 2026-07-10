@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   snacksCorpusMeta,
   snacksProducts,
 } from "@/lib/comparisons/snacks-comparison-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,7 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
   const insightLines = snacksProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : SNACKS_INSIGHT_LINES).map(stripCardDigits);
 
-  const eCount = snacksProducts.filter((p) => p.grade === "E").length;
+  const stats = deriveComparisonCardStats(snacksProducts, snacksCorpusMeta.generated);
 
   return (
     <Link
@@ -54,10 +54,10 @@ export function FeaturedSnacksIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: snacksProducts.length, label: "בדף ההשוואה" },
-          { value: eCount, label: "בציון E" },
+          { value: stats.productCount, label: "בדף ההשוואה" },
+          { value: stats.gradeCounts.E, label: "בציון E" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(snacksCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#2F7A4F", photo: "/hashvaot/themes/snacks.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

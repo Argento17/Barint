@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   crackersCorpusMeta,
   crackersHero,
   crackersProducts,
 } from "@/lib/comparisons/crackers-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { cn } from "@/lib/utils";
 
 function stripCardDigits(text: string): string {
@@ -31,9 +31,7 @@ const CRACKERS_INSIGHT_LINES = [
 ] as const;
 
 export function FeaturedCrackersIntelligenceCard({ href, description }: Props) {
-  const displayedCount = crackersProducts.length;
-  const scoredCount = crackersProducts.filter((product) => product.score != null).length;
-  const aGradeCount = crackersProducts.filter((product) => product.grade === "A").length;
+  const stats = deriveComparisonCardStats(crackersProducts, crackersCorpusMeta.generated);
 
   return (
     <Link
@@ -50,11 +48,11 @@ export function FeaturedCrackersIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={[...CRACKERS_INSIGHT_LINES].map(stripCardDigits)}
         stats={[
-          { value: displayedCount, label: "מוצרים בהשוואה" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aGradeCount, label: "בציון A" },
+          { value: stats.productCount, label: "מוצרים בהשוואה" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.A, label: "בציון A" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(crackersCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/crackers.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

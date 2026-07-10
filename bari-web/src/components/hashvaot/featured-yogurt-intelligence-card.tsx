@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   yogurtSpoonableCorpusMeta,
   yogurtSpoonableHero,
   yogurtSpoonableProducts,
 } from "@/lib/comparisons/yogurt-spoonable-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { cn } from "@/lib/utils";
 
 function stripCardDigits(text: string): string {
@@ -36,9 +36,7 @@ const YOGURT_SPOONABLE_INSIGHT_LINES = [
 ] as const;
 
 export function FeaturedYogurtIntelligenceCard({ href, description }: Props) {
-  const displayedCount = yogurtSpoonableProducts.length;
-  const scoredCount = yogurtSpoonableProducts.filter((product) => product.score != null).length;
-  const aGradeCount = yogurtSpoonableProducts.filter((product) => product.grade === "A").length;
+  const stats = deriveComparisonCardStats(yogurtSpoonableProducts, yogurtSpoonableCorpusMeta.generated);
 
   return (
     <Link
@@ -55,11 +53,11 @@ export function FeaturedYogurtIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={[...YOGURT_SPOONABLE_INSIGHT_LINES].map(stripCardDigits)}
         stats={[
-          { value: displayedCount, label: "מוצרים בהשוואה" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aGradeCount, label: "בציון A" },
+          { value: stats.productCount, label: "מוצרים בהשוואה" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.A, label: "בציון A" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(yogurtSpoonableCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#238C68", photo: "/hashvaot/themes/yogurt.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"

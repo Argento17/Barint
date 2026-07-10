@@ -3,11 +3,11 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   chocolateTabletCorpusMeta,
   chocolateTabletsProducts,
 } from "@/lib/comparisons/chocolate-tablets-comparison-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +36,11 @@ export function FeaturedChocolateTabletsIntelligenceCard({ href, description }: 
   const insightLines = chocolateTabletsProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : CHOCOLATE_TABLETS_INSIGHT_LINES).map(stripCardDigits);
 
+  // NOTE: cocoa-percentage max ("90%") has no source field on BariProductVM/expansion —
+  // not derivable from this corpus without a new pipeline field (Data Agent territory).
+  // Left as a literal per TASK-579 §"do not force a conversion with no real source".
+  const stats = deriveComparisonCardStats(chocolateTabletsProducts, chocolateTabletCorpusMeta.generated);
+
   return (
     <Link
       href={href}
@@ -51,11 +56,11 @@ export function FeaturedChocolateTabletsIntelligenceCard({ href, description }: 
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: chocolateTabletsProducts.length, label: "בדף ההשוואה" },
-          { value: "B", label: "תקרת הקטגוריה" },
+          { value: stats.productCount, label: "בדף ההשוואה" },
+          { value: stats.ceilingGrade ?? "—", label: "תקרת הקטגוריה" },
           { value: "90%", label: "אחוז קקאו מקסימלי" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(chocolateTabletCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/chocolate-tablets.jpg" }}
         className="group-hover/card:border-[#5C3D2E]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(92,61,46,0.28),0_0_60px_-26px_rgba(92,61,46,0.08)]"

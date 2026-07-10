@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   milkCorpusMeta,
   milkVmProducts,
   milkPrologueSentences,
 } from "@/lib/comparisons/milk-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -40,6 +40,7 @@ export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
   const insightLines = milkVmProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : MILK_INSIGHT_LINES).map(stripCardDigits);
   const cardDescription = description ?? milkPrologueSentences[0];
+  const stats = deriveComparisonCardStats(milkVmProducts, milkCorpusMeta.generated);
 
   return (
     <Link
@@ -56,11 +57,11 @@ export function FeaturedMilkIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(cardDescription)}
         insightLines={lines}
         stats={[
-          { value: milkCorpusMeta.product_count, label: "מוצרים נבדקו" },
-          { value: milkCorpusMeta.scored_count ?? milkVmProducts.length, label: "קיבלו ציון" },
-          { value: milkVmProducts.length, label: "בדף ההשוואה" },
+          { value: stats.productCount, label: "מוצרים נבדקו" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.productCount, label: "בדף ההשוואה" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(milkCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#2E7D60", photo: "/hashvaot/themes/milk.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

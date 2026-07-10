@@ -35,12 +35,37 @@ const { deriveComparisonCardStats } = await import(
   "../src/lib/derived/comparison-card-stats.ts"
 );
 
-// Pilot manifest — the 3 cards converted in TASK-568 Phase 2. Extend as more cards
-// convert to the shared module.
+// Manifest — every /hashvaot featured card converted to deriveComparisonCardStats.
+// TASK-568 pilot: cheese, protein_bars, granola. TASK-579 fan-out: the rest.
+// Excluded (not in this manifest, by design — see derived_views_scoping_v1.md and the
+// TASK-579 return for the per-card reasons):
+//   - magnesium: no JSON `generated` source at all (hand-authored page-data, TASK-578)
+//   - bread (featured-bread-intelligence-card-lite.tsx): bespoke BreadProduct shape +
+//     scan-funnel stats (scanned/sufficient), not a { score, grade } corpus at all
 const PILOT_CATEGORIES = [
-  { id: "cheese", jsonFile: "cheese_frontend_v4.json" },
+  // TASK-579 fix: cheese-page-data.ts actually imports v5 (cheese de-anchor go-live,
+  // commit e953c8d6) — v4 is an orphaned dataset version (confirmed via
+  // `node scripts/validate-corpus.mjs --all` §4.3 "orphaned dataset versions"). The
+  // TASK-568 pilot's manifest entry pointed at the wrong (orphaned) file; v4 and v5
+  // happen to carry identical product/grade/count data as of this writing (verified),
+  // so no reported number was actually wrong, but the file reference was.
+  { id: "cheese", jsonFile: "cheese_frontend_v5.json" },
   { id: "protein_bars", jsonFile: "protein_combined_frontend_v2.json" },
   { id: "granola", jsonFile: "granola_frontend_v2.json" },
+  { id: "breakfast_cereals", jsonFile: "cereals_frontend_v2.json" },
+  { id: "brined_cheeses", jsonFile: "brined_cheeses_frontend_v2.json" },
+  { id: "cakes_hard_cookies", jsonFile: "cakes_hard_cookies_frontend_v1.json" },
+  { id: "chocolate_bars", jsonFile: "chocolate_bars_frontend_v1.json" },
+  { id: "chocolate_tablets", jsonFile: "chocolate_tablets_frontend_v1.json" },
+  { id: "cookies_coffee", jsonFile: "cookies_coffee_frontend_v2.json" },
+  { id: "crackers", jsonFile: "crackers_frontend_v1.json" },
+  { id: "hard_cheeses", jsonFile: "hard_cheeses_frontend_v4.json" },
+  { id: "hummus", jsonFile: "hummus_frontend_v5.json" },
+  { id: "juices", jsonFile: "juices_frontend_v3.json" },
+  { id: "milk", jsonFile: "milk_frontend_v1.json" },
+  { id: "snacks", jsonFile: "snacks_frontend_v5.json" },
+  { id: "yogurt_spoonable", jsonFile: "yogurt_spoonable_frontend_v1.json" },
+  { id: "yogurt_drinks", jsonFile: "yogurt_drinkable_frontend_v1.json" },
 ];
 
 function loadRawCorpus(jsonFile) {
