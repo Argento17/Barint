@@ -2,7 +2,7 @@
 id: TASK-504A
 title: GLP-1 / suppressed-appetite dairy guide (מדריך pilot)
 owner: frontend-agent
-status: IN_PROGRESS
+status: CHANGES_REQUESTED
 priority: HIGH
 created_at: 2026-07-05
 depends_on: []
@@ -76,5 +76,13 @@ Original blocker resolved — re-scoped and rebuilt on real data, not the milk-s
    report: `02_products/yogurt_system/guides/red_team_yogurt_glp1_guide_task504a_v1.md`. 1 MEDIUM
    (TASK-531, VM over-serialization, consumer-invisible/noindex, non-blocking) + 1 LOW (TASK-532)
    routed, not blocking.
-6. **FINAL GATE:** owner index/robots flip (tripwire 2, consumer-facing deploy) — the only remaining
-   step. Page ships noindex until then; nothing is publicly exposed.
+6. ~~**FINAL GATE:** owner index/robots flip~~ — superseded by owner review below.
+
+## OWNER REJECTION (2026-07-08, localhost review) → CHANGES_REQUESTED
+Owner: "extremely bad work as well. The theme of this article is abit GLP-1. We need a rich background
+to explain the issues + visuals + youtube links + rich context and then explain the protein thing and
+provide recommendations. Why just Yogurts also? complete logic failure here."
+Verdict: the shipped guide is a thin shortlist page, not the rich educational article the topic demands,
+and yogurt-only coverage is a scoping error. Full re-scope tracked as **TASK-535** (Product architecture
++ Research evidence/video pack → Content → Frontend rich-article build). This task stays
+CHANGES_REQUESTED until the re-scoped guide replaces the current page. Page remains noindex throughout.

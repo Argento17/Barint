@@ -1,0 +1,1215 @@
+{
+  "_meta": {
+    "generated": "2026-06-17T00:00:00+00:00",
+    "category": "juices",
+    "run_id": "run_juices_task410_d4on",
+    "schema": "BariProductVM[] v3",
+    "version": "v3",
+    "product_count": 17,
+    "scored_count": 17,
+    "excluded_count": 4,
+    "excluded_barcodes": [
+      "5411188115434",
+      "7290013608680",
+      "7290110325893",
+      "7290110558420"
+    ],
+    "provenance": "bsip0_yohananof_juices_storefront_20260607 → BSIP1 run_juices_yohananof_001 → BSIP2 run_juices_yohananof_002 → content_draft_v1 insight lines",
+    "grade_distribution": {
+      "A": 6,
+      "D": 7,
+      "E": 4
+    },
+    "insight_lines_matched": 17,
+    "insight_lines_total": 17,
+    "build_notes": {
+      "ambiguous_matches": [],
+      "unmatched_products": [],
+      "removed_from_display": {
+        "lemon_juice": [
+          "7290004030148",
+          "7290106668577",
+          "7290119385034",
+          "7290000272696",
+          "7290117034774"
+        ],
+        "tirosh": [
+          "7290018940761",
+          "7290019398516",
+          "7290117765630"
+        ]
+      }
+    },
+    "nova_fix_applied": "2026-06-07T18:06:57.862050+00:00",
+    "task410_d4_activation": {
+      "flag_change": "BARI_D4_SCORE_V1=on (juices D4 sulphite activation)",
+      "products_moved": 3,
+      "grade_changes": [],
+      "flagged_movers": [
+        {
+          "barcode": "7290019056720",
+          "name": "קריסטל מיץ ענבים 2 ליטר",
+          "old_score": 41.8,
+          "new_score": 39.8,
+          "grade": "D",
+          "delta": -2
+        },
+        {
+          "barcode": "7290000136523",
+          "name": "ג'אמפ ענבים 1.5 ליטר",
+          "old_score": 40.1,
+          "new_score": 38.1,
+          "grade": "D",
+          "delta": -2
+        },
+        {
+          "barcode": "7290019056737",
+          "name": "קריסטל מיץ אשכולית 2 ליטר",
+          "old_score": 32.3,
+          "new_score": 30.3,
+          "grade": "E",
+          "delta": -2
+        }
+      ],
+      "no_ingredient_text": [],
+      "d4_note": "E220 sulphite-family + dedup via sulphite_family_key; 0 grade changes expected"
+    },
+    "reflow": {
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [
+        "7290019056737 D->E"
+      ],
+      "grade_flip_count": 1,
+      "date": "2026-07-02",
+      "content_authored": "workflow w0467uq2m (Content Agent, Tom-Bari voice)"
+    },
+    "deanchor_meta_regenerated": "2026-07-02",
+    "off_used": false
+  },
+  "generatedAt": "2026-06-07T17:47:07.827153+00:00",
+  "totalProducts": 17,
+  "products": [
+    {
+      "id": "jc-003",
+      "name": "100% מיץ תפוזים ולנסיה סחוט 1 ליטר פריני",
+      "brand": "פרי ניב",
+      "barcode": "7290004030100",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290004030100_p106-05-2024_13-09-41.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "הסחוט היחיד בסקירה שנוקב בזן שלו, ולנסיה, ומעבר לפרי אין ברשימה דבר.",
+      "rowVerdict": "חולק את ראש הטבלה עם חמישה סחוטים נוספים. ולנסיה סחוט ישיר, בלי ריכוז ובלי אף תוספת, כך שכל המתיקות בכוס נולדה בתפוז. עדיין מדובר בסוכר חופשי בנוזל, בלי הסיבים של הפרי השלם, ולכן גם מיץ נקי כזה נשאר לגימה מתוקה מאוד.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": 8.7,
+      "kcalPer100ml": 43,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 43.0,
+          "protein": 0.52,
+          "sugar": 8.7,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "100% מיץ תפוזים סחוט טבעי",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — 'סחוט טבעי' מגובה ברשימת הרכיבים",
+          "ללא סוכר מוסף, ללא ריכוז"
+        ],
+        "limitingFactors": [
+          "גם סוכר פרי הוא סוכר — 8.7 גרם ל-100 מ\"ל ללא סיבים",
+          "נתוני תזונה חלקיים — הציון מבוסס על מה שזמין מהאריזה"
+        ],
+        "comparisonContext": "אחד משלושה מיצי תפוזים סחוטים עם ציון A בסקירה. ההבדל בין השלושה הוא זן הפרי בלבד — כולם רכיב אחד, ללא ריכוז. בתוך קטגוריית המיצים כולה, ולנסיה מייצג את הפינה הנקייה ביותר שיש."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 1,
+      "categoryTotal": 17,
+      "_hash_no_rank": "71c3ffed0060f358a51eab73f88c986dc0092178454ced18a896f8550d48bdd3"
+    },
+    {
+      "id": "jc-006",
+      "name": "מיץ רימונים 100%מיץ סחוט טרי מצונן 1ליט",
+      "brand": "פרימור",
+      "barcode": "7290013608260",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/4/14176001_7290013608260.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "רימון סחוט מצונן, רכיב יחיד, והמתיקות הטבעית הגבוהה ביותר שנמדדה בסקירה.",
+      "rowVerdict": "נמנה עם קבוצת המובילים בזכות רשימה של רכיב אחד, בלי ריכוז ובלי תוספות. עם 12.6 גרם סוכר ל-100 מ\"ל הוא עובר כל תפוז סחוט כאן, וכולו סוכר שהיה ברימון עצמו. מי שמגיע בשביל הרימון מקבל בדיוק את זה, כולל המתיקות.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": 12.6,
+      "kcalPer100ml": 54,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 54.0,
+          "protein": 0.0,
+          "sugar": 12.6,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מיץ רימונים",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — רכיב אחד, ללא ריכוז, מאוחסן מצונן",
+          "ללא סוכר מוסף, ללא תוספות מסוג כלשהו"
+        ],
+        "limitingFactors": [
+          "12.6 גרם סוכר ל-100 מ\"ל — טבעי לרימון, אך גבוה מתפוז",
+          "נתוני תזונה חלקיים — הציון מבוסס על מה שזמין מהאריזה"
+        ],
+        "comparisonContext": "בתוך שישת המוצרים עם ציון A, זהו בעל הסוכר הגבוה ביותר: 12.6 גרם ל-100 מ\"ל לעומת 8.2–8.7 גרם בתפוזים. הסיבה היא הפרי, לא הרכבה. מי שמחפש את נוזל הפרי בקרבתו המרבית לפרי עצמו — זה וסחוט רימונים ליטר הם הבחירה."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 2,
+      "categoryTotal": 17,
+      "_hash_no_rank": "7ff04f27fb5d440a6c2054a5d6a7df03c34ed859b4d1f3c604d426d64fc2c498"
+    },
+    {
+      "id": "jc-001",
+      "name": "מיץ תפוזים סחוט 1 ליטר",
+      "brand": "פרימור",
+      "barcode": "7290000525969",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/1/4/14177791_7290000525969.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "מינימליזם של מיץ: תפוזים סחוטים, ואף מילה נוספת ברשימת הרכיבים.",
+      "rowVerdict": "אחד מששת השווים בפסגת הסקירה. תפוז בלבד, בלי ריכוז ובלי שום תוספת, וכל הסוכר בכוס הגיע מהפרי. שלושת התפוזים הסחוטים כאן הם למעשה אותו מוצר משלושה מותגים, וההבדלים התזונתיים ביניהם קטנים מכדי להכריע.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": 8.2,
+      "kcalPer100ml": 47,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 47.0,
+          "protein": 0.7,
+          "sugar": 8.2,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מיץ תפוזים",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — רכיב יחיד ברשימה",
+          "ללא סוכר מוסף, ללא ריכוז, ללא תוספות",
+          "מיץ סחוט טרי — הצורה הקרובה ביותר לפרי שיש במדף"
+        ],
+        "limitingFactors": [
+          "גם סוכר פרי הוא סוכר — 8.2 גרם ל-100 מ\"ל ללא סיבים שיאיטו ספיגתו",
+          "נתוני תזונה חלקיים — הציון מבוסס על מה שזמין מהאריזה"
+        ],
+        "comparisonContext": "שישה מוצרים בעמוד הזה חולקים את ציון A — כולם מיצים סחוטים של פרי יחיד, ללא ריכוז. בתוך הקבוצה הזאת, מיץ תפוזים סחוט 1 ליטר הוא הנציג הסטנדרטי: 8.2 גרם סוכר ל-100 מ\"ל, 47 קלוריות, רכיב אחד. ממנו ולמטה בטבלה — הפרי פוחת בהדרגה."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 3,
+      "categoryTotal": 17,
+      "_hash_no_rank": "9247fc993917090fa069563f3f69a383ae4e2d02361c1a429de1806e92bc9f34"
+    },
+    {
+      "id": "jc-005",
+      "name": "סחוט 1 ליטר רימונים",
+      "brand": "פריגת",
+      "barcode": "7290013153395",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001315339507-27-2023_10-18-01.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "הרימון השני בקבוצת המובילים, גם הוא פרי יחיד, רק בלי נתון סוכר על האריזה.",
+      "rowVerdict": "שייך לקבוצת ה-A מאותה סיבה בדיוק: מיץ רימונים ותו לא. נתון הסוכר לא הופיע על האריזה, ולפי 54 הקלוריות ל-100 מ\"ל הלגימה צפופה כמו אצל הרימון המצונן ועשירה יותר מתפוז. סביר להניח כאן מתיקות של רימון, גם אם המספר עצמו חסר.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": null,
+      "kcalPer100ml": 54,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 54.0,
+          "protein": null,
+          "sugar": null,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מיץ רימונים",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — רכיב אחד ברשימה",
+          "ללא סוכר מוסף, ללא ריכוז"
+        ],
+        "limitingFactors": [
+          "נתוני הסוכר לא צוינו על האריזה — הציון מבוסס על ה-54 קלוריות ל-100 מ\"ל שכן זמינות"
+        ],
+        "comparisonContext": "אחד משני מיצי הרימונים הסחוטים בסקירה, שניהם עם ציון A. 54 קלוריות ל-100 מ\"ל — יותר מתפוז (43–47), פחות ממה שמופיע בגרסה המצוננת שלו עם 12.6 גרם סוכר מצוין. בשניהם: פרי, ורק פרי."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 4,
+      "categoryTotal": 17,
+      "_hash_no_rank": "015881b632df4ce747c592f83a7b175be92c3e6d44a63b9f9fedad2c6448d3e3"
+    },
+    {
+      "id": "jc-011",
+      "name": "סחוט קלמנטינה 2 ליטר",
+      "brand": "פריגת",
+      "barcode": "7290110114886",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729011011488607-27-2023_10-26-45.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "קלמנטינות סחוטות הן פרי ההדר היחיד שאינו תפוז בין הסחוטים, ועדיין רכיב אחד בלבד.",
+      "rowVerdict": "יושב בקבוצת המובילים כשווה בין שווים. אותו עיקרון עיקש, קלמנטינות בלבד, בלי ריכוז ובלי תוספת כלשהי, בפרופיל קליל מהרימון. נתון הסוכר לא הופיע על האריזה, כך שהציון נשען על מה שכן פורסם בה.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": null,
+      "kcalPer100ml": 44,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 44.0,
+          "protein": 0.5,
+          "sugar": null,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מיץ קלמנטינות",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — רכיב אחד ברשימה",
+          "ללא סוכר מוסף, ללא ריכוז"
+        ],
+        "limitingFactors": [
+          "נתוני הסוכר לא צוינו על האריזה — הציון מבוסס על ה-44 קלוריות ל-100 מ\"ל שכן זמינות"
+        ],
+        "comparisonContext": "הנציג היחיד של פירות הדר שאינם תפוז בקרב מוצרי ה-A. בתוך שישת המוצרים עם ציון A, הקלמנטינה היא הבחירה למי שמחפש גיוון מפירות הדר. ההרכב זהה לכולם — פרי אחד, ותו לא."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 5,
+      "categoryTotal": 17,
+      "_hash_no_rank": "219944eb19698c8826a2043a6662c5a85ce60a00191fc004a02d32906eefd74a"
+    },
+    {
+      "id": "jc-002",
+      "name": "סחוט תפוז 1 ליטר",
+      "brand": "פריגת",
+      "barcode": "7290003009640",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000300964007-27-2023_10-15-21.jpg",
+      "score": 85,
+      "grade": "A",
+      "confidence": "partial",
+      "insightLine": "עוד תפוז שנעצר אחרי רכיב אחד, הפעם בגרסה של פריגת.",
+      "rowVerdict": "ניצב בשורת ה-A לצד שאר הסחוטים. הרשימה זהה מילה במילה לתפוז הסחוט של פרימור, מיץ תפוזים ותו לא, וההבדלים בערכים הם גוני גוונים של אותו פרי. ההכרעה בין התפוזים הסחוטים נשארת עניין של מדף ומחיר.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "juice_100",
+      "novaGroup": 1,
+      "sugarPer100ml": 8.6,
+      "kcalPer100ml": 43,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 43.0,
+          "protein": 0.7,
+          "sugar": 8.6,
+          "fat": 0.0,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מיץ תפוזים",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "100% פרי — רכיב אחד ברשימה",
+          "ללא סוכר מוסף ולא מרוכז"
+        ],
+        "limitingFactors": [
+          "גם סוכר פרי הוא סוכר — 8.6 גרם ל-100 מ\"ל ללא סיבים",
+          "נתוני תזונה חלקיים — הציון מבוסס על מה שזמין מהאריזה"
+        ],
+        "comparisonContext": "בתוך שישת המוצרים עם ציון A — כולם מיצים סחוטים של פרי יחיד — הגרסה הזאת זהה להרכב של מיץ תפוזים סחוט ליטר: מיץ תפוזים בלי שום דבר נוסף. ההבדלים הקטנים בנתוני תזונה (43 קלוריות לעומת 47) הם טבע הפרי — הרכב שניהם זהה."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 6,
+      "categoryTotal": 17,
+      "_hash_no_rank": "b4b8659eb893b6ff5bd1655547b661dd7143afb705b4c682dba0e8b39b340e85"
+    },
+    {
+      "id": "jc-017",
+      "name": "מיץ חמוציות 1 ליטר",
+      "brand": "אושן ספריי",
+      "barcode": "7290008690713",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000869071301-26-2026_08-17-33.jpg",
+      "score": 49.1,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "רבע בקבוק חמוציות מרוכזות וסוכר מוסף, ובכל זאת המשקה הממותק הקרוב ביותר לקבוצת הסחוטים.",
+      "rowVerdict": "מוביל את כל המשקאות הממותקים בסקירה, בפער ניכר מהבא אחריו. הרשימה קצרה באמת, מים, חמוציות מרוכזות וסוכר, בלי צבעים ובלי משמרים. ובכל זאת יש בכוס 11.4 גרם סוכר ל-100 מ\"ל, יותר מאשר בתפוז סחוט, כשהסוכר ברשימה מגיע מיד אחרי החמוציות.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 3,
+      "sugarPer100ml": 11.4,
+      "kcalPer100ml": 49,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 49.0,
+          "protein": 0.0,
+          "sugar": 11.4,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 5.0
+        },
+        "ingredients": "מים, מיץ חמוציות (25% ) (עשוי מרכז), סוכר",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "רק 25% חמוציות — מדובר במשקה פרי בסיסי",
+          "11.4 גרם סוכר ל-100 מ\"ל — רוב הסוכר הוא מהסוכר הלבן המוסף",
+          "עשוי מרכז"
+        ],
+        "comparisonContext": "הגבוה ביותר בציון מבין כל מוצרי ה-D בסקירה. הרשימה הקצרה — מים, חמוציות מרוכזות, סוכר — מייחדת אותו לחיוב בתוך קבוצת ה-D. אבל 25% פרי עם סוכר מוסף הוא לא מיץ: זה משקה פרי בסיסי, ופער עצום בציון מול הסחוטים מסביר בדיוק מה השינוי."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [],
+      "rank": 7,
+      "categoryTotal": 17,
+      "_hash_no_rank": "7d38629463ab895290a7abf0ba870483b987cc0c391b12156ebf18b80a6aaa57"
+    },
+    {
+      "id": "jc-019",
+      "name": "מיץ חמוציות דיאט 1 ליטר",
+      "brand": "אושן ספריי",
+      "barcode": "7290006822192",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000682219201-26-2026_08-21-02.jpg",
+      "score": 39.9,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "גרסת הדיאט מחליפה את הסוכר בממתיקים, ויוצאת מדורגת מתחת לגרסה הרגילה.",
+      "rowVerdict": "ממוקם מדרגה מתחת לחמוציות הרגילות של אותו מותג, למרות 1.2 גרם סוכר ל-100 מ\"ל, הנמוך בסקירה. החמוציות נשארו רבע מהבקבוק, ואת עבודת הסוכר עושים עכשיו פרוקטוז, סוכרלוז ומסמיך מפקטין. הכוס איבדה את הסוכר ושמרה על המרחק מהפרי.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 3,
+      "sugarPer100ml": 1.2,
+      "kcalPer100ml": 9,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 9.0,
+          "protein": 0.0,
+          "sugar": 1.2,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 5.0
+        },
+        "ingredients": "מים, מיץ חמוציות (25% ) (עשוי מרכז), פרוקטוזה, מסמיך - פקטין, ממתקים - סוכרלוז, אססולאם קי",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "1.2 גרם סוכר ל-100 מ\"ל — הנמוך ביותר בין משקאות הפרי בסקירה"
+        ],
+        "limitingFactors": [
+          "רק 25% חמוציות — שלושה רבעי הבקבוק הם מים ותחליפים",
+          "ממתיקים ללא קלוריות — שחלקם שנויים במחלוקת",
+          "חומרי עיבוד מוספים ליציבות ומרקם"
+        ],
+        "comparisonContext": "אחד ממעט המוצרים בסקירה ללא סוכר לבן. ציון D נובע בעיקר מ-25% פרי בלבד. הסוכר הנמוך (1.2 גרם) הוא יתרון מוגבל — מקורו בממתיק, והפרי בבקבוק נשאר 25%."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E955",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך."
+        }
+      ],
+      "rank": 8,
+      "categoryTotal": 17,
+      "_hash_no_rank": "f7b20d89f915119f48ed2fadd862f9a11ef7e0b558a1d202ec849d983ffa799c"
+    },
+    {
+      "id": "jc-018",
+      "name": "מיץ ענבים 2 ליטר",
+      "brand": "קריסטל",
+      "barcode": "7290019056720",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001905672001-22-2025_11-40-54.jpg",
+      "score": 39.8,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "שני אחוזי ענבים הם כל הפרי שבבקבוק, פחות מכל מוצר אחר בסקירה.",
+      "rowVerdict": "מדורג באמצע הטבלה, עמוק בתוך האזור הממותק שלה. הענבים מגיעים שלישיים ברשימה, אחרי מים וסוכר לבן, ואת המראה והטעם משלימים צבע קרמל, חומרי טעם, סוכרלוז ומשמר ממשפחת הסולפיטים. מהענב נשאר בעיקר השם שעל התווית.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 4,
+      "sugarPer100ml": 4.7,
+      "kcalPer100ml": 20,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 20.0,
+          "protein": 0.0,
+          "sugar": 4.7,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 6.0
+        },
+        "ingredients": "מים, סוכר לבן, מיץ ענבים* (2%), סוכר פירות (פרוקטוז), מווסת חומציות (חומצה ציטרית), צבע מאכל (E150d), חומרי טעם וריח, מעכב חמצון (חומצה אסקורבית), משמרים (202E, סולפיט), ממתיק (סוכרלוז). *עשוי מרכז.",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "4.7 גרם סוכר ל-100 מ\"ל — נמוך בקרב משקאות הפרי"
+        ],
+        "limitingFactors": [
+          "רק 2% ענבים — רכיב הפרי הוא השלישי ברשימה, אחרי מים וסוכר",
+          "צבע מאכל, חומר משמר וממתיק ברשימה — ארבעה חומרי עיבוד",
+          "הסוכר הנמוך נשמר בעזרת ממתיק — הממתיק עושה את העבודה"
+        ],
+        "comparisonContext": "אמצע תחתון של מוצרי ה-D. הסוכר הנמוך (4.7 גרם) לא מעיד על פחות מתיקות אלא על שימוש בממתיק. שני אחוזי ענבים הם הפחות בסקירה כולה. המוצר מרוחק מאוד מהציון A שממנו הוא לוקח שם."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        },
+        {
+          "e_number": "E955",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך."
+        },
+        {
+          "e_number": "E220–E228",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
+        }
+      ],
+      "rank": 9,
+      "categoryTotal": 17,
+      "_d4_copy_flag": {
+        "status": "FLAGGED_FOR_TWO_GATE",
+        "reason": "Score moved by D4 sulphite activation: 41.8→39.8 (D, delta=-2). Copy may need update.",
+        "contested_fired": [
+          "E224"
+        ],
+        "task": "TASK-410"
+      },
+      "_hash_no_rank": "eeeae17d104c2232cd6f7c9a7d08460611384e00ccccf15b8adebe6704636e23"
+    },
+    {
+      "id": "jc-020",
+      "name": "ג'אמפ ענבים 1.5 ליטר",
+      "brand": "גאמפ",
+      "barcode": "7290000136523",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290000136523_s106-29-2022_13-36-56.jpg",
+      "score": 38.1,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "משקה הענבים של ג'אמפ מחזיק יותר תפוח מענבים: 12% מול 5%.",
+      "rowVerdict": "עומד צמוד לקריסטל ענבים, בהפרש קטן מכדי להכריע. 17% פרי מרוכז הם פי כמה משל שכנו, רק שהענבים הם החלק הקטן בתערובת, והצבע הכהה נשען על קרמל ועל חומרי טעם, עם סולפיט כחומר משמר. הכותרת ענבים, העבודה בעיקר של התפוח.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 4,
+      "sugarPer100ml": 4.5,
+      "kcalPer100ml": 20,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 20.0,
+          "protein": 0.0,
+          "sugar": 4.5,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 12.0
+        },
+        "ingredients": "מים , מיץ תפוח עץ מרכז (12%), מיץ ענבים מרכז (5%), (מכיל 10% או יותר רכיבי פרי) , סוכר , מווסת חומציות (חומצת לימון , טרי סודיום ציטראט) , צבע מאכל (קרמל E150d) , חומרי טעם וריח , חומר משמר (פוטסיום סורבט , סולפיט (E224)",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "4.5 גרם סוכר ל-100 מ\"ל — נמוך יחסית"
+        ],
+        "limitingFactors": [
+          "רק 17% פרי בסך הכל — שני שלישים מהבקבוק הם מים וסוכר",
+          "צבע מאכל וחומר משמר ברשימה",
+          "הפרי עשוי מרכז"
+        ],
+        "comparisonContext": "שכן לקריסטל מיץ ענבים בטבלה. שניהם משקאות ענבים עם כמות פרי נמוכה מ-25% וחומרי עיבוד. ג'אמפ מביא 17% פרי לעומת 2% אצל קריסטל — הפרש ששווה לשים לב אליו. אבל שניהם הרחק מציון A."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        },
+        {
+          "e_number": "E220–E228",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
+        }
+      ],
+      "rank": 10,
+      "categoryTotal": 17,
+      "_d4_copy_flag": {
+        "status": "FLAGGED_FOR_TWO_GATE",
+        "reason": "Score moved by D4 sulphite activation: 40.1→38.1 (D, delta=-2). Copy may need update.",
+        "contested_fired": [
+          "E224"
+        ],
+        "task": "TASK-410"
+      },
+      "_hash_no_rank": "2e21de24ca3271acf8f2bfcb718636ed55e98117eb8c85aa2413ff0e03623c94"
+    },
+    {
+      "id": "jc-021",
+      "name": "נקטר אפרסקים פחית 330 מ\"ל",
+      "brand": "ספרינג",
+      "barcode": "7290001247891",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000124789103-26-2024_09-39-58.jpg",
+      "score": 37.4,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "כמעט שליש מהפחית הוא מחית אפרסק, נתח גדול יותר מכל פרי בודד במשקאות הממותקים כאן.",
+      "rowVerdict": "נמצא בגובה אחד עם שאר נקטרי ספרינג, בהפרשים שברמת הרעש. הפרי מטפס ל-40% בזכות מחית האפרסק ותוספת מיץ תפוחים, כולו מרוכז, בעוד המים פותחים את הרשימה והסוכר הלבן מופיע אחריהם. גם נקטר נדיב בפרי נשאר משקה עם סוכר מוסף.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "nectar",
+      "novaGroup": 3,
+      "sugarPer100ml": 9.4,
+      "kcalPer100ml": 40,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 40.0,
+          "protein": 0.0,
+          "sugar": 9.4,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, מחית אפרסקים* (31.5%), מיץ תפוחים* (8.5%), סוכר לבן, מווסת חומציות (חומצה ציטרית), מעכב חמצון (חומצה אסקורבית), חומרי טעם וריח. *עשוי מרכז",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "40% פרי בסך הכל — גבוה יחסית לנקטרים בקטגוריה"
+        ],
+        "limitingFactors": [
+          "המים הם הרכיב הראשון — הפרי הוא הרכיב השני והשלישי",
+          "סוכר לבן מוסף",
+          "הפרי עשוי מרכז"
+        ],
+        "comparisonContext": "קרוב בציון לשני נקטרי ספרינג האחרים, וההפרשים בין השלושה קטנים. אחוז הפרי כאן — 40% — שווה לנקטר תות-בננה, ויותר מהמנגו (25%). ועדיין: 9.4 גרם סוכר ל-100 מ\"ל והמים כרכיב ראשון מסבירים את הדירוג. גם 40% פרי מרוכז עם סוכר לבן מוסף הוא הרחק מ-100% סחוט."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        }
+      ],
+      "rank": 11,
+      "categoryTotal": 17,
+      "_hash_no_rank": "db5d54d23bab0284ba9c08a855c4b2125d1598d065df0ab7361e4259ff7ee9d3"
+    },
+    {
+      "id": "jc-022",
+      "name": "נקטר תות בננה פחית 330 מ\"ל",
+      "brand": "ספרינג",
+      "barcode": "7290001247723",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000124772304-01-2024_10-01-54.jpg",
+      "score": 36.9,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "מחמשת הפירות שעל הפחית, התות שבשם תורם 3% בלבד.",
+      "rowVerdict": "יושב באמצע שלישיית הנקטרים של ספרינג, קרוב לשני האחרים עד כדי תיקו. את רוב הפרי מספקים דווקא תפוח ותפוז, הבננה באמצע, והתות עם האסרולה נכנסים לרשימה רק אחרי הסוכר הלבן. סך הפרי דומה לנקטר האפרסק, והשפע הצבעוני שייך בעיקר לאריזה.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "nectar",
+      "novaGroup": 3,
+      "sugarPer100ml": 9.4,
+      "kcalPer100ml": 41,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 41.0,
+          "protein": 0.0,
+          "sugar": 9.4,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, מיץ תפוחים* (14%), מיץ תפוזים* (12%), מחית בננה (8.5%), סוכר לבן, מחית תות שדה* (3%), מיץ אסרולה* (2.5%), רכז גזר סגול, חומרי טעם וריח טבעיים, מווסת חומציות (חומצה ציטרית). *עשוי מרכז הנתוני",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "המים הם הרכיב הראשון — הפרי משני ואילך",
+          "סוכר לבן מוסף כרכיב הרביעי",
+          "9.4 גרם סוכר ל-100 מ\"ל — מהגבוהים בין מוצרי ה-D",
+          "כל הפרי עשוי מרכז"
+        ],
+        "comparisonContext": "מבין שלושת נקטרי ספרינג בסקירה, זהו בעל הסוכר הגבוה ביותר יחד עם נקטר האפרסק — שניהם 9.4 גרם ל-100 מ\"ל, לעומת 9.0 גרם במנגו. אחוז הפרי הכולל הוא כ-40%, אך המים מגיעים ראשון והסוכר הלבן רביעי. הגיוון הנדיב על האריזה — חמישה פירות — הוא בעיקר שיווקי: הפרי הרביעי (תות) הוא 3% מהרשימה."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        }
+      ],
+      "rank": 12,
+      "categoryTotal": 17,
+      "_hash_no_rank": "a5a62866765fba00761fe9edb1aa098839db0b419e23bbd3462d4bb8b141bab7"
+    },
+    {
+      "id": "jc-024",
+      "name": "נקטר מנגו פחית 330 מ\"ל",
+      "brand": "ספרינג",
+      "barcode": "7290001247730",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729000124773003-28-2024_14-17-19.jpg",
+      "score": 35.4,
+      "grade": "D",
+      "confidence": "partial",
+      "insightLine": "מחית מנגו ממלאת רבע מהפחית, וסביבה רשימה קצרה בלי צבע מאכל ובלי חומר משמר.",
+      "rowVerdict": "סוגר את שלישיית הנקטרים במרחק קטן מהשניים האחרים. יש בו פחות פרי מאשר באפרסק ובתות-בננה, אבל הרשימה מהפשוטות במדף הממותק, שישה רכיבים בסך הכל. נקטר בסיסי שעושה בדיוק מה שכתוב עליו: מנגו מרוכז, מים וסוכר.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "nectar",
+      "novaGroup": 3,
+      "sugarPer100ml": 9.0,
+      "kcalPer100ml": 40,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 40.0,
+          "protein": 0.0,
+          "sugar": 9.0,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, מחית מנגו* (25%), סוכר לבן, מווסת חומציות (חומצה ציטרית), מעכב חמצון (חומצה אסקורבית), חומרי טעם וריח טבעיים. *עשוי מרכז",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "רק 25% מנגו מרוכז — רוב הפחית מים וסוכר",
+          "סוכר לבן מוסף כרכיב השלישי",
+          "המנגו עשוי מרכז"
+        ],
+        "comparisonContext": "אחרון בשלישיית נקטרי ספרינג בסקירה, במרחק קטן, ועם אחוז הפרי הנמוך ביניהם (25%). מבחינת הרכב: מים, מחית מנגו מרוכזת, סוכר — סדר ברשימה שמספר את הסיפור. שני הנקטרים האחרים עם 40% פרי מצדיקים את הפער בציון."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        }
+      ],
+      "rank": 13,
+      "categoryTotal": 17,
+      "_hash_no_rank": "45c3607427e2b99907e15e1b2714bf7bea7d7e23e0e91d6761da8e7d3a246143"
+    },
+    {
+      "id": "jc-025",
+      "name": "לימונענע 1.5 ליטר",
+      "brand": "תפוזינה",
+      "barcode": "7290019056355",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001905635501-14-2025_13-55-56.jpg",
+      "score": 33.4,
+      "grade": "E",
+      "confidence": "partial",
+      "insightLine": "האגס הוא הפרי המרכזי בלימונענע הזה, יותר מכפליים מהלימון שעל השם.",
+      "rowVerdict": "משתייך לקבוצת התחתית של הסקירה. הפרי מסתכם ב-7.2% אגס, 3.1% לימון וקורט אשכולית, כולו מרוכז, ואת השאר משלימים סוכר לבן, פרוקטוז, מחזק טעם וצבע מאכל. משקה פרי ממותק שהלימון המובטח בשמו הוא שחקן המשנה של האגס.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 4,
+      "sugarPer100ml": 4.4,
+      "kcalPer100ml": 20,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 20.0,
+          "protein": 0.0,
+          "sugar": 4.4,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, מיץ אגסים* (7.2%), מיץ לימון* (3.1%), סוכר לבן, רכיבי אשכוליות (1.6%), מחזק טעם (אריתריטול), סוכר פירות (פרוקטוז), מווסתי חומציות (חומצה ציטרית, E332ii), חומרי טעם וריח, מייצב (E414), רכז קורטם, צבע מאכל (כלור",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "4.4 גרם סוכר ל-100 מ\"ל — נמוך"
+        ],
+        "limitingFactors": [
+          "רכז אגס-לימון מסומן על התווית — כמה פרי אמיתי בבקבוק לא ניתן לאמת",
+          "חמישה חומרי עיבוד ברשימה כולל מייצב, צבע ומחזק טעם",
+          "כל הפרי עשוי מרכז"
+        ],
+        "comparisonContext": "ציון E — בין הנמוכים בסקירה. לעומת מיצים סחוטים עם פרי מלא, כאן אין דרך לאמת כמה פרי אמיתי בבקבוק: רק רכז אגס-לימון מסומן, והשאר מים, סוכר וחומרי טעם. זה לא \"10% פרי\" במובן שקונה מצפה ממנו."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        }
+      ],
+      "rank": 14,
+      "categoryTotal": 17,
+      "_hash_no_rank": "2eb15c3f08ee95a37cc48ebac29380da73240eba7d787d9af7e0daf6ecc426eb"
+    },
+    {
+      "id": "jc-026",
+      "name": "ענבים 1.5 ליטר",
+      "brand": "ספרינג",
+      "barcode": "7290019056591",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/7290019056591_s1_1502-22-2021_15-41-00.jpg",
+      "score": 33.3,
+      "grade": "E",
+      "confidence": "partial",
+      "insightLine": "סוכר לבן שני ברשימה כאן, לפני הפרי, ואת גוון הענבים מספק צבע קרמל.",
+      "rowVerdict": "חולק את קבוצת ה-E עם הלימונענע שלצידו. פחות מעשירית מהבקבוק היא פרי, ורובה תפוח, בעוד 9.5 גרם סוכר ל-100 מ\"ל ממקמים אותו בין המתוקים שבמשקאות הממותקים, הפעם מסוכר לבן ברובו. הענבים האמיתיים הם 3.5% מהסיפור.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 4,
+      "sugarPer100ml": 9.5,
+      "kcalPer100ml": 40,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 40.0,
+          "protein": 0.0,
+          "sugar": 9.5,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": 12.0
+        },
+        "ingredients": "מים, סוכר לבן, מיץ תפוחים* (5.6%), מיץ ענבים* (3.5%), מווסתי חומציות (חומצה מאלית, חומצה ציטרית, E331iii), צבע מאכל (E150d), , חומרי טעם וריח, מעכב חמצון (חומצה אסקורבית). *עשוי מרכז",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "רק 9% פרי — הפרי הוא הרכיב השלישי והרביעי ברשימה",
+          "סוכר לבן הוא הרכיב השני — לפני הפרי",
+          "9.5 גרם סוכר ל-100 מ\"ל — רוב המתיקות מהסוכר הלבן",
+          "צבע קרמל וחומרי טעם לצורך מראה וטעם"
+        ],
+        "comparisonContext": "שכן לתפוזינה לימונענע בציון — שניהם ציון E, שניהם עם פחות מ-10% פרי. ספרינג ענבים 1.5 ליטר מוסיף 9.5 גרם סוכר ל-100 מ\"ל לעומת 4.4 של שכנו — פחות ממתיקים, יותר סוכר לבן. בשני המקרים: רוב הבקבוק הוא לא פרי."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E296",
+          "name_he": "חומצה מאלית",
+          "tier": "functional",
+          "function_he": "חומצת מאכל (חומצה מחזור קרבס)",
+          "explanation_he": "חומצה מאלית היא חומצה טבעית הקיימת גם בתפוחים ובפירות, ומשמשת לאיזון טעם."
+        },
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E331",
+          "name_he": "סודיום ציטרט",
+          "tier": "functional",
+          "function_he": "מלח ציטרט — מווסת חומציות / מלח מתחלב",
+          "explanation_he": "ציטרט נתרן הוא מלח נתרן של חומצת לימון, המשמש לאיזון חומציות; הגוף מפרק אותו לציטרט."
+        },
+        {
+          "e_number": "E150",
+          "name_he": "צבע קרמל",
+          "tier": "disclosure-gap",
+          "function_he": "צבע חום — הסוג הספציפי (I–IV) אינו מצוין על תוויות ישראליות",
+          "explanation_he": "צבע קרמל הוא צבע מאכל חום; הסוג הספציפי אינו מצוין על התווית הישראלית ולכן לא ניתן לאפיין את פרופיל הבטיחות שלו."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        }
+      ],
+      "rank": 15,
+      "categoryTotal": 17,
+      "_hash_no_rank": "41c77bc8f50103b474e71e23f1e9416b0e1d15fedc726b0bffc4a447d1608d84"
+    },
+    {
+      "id": "jc-023",
+      "name": "מיץ אשכולית 2 ליטר",
+      "brand": "קריסטל",
+      "barcode": "7290019056737",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001905673701-22-2025_11-20-27.jpg",
+      "score": 30.3,
+      "grade": "E",
+      "confidence": "partial",
+      "insightLine": "סביב 11% אשכולית נבנתה כאן רשימת התוספים הארוכה ביותר בסקירה.",
+      "rowVerdict": "מתמקם עמוק בקבוצת התחתית. שני סוגי סוכר, סוכרלוז, ארבעה מייצבים, משמרים ובהם סולפיטים וחומרי טעם מקיפים מנה צנועה של אשכולית מרוכזת. הסוכר בכוס נמוך בזכות הממתיק, והמרחק מפרי אמיתי נשאר גדול.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 4,
+      "sugarPer100ml": 4.5,
+      "kcalPer100ml": 20,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 20.0,
+          "protein": 0.0,
+          "sugar": 4.5,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, מיץ אשכוליות* (6%) ,רכיבי אשכוליות* (5%), סוכר לבן, סוכר פירות (פרוקטוז), מווסת חומציות (חומצה ציטרית), מייצבים (פקטין, E445, E414,E412, בפסח: פקטין, E445, E414), חומרי טעם וריח, משמרים (E202, סולפיט), מעכב חמצון (חומצה אסקורבית(, ממתיק (סוכרלוז). *עשוי",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [
+          "4.5 גרם סוכר ל-100 מ\"ל — נמוך"
+        ],
+        "limitingFactors": [
+          "רק 11% אשכולית — כמעט תשעים אחוז (89%) מהבקבוק הם מים, סוכר ותחליפים",
+          "רשימת תוספי עיבוד ארוכה: מווסת חומציות, מייצבים, חומרי טעם, משמרים, מעכב חמצון וממתיק",
+          "הממתיק מוריד את הסוכר — המתיקות בכוס נשמרת"
+        ],
+        "comparisonContext": "ציון E — בין הנמוכים בקטגוריה. מה שמייחד אותו לשלילה הוא שילוב של אחוז פרי נמוך עם רשימת תוספי מזון ארוכה. ה-11% אשכולית הם יותר ממה שיש בחלק ממוצרי ה-E האחרים, אבל מה שנוסף מסביב מוריד."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E412",
+          "name_he": "גואר",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר."
+        },
+        {
+          "e_number": "E202",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        },
+        {
+          "e_number": "E955",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        },
+        {
+          "e_number": "E220–E228",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים."
+        }
+      ],
+      "rank": 16,
+      "categoryTotal": 17,
+      "_d4_copy_flag": {
+        "status": "FLAGGED_FOR_TWO_GATE",
+        "reason": "Score moved by D4 sulphite activation: 32.3→30.3 (E, delta=-2). Copy may need update.",
+        "contested_fired": [
+          "E224"
+        ],
+        "task": "TASK-410"
+      },
+      "_hash_no_rank": "b5011e6a70fda82a1f81abfdcd957bd4bab860e9bf8d0072e242efb6a70e2e3b"
+    },
+    {
+      "id": "jc-027",
+      "name": "סחוט לימונענע 1 ליטר",
+      "brand": "פריגת",
+      "barcode": "7290013153418",
+      "imageUrl": "https://api.yochananof.co.il/media/catalog/product/cache/7d40ab1d2c85da43a7701c1338d70a16/7/2/729001315341809-30-2025_09-24-31.jpg",
+      "score": 28.5,
+      "grade": "E",
+      "confidence": "partial",
+      "insightLine": "המילה \"סחוט\" שבשם פוגשת רשימה שנפתחת במים וסוכר, עם 6% לימון מרוכז.",
+      "rowVerdict": "חותם את הטבלה, בתוך קבוצה תחתונה צפופה. הפרי כולו, לימון מרוכז ותאי אשכולית, מסתכם בפחות מעשירית מהבקבוק, אחרי מים וסוכר שמובילים את הרשימה ולצד שלושה מייצבים. הפער בין השם שעל הבקבוק לתוכן שבפנים בולט כאן במיוחד.",
+      "retailers": [
+        "yohananof"
+      ],
+      "subPool": "fruit_drink",
+      "novaGroup": 3,
+      "sugarPer100ml": 9.3,
+      "kcalPer100ml": 39,
+      "volumeMl": null,
+      "expansion": {
+        "nutrition": {
+          "energyKcal": 39.0,
+          "protein": 0.0,
+          "sugar": 9.3,
+          "fat": null,
+          "satFat": null,
+          "fiber": null,
+          "sodium": null
+        },
+        "ingredients": "מים, סוכר, מיץ לימון מרכז (6%), תאי אשכולית (3.8%), פרוקטוז, מווסתי חומציות: תלת אשלגן ציטרט, חומצה ציטרית; מייצבים: פקטין, אסטר גאם (E445), אקציה גאם; חומרי טעם וריח, מעכב חמצון: חומצה אסקורבית, רז קורטם. מכיל רכיבי אשכולית",
+        "confidenceLabel": "ניתוח חלקי",
+        "servingNote": "ל-100 מ\"ל",
+        "positiveSignals": [],
+        "limitingFactors": [
+          "רק 6% לימון מרוכז — המים והסוכר מגיעים ראשונים ברשימה",
+          "9.3 גרם סוכר ל-100 מ\"ל — רוב הסוכר הוא מהסוכר המוסף",
+          "שלושה מייצבים ברשימה בנוסף לחומרי טעם וריח",
+          "ההצגה כ\"סחוט\" מנוגדת לכך שהפרי עשוי מרכז"
+        ],
+        "comparisonContext": "הנמוך בציון בסקירה — ציון E. ששה אחוז לימון מרוכז ושם כמו \"סחוט\" על האריזה הם הדוגמה הברורה ביותר לפער בין מה שהשם מרמז ומה שרשימת הרכיבים מספרת."
+      },
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "confidence_sub_reason": "missing_nutrition",
+      "d4_additives": [
+        {
+          "e_number": "E330",
+          "name_he": "חומצת לימון",
+          "tier": "functional",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע."
+        },
+        {
+          "e_number": "E440",
+          "name_he": "פקטין",
+          "tier": "functional",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים."
+        },
+        {
+          "e_number": "E300",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי."
+        },
+        {
+          "e_number": "E414",
+          "name_he": "גומי ערבי",
+          "tier": "functional",
+          "function_he": "מייצב ומסמיך טבעי מגומי עץ השיטה",
+          "explanation_he": "גומי ערבי הוא סיב טבעי מעץ השיטה המשמש לייצוב ולהסמכה; נחשב בטוח ונפוץ במזון."
+        }
+      ],
+      "rank": 17,
+      "categoryTotal": 17,
+      "_hash_no_rank": "54a4643b2319b2b8eb5164d6411c4298c06aebd2ce93d263a0d7666b39060bb3"
+    }
+  ]
+}

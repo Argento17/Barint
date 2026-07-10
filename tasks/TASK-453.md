@@ -14,4 +14,15 @@ summary: >
 
 # TASK-453 — Gate-liveness sweep — verify every Bari gate is actually wired + fires (not decorative)
 
-<!-- opened with new_task.py; fill in context / scope / the deliverable -->
+## Backlog items routed here (orchestrator)
+- 2026-07-03 (unattended pass) **run_gates.py CRASH on string-typed `consumerExplanation`:**
+  `_collect_consumer_strings` (~run_gates.py:939-941) calls `.get()` without an `isinstance(ce, dict)`
+  guard → `AttributeError` on the LIVE granola baseline (7 products carry string-typed
+  consumerExplanation at origin/master). Found during TASK-461 granola handover execution; gate
+  parity for that category was proven via a patched local workaround (identical crash on baseline
+  and candidate, patched run = PASS on both; see `tasks/returns/TASK-461_exec_B_report.md`).
+  Fix: guard + decide whether string-typed consumerExplanation is itself a schema defect (G1 should
+  catch it, not crash on it). Also means run_gates G-gates have been silently un-runnable on granola.
+- (Pre-existing, recorded elsewhere on the board): run_router_regression.py never exits nonzero on
+  corpus failures; hebrew_readability תנובה/'נובה' false positive; no gate audits numeric claims in
+  TS-adapter prose.

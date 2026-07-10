@@ -1,0 +1,2707 @@
+{
+  "_meta": {
+    "category": "crackers",
+    "categoryCaveat": "קרקרים הם מוצר יבש: האפייה מסלקת כמעט את כל המים, ולכן הקלוריות ל-100 גרם גבוהות יותר מלחם — וזה נובע מהמבנה של הקרקר. לכן בארי משווה כל קרקר מול קרקרים אחרים, לא מול לחם: צפיפות קלורית עדיין נמדדת, אבל מול מדף הקרקרים ולא מול לחם. מה שבאמת מבדיל בין המוצרים במדף הוא כמה מהבסיס דגן מלא לעומת קמח מזוקק ומילויי עמילן, אורך רשימת הרכיבים ומספר מקורות הסוכר, וכמות הסיבים — שם, לצד הקלוריות, נמצא הפער הגדול בציונים.",
+    "config_sha256": "ef6faf74d1f0c118ab17099948af3e32e6f3f925cfe68f44fdf6ba3d0a79bc80",
+    "exclusions": [
+      {
+        "barcode": "7290112968807",
+        "dropped_at": "2026-07-01T19:36:05.788749+00:00",
+        "reason": "insufficient_data: unrecoverable per-serving/per-100g nutrition corruption, discard-rule. Full nutrition block (kcal/protein/carbs/fiber/sodium) was ~1/4.6 of near-identical sibling 'פיטנס' products with no clean unit/parse scaling factor -> nulled at BSIP1 source (TASK-433 FIX2b, missing-data-discard rule) -> engine returns insufficient_data/neutral score -> a gradeless row does not belong on a comparison page. Same rule as the existing BSIP1-stage discard of 5317200 (total data blackout), applied one stage later because this product's corruption was found and nulled during the TASK-433 rework, not at initial scrape.",
+        "stage": "frontend_packaging",
+        "task": "TASK-433"
+      }
+    ],
+    "generated": "2026-07-01T16:54:58Z",
+    "generator_version": "1.2.0",
+    "product_count": 19,
+    "retailer_breakdown": {
+      "shufersal": 20
+    },
+    "schema": "BariProductVM[]",
+    "schema_version": "v3",
+    "scored_count": 19,
+    "source_paths": {
+      "corpus_dirs": [
+        "C:\\Bari\\03_operations\\bsip1\\run_crackers_conform_001\\output"
+      ],
+      "run_products_dir": [
+        "C:\\bari_deanchor_wt\\_rescore_staging\\crackers\\products"
+      ],
+      "deanchor_traces": "C:\\bari_deanchor_wt\\_rescore_staging\\crackers\\products"
+    },
+    "subpool_filter": null,
+    "task433_data_rework": "TASK-433 data-layer rework (Adversarial QA + C3 red-team NO-GO fix): FIX1 ingredient bleed/truncation cleaned at BSIP1 source for 20/20 rows (reproducible marker-cut rule, verbatim prefix of raw scrape, never invented); FIX2 sodium thousands-separator parser bug corrected (7290018790328: 1.2->1200mg) and source-confirmed corrupted nutrition block nulled per missing-data-discard rule (7290112968807: all fields null, ~1/4.6 of sibling products, no clean scaling factor found); FIX3 sugar extracted from embedded nutrition-panel-bleed text for 2/20 rows (5000396021202=8.5g, 8434165658523=4.0g), remaining rows genuinely null at source. Re-scored through canonical BSIP2 batch_run_crackers_conform_001.py (identical flag set, unchanged). Copy fields (nameHe, rowVerdict, insightLine, consumerTakeaway, bariInterpretation[].interpretation/label/strength text, expansion.consumerExplanation prose, expansion.whyRated, _meta.categoryCaveat) preserved verbatim -- NOT rewritten by this pass.",
+    "task433_frontend_discard": "Orchestrator directive (within-lane, no tripwire): 7290112968807 dropped from displayable set post-rescore (insufficient_data, unrecoverable). 20 scored -> 19 displayable. See _meta.exclusions and 03_operations/page_generator/configs/crackers_frontend_discards_v1.json for the reproducible discard record.",
+    "task433_structural_finalization": "rank (1..20, score desc) and _website_cluster added — structural/data fields only, no copy authored. _website_cluster derived from whole-grain-flour-percentage evidence in BSIP1 ingredients_text_he (sum of explicit % for כוסמין מלא/חיטה מלא(ה)/שיפון מלא terms): whole_grain >=70%, mixed_grain >0% and <70%, refined_white =0%. Cluster counts: {'whole_grain': 3, 'mixed_grain': 9, 'refined_white': 8}. KRIT (8434165658523) brand left null — the pre-existing bread_frontend_v3.json 'KRIT' value is unsourced (not derivable from any scrape/BSIP0/BSIP1 artifact) and was NOT carried forward, per reproducibility rule.",
+    "reflow": {
+      "task": "TASK-442/395 de-anchor",
+      "flag": "BARI_REDLABEL_CONTINUOUS_V1=on",
+      "grade_movers": [],
+      "grade_flip_count": 0,
+      "date": "2026-07-02",
+      "copy": "score-only reflow — 0 grade flips; verdicts describe product composition (unchanged), not the numeric score"
+    },
+    "deanchor_meta_regenerated": "2026-07-02",
+    "off_used": false
+  },
+  "products": [
+    {
+      "_website_cluster": "whole_grain",
+      "barcode": "96086000966",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 74.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 73.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 93.8,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים",
+        "חלבון"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות — כצפוי מקרקר יבש ומרוכז. ארבעה רכיבים בלבד: כוסמין מלא (82%), שומשום (15%), מלח, תמצית אורגנו. חלבון 16 גרם ל-100 גרם — מהגבוהים בקטגוריה. בתוך קטגוריה שיש בה קרקרים עם גריסי תירס ועמילן, ארבעה רכיבים אמיתיים הם ממצא.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "קרקר ארבעה-רכיבים: כוסמין מלא 82%, שומשום 15%, מלח, תמצית אורגנו. ללא תוספות עיבוד. קלוריות גבוהות כצפוי מקרקר יבש.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קרקר ארבעה-רכיבים: כוסמין מלא 82%, שומשום 15%, מלח, תמצית אורגנו. ללא תוספות עיבוד. קלוריות גבוהות כצפוי מקרקר יבש.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות — כצפוי מקרקר יבש ומרוכז. ארבעה רכיבים בלבד: כוסמין מלא (82%), שומשום (15%), מלח, תמצית אורגנו. חלבון 16 גרם ל-100 גרם — מהגבוהים בקטגוריה. בתוך קטגוריה שיש בה קרקרים עם גריסי תירס ועמילן, ארבעה רכיבים אמיתיים הם ממצא.",
+          "watchOut": [],
+          "whyRated": "מהקרקרים הפשוטים במדף: כוסמין מלא (82%), שומשום, מלח ואורגנו — ארבעה רכיבים, בלי מילוי עמילן. חלבון וסיבים מהגבוהים בקטגוריה."
+        },
+        "ingredients": "קמח כוסמין מלא (82%), שומשום (15%), מלח, תמצית אורגנו טבעית.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 418.0,
+          "fat": 0.25,
+          "fiber": 10.0,
+          "protein": 16.0,
+          "sodium": 397.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_crackers_96086000966",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RQT50_Z_P_96086000966_1.png",
+      "insightLine": "ארבעה רכיבים בסך הכול, וכולם אמיתיים: כוסמין מלא, שומשום, מלח ואורגנו.",
+      "name": "קרקר כוסמין מלא ושומשום",
+      "nameHe": "קרקר כוסמין מלא ושומשום",
+      "rank": 1,
+      "retailer": "shufersal",
+      "rowVerdict": "כוסמין מלא (82%) ושומשום בונים קרקר בלי מילוי ובלי תוסף אחד, והחלבון שלו נמנה עם הגבוהים בהשוואה. הרשימה הקצרה הזו היא ממש הסיפור של המוצר.",
+      "score": 81.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "whole_grain",
+      "barcode": "96086000577",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 73.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 73.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 99.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים",
+        "חלבון"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר יבש), חלבון וסיבים טובים. שלושה רכיבים: כוסמין מלא אורגני (98%), מים, מלח — מהרשימות הקצרות במדף. סיבים 9.3 גרם, מעט מתחת לקרקר הכוסמין-שומשום שמעליו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "98% כוסמין מלא אורגני עם שלושה רכיבים בלבד. ללא תוספות. קלוריות גבוהות כצפוי.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "98% כוסמין מלא אורגני עם שלושה רכיבים בלבד. ללא תוספות. קלוריות גבוהות כצפוי.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר יבש), חלבון וסיבים טובים. שלושה רכיבים: כוסמין מלא אורגני (98%), מים, מלח — מהרשימות הקצרות במדף. סיבים 9.3 גרם, מעט מתחת לקרקר הכוסמין-שומשום שמעליו.",
+          "watchOut": [],
+          "whyRated": "שלושה רכיבים בלבד — כוסמין מלא אורגני (98%), מים ומלח. פרופיל דגן-מלא כמעט מלא; פחות זרעים וסיבים מעט נמוכים יותר מהקרקר עם השומשום שמעליו."
+        },
+        "ingredients": "קמח כוסמין מלא אורגני (98%) (מכיל גלוטן), מים, מלח, סוכרים הנמצאים באופן טבעי בחומרי הגלם.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 380.0,
+          "fat": 0.25,
+          "fiber": 9.3,
+          "protein": 16.0,
+          "sodium": 391.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_96086000577",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RBU48_Z_P_96086000577_1.png",
+      "insightLine": "98% כוסמין מלא אורגני, מים ומלח: שלושה רכיבים ותו לא.",
+      "name": "קרקר כוסמין אורגני",
+      "nameHe": "קרקר כוסמין אורגני",
+      "rank": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "כמעט קרקר-כוסמין טהור: כמעט כל המשקל הוא דגן מלא אורגני, בלי שום דבר אחר מלבד מים ומלח. החלבון כאן זהה לקרקר שמעליו, עם מעט פחות סיבים.",
+      "score": 79.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290013740823",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 59.7,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 47.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 80.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "חלבון בינוני וסיבים גבוהים במיוחד לקרקר — 10.5 גרם ל-100 גרם, מהגבוהים במדף. הבסיס הוא כוסמין מלא עם שמן זית וזרעים (שומשום, צ'יה, פשתן, דלעת), ללא תוספי מזון. הכוסמין הוא רק כשליש מהמשקל, כך שזה לא קרקר דגן-מלא מלא, אבל בתוך קטגוריה שרובה קמח מעורב זו רשימה נקייה.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמין מלא (37%) כרכיב ראשון, שמן זית, ותערובת זרעים (שומשום, חמניות, צ'יה, פשתן, דלעת). ללא תוספי מזון. סיבים 10.5 גרם ל-100 גרם — מהגבוהים בקטגוריה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "כוסמין מלא (37%) כרכיב ראשון, שמן זית, ותערובת זרעים (שומשום, חמניות, צ'יה, פשתן, דלעת). ללא תוספי מזון. סיבים 10.5 גרם ל-100 גרם — מהגבוהים בקטגוריה.",
+          "good": [
+            "סיבים 10.5 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+            "רשימת רכיבים נקייה, ללא תוספי מזון",
+            "כוסמין מלא ותערובת זרעים כבסיס"
+          ],
+          "takeaway": "חלבון בינוני וסיבים גבוהים במיוחד לקרקר — 10.5 גרם ל-100 גרם, מהגבוהים במדף. הבסיס הוא כוסמין מלא עם שמן זית וזרעים (שומשום, צ'יה, פשתן, דלעת), ללא תוספי מזון. הכוסמין הוא רק כשליש מהמשקל, כך שזה לא קרקר דגן-מלא מלא, אבל בתוך קטגוריה שרובה קמח מעורב זו רשימה נקייה.",
+          "watchOut": [],
+          "whyRated": "כוסמין מלא כרכיב ראשון, ואז שמן זית ותערובת זרעים אמיתית — רשימה נקייה בלי תוסף מזון אחד. הסיבים כאן מהגבוהים במדף; רק הכוסמין הוא כשליש מהמשקל, לא לכל אורכו."
+        },
+        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, גרעיני חמניות, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, גרעיני דלעת, מלח ים אטלנטי.",
+        "limitingFactors": [
+          "הכוסמין המלא הוא כשליש מהמשקל — לא קרקר דגן-מלא לכל אורכו"
+        ],
+        "nutrition": {
+          "energyKcal": 313.0,
+          "fat": 0.25,
+          "fiber": 10.5,
+          "protein": 9.5,
+          "sodium": 394.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "סיבים 10.5 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+          "רשימת רכיבים נקייה, ללא תוספי מזון",
+          "כוסמין מלא ותערובת זרעים כבסיס"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290013740823",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGU46_Z_P_7290013740823_1.png",
+      "insightLine": "שמן זית ותערובת זרעים אמיתית לצד כוסמין מלא, בלי תוסף אחד ברשימה.",
+      "name": "קרקר כוסמין טבעי",
+      "nameHe": "קרקר כוסמין טבעי",
+      "rank": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "שומשום, חמניות, צ'יה, פשתן ודלעת מצטרפים לכוסמין המלא ולשמן הזית, והסיבים כאן מהגבוהים בכל ההשוואה. הכוסמין תופס כשליש מהמשקל, החלק המרכזי של הרשימה.",
+      "score": 76.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290112963918",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 54.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 58.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 53.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (5 גרם ל-100 גרם). כשליש חיטה מלאה, והשאר קמח אורז וקמח חיטה לבנה. יש כאן מספר תוספי מזון, שחלקם שנויים במחלוקת. 'פיטנס' הוא שם, לא פרופיל דגן-מלא.",
+      "d4_additives": [
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה מלא (30.5%) כרכיב ראשון, ואז קמח אורז וקמח חיטה לבנה. סיבים 5 גרם ל-100 גרם. מספר תוספי מזון, שחלקם שנויים במחלוקת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה מלא (30.5%) כרכיב ראשון, ואז קמח אורז וקמח חיטה לבנה. סיבים 5 גרם ל-100 גרם. מספר תוספי מזון, שחלקם שנויים במחלוקת.",
+          "good": [
+            "קמח חיטה מלא הוא הרכיב הראשון (30.5%)"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (5 גרם ל-100 גרם). כשליש חיטה מלאה, והשאר קמח אורז וקמח חיטה לבנה. יש כאן מספר תוספי מזון, שחלקם שנויים במחלוקת. 'פיטנס' הוא שם, לא פרופיל דגן-מלא.",
+          "watchOut": [],
+          "whyRated": "חיטה מלאה פותחת את הרשימה, אבל קמח אורז וחיטה לבנה משלימים את רוב הבסיס — כשליש בלבד דגן מלא. 'פיטנס' הוא השם על האריזה, לא הפרופיל, ויש כאן גם תוסף שנוי במחלוקת."
+        },
+        "ingredients": "קמח חיטה מלא (30.5%) (מכיל גלוטן), קמח אורז (25.5%), קמח חיטה (21%), שמנים צמחיים, קמח אורז מלא (6.8%), גלוטן חיטה, עמילן אורז, שמרי ם, קינואה אדומה מיובשת, רוזמרין מיובש (1%), מלח ים, סוכר, שום מיובש (0.7%), חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [
+          "קמח אורז וחיטה לבנה משלימים את הבסיס — כשליש בלבד חיטה מלאה",
+          "סיבים 5 גרם ל-100 גרם — נמוכים לקטגוריה",
+          "מספר תוספי מזון, שחלקם שנויים במחלוקת"
+        ],
+        "nutrition": {
+          "energyKcal": 458.0,
+          "fat": 0.25,
+          "fiber": 5.0,
+          "protein": 12.0,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "קמח חיטה מלא הוא הרכיב הראשון (30.5%)"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290112963918",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FZR58_Z_P_7290112963918_1.png",
+      "insightLine": "'פיטנס' על האריזה, אבל קמח אורז וקמח לבן מרכיבים את רוב הבסיס בפועל.",
+      "name": "קרקר דק רוזמרין פיטנס",
+      "nameHe": "קרקר דק רוזמרין פיטנס",
+      "rank": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "הרכיב הראשון ברשימה הוא חיטה מלאה, כשליש מהבסיס, ואז קמח אורז וקמח חיטה לבנה משלימים את השאר. יש כאן גם תוסף שנוי במחלוקת, והסיבים נשארים נמוכים לקטגוריה.",
+      "score": 75.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7296073659952",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 63.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 71.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 61.3,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "חלבון"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה — וסיבים נמוכים (5.5 גרם). התערובת מכילה רק כרבע חיטה מלאה, לצד אורז וחיטה לבנה, ויש בה שמן דקל. החלבון הוא הצד החזק; פרופיל הדגן-המלא פחות.",
+      "d4_additives": [
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "תערובת קמחים 66% (כרבע ממנה חיטה מלאה), שמן חמניות ושמן דקל, גלוטן חיטה, שומשום וקינואה. חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה. תוסף אחד (מעכב חמצון טבעי).",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "תערובת קמחים 66% (כרבע ממנה חיטה מלאה), שמן חמניות ושמן דקל, גלוטן חיטה, שומשום וקינואה. חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה. תוסף אחד (מעכב חמצון טבעי).",
+          "good": [
+            "חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+            "רשימת תוספי מזון קצרה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה — וסיבים נמוכים (5.5 גרם). התערובת מכילה רק כרבע חיטה מלאה, לצד אורז וחיטה לבנה, ויש בה שמן דקל. החלבון הוא הצד החזק; פרופיל הדגן-המלא פחות.",
+          "watchOut": [],
+          "whyRated": "החלבון כאן מהגבוהים במדף — גלוטן חיטה, שומשום וקינואה מרימים אותו. אבל רק כרבע מהתערובת חיטה מלאה, יש שמן דקל ברשימה, והסיבים נשארים נמוכים."
+        },
+        "ingredients": "תערובת קמחים 66% (קמח חיטה מלאה 25.5% (קמח חיטה, סובין, נבט), אורז 21%, חיטה 14%, אורז מלא 5.5%), שמן חמניות, שמן דקל, גלוטן חיטה, ש ומשום 3%, קינואה אדומה 2.5%, קצח 2%, עמילן תירס, מלח, שום, סוכר, שמרים, מעכב חמצון: תמצית רוזמרין.",
+        "limitingFactors": [
+          "רק כרבע מהתערובת חיטה מלאה — השאר אורז וחיטה לבנה",
+          "שמן דקל ברשימה",
+          "סיבים 5.5 גרם ל-100 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 473.0,
+          "fat": 3.5,
+          "fiber": 5.5,
+          "protein": 15.0,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון 15 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+          "רשימת תוספי מזון קצרה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7296073659952",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PRL70_Z_P_7296073659952_1.png",
+      "insightLine": "החלבון כאן מהגבוהים בהשוואה, בזכות גלוטן חיטה, שומשום וקינואה.",
+      "name": "קרקר דק כפרי",
+      "nameHe": "קרקר דק כפרי",
+      "rank": 5,
+      "retailer": "shufersal",
+      "rowVerdict": "תערובת הקמחים היא כרבע חיטה מלאה בלבד, ולצדה שמן דקל ברשימה. מה שמרים את החלבון הוא דווקא התוספות: גלוטן חיטה, שומשום וקינואה אדומה.",
+      "score": 75.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290013740809",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 54.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 80.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "חלבון צנוע לקטגוריה (8.1 גרם ל-100 גרם), אבל סיבים מהגבוהים במדף (10.3 גרם). הבסיס כוסמין מלא עם שמן זית, זרעים ואבקת סלק — ללא תוספי מזון. הכוסמין הוא כשליש מהמשקל, כך שאין כאן דגן-מלא לכל אורכו, אבל הרשימה מהנקיות בקטגוריה.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כוסמין מלא (37%), שמן זית, זרעים (שומשום, צ'יה, פשתן) ואבקת סלק (1.3%). ללא תוספי מזון. סיבים 10.3 גרם ל-100 גרם — מהגבוהים בקטגוריה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "כוסמין מלא (37%), שמן זית, זרעים (שומשום, צ'יה, פשתן) ואבקת סלק (1.3%). ללא תוספי מזון. סיבים 10.3 גרם ל-100 גרם — מהגבוהים בקטגוריה.",
+          "good": [
+            "סיבים 10.3 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+            "רשימת רכיבים נקייה, ללא תוספי מזון"
+          ],
+          "takeaway": "חלבון צנוע לקטגוריה (8.1 גרם ל-100 גרם), אבל סיבים מהגבוהים במדף (10.3 גרם). הבסיס כוסמין מלא עם שמן זית, זרעים ואבקת סלק — ללא תוספי מזון. הכוסמין הוא כשליש מהמשקל, כך שאין כאן דגן-מלא לכל אורכו, אבל הרשימה מהנקיות בקטגוריה.",
+          "watchOut": [],
+          "whyRated": "אותה משפחה נקייה כמו הכוסמין הטבעי — כוסמין מלא, שמן זית וזרעים, עם אבקת סלק (1.3%) ובלי תוספי מזון. סיבים גבוהים; החלבון כאן נמוך מעט יותר, והכוסמין הוא כשליש מהמשקל."
+        },
+        "ingredients": "קמח כוסמין מלא (37%) (גלוטן), מים, שמן זית, שומשום, צ'יה, מיץ לימון, פפריקה, גרעיני פשתן, כמון, שומשום שחור, אבקת סלק (1.3%), מלח ים  אטלנטי.",
+        "limitingFactors": [
+          "הכוסמין המלא הוא כשליש מהמשקל",
+          "חלבון 8.1 גרם ל-100 גרם — נמוך-בינוני לקטגוריה"
+        ],
+        "nutrition": {
+          "energyKcal": 288.0,
+          "fat": 0.25,
+          "fiber": 10.3,
+          "protein": 8.1,
+          "sodium": 391.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "סיבים 10.3 גרם ל-100 גרם — מהגבוהים בקטגוריה",
+          "רשימת רכיבים נקייה, ללא תוספי מזון"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290013740809",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WGG50_Z_P_7290013740809_1.png",
+      "insightLine": "אבקת סלק לצבע, ומעבר לזה אותה משפחה נקייה כמו הכוסמין הטבעי שלצדו.",
+      "name": "קרקר כוסמין סלק",
+      "nameHe": "קרקר כוסמין סלק",
+      "rank": 6,
+      "retailer": "shufersal",
+      "rowVerdict": "כוסמין מלא, שמן זית וזרעים אמיתיים, עם אבקת סלק (1.3%) לצבע ובלי תוסף מזון אחד. הסיבים כאן מהגבוהים בהשוואה כולה, החלבון מעט נמוך מהתאום שלו, וגם כאן הכוסמין הוא כשליש מהמשקל.",
+      "score": 75.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7296073659945",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 62.1,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 71.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 62.5,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון 14 גרם ל-100 גרם — גבוה לקטגוריה — וסיבים נמוכים (6 גרם). התערובת היא כרבע חיטה מלאה לצד אורז וחיטה לבנה, עם שמן דקל ותוסף אחד. חזק בחלבון, פחות מרשים בדגן המלא.",
+      "d4_additives": [
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "תערובת קמחים 67% (כרבע ממנה חיטה מלאה), שמן חמניות ושמן דקל, קינואה ורוזמרין. חלבון 14 גרם ל-100 גרם. תוסף אחד (מעכב חמצון טבעי).",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "תערובת קמחים 67% (כרבע ממנה חיטה מלאה), שמן חמניות ושמן דקל, קינואה ורוזמרין. חלבון 14 גרם ל-100 גרם. תוסף אחד (מעכב חמצון טבעי).",
+          "good": [
+            "חלבון 14 גרם ל-100 גרם — גבוה לקטגוריה",
+            "רשימת תוספי מזון קצרה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון 14 גרם ל-100 גרם — גבוה לקטגוריה — וסיבים נמוכים (6 גרם). התערובת היא כרבע חיטה מלאה לצד אורז וחיטה לבנה, עם שמן דקל ותוסף אחד. חזק בחלבון, פחות מרשים בדגן המלא.",
+          "watchOut": [],
+          "whyRated": "כמעט תאום של הקרקר הכפרי — אותה תערובת קמחים שכרבע ממנה חיטה מלאה, אותו שמן דקל, אותו חלבון גבוה. הכוח שלו בחלבון; החולשה באותו דגן-מלא חלקי ובסיבים הנמוכים."
+        },
+        "ingredients": "תערובת קמחים 67% (חיטה מלאה 25.5% (קמח חיטה, סובין, נבט), אורז 22%, חיטה 14%, אורז מלא 5.5%), שמן חמניות, שמן דקל, גלוטן חיטה, קינוא ה אדומה 2.5%, עמילן תירס, רוזמרין 1.7%, שום 1.6%, מלח, סוכר, שמרים, מעכב חמצון: תמצית רוזמרין.",
+        "limitingFactors": [
+          "רק כרבע מהתערובת חיטה מלאה",
+          "שמן דקל ברשימה",
+          "סיבים 6 גרם ל-100 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 461.0,
+          "fat": 3.5,
+          "fiber": 6.0,
+          "protein": 14.0,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון 14 גרם ל-100 גרם — גבוה לקטגוריה",
+          "רשימת תוספי מזון קצרה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7296073659945",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PRE72_Z_P_7296073659945_1.png",
+      "insightLine": "כמעט תאום של הקרקר הכפרי לצדו: אותה תערובת קמחים, אותו חלבון גבוה.",
+      "name": "קרקר דק רוזמרין",
+      "nameHe": "קרקר דק רוזמרין",
+      "rank": 7,
+      "retailer": "shufersal",
+      "rowVerdict": "כרבע מהתערובת חיטה מלאה, בדיוק כמו התאום שלו, עם שמן דקל וקינואה אדומה. החלבון הגבוה מגיע מאותו מקום, והסיבים נשארים נמוכים משני הצדדים.",
+      "score": 74.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290112968821",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 56.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 58.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (6.5 גרם ל-100 גרם). הבסיס הוא כשליש חיטה מלאה עם אורז וחיטה לבנה, ואבקת בטטה וגזר לצבע וטעם. יש תוסף אחד שנוי במחלוקת. 'פיטנס' הוא שם, לא פרופיל.",
+      "d4_additives": [
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה מלא (31%) כרכיב ראשון, קמח אורז וחיטה לבנה, אבקת בטטה (6%) ואבקת גזר. סיבים 6.5 גרם ל-100 גרם. תוסף אחד שנוי במחלוקת (סולפיט).",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה מלא (31%) כרכיב ראשון, קמח אורז וחיטה לבנה, אבקת בטטה (6%) ואבקת גזר. סיבים 6.5 גרם ל-100 גרם. תוסף אחד שנוי במחלוקת (סולפיט).",
+          "good": [
+            "קמח חיטה מלא הוא הרכיב הראשון (31%)"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (6.5 גרם ל-100 גרם). הבסיס הוא כשליש חיטה מלאה עם אורז וחיטה לבנה, ואבקת בטטה וגזר לצבע וטעם. יש תוסף אחד שנוי במחלוקת. 'פיטנס' הוא שם, לא פרופיל.",
+          "watchOut": [],
+          "whyRated": "חיטה מלאה פותחת, ואבקת בטטה וגזר נותנות צבע וטעם — אבל קמח אורז וחיטה לבנה משלימים את הבסיס, הסיבים נשארים נמוכים, ויש תוסף אחד שנוי במחלוקת. 'פיטנס' הוא שם, לא פרופיל."
+        },
+        "ingredients": "קמח חיטה מלא (31%) (מכיל גלוטן), קמח אורז (23.5%), קמח חיטה (15.5%), שמנים צמחיים, אבקת בטטה (6%), קמח אורז מלא (6%), גלוטן חיטה, עמ ילן אורז, אבקת גזר (1.5%), גרעיני דלעת (1.5%), סוכר, שמרים, מלח ים, שום מיובש, חומרי טעם וריח, חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [
+          "אורז וחיטה לבנה משלימים את הבסיס — כשליש בלבד חיטה מלאה",
+          "סיבים 6.5 גרם ל-100 גרם",
+          "תוסף שנוי במחלוקת ברשימה"
+        ],
+        "nutrition": {
+          "energyKcal": 459.0,
+          "fat": 0.25,
+          "fiber": 6.5,
+          "protein": 11.5,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "קמח חיטה מלא הוא הרכיב הראשון (31%)"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290112968821",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NGG56_Z_P_7290112968821_1.png",
+      "insightLine": "אבקת בטטה וגזר נותנות צבע וטעם, והבסיס עצמו נשען בעיקר על קמח אורז וחיטה לבנה.",
+      "name": "קרקר דק פיטנס בטטה",
+      "nameHe": "קרקר דק פיטנס בטטה",
+      "rank": 8,
+      "retailer": "shufersal",
+      "rowVerdict": "חיטה מלאה (31%) פותחת את הרשימה, ואז קמח אורז וחיטה לבנה משלימים את רוב הבסיס. אבקת הבטטה והגזר תורמות טעם וצבע בלבד, ויש כאן גם תוסף אחד שנוי במחלוקת.",
+      "score": 74.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7296073134459",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 58.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 52.8,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 79.4,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון וסיבים בינוניים. קמח חיטה מלא (כשליש) בלבד — גריסי תירס ועמילן תפוח אדמה הם שאר הבסיס. סוכר ברכיבים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "כשליש קמח חיטה מלא כרכיב ראשון; גריסי תירס ועמילן תפוח אדמה כמרכיבים משניים. זרעי קימל. סוכר ברכיבים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "כשליש קמח חיטה מלא כרכיב ראשון; גריסי תירס ועמילן תפוח אדמה כמרכיבים משניים. זרעי קימל. סוכר ברכיבים.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון וסיבים בינוניים. קמח חיטה מלא (כשליש) בלבד — גריסי תירס ועמילן תפוח אדמה הם שאר הבסיס. סוכר ברכיבים.",
+          "watchOut": [],
+          "whyRated": "למרות ה'סגנון שוודי', הבסיס בפועל הוא כשליש חיטה מלאה בלבד, ושאר הבסיס גריסי תירס ועמילן תפוח אדמה. הרשימה קצרה ובלי תוספי מזון, אבל יש בה סוכר, והדגן-המלא חלקי."
+        },
+        "ingredients": "קמח חיטה מלא (33.5%)(מכיל גלוטן), גריסים מחיטה, גריסי תירס, עמילן תפוח אדמה, לתתי שעורה (מכיל גלוטן), זרעי קימל, מלח, סוכר.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 371.0,
+          "fat": 0.25,
+          "fiber": 8.3,
+          "protein": 10.7,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7296073134459",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SIE60_Z_P_7296073134459_1.png",
+      "insightLine": "'בסגנון שוודי' על האריזה, כשהבסיס בפועל הוא כשליש חיטה מלאה, גריסי תירס ועמילן.",
+      "name": "קרקר פריך בסגנון שוודי",
+      "nameHe": "קרקר פריך בסגנון שוודי",
+      "rank": 9,
+      "retailer": "shufersal",
+      "rowVerdict": "חיטה מלאה פותחת את הרשימה, אך רק כשליש מהמשקל; גריסי תירס ועמילן תפוח אדמה משלימים את השאר, לצד סוכר. הרשימה קצרה ובלי תוספי מזון, והשם מבטיח יותר ממה שהבסיס בפועל נותן.",
+      "score": 74.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "mixed_grain",
+      "barcode": "7290115205176",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 55.6,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 54.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (5 גרם ל-100 גרם). הבסיס כשליש חיטה מלאה עם אורז וחיטה לבנה. ברשימה שני תוספי מזון שנויים במחלוקת. פרופיל בינוני לקטגוריה.",
+      "d4_additives": [
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה מלא (30.5%), קמח אורז וחיטה לבנה, קינואה ושומשום. סיבים 5 גרם ל-100 גרם. שני תוספי מזון שנויים במחלוקת ברשימה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה מלא (30.5%), קמח אורז וחיטה לבנה, קינואה ושומשום. סיבים 5 גרם ל-100 גרם. שני תוספי מזון שנויים במחלוקת ברשימה.",
+          "good": [
+            "קמח חיטה מלא הוא הרכיב הראשון (30.5%)",
+            "קינואה ושומשום ברשימה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון בינוני וסיבים נמוכים (5 גרם ל-100 גרם). הבסיס כשליש חיטה מלאה עם אורז וחיטה לבנה. ברשימה שני תוספי מזון שנויים במחלוקת. פרופיל בינוני לקטגוריה.",
+          "watchOut": [],
+          "whyRated": "קינואה ושומשום נותנים לו נקודות טובות, וחיטה מלאה פותחת את הרשימה — אבל היא כשליש בלבד, הסיבים נמוכים, ויש כאן שני תוספים שנויים במחלוקת. מוצר שיושב בדיוק באמצע המדף."
+        },
+        "ingredients": "רכיבים : קמח חיטה מלא (30.5%) (מכיל גלוטן), קמח אורז (25.5%), קמח חיטה (17%), שמן חמניות, קמח אורז מלא (6.8%), גלוטן חיטה, עמילן אור ז, קינואה אדומה מיובשת (2.7%), שומשום (2.7%), שמרים, קצח (1.3%), מלח ים, סוכר, שום מיובש, חומר לטיפול בקמח (סולפיט), מווסת חומציות ( חומצת לימון).",
+        "limitingFactors": [
+          "רק כשליש מהבסיס חיטה מלאה",
+          "סיבים 5 גרם ל-100 גרם",
+          "שני תוספי מזון שנויים במחלוקת"
+        ],
+        "nutrition": {
+          "energyKcal": 461.0,
+          "fat": 0.25,
+          "fiber": 5.0,
+          "protein": 12.5,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "קמח חיטה מלא הוא הרכיב הראשון (30.5%)",
+          "קינואה ושומשום ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7290115205176",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TLX46_Z_P_7290115205176_1.png",
+      "insightLine": "קינואה ושומשום מוסיפים גיוון, אך הבסיס עדיין כשליש חיטה מלאה עם שני תוספים שנויים במחלוקת.",
+      "name": "קרקר דק כפרי פיטנס",
+      "nameHe": "קרקר דק כפרי פיטנס",
+      "rank": 10,
+      "retailer": "shufersal",
+      "rowVerdict": "חיטה מלאה פותחת, וקינואה ושומשום נותנים לו גיוון אמיתי. קמח אורז וחיטה לבנה משלימים את רוב הבסיס, הסיבים נמוכים, ושני תוספים שנויים במחלוקת מצטרפים לרשימה. קרקר שיושב באמצע המדף בכל מדד.",
+      "score": 74.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "whole_grain",
+      "barcode": "7296073134442",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 55.9,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 53.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 70.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 71.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון וסיבים בינוניים. שבעים אחוז חיטה מלאה — חלק גדול מהבסיס. גריסי תירס ועמילן תפוח אדמה עם סוכר.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "70% קמח חיטה מלא, כחמישה אחוז קמח שיפון, גריסי תירס, עמילן תפוח אדמה, סוכר. ללא מחמצת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "70% קמח חיטה מלא, כחמישה אחוז קמח שיפון, גריסי תירס, עמילן תפוח אדמה, סוכר. ללא מחמצת.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון וסיבים בינוניים. שבעים אחוז חיטה מלאה — חלק גדול מהבסיס. גריסי תירס ועמילן תפוח אדמה עם סוכר.",
+          "watchOut": [],
+          "whyRated": "שבעים אחוז חיטה מלאה בבסיס — יותר דגן מלא מהקרקר השוודי שלצדו. אבל גריסי תירס, עמילן תפוח אדמה וסוכר מדללים את הרשימה, והסיבים בסוף נשארים בינוניים בלבד."
+        },
+        "ingredients": "קמח חיטה מלא (70%)(מכיל גלוטן), גריסי תירס, קמח שיפון (4.9%)(מכיל גלוטן), עמילן תפוח אדמה, סוכר, מלח.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 376.0,
+          "fat": 0.25,
+          "fiber": 6.9,
+          "protein": 10.8,
+          "sodium": 384.1,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_7296073134442",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SHN52_Z_P_7296073134442_1.png",
+      "insightLine": "שבעים אחוז חיטה מלאה בבסיס: יותר דגן מלא מכל קרקר קמח-מעורב אחר בהשוואה.",
+      "name": "קרקר פריך עם קמח שיפון",
+      "nameHe": "קרקר פריך עם קמח שיפון",
+      "rank": 11,
+      "retailer": "shufersal",
+      "rowVerdict": "החיטה המלאה כאן היא רוב מכריע של המשקל, חלק גדול בהרבה מהשליש הרגיל במדף, ולצדה מעט קמח שיפון. גריסי תירס, עמילן תפוח אדמה וסוכר מדללים את הרשימה, והסיבים בסוף נשארים בינוניים בלבד.",
+      "score": 73.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "8434165658523",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 36.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 86.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 34.8,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות, 8 גרם חלבון בלבד, סיבים מועטים (3 גרם) וסוכר 4 גרם ל-100 גרם. קמח לבן, שני שמנים (חמניות, דקל), סוכר לבן ותמצית לתת שעורה. B נמוך בקטגוריה.",
+      "d4_additives": [
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, שמנים (חמניות + דקל), סוכר לבן, תמצית לתת שעורה, שמרים. סוכר 4 גרם ל-100 גרם. סיבים נמוכים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן, שמנים (חמניות + דקל), סוכר לבן, תמצית לתת שעורה, שמרים. סוכר 4 גרם ל-100 גרם. סיבים נמוכים.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות, 8 גרם חלבון בלבד, סיבים מועטים (3 גרם) וסוכר 4 גרם ל-100 גרם. קמח לבן, שני שמנים (חמניות, דקל), סוכר לבן ותמצית לתת שעורה. B נמוך בקטגוריה.",
+          "watchOut": [],
+          "whyRated": "קמח לבן כבסיס, שני שמנים (חמניות, דקל), וסוכר לבן לצד תמצית לתת שעורה. חלבון וסיבים מהנמוכים בקבוצת ה-B, ותוסף אחד שנוי במחלוקת. יושב בתחתית הדירוג של הקבוצה הזו."
+        },
+        "ingredients": "קמח חיטה (מכיל גלוטן), שמנים צמחיים ( חמניות, דקל), סוכר לבן, מלח, תמצית לתת שעורה(מכיל גלוטן), שמרים, חומר תפיחה ( 500E), חומר לטיפ ול בקמח (223E סולפיט) .",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 448.0,
+          "fat": 0.25,
+          "fiber": 3.0,
+          "protein": 8.0,
+          "sodium": 520.0,
+          "sugar": 4.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_crackers_8434165658523",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SXG60_Z_P_8434165658523_1.png",
+      "insightLine": "קמח לבן, שני שמנים וסוכר לבן: הראשון מבין קרקרי הקמח הלבן במדף.",
+      "name": "קרקר קרם קרקר",
+      "nameHe": "קרקר קרם קרקר",
+      "rank": 12,
+      "retailer": "shufersal",
+      "rowVerdict": "כאן עובר קו הגבול בין משפחת הדגן המלא לקרקרי הקמח הלבן שממלאים את החצי השני של המדף. קמח חיטה לבן פותח את הרשימה, עם שמן חמניות ודקל, סוכר וטעם לתת שעורה, והסיבים נשארים מהנמוכים בהשוואה.",
+      "score": 68.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "7296073398875",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 36.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 45.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 94.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 71.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 32.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות (קרקר), חלבון מהצנועים בקטגוריה (9 גרם) וסיבים 2 גרם בלבד ל-100 גרם. הבסיס קמח לבן ועמילן תירס, עם שני מקורות סוכר (דקסטרוז, פרוקטוז) ושני שמנים. מספר תוספי מזון. מוצר לבן-מעובד ללא צד תזונתי חזק.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן ועמילן תירס, שמן דקל וחמניות, סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה. סיבים 2 גרם ל-100 גרם. מספר תוספי מזון.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן ועמילן תירס, שמן דקל וחמניות, סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה. סיבים 2 גרם ל-100 גרם. מספר תוספי מזון.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות (קרקר), חלבון מהצנועים בקטגוריה (9 גרם) וסיבים 2 גרם בלבד ל-100 גרם. הבסיס קמח לבן ועמילן תירס, עם שני מקורות סוכר (דקסטרוז, פרוקטוז) ושני שמנים. מספר תוספי מזון. מוצר לבן-מעובד ללא צד תזונתי חזק.",
+          "watchOut": [],
+          "whyRated": "קמח לבן ועמילן תירס כבסיס, שני שמנים ושני מקורות סוכר — דקסטרוז ופרוקטוז. אין כאן דגן מלא ואין צד תזונתי חזק; קרקר לבן קלאסי, עם סיבים מהנמוכים בהשוואה."
+        },
+        "ingredients": "קמח חיטה, עמילן תירס, שמנים צמחיים (דקל, חמניות), סוכרים (דקסטרוז, פרוקטוז), גלוטן חיטה, מלח, שמרים, מתחלב: לציטין סויה, חומרי תפיחה : נתרן ואמוניום קרבונטים, מעכב חמצון: תמצית רוזמרין.",
+        "limitingFactors": [
+          "קמח לבן ועמילן תירס כבסיס — ללא דגן מלא",
+          "שני מקורות סוכר (דקסטרוז, פרוקטוז)",
+          "סיבים 2 גרם ל-100 גרם — נמוכים מאוד"
+        ],
+        "nutrition": {
+          "energyKcal": 452.0,
+          "fat": 3.5,
+          "fiber": 2.0,
+          "protein": 9.0,
+          "sodium": 390.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_7296073398875",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TMA74_Z_P_7296073398875_1.png",
+      "insightLine": "קמח לבן ועמילן תירס כבסיס, עם דקסטרוז ופרוקטוז כשני מקורות סוכר.",
+      "name": "קרם קרקר",
+      "nameHe": "קרם קרקר",
+      "rank": 13,
+      "retailer": "shufersal",
+      "rowVerdict": "דגן מלא נעדר לגמרי מהרשימה הזו: קמח חיטה ועמילן תירס בלבד, עם שני סוגי סוכר. הסיבים מהנמוכים בכל ההשוואה, קרקר לבן קלאסי בלי צד תזונתי חזק.",
+      "score": 64.5,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "7290013740083",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 64.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 57.2,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 62.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 49.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 85.0,
+          "strength": "חזק"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "הקלוריות הגבוהות ביותר בקטגוריה — 519 ל-100 גרם — כי מעבר לקמח הלבן יש כאן הרבה זרעים שמניים, מרגרינה וביצים. חלבון 13 גרם ל-100 גרם, טוב לקטגוריה. הצד החזק הוא הזרעים; הצד החלש הוא הבסיס הלבן והנתרן הגבוה.",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E450",
+          "explanation_he": "פוספטים הם מלחי זרחן המשמשים לייצוב מרקם מוצרי חלב; הצריכה המצטברת מכלל המזון ראויה לתשומת לב.",
+          "function_he": "מייצב חלבוני חלב / חומר תחליב",
+          "name_he": "פוספטים",
+          "tier": "dose-dependent"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן (46%), שמן קנולה, מרגרינה, ותערובת זרעים גדולה (שומשום, חמניות, פשתן, דלעת, קצח) עם ביצים. קלוריות 519 ל-100 גרם — הגבוהות ביותר בקטגוריה. נתרן 578 מיליגרם ל-100 גרם.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן (46%), שמן קנולה, מרגרינה, ותערובת זרעים גדולה (שומשום, חמניות, פשתן, דלעת, קצח) עם ביצים. קלוריות 519 ל-100 גרם — הגבוהות ביותר בקטגוריה. נתרן 578 מיליגרם ל-100 גרם.",
+          "good": [
+            "חלבון 13 גרם ל-100 גרם — טוב לקטגוריה",
+            "תערובת זרעים עשירה כחלק מהבסיס",
+            "רשימה ללא תוספי מזון בעייתיים"
+          ],
+          "takeaway": "הקלוריות הגבוהות ביותר בקטגוריה — 519 ל-100 גרם — כי מעבר לקמח הלבן יש כאן הרבה זרעים שמניים, מרגרינה וביצים. חלבון 13 גרם ל-100 גרם, טוב לקטגוריה. הצד החזק הוא הזרעים; הצד החלש הוא הבסיס הלבן והנתרן הגבוה.",
+          "watchOut": [],
+          "whyRated": "הבסיס קמח לבן, אבל הוא עמוס בזרעים שמניים — שומשום, חמניות, פשתן ודלעת — עם מרגרינה וביצים. הזרעים מעלים את החלבון והם הצד החזק; הצד החלש הוא הבסיס הלבן והנתרן הגבוה."
+        },
+        "ingredients": "קמח חיטה (גלוטן) (46%), שמן קנולה מזוכך (10%), שומשום (9%), מרגרינה, גרעיני חמניות (6.5%), גרעיני פשתן (6.5%), קצח, (5%) גרעינ י דלעת,(3%), מים, ביצים, מלח שולחן, חומר תפיחה (אבקת אפיה, סודיום ביקרבונט, סודיום פירופוספט).",
+        "limitingFactors": [
+          "הבסיס קמח חיטה לבן, לא דגן מלא",
+          "נתרן 578 מיליגרם ל-100 גרם — מהגבוהים בקטגוריה",
+          "הקלוריות הגבוהות ביותר בקטגוריה (519 ל-100 גרם)"
+        ],
+        "nutrition": {
+          "energyKcal": 519.0,
+          "fat": 0.25,
+          "fiber": 5.1,
+          "protein": 13.0,
+          "sodium": 578.0,
+          "sugar": null
+        },
+        "positiveSignals": [
+          "חלבון 13 גרם ל-100 גרם — טוב לקטגוריה",
+          "תערובת זרעים עשירה כחלק מהבסיס",
+          "רשימה ללא תוספי מזון בעייתיים"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_7290013740083",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/VEI44_Z_P_7290013740083_1.png",
+      "insightLine": "הקלוריות הגבוהות בכל ההשוואה, כי מעבר לקמח הלבן יש כאן שפע זרעים, מרגרינה וביצים.",
+      "name": "קרקר דגנים ללת\"ס",
+      "nameHe": "קרקר דגנים ללת\"ס",
+      "rank": 14,
+      "retailer": "shufersal",
+      "rowVerdict": "שומשום, חמניות, פשתן, דלעת וקצח לצד ביצים דוחפים את החלבון והקלוריות גבוה, אך הבסיס עצמו נשאר קמח חיטה לבן ושמן קנולה. גם הנתרן כאן מהגבוהים בהשוואה כולה.",
+      "score": 64.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "74252",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 82.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 35.1,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 54.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 28.4,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 65.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": "אסם",
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "קלוריות גבוהות מאוד, חלבון בינוני, נתוני הסיבים לא צוינו על האריזה. קמח לבן כבסיס, שמנים צמחיים, סוכר, סירופ גלוקוזה — שלושה מקורות סוכר.",
+      "d4_additives": [
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E500",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן 84%, שמנים צמחיים, שומשום 6.6%, סוכר, גלוטן חיטה, סירופ גלוקוזה, עמילן מעובד. שלושה מקורות סוכר. נתוני סיבים לא צוינו על האריזה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן 84%, שמנים צמחיים, שומשום 6.6%, סוכר, גלוטן חיטה, סירופ גלוקוזה, עמילן מעובד. שלושה מקורות סוכר. נתוני סיבים לא צוינו על האריזה.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "קלוריות גבוהות מאוד, חלבון בינוני, נתוני הסיבים לא צוינו על האריזה. קמח לבן כבסיס, שמנים צמחיים, סוכר, סירופ גלוקוזה — שלושה מקורות סוכר.",
+          "watchOut": [],
+          "whyRated": "קמח לבן שולט (84%) עם שלושה מקורות סוכר, וה-6.6% שומשום הם הצד החיובי הבולט. נתוני הסיבים לא צוינו על האריזה, כך שהמידע חלקי — ומה שכן ידוע מצביע על מוצר לבן-מעובד."
+        },
+        "ingredients": "קמח חיטה (84%) (מכיל גלוטן), שמנים צמחיים, שומשום (6.6%), סוכר, גלוטן חיטה, תמצית לתת שעורה, שמרים, מלח, סירופ גלוקוזה, עמילן מעובד (E1442), חומר תפיחה (E500), חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 465.0,
+          "fat": 0.25,
+          "fiber": null,
+          "protein": 11.0,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_74252",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EUV20_Z_P_74252_1.png",
+      "insightLine": "84% קמח לבן ושלושה מקורות סוכר: השומשום הוא כמעט הדבר היחיד לצדו.",
+      "name": "קרקר שומשום אסם",
+      "nameHe": "קרקר שומשום אסם",
+      "rank": 15,
+      "retailer": "shufersal",
+      "rowVerdict": "שליטה כמעט מוחלטת לקמח החיטה הלבן כאן, וסוכר, סירופ גלוקוזה וגלוטן חיטה משלימים את הרשימה. השומשום (6.6%) הוא כל מה שיש כאן מעבר לבסיס הלבן, ונתוני הסיבים כלל לא מופיעים על האריזה.",
+      "score": 59.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "7290011489595",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 39.6,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 97.6,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 37.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "נתרן 754 מיליגרם ל-100 גרם — השני בגובהו בקטגוריה. הבסיס קמח לבן, עם סירופ גלוקוזה וסוכר אינוורטי כשני מקורות סוכר, וחמישה תוספי מזון שחלקם שנויים במחלוקת. הנתרן והרשימה הארוכה מושכים אותו למטה.",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E450",
+          "explanation_he": "פוספטים הם מלחי זרחן המשמשים לייצוב מרקם מוצרי חלב; הצריכה המצטברת מכלל המזון ראויה לתשומת לב.",
+          "function_he": "מייצב חלבוני חלב / חומר תחליב",
+          "name_he": "פוספטים",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, שמן צמחי, סירופ גלוקוזה וסוכר אינוורטי, שומשום (4%). נתרן 754 מיליגרם ל-100 גרם — השני בגובהו בקטגוריה. חמישה תוספי מזון, שחלקם שנויים במחלוקת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן, שמן צמחי, סירופ גלוקוזה וסוכר אינוורטי, שומשום (4%). נתרן 754 מיליגרם ל-100 גרם — השני בגובהו בקטגוריה. חמישה תוספי מזון, שחלקם שנויים במחלוקת.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "נתרן 754 מיליגרם ל-100 גרם — השני בגובהו בקטגוריה. הבסיס קמח לבן, עם סירופ גלוקוזה וסוכר אינוורטי כשני מקורות סוכר, וחמישה תוספי מזון שחלקם שנויים במחלוקת. הנתרן והרשימה הארוכה מושכים אותו למטה.",
+          "watchOut": [],
+          "whyRated": "נתרן 754 מ\"ג ל-100 גרם — השני בגובהו בהשוואה. הבסיס קמח לבן עם שני מקורות סוכר וחמישה תוספי מזון, שחלקם שנויים במחלוקת — הנתרן והרשימה הארוכה מושכים אותו למטה."
+        },
+        "ingredients": "קמח חיטה (מכיל גלוטן), שומן צמחי, סוכרים (סירופ גלוקוזה, סוכר אינוורטי), עמילן תירס, שומשום (4%), מתפיחים (אמוניום ביקרבונט, סודיום ביקרבונט, דיסודיום דיפוספט), לתת, שעורה (מכיל גלוטן), מלח, מתחלב (לציטין סויה), מטפל קמח (סודיום מטאביסולפיט), מעכב חמצון טבעי (תמצי ת רוזמרין), עמילן תפו\"א מעובד.",
+        "limitingFactors": [
+          "נתרן 754 מיליגרם ל-100 גרם — השני בגובהו בקטגוריה",
+          "שני מקורות סוכר (סירופ גלוקוזה, סוכר אינוורטי)",
+          "חמישה תוספי מזון, שחלקם שנויים במחלוקת"
+        ],
+        "nutrition": {
+          "energyKcal": 465.0,
+          "fat": 0.25,
+          "fiber": 3.8,
+          "protein": 8.1,
+          "sodium": 754.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_7290011489595",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UBC60_Z_P_7290011489595_1.png",
+      "insightLine": "הנתרן כאן השני בגובהו בכל ההשוואה, וחמישה תוספי מזון מצטרפים לרשימה.",
+      "name": "קרקר טופז שומשום",
+      "nameHe": "קרקר טופז שומשום",
+      "rank": 16,
+      "retailer": "shufersal",
+      "rowVerdict": "754 מיליגרם נתרן ל-100 גרם ממקמים אותו קרוב לראש טבלת המלח של הקטגוריה כולה. קמח לבן, סירופ גלוקוזה וסוכר אינוורטי בונים את הבסיס, ותוסף שנוי במחלוקת נמצא ברשימה.",
+      "score": 55.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "7290018790328",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 44.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 48.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 31.2,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 93.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 26.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 60.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 30.0,
+          "strength": "נמוך"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "נתרן 1,200 מיליגרם ל-100 גרם — הגבוה ביותר במדף, עקבי עם השם 'מלוח'. חלבון מהצנועים במדף (8 גרם) וסיבים 1.5 גרם בלבד. הבסיס קמח לבן ושמן דקל, עם שלושה מקורות סוכר ורשימת תוספי מזון ארוכה שחלקם שנויים במחלוקת.",
+      "d4_additives": [
+        {
+          "e_number": "E500",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E450",
+          "explanation_he": "פוספטים הם מלחי זרחן המשמשים לייצוב מרקם מוצרי חלב; הצריכה המצטברת מכלל המזון ראויה לתשומת לב.",
+          "function_he": "מייצב חלבוני חלב / חומר תחליב",
+          "name_he": "פוספטים",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E392",
+          "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "נוגד חמצון טבעי ממקור רוזמרין — ממשפחת הפוליפנולים",
+          "name_he": "תמציות רוזמרין",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, שמן דקל, עמילן תירס, שלושה מקורות סוכר (לבן, ענבים, פרוקטוז). נתרן 1,200 מיליגרם ל-100 גרם — הגבוה ביותר בקטגוריה. סיבים 1.5 גרם ל-100 גרם. רשימת תוספי מזון ארוכה, שחלקם שנויים במחלוקת.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן, שמן דקל, עמילן תירס, שלושה מקורות סוכר (לבן, ענבים, פרוקטוז). נתרן 1,200 מיליגרם ל-100 גרם — הגבוה ביותר בקטגוריה. סיבים 1.5 גרם ל-100 גרם. רשימת תוספי מזון ארוכה, שחלקם שנויים במחלוקת.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "נתרן 1,200 מיליגרם ל-100 גרם — הגבוה ביותר במדף, עקבי עם השם 'מלוח'. חלבון מהצנועים במדף (8 גרם) וסיבים 1.5 גרם בלבד. הבסיס קמח לבן ושמן דקל, עם שלושה מקורות סוכר ורשימת תוספי מזון ארוכה שחלקם שנויים במחלוקת.",
+          "watchOut": [],
+          "whyRated": "הנתרן הגבוה ביותר בהשוואה — 1,200 מ\"ג ל-100 גרם, עקבי עם השם 'מלוח'. קמח לבן ושמן דקל, שלושה מקורות סוכר ורשימת תוספי מזון ארוכה שחלקם שנויים במחלוקת — התמונה הכוללת של מוצר מעובד."
+        },
+        "ingredients": "קמח חיטה (גלוטן), שמן דקל, עמילן תירס, סוכרים (לבן, ענבים, פירות - פרוקטוז), מלח (3%), חומרי תפיחה (אמוניום ביקרבונט, פירופוספט, נתר ן ביקרבונט), גלוטן חיטה, מים, לתת שעורה (גלוטן), מתחלב: לציטין סויה, חומר לטיפול בקמח: סולפיט, אנזימים, חומרי טעם וריח, מעכב חמצון: תמצית רוזמרין.",
+        "limitingFactors": [
+          "נתרן 1,200 מיליגרם ל-100 גרם — הגבוה ביותר בקטגוריה",
+          "קמח לבן ושמן דקל כבסיס",
+          "שלושה מקורות סוכר ברשימה",
+          "רשימת תוספי מזון ארוכה, שחלקם שנויים במחלוקת",
+          "סיבים 1.5 גרם ל-100 גרם — מהנמוכים בקטגוריה"
+        ],
+        "nutrition": {
+          "energyKcal": 469.0,
+          "fat": 0.25,
+          "fiber": 1.5,
+          "protein": 8.0,
+          "sodium": 1200.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_crackers_7290018790328",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DYN56_Z_P_7290018790328_1.png",
+      "insightLine": "הנתרן הגבוה ביותר בכל ההשוואה: 1,200 מיליגרם ל-100 גרם, תואם את השם 'מלוח'.",
+      "name": "קרקר מרובע מלוח",
+      "nameHe": "קרקר מרובע מלוח",
+      "rank": 17,
+      "retailer": "shufersal",
+      "rowVerdict": "קמח לבן ושמן דקל, שלושה מקורות סוכר, ורשימת תוספי מזון מהארוכות בהשוואה מציירים תמונה של קרקר מעובד לגמרי. השם על האריזה לפחות לא מסתיר את המלח: זה באמת המלוח ביותר על המדף.",
+      "score": 52.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "74375",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 66.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 26.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 40.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 55.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 90.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 20.5,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "בסיס לממרח"
+      ],
+      "brand": "אסם",
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "פרופיל תזונתי חלש לקטגוריה: הבסיס 79% קמח חיטה לבן, עם שמנים, סוכר וסירופ גלוקוזה, ותוספי מזון שחלקם שנויים במחלוקת. חלבון וסיבים נמוכים. אין כאן דגן מלא שיחזיק את המוצר.",
+      "d4_additives": [
+        {
+          "e_number": "E322",
+          "explanation_he": "לציטין הוא חומר תחליב טבעי המופק מסויה, חמניות או זרעי קנולה; זהה כימית לפוספוליפידים הטבעיים בגוף.",
+          "function_he": "חומר תחליב טבעי ממקור סויה, חמניות או כבישת זרעים",
+          "name_he": "לציטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E224",
+          "explanation_he": "סולפיטים עלולים לעורר אסתמא אצל רגישים ומחייבים סימון אלרגן; EFSA הסירה ב-2022 את גבול הצריכה המאושר לסולפיטים.",
+          "function_he": "חומר משמר / נוגד חמצון — מסדרת הסולפיטים; מצריך סימון אלרגן חובה",
+          "name_he": "סולפיטים (תרכובת לא מפורטת)",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן (79%), שמנים צמחיים, לתת שעורה, סוכר וסירופ גלוקוזה. חלבון 8 גרם ל-100 גרם. מספר תוספי מזון, שחלקם שנויים במחלוקת. נתוני סיבים לא צוינו על האריזה.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן (79%), שמנים צמחיים, לתת שעורה, סוכר וסירופ גלוקוזה. חלבון 8 גרם ל-100 גרם. מספר תוספי מזון, שחלקם שנויים במחלוקת. נתוני סיבים לא צוינו על האריזה.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "פרופיל תזונתי חלש לקטגוריה: הבסיס 79% קמח חיטה לבן, עם שמנים, סוכר וסירופ גלוקוזה, ותוספי מזון שחלקם שנויים במחלוקת. חלבון וסיבים נמוכים. אין כאן דגן מלא שיחזיק את המוצר.",
+          "watchOut": [],
+          "whyRated": "שבעים ותשעה אחוז קמח לבן, שמנים, סוכר וסירופ גלוקוזה, ותוספי מזון שחלקם שנויים במחלוקת. אין כאן שום דגן מלא שיחזיק את המוצר, והחלבון והסיבים מהנמוכים במדף."
+        },
+        "ingredients": "קמח חיטה (79%) (מכיל גלוטן), שמנים צמחיים, תמצית לתת שעורה, חומר תפיחה (E503), סוכר, סירופ גלוקוזה, מלח, תחליף מלח (מלח אשלגן), מתחל ב (לציטין סויה), חומר לטיפול בקמח (סולפיט).",
+        "limitingFactors": [
+          "הבסיס 79% קמח חיטה לבן — ללא דגן מלא",
+          "סוכר וסירופ גלוקוזה כשני מקורות סוכר",
+          "מספר תוספי מזון, שחלקם שנויים במחלוקת"
+        ],
+        "nutrition": {
+          "energyKcal": 468.0,
+          "fat": 0.25,
+          "fiber": null,
+          "protein": 8.0,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_crackers_74375",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EZO26_Z_P_74375_1.png",
+      "insightLine": "שבעים ותשעה אחוז קמח לבן, בלי גרם אחד של דגן מלא שיחזיק את המוצר.",
+      "name": "קרקר זהב אסם",
+      "nameHe": "קרקר זהב אסם",
+      "rank": 18,
+      "retailer": "shufersal",
+      "rowVerdict": "כמעט כל הבסיס כאן הוא קמח חיטה לבן, עם שמנים, סוכר וסירופ גלוקוזה לצדו. דגן מלא לא נמצא בשום צורה, והחלבון נשאר בין הנמוכים בהשוואה כולה.",
+      "score": 49.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_website_cluster": "refined_white",
+      "barcode": "5000396021202",
+      "bariInterpretation": [
+        {
+          "interpretation": "רמת העיבוד נגזרת ממבנה הקרקר ומרשימת הרכיבים.",
+          "key": "processing_quality",
+          "label": "רמת עיבוד",
+          "score": 56.0,
+          "strength": "בינוני"
+        },
+        {
+          "interpretation": "משקף את מספר תוספי המזון ברשימת הרכיבים.",
+          "key": "additive_quality",
+          "label": "תוספים",
+          "score": 100.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת החלבון, הסיבים והזרעים ל-100 גרם.",
+          "key": "nutrient_density",
+          "label": "ערך תזונתי",
+          "score": 36.9,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף את כמות החלבון ל-100 גרם ואת מקורו.",
+          "key": "protein_quality",
+          "label": "חלבון",
+          "score": 39.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מושווה מול קרקרים אחרים — לא מול לחם — כי הקרקר יבש ומרוכז.",
+          "key": "calorie_density",
+          "label": "צפיפות קלורית",
+          "score": 35.0,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "מבוסס על הרכב הפחמימות והסוכר ברשימה.",
+          "key": "glycemic_quality",
+          "label": "איכות גליקמית",
+          "score": 75.3,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את סוג השומן ברכיבים.",
+          "key": "fat_quality",
+          "label": "איכות שומן",
+          "score": 90.5,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף את תרומת הסיבים והחלבון לתחושת השובע.",
+          "key": "satiety_support",
+          "label": "תחושת שובע",
+          "score": 32.7,
+          "strength": "נמוך"
+        },
+        {
+          "interpretation": "משקף עמידה בדרישות הסימון.",
+          "key": "regulatory_quality",
+          "label": "איכות רגולטורית",
+          "score": 95.0,
+          "strength": "חזק"
+        },
+        {
+          "interpretation": "משקף עד כמה הבסיס דגן שלם לעומת קמח מזוקק ומילויים.",
+          "key": "whole_food_integrity",
+          "label": "שלמות מזון",
+          "score": 60.0,
+          "strength": "בינוני"
+        }
+      ],
+      "bestUseCases": [
+        "רכיבים פשוטים"
+      ],
+      "brand": null,
+      "categoryTotal": 19,
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "consumerTakeaway": "הציון הכולל הנמוך בהשוואה: קמח לבן כבסיס ללא דגן מלא, סוכר וסירופ גלוקוז-פרוקטוז, וסוכר 8.5 גרם ל-100 גרם. חלבון וסיבים נמוכים, נתרן 507 מיליגרם ל-100 גרם. קרקר מתוק-מלוח מעובד, לא בסיס חזק.",
+      "d4_additives": [
+        {
+          "e_number": "E450",
+          "explanation_he": "פוספטים הם מלחי זרחן המשמשים לייצוב מרקם מוצרי חלב; הצריכה המצטברת מכלל המזון ראויה לתשומת לב.",
+          "function_he": "מייצב חלבוני חלב / חומר תחליב",
+          "name_he": "פוספטים",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E500",
+          "explanation_he": "נתרן פחמתי (סודה לאפייה) הוא מלח נפוץ המשמש להתפחה ולאיזון חומציות; מאושר לשימוש ברמות הנהוגות.",
+          "function_he": "מווסת חומציות / חומר תפיחה",
+          "name_he": "סודיום קרבונט",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, שמן חמניות, סוכר וסירופ גלוקוז-פרוקטוז. סוכר 8.5 גרם ל-100 גרם. נתרן 507 מיליגרם ל-100 גרם. חומרי התפחה בלבד כתוספים.",
+        "confidenceLabel": "נתונים בבדיקה",
+        "consumerExplanation": {
+          "context": "קמח חיטה לבן, שמן חמניות, סוכר וסירופ גלוקוז-פרוקטוז. סוכר 8.5 גרם ל-100 גרם. נתרן 507 מיליגרם ל-100 גרם. חומרי התפחה בלבד כתוספים.",
+          "good": [
+            "רשימת רכיבים קריאה מהאריזה"
+          ],
+          "takeaway": "הציון הכולל הנמוך בהשוואה: קמח לבן כבסיס ללא דגן מלא, סוכר וסירופ גלוקוז-פרוקטוז, וסוכר 8.5 גרם ל-100 גרם. חלבון וסיבים נמוכים, נתרן 507 מיליגרם ל-100 גרם. קרקר מתוק-מלוח מעובד, לא בסיס חזק.",
+          "watchOut": [],
+          "whyRated": "הציון הכולל הנמוך בהשוואה: קמח לבן ללא דגן מלא, סוכר וסירופ גלוקוז-פרוקטוז, סוכר 8.5 גרם, וחלבון וסיבים נמוכים. קרקר מתוק-מלוח מעובד, לא בסיס חזק לשום דבר."
+        },
+        "ingredients": "קמח חיטה(מכיל גלוטן), שמן חמניות, סוכר, סירופ גלוקוז-פרוקטוז, חומרי התפחה (קלציום פוספט, אמוניום קרבונט, סודיום קרבונט, פוטסיום קרבו נט), מלח, קמח שעורה (מכיל גלוטן).",
+        "limitingFactors": [
+          "קמח חיטה לבן כבסיס — ללא דגן מלא",
+          "סוכר 8.5 גרם ל-100 גרם",
+          "נתרן 507 מיליגרם ל-100 גרם"
+        ],
+        "nutrition": {
+          "energyKcal": 488.0,
+          "fat": 0.25,
+          "fiber": 3.3,
+          "protein": 7.8,
+          "sodium": 507.0,
+          "sugar": 8.5
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_crackers_5000396021202",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RHJ30_Z_P_5000396021202_1.png",
+      "insightLine": "התחתית של המדף: קמח לבן, סוכר 8.5 גרם ל-100 גרם, ובלי דגן מלא בשום מקום.",
+      "name": "קרקר",
+      "nameHe": "קרקר",
+      "rank": 19,
+      "retailer": "shufersal",
+      "rowVerdict": "קמח חיטה לבן וסוכר-גלוקוז-פרוקטוז מרכיבים את רוב הרשימה, והסוכר הנמדד כאן הוא הגבוה ביותר בכל ההשוואה. חלבון וסיבים נמוכים משלימים תמונה של קרקר מתוק-מלוח בלי עוגן תזונתי.",
+      "score": 44.5,
+      "source_traceability_status": "resolved"
+    }
+  ]
+}

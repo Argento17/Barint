@@ -1,0 +1,1298 @@
+{
+  "_meta": {
+    "category": "bread",
+    "corpus_dirs": [
+      "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output"
+    ],
+    "corpus_records": 29,
+    "engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "failed_barcodes": [],
+    "flag_vector": {
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_RECAL_P0": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_SHELF_RELATIVE_V1": "off",
+      "BARI_SODIUM_CEREAL": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off"
+    },
+    "gate_e_assembly_ts": "2026-06-26T17:42:11Z",
+    "gate_e_note": "Gate E assembly: copy+sign-off cleared; staged->served; render-verify pending",
+    "generated": "2026-06-26T15:58:10",
+    "product_count": 23,
+    "run_id": "task409_rederive_bread_20260626",
+    "scored": 29,
+    "task": "TASK-409 clean+traceable re-derive v2",
+    "task433_membership_correction": "Crackers split to standalone category (TASK-433); membership correction only, no re-score; 23 survivors byte-identical to bread_frontend_v3.json (scores/grades/expansion/d4_additives/insightLine/rowVerdict untouched). 6 cracker products removed (barcodes: 7296073134442, 7296073134459, 74252, 8434165658523, 96086000577, 96086000966). rank renumbered 1..23 in existing score-desc order. brand injected via deterministic name-literal-match ONLY where not already present (brand_extractor.py) — never invented, never overwrote an existing value.",
+    "ts": "2026-06-26T15:58:10"
+  },
+  "products": [
+    {
+      "_hash_no_rank": "6d1cfce0fec2e564cd274716f4bafd5b6c44babd19909454eeb2db1edaab5ae1",
+      "_website_cluster": "high_protein",
+      "barcode": "7290016245325",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "טחינה כבסיס, לא כתוסף — קמחי זרעים ואגומות (פשתן, שומשום, אפונה, שקדים, סויה) מעניקים פרופיל חלבוני-סיבי יוצא דופן. נתרן נמוך במיוחד.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמחים 36% (פשתן, שומשום, אפונה, סויה, שקדים), טחינה, גלוטן, אינולין, מחמצת שיפון, מלח, חומץ, ויטמין C, עמילן תירס, אנזימים, חומ ר משמר (פוטסיום סורבט, קלציום פרפיונט), שמרים. מאפיינים נוספים ללא תוספת סוכר מכיל סויה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 192.0,
+          "fat": 0.25,
+          "fiber": 18.5,
+          "protein": 27.5,
+          "sodium": 126.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "S",
+      "id": "bsip1_bread_7290016245325",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JDU46_Z_P_7290016245325_1.png",
+      "insightLine": "טחינה וקמחי זרעים במקום קמח חיטה בונים כאן את הפרופיל החזק בקטגוריה: שיא החלבון, שיא הסיבים, והנתרן הנמוך מכולם.",
+      "name": "לחם טחינה פרוס",
+      "rank": 1,
+      "retailer": "shufersal",
+      "rowVerdict": "ראש המדף בפער גדול. קמחי פשתן, שומשום, אפונה, סויה ושקדים לצד טחינה מייצרים 27.5 גרם חלבון, את הסיבים הגבוהים בקטגוריה ופחות ממחצית הנתרן של כל לחם אחר כאן. שני חומרים משמרים ברשימה הם ההערה היחידה בשוליים.",
+      "score": 94.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "b8a639d0cd55b8e88b7fa0e1e3bf83550ee163d78a7aac6360a838ee73583b27",
+      "_website_cluster": "wholegrain",
+      "barcode": "3268429",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "לחם ירוק קלאסי — 100% קמח חיטה מלא, 60% ממשקל הלחם. חומץ טבעי ברכיבים. ללא חומרי עיבוד נוספים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (100% מהקמח 60% מהלחם), מים, גלוטן חיטה, חומץ טבעי, שמרים, לתת שעורה (מכיל גלו טן), גרעיני פשתן (1.3%), מלח, שיבולת שועל (מכיל גלוטן), גרעיני חמניות (0.3%), קמח סויה, אנזימים.n מאפיינים נוספים מכיל דגנים מלאים,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 223.0,
+          "fat": 0.25,
+          "fiber": 6.4,
+          "protein": 12.6,
+          "sodium": 382.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "S",
+      "id": "bsip1_bread_3268429",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XXU34_Z_P_3268429_1.png",
+      "insightLine": "הפשטות כאן היא הנכס: מאה אחוז קמח חיטה מלא, חומץ טבעי, ואפס חומרים משמרים או מתחלבים.",
+      "name": "לחם ירוק מקמח מלא",
+      "rank": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "סגן האלוף של הקטגוריה, והיחיד בחמישייה הפותחת בלי אף תוסף ברשימה. קמח מלא בלבד, חומץ טבעי, מעט פשתן ושיבולת שועל. הסיבים צנועים יחסית לשאר הלחמים המלאים כאן, וזה כל מחירה של הפשטות.",
+      "score": 92.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "16258bf9917e4ed50ac8058f6cdead2a825391e6c1a2fc64c79653a82b478395",
+      "_website_cluster": "wholegrain",
+      "barcode": "3268252",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "100% קמח חיטה מלא עם מחמצת שיפון ומחמצת חיטה ברכיבים. תוספות מינימליות — לתת שעורה, קמח סויה, ויטמין C לאפייה.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן) (100% מהקמח, 66% ממשקל הלחם),מים, גלוטן חיטה, ,שמרים, מלח, לתת שעורה, מחמצת שי פון (מכיל גלוטן), מחמצת מקמח חיטה (מכיל גלוטן) כחומר משמר, קמח סויה,  חומר לטיפול בקמח ( חומצה אסקורבית), אנזימים לאפייה.n* הסוכרים  במוצר מקורם בקמחים ובדגנים מאפיינים נוספים מכיל דגנים מלאים,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 221.0,
+          "fat": 0.25,
+          "fiber": 7.0,
+          "protein": 11.5,
+          "sodium": 343.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_3268252",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XQZ28_Z_P_3268252_1.png",
+      "insightLine": "לחם מבוגרים בתחפושת של מותג ילדים: כל הקמח מלא, שתי מחמצות ברשימה, ותוספות ספורות בלבד.",
+      "name": "לחם חיטה מלא לילדים",
+      "rank": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "שני שליש ממשקל הכיכר הם קמח חיטה מלא, עם מחמצת שיפון ומחמצת חיטה שמשמשת גם לשימור. מיתוג הילדים הוא החלטה שיווקית, הפרופיל מתאים לכל שולחן. ויטמין C לאפייה הוא התוסף היחיד.",
+      "score": 89.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "b4fe381f77544c90a635541b86d9172b88aa758c4af8dd905ac1a9ff11fc411a",
+      "_website_cluster": "sourdough",
+      "barcode": "481203",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "מחמצת שיפון אמיתית (קמח שיפון מלא + מים) ו-90% קמח חיטה מלא. תערובת שישה אחוז זרעים וגרעינים. חומר משמר יחיד (קלציום פרופיונט).",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח חיטה מלא (נטחן מגרעין החיטה בשלמות (מכיל גלוטן)),90% מסך הקמחים , 50% מהלחם), מחמצת שיפון 10% ( קמח שיפון מלא (נטחן מגרעין השיפון בשלמותו ( מכיל גלוטן)), מים) , מיקס זרעים וגרעינים (6%)  (גרעיני דלעת, גרעיני חמניות, זרעי פשתן, זרעי צ'יה, זרעי שומשום), גלו טן חיטה, מלח, חומר משמר ( קלציום פרופיונט), חומר לטיפול בקמח . מאפיינים נוספים ללא מרכיבים מהחי,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 227.0,
+          "fat": 0.25,
+          "fiber": 6.7,
+          "protein": 9.0,
+          "sodium": 380.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_481203",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IUU18_Z_P_481203_1.png",
+      "insightLine": "מחמצת של קמח שיפון מלא ומים בלבד, על תשעים אחוז קמחים מלאים ושישה אחוזי זרעים. תסיסה אמיתית שרואים ברשימה.",
+      "name": "לחם מחמצת קמח מלא",
+      "rank": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "חצי ממשקל הכיכר הוא קמח חיטה מלא, המחמצת עשויה שיפון מלא ומים בלי קיצורי דרך, ודלעת, חמניות, פשתן, צ'יה ושומשום משלימים. ההפרש בינו לבין לחם המחמצת הגרעיני זניח, שניהם באותה מדרגה. חומר משמר יחיד ברשימה.",
+      "score": 89.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "b0897d38a15e7196438fd088f3a7ee556ef8ca27608e8fef2d56276e0e131160",
+      "_website_cluster": "sourdough",
+      "barcode": "481197",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "ארבעה קמחים: חיטה לבן (40%), כוסמין מלא (25%), חיטה מלא (25%), שיפון מחמצת (12%). גרעינים (5%): דלעת, חמנייה, פשתן, שומשום. חומר משמר יחיד.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח חיטה לבן  (מכיל גלוטן), (40%  מסך הקמחים , 24% מהלחם ), קמח כוסמין מלא (נטחן מגרעין חיטת הכוסמין בשלמותו (מכיל גלוטן) , 25%  מסך הקמחים , 15% מהלחם), קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו (מכיל גלוטן) 25% מהקמחים, 15% מהלחם), מחמצת שיפון 12%  (קמח שיפון מלא (נטחן מגרעין השיפון בשלמותו  (מכיל גלוטן), 10% מהקמחים, 6% מהלחם)), מים), גרעינים  5% (גרעיני דלעת, גרעיני חמנייה , פשתן, שומשום ), שיבולת שועל (מכיל גלוטן) 1% , גלוטן חיטה, מלח, חומר משמר (קלציום פרופיונט), חומר לטיפול בקמח (חומצה אסקורבית). מאפיינים נוספים ללא מרכיבים מהחי,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 220.0,
+          "fat": 0.25,
+          "fiber": 5.6,
+          "protein": 8.5,
+          "sodium": 380.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_481197",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IUO30_Z_P_481197_1.png",
+      "insightLine": "אותה מחמצת שיפון של קמח מלא ומים, הפעם על תערובת קמחים מגוונת יותר: כוסמין מלא, חיטה מלאה, וגם קמח לבן.",
+      "name": "לחם מחמצת גרעינים",
+      "rank": 5,
+      "retailer": "shufersal",
+      "rowVerdict": "בן זוגו של לחם המחמצת מהקמח המלא, במרחק שאין טעם להכריע לפיו. ההבדל יושב בקמחים: כאן ארבעים אחוז מהם לבנים, והמלאים (כוסמין, חיטה ושיפון) מחזיקים את הרוב. מי שרוצה את הגרסה המלאה יותר של אותו רעיון ימצא אותה אצל השכן מלמעלה.",
+      "score": 88.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "70a6420c2222170f730e0ab5bc42c11596df481db9fa75a586baef732ad95fc3",
+      "_website_cluster": "wholegrain",
+      "barcode": "574370",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E270",
+          "explanation_he": "חומצה לקטית (חומצת חלב) היא תוצר טבעי של תסיסה, המשמשת לאיזון טעם ולשימור; הגוף מכיר אותה כמטבוליט רגיל.",
+          "function_he": "חומצת מאכל / משמר — תוצר תסיסה טבעי",
+          "name_he": "חומצה לקטית",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "100% קמח מלא: חיטה מלאה (66%) ושיפון מלא (34%). מחמצת שיפון ברכיבים. סיבים תזונתיים נוספו בנפרד. שישה חומרי עזר — ארוך יחסית לקטגוריה.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח חיטה מלא n(נטחן מגרעין החיטה בשלמותו (מכיל גלוטן)) (66% מהקמח, 30% ממשקל הלחם), קמח שיפון מלא (נטחן מגרעין השיפון בשלמותו (מכיל גלוטן)) (34% מהקמח, 15% ממשקל הלחם), גלוטן חיטה, סיבים תזונתיים, שמרים, מלח, לתת שעורה (גלוטן), מחמצת שיפון n0מכיל גלוטן), חו מרים משמרים (קלציום פרופיונט, פוטסיום סורבט), מתחלב(E481 ), קמח סויה, חומר מווסת חומציות (חומצה ציטרית, חומצה לקטית), חומר לטיפול בק מח(חומצה אסקורבית), אנזימים לאפייה.nn מאפיינים נוספים מכיל דגנים מלאים,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 198.0,
+          "fat": 0.25,
+          "fiber": 12.4,
+          "protein": 12.1,
+          "sodium": 390.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_574370",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QQD26_Z_P_574370_1.png",
+      "insightLine": "השיפון מקבל את השם, אבל רוב הקמח כאן הוא דווקא חיטה מלאה. כך או כך, כל הקמח מלא והסיבים בין הגבוהים במדף.",
+      "name": "לחם שיפון קל",
+      "rank": 6,
+      "retailer": "shufersal",
+      "rowVerdict": "שני שליש חיטה מלאה ושליש שיפון מלא, עם מחמצת שיפון ותוספת סיבים שמטפסת גבוה. הצד השני הוא רשימת חומרי עזר מהארוכות בקטגוריה: שני משמרים, מתחלב, שני מווסתי חומציות וויטמין C לאפייה.",
+      "score": 86.9,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "4d154c20473ea9846934c0de4af35e9881217727c8d09e828ee31edd3efc9287",
+      "_website_cluster": "wholegrain",
+      "barcode": "3054183",
+      "brand": "מסטמכר",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "שיפון שבור (50%) כרכיב ראשון — גרעין בשלמותו, לא קמח. רשימת חמישה רכיבים בלבד. נתרן גבוה יחסית.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "דגנים (גרעיני שיפון מלא שבורים 50% (מכיל גלוטן), קמח שיפון מלא 5% (מכיל גלוטן)), מים, מלח, סיבי שבולת שועל (מכיל גלוטן), שמרים. מכיל גלוטן שעורה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 191.0,
+          "fat": 0.25,
+          "fiber": 10.6,
+          "protein": 5.2,
+          "sodium": 500.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_3054183",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SZO24_Z_P_3054183_1.png",
+      "insightLine": "חצי מהכיכר היא גרעיני שיפון שבורים, והרשימה כולה נקראת בנשימה אחת. דגן מלא במובן המילולי ביותר שיש כאן.",
+      "name": "לחם שיפון מלא מסטמכר",
+      "rank": 7,
+      "retailer": "shufersal",
+      "rowVerdict": "הדגן הכי קרוב לצורתו המקורית בקטגוריה: גרעיני שיפון שבורים, קמח שיפון מלא, מים, מלח, סיבי שיבולת שועל ושמרים, בלי אף תוסף. המחיר יושב במלח, 500 מיליגרם נתרן, הגבוה במדף כולו. גם החלבון הנמוך בקטגוריה נמצא כאן, שיפון נקי נותן ממנו מעט.",
+      "score": 86.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "c18ab53796985e267fdd5c5c9fd9f7591ecb5ecdfd732b6e8a33359725795268",
+      "_website_cluster": "wholegrain",
+      "barcode": "2079033",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "60% קמח חיטה מלא ו-20% שיפון מלא. תערובת דגנים וגרעינים (8%), סיבים תזונתיים נוספו בנפרד. נתרן נמוך יחסית למדף.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח חיטה מלא ( 60% ממשקל הקמחים, 32% ממשקל הלחם) (מכיל גלוטן), קמח שיפון מלא (20% ממשקל הקמחים, 11% ממשקל הלחם) (מכיל גלוטן), ק מח חיטה כהה (מכיל גלוטן), תערובת דגנים וגרעינים (8%) (שיבולת שועל, זרעי פשתן, גרעיני חמניות), סיבים תזונתיים, חלבון צמחי (מכיל גלוטן ), מלח שולחן, שמרים, חומרים משמרים: קלציום פרופיונט ופוטסיום סורבט, קמח סויה, חומר מתחלב E481, מווסת חומציות: חומצת לימון, אנזימים, חומר לטיפול בקמח: חומצה אסקורבית (ויטמין C). מאפיינים נוספים ללא תוספת סוכר,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 222.0,
+          "fat": 0.25,
+          "fiber": 14.2,
+          "protein": 12.5,
+          "sodium": 304.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_2079033",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GLU24_Z_P_2079033_1.png",
+      "insightLine": "יותר מ-14 גרם סיבים, השיא של לחמי החיטה והשיפון במדף, יחד עם נתרן מהנמוכים בקטגוריה.",
+      "name": "לחם דגנים לייט",
+      "rank": 8,
+      "retailer": "shufersal",
+      "rowVerdict": "שמונים אחוז מהקמחים כאן מלאים, ותוספת סיבים ייעודית מושכת את המונה לשיא של לחמי הדגן. הוא חולק את מדרגתו עם שני שכנים כמעט זהים בשורה התחתונה, ומה שמייחד אותו בשלישייה הוא הסיבים והנתרן המאופק. חמישה חומרי עזר ברשימה.",
+      "score": 83.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "0e5778a8c09dff211c129ed4c8f485e6020f339b4a1ad7d397dcbe3a422b4a7d",
+      "_website_cluster": "wholegrain",
+      "barcode": "2079927",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E471",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם.",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "83% חיטה מלאה מהקמחים, 45% ממשקל הלחם. תערובת דגנים (7%): שיבולת שועל, פשתן, דלעת, חמנייה. שני מתחלבים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח חיטה מלא (83% ממשקל הקמחים, 45% ממשקל הלחם) (מכיל גלוטן), קמח חיטה לבן (מכיל גלוטן), תערובת דגנים וגרעינים (7%) (שיבולת שוע ל (מכיל גלוטן), זרעי פשתן, גרעיני דלעת, זרעי חמנייה), חלבון צמחי (מכיל גלוטן), מלח שולחן, שמרים, חומרים משמרים: קלציום פרופיונט ופוט סיום סורבט, חומרים מתחלבים: E481, E471, סיבי תזונתיים, חומר לטיפול בקמח: חומצה אסקורבית (ויטמין C), אנזימים. מאפיינים נוספים מכיל דגנים מלאים מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 242.0,
+          "fat": 0.25,
+          "fiber": 7.2,
+          "protein": 13.8,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_2079927",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HUE36_Z_P_2079927_1.png",
+      "insightLine": "שמונים ושלושה אחוז קמח מלא וחלבון מהגבוהים בקטגוריה, לצד שני מתחלבים שנכנסו לרשימה.",
+      "name": "לחם דגנים מלא",
+      "rank": 9,
+      "retailer": "shufersal",
+      "rowVerdict": "חלק משלישייה שנוגעת זו בזו בשורה התחתונה, בלי הבדל שראוי להכריע לפיו. זו הגרסה החלבונית שביניהן, עם שיבולת שועל, פשתן, דלעת וחמנייה על בסיס שרובו המוחלט קמח מלא. שני המתחלבים, אחד מהם עדיין במחלוקת מחקרית, הם הצד הפחות נקי.",
+      "score": 83.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "08bbb85995031596495196cafa96062ae40404bbf5f2613d7146899500f134bc",
+      "_website_cluster": "wholegrain",
+      "barcode": "497044",
+      "brand": "ברמן",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E471",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם.",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "100% קמח חיטה מלא. אינולין (3%) כסיב פרה-ביוטי. אבקת מחמצת שיפון — לא מחמצת מלאה. שני מתחלבים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (מכיל גלוטן, 100% מסך הקמחים, 53% ממשקל המוצר) מים, שמרים, גלוטן חיטה, סיבים פרה ביוטיים (אינולין)  (3%), אבקת מחמצת שי פון (מכילה גלוטן), מלח שולחן, מתחלבים (E481, E471), משמר (E282), לתת שעורה (מכיל גלוטן), סיבים תזונתיים, מעכב חמצון (E300), אנזימים לאפיה. מאפיינים נוספים מכיל דגנים מלאים,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 233.0,
+          "fat": 0.25,
+          "fiber": 11.4,
+          "protein": 10.8,
+          "sodium": 340.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_497044",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GGB28_Z_P_497044_1.png",
+      "insightLine": "מאה אחוז קמח מלא עם אינולין פרה-ביוטי, והמחמצת ברשימה מגיעה בצורת אבקה.",
+      "name": "לחם ברמן אקטיב",
+      "rank": 10,
+      "retailer": "shufersal",
+      "rowVerdict": "השלישי בשלישייה הצמודה, וההצעה שלו שונה: קמח מלא בלבד, סיבים גבוהים, ואינולין שנוסף כסיב פרה-ביוטי. את מקום הבצק התוסס תופסת אבקת מחמצת, ולרשימה נכנסו שני מתחלבים, אחד מהם שנוי במחלוקת. למחפשי סיבים בתוך לחם רגיל יש כאן הצעה רצינית.",
+      "score": 83.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "a9e4c359f25178c5cdd9928cdb818c6639c3f594f23c98c82592b40fd893cf6f",
+      "_website_cluster": "everyday",
+      "barcode": "2079996",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה כהה (לא מלא) כרכיב ראשון. קמח חיטה מלא וקמח שיפון מלא בכמויות קטנות יותר. מייצב ומשמרים. סיבים תזונתיים נוספו בנפרד.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה כהה (מכיל גלוטן), מים, סיבים תזונתיים, חלבון צמחי(מכיל גלוטן), מלח שולחן, שמרים, קמח חיטה מלא (מכיל גלוטן), קמח שיפון מלא ( מכיל גלוטן), חומרים משמרים: קלציום פרופינט ופוסטיום סורבט, קמח סויה, מתחלבE481, מווסת חומציות: חומצת לימון, אנזימים, חומר לטיפול בקמ ח: חומצה אסקורבית (ויטמין C). מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 224.0,
+          "fat": 1.4,
+          "fiber": 10.4,
+          "protein": 12.56,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_2079996",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HWV42_Z_P_2079996_1.png",
+      "insightLine": "הגרסה המשודרגת של לחם האחיד: קמח מלא, שיפון מלא וסיבים נוספו לבסיס הכהה, והתוצאה רחוקה מאחיו הפשוט.",
+      "name": "לחם אחיד פרוס קל",
+      "rank": 11,
+      "retailer": "shufersal",
+      "rowVerdict": "ההבדל בינו לבין האחיד הרגיל הוא שיעור בקריאת רשימות: אותו קמח כהה בבסיס, אבל כאן הצטרפו קמח חיטה מלא, קמח שיפון מלא וסיבים, והסיבים בפועל משתווים ללחמים המלאים. משמרים ומתחלב נשארו גם הם, כמו אצל האח.",
+      "score": 82.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "ad8799f4b6f6b44156bf0e24ff7965e72b0d7660aff8ea806b52f1a7bdd45872",
+      "_website_cluster": "wellness_ambig",
+      "barcode": "7290018500316",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "כוסמין לבן עם מחמצת — 'כוסמין' מציין סוג דגן, לא מלאות. הציון מבוסס על המחמצת, לא על מלאות הקמח.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח כוסמין לבן (גלוטן)  (88% מהקמחים, 61% מהמוצר), מים, מחמצת חיטה מלאה 14% [קמח חיטה מלא (12% ממשקל הקמחים, 8% ממשקל המוצר), מים], מלח, גלוטן חיטה, מחמצת מעמילן חיטה כחומר משמר,  שמרים , חומר מעכב חימצון (E300), אנזימים. מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 248.0,
+          "fat": 1.5,
+          "fiber": 3.3,
+          "protein": 9.0,
+          "sodium": 366.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "A",
+      "id": "bsip1_bread_7290018500316",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QYF42_Z_P_7290018500316_1.png",
+      "insightLine": "הכוסמין שבשם הוא סוג דגן, והקמח כאן מזוקק כמו בלחם לבן. את העבודה האמיתית עושה המחמצת.",
+      "name": "לחם כוסמין לבן",
+      "rank": 12,
+      "retailer": "shufersal",
+      "rowVerdict": "מחמצת אמיתית של קמח חיטה מלא ומים מרימה כיכר שכמעט כולה קמח כוסמין לבן. הזיקוק מורגש בסיבים, מהנמוכים במדף, ומי שהגיע בגלל צליל הבריאות של המילה כוסמין מקבל כאן בעיקר את יתרון התסיסה.",
+      "score": 81.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "74605afd9f204d5d6154ca25c2a6c6ed9498a0ad6ad816e31c479009c2720928",
+      "_website_cluster": "pita",
+      "barcode": "7290018540329",
+      "brand": "מאפיית אנג'ל",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן כרכיב יחיד. סוכר ברכיבים. ציסטין כחומר לטיפול בקמח. ללא דגן מלא.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה לבן (גלוטן), מים, סוכר, שמרים, מלח, חומר לטיפול בקמח (E920), אנזימים. מכיל גלוטן חיטה עלול להכיל סויה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 236.0,
+          "fat": 1.4,
+          "fiber": 3.0,
+          "protein": 7.8,
+          "sodium": 295.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_7290018540329",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YDE50_Z_P_7290018540329_1.png",
+      "insightLine": "פיתה לבנה כהגדרתה: קמח מזוקק, מעט סוכר, וחומר שמחזק את הבצק. בלי העמדות פנים ובלי דגן מלא.",
+      "name": "פיתה פיתה",
+      "rank": 13,
+      "retailer": "shufersal",
+      "rowVerdict": "המדורגת גבוה מבין שתי הפיתות במדף. קמח לבן, סוכר שמופיע נמוך יותר ברשימה מאשר אצל המתחרה, וציסטין לחיזוק הבצק. דגן מלא אין, והסיבים נמוכים בהתאם.",
+      "score": 79.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "8b0a5684ee66a10830111d592a9cd6d554ec44f5e5c784186d99178870e2b4c8",
+      "_website_cluster": "everyday",
+      "barcode": "2079477",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E471",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם.",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה כהה בלבד — ללא קמח מלא. שני מתחלבים, שני חומרי משמר. סיבים נמוכים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה כהה (מכיל גלוטן), מים, שמרים, מלח שולחן, חומרים משמרים: קלציום פרופיונט ופוטסיום סורבט, חומרים מתחלבים: E471, E481, סיבים ת זונתיים, חומר לטיפול בקמח: חומצה אסקורבית (ויטמין C), אנזימים. מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 238.0,
+          "fat": 1.3,
+          "fiber": 3.0,
+          "protein": 8.8,
+          "sodium": 400.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_2079477",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HCW36_Z_P_2079477_1.png",
+      "insightLine": "קמח כהה נשמע כמו צעד לכיוון המלא, אבל אין כאן קמח מלא בכלל, ואת החסר ממלאים שני משמרים ושני מתחלבים.",
+      "name": "לחם אחיד פרוס",
+      "rank": 14,
+      "retailer": "shufersal",
+      "rowVerdict": "הגרסה הבסיסית של לחם האחיד, במרחק גדול מהגרסה ה'קל' המשודרגת. שם הוסיפו קמחים מלאים וסיבים; כאן הבסיס הכהה נשאר לבד, והסיבים נמוכים כמו בפיתה לבנה. אחד המתחלבים ברשימה עודנו שנוי במחלוקת.",
+      "score": 75.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "189f495590ee7b4ef3115fd2a5921c05527e2472fabcc30e024f12fffc49cb7b",
+      "_website_cluster": "pita",
+      "barcode": "9398281",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, סוכר, מתחלב, שמרים. ללא קמח מלא ברכיבים. סיבים נמוכים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה לבן, סוכר, שמרים, מלח, גלוטן חיטה, מתחלב,אנזימים , מים מכיל גלוטן חיטה עלול להכיל אגוזי לוז,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 235.0,
+          "fat": 0.5,
+          "fiber": 2.9,
+          "protein": 7.4,
+          "sodium": 298.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_9398281",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RTI40_Z_P_9398281_1.png",
+      "insightLine": "הסוכר מופיע כאן שני ברשימה, לפני השמרים והמלח, וזה מסכם היטב פיתה לבנה בסיסית.",
+      "name": "מארז פיתות אסליות",
+      "rank": 15,
+      "retailer": "shufersal",
+      "rowVerdict": "הפיתה השנייה במדף גם בדירוג הפנימי בין השתיים. ההבדלים מול פיתת אנג'ל קטנים אבל עקביים: הסוכר גבוה יותר ברשימה, ונוסף מתחלב. הסיבים הנמוכים ביותר שנמדדו בקטגוריה נמצאים כאן.",
+      "score": 75,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "9adb7d1987fdb9089b2af6aa697a20a59833186754063f3082b3f138dd8cf7d9",
+      "_website_cluster": "specialty",
+      "barcode": "2079217",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "שיפון מלא (36% ממשקל הלחם), קמח חיטה לבן (40%), מחמצת שיפון (2%), אגוזי מלך (3%), שמן סויה. קמח לבן כרכיב הדומיננטי.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח שיפון מלא (36% ממשקל הלחם,80% ממשקל הקמחים)(מכיל גלוטן),קמח חיטה,מים,מחמצת שיפון טבעית (2%),אגוז מלך (3%),שמן סויה, קמח לתת כהה, חמניות (2%),מלח שמרים,סוכר,חומר משמר קלציום פורפיונט E282,חומר מתחלב E481,חומצת לימון כמווסת חומציות,חומצה אסקורבית (ויטמין C) ,וקמח סויה כמשפרי אפייה. ציפוי: שבבי חיטה. מכיל אגוזי מלך,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 259.0,
+          "fat": 0.25,
+          "fiber": 6.1,
+          "protein": 9.2,
+          "sodium": 288.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_2079217",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GSW28_Z_P_2079217_1.png",
+      "insightLine": "ארבע חמישיות מהקמח כאן הן שיפון מלא, ובכל זאת זו כיכר של החצי התחתון: סוכר, שמן סויה וערכת משפרי אפייה שלמה מלווים אותה.",
+      "name": "לחם מחמצת שיפון+אגוזים",
+      "rank": 16,
+      "retailer": "shufersal",
+      "rowVerdict": "המחמצת שבשם קיימת אבל זעירה, שני אחוזים, והאגוזים שלושה. הבסיס עצמו מרשים, רוב מוחלט של שיפון מלא, אלא שמסביבו מצטופפים סוכר, שמן סויה, משמר, מתחלב ומווסת חומציות. גם הקלוריות כאן מהגבוהות בקטגוריה.",
+      "score": 70.1,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "bd36373ec7f61c42fb1209f5cd4a715a3dd76cfe935d253364e54a1ab6c841ef",
+      "_website_cluster": "specialty",
+      "barcode": "7290014321168",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "גלוטן חיטה (חלבון מבודד) כרכיב ראשון. פשתן 23%, שמן קוקוס, אריתריטול כממתיק. ללא קמח מלא. מוצר קיטו — מבנה שונה מלחם רגיל.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, גלוטן חיטה (חלבון), זרעי פשתן (23%), סיבים תזונתיים, שמן קוקוס, ממתיק (אריטריטול), שמרים, מלח, מייצב צמחי (קסטן גאם). מאפיינים נוספים ללא תוספת סוכר מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 231.0,
+          "fat": 0.25,
+          "fiber": 17.4,
+          "protein": 23.7,
+          "sodium": 385.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_7290014321168",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WTT44_Z_P_7290014321168_1.png",
+      "insightLine": "חלבון וסיבים בשיעורים שכמעט אף לחם כאן לא משיג, בנויים מגלוטן מבודד וזרעי פשתן. קיטו שעונה לשם לחם.",
+      "name": "לחם לס פרוס קיטו",
+      "rank": 17,
+      "retailer": "shufersal",
+      "rowVerdict": "בנוי מגלוטן חיטה כרכיב ראשי עם 23 אחוז זרעי פשתן, שמן קוקוס וממתיק אריתריטול. חלבון וסיבים ברמות שרק לחם הטחינה עוקף, ובכל זאת זהו מוצר הנדסי מקטגוריה אחרת שמתארח על מדף הלחם. לקהל הקיטו זה בדיוק המוצר; למי שמחפש לחם דגן, המבנה כאן אחר לגמרי.",
+      "score": 70.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "46e781d1f35f0e18e3c5796081af7c900fbc253414edd18fa838c69b3d2201de",
+      "_website_cluster": "specialty",
+      "barcode": "6451484",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן כבסיס דומיננטי. מחמצת שאור (חיטה, שיפון, חיטה מונבטת). 7% אגוזי מלך, 2.5% צימוקים. שמן סויה.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה לבן (מכיל גלוטן), מים, קמח שיפון מלא (מכיל גלוטן), אגוזי מלך (7%), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גל וטן), מלח, עמילן חיטה, מווסת חומציות (E-260)), סולת חיטה (מכיל גלוטן), צימוקים (2.5%), משפר אפייה (קמח חיטה לבן, גלוטן חיטה, שמרים, חומר מעכב חמצון (E-300), אנזימים), שמן סויה מכיל אגוזי מלך,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 266.0,
+          "fat": 0.25,
+          "fiber": 3.7,
+          "protein": 8.3,
+          "sodium": 404.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_6451484",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AOZ32_Z_P_6451484_1.png",
+      "insightLine": "אגוזי מלך וצימוקים על בסיס קמח לבן: חוויה של מאפה מיוחד עם ערכים של לחם לבן, ומהקלוריות הגבוהות במדף.",
+      "name": "לחם מחמצת אגוזים צימוקים",
+      "rank": 18,
+      "retailer": "shufersal",
+      "rowVerdict": "המחמצת אמיתית והתוספות נדיבות, שבעה אחוזי אגוזים ושמץ צימוקים, אבל את הכיכר נושא קמח לבן והסיבים נמוכים בהתאם. מבין שלושת הלחמים שקיבלו כאן תוצאה זהה, זה העשיר והכבד ביותר. מאפה של סוף שבוע יותר מלחם של כל יום.",
+      "score": 69.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "3b5419f12e7cd8fe0a4a72c666e0ab17d6aa66514587ee5a9943ccee16d34691",
+      "_website_cluster": "sourdough",
+      "barcode": "6451507",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "70% כוסמין מלא מהקמחים. מחמצת שאור (חיטה, שיפון, חיטה מונבטת, מלח, עמילן, חומצת חומץ). קמח חיטה לבן בנוסף. שמן סויה. נתרן גבוה.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "מים, קמח כוסמין מלא (מכיל גלוטן)(70% מסך הקמחים), קמח חיטה לבן (מכיל גלוטן), סולת חיטה (מכיל גלוטן), מחמצת שאור (מים, קמח חיטה, קמח שיפון, קמח חיטה מונבט (גלוטן), מלח, עמילן חיטה, מווסת חומציות (E-260)), גלוטן חיטה (מכיל גלוטן), משפר אפייה (קמח חיטה לבן, שמרים, חו מר מעכב חמצון (E-300), אנזימים), שמן סויה מכיל גלוטן חיטה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 213.0,
+          "fat": 0.25,
+          "fiber": 6.7,
+          "protein": 10.7,
+          "sodium": 423.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_6451507",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/APW28_Z_P_6451507_1.png",
+      "insightLine": "שבעים אחוז כוסמין מלא ומחמצת שאור של ממש, עם שני עוגנים שמכבידים: קמח לבן וסולת לצדם, ומלח ביד נדיבה.",
+      "name": "לחם מחמצת מכוסמין",
+      "rank": 19,
+      "retailer": "shufersal",
+      "rowVerdict": "על הנייר יש כאן הרבה: רוב מוצק של כוסמין מלא, מחמצת עם חיטה מונבטת, ואחת הכיכרות הקלות בקלוריות במדף. הנתרן מהגבוהים בקטגוריה הוא ההערה המרכזית, ולצדו שמן סויה ומשפר אפייה. חולק את דירוגו עם שני שכנים שונים ממנו באופיים.",
+      "score": 69.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "06fe17f17b6f4ee86314f25bd126e50a5b6b98f0ff433cc7d9882b0fd61e4724",
+      "_website_cluster": "everyday",
+      "barcode": "7290018500460",
+      "brand": "אנג'ל",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "סורבט אשלגן הוא חומר משמר נפוץ המונע התפתחות עובש, ומאושר לשימוש ברמות הנהוגות על ידי רשויות הבריאות באירופה ובישראל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "גרסת 'חצי מלא' של אנג'ל — שם שמניח ציפייה מנוהלת.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן) (50% ממשקל הקמחים, 34% ממשקל הלחם), קמח חיטה לבן (50% ממשקל הקמחים, 34% ממשקל הלחם) , מים, גלוטן חיטה, שמרים, מלח, חומרים משמרים (E282, E202), מתחלב (E481), סיבים תזונתיים, חומר מעכב חמצון (E300), אנזימים. מכיל גלוטן חיטה עלול להכיל סויה,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 220.0,
+          "fat": 0.25,
+          "fiber": 3.9,
+          "protein": 10.1,
+          "sodium": 380.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_7290018500460",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RDT42_Z_P_7290018500460_1.png",
+      "insightLine": "השם הכי כן במדף: חצי קמח מלא, חצי לבן, בדיוק כמו שכתוב. הסיבים חושפים כמה החצי הזה נותן בפועל.",
+      "name": "לחם אנג'ל חצי מלא",
+      "rank": 20,
+      "retailer": "shufersal",
+      "rowVerdict": "חמישים חמישים בין מלא ללבן, כהצהרת האריזה, והתוצאה נעצרת מתחת ל-4 גרם סיבים גם אחרי תוספת סיבים ייעודית. רביעיית חומרי עזר משלימה תמונה של לחם תעשייתי מסודר. ההבטחה מתקיימת במדויק; היא פשוט הבטחה צנועה.",
+      "score": 69.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "9121cd96c3ed431ad88015d8718ab381c2e081f9df0fdbfab8e1cf5246b40e3b",
+      "_website_cluster": "sourdough",
+      "barcode": "4685027",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E415",
+          "explanation_he": "קסנטן הוא מייצב טבעי המופק בתסיסה חיידקית, ומשמש לשמירה על מרקם אחיד ומניעת הפרדת מים.",
+          "function_he": "מייצב / חומר מסמיך מתסיסה חיידקית",
+          "name_he": "קסנטן",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "ארבעים אחוז קמח חיטה מלא ו-24% שיפון מלא מהקמחים. מחמצת שיפון (8%). סיבי שיבולת שועל, סובין חיטה ולתת שעורה. מייצב קסנטן וחומרי עזר נוספים.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (מכיל גלוטן, 76% מסך הקמחים, 28% ממשקל המוצר), מים, קמח שיפון מלא (מכיל גלוטן, 24% מסך הקמחים, 12% ממשקל המוצר), גלוטן חיטה, מחמצת שיפון (8%, מכיל גלוטן), גרעיני חיטה מעוכה, סיבי שיבולת שועל (מכיל גלוטן), סובין חיטה, מלח שולחן, שמרים, מתחלב (E481), חו מר משמר (E282), חומר מייצב (E415), אבקת סויה, לתת שעורה (מכיל גלוטן), מעכב חמצון (E300), אנזימים לאפיה. מאפיינים נוספים מכיל דגנים מלאים,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 209.0,
+          "fat": 1.7,
+          "fiber": 9.0,
+          "protein": 11.4,
+          "sodium": 347.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_4685027",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NMI32_Z_P_4685027_1.png",
+      "insightLine": "קמח לבן אין כאן בכלל, שלושה רבעים חיטה מלאה ורבע שיפון מלא, ועדיין הכיכר יושבת עמוק בחלק התחתון של המדף.",
+      "name": "לחם מחמצת וחיטה מלאה קל",
+      "rank": 21,
+      "retailer": "shufersal",
+      "rowVerdict": "ההרכב מספר סיפור חזק: קמחים מלאים בלבד, מחמצת שיפון של שמונה אחוזים, סובין ולתת, וסיבים נאים לכיכר קלה בקלוריות. הרשימה המלאה מגלה גם מתחלב, משמר, קסנטן ואבקת סויה, מרחק ניכר מלחם מלא מינימליסטי. את שורת השכנים שמעליו הוא מפספס בכלום.",
+      "score": 68.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "1792893d2df20062acc86c492828caf947f44c9360d1313537bec4e77a7b445a",
+      "_website_cluster": "everyday",
+      "barcode": "7290016967074",
+      "brand": "אנג'ל",
+      "confidence": "partial",
+      "confidence_label_he": "ניתוח חלקי",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים התזונתיים לא היו זמינים מהסריקה הישירה; הציון מתבסס על הנתונים שנמצאו.",
+      "d4_additives": [
+        {
+          "e_number": "E481",
+          "explanation_he": "SSL (E481) הוא מרכיב עזר באפיית לחם המסייע לבצק לתפוח ולשמור על רכות; אושר לשימוש על ידי רשויות האיחוד האירופי.",
+          "function_he": "מרכך בצק / משפר נפח לחם",
+          "name_he": "נתרן סטארויל לקטילט",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E472e",
+          "explanation_he": "DATEM הוא חומר עזר לאפייה המסייע לגלוטן להתפתח ולשמור על מרקם הלחם; שמו הטכני מופיע לעתים רחוקות על תוויות לחם ישראליות.",
+          "function_he": "מרכך בצק / חומר תחליב לחם",
+          "name_he": "DATEM",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E471",
+          "explanation_he": "מונו ודיגליצרידים הם מתחלבים נפוצים; קיים דיון מדעי על בטיחות השימוש בהם, אם כי האיחוד האירופי אישר שימושם.",
+          "function_he": "חומר תחליב — מרכך לחם ומייצב שומן",
+          "name_he": "מונו ודיגליצרידים",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E282",
+          "explanation_he": "פרופיונט סידן הוא חומר משמר המונע עובש בלחם; חומצה פרופיונית דומה לו מיוצרת גם על ידי חיידקי המעיים שלנו באופן טבעי.",
+          "function_he": "חומר משמר נגד עובש בלחם",
+          "name_he": "פרופיונט סידן",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון היא חומצה טבעית שנמצאת גם בלימון ובפירות הדר, ומשמשת לאיזון טעם ולמניעת שינוי צבע.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "אנג'ל — מותג נפוץ בפיצ'ור 'מלא'. בפועל: זרעים, מבנה מעורב.",
+        "confidenceLabel": "ניתוח חלקי",
+        "ingredients": "קמח חיטה מלא (נטחן מגרעין החיטה בשלמותו) (גלוטן), ( 100% ממשקל הקמחים, 50% ממשקל הלחם), מים, גרעינים(25.4%) : (שומשום , גרעיני פשתן,  שיבולת שועל), גלוטן חיטה ,שמרים, מלח , מתחלבים (E481,E472e,E471), חומר משמר (E282),מתחלבים (E471, E481, E472e) מווסת חומציות (E330) , לתת חיטה  חומר מעכב חימצון (E300), אנזימים. מאפיינים נוספים ללא תוספת סוכר,",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 242.0,
+          "fat": 0.25,
+          "fiber": 8.0,
+          "protein": 13.9,
+          "sodium": 352.0,
+          "sugar": null
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_bread_7290016967074",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KVJ58_Z_P_7290016967074_1.png",
+      "insightLine": "הקמח כולו מלא ורבע מהכיכר זרעים, ולצד זה ערכת המתחלבים הגדולה במדף: שלושה סוגים שונים ברשימה אחת.",
+      "name": "לחם חיטה מלאה",
+      "rank": 22,
+      "retailer": "shufersal",
+      "rowVerdict": "על בסיס ההרכב לבדו היה נלחם על הצמרת: קמח מלא בלבד, שפע שומשום, פשתן ושיבולת שועל, וחלבון בצמרת הקטגוריה. הרשימה ממשיכה אל שלושה מתחלבים נפרדים, ביניהם מונו ודיגליצרידים שהמחקר עוד דן בו. הפער בין הבצק לבין קו הייצור הוא הסיפור של הכיכר הזאת.",
+      "score": 66.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "_hash_no_rank": "24f2dc34aba63129bef1167569a5da0b468fda6168de9e9bb8ead68e4b4b5166",
+      "_website_cluster": "everyday",
+      "barcode": "1902325",
+      "confidence": "verified",
+      "confidence_label_he": "מבוסס על נתונים מלאים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "d4_additives": [
+        {
+          "e_number": "E472e",
+          "explanation_he": "DATEM הוא חומר עזר לאפייה המסייע לגלוטן להתפתח ולשמור על מרקם הלחם; שמו הטכני מופיע לעתים רחוקות על תוויות לחם ישראליות.",
+          "function_he": "מרכך בצק / חומר תחליב לחם",
+          "name_he": "DATEM",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E300",
+          "explanation_he": "חומצה אסקורבית (ויטמין C) משמשת בלחם כחומר עזר לאפייה — משפרת מרקם בצק, ואינה נספגת כוויטמין במוצר הסופי.",
+          "function_he": "נוגד חמצון / משפר בצק",
+          "name_he": "חומצה אסקורבית",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "קמח חיטה לבן, שומן צמחי, סוכר, שמרים, שמן סויה, משפר אפייה (עם DATEM וחומצה אסקורבית). ללא קמח מלא וללא מחמצת.",
+        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "ingredients": "קמח חיטה לבן (גלוטן), מים, סוכר, שמרים, שומן צמחי, מלח, משפר אפיה (דקסטרוזה, חומר מתחלב E-472E, קמח סויה, חומר מעכב חמצון E-300, אנז ימים), גלוטן, שמן סויה. ערכים תזונתיים 100 גרם 263 קל אנרגיה 8 גרם חלבונים 51 גרם פחמימות 2.8 גרם שומנים 2.5 מג כולסטרול 434 מג נתרן 0.5 גרם מתוכם שומן רווי 0.5 גרם חומצות שומן טרנס 4 סוכרים הנתונים המדויקים מופיעים על גבי המוצר, אין להסתמך על הפירוט המופיע באתר, יתכנו טעויות או אי התאמות, יש לקרוא את המופיע על גבי אריזת המוצר לפני השימוש. התמונות והתאריכים המופיעים הינם להמחשה בלבד ואין להסתמך עליהם.",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 263.0,
+          "fat": 0.5,
+          "fiber": null,
+          "protein": 8.0,
+          "sodium": 434.0,
+          "sugar": 4.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_bread_1902325",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FBI22_Z_P_1902325_1.png",
+      "insightLine": "חלה של שולחן שבת שנשפטת כאן לצד לחמי היומיום: קמח לבן, שומן צמחי וסוכר עושים את מה שחלה אמורה לעשות.",
+      "name": "חלה קלועה",
+      "rank": 23,
+      "retailer": "shufersal",
+      "rowVerdict": "סוגרת את המדף, וקשה להאשים אותה: קמח לבן, שומן צמחי, סוכר ומשפר אפייה הם מתכון לרכות של סוף שבוע. הנתרן מטפס כמעט לראש הקטגוריה, ונתוני הסיבים כלל לא דווחו. היא מתחרה כאן במגרש שלא נבנתה בשבילו, וזה כל ההסבר שצריך.",
+      "score": 57.7,
+      "source_traceability_status": "resolved"
+    }
+  ]
+}
