@@ -75,24 +75,28 @@ router.
 |---|---|---|---|---|
 | PLANNING | claude-fable-5 | claude-opus-4-8 | Main chat / Plan agent | Model unavailable |
 | CONTENT | claude-fable-5 | claude-sonnet-5 | Content Agent, pinned | Spawn failure or 2 consecutive rejected drafts |
-| BUILD-HEAVY | Codex — top coding tier (PIN-AT-AUTH¹) | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
-| BUILD-LIGHT | Codex — cheap/fast tier (PIN-AT-AUTH¹) | claude-sonnet-5 agent | same | same |
-| GRUNT | Codex — cheapest tier (PIN-AT-AUTH¹) | claude-haiku-4-5 (Agent tool) | `codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback | API/CLI error, or any output failing its validator once |
+| BUILD-HEAVY | codex gpt-5.6-sol¹ | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
+| BUILD-LIGHT | codex gpt-5.6-terra¹ | claude-sonnet-5 agent | same | same |
+| GRUNT | codex gpt-5.6-luna¹ | claude-haiku-4-5 (Agent tool) | `codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback | API/CLI error, or any output failing its validator once |
 | EVIDENCE-RESEARCH | gpt-5.5 + web search | Claude Research Agent (sonnet pin) | Codex CLI `--search` / opencode API | API error or timeout 120s |
-| ENGINEERING-RESEARCH | Codex + web search (PIN-AT-AUTH¹) | Claude Research Agent (sonnet pin) | `codex exec --search`, read-only sandbox | same |
+| ENGINEERING-RESEARCH | codex gpt-5.6-terra + web search¹ | Claude Research Agent (sonnet pin) | `codex exec --search`, read-only sandbox | same |
 | VISION-LONGREAD | Gemini subscription model (PIN-AT-AUTH²) | claude-sonnet-5 subagent reading screenshots | `gemini -p` headless, `GEMINI_CLI_TRUST_WORKSPACE=true`, report-only | CLI hang > 10 min, crash, or empty output |
 | DOMAIN-JUDGMENT | claude-fable-5 | claude-opus-4-8 | Nutrition/Product agents, pinned | Spawn failure |
 | CHALLENGE | claude-opus-4-8 **when producer was Codex/GPT** · gpt-5.5-pro **when producer was Claude or Gemini** | the other one | Agent tool (opus pin) / opencode API | Producer-vendor outage |
 | GENERAL | claude-sonnet-5 (explicit pin) | claude-haiku-4-5 for trivial | Agent tool | Spawn failure |
 
-¹ **PIN-AT-AUTH (Codex):** exact tier IDs are read from `codex` after the owner completes
-ChatGPT-subscription OAuth (`codex login`), then written here in place of the placeholder.
-Status 2026-07-10: CLI v0.144.1 installed; currently authed with a **pay-per-token API key**
-(wrong billing path — subscription OAuth pending owner). Config default: `gpt-5.5`, reasoning
-`medium`. Sandbox tiers available: `read-only` / `workspace-write` / `danger-full-access`
-(never use the third). **Build-time caveat (2026-07-10):** on 0.144.1, `--search` is a
-top-level flag only — `codex exec --search` errors. The ENGINEERING-RESEARCH invocation gets
-re-verified and corrected at pin time (TASK-584).
+¹ **PINNED 2026-07-10** after owner ChatGPT-subscription OAuth (`codex login status` =
+"Logged in using ChatGPT"). The GPT-5.6 family (GA 2026-07-09) ships exactly three tiers,
+costly → cheap, mapping one-to-one onto our Codex seats:
+**sol** (detail/polish, $5/$30 per 1M → BUILD-HEAVY) · **terra** (everyday workhorse,
+$2.50/$15 → BUILD-LIGHT + ENGINEERING-RESEARCH) · **luna** (clear repeatable work, $1/$6 →
+GRUNT). On subscription there is no per-token bill, but costlier tiers burn plan quota
+faster — routing grunt to luna is a quota decision, not just hygiene. Known CLI bug
+(openai/codex#31873): the interactive `/model` picker does not list the 5.6 tiers but `-m`
+accepts them — the router always passes `-m`, so unaffected. Sandbox tiers: `read-only` /
+`workspace-write` / `danger-full-access` (never use the third). **Standing caveat:** on
+0.144.1 `--search` is top-level-only — `codex exec --search` errors; ENGINEERING-RESEARCH
+invocation re-verified in TASK-585.
 
 ² **PIN-AT-AUTH (Gemini) — CORRECTED 2026-07-10 after live probing:** the working binary for
 this subscription is **Antigravity (`%LOCALAPPDATA%\agy\bin\agy.exe`, v1.1.0 present)**, auth
