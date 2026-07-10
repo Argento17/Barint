@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import rawCorpus from "@/data/comparisons/cakes_hard_cookies_frontend_v1.json";
 
 import {
@@ -6,6 +8,8 @@ import {
 } from "@/lib/comparisons/corpus";
 import { normalizeProductBrandDisplay } from "@/lib/comparisons/product-brand-display";
 import type { BariProductVM, BariNutritionVM, BariConfidence } from "@/lib/view-models";
+import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
+import { withComparisonOpenGraph } from "@/lib/seo/open-graph";
 
 // ─── Types for the raw JSON shape ─────────────────────────────────────────────
 
@@ -161,6 +165,12 @@ export const cakesHardCookiesMethodologyLines: readonly string[] = [
 export const cakesHardCookiesCategoryNote =
   `${_pageCopy.caveat.title}\n\n${_pageCopy.caveat.body}`;
 
+export const cakesHardCookiesComparisonMetadata: Metadata = withComparisonOpenGraph({
+  title: "השוואת עוגות | Bari",
+  description:
+    "השוואת 62 עוגות מהמדף הישראלי — ציון Bari, סוכר, שומן רווי ורשימת רכיבים. מידע, לא המלצה.",
+});
+
 // ── Serializable lens options — filter IDs + Hebrew labels only (no functions) ─
 // The actual filter logic lives in the Client Component (cakes-hard-cookies-comparison-page.tsx).
 export type CakesFilterId = "all" | "least_bad" | "has_phvo" | "no_phvo" | "high_sugar";
@@ -184,6 +194,34 @@ export const cakesHardCookiesHighSugarIds: string[] = _typedRaw.products
     return typeof s === "number" && s >= 30;
   })
   .map((p) => p.id);
+
+const cakesHardCookiesShelfFilters = {
+  lensOptions: cakesHardCookiesLensOptions,
+  filterProducts(products: BariProductVM[], activeFilters: string[]) {
+    if (activeFilters.length === 0) return products;
+    return products.filter((product) =>
+      activeFilters.every((filter) => {
+        if (filter === "least_bad") return product.grade === "D";
+        if (filter === "has_phvo") return cakesHardCookiesPhvoIds.includes(product.id);
+        if (filter === "no_phvo") return !cakesHardCookiesPhvoIds.includes(product.id);
+        if (filter === "high_sugar") return cakesHardCookiesHighSugarIds.includes(product.id);
+        return true;
+      })
+    );
+  },
+};
+
+export function getCakesHardCookiesPageData(): ComparisonCategoryPageData {
+  return {
+    products: cakesHardCookiesProducts,
+    metadataLine: cakesHardCookiesMetadataLine,
+    hero: cakesHardCookiesHero,
+    prologueSentences: cakesHardCookiesPrologueSentences,
+    methodologyLines: cakesHardCookiesMethodologyLines,
+    corpusMeta: cakesHardCookiesCorpusMeta,
+    shelfFilters: cakesHardCookiesShelfFilters,
+  };
+}
 
 export function getCakesHardCookiesCorpusPayload(): {
   _meta: ComparisonCorpusMeta;

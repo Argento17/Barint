@@ -9,6 +9,7 @@
     "lint": "eslint",
     "validate-corpus": "node scripts/validate-corpus.mjs",
     "validate-card-stats": "node scripts/validate-card-stats.mjs",
+    "validate-catalog-parity": "node scripts/catalog/validate-catalog-parity.mjs",
     "generate-page-schema": "ts-json-schema-generator -p src/lib/contracts/comparison-page-contract.ts -t ComparisonPageContract -i bari-page-output-generated-v1 -o schema/page-output-schema.generated.json --jsDoc extended --no-top-ref",
     "diff-page-schema": "npm run generate-page-schema --silent && node scripts/schema/diff-page-schema.mjs",
     "validate-page-schema": "npm run generate-page-schema --silent && node scripts/schema/validate-against-generated-schema.mjs",
