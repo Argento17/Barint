@@ -9,6 +9,9 @@
     "lint": "eslint",
     "validate-corpus": "node scripts/validate-corpus.mjs",
     "validate-card-stats": "node scripts/validate-card-stats.mjs",
+    "generate-page-schema": "ts-json-schema-generator -p src/lib/contracts/comparison-page-contract.ts -t ComparisonPageContract -i bari-page-output-generated-v1 -o schema/page-output-schema.generated.json --jsDoc extended --no-top-ref",
+    "diff-page-schema": "npm run generate-page-schema --silent && node scripts/schema/diff-page-schema.mjs",
+    "validate-page-schema": "npm run generate-page-schema --silent && node scripts/schema/validate-against-generated-schema.mjs",
     "test:e2e": "playwright test e2e/smoke.spec.ts",
     "test:a11y": "playwright test e2e/a11y.spec.ts",
     "test:perf": "playwright test e2e/perf.spec.ts --project=mobile",
@@ -43,10 +46,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "ajv": "^8.20.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "playwright": "^1.60.0",
     "tailwindcss": "^4",
+    "ts-json-schema-generator": "^2.9.0",
     "typescript": "^5"
   }
 }
