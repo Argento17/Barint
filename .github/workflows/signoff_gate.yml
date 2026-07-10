@@ -1,0 +1,45 @@
+# Two-gate sign-off gate (TASK-567) — CI-resident version of the local
+# guard-two-gate-commit.ps1 check, upgraded from marker existence to sha256
+# equality: every comparison JSON changed in a PR must have a
+# tasks/signoffs/<json-basename>.approval.json record whose pinned sha256
+# matches the file's exact bytes (format: 01_framework/operations/signoff_record_v1.md).
+#
+# Only files CHANGED IN THE PR are gated (git diff base...HEAD), never the whole
+# directory — same lesson as c0_return_gate.yml: legacy files and post-merge
+# drift would otherwise fail PRs that touched nothing.
+name: Signoff Gate
+
+on:
+  pull_request:
+    paths:
+      - "bari-web/src/data/comparisons/**"
+      - "tasks/signoffs/**"
+      - "03_operations/validators/verify_signoffs.py"
+      - ".github/workflows/signoff_gate.yml"
+  workflow_dispatch: {}
+
+jobs:
+  verify-signoffs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verifier selftest (tamper-detection proves both directions)
+        run: python 03_operations/validators/verify_signoffs.py --selftest
+
+      - name: Verify sha256-pinned sign-offs on comparison JSONs changed in this PR
+        run: |
+          set -e
+          mapfile -t files < <(git diff --name-only --diff-filter=ACMR \
+            "${{ github.event.pull_request.base.sha }}...HEAD" -- 'bari-web/src/data/comparisons/*.json')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No comparison JSONs changed in this PR — nothing to gate."
+            exit 0
+          fi
+          python 03_operations/validators/verify_signoffs.py --repo . --signoffs tasks/signoffs "${files[@]}"
