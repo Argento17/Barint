@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `bari-web/src/data/comparisons/cakes_hard_cookies_frontend_v1.json`
-**Generated:** 2026-07-01T19:06:31Z  |  **Elapsed:** 0.3s
+**Input:** `C:\Bari\bari-web\src\data\comparisons\cakes_hard_cookies_frontend_v1.json`
+**Generated:** 2026-07-10T08:45:04Z  |  **Elapsed:** 0.8s
 
 ## Summary
 
@@ -11,7 +11,7 @@
 | [PASS] G2 COVERAGE | PASS |
 | [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
-| [PASS] G5 GRADE-INTEGRITY | PASS |
+| [FAIL] G5 GRADE-INTEGRITY | FAIL |
 | [PASS] G6 COPY-SAFETY | PASS |
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
@@ -24,24 +24,24 @@
   FAIL: #.products[0].expansion: missing required field 'comparisonContext'
   FAIL: #.products[0].expansion.nutrition: additional property 'satFat' not allowed
   FAIL: #.products[0].expansion.nutrition: additional property 'carbs' not allowed
-  FAIL: #.products[0]: additional property '_hash_no_rank' not allowed
   FAIL: #.products[1].expansion: missing required field 'comparisonContext'
   FAIL: #.products[1].expansion.nutrition: additional property 'satFat' not allowed
   FAIL: #.products[1].expansion.nutrition: additional property 'carbs' not allowed
-  FAIL: #.products[1]: additional property '_hash_no_rank' not allowed
   FAIL: #.products[2].expansion: missing required field 'comparisonContext'
   FAIL: #.products[2].expansion.nutrition: additional property 'satFat' not allowed
   FAIL: #.products[2].expansion.nutrition: additional property 'carbs' not allowed
-  FAIL: #.products[2]: additional property '_hash_no_rank' not allowed
   FAIL: #.products[3].expansion: missing required field 'comparisonContext'
   FAIL: #.products[3].expansion.nutrition: additional property 'satFat' not allowed
   FAIL: #.products[3].expansion.nutrition: additional property 'carbs' not allowed
-  FAIL: #.products[3]: additional property '_hash_no_rank' not allowed
   FAIL: #.products[4].expansion: missing required field 'comparisonContext'
   FAIL: #.products[4].expansion.nutrition: additional property 'satFat' not allowed
   FAIL: #.products[4].expansion.nutrition: additional property 'carbs' not allowed
-  FAIL: #.products[4]: additional property '_hash_no_rank' not allowed
-  FAIL: ... and 228 more errors
+  FAIL: #.products[5].expansion: missing required field 'comparisonContext'
+  FAIL: #.products[5].expansion.nutrition: additional property 'satFat' not allowed
+  FAIL: #.products[5].expansion.nutrition: additional property 'carbs' not allowed
+  FAIL: #.products[6].expansion: missing required field 'comparisonContext'
+  FAIL: #.products[6].expansion.nutrition: additional property 'satFat' not allowed
+  FAIL: ... and 166 more errors
 
 ### [PASS] G2 COVERAGE
   INFO: imageUrl: 62/62 non-null
@@ -159,8 +159,34 @@
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [PASS] G5 GRADE-INTEGRITY
+### [FAIL] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
+  FAIL: barcode=7290119030095: JSON score=50.5 vs trace score=57.0 (diff=6.500 > tolerance=0.05)
+  FAIL: barcode=5718021: JSON score=32.2 vs trace score=37.5 (diff=5.300 > tolerance=0.05)
+  FAIL: barcode=7290119045013: JSON score=32.0 vs trace score=37.3 (rounded trace=37, diff=5.000 > tolerance=0.05)
+  FAIL: barcode=7290016162264: JSON score=32.0 vs trace score=37.3 (rounded trace=37, diff=5.000 > tolerance=0.05)
+  FAIL: barcode=5431913: JSON score=28.0 vs trace score=30.6 (rounded trace=31, diff=3.000 > tolerance=0.05)
+  FAIL: barcode=9399288: JSON score=25.1 vs trace score=30.6 (diff=5.500 > tolerance=0.05)
+  FAIL: barcode=1361207: JSON score=23.8 vs trace score=22.4 (diff=1.400 > tolerance=0.05)
+  FAIL: barcode=2472186: JSON score=22.1 vs trace score=21.8 (diff=0.300 > tolerance=0.05)
+  FAIL: barcode=5718038: JSON score=21.5 vs trace score=21.6 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=4504649: JSON score=20.5 vs trace score=20.6 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=7290018893661: JSON score=18.6 vs trace score=17.6 (diff=1.000 > tolerance=0.05)
+  FAIL: barcode=4504687: JSON score=18.6 vs trace score=16.9 (diff=1.700 > tolerance=0.05)
+  FAIL: barcode=7290111534010: JSON score=18.5 vs trace score=23.2 (diff=4.700 > tolerance=0.05)
+  FAIL: barcode=7290006775023: JSON score=17.8 vs trace score=16.9 (diff=0.900 > tolerance=0.05)
+  FAIL: barcode=7290016416961: JSON score=17.5 vs trace score=18.0 (diff=0.500 > tolerance=0.05)
+  FAIL: barcode=7296073346333: JSON score=16.1 vs trace score=16.0 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=1361177: JSON score=15.9 vs trace score=12.8 (diff=3.100 > tolerance=0.05)
+  FAIL: barcode=7290018893487: JSON score=14.0 vs trace score=12.9 (rounded trace=13, diff=1.000 > tolerance=0.05)
+  FAIL: barcode=6983794: JSON score=12.0 vs trace score=13.0 (rounded trace=13, diff=1.000 > tolerance=0.05)
+  FAIL: barcode=7290123330884: JSON score=11.8 vs trace score=11.7 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=7290105692498: JSON score=11.8 vs trace score=11.1 (diff=0.700 > tolerance=0.05)
+  FAIL: barcode=4170097: JSON score=11.7 vs trace score=11.5 (diff=0.200 > tolerance=0.05)
+  FAIL: barcode=7296073431817: JSON score=11.4 vs trace score=12.3 (diff=0.900 > tolerance=0.05)
+  FAIL: barcode=2472841: JSON score=11.2 vs trace score=10.8 (diff=0.400 > tolerance=0.05)
+  FAIL: barcode=7290123330280: JSON score=10.5 vs trace score=10.1 (diff=0.400 > tolerance=0.05)
+  FAIL: barcode=7290123330334: JSON score=10.5 vs trace score=10.1 (diff=0.400 > tolerance=0.05)
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected

@@ -1,13 +1,13 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `C:\Bari\bari-web\src\data\comparisons\juices_frontend_v3.json`
-**Generated:** 2026-07-01T13:06:21Z  |  **Elapsed:** 0.1s
+**Input:** `bari-web/src/data/comparisons/juices_frontend_v3.json`
+**Generated:** 2026-07-10T09:28:30Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
-| [FAIL] G1 SCHEMA | FAIL |
+| [PASS] G1 SCHEMA | PASS |
 | [WARN] G2 COVERAGE | WARN |
 | [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
@@ -16,32 +16,12 @@
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
-**Overall: FAIL**
+**Overall: PASS**
 
 ## Detail
 
-### [FAIL] G1 SCHEMA
-  FAIL: #.products[0].expansion.nutrition: additional property 'satFat' not allowed
-  FAIL: #.products[0]: additional property 'brand' not allowed
-  FAIL: #.products[0]: additional property 'volumeMl' not allowed
-  FAIL: #.products[0]: additional property '_hash_no_rank' not allowed
-  FAIL: #.products[1].expansion.nutrition: additional property 'satFat' not allowed
-  FAIL: #.products[1]: additional property 'brand' not allowed
-  FAIL: #.products[1]: additional property 'volumeMl' not allowed
-  FAIL: #.products[1]: additional property '_hash_no_rank' not allowed
-  FAIL: #.products[2].expansion.nutrition: additional property 'satFat' not allowed
-  FAIL: #.products[2]: additional property 'brand' not allowed
-  FAIL: #.products[2]: additional property 'volumeMl' not allowed
-  FAIL: #.products[2]: additional property '_hash_no_rank' not allowed
-  FAIL: #.products[3].expansion.nutrition: additional property 'satFat' not allowed
-  FAIL: #.products[3]: additional property 'brand' not allowed
-  FAIL: #.products[3]: additional property 'volumeMl' not allowed
-  FAIL: #.products[3]: additional property '_hash_no_rank' not allowed
-  FAIL: #.products[4].expansion.nutrition: additional property 'satFat' not allowed
-  FAIL: #.products[4]: additional property 'brand' not allowed
-  FAIL: #.products[4]: additional property 'volumeMl' not allowed
-  FAIL: #.products[4]: additional property '_hash_no_rank' not allowed
-  FAIL: ... and 53 more errors
+### [PASS] G1 SCHEMA
+  INFO: Document validates against schema
 
 ### [WARN] G2 COVERAGE
   INFO: imageUrl: 17/17 non-null

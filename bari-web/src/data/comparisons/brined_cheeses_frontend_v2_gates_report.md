@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `bari-web/src/data/comparisons/brined_cheeses_frontend_v2.json`
-**Generated:** 2026-07-01T19:23:12Z  |  **Elapsed:** 0.1s
+**Input:** `C:\Bari\bari-web\src\data\comparisons\brined_cheeses_frontend_v2.json`
+**Generated:** 2026-07-10T08:45:03Z  |  **Elapsed:** 0.3s
 
 ## Summary
 
@@ -11,7 +11,7 @@
 | [PASS] G2 COVERAGE | PASS |
 | [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
-| [PASS] G5 GRADE-INTEGRITY | PASS |
+| [FAIL] G5 GRADE-INTEGRITY | FAIL |
 | [PASS] G6 COPY-SAFETY | PASS |
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
@@ -84,8 +84,22 @@
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [PASS] G5 GRADE-INTEGRITY
+### [FAIL] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
+  FAIL: barcode=7290019635826: JSON score=83.3 vs trace score=85.4 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=554457: JSON score=82.7 vs trace score=84.8 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=554532: JSON score=82.7 vs trace score=84.8 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290102397334: JSON score=81.5 vs trace score=83.6 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290108509106: JSON score=78.6 vs trace score=80.5 (diff=1.900 > tolerance=0.05)
+  FAIL: barcode=7290011499129: JSON score=78.0 vs trace score=80.1 (rounded trace=80, diff=2.000 > tolerance=0.05)
+  FAIL: barcode=7290019790402: JSON score=74.3 vs trace score=76.4 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290017065663: JSON score=73.5 vs trace score=75.6 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290114314015: JSON score=70.3 vs trace score=72.4 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290019635222: JSON score=67.0 vs trace score=69.1 (rounded trace=69, diff=2.000 > tolerance=0.05)
+  FAIL: barcode=7290017065236: JSON score=66.3 vs trace score=68.4 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=7290108509755: JSON score=64.6 vs trace score=66.7 (diff=2.100 > tolerance=0.05)
+  FAIL: barcode=3075805: JSON score=62.5 vs trace score=64.7 (diff=2.200 > tolerance=0.05)
+  FAIL: barcode=7290102393718: JSON score=62.5 vs trace score=64.6 (diff=2.100 > tolerance=0.05)
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected

@@ -1,19 +1,19 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `bari-web/src/data/comparisons/hummus_frontend_v5.json`
-**Generated:** 2026-07-01T16:29:23Z  |  **Elapsed:** 0.1s
+**Input:** `C:\Bari\bari-web\src\data\comparisons\hummus_frontend_v5.json`
+**Generated:** 2026-07-10T08:45:09Z  |  **Elapsed:** 0.4s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [FAIL] G1 SCHEMA | FAIL |
-| [WARN] G2 COVERAGE | WARN |
-| [WARN] G3 SCOPE | WARN |
+| [PASS] G2 COVERAGE | PASS |
+| [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
-| [WARN] G5 GRADE-INTEGRITY | WARN |
+| [PASS] G5 GRADE-INTEGRITY | PASS |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [PASS] G7 PARITY | PASS |
+| [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
 **Overall: FAIL**
@@ -43,7 +43,7 @@
   FAIL: #.products[9].d3_processing_signal: expected type null, got dict
   FAIL: ... and 94 more errors
 
-### [WARN] G2 COVERAGE
+### [PASS] G2 COVERAGE
   INFO: imageUrl: 57/57 non-null
   INFO: name: 57/57 non-null
   INFO: score: 57/57 non-null
@@ -58,96 +58,40 @@
   INFO: expansion.nutrition.fiber: 14/57
   INFO: expansion.nutrition.sodium: 57/57
   INFO: expansion.confidenceLabel: 57/57
-  WARN: No corpus provided — imageUrl regression check skipped
+  INFO: Corpus barcodes with image in BSIP1: 69/69
+  INFO: imageUrl: no regression vs BSIP1 corpus
   INFO: name: all products have Hebrew characters in name
   INFO: verdict coverage: every product has an authored insightLine or rowVerdict
   INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
 
-### [WARN] G3 SCOPE
+### [FAIL] G3 SCOPE
   INFO: Displayed products: 57
-  WARN: Run directory not found: None
+  INFO: Scored products (trace dirs): 69
+  INFO: Declared exclusions in _meta: 0
+  FAIL: Scored barcode 1990261 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 208428 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 3643714 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 3643820 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7290018359686 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073005889 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073006015 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073705505 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073733317 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073733324 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073733331 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7296073733348 not in frontend and not explained in _meta exclusions
 
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [WARN] G5 GRADE-INTEGRITY
+### [PASS] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
-  WARN: barcode=7296073725404: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=6666307: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725565: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725589: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=6666444: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290015858175: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110564360: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110579319: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110557478: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290011800642: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725381: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=3727667: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106576513: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5174551: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290105964564: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=2987963: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8645935: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290119387434: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725497: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725374: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106573642: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725367: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290010931330: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8644112: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290107958639: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290104721533: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=467320: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290104061431: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106576537: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290122780314: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106573598: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290119373710: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290104061424: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290115202434: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=467153: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106573819: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290119374892: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106573628: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290104061417: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290112968685: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725398: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290115207484: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290104061448: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290115202687: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290111563492: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106577572: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=3989096: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725510: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725633: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290105366023: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073725640: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=6724786: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290119374885: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106520905: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073451969: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290010154265: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290106577480: no trace found in --run dir, cannot verify score vs trace
-  INFO: All grade/score checks passed
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [PASS] G7 PARITY
-  INFO: Product count: current=57 baseline=57
-  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=467  baseline=467  delta=+0
-  INFO: No grade changes vs baseline
-  INFO: 
-  INFO: === PARITY SUMMARY TABLE ===
-  INFO:   Metric                                 Current    Baseline       Delta
-  INFO:   Product count                               57          57          +0
-  INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          467         467          +0
-  INFO:   Grade changes                                0           —           —
-  INFO:   Products added                               0           —           —
-  INFO:   Products removed                             0           —           —
+### [SKIP] G7 PARITY
+  SKIP: No baseline provided
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)

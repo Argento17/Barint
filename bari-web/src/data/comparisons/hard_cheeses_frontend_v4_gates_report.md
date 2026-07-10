@@ -1,17 +1,17 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `C:\Bari\bari-web\src\data\comparisons\hard_cheeses_frontend_v4.json`
-**Generated:** 2026-07-01T13:10:50Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-10T08:45:08Z  |  **Elapsed:** 0.3s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
-| [WARN] G2 COVERAGE | WARN |
-| [WARN] G3 SCOPE | WARN |
+| [PASS] G2 COVERAGE | PASS |
+| [PASS] G3 SCOPE | PASS |
 | [PASS] G4 OFF | PASS |
-| [WARN] G5 GRADE-INTEGRITY | WARN |
+| [PASS] G5 GRADE-INTEGRITY | PASS |
 | [PASS] G6 COPY-SAFETY | PASS |
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
@@ -23,7 +23,7 @@
 ### [PASS] G1 SCHEMA
   INFO: Document validates against schema
 
-### [WARN] G2 COVERAGE
+### [PASS] G2 COVERAGE
   INFO: imageUrl: 31/31 non-null
   INFO: name: 31/31 non-null
   INFO: score: 31/31 non-null
@@ -38,85 +38,67 @@
   INFO: expansion.nutrition.fiber: 0/31
   INFO: expansion.nutrition.sodium: 31/31
   INFO: expansion.confidenceLabel: 31/31
-  WARN: No corpus provided — imageUrl regression check skipped
+  INFO: Corpus barcodes with image in BSIP1: 79/94
+  INFO: imageUrl: no regression vs BSIP1 corpus
   INFO: name: all products have Hebrew characters in name
   INFO: verdict coverage: every product has an authored insightLine or rowVerdict
   INFO: v3 milk-depth coverage checks: SKIP (schema_version='v4', not v3)
 
-### [WARN] G3 SCOPE
+### [PASS] G3 SCOPE
   INFO: Displayed products: 31
-  INFO: Scored products (trace dirs): 0
+  INFO: Scored products (trace dirs): 76
   INFO: Declared exclusions in _meta: 45
-  INFO: All scored barcodes are displayed or explained
-  WARN: Displayed barcode 3073781199918 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 4122270 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 4137311 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 5079658 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 5079665 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 5079672 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 52311 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 53219 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 5384356 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290004122195 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290004122348 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290014455245 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290014760448 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290014760912 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290017065434 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290019635192 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290020467393 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290110320850 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290110323301 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290110324872 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290114311601 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290114312813 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290116931524 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7290117265888 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7296073453482 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7296073731856 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 7296073735151 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 8606608 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 8606974 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 8711528211138 has no BSIP2 trace in --run dir (ghost product)
-  WARN: Displayed barcode 9150162 has no BSIP2 trace in --run dir (ghost product)
+  INFO:   missing barcode 2370246: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 4122348: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 4122683: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 4125776: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 4126674: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 474830: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 55350: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 57088: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 57118: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290000057088: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290000057118: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290004122270: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290004122683: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290004125776: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290004137311: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290014455252: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290014763395: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290016818642: excluded — contaminant: ravioli product (pasta, not a cheese); subpool misclassification
+  INFO:   missing barcode 7290019635314: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102394463: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102394821: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102394845: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102395378: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102395408: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102395422: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102396672: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290102397204: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290108501346: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290108502725: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290110320867: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7290117265918: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073719786: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073731832: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073731849: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073731863: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073731870: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 7296073731887: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 8606615: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 8606622: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 8606950: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 9954234: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 9954241: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 9954258: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 9954357: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
+  INFO:   missing barcode 9955538: excluded — curation: dedup by (brand_group|cheese_type|fat_pct_bucket); this SKU is a form/packaging variant of the group representative
 
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [WARN] G5 GRADE-INTEGRITY
+### [PASS] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
-  WARN: barcode=7290110324872: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290004122348: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=4137311: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=52311: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290014760448: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290117265888: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073731856: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5384356: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=9150162: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290116931524: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=3073781199918: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5079658: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5079665: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5079672: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290004122195: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290014455245: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290017065434: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290019635192: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290020467393: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290114311601: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290114312813: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8606974: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8711528211138: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290014760912: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=4122270: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110320850: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073735151: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8606608: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=53219: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110323301: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7296073453482: no trace found in --run dir, cannot verify score vs trace
-  INFO: All grade/score checks passed
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected

@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `C:\Bari\bari-web\src\data\comparisons\cereals_frontend_v2.json`
-**Generated:** 2026-07-01T15:26:09Z  |  **Elapsed:** 0.9s
+**Generated:** 2026-07-10T08:45:04Z  |  **Elapsed:** 0.3s
 
 ## Summary
 
@@ -11,7 +11,7 @@
 | [PASS] G2 COVERAGE | PASS |
 | [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
-| [PASS] G5 GRADE-INTEGRITY | PASS |
+| [FAIL] G5 GRADE-INTEGRITY | FAIL |
 | [PASS] G6 COPY-SAFETY | PASS |
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
@@ -24,24 +24,24 @@
   FAIL: #.products[0].expansion.limitingFactors[0]: expected type string, got dict
   FAIL: #.products[0].expansion.limitingFactors[1]: expected type string, got dict
   FAIL: #.products[0].expansion.limitingFactors[2]: expected type string, got dict
-  FAIL: #.products[0]: additional property 'brand' not allowed
   FAIL: #.products[1].expansion.limitingFactors[0]: expected type string, got dict
   FAIL: #.products[1].expansion.limitingFactors[1]: expected type string, got dict
   FAIL: #.products[1].expansion.limitingFactors[2]: expected type string, got dict
   FAIL: #.products[1].expansion.limitingFactors[3]: expected type string, got dict
-  FAIL: #.products[1]: additional property 'brand' not allowed
   FAIL: #.products[2].expansion.limitingFactors[0]: expected type string, got dict
   FAIL: #.products[2].expansion.limitingFactors[1]: expected type string, got dict
   FAIL: #.products[2].expansion.limitingFactors[2]: expected type string, got dict
-  FAIL: #.products[2]: additional property 'brand' not allowed
   FAIL: #.products[3].expansion.limitingFactors[0]: expected type string, got dict
   FAIL: #.products[3].expansion.limitingFactors[1]: expected type string, got dict
   FAIL: #.products[3].expansion.limitingFactors[2]: expected type string, got dict
   FAIL: #.products[3].expansion.limitingFactors[3]: expected type string, got dict
-  FAIL: #.products[3]: additional property 'brand' not allowed
   FAIL: #.products[4].expansion.limitingFactors[0]: expected type string, got dict
   FAIL: #.products[4].expansion.limitingFactors[1]: expected type string, got dict
-  FAIL: ... and 69 more errors
+  FAIL: #.products[5].expansion.limitingFactors[0]: expected type string, got dict
+  FAIL: #.products[5].expansion.limitingFactors[1]: expected type string, got dict
+  FAIL: #.products[6].expansion.limitingFactors[0]: expected type string, got dict
+  FAIL: #.products[6].expansion.limitingFactors[1]: expected type string, got dict
+  FAIL: ... and 49 more errors
 
 ### [PASS] G2 COVERAGE
   INFO: imageUrl: 20/20 non-null
@@ -115,8 +115,11 @@
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [PASS] G5 GRADE-INTEGRITY
+### [FAIL] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
+  FAIL: barcode=7290017894911: JSON score=50.0 vs trace score=46.0 (rounded trace=46, diff=4.000 > tolerance=0.05)
+  FAIL: barcode=7290017894911: displayed grade=C is better than trace-derived grade=D (trace_score=46.0) — grade inflation
+  FAIL: barcode=7290017894928: JSON score=47.0 vs trace score=43.0 (rounded trace=43, diff=4.000 > tolerance=0.05)
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected

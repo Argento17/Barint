@@ -1,19 +1,19 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `bari-web/src/data/comparisons/milk_frontend_v1.json`
-**Generated:** 2026-07-01T19:18:12Z  |  **Elapsed:** 0.1s
+**Input:** `C:\Bari\bari-web\src\data\comparisons\milk_frontend_v1.json`
+**Generated:** 2026-07-10T08:45:10Z  |  **Elapsed:** 0.2s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [FAIL] G1 SCHEMA | FAIL |
-| [WARN] G2 COVERAGE | WARN |
-| [WARN] G3 SCOPE | WARN |
+| [PASS] G2 COVERAGE | PASS |
+| [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
-| [WARN] G5 GRADE-INTEGRITY | WARN |
+| [PASS] G5 GRADE-INTEGRITY | PASS |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [PASS] G7 PARITY | PASS |
+| [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
 **Overall: FAIL**
@@ -43,7 +43,7 @@
   FAIL: #.products[3]: additional property 'milkProductTypeLabel' not allowed
   FAIL: ... and 70 more errors
 
-### [WARN] G2 COVERAGE
+### [PASS] G2 COVERAGE
   INFO: imageUrl: 18/18 non-null
   INFO: name: 18/18 non-null
   INFO: score: 18/18 non-null
@@ -58,57 +58,30 @@
   INFO: expansion.nutrition.fiber: 0/18
   INFO: expansion.nutrition.sodium: 16/18
   INFO: expansion.confidenceLabel: 18/18
-  WARN: No corpus provided — imageUrl regression check skipped
+  INFO: Corpus barcodes with image in BSIP1: 0/20
+  INFO: imageUrl: no regression vs BSIP1 corpus
   INFO: name: all products have Hebrew characters in name
   INFO: verdict coverage: every product has an authored insightLine or rowVerdict
   INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
 
-### [WARN] G3 SCOPE
+### [FAIL] G3 SCOPE
   INFO: Displayed products: 18
-  WARN: Run directory not found: None
+  INFO: Scored products (trace dirs): 20
+  INFO: Declared exclusions in _meta: 0
+  FAIL: Scored barcode 7290110324773 not in frontend and not explained in _meta exclusions
+  FAIL: Scored barcode 7290114313285 not in frontend and not explained in _meta exclusions
 
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [WARN] G5 GRADE-INTEGRITY
+### [PASS] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
-  WARN: barcode=7290000051352: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290019790259: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290102392094: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290114313865: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290116936116: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110324926: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290107932134: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290014760141: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7394376620904: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290119385560: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7394376619939: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7394376621451: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5411188124689: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8000215204554: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=7290110325619: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=8000215204219: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5411188112709: no trace found in --run dir, cannot verify score vs trace
-  WARN: barcode=5411188300328: no trace found in --run dir, cannot verify score vs trace
-  INFO: All grade/score checks passed
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [PASS] G7 PARITY
-  INFO: Product count: current=18 baseline=18
-  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=820  baseline=820  delta=+0
-  INFO: No grade changes vs baseline
-  INFO: 
-  INFO: === PARITY SUMMARY TABLE ===
-  INFO:   Metric                                 Current    Baseline       Delta
-  INFO:   Product count                               18          18          +0
-  INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          820         820          +0
-  INFO:   Grade changes                                0           —           —
-  INFO:   Products added                               0           —           —
-  INFO:   Products removed                             0           —           —
+### [SKIP] G7 PARITY
+  SKIP: No baseline provided
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)

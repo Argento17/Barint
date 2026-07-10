@@ -97,7 +97,7 @@
           },
           "expansion": {
             "type": "object",
-            "required": ["nutrition", "ingredients", "confidenceLabel", "servingNote", "positiveSignals", "comparisonContext"],
+            "required": ["nutrition", "ingredients", "confidenceLabel", "servingNote", "positiveSignals"],
             "properties": {
               "nutrition": {
                 "type": ["object", "null"],
@@ -108,7 +108,9 @@
                   "sugar": { "type": ["number", "null"] },
                   "fat": { "type": ["number", "null"] },
                   "fiber": { "type": ["number", "null"] },
-                  "sodium": { "type": ["number", "null"] }
+                  "sodium": { "type": ["number", "null"] },
+                  "carbs": { "type": ["number", "null"] },
+                  "satFat": { "type": ["number", "null"] }
                 },
                 "additionalProperties": false
               },
@@ -125,14 +127,27 @@
                 "description": "Serving size annotation, e.g. ל-100 גרם"
               },
               "positiveSignals": {
-                "type": "array",
+                "type": ["array", "null"],
                 "items": { "type": "string" },
-                "description": "1-3 observable strengths (Hebrew strings)"
+                "description": "1-3 observable strengths (Hebrew strings). Null on rare low-data products (3 measured live, TASK-564); copy completeness is G2's job, shape is this schema's."
               },
               "limitingFactors": {
-                "type": "array",
-                "items": { "type": "string" },
-                "description": "0-2 compositional limits (Hebrew strings). Absent when no limits identified."
+                "type": ["array", "null"],
+                "items": {
+                  "oneOf": [
+                    { "type": "string" },
+                    {
+                      "type": "object",
+                      "required": ["text", "magnitude"],
+                      "properties": {
+                        "text": { "type": "string" },
+                        "magnitude": { "type": "string" }
+                      },
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                "description": "0-2 compositional limits. Items are Hebrew strings (legacy) or {text, magnitude} objects (947/247 split measured live, TASK-564). Absent or null when no limits identified."
               },
               "unknowns": {
                 "type": "array",
@@ -149,8 +164,8 @@
                 "description": "Editorial synthesis — בשורה התחתונה (Hebrew). Category-level invariant."
               },
               "comparisonContext": {
-                "type": "string",
-                "description": "Shelf-relative context without algorithm vocabulary (Hebrew)"
+                "type": ["string", "null"],
+                "description": "OPTIONAL since 2026-07-10 (TASK-564): cross-referencing copy was deliberately removed on owner direction (TASK-546 de-cross-referencing) — a required comparisonContext made the golden page fail its own schema. Never re-add as required without an owner ruling."
               },
               "consumerExplanation": {
                 "description": "Extension field: structured consumer explanation (pre-copy or object)."
@@ -269,9 +284,39 @@
             "type": ["string", "null"],
             "description": "Data sufficiency label (sufficient/partial/insufficient). (TASK-316 render field)"
           },
+          "filterTags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Optional category shelf-filter tags (added 2026-07-10, TASK-564: shipping live on milk, schema lagged)."
+          },
+          "milkProductType": {
+            "type": ["string", "null"],
+            "description": "Optional milk-category product type key (TASK-564 lag fix)."
+          },
+          "milkProductTypeLabel": {
+            "type": ["string", "null"],
+            "description": "Optional milk-category Hebrew type label (TASK-564 lag fix)."
+          },
+          "volumeMl": {
+            "type": ["number", "null"],
+            "description": "Optional beverage volume in ml (TASK-564 lag fix: shipping live on juices)."
+          },
           "d3_processing_signal": {
-            "type": "null",
-            "description": "Residual null: not in trace_writer output; requires engine edit out of scope for TASK-316."
+            "type": ["object", "null"],
+            "description": "D3 processing signal. Was hard-typed null when trace_writer did not emit it (TASK-316 era); the engine now ships a structured signal on live pages (57 products measured, identical 10-key shape) — schema updated 2026-07-10 (TASK-564).",
+            "properties": {
+              "nova_class": { "type": ["number", "null"] },
+              "confidence": { "type": ["string", "null"] },
+              "confidence_note": { "type": ["string", "null"] },
+              "uncertainty_materiality": { "type": ["string", "null"] },
+              "materiality_note": { "type": ["string", "null"] },
+              "population_correlation": { "type": ["number", "null"] },
+              "modifier": { "type": ["number", "null"] },
+              "modifier_note": { "type": ["string", "null"] },
+              "note_he": { "type": ["string", "null"] },
+              "note_he_mobile": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
           },
           "_isChildrens": {
             "type": ["boolean", "null"],
@@ -331,6 +376,14 @@
     },
     "page_copy": {
       "description": "Page-level authored copy block (consumed by frontend page-data; not a per-product scoring field). Whitelisted 2026-06-18 — was a stray-property G1 failure."
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "Root-level ISO-8601 generation timestamp used by juices' flat top-level schema (no _meta wrapper for this value — juices-page-data.ts:20,45,77 reads this directly for the rendered 'updated on' date, distinct from and NOT redundant with _meta.generated). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
+    },
+    "totalProducts": {
+      "type": "integer",
+      "description": "Root-level product count used by juices' flat top-level schema (no _meta wrapper — juices-page-data.ts:21,47 reads this directly). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
     }
   },
   "additionalProperties": false,
@@ -343,7 +396,8 @@
         "name_he": { "type": "string" },
         "tier": { "type": "string", "enum": ["functional", "likely-neutral", "dose-dependent", "contested", "disclosure-gap", "unclassified"] },
         "function_he": { "type": "string" },
-        "explanation_he": { "type": "string" }
+        "explanation_he": { "type": "string" },
+        "cosmetic_mup": { "type": "boolean", "description": "Optional since 2026-07-10 (TASK-564): cosmetic/MUP marker already shipping on 94 live additive entries; schema lagged (same class as the TASK-431 brand-field lag)." }
       },
       "additionalProperties": false
     },
