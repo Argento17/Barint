@@ -58,7 +58,9 @@ import { tierIndexFromState } from "@/components/guides/threshold-bar-row";
 import { computeSuppressedBars } from "@/lib/guides/guide-suppression";
 import { magnesiumProducts } from "@/lib/comparisons/magnesium-page-data";
 import {
-  MAG_V3_INTRO_HE,
+  // MAG_V3_INTRO_HE (the prior three-dimension intro) is intentionally not imported —
+  // see the TASK-580 v3.1-SLOT-2 comment at introSentenceHe below. Still exported from
+  // magnesium-guide-copy-v3.ts for rollback/provenance; just unused at this call site.
   MAG_V3_WHAT_WE_FOUND_HE,
   MAG_V3_GROUP_LABELS_HE,
   MAG_V3_HOW_TO_READ_HE,
@@ -860,11 +862,23 @@ export const magnesiumGuide: GuidePageVM = {
   // keep the v2 string temporarily. Nothing here is newly authored prose.
   useV3Layout: true,
 
-  // Item 1.1 — the ONE intro sentence under the H1. OWNER-DICTATED, verbatim, ships
-  // as-is per instruction. FLAG (package §1.1, HIGH, unresolved — owner call, not
-  // Frontend's to silently patch): "מהמדף הישראלי" reintroduces the exact
-  // market-completeness phrase v2 spec §8 killed. Surfaced in this task's return.
-  introSentenceHe: MAG_V3_INTRO_HE,
+  // Item 1.1 — the ONE intro sentence under the H1. TASK-580 ADDENDUM v3.1-SLOT-2
+  // (Content Agent, mag_guide_v3_copy_package.md, sha256
+  // 7cf39f4c22e161497fae226907e76608f54fac13e780d04ae3feefca13153e47) — wired here by
+  // orchestrator decision, flagged to the owner: this is the four-dimension variant,
+  // which changes the owner-dictated numeral "שלושה"→"ארבעה" and adds "הבטיחות" to his
+  // dictated list. Content's own addendum return flags this as "a modification of
+  // owner-authored text [that] requires the owner's explicit acceptance before it
+  // ships — it is proposed here, not settled," and notes Red-Team gate-2 has not run
+  // against this addendum. Not pushed past this local branch pending that acceptance +
+  // gate-2. v3.1-SLOT-1 (three-dimension, no owner-text change) and v3.1-SLOT-3
+  // (bridge line) exist in the same addendum but are NOT wired — SLOT-3 stays unused
+  // per the package's own default. `MAG_V3_INTRO_HE` (the prior three-dimension
+  // string) is left intact in magnesium-guide-copy-v3.ts for rollback/provenance;
+  // only this usage site is overridden. Inherited HIGH flag on "מהמדף הישראלי"
+  // (package §1.1) still applies, unchanged, to this string.
+  introSentenceHe:
+    'בדקנו 18 מוצרים מהמדף הישראלי. ארבעה דברים חשובים במיוחד: כמות המגנזיום היסודי, הצורה הכימית, הבטיחות ובהירות התווית. כמות המגנזיום היסודי נמדדת מול טווח המוצרים שבדקנו, בין 76 ל-520 מ"ג ליחידה. הצורה הכימית קובעת כמה מגנזיום הגוף באמת סופג. הבטיחות בודקת אם המינון היומי חוצה סף עיכולי מוכר. ובהירות התווית בודקת אם אפשר לדעת מהאריזה כמה מגנזיום יסודי ובאיזו צורה מקבלים.',
 
   // Item 1.2 — "מה גילינו" box, 4 bullets. OWNER-DICTATED, verbatim. FLAG (package
   // §1.2, MEDIUM, unresolved — owner call): bullet 3's "מוצרים רבים" is the exact
