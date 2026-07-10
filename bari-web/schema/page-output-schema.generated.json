@@ -1,0 +1,885 @@
+{
+  "$id": "bari-page-output-generated-v1",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "definitions": {
+    "RawAdditiveEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "cosmetic_mup": {
+          "description": "Present on 94/2039 additive entries (chocolate_bars/chocolate_tablets/snacks).",
+          "type": "boolean"
+        },
+        "e_number": {
+          "type": "string"
+        },
+        "explanation_he": {
+          "type": "string"
+        },
+        "function_he": {
+          "type": "string"
+        },
+        "name_he": {
+          "type": "string"
+        },
+        "tier": {
+          "$ref": "#/definitions/RawAdditiveTier"
+        }
+      },
+      "required": [
+        "e_number",
+        "name_he",
+        "tier",
+        "function_he",
+        "explanation_he"
+      ],
+      "type": "object"
+    },
+    "RawAdditiveTier": {
+      "enum": [
+        "functional",
+        "likely-neutral",
+        "dose-dependent",
+        "contested",
+        "disclosure-gap",
+        "unclassified"
+      ],
+      "type": "string"
+    },
+    "RawBariInterpretationEntry": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "interpretation": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            },
+            "label": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            },
+            "strength": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "label",
+            "score",
+            "strength",
+            "interpretation"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "dimension": {
+              "type": "string"
+            },
+            "explanation_he": {
+              "type": "string"
+            },
+            "label_he": {
+              "type": "string"
+            },
+            "score": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "dimension",
+            "score",
+            "label_he",
+            "explanation_he"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "RawComparisonProduct": {
+      "additionalProperties": false,
+      "properties": {
+        "_category_routed": {
+          "description": "Present 122/681 (cakes_hard_cookies, cookies_coffee).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_has_phvo": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "_hash_no_rank": {
+          "description": "Present 216/681. Membership-correction reproducibility marker.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_isChildrens": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "_product_type": {
+          "description": "Present 57/681 (hummus).",
+          "type": "string"
+        },
+        "_source_retailers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "_subpool": {
+          "description": "Present 42/681 (cereals, granola).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "_website_cluster": {
+          "description": "Present 42/681 (bread, crackers).",
+          "type": "string"
+        },
+        "_wholeGrainClaim": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "barcode": {
+          "type": "string"
+        },
+        "bariInterpretation": {
+          "description": "Present 67/681; always `[]` in current data (shape reserved for future authoring).",
+          "items": {
+            "$ref": "#/definitions/RawBariInterpretationEntry"
+          },
+          "type": "array"
+        },
+        "bestUseCases": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "brand": {
+          "description": "Present 606/681; null/absent = unknown, never fabricated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "categoryTotal": {
+          "description": "Present 591/681.",
+          "type": "number"
+        },
+        "confidence": {
+          "$ref": "#/definitions/RawConfidence"
+        },
+        "confidence_label_he": {
+          "type": "string"
+        },
+        "confidence_level": {
+          "description": "Present 250/681 (bread/cereals/cheese/crackers/granola/milk/yogurt_drinkable/yogurt_spoonable).",
+          "type": "string"
+        },
+        "confidence_sub_reason": {
+          "description": "Metadata-only, non-rendering. Present 663/681 (absent on milk).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_tooltip_he": {
+          "type": "string"
+        },
+        "consumerTakeaway": {
+          "type": "string"
+        },
+        "d3_processing_signal": {
+          "$ref": "#/definitions/RawD3ProcessingSignal"
+        },
+        "d4_additives": {
+          "description": "Present 680/681 — the sole exception is hummus product bsip1_7290010154265, which omits the key entirely (TASK-569 finding; not this task's job to fix).",
+          "items": {
+            "$ref": "#/definitions/RawAdditiveEntry"
+          },
+          "type": "array"
+        },
+        "expansion": {
+          "$ref": "#/definitions/RawExpansion"
+        },
+        "filterTags": {
+          "description": "Present 18/681 (milk only).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "glassBox": {
+          "$ref": "#/definitions/RawGlassBox",
+          "description": "Present 57/681 (hummus only)."
+        },
+        "grade": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RawGrade"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "Nullable per pipeline contract (schema/VM); no live product currently has null.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "insightLine": {
+          "type": "string"
+        },
+        "kcalPer100ml": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "metrics": {
+          "$ref": "#/definitions/RawMetrics"
+        },
+        "milkProductType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "milkProductTypeLabel": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameHe": {
+          "description": "Present 53/681 (crackers only). Content-authored Hebrew display name.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "novaGroup": {
+          "description": "Present 364/681 (brined_cheeses/cakes_hard_cookies/cheese/cookies_coffee/juices/milk/yogurt_drinkable/yogurt_spoonable).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "rank": {
+          "description": "Present 614/681 (absent on yogurt_drinkable, yogurt_spoonable).",
+          "type": "number"
+        },
+        "retailer": {
+          "description": "Present 553/681 (13/18 categories; absent on chocolate_bars, chocolate_tablets, juices, protein_combined, snacks).",
+          "type": "string"
+        },
+        "retailers": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Present 17/681 (juices only)."
+        },
+        "rowVerdict": {
+          "description": "Present 659/681.",
+          "type": "string"
+        },
+        "s_grade_explanation": {
+          "description": "Declared in the hand-maintained schema (S-grade explanation) but NOT observed on ANY of the 4 live S-grade products across all 18 categories — dead in the current corpus. Kept optional/typed rather than dropped so a future emission is still valid.",
+          "type": "string"
+        },
+        "score": {
+          "description": "Nullable for INSUFFICIENT-confidence products; no live product currently has null.",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "source_traceability_status": {
+          "description": "Present 320/681 (bread/cereals/cheese/crackers/hard_cheeses/hummus/yogurt_drinkable/yogurt_spoonable).",
+          "type": "string"
+        },
+        "subPool": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sugarPer100ml": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "volumeMl": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "barcode",
+        "imageUrl",
+        "score",
+        "grade",
+        "confidence",
+        "confidence_label_he",
+        "confidence_tooltip_he",
+        "insightLine",
+        "expansion"
+      ],
+      "type": "object"
+    },
+    "RawConfidence": {
+      "enum": [
+        "full",
+        "partial",
+        "insufficient",
+        "verified"
+      ],
+      "type": "string"
+    },
+    "RawD3ProcessingSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "materiality_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modifier": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "modifier_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note_he": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note_he_mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nova_class": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "population_correlation": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "uncertainty_materiality": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "nova_class",
+        "confidence",
+        "confidence_note",
+        "uncertainty_materiality",
+        "materiality_note",
+        "population_correlation",
+        "modifier",
+        "modifier_note",
+        "note_he",
+        "note_he_mobile"
+      ],
+      "type": "object"
+    },
+    "RawExpansion": {
+      "additionalProperties": false,
+      "properties": {
+        "bottomLine": {
+          "description": "Present only on cookies_coffee (117/681) in current data.",
+          "type": "string"
+        },
+        "caveats": {
+          "description": "Present only on hummus (57/681) in current data.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "comparisonContext": {
+          "description": "Present on 409/681 (14/18 categories). De-cross-referencing (TASK-546) means this is optional going forward — never re-require without an owner ruling (TASK-564).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidenceLabel": {
+          "type": "string"
+        },
+        "consumerExplanation": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "context": {
+                  "type": "string"
+                },
+                "good": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "takeaway": {
+                  "type": "string"
+                },
+                "watchOut": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "whyRated": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "whyRated",
+                "good",
+                "watchOut",
+                "context",
+                "takeaway"
+              ],
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ingredients": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "limitingFactors": {
+          "anyOf": [
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "$ref": "#/definitions/RawLimitingFactorEntry"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Present 678/681 (all but 3 low-data products, TASK-564). Legacy string[] or the richer {text,magnitude}[] shape — see RawLimitingFactorEntry."
+        },
+        "nutrition": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/RawNutrition"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "positiveSignals": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Present 681/681; value is `[]` or `null` on categories that ship no signals yet."
+        },
+        "servingNote": {
+          "type": "string"
+        },
+        "sourceLine": {
+          "description": "Declared on BariExpansionVM (sourceLine, consumerExplanation) but not observed on ANY live product in the current 18-category corpus. Kept optional/typed so a future emission does not immediately violate the contract.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unknowns": {
+          "description": "Present only on hummus (57/681) in current data; category-level invariant per category.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "nutrition",
+        "ingredients",
+        "confidenceLabel",
+        "servingNote"
+      ],
+      "type": "object"
+    },
+    "RawGlassBox": {
+      "additionalProperties": false,
+      "properties": {
+        "disclosureCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disclosureNotes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gateState": {
+          "$ref": "#/definitions/RawGlassBoxGate"
+        },
+        "gatedGrade": {
+          "$ref": "#/definitions/RawGrade"
+        },
+        "gatedScore": {
+          "type": "number"
+        },
+        "partialNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "withheld": {
+          "type": "boolean"
+        },
+        "withholdReason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "gateState"
+      ],
+      "type": "object"
+    },
+    "RawGlassBoxGate": {
+      "enum": [
+        "unconstrained",
+        "demote",
+        "withhold"
+      ],
+      "type": "string"
+    },
+    "RawGrade": {
+      "enum": [
+        "S",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "type": "string"
+    },
+    "RawLimitingFactorEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "magnitude": {
+          "type": [
+            "number",
+            "string"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "magnitude"
+      ],
+      "type": "object"
+    },
+    "RawMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "additive_count": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "base_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fat_saturated_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fiber_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "protein_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sodium_mg": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sugar_g": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "RawNutrition": {
+      "additionalProperties": false,
+      "properties": {
+        "carbs": {
+          "description": "Present on 237/681 (bread/brined_cheeses/cakes_hard_cookies/cereals/cheese/hard_cheeses/milk).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "energyKcal": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fat": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "fiber": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "protein": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "satFat": {
+          "description": "Present on 370/681 (bread/brined_cheeses/cakes_hard_cookies/cereals/cheese/cookies_coffee/hard_cheeses/juices/milk).",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sodium": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sugar": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "energyKcal",
+        "protein",
+        "sugar",
+        "fat",
+        "fiber",
+        "sodium"
+      ],
+      "type": "object"
+    },
+    "RawPageCopy": {
+      "additionalProperties": {},
+      "type": "object"
+    },
+    "RawPageMeta": {
+      "additionalProperties": {},
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "editorial_note": {
+          "type": "string"
+        },
+        "expansion": {
+          "type": "string"
+        },
+        "generated": {
+          "type": "string"
+        },
+        "product_count": {
+          "type": "number"
+        },
+        "production_pass": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
+        },
+        "scope_note": {
+          "type": "string"
+        },
+        "scored_count": {
+          "type": "number"
+        },
+        "source_run_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "generated",
+        "product_count"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "_meta": {
+      "$ref": "#/definitions/RawPageMeta"
+    },
+    "generatedAt": {
+      "description": "Root-level (no _meta wrapper) — juices only. Distinct from _meta.generated; read directly by juices-page-data.ts for the rendered \"updated on\" date (TASK-574).",
+      "type": "string"
+    },
+    "page_copy": {
+      "$ref": "#/definitions/RawPageCopy",
+      "description": "Present on 7/18 datasets — see RawPageCopy."
+    },
+    "products": {
+      "items": {
+        "$ref": "#/definitions/RawComparisonProduct"
+      },
+      "type": "array"
+    },
+    "totalProducts": {
+      "description": "Root-level (no _meta wrapper) — juices only (TASK-574).",
+      "type": "number"
+    }
+  },
+  "required": [
+    "_meta",
+    "products"
+  ],
+  "type": "object"
+}

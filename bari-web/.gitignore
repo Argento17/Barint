@@ -45,3 +45,11 @@ next-env.d.ts
 # Agent OS lives ONLY at C:\Bari — never snapshot it into the website (TASK-131)
 /Bari/
 scripts/.image-migration-map.json
+
+# TASK-569: ephemeral run reports from schema tooling (regenerate via
+# `npm run diff-page-schema` / `npm run validate-page-schema`) — never durable, would
+# immediately go stale and recreate the schema-lag problem this task exists to prevent.
+# The generated schema artifact itself (schema/page-output-schema.generated.json) IS
+# committed — it's the reviewable deliverable.
+/schema/schema-diff-report.json
+/schema/validation-report.json
