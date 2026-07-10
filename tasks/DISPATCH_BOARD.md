@@ -21,6 +21,9 @@ given session (was, 2026-07-04) — then the owner opens/merges PRs from the pus
 - 📋 **TASK-571 READY FOR OWNER** — Vercel Deployment Checks instructions written into the task file (exact click path; require only always-running checks: frontend, python-tests, off-sweep, e2e-smoke, conformance, off-ban-census; NEVER shadow/c0 — path-filtered, would strand deploys). Registered: TASK-567 (sha256 sign-offs), 568 (derived views), 569 (VM schema gen), 570 (Shelf Watch pilot).
 - ✅ **TASK-574 MERGED TO LIVE** (owner, 2026-07-10) — origin/master a9dd9075; orchestrator verified post-merge: protein file on origin = 0 leftover internal keys, schema whitelist present. Two-gate sign-off completed BEFORE merge (Content + Red-Team, both SIGN-OFF; markers at tasks/signoffs/*.ok, local commit 6814f0d2 — the hook correctly blocked the unmarked commit first). Red-team MEDIUM informational accepted: public /data/comparisons/[slug] payload now omits nutrition_per_100g/_scoring_trace (fixes an internals leak on that endpoint). Housekeeping: worktrees bari_wt_564/574 removed, branches task564-schema-lag/task574-raw-fields deleted local+origin.
 - ✅ **TASK-567 CLOSED** (2026-07-10, builder "build-567") — tamper-proof sign-offs LIVE locally: verify_signoffs.py (staged-blob sha256; selftest 6/6 orchestrator-re-run incl. flipped-byte tamper-detect), 11/11 migrated .approval.json records re-verified PASS by orchestrator, hook upgraded existence→hash-equality (C7 .claude-write CRITICAL adjudicated — orchestrator read the diff personally: infra failure falls back to pre-567 existence check extended to .approval.json, never weaker; 541/555 layers untouched; PS 5.1 stderr trap handled via cmd /c), signoff_record_v1.md spec, migrate_signoffs.py (11 .ok → .approval.json, .ok deleted), CI signoff_gate.yml changed-in-PR-only with green-on-no-change proof. **PR: https://github.com/Argento17/Barint/pull/new/task567-signoff-sha (66f5fc44), owner merges** — carries 9 origin records incl. 6 TASK-574 records pinned to the merged PR #99 bytes.
+- ✅ **PRs MERGED** (owner, 2026-07-10 evening) — task567-signoff-sha, task568-derived-cards, task579-cards-fanout all confirmed ancestors of origin/master (9f3f74f1); branches deleted local+origin, worktrees bari_wt_567/568 removed. Tamper-proof sign-offs + 17-card derived stats + parity CI are LIVE. (Concurrent session shipped TASK-577 magnesium guide rebuild to master in the same window.)
+- 🚀 **TASK-569 DISPATCHED** (2026-07-10, frontend-agent "frontend-569") — generate page schema from a TS contract type (ts-json-schema-generator, free OSS only); generate→diff→propose, live schema NOT swapped by the agent; validate all shelves against the generated schema; worktree C:/bari_wt_569 → PR.
+- 🚀 **TASK-570 DISPATCHED** (2026-07-10, data-agent "data-570") — Shelf Watch pilot cereals+bread: design doc → canary adapter-health → monitor script → ONE real supervised run → weekly LOCAL Windows scheduled task (Hebrew Health Scan template). ALERT-ONLY; missing-data=discard never drift; OFF banned; engines never raw HTTP; no commits (orchestrator verifies).
 - ✅ **TASK-579 CLOSED** (2026-07-10, frontend-agent "frontend-568", owner "go ahead") — 17/19 featured cards derive from the shared module (3 pilot + 14 fan-out); 2 honest exclusions (magnesium → TASK-578; bread-lite = scan-funnel stats, different type — forcing would redefine meanings). ZERO consumer-visible changes (orchestrator spot-verified milk 18=18=18 and choc-tablets ceiling B; cocoa% stays literal with inline note — no source field). Parity fixture 17/17 exit 0 (orchestrator re-run) + wired into barint_ci frontend job with documented Node 20→24 bump (native TS stripping; single-job scope; diff read by orchestrator). Pilot manifest bug caught+fixed: cheese parity pointed at orphaned v4, page imports v5. C0 PASS re-run. **PR: https://github.com/Argento17/Barint/pull/new/task579-cards-fanout (2dcecb0d, stacked on pilot — merge 568 first or together), owner merges.**
 - ✅ **TASK-568 CLOSED** (2026-07-10, frontend-agent "frontend-568") — derived featured cards pilot: scoping doc (01_framework/frontend/derived_views_scoping_v1.md; found insightLines/showInsights DEAD on ComparisonIntelligenceHero since 07-01), shared deriveComparisonCardStats module + `npm run validate-card-stats` parity fixture, 3 cards converted (cheese/protein-bars/granola). Orchestrator verified: branch pushed (7c0740e9, ls-remote), C0 exit 0 re-run, parity re-run PASS, cheese diff personally read (Hebrew labels byte-identical, zero rendered-literal changes). Drift finding: protein "25–34" vs actual 25–36 + granola "47" vs ~38 existed on stale local branch, already hand-fixed on origin — PR ships ZERO visible stat changes (dedup, not bug-fix). Magnesium updated-label has no derivable source → **TASK-578** registered (data-agent, LOW). **PR: https://github.com/Argento17/Barint/pull/new/task568-derived-cards, owner merges.** Fan-out to remaining 13 cards after pilot merges.
 
@@ -31,7 +34,35 @@ The audit called "run_gates.py in CI" do-first/low-effort. Applying the TASK-560
 - 🟡 **TASK-564 OPEN** (frontend-agent) — schema lag: `page_output_schema_v1.json` still marks `expansion.comparisonContext` REQUIRED, but that copy was deliberately removed on owner direction (TASK-546 de-cross-referencing). The *golden* brined_cheeses page fails its own schema on every product. Also `limitingFactors` typed array, arriving null. Fix the SCHEMA; do NOT re-add the copy. Same class as the TASK-431 schema-lag defect.
 - Registry note: TASK-562 was already taken by a concurrent session (sucralose red-team, TASK-557 line) — registry wins; used 563/564/565.
 
-## 🚀 TASK-577 DISPATCHED (2026-07-10 night) — magnesium guide v3: owner readability restructure
+## 🚀 TASK-580 DISPATCHED (2026-07-10 night) — magnesium guide v3.1: owner-reported gauge bug + richer intro
+Owner (with screenshot): (1) dose gauge inside EVERY card's לפרטים renders broken geometry — 76/520
+scale labels clustered on one side, dashed RDA band detached at the track edge, systematic across all
+18 products (v2 layout rendered the same ThresholdBarRow correctly → suspect the new v3 disclosure
+container / RTL percent math); (2) intro "not good enough" — must add detail on the dimensions being
+measured (the four assessed bars). Worktree C:\bari_wt_578, branch deploy/mag-guide-v31 off 9f3f74f1.
+Registry note: 578/579 taken by concurrent sessions (task579-cards-fanout merged as PR #102); used 580.
+- 🚀 frontend-580: diagnose from DOM boundingBoxes (not eyeball), fix v3 path w/o regressing v2, numeric
+  before/after geometry evidence + screenshots for Design Agent vision review; zero copy changes.
+- 🚀 content-580: gate-1 addendum — expanded intro (≤~70 words, one clause per assessed dimension:
+  מינון/צורה וספיגה/בטיחות/שקיפות תווית); any change to owner-dictated "שלושה דברים" sentence must be
+  FLAGGED for owner acceptance, not settled.
+- NEXT: Design Agent vision verify on fixed gauges → wire intro verbatim → targeted gate-2 → deploy.
+
+## ✅ TASK-577 CLOSED (2026-07-10 night) — magnesium guide v3 LIVE on master @ 55847d7b (noindex)
+Owner-dictated readability restructure shipped through the full loop, live ~90s post-push, 7/7 live
+markers pass. Groups 6/5/6/1 under the 4 owner headings (D6 spec cc0cc76f… + D7 18/18 independent
+re-derivation, 2 amendments); gate-1 package 668fdaee… (owner text verbatim + 18 authored one-liners);
+wiring byte-exact by script (28/28 checks); **orchestrator personal read caught 3 defects the scripts
+missed** (v2-leftover H1, "מחיר לא זמין"×18 data-state narration, disclaimer rendered ×2) — the
+personal-read step is load-bearing, keep it; gate-2 GO conditional (0 CRITICAL; RT-2 form-name vs
+absorption-rating conflation on #9/#18 fixed pre-deploy from spec §B). v2 path kept behind
+`useV3Layout` for rollback. **→ OWNER DIGEST: RT-1 HIGH** — owner heading "כמות נמוכה יחסית" holds
+#5 at 190mg = corpus median (its one-liner says so on-card); recommend owner amend heading 2
+(e.g. "צורות אחרות עם תווית ברורה") or accept knowingly; gates the index flip only. Also in digest:
+owner-text flags ("מהמדף הישראלי"; "מוצרים רבים" vs 6/18), servings/day = genuine data gap all 18
+(Data Agent label re-parse follow-up). Full detail: tasks/TASK-577.md.
+
+## 📜 TASK-577 scope log (original in-flight entry)
 Owner ruled v2 unreadable ("You overcorrected") and dictated the full new page order: H1 + 1-sentence
 intro → compact "מה גילינו" box (4 findings) → products IMMEDIATELY (no methodology first, no prose
 product summaries) under 4 owner-dictated descriptive headings (ציטראט/ביסגליצינט עם תווית ברורה ·
