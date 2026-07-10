@@ -26,6 +26,16 @@ Rules:
   - em_dash        (count, minimize)       U+2014 "—"
   - antithesis     (owner ban)             "X, not Y" / "ו/אלא לא" framing
   - number_density (advisory heuristic)    >=4 nutrition figures restated in one line
+  - grade_in_prose (owner ban, H4-P7)     the letter grade written into a sentence
+  - ingredient_count (owner ban, H4-P2)   the NUMBER of ingredients narrated
+  - stock_phrase   (owner ban, H4-P6)     "עושים את רוב העבודה" and kin
+
+Cross-field (not a single-string rule, so not in RULES):
+  - find_cross_field_value_repetition()   (owner ban, H4-P3) the same nutrition
+    figure restated across two or more consumer fields of one product.
+
+The H4-* rules were derived from the owner's verbatim review of 30 live rows on
+2026-07-10 (TASK-576); see content_voice/tom_bari_voice/8_edit_feedback_log.md §H4.
 
 TOOLING ONLY. This module contains no I/O — it never reads/writes any product
 JSON, page-data.ts, or consumer copy. Pure functions over an input string.
@@ -208,6 +218,144 @@ def rule_number_density(text: str) -> dict | None:
             "note": "check for nutritional-value restatement"}
 
 
+# ---------------------------------------------------------------------------
+# grade_in_prose — owner ban (H4-P7). The grade is the badge, never the sentence.
+# ---------------------------------------------------------------------------
+
+# Grade letters: S, A, B, C, D, E. These collide with vitamin letters, so every
+# hit is checked against _VITAMIN_PRECEDE before it counts.
+GRADE_IN_PROSE_RE = re.compile(
+    r"(?:ב|ל)-[SABCDE](?![A-Za-z0-9])"          # "עוצר ב-B", "מוריד ל-E"
+    r"|(?:ב?ציון|דירוג|בדירוג)\s+[SABCDE](?![A-Za-z0-9])"  # "ציון S.", "בציון B"
+    r"|בין\s+[SABCDE]\s+ל-[SABCDE](?![A-Za-z0-9])"          # "בין C ל-E"
+)
+
+# A grade letter preceded by a vitamin word is a nutrient, not a grade
+# ("עשיר ב-C"). Guard against the whole vitamin family; B12-style tokens are
+# already excluded by the trailing (?![A-Za-z0-9]).
+_VITAMIN_PRECEDE = ("ויטמין", "ויטמינים", "וויטמין")
+_VITAMIN_LOOKBACK = 12
+
+
+def _grade_hit_is_vitamin(text: str, match_start: int) -> bool:
+    window = text[max(0, match_start - _VITAMIN_LOOKBACK):match_start]
+    return any(w in window for w in _VITAMIN_PRECEDE)
+
+
+def rule_grade_in_prose(text: str) -> dict | None:
+    hits = [m for m in GRADE_IN_PROSE_RE.finditer(text)
+            if not _grade_hit_is_vitamin(text, m.start())]
+    if not hits:
+        return None
+    return {
+        "rule": "grade_in_prose",
+        "count": len(hits),
+        "terms": sorted({m.group() for m in hits}),
+    }
+
+
+def grade_in_prose_hard_hits(text: str) -> list[dict]:
+    """Gate-safe subset: every non-vitamin hit. The owner ban is absolute —
+    consumer copy never writes the grade letter (and never writes "S" at all)."""
+    return [
+        {"context": text[max(0, m.start() - 20):m.end() + 20], "match": m.group()}
+        for m in GRADE_IN_PROSE_RE.finditer(text)
+        if not _grade_hit_is_vitamin(text, m.start())
+    ]
+
+
+# ---------------------------------------------------------------------------
+# ingredient_count — owner ban (H4-P2): "אני לא רוצה לראות את זה כתוב."
+# ---------------------------------------------------------------------------
+
+# Spelled-out counts, longest-first so the alternation cannot truncate
+# "אחד עשר" into "אחד". Mirrors copy_constants._SPELLED_INGREDIENT_COUNTS.
+_SPELLED_COUNTS = (
+    "שנים עשר|שלושה עשר|ארבעה עשר|חמישה עשר|שישה עשר|אחד עשר|"
+    "שני|שתי|שלושה|שלוש|ארבעה|ארבע|חמישה|חמש|שישה|שש|שבעה|שבע|"
+    "שמונה|תשעה|תשע|עשרה|עשר"
+)
+
+# A count (digit or spelled) immediately governing "רכיבים"/"מרכיבים",
+# optionally through one modifier ("שלושה רכיבים בלבד", "5 רכיבים בסך הכל").
+INGREDIENT_COUNT_RE = re.compile(
+    rf"(?:\d+|{_SPELLED_COUNTS})\s+(?:רכיבים|מרכיבים)"
+)
+
+
+def rule_ingredient_count(text: str) -> dict | None:
+    hits = list(INGREDIENT_COUNT_RE.finditer(text))
+    if not hits:
+        return None
+    return {"rule": "ingredient_count", "count": len(hits),
+            "terms": sorted({m.group() for m in hits})}
+
+
+def ingredient_count_hard_fires(text: str) -> bool:
+    """Gate-safe check. No exclusion class: the owner banned narrating the
+    ingredient COUNT outright. Showing the ingredient list is still fine."""
+    return INGREDIENT_COUNT_RE.search(text) is not None
+
+
+# ---------------------------------------------------------------------------
+# stock_phrase — owner ban (H4-P6): vague, "לא תמיד ברור למה מתכוונים".
+# ---------------------------------------------------------------------------
+
+STOCK_PHRASE_RE = re.compile(r"עוש(?:ים|ה|ות)\s+(?:כאן\s+)?את\s+(?:רוב\s+)?העבודה")
+
+
+def rule_stock_phrase(text: str) -> dict | None:
+    hits = STOCK_PHRASE_RE.findall(text)
+    if not hits:
+        return None
+    return {"rule": "stock_phrase", "count": len(hits)}
+
+
+def stock_phrase_hard_fires(text: str) -> bool:
+    return STOCK_PHRASE_RE.search(text) is not None
+
+
+# ---------------------------------------------------------------------------
+# cross_field_value_repetition — owner ban (H4-P3). NOT a single-string rule:
+# it needs every consumer field of one product at once.
+# ---------------------------------------------------------------------------
+
+# A nutrition figure = number + a mass/energy/percent unit. The unit is REQUIRED:
+# a bare "100%" in "100% קמח חיטה" is a composition claim, not a nutrition value,
+# and counting it inflated an early measurement of this rule from 34% to 57%.
+NUTRITION_VALUE_RE = re.compile(
+    r"\d+(?:\.\d+)?\s*(?:גרם|גר['’]|מ\"ג|מ״ג|מג|קלוריות|קק\"ל|קק״ל)"
+)
+
+
+def _normalize_value(token: str) -> str:
+    """Collapse spacing and unit spelling so '5 גרם' and '5גרם' are one value."""
+    t = re.sub(r"\s+", "", token)
+    t = t.replace("מ״ג", 'מ"ג').replace("קק״ל", 'קק"ל').replace("גר’", "גר'")
+    return t
+
+
+def find_cross_field_value_repetition(fields: dict[str, str]) -> list[dict]:
+    """Return one entry per nutrition figure that appears in >= 2 DISTINCT
+    consumer fields of the same product.
+
+    `fields` maps field name -> prose. Repetition WITHIN one field is a
+    different defect (see rule_number_density) and is not reported here.
+    """
+    seen: dict[str, set[str]] = {}
+    for fname, text in fields.items():
+        if not isinstance(text, str) or not text.strip():
+            continue
+        for tok in NUTRITION_VALUE_RE.findall(text):
+            seen.setdefault(_normalize_value(tok), set()).add(fname)
+    return [
+        {"rule": "cross_field_value_repetition", "value": val,
+         "fields": sorted(where), "field_count": len(where)}
+        for val, where in sorted(seen.items())
+        if len(where) >= 2
+    ]
+
+
 # Ordered so deterministic rules surface first in reports.
 RULES = [
     rule_sodium_term,
@@ -215,4 +363,7 @@ RULES = [
     rule_em_dash,
     rule_antithesis,
     rule_number_density,
+    rule_grade_in_prose,
+    rule_ingredient_count,
+    rule_stock_phrase,
 ]

@@ -1,0 +1,54 @@
+# Corpus-wide copy gate (TASK-576) — the missing enforcement line.
+#
+# Every copy detector Bari owns runs at generation (only on rebuild) or at commit
+# (staged files only, fails open). The 710-row LIVE corpus was behind nothing, so
+# a rule added after a page was signed off was never applied to it — the
+# `gates_designed_not_enforced` failure class, found live on 2026-07-10 (a
+# data-state-narration blowup that passed every existing gate).
+#
+# This job runs every HARD copy rule across ALL live shelves on every PR that
+# touches comparison data or the copy tooling. It is a RATCHET: it fails only when
+# a violation count EXCEEDS the committed baseline (copy_violation_baseline.json),
+# never on the pre-existing dirt. Regressions are blocked; fixes lower the baseline.
+name: Copy Corpus Gate
+
+on:
+  pull_request:
+    paths:
+      - "bari-web/src/data/comparisons/**"
+      - "03_operations/page_generator/copy/**"
+      - "03_operations/evals/copy_evals/**"
+      - "03_operations/spine/validate_copy_authored.py"
+      - "03_operations/spine/corpus_copy_gate.py"
+      - "03_operations/spine/copy_violation_baseline.json"
+      - ".github/workflows/copy_corpus_gate.yml"
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+jobs:
+  copy-corpus-ratchet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # The detectors and the ratchet must themselves be proven before they gate.
+      - name: Copy-rule detector tests
+        working-directory: 03_operations/evals/copy_evals
+        run: |
+          set -e
+          python test_copy_rules_h4.py
+          python test_banned_patterns.py
+          python test_field_coverage_and_shape.py
+          python test_corpus_gate_ratchet.py
+
+      - name: Corpus ratchet — no new copy violation vs baseline
+        run: python 03_operations/spine/corpus_copy_gate.py --check
+
+      - name: Full census (informational — never fails the job)
+        if: always()
+        run: python 03_operations/spine/corpus_copy_gate.py --report
