@@ -3,12 +3,12 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   cheeseCorpusMeta,
   cheeseProducts,
   cheesePrologueSentences,
 } from "@/lib/comparisons/cheese-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -36,9 +36,7 @@ const CHEESE_CARD_INSIGHT_LINES = [
 
 export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
   const cardDescription = description ?? cheesePrologueSentences[0];
-  const displayedCount = cheeseProducts.length;
-  const scoredCount = cheeseProducts.filter((product) => product.score != null).length;
-  const aGradeCount = cheeseProducts.filter((product) => product.grade === "A").length;
+  const stats = deriveComparisonCardStats(cheeseProducts, cheeseCorpusMeta.generated);
 
   return (
     <Link
@@ -55,11 +53,11 @@ export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(cardDescription)}
         insightLines={CHEESE_CARD_INSIGHT_LINES}
         stats={[
-          { value: displayedCount, label: "מוצרים בהשוואה" },
-          { value: scoredCount, label: "קיבלו ציון" },
-          { value: aGradeCount, label: "בציון A" },
+          { value: stats.productCount, label: "מוצרים בהשוואה" },
+          { value: stats.scoredCount, label: "קיבלו ציון" },
+          { value: stats.gradeCounts.A, label: "בציון A" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(cheeseCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/cheese.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"

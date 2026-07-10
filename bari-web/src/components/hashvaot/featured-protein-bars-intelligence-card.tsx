@@ -3,11 +3,14 @@
 import Link from "next/link";
 
 import { ComparisonIntelligenceHero } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   proteinBarsCorpusMeta,
   proteinBarsProducts,
 } from "@/lib/comparisons/protein-bars-comparison-page-data";
+import {
+  deriveComparisonCardStats,
+  deriveMetricRange,
+} from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +39,14 @@ export function FeaturedProteinBarsIntelligenceCard({ href, description }: Props
   const insightLines = proteinBarsProducts.map((product) => product.insightLine).filter(Boolean);
   const lines = (insightLines.length > 0 ? insightLines : PROTEIN_BARS_INSIGHT_LINES).map(stripCardDigits);
 
+  const stats = deriveComparisonCardStats(proteinBarsProducts, proteinBarsCorpusMeta.generated);
+  const proteinRange = deriveMetricRange(proteinBarsProducts.map((p) => p.metrics?.protein_g));
+  const proteinRangeLabel = proteinRange
+    ? proteinRange.low === proteinRange.high
+      ? `${proteinRange.low}`
+      : `${proteinRange.low}–${proteinRange.high}`
+    : "—";
+
   return (
     <Link
       href={href}
@@ -51,11 +62,11 @@ export function FeaturedProteinBarsIntelligenceCard({ href, description }: Props
         description={stripCardDigits(description)}
         insightLines={lines}
         stats={[
-          { value: proteinBarsProducts.length, label: "בדף ההשוואה" },
-          { value: "25–36", label: "גרם חלבון ל-100 גרם" },
-          { value: "B", label: "תקרת הקטגוריה" },
+          { value: stats.productCount, label: "בדף ההשוואה" },
+          { value: proteinRangeLabel, label: "גרם חלבון ל-100 גרם" },
+          { value: stats.ceilingGrade ?? "—", label: "תקרת הקטגוריה" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(proteinBarsCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#3A6B50", photo: "/hashvaot/themes/protein-bars.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
