@@ -1,0 +1,12 @@
+{
+  "_comment": "Documented, time-bounded conformance exceptions (TASK-560). An entry here does NOT weaken the gate: conformance_gate.py still FAILS on any non-conformer that is not listed, on a listed category whose hard_failures differ from those recorded, and on a listed category that now conforms (a stale entry must be deleted, so an exception can never become a permanent silent bypass). Every entry needs an owning task. This mirrors the shadow/gold gates' protective mode: block on regression, never on a documented standing state.",
+  "exceptions": {
+    "bread": {
+      "hard_failures": ["HARD-3-baseline_served"],
+      "task": "TASK-561",
+      "owner": "product-agent",
+      "recorded": "2026-07-10",
+      "reason": "bread.json baseline_json targets bread_frontend_v3.json while live_manifest and bari-web serve v4. Per the config's own note (TASK-433, 2026-07-01) this is deliberate: v4 was a membership-correction-only build produced outside this config, and re-scoring through the config drifts one survivor -0.8pts (explicitly rejected). The v3->v4 cutover is a Frontend/Product go-live decision, not a Data-lane edit. Known consequence while this stands: a spine_flip re-flows into the orphaned v3 and the served v4 goes stale."
+    }
+  }
+}

@@ -28,8 +28,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Spine conformance sweep (every category must re-flow)
-        run: python 03_operations/page_generator/conformance.py --all
+      - name: Install test deps
+        run: pip install pytest
+
+      # Runs on the ubuntu runner, which is the whole point: it asserts that the configs'
+      # absolute C:\Bari literals re-anchor onto the checkout under POSIX (TASK-560).
+      - name: Config path re-anchoring tests
+        run: python -m pytest 03_operations/page_generator/test_conformance_paths.py -v --tb=short
+
+      # Protective gate (TASK-560): fails on a NEW non-conforming shelf, on an excepted
+      # shelf whose failures drift, and on a stale exception -- but not on the documented
+      # standing exceptions in conformance_exceptions.json (each pinned to an owning task).
+      # A permanently-red job teaches everyone to ignore it; a regression must still bite.
+      - name: Spine conformance gate (regression-protective)
+        run: python 03_operations/page_generator/conformance_gate.py
 
   off-ban-census:
     # OFF is banned project-wide (CLAUDE.md hard rule, TASK-238). Any OFF reference
