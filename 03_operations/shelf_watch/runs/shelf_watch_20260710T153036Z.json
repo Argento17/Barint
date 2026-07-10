@@ -1,0 +1,809 @@
+{
+  "run_id": "shelf_watch_20260710T153036Z",
+  "status": "completed",
+  "categories": [
+    "breakfast_cereals",
+    "bread"
+  ],
+  "adapter_health": {
+    "shufersal": "healthy",
+    "canary_results": [
+      {
+        "category": "breakfast_cereals",
+        "barcode": "5010029000061",
+        "status": "scraped",
+        "healthy": true,
+        "reason": null
+      },
+      {
+        "category": "breakfast_cereals",
+        "barcode": "7297488098688",
+        "status": "scraped",
+        "healthy": true,
+        "reason": null
+      },
+      {
+        "category": "bread",
+        "barcode": "7290016245325",
+        "status": "scraped",
+        "healthy": true,
+        "reason": null
+      }
+    ]
+  },
+  "baseline_sources": {
+    "breakfast_cereals": "bari-web/src/data/comparisons/cereals_frontend_v2.json",
+    "bread": "bari-web/src/data/comparisons/bread_frontend_v4.json"
+  },
+  "products_total": 43,
+  "counts": {
+    "no_change": 37,
+    "cosmetic": 4,
+    "ingredient_change": 2
+  },
+  "flagged_for_digest": [
+    {
+      "barcode": "2079927",
+      "category": "bread",
+      "name": "לחם דגנים מלא",
+      "class": "ingredient_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": false,
+        "added": [
+          "קמח חיטה מלא (100% ממשקל הקמחים",
+          "57% ממשקל הלחם) (מכיל גלוטן)",
+          "גלוטן חיטה",
+          "תערובת דגנים וגרעינים (5%) (שיבולת שועל",
+          "גרעיני חמני יה",
+          "גרעיני פשתן",
+          "גרעיני דלעת)",
+          "לתת שעורה (מכיל גלוטן)",
+          "קלציום קרבונ אט טבעי",
+          "מווסת חומציות: חומצת לימון",
+          "סיבים תזונתיים",
+          "חומר מתחלב: E481",
+          "חומר לט יפול בקמח: ל- ציסטאין. ציפוי: תערובת דגנים וגרעינים"
+        ],
+        "removed": [
+          "קמח חיטה מלא (83% ממשקל הקמחים",
+          "45% ממשקל הלחם) (מכיל גלוטן)",
+          "קמח חיטה לבן (מכיל גלוטן)",
+          "תערובת דגנים וגרעינים (7%) (שיבולת שוע ל (מכיל גלוטן)",
+          "זרעי פשתן",
+          "גרעיני דלעת",
+          "זרעי חמנייה)",
+          "חלבון צמחי (מכיל גלוטן)",
+          "חומרים מתחלבים: E481",
+          "E471",
+          "סיבי תזונתיים"
+        ]
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290016967074",
+      "category": "bread",
+      "name": "לחם חיטה מלאה",
+      "class": "ingredient_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": false,
+        "added": [
+          "47.4% ממשקל הלחם)",
+          "גרעינים(8.2%) : (שומשום",
+          "E472e)",
+          "מווסת חומציות (E330)",
+          "חומר מעכב חימצון (E300)",
+          "חומר לטיפול בקמח (E920)"
+        ],
+        "removed": [
+          "50% ממשקל הלחם)",
+          "גרעינים(25.4%) : (שומשום",
+          "E472e",
+          "E471)",
+          "מתחלבים (E471",
+          "E481",
+          "E472e) מווסת חומציות (E330)",
+          "לתת חיטה חומר מעכב חימצון (E300)"
+        ]
+      },
+      "notes": null
+    }
+  ],
+  "digest_worthy": true,
+  "products": [
+    {
+      "barcode": "5010029000061",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7297488098688",
+      "category": "breakfast_cereals",
+      "name": "פצפוצי אורז ללת\"ס",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7297488199590",
+      "category": "breakfast_cereals",
+      "name": "פצפוצי אורז תפוח",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7296073642046",
+      "category": "breakfast_cereals",
+      "name": "קורנפלקס ללא גלוטן",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "5900020036407",
+      "category": "breakfast_cereals",
+      "name": "ליון דגני שוקולד וקרמל",
+      "class": "cosmetic",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": true,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "5900020012814",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר נסקוויק",
+      "class": "cosmetic",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": true,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290107647731",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר קוקומן חום לבן",
+      "class": "cosmetic",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": true,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "72968",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר סיני מיניס",
+      "class": "cosmetic",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": true,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290017894911",
+      "category": "breakfast_cereals",
+      "name": "טבעות דגנים שיבולת שועל",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290107647854",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר שוגי",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290017894928",
+      "category": "breakfast_cereals",
+      "name": "צדפי דגנים טעם שוקולד",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7296073705550",
+      "category": "breakfast_cereals",
+      "name": "כדורי דגנים טעם שוקו",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7296073705567",
+      "category": "breakfast_cereals",
+      "name": "טבעות דגנים בטעם דבש",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290017894904",
+      "category": "breakfast_cereals",
+      "name": "כדורי דגנים טעם שוקולד",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290112495433",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר דליפקאן",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "8445291638839",
+      "category": "breakfast_cereals",
+      "name": "צ'יריוס טעם דבש ושקדים",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7296073642022",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר טבעות דבש לל\"ג",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7296073705574",
+      "category": "breakfast_cereals",
+      "name": "ריבועי דגנים עם קינמון",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "3387390525960",
+      "category": "breakfast_cereals",
+      "name": "דגני בוקר קראנץ'",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7613030979647",
+      "category": "breakfast_cereals",
+      "name": "טריקס דגנים בטעם פירות",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290016245325",
+      "category": "bread",
+      "name": "לחם טחינה פרוס",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "3268429",
+      "category": "bread",
+      "name": "לחם ירוק מקמח מלא",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "3268252",
+      "category": "bread",
+      "name": "לחם חיטה מלא לילדים",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "481203",
+      "category": "bread",
+      "name": "לחם מחמצת קמח מלא",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "481197",
+      "category": "bread",
+      "name": "לחם מחמצת גרעינים",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "574370",
+      "category": "bread",
+      "name": "לחם שיפון קל",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "3054183",
+      "category": "bread",
+      "name": "לחם שיפון מלא מסטמכר",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "2079033",
+      "category": "bread",
+      "name": "לחם דגנים לייט",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "2079927",
+      "category": "bread",
+      "name": "לחם דגנים מלא",
+      "class": "ingredient_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": false,
+        "added": [
+          "קמח חיטה מלא (100% ממשקל הקמחים",
+          "57% ממשקל הלחם) (מכיל גלוטן)",
+          "גלוטן חיטה",
+          "תערובת דגנים וגרעינים (5%) (שיבולת שועל",
+          "גרעיני חמני יה",
+          "גרעיני פשתן",
+          "גרעיני דלעת)",
+          "לתת שעורה (מכיל גלוטן)",
+          "קלציום קרבונ אט טבעי",
+          "מווסת חומציות: חומצת לימון",
+          "סיבים תזונתיים",
+          "חומר מתחלב: E481",
+          "חומר לט יפול בקמח: ל- ציסטאין. ציפוי: תערובת דגנים וגרעינים"
+        ],
+        "removed": [
+          "קמח חיטה מלא (83% ממשקל הקמחים",
+          "45% ממשקל הלחם) (מכיל גלוטן)",
+          "קמח חיטה לבן (מכיל גלוטן)",
+          "תערובת דגנים וגרעינים (7%) (שיבולת שוע ל (מכיל גלוטן)",
+          "זרעי פשתן",
+          "גרעיני דלעת",
+          "זרעי חמנייה)",
+          "חלבון צמחי (מכיל גלוטן)",
+          "חומרים מתחלבים: E481",
+          "E471",
+          "סיבי תזונתיים"
+        ]
+      },
+      "notes": null
+    },
+    {
+      "barcode": "497044",
+      "category": "bread",
+      "name": "לחם ברמן אקטיב",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "2079996",
+      "category": "bread",
+      "name": "לחם אחיד פרוס קל",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290018500316",
+      "category": "bread",
+      "name": "לחם כוסמין לבן",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290018540329",
+      "category": "bread",
+      "name": "פיתה פיתה",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "2079477",
+      "category": "bread",
+      "name": "לחם אחיד פרוס",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "9398281",
+      "category": "bread",
+      "name": "מארז פיתות אסליות",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "2079217",
+      "category": "bread",
+      "name": "לחם מחמצת שיפון+אגוזים",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290014321168",
+      "category": "bread",
+      "name": "לחם לס פרוס קיטו",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "6451484",
+      "category": "bread",
+      "name": "לחם מחמצת אגוזים צימוקים",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "6451507",
+      "category": "bread",
+      "name": "לחם מחמצת מכוסמין",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290018500460",
+      "category": "bread",
+      "name": "לחם אנג'ל חצי מלא",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "4685027",
+      "category": "bread",
+      "name": "לחם מחמצת וחיטה מלאה קל",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    },
+    {
+      "barcode": "7290016967074",
+      "category": "bread",
+      "name": "לחם חיטה מלאה",
+      "class": "ingredient_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": true,
+        "cosmetic_only": false,
+        "added": [
+          "47.4% ממשקל הלחם)",
+          "גרעינים(8.2%) : (שומשום",
+          "E472e)",
+          "מווסת חומציות (E330)",
+          "חומר מעכב חימצון (E300)",
+          "חומר לטיפול בקמח (E920)"
+        ],
+        "removed": [
+          "50% ממשקל הלחם)",
+          "גרעינים(25.4%) : (שומשום",
+          "E472e",
+          "E471)",
+          "מתחלבים (E471",
+          "E481",
+          "E472e) מווסת חומציות (E330)",
+          "לתת חיטה חומר מעכב חימצון (E300)"
+        ]
+      },
+      "notes": null
+    },
+    {
+      "barcode": "1902325",
+      "category": "bread",
+      "name": "חלה קלועה",
+      "class": "no_change",
+      "reason": null,
+      "nutrition_diff": {},
+      "ingredients_diff": {
+        "changed": false,
+        "cosmetic_only": false,
+        "added": [],
+        "removed": []
+      },
+      "notes": null
+    }
+  ],
+  "generated_at": "2026-07-10T15:32:14.838043+00:00"
+}
