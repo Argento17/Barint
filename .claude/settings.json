@@ -16,7 +16,17 @@
       "PowerShell(*)",
       "WebFetch",
       "WebSearch",
-      "WebFetch(domain:bari.digital)"
+      "WebFetch(domain:bari.digital)",
+      "mcp__claude_ai_Canva__start-editing-transaction",
+      "mcp__claude_ai_Canva__perform-editing-operations",
+      "mcp__claude_ai_Canva__commit-editing-transaction",
+      "Agent",
+      "SendMessage",
+      "TaskOutput",
+      "TaskStop",
+      "ToolSearch",
+      "Skill(artifact-design)",
+      "Artifact"
     ],
     "deny": [
       "Bash(rm -rf *)",
@@ -62,6 +72,37 @@
             ],
             "timeout": 15,
             "statusMessage": "Checking go-live close gate..."
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard-off-ban.ps1"
+            ],
+            "timeout": 15,
+            "statusMessage": "Checking OFF-ban compliance..."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard-two-gate-commit.ps1"
+            ],
+            "timeout": 20,
+            "statusMessage": "Checking two-gate sign-off on commit..."
           }
         ]
       }
