@@ -67,6 +67,7 @@ import {
   MAG_V3_ONE_LINER_BY_BARCODE,
   MAG_V3_MARKET_GAPS_COMPACT_HE,
   MAG_V3_COLLAPSED_SECTION_TITLE_HE,
+  MAG_V3_COLLAPSED_SECTION_TEASER_HE,
   MAG_V3_EXPANDER_LABELS_HE,
 } from "@/lib/guides/magnesium-guide-copy-v3";
 
@@ -117,20 +118,21 @@ function bars(
 // and the mandatory RDA qualifier; nothing else is authored here.
 const MAGNESIUM_DOSE_GAUGE: GuideGaugeGeometry = {
   anatomy: "gauge",
+  // TASK-587 — the domain now genuinely starts at the corpus minimum (76mg), not an
+  // implicit 0. The old `hideZeroTick: true` only hid the "0" label; the 0–76 stretch
+  // of track was still live space, rendering a dead, unlabeled ~14.6%-wide lead-in
+  // before any real content (the owner-flagged glitch). `domainMin: 76` fixes the
+  // domain itself via the shared `pct()` helper (threshold-bar-row.tsx), not another
+  // suppression flag.
+  domainMin: 76,
   domainMax: 520,
-  hideZeroTick: true,
-  zones: [
-    // TWO zones, SAME neutral tone ("cannot_verify" — the system's only tone with no
-    // pass/fail/flag connotation, spec: no zone tied to 300) — the split at 76 exists
-    // only to give the corpus minimum a real visual boundary + short tick label ("76"),
-    // not a color change. The corpus maximum (520) is the domain edge itself, labeled
-    // via `maxTickLabel` below (fix: a first-pass version tried to render the median's
-    // long sentence inline in this same short numeric row, which visually collided
-    // with the "76" label — caught in this task's own screenshot verification and
-    // moved to a below-track reference line + caption instead, see threshold-bar-row.tsx).
-    { upTo: 76, tone: "cannot_verify", dividerStyle: "dashed", tickLabel: "76" },
-    { upTo: 520, tone: "cannot_verify", dividerStyle: "solid" },
-  ],
+  // ONE zone, SAME neutral tone ("cannot_verify" — the system's only tone with no
+  // pass/fail/flag connotation, spec: no zone tied to 300). The old two-zone split at
+  // 76 is degenerate now that domainMin IS 76 (a zone from 76 to 76 has zero width) —
+  // collapsed to one zone; the domain-min tick below supplies the "76" boundary label
+  // natively, so no interior divider is needed.
+  zones: [{ upTo: 520, tone: "cannot_verify", dividerStyle: "solid" }],
+  minTickLabel: "76",
   maxTickLabel: "520",
   referenceTicks: [
     // Copy package Slot 9 gauge tick label — verbatim. Renders as a dashed reference
@@ -901,8 +903,14 @@ export const magnesiumGuide: GuidePageVM = {
   // (the market-gaps box, after the groups) by GuideProductGroupsV3.
   marketGapsCompactHe: MAG_V3_MARKET_GAPS_COMPACT_HE,
 
-  // Item 5 — collapsed education+sources accordion title (package §5, AUTHORED).
+  // Item 5 — collapsed education+sources accordion title. TASK-587 v3.2-SLOT-1
+  // (AUTHORED) replaces the base package's generic toggle label with a real section
+  // heading now that the disclosure is a findable page section (visual spec §3).
   collapsedEvidenceSectionTitleHe: MAG_V3_COLLAPSED_SECTION_TITLE_HE,
+
+  // TASK-587 v3.2-SLOT-2 (AUTHORED) — one-line teaser under the heading above, new
+  // field, always visible inside <summary>.
+  collapsedEvidenceSectionTeaserHe: MAG_V3_COLLAPSED_SECTION_TEASER_HE,
 
   // Item 5 — per-card `לפרטים` disclosure toggle labels (package §5, AUTHORED;
   // generic on purpose per the package's own note — whether the v2 gauge-specific
@@ -911,4 +919,11 @@ export const magnesiumGuide: GuidePageVM = {
   // keeps the gauges inside the SAME disclosure as the badges/classifier, not a
   // gauge-only toggle).
   expanderLabelsV3: MAG_V3_EXPANDER_LABELS_HE,
+
+  // TASK-587 — the education section's OWN expand affordance (distinct disclosure
+  // instance from expanderLabelsV3 above, which is per-product-card). No new copy was
+  // authored for it in the v3.2 addendum (SLOT-1/SLOT-2 only); reuses the same
+  // already-signed MAG_V3_EXPANDER_LABELS_HE strings per the visual spec's own
+  // "byte-identical tokens, no new copy" instruction (visual spec §3.2 item 3).
+  educationExpanderLabelsV3: MAG_V3_EXPANDER_LABELS_HE,
 };

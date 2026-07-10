@@ -71,9 +71,14 @@ export function tierIndexFromState(state: GuideBarState): number | null {
   }
 }
 
-function pct(value: number, domainMax: number): number {
-  const clamped = Math.max(0, Math.min(value, domainMax));
-  return (clamped / domainMax) * 100;
+// TASK-587: `domainMin` defaults to 0 at every call site below via `geometry.domainMin
+// ?? 0`, so every existing gauge (which has no domainMin set) is byte-for-byte
+// unaffected — this is a single-root-cause fix, same discipline as TASK-580: one
+// helper change propagates correctly to every positioned element because they all
+// already route through pct().
+function pct(value: number, domainMin: number, domainMax: number): number {
+  const clamped = Math.max(domainMin, Math.min(value, domainMax));
+  return ((clamped - domainMin) / (domainMax - domainMin)) * 100;
 }
 
 // Bidi fix (TASK-504 design vision-critic, MEDIUM): a `valueLabel` that leads with a
@@ -150,24 +155,26 @@ function buildGaugeRender(
   placement: GuideThresholdPlacement | undefined
 ): TrackRender {
   const value = placement?.value ?? null;
+  const domainMin = geometry.domainMin ?? 0;
   const zones: TrackZone[] = geometry.zones.map((zone, i) => ({
-    startPct: i === 0 ? 0 : pct(geometry.zones[i - 1].upTo, geometry.domainMax),
-    endPct: pct(zone.upTo, geometry.domainMax),
+    startPct: i === 0 ? 0 : pct(geometry.zones[i - 1].upTo, domainMin, geometry.domainMax),
+    endPct: pct(zone.upTo, domainMin, geometry.domainMax),
     tone: zone.tone,
   }));
   const boundaries: TrackBoundary[] = geometry.zones
     .slice(0, -1)
-    .map((zone) => ({ pct: pct(zone.upTo, geometry.domainMax), style: zone.dividerStyle }));
+    .map((zone) => ({ pct: pct(zone.upTo, domainMin, geometry.domainMax), style: zone.dividerStyle }));
   const ticks: TrackTick[] = [
-    // TASK-575 — `hideZeroTick` drops this generic "0" anchor for a gauge whose
-    // domain does not meaningfully start at zero (e.g. a corpus-range gauge where the
-    // reviewed minimum is the honest left anchor, not zero). Every other gauge
-    // (including the unchanged safety gauge) keeps this tick exactly as before.
-    ...(geometry.hideZeroTick ? [] : [{ pct: 0, label: "0", anchor: "start" as const }]),
+    // TASK-587 — the domain-minimum tick. Always rendered now (the old
+    // `hideZeroTick` suppression flag is retired): once `domainMin` genuinely moves
+    // the domain floor, pct(domainMin, domainMin, domainMax) === 0 by construction, so
+    // this tick always sits flush at the track's start edge — for the unchanged safety
+    // gauge (domainMin defaults to 0) this renders the exact same "0" tick as before.
+    { pct: 0, label: geometry.minTickLabel ?? String(domainMin), anchor: "start" as const },
     ...geometry.zones
       .slice(0, -1)
       .filter((z) => z.tickLabel)
-      .map((z) => ({ pct: pct(z.upTo, geometry.domainMax), label: z.tickLabel as string, anchor: "center" as const })),
+      .map((z) => ({ pct: pct(z.upTo, domainMin, geometry.domainMax), label: z.tickLabel as string, anchor: "center" as const })),
     // TASK-575 — a short domain-max label (e.g. "520"), symmetric with the zone
     // tickLabels above but for the edge that has no natural zone boundary to attach
     // to (the last zone's upper edge IS the domain max). anchor "end" (not "center")
@@ -176,8 +183,8 @@ function buildGaugeRender(
   ];
   const contextBand: TrackContextBand | undefined = geometry.contextBand
     ? {
-        startPct: pct(geometry.contextBand.from, geometry.domainMax),
-        endPct: pct(geometry.contextBand.to, geometry.domainMax),
+        startPct: pct(geometry.contextBand.from, domainMin, geometry.domainMax),
+        endPct: pct(geometry.contextBand.to, domainMin, geometry.domainMax),
         label: geometry.contextBand.label,
         qualifierLabel: geometry.contextBand.qualifierLabel,
       }
@@ -187,7 +194,7 @@ function buildGaugeRender(
   // inline in the numeric tick row — that caused a real overlap with the "76" boundary
   // tick, caught in this task's own visual verification pass).
   const referenceLines: TrackReferenceLine[] = (geometry.referenceTicks ?? []).map((rt) => ({
-    pct: pct(rt.at, geometry.domainMax),
+    pct: pct(rt.at, domainMin, geometry.domainMax),
     caption: `${rt.at} מ"ג — ${rt.label}`,
   }));
   return {
@@ -197,7 +204,7 @@ function buildGaugeRender(
     // Clamp to the track so an over-max value pins the marker at the right edge
     // (fully visible, with the "+" overflow glyph) instead of computing >100% and
     // flying off the edge where an ancestor clips it (owner-caught glitch 2026-07-05).
-    markerPct: value != null ? Math.min(pct(value, geometry.domainMax), 100) : null,
+    markerPct: value != null ? Math.min(pct(value, domainMin, geometry.domainMax), 100) : null,
     clamped: !!placement?.clamped,
     multilineTicks: false,
     contextBand,
@@ -404,8 +411,11 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
     // and rejected as more error-prone for an equivalent result).
     <div className="w-full md:w-[260px] md:shrink-0">
       {/* Container bumped 18px -> 24px (v2 §2.2) for the larger marker's vertical
-          clearance; track itself stays 6px, vertically centered. */}
-      <div className="relative" style={{ height: "24px" }}>
+          clearance; track itself stays 6px, vertically centered. data-testid added
+          TASK-587 for acceptance-checklist geometry verification only (QA hook, no
+          visual/behavioral change) — the track fill below is inset-x-0 within this
+          wrapper, so this box's own bounding rect IS the track's x-axis bounding rect. */}
+      <div className="relative" style={{ height: "24px" }} data-testid="threshold-track">
         <div
           className="absolute inset-x-0 top-1/2 overflow-hidden rounded-full"
           style={{ height: "6px", transform: "translateY(-50%)", background: "#EDEFEC" }}
@@ -426,6 +436,43 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
             />
           ))}
         </div>
+
+        {/* TASK-587 — RDA context-band, redone as an ON-TRACK shaded+bordered zone
+            (spec §2), replacing the old floating 3-sided dashed outline that painted
+            below the track with no fill and an open bottom edge (the "hovering
+            rectangle" glitch the owner flagged). Shares the track's own vertical
+            center (top: 50%, translateY(-50%)) and is only marginally taller than it
+            (8px vs. the track's 6px) so it visibly "hugs" the pill from both sides
+            rather than exactly overlapping it 1:1. Painted here — right after the
+            zones' color-fill layer, BEFORE boundaries/marker/referenceLines — so a
+            marker landing inside 310–420 still paints visibly on top of the band,
+            matching how the marker already paints on top of ordinary zone-tone fills
+            everywhere else on the track (spec §2.2 paint-order fix). Token: #6B7070,
+            already this file's own zone-boundary/reference-line color (line ~446/474
+            below), at two strengths — 16% alpha fill (a quiet tint, never the sole
+            WCAG signal) + full-opacity 1.5px dashed border (the element that actually
+            carries the ≥3:1 non-text contrast floor, spec §2.3). Dashed, not solid —
+            this component's own established vocabulary for "advisory/context, not a
+            hard boundary" (spec §2.3). */}
+        {render.contextBand ? (
+          <div
+            aria-hidden
+            className="absolute rounded-full"
+            data-testid="threshold-context-band"
+            style={{
+              top: "50%",
+              // RTL-axis mirror (TASK-580 convention, unchanged) — same span-mirroring
+              // as the zones above: [startPct, endPct] renders flush from
+              // (100 - endPct)%, same width.
+              left: `${100 - render.contextBand.endPct}%`,
+              width: `${render.contextBand.endPct - render.contextBand.startPct}%`,
+              height: "8px",
+              transform: "translateY(-50%)",
+              background: "rgba(107, 112, 112, 0.16)",
+              border: "1.5px dashed #6B7070",
+            }}
+          />
+        ) : null}
 
         {/* Mandatory zone-boundary divider lines — never color-only (spec v1 §2/§7.1). */}
         {render.boundaries.map((b, i) => (
@@ -475,28 +522,6 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
             }}
           />
         ))}
-
-        {/* TASK-575 — context-band bracket (e.g. the RDA all-sources range). Deliberately
-            NOT a zone tint (spec §3: never reuse the pass/fail tone system for this) —
-            a plain dashed outline, drawn under the track, distinct from both the colored
-            zone fill above and the solid/dashed zone-boundary dividers. */}
-        {render.contextBand ? (
-          <div
-            aria-hidden
-            className="absolute"
-            style={{
-              top: "17px",
-              // RTL-axis mirror (TASK-580) — same span-mirroring as the zones above:
-              // [startPct, endPct] now renders flush from (100 - endPct)%, same width.
-              left: `${100 - render.contextBand.endPct}%`,
-              width: `${render.contextBand.endPct - render.contextBand.startPct}%`,
-              height: "6px",
-              borderTop: "1.5px dashed #8A8F86",
-              borderInlineStart: "1.5px dashed #8A8F86",
-              borderInlineEnd: "1.5px dashed #8A8F86",
-            }}
-          />
-        ) : null}
       </div>
 
       {/* Tick labels — only meaningful anchors for a gauge (spec v1 §2), every tier

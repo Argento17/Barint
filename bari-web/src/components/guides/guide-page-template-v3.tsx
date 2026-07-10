@@ -18,6 +18,7 @@
 // (mag_guide_v3_copy_package.md), wired via magnesium-guide-data.ts /
 // magnesium-guide-copy-v3.ts; this component authors none of it.
 
+import { ChevronDown } from "lucide-react";
 import { GuideHeaderV3 } from "@/components/guides/guide-header-v3";
 import { GuideBulletBox } from "@/components/guides/guide-bullet-box";
 import { GuideProductGroupsV3 } from "@/components/guides/guide-product-groups-v3";
@@ -87,18 +88,58 @@ export function GuidePageTemplateV3({
           evidence_limited meaning) "survive inside disclosures/collapsed sections,
           not vanish" per structure spec §D's survival list — that prose lives only in
           these sections, so collapsing (never deleting) is what satisfies both
-          constraints. Title is the signed copy package §5 string. */}
+          constraints.
+
+          TASK-587 (v3.2 polish, visual spec §3): findability fix, stays collapsed by
+          default (Hard Rule 3 — conformance/bug-fix, not relocation or a new
+          component). The `rounded-2xl border` card wrapper is DROPPED — rendered as a
+          plain section instead, matching the non-boxed idiom one section above
+          (GuideBulletBox boxed={false}) — the bordered-card treatment was itself part
+          of why this read as "a different kind of thing" than the rest of the page.
+          `<summary>`'s own content is always visible whether open or closed (only its
+          sibling content toggles), so the heading + one-line teaser + expand
+          affordance all live inside it: a real, findable section that still stays
+          collapsed by default. `group` on <details> drives the CSS-only
+          open/collapsed swap below (chevron rotation, label swap) — no JS state, same
+          zero-JS/pre-hydration property the native element already had. */}
       {guide.educationSpine.length > 0 ? (
-        <div className={cn("px-4 pb-2", comparisonWebSectionPaddingClass())} dir="rtl">
-          <details
-            className="rounded-2xl border border-black/[0.06]"
-            data-testid="guide-education-sources-disclosure"
-          >
+        <div className={cn("px-4 py-4", comparisonWebSectionPaddingClass())} dir="rtl">
+          <details className="group" data-testid="guide-education-sources-disclosure">
             <summary
-              className="cursor-pointer list-none px-4 py-3 text-[13px] font-bold text-[#111318] marker:content-none [&::-webkit-details-marker]:hidden"
+              className="cursor-pointer list-none marker:content-none [&::-webkit-details-marker]:hidden"
               data-testid="guide-education-sources-toggle"
             >
-              {guide.collapsedEvidenceSectionTitleHe ?? GUIDE_V3_DETAILS_LABEL_HE}
+              <h2 className="text-[15px] font-extrabold tracking-[-0.02em] text-[#111318]">
+                {guide.collapsedEvidenceSectionTitleHe ?? GUIDE_V3_DETAILS_LABEL_HE}
+              </h2>
+              {guide.collapsedEvidenceSectionTeaserHe ? (
+                <p
+                  className="mt-1 text-[13px] leading-[1.6]"
+                  style={{ color: "#3E444A" }}
+                  data-testid="guide-education-sources-teaser"
+                >
+                  {guide.collapsedEvidenceSectionTeaserHe}
+                </p>
+              ) : null}
+              <span className="mt-2 flex items-center justify-between">
+                <span className="text-[12px] font-semibold" style={{ color: "#4E5663" }}>
+                  <span className="group-open:hidden">
+                    {guide.educationExpanderLabelsV3?.collapsed ?? GUIDE_V3_DETAILS_LABEL_HE}
+                  </span>
+                  <span className="hidden group-open:inline">
+                    {guide.educationExpanderLabelsV3?.expanded ?? GUIDE_V3_DETAILS_LABEL_HE}
+                  </span>
+                </span>
+                {/* Byte-identical tokens to the proven product-row expander
+                    (guide-product-row-v3.tsx:159-182) — same icon, size, stroke,
+                    transition, and two-tone color pair, just driven by `group-open`
+                    (CSS) instead of React state (this disclosure has none). */}
+                <ChevronDown
+                  aria-hidden
+                  strokeWidth={1.75}
+                  className="size-[15px] text-[#B5BBB6] transition-transform duration-200 group-open:rotate-180 group-open:text-[#9A9FA6] motion-reduce:transition-none"
+                />
+              </span>
             </summary>
             <div className="border-t border-black/[0.05]">
               <GuideEducationSpine sections={guide.educationSpine} wide={false} />

@@ -64,7 +64,19 @@ export const MAG_V3_METADATA_DESCRIPTION_HE = "בארי בדקה 18 תוספי �
 
 export const MAG_V3_MARKET_GAPS_COMPACT_HE = "מחיר למנה עדיין לא נאסף על ידי בארי. בדיקת צד שלישי: לא אותר אישור הניתן לאימות פומבי בקרב 18 המוצרים שנבדקו, נכון ליולי 2026. שני הפערים האלה אינם חלק מהשיוך לקבוצות שלמטה.";
 
-export const MAG_V3_COLLAPSED_SECTION_TITLE_HE = "לפרטים ומקורות";
+// TASK-587 (v3.2 polish addendum, Content Agent, mag_guide_v3_copy_package.md
+// ADDENDUM v3.2, sha256 8bd401e47eeb5718b622a366ce09bc7364ecf3d678c23ed3cd087c9786389168)
+// — v3.2-SLOT-1 REPLACES the base-package value below ("לפרטים ומקורות") with a real
+// section heading now that the education disclosure is a findable page section, not a
+// quiet toggle. Extracted programmatically (see the addendum's own fenced ```text```
+// block), byte-identical.
+export const MAG_V3_COLLAPSED_SECTION_TITLE_HE = "ההסבר המלא ומקורות המידע";
+
+// TASK-587 — v3.2-SLOT-2, new field (no prior slot). One-line teaser rendered under
+// the heading above, inside <summary> (always visible, collapsed or not). Extracted
+// programmatically, byte-identical.
+export const MAG_V3_COLLAPSED_SECTION_TEASER_HE =
+  "כאן מוסבר כל אחד מארבעת הדברים שבדקנו, כולל סף הבטיחות המדויק, ולצידם רשימת המקורות המדעיים.";
 
 export const MAG_V3_EXPANDER_LABELS_HE = {
   collapsed: "לפרטים המלאים",

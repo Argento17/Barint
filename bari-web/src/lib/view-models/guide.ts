@@ -144,15 +144,23 @@ export interface GuideGaugeGeometry {
   domainMax: number;
   zones: GuideGaugeZone[];
   /**
-   * TASK-575 (magnesium guide v2, nutrition spec §3 "gauge geometry") — suppress the
-   * generic pct:0/label:"0" tick that `buildGaugeRender` otherwise always emits. Used
-   * for a neutral corpus-range gauge where "0" is not a meaningful anchor (the
-   * reviewed range starts at a real observed minimum, not zero) — the geometry
-   * supplies its own boundary ticks via `referenceTicks` instead. Optional; default
-   * (absent/false) preserves the existing "0" tick for every other gauge (e.g. the
-   * unchanged safety gauge).
+   * TASK-587 (magnesium guide v3.2 polish) — domain floor. Default 0 (every existing
+   * gauge — safety, and every gauge built before this field existed). Set to a real
+   * value (e.g. 76) when "0" is not a meaningful anchor and the reviewed range itself
+   * starts at an observed minimum — replaces the old `hideZeroTick` + implicit-0
+   * pairing, which only hid the label without moving the domain, leaving a dead
+   * unlabeled lead-in before the first meaningful value (the exact bug this field
+   * fixes). `hideZeroTick` is retired outright, not renamed: this was the ONLY
+   * geometry using it (grep-verified against all four bar geometries at fix time), so
+   * there is no remaining caller to preserve a suppression-only path for.
    */
-  hideZeroTick?: boolean;
+  domainMin?: number;
+  /**
+   * TASK-587 — a short label for the domain-minimum tick (e.g. "76"), symmetric with
+   * `maxTickLabel` below. Falls back to `String(domainMin ?? 0)` when absent, so every
+   * existing gauge (which has neither field set) keeps rendering a bare "0" unchanged.
+   */
+  minTickLabel?: string;
   /**
    * TASK-575 — a short numeric label at the domain max (e.g. "520"), rendered in the
    * same row as the zone-boundary ticks. Symmetric with the implicit "0"/zone
@@ -547,12 +555,32 @@ export interface GuidePageVM {
   collapsedEvidenceSectionTitleHe?: string | null;
 
   /**
+   * TASK-587 (v3.2 polish, copy package ADDENDUM v3.2-SLOT-2) — one-line teaser
+   * rendered under the education-section heading, inside `<summary>` (always visible,
+   * even collapsed). null/absent → the component omits the line entirely, same
+   * missing-data-discard discipline as every other optional copy field here.
+   */
+  collapsedEvidenceSectionTeaserHe?: string | null;
+
+  /**
    * Per-card `לפרטים` disclosure toggle labels (copy package §5) — collapsed/expanded
    * pair for GuideProductRowV3's own detail toggle, mirroring v2's `expanderLabels`
    * shape. Distinct from `expanderLabels` above (the v2 field) so a guide can carry
    * both during the v2→v3 transition without either overwriting the other.
    */
   expanderLabelsV3?: { collapsed: string; expanded: string } | null;
+
+  /**
+   * TASK-587 (v3.2 polish) — collapsed/expanded label pair for the education
+   * section's OWN expand affordance (distinct from `expanderLabelsV3` above, which is
+   * scoped to each product card's detail toggle — a different disclosure instance).
+   * No new copy was authored for this pair in the v3.2 addendum (it authors only the
+   * heading + teaser, SLOT-1/SLOT-2); wired to reuse the already twice-gated
+   * `MAG_V3_EXPANDER_LABELS_HE` strings, per the visual spec's own instruction to
+   * reuse "byte-identical tokens" from the proven product-row expander rather than
+   * introduce new wording.
+   */
+  educationExpanderLabelsV3?: { collapsed: string; expanded: string } | null;
 }
 
 // ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) ──────────────────────────────
