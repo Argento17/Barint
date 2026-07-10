@@ -376,6 +376,14 @@
     },
     "page_copy": {
       "description": "Page-level authored copy block (consumed by frontend page-data; not a per-product scoring field). Whitelisted 2026-06-18 — was a stray-property G1 failure."
+    },
+    "generatedAt": {
+      "type": "string",
+      "description": "Root-level ISO-8601 generation timestamp used by juices' flat top-level schema (no _meta wrapper for this value — juices-page-data.ts:20,45,77 reads this directly for the rendered 'updated on' date, distinct from and NOT redundant with _meta.generated). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
+    },
+    "totalProducts": {
+      "type": "integer",
+      "description": "Root-level product count used by juices' flat top-level schema (no _meta wrapper — juices-page-data.ts:21,47 reads this directly). Whitelisted 2026-07-10 (TASK-574 wave 2) — verified read, not dead data."
     }
   },
   "additionalProperties": false,
