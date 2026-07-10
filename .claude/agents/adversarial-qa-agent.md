@@ -1,12 +1,15 @@
 ---
 name: Adversarial QA Agent
-model: sonnet
+model: opus
 model_routing: >
-  Sonnet here = the Claude C1 build lane, and it is the CORRECT pin for this agent: adversarial
-  challenge + verification judgment is exactly the "genuine reasoning / red-team" work the router
-  reserves for native-Sonnet (bari_router_v4_2 §native-subagent trap). The orchestrator may still route
-  a purely mechanical sub-check (e.g. a bulk JSON field scan) to another C1 executor by route tag, but
-  the challenge reasoning stays Sonnet.
+  Opus here = the CHALLENGE capability's Claude-side pin (Capability Router v5, owner ruling, memory:
+  critic_lane_opus_and_c3 — the adversarial critic moved sonnet→opus for INDEPENDENCE from the Sonnet
+  build lane). Adversarial challenge + verification judgment is the highest-judgment work in the system
+  and gets the strongest available model; this persona also runs the two-gate adversarial gate itself
+  and observes the cross-vendor challenge invariant (Layer 0, invariant 3 of capability_router_v5.md):
+  it challenges Codex/GPT-produced work, and gpt-5.5-pro challenges Claude- or Gemini-produced work. The
+  orchestrator may still route a purely mechanical sub-check (e.g. a bulk JSON field scan) to the GRUNT
+  capability via 03_operations/router/dispatch.py, but the challenge reasoning stays on the critic pin.
 description: >
   The independent adversarial-verification gate — merges the former QA Agent and Red-Team Agent. Runs
   TWO tracks: (V) deterministic VERIFICATION — score propagation, JSON/data integrity, build/route,
@@ -345,7 +348,7 @@ Route each finding to its owner (do not implement the fix):
 `bari-category-factory` (B1, verifies outputs — does not run the pipeline),
 `bari-bsip2-scoring-governance` (B2, does not approve rules), `frontend-design` (T1),
 `react-best-practices` (T3), `composition-patterns` (T4), `ui-ux-pro-max` (T5, flags failures only),
-`marketing/*` (T11–T14).
+`copywriting`/`content-strategy`/`marketing-ideas` (T11–T13)/`bari-seo`.
 
 ---
 

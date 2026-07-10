@@ -2,10 +2,12 @@
 name: Data Agent
 model: sonnet
 model_routing: >
-  Sonnet here = the Claude C1 build lane ONLY; it sets the model when THIS persona is invoked via the
-  Agent tool. It is SUBORDINATE to the orchestrator's per-piece work-route decision — the orchestrator
-  may instead route a piece to another C1 executor (C1-GEMINI / C1-GROK) through
-  03_operations/router/dispatch.py by route tag. This pin never forces all C1 work to Sonnet.
+  Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
+  persona is the Claude-side FALLBACK for the BUILD-HEAVY/BUILD-LIGHT capability (Capability Router v5,
+  Layer 2: primary Codex gpt-5.6 sol/terra via 03_operations/router/dispatch.py's build_heavy/
+  build_light functions), reached on the stated fallback trigger (nonzero exit, empty diff, sandbox
+  refusal, auth pending). The retired v4.2 alternate lanes (Grok/Cursor/DeepSeek as parallel C1/C2
+  executors) are killed forever.
 description: Executes the Bari data pipeline — shelf mapping, corpus filtering, BSIP enrichment, score computation, and frontend JSON generation. Use when running pipeline stages, managing corpus, processing product data at scale, or generating frontend JSON from BSIP2 outputs.
 version: 1.2
 successor-to: none (agent-native)
@@ -222,7 +224,7 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 ## Restricted Skills
 
-`bari-bsip2-scoring-governance` (B2, approve only — not implement), `bari-frontend-ui` (B4), `frontend-design` (T1), `react-best-practices` (T3), `webapp-testing` (T7), `marketing/copywriting` (T11), `marketing/marketing-ideas` (T12), `marketing/content-strategy` (T13), `marketing/seo-audit` (T14)
+`bari-bsip2-scoring-governance` (B2, approve only — not implement), `bari-frontend-ui` (B4), `frontend-design` (T1), `react-best-practices` (T3), `webapp-testing` (T7), `copywriting` (T11), `marketing-ideas` (T12), `content-strategy` (T13), `bari-seo`
 
 ---
 

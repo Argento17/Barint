@@ -26,7 +26,7 @@ $ARGUMENTS
 - **Scope of YOUR OWN `Edit`/`Write` (the orchestrator's hands):** legitimate and expected for **durable-state
   bookkeeping only** — `DISPATCH_BOARD.md`, TASK `status`/`close_reason`/`blocker`, and prompt/return file
   moves. That IS your job; do it directly. **Everything else that writes a file — engine code, frontend JSON,
-  copy, scripts, configs, reports — is a C1/C2 lane's job, never yours.** Hand-doing lane-work on the Opus
+  copy, scripts, configs, reports — is a routed lane's job, never yours.** Hand-doing lane-work on the Opus
   orchestrator is drift; route it. (If the owner says even bookkeeping should be routed, route it — owner
   override wins.)
 
@@ -44,66 +44,76 @@ is clear: (1) BLOCKED waiting on a decision, (2) CHANGES_REQUESTED rework, (3) I
 launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If nothing is ready →
 **WALL: out of ready work** (go to Report).
 
-**3. Prepare the prompt.**
-- If `tasks\prompts\PNN_*.md` exists for the move, use it. Otherwise **author** a self-contained 5-part
-  spec: repo + absolute paths + SHAs, the TASK id to read, objective, boundaries/guards (**include the
-  OFF-ban guard on anything data-adjacent**), exact return format, and **"do not close — propose RETURNED."**
-  End every authored prompt with the machine-readable return contract
-  (`01_framework\operations\return_contract_v1.md`).
+**3. Prepare the dispatch.**
+- **Author** a self-contained 5-part spec for the move: repo + absolute paths + SHAs, the TASK id to
+  read, objective, boundaries/guards (**include the OFF-ban guard on anything data-adjacent**), exact
+  return format, and **"do not close — propose RETURNED."** End every authored prompt with the
+  machine-readable return contract (`01_framework\operations\return_contract_v1.md`).
 - Registry Work without an id → register first: `python C:\Bari\tasks\new_task.py …` (writes the TASK
   file; then add the move to `DISPATCH_BOARD.md`).
-- **Lane** (title line carries `(route: C1|C2|C3|C1-GROK|C1-GEMINI|C1-CURSOR)`; full law
-  `01_framework\operations\bari_router_v4_2.md` — band-per-function; v1 is the wire appendix). Bands:
-  **C5** Owner · **C4** Orchestrator · **C3** ChatGPT (challenge, never closes) · **C2.1 Audit = DeepSeek**
-  (cheap validation, nothing complex) · **C2.2 Research = Gemini** (web-grounded) · **C2.3 Design = Grok**
-  (image_gen/edit concepts) · **C1 Build = FOUR executors, Sonnet + Gemini + Grok + Cursor, in PARALLEL** (decompose into independent
-  pieces, pick per piece — **NO default builder; "C1" is NOT the Claude `Agent` tool**) · **C2 also = audit/QA
-  + GRUNT** (mechanical/bookkeeping → DeepSeek; route it, never hand-do it on the Opus orchestrator) ·
-  **C0** validators. **C3 consult mandatory** before
-  honest-vs-artifact / precedent / tripwire forks. **Never auto-route a delegated/not-wired lane** (Gemini
-  Deep Research API, NotebookLM, Jules). **No launch without C0** (`validate_comparison_page.py` / Shadow /
-  score==trace / OFF=0 / build-exit) — C0 beats every model. Escalation: one in-lane retry, then one lane up.
+- **Route by capability, not by lane name.** Run the move through the Layer-1 ordered questions in
+  `01_framework\operations\capability_router_v5.md` (first match wins: DETERMINISTIC → PLANNING →
+  CONTENT → BUILD-HEAVY/BUILD-LIGHT → GRUNT → EVIDENCE-RESEARCH → ENGINEERING-RESEARCH →
+  VISION-LONGREAD → DOMAIN-JUDGMENT → CHALLENGE → GENERAL). That doc's Layer 2 binds the model for
+  whichever capability you land on; models are bound there, never guessed here. An ambiguous build
+  request is PLANNING first — it never reaches a builder directly. **CHALLENGE consult mandatory**
+  before honest-vs-artifact / precedent / tripwire forks. **No launch without C0**
+  (`validate_comparison_page.py` / Shadow / score==trace / OFF=0 / build-exit) — C0 beats every model.
+  Escalation: one in-lane retry, then one capability up.
 
-**4. Dispatch — in the background. C1 BUILD HAS FOUR EXECUTORS — Sonnet + Gemini + Grok + Cursor. You MUST
-decompose the move into independent pieces and pick the best-fit executor per piece. There is NO default
-builder. Sending every piece to the Claude `Agent` tool is the Sonnet-default drift the owner rejected
-(2026-06-14) — if you catch yourself doing it, STOP and re-decompose.**
+**4. Dispatch — in the background. Each capability has ONE primary and ONE fallback (Layer 2 table) —
+Capability Router v5 retired the old four-parallel-executor model. The fallback triggers automatically
+on the stated condition (nonzero exit, empty diff, timeout, spawn failure), never a free pick among
+lanes. Log every fallback activation in the task registry with the trigger that fired (Layer 0,
+invariant 6).**
 
-Reaching each lane (all dispatches run_in_background):
-- **C1-GROK** — `(route: C1-GROK)` → `python 03_operations\router\dispatch.py PNN`. xAI Grok Build CLI;
-  spec-complete build/data work with repo access.
-- **C1-GEMINI** — `(route: C1-GEMINI)` → `python 03_operations\router\dispatch.py PNN`. Gemini CLI;
-  C1-grade build/judgment work; writes files + runs shell.
-- **C1 (Claude / Sonnet)** — spawn the owning domain subagent via the **`Agent`** tool (`model: sonnet`).
-  This is **one of the three** C1 options, **not** the default. (Hebrew editorial copy is the exception that
-  is *always* Sonnet — see `content_lane_sonnet_not_gemini`.)
-- **C2 (audit / QA / GRUNT)** — `(route: C2)` → `dispatch.py PNN`. DeepSeek; mechanical, **zero-INFERENCE**
-  work only: count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
-  bookkeeping. Route to C2 ONLY when the output is 100% determined by a stated rule — if the task needs
-  *deciding/identifying* anything ("which run is authoritative", "is this the right source"), it is C1, not
-  C2. **Always re-verify C2 output against the artifact** — it returns confidently even when wrong (P151:
-  C2 matched run_id by barcode-presence, not score-provenance → wrong provenance on 2/4 files). Cheap, not trusted.
-- **C3 (challenge / consult)** — `(route: C3)` → `dispatch.py PNN`. ChatGPT; advice only, never closes,
-  never builds. **Mandatory before any honest-vs-artifact / precedent / tripwire fork.**
-- **C1-CURSOR** — `(route: C1-CURSOR)` → `python 03_operations\router\dispatch.py PNN`. Cursor headless
-  agent CLI (cursor-agent); spec-complete build/data work with repo access + file edits. **REACTIVATED
-  2026-06-18** (owner renewed Cursor Pro); `--selftest-cursor` PASS. A co-equal C1 builder again.
+Reaching each capability (all dispatches run_in_background):
+- **BUILD-HEAVY / BUILD-LIGHT** — primary: Codex (`gpt-5.6 sol`/`terra`) via the `build_heavy`/
+  `build_light` functions in `03_operations\router\dispatch.py`, `codex exec` in a worktree, sandbox
+  `workspace-write`. Fallback: the owning domain subagent via the **`Agent`** tool (`model: sonnet`,
+  explicit pin) on the trigger above.
+- **GRUNT** — primary: Codex (`gpt-5.6 luna`) via `grunt_primary`; mechanical, **zero-judgment-call**
+  work only — count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
+  bookkeeping. Route to GRUNT ONLY when the output is 100% determined by a stated rule — if the task
+  needs *deciding/identifying* anything ("which run is authoritative", "is this the right source"), it
+  is BUILD, not GRUNT. Fallback: **`Agent`** tool (`model: haiku`, explicit pin) — deliberately
+  cross-vendor. **Always re-verify GRUNT output against the artifact** — it returns confidently even
+  when wrong. Cheap, not trusted.
+- **CHALLENGE** — cross-vendor invariant (never same company as the producer): **`Agent`** tool
+  (`model: opus`) when the producer was Codex/GPT; `challenge_gpt` (gpt-5.5-pro via opencode API) when
+  the producer was Claude or Gemini. Advice/verdict only, never closes, never builds.
+- **EVIDENCE-RESEARCH** — primary: Codex `--search` / opencode (gpt-5.5 + web) via
+  `evidence_research_fallback`; fallback: Research Agent via **`Agent`** tool (`model: sonnet`).
+- **ENGINEERING-RESEARCH** — Codex (`gpt-5.6 terra`) `--search` via `engineering_research`; fallback:
+  Research Agent via **`Agent`** tool (`model: sonnet`).
+- **VISION-LONGREAD** — primary: Gemini via Antigravity `agy` through `vision_longread`
+  (report-only; currently pin-gated, see capability_router_v5.md fn.2); fallback: Design Agent via
+  **`Agent`** tool (`model: sonnet`) reading the screenshots directly.
+- **CONTENT / DOMAIN-JUDGMENT / PLANNING** — Claude-only capabilities: the owning domain subagent via
+  the **`Agent`** tool with its Layer-2 pin, always explicit.
 
-The router reads the route tag from the **first line of `tasks\prompts\PNN_*.md`** (format
-`# PNN / title (route: C1-GROK)`), runs the lane, writes `tasks\returns\PNN_return.md`, records the git
-delta, and ticks the board — so for any router lane you must first **author the `PNN_*.md` prompt file**
-(5-part spec + route tag + return contract). Parallelize across executors on **independent workstreams
-only — never two writers in the same files.** Mark the move dispatched on the board. WIP limit per owner = 2.
+The `tasks\prompts\PNN_*.md` + first-line `(route: …)` tag convention is retired — the router no longer
+reads a route tag off a prompt file; pass the 5-part spec straight into the lane function's `prompt`
+argument (Codex/GPT/Gemini) or the `Agent` tool call (Claude, explicit model pin). Parallelize across
+capabilities on **independent workstreams only — never two writers in the same files.** Mark the move
+dispatched on the board. WIP limit per owner = 2.
 
 **5. On return — VERIFY before anything closes (this is your job, undivided).** Router/subagent output is
 **RETURNED-UNVERIFIED** until you check it. A return block is a **claim, not proof**.
 - **C0 gate FIRST (deterministic, before you read the prose):** run
-  `python 03_operations\validators\validate_return.py --md tasks\returns\PNN_return.md` (or `--json`).
+  `python 03_operations\validators\validate_return.py --md tasks\returns\TASK-NNN_return.md` (or `--json`).
   It checks the contract schema, re-hashes every artifact's sha256, lints counts for a named
-  denominator/source, requires a distribution marker on full-set claims (Rule 5), and flags fabricated
-  PMIDs/DOIs. **Exit != 0 → `CHANGES_REQUESTED` automatically** — do not spend reasoning verifying a
-  return the gate already rejected. Exit 0 means the contract is *well-formed and self-consistent*, not
-  that the work is right — continue the human verification below.
+  denominator/source, requires a distribution marker on full-set claims (Rule 5), flags fabricated
+  PMIDs/DOIs, and flags (**C7 CONTAINMENT**) any artifact a lane wrote under `.claude/` — project-local
+  config (hooks/agents/skills/settings) executes with **your own authority** the next time this project
+  loads, before any review step (containment doctrine: "How we contain Claude across products",
+  Anthropic 2026-05 — project-local config is a pre-trust attack surface). **Exit != 0 →
+  `CHANGES_REQUESTED` automatically** — do not spend reasoning verifying a return the gate already
+  rejected. **Exception: a C7 finding is never auto-bounced or silently re-dispatched** — read the
+  flagged file's actual diff yourself before accept/reject, regardless of what else the gate found, and
+  log the decision (accept the config change / reject it / escalate) in the close_reason or blocker.
+  Exit 0 means the contract is *well-formed and self-consistent*, not that the work is right — continue
+  the human verification below.
 - Re-read the DoD in the task file; list each exit criterion.
 - Check **every claim against the artifact** — file:line / the real number / build / lint / deployed-state
   where consumer-facing — never the agent's prose. "Misroute 1.8%" → open the QA result. "Scores shipped"
@@ -126,6 +136,30 @@ record — never leave state only in this chat. There is no dashboard to regener
 **7. Loop.** Background dispatches re-invoke you on completion — when one returns, re-enter at step 5
 (verify) then step 2 (next ready move). Keep going until a wall.
 
+## Loop autonomy (owner directive 2026-07-04 — "drift the system into more loop, less questions")
+
+The loop's default is to KEEP RUNNING. Questions to the owner are a failure mode unless a tripwire fires.
+
+- **Question-conversion rule.** Before surfacing ANY mid-run question or dependency to the owner,
+  convert it: (a) decide it yourself with the most reversible default and log the decision + reversal
+  condition in the registry; or (b) dispatch the deciding agent (Product / Nutrition / CHALLENGE consult) as a
+  background subagent and keep working other ready moves while it resolves; or (c) if it is genuinely
+  one of the 5 tripwires, add it to the digest and stop only THAT move, not the loop. "Should I…?" to
+  the owner for anything non-tripwire is drift.
+- **Batch, never drip.** Owner-relevant items accumulate into ONE end-of-run digest (per the Owner
+  Interaction Contract). Never ping the owner mid-loop for validation, preference, or confirmation the
+  system can produce itself.
+- **Dependencies are dispatches, not waits.** An inter-agent approval gate (D1–D16) is satisfied by
+  dispatching the approving agent, never by asking the owner to arbitrate. A BLOCKED task with a
+  dispatchable unblock action is READY work: dispatch the unblock.
+- **Long horizons: sleep, don't die.** When all remaining work waits on something external (CI, a lane
+  return, a scheduled routine), schedule a wakeup / use `/loop` to re-enter later instead of ending the
+  run with "let me know when…".
+- **Native primitives are allowed.** Native background subagents, Agent Teams, and workflow fan-outs
+  may replace manual dispatch bookkeeping for Claude-side coordination where they reduce overhead; the
+  non-Claude capability lanes (Codex/GPT/Gemini via dispatch.py) and the C0-first verification law stay
+  unchanged.
+
 ## Walls — stop and report
 - A move would trip one of the **5 tripwires** (frozen invariant / published scores / scoring philosophy;
   irreversible + consumer-facing; start/kill a major program; external commitment/spend/legal; redefine
@@ -139,8 +173,8 @@ record — never leave state only in this chat. There is no dashboard to regener
 ## Guardrails (always on)
 - **Owner override is absolute** — a live owner instruction beats this skill; on "stop", fully halt and
   confirm before any further action.
-- **C1 is four executors (Sonnet + Gemini + Grok + Cursor), reached four ways — never default everything to
-  the Claude `Agent` tool.** Decompose and pick per piece (see step 4). Grunt/bookkeeping → C2, not your hands.
+- **Route by capability (Layer 1), bind the model in Layer 2 — never default everything to the Claude
+  `Agent` tool.** See step 3/4. Grunt/bookkeeping → the GRUNT capability, not your hands.
 - **Never write CLOSED without artifact verification.** The router never closes; you do, on evidence.
 - **OFF ban** is absolute (TASK-238): any OFF finding is a launch blocker; every data-adjacent prompt
   carries the guard.
@@ -151,5 +185,5 @@ record — never leave state only in this chat. There is no dashboard to regener
   verification land here.
 
 ## Report shape (each cycle and at every wall)
-Map first, prose second: **Dispatched** (PNN → lane) · **Returned + verified** (what you checked) ·
+Map first, prose second: **Dispatched** (TASK-NNN → capability) · **Returned + verified** (what you checked) ·
 **Closed** (id + close_reason) · **Next ready move** · and at a wall, **exactly what you need from the owner**.

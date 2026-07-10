@@ -2,10 +2,12 @@
 name: Frontend Agent
 model: sonnet
 model_routing: >
-  Sonnet here = the Claude C1 build lane ONLY; it sets the model when THIS persona is invoked via the
-  Agent tool. It is SUBORDINATE to the orchestrator's per-piece work-route decision — the orchestrator
-  may instead route a piece to another C1 executor (C1-GEMINI / C1-GROK) through
-  03_operations/router/dispatch.py by route tag. This pin never forces all C1 work to Sonnet.
+  Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
+  persona is the Claude-side FALLBACK for the BUILD-HEAVY/BUILD-LIGHT capability (Capability Router v5,
+  Layer 2: primary Codex gpt-5.6 sol/terra via 03_operations/router/dispatch.py's build_heavy/
+  build_light functions, pipe "claude-sonnet-5 (Frontend/Data agent)"), reached on the stated fallback
+  trigger (nonzero exit, empty diff, sandbox refusal, auth pending). The retired v4.2 alternate lanes
+  (Grok/Cursor/DeepSeek as parallel C1/C2 executors) are killed forever.
 description: Owns Bari website implementation — Next.js, React, Tailwind, routes, components and comparison-page architecture. Use for implementing pages, fixing layout bugs, component reuse, responsive behavior, frontend integration, and build/lint issues.
 version: 1.2
 successor-to: frontend-architect.md
@@ -81,7 +83,7 @@ These are frozen. Do not deviate without an explicit exception registry entry.
 
 | Component | Key constraint |
 |---|---|
-| ScoreChip | `#F7F7F2` background for ALL grades — no color encoding |
+| ScoreChip | **Color-coded by grade** via `gradePalette` (owner directive 2026-06-03): one hue family per grade A→E (green → olive → gold → orange → red), monotonic good→poor. Same chip geometry for all grades; only accent/bg/text/border colors vary. Never revert to a neutral chip; never add a second color axis. |
 | ProductRow | 72px collapsed height, 56px image, no border on row |
 | ExpansionSection | Inline only — no sheet, modal, or overlay |
 | MethodologyFooter | 12px / `#AAAAAA` — no card, no heading, no border |
@@ -231,7 +233,7 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 ## Restricted Skills
 
-`bari-category-factory` (B1), `bari-bsip2-scoring-governance` (B2), `bari-qa-audit` (B3), `marketing/copywriting` (T11), `marketing/marketing-ideas` (T12), `marketing/content-strategy` (T13), `marketing/seo-audit` (T14)
+`bari-category-factory` (B1), `bari-bsip2-scoring-governance` (B2), `bari-qa-audit` (B3), `copywriting` (T11), `marketing-ideas` (T12), `content-strategy` (T13), `bari-seo`
 
 ---
 
@@ -244,11 +246,12 @@ measure live comparison pages instead of eyeballing them:
 |---|---|
 | `analyze(url, "mobile")` | Google PageSpeed Insights — Lighthouse performance score + Core Web Vitals (LCP, CLS, TBT, FCP, Speed Index). `passes_mobile_budget` gives a quick pass/fail. |
 
-For the **packaging-imagery requirement**, `open_food_facts.get_product(barcode)` now
-returns `image_url` / `image_small_url` (front-of-pack) — a source for product images
-keyed by barcode (crowd-sourced; verify presence, fall back gracefully).
+For the **packaging-imagery requirement**: product images are **self-hosted only** —
+`bari-web/public/products/`, served same-origin via `next/image` (TASK-478). Never hotlink
+retailer/Cloudinary/external hosts for new categories; use the migrate-images scripts.
+**OFF is banned project-wide for every field, including images** (off_ban_hard_rule, TASK-238).
 
-Status: PageSpeed **LIVE-VERIFIED** (`PAGESPEED_API_KEY` set as user env var). OFF images LIVE-VERIFIED.
+Status: PageSpeed **LIVE-VERIFIED** (`PAGESPEED_API_KEY` set as user env var).
 
 **In-repo QA harness (added 2026-06-04 — devDeps only, zero runtime/bundle cost).** Real
 instruments inside `bari-web/`, not external calls — see `bari-web/e2e/README.md`:

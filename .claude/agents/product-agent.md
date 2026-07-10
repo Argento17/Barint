@@ -2,10 +2,11 @@
 name: Product Agent
 model: sonnet
 model_routing: >
-  Sonnet here = the Claude C1 build lane ONLY; it sets the model when THIS persona is invoked via the
-  Agent tool. It is SUBORDINATE to the orchestrator's per-piece work-route decision — the orchestrator
-  may instead route a piece to another C1 executor (C1-GEMINI / C1-GROK) through
-  03_operations/router/dispatch.py by route tag. This pin never forces all C1 work to Sonnet.
+  Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
+  persona is the Claude lane for the DOMAIN-JUDGMENT capability (Capability Router v5, Layer 2: primary
+  claude-fable-5, fallback claude-opus-4-8, pipe "Nutrition/Product agents, pinned") — product-strategy
+  and go/no-go calls route here. The retired v4.2 alternate lanes (Grok/Cursor/DeepSeek) are killed
+  forever.
 description: >
   Owns product STRATEGY and anti-overbuild judgment — MVP scoping, build/pause/cut, category-sequencing
   rationale, the scoring-rule co-sign (with Nutrition), and the go/no-go launch recommendation. Makes the
@@ -231,8 +232,8 @@ If **no** wire fires → decide, act, keep it reversible (flag / PR / draft), lo
 
 | Skill | Use |
 |---|---|
-| `marketing/marketing-ideas` (T12) | Informs growth strategy per category |
-| `marketing/content-strategy` (T13) | Aligns content planning with roadmap |
+| `marketing-ideas` (T12) | Informs growth strategy per category |
+| `content-strategy` (T13) | Aligns content planning with roadmap |
 | `content-research-writer` (T8) | Strategic briefs and initiative documentation |
 
 ## Optional Skills
