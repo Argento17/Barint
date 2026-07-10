@@ -1,47 +1,27 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `bari-web/src/data/comparisons/protein_combined_frontend_v2.json`
-**Generated:** 2026-07-03T13:58:41Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-10T09:16:48Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
-| [FAIL] G1 SCHEMA | FAIL |
+| [PASS] G1 SCHEMA | PASS |
 | [WARN] G2 COVERAGE | WARN |
 | [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
 | [WARN] G5 GRADE-INTEGRITY | WARN |
 | [PASS] G6 COPY-SAFETY | PASS |
-| [PASS] G7 PARITY | PASS |
+| [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
-**Overall: FAIL**
+**Overall: PASS**
 
 ## Detail
 
-### [FAIL] G1 SCHEMA
-  FAIL: #.products[0]: additional property 'name_he' not allowed
-  FAIL: #.products[0]: additional property 'format' not allowed
-  FAIL: #.products[0]: additional property 'image_url' not allowed
-  FAIL: #.products[0]: additional property 'nutrition_per_100g' not allowed
-  FAIL: #.products[0]: additional property 'protein_per_100g' not allowed
-  FAIL: #.products[0]: additional property 'protein_per_bar' not allowed
-  FAIL: #.products[0]: additional property 'bar_weight_g' not allowed
-  FAIL: #.products[0]: additional property 'show_per_bar' not allowed
-  FAIL: #.products[0]: additional property '_scoring_trace' not allowed
-  FAIL: #.products[0]: additional property 'displayTitle' not allowed
-  FAIL: #.products[1]: additional property 'name_he' not allowed
-  FAIL: #.products[1]: additional property 'format' not allowed
-  FAIL: #.products[1]: additional property 'image_url' not allowed
-  FAIL: #.products[1]: additional property 'nutrition_per_100g' not allowed
-  FAIL: #.products[1]: additional property 'protein_per_100g' not allowed
-  FAIL: #.products[1]: additional property 'protein_per_bar' not allowed
-  FAIL: #.products[1]: additional property 'bar_weight_g' not allowed
-  FAIL: #.products[1]: additional property 'show_per_bar' not allowed
-  FAIL: #.products[1]: additional property '_scoring_trace' not allowed
-  FAIL: #.products[1]: additional property 'displayTitle' not allowed
-  FAIL: ... and 300 more errors
+### [PASS] G1 SCHEMA
+  INFO: Document validates against schema
 
 ### [WARN] G2 COVERAGE
   INFO: imageUrl: 32/32 non-null
@@ -109,23 +89,8 @@
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected
 
-### [PASS] G7 PARITY
-  INFO: Product count: current=32 baseline=32
-  INFO: Image coverage: current=100.0%  baseline=100.0%  delta=+0.0%
-  INFO: Avg consumer-text chars/product: current=637  baseline=631  delta=+7
-  INFO: Per-barcode grade changes (3):
-  INFO:   barcode=7290015130028 [WIN חטיף חלבון קרם חלב]: C -> D
-  INFO:   barcode=7290019401018 [חטיף קרם עוגיות]: C -> D
-  INFO:   barcode=7290019401049 [חטיף שוקולד קרמל]: C -> D
-  INFO: 
-  INFO: === PARITY SUMMARY TABLE ===
-  INFO:   Metric                                 Current    Baseline       Delta
-  INFO:   Product count                               32          32          +0
-  INFO:   Image coverage %                         100.0       100.0        +0.0
-  INFO:   Avg chars/product                          637         631          +7
-  INFO:   Grade changes                                3           —           —
-  INFO:   Products added                               0           —           —
-  INFO:   Products removed                             0           —           —
+### [SKIP] G7 PARITY
+  SKIP: No baseline provided
 
 ### [PASS] G8 DATA-SANITY
   INFO: No data-sanity violations (impossible nutrition or nutrition-panel-as-ingredients)
