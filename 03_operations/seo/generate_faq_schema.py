@@ -31,8 +31,29 @@ def load_products_sorted(data: dict) -> list[dict]:
     return sorted(products, key=lambda p: p.get("score", 0), reverse=True)
 
 
+def frontend_grade(product: dict) -> str:
+    """The grade the PAGE shows: the engine's 6-grade scale folds S into A on the frozen
+    ScoreChip (corpus.ts frontendGradeFromScore). Emitting the raw engine grade leaked
+    "ציון S" into live structured data while the chip beside it read "A", and undercounted
+    the A-list. Copy law: copy never writes "S"."""
+    if product.get("_aCappedToB"):
+        return "B"
+    score = product.get("score")
+    if not isinstance(score, (int, float)):
+        return product.get("grade", "")
+    if score >= 80:
+        return "A"
+    if score >= 65:
+        return "B"
+    if score >= 50:
+        return "C"
+    if score >= 35:
+        return "D"
+    return "E"
+
+
 def grade_a_products(products: list[dict]) -> list[dict]:
-    return [p for p in products if p.get("grade") == "A"]
+    return [p for p in products if frontend_grade(p) == "A"]
 
 
 def best_text(product: dict) -> str:
@@ -47,7 +68,7 @@ def build_faq_entries(products: list[dict], category_he: str) -> list[dict]:
     top = products[0]
     top_name = top.get("name", "")
     top_score = top.get("score", 0)
-    top_grade = top.get("grade", "")
+    top_grade = frontend_grade(top)
     top_insight = best_text(top)
 
     # Q1 — best product
@@ -63,17 +84,27 @@ def build_faq_entries(products: list[dict], category_he: str) -> list[dict]:
     # Q2 — A-grade list (skip if none)
     a_products = grade_a_products(products)
     if a_products:
-        names = [p["name"] for p in a_products[:8]]
+        # The count and the enumeration must agree. The old code named a_products[:8] while
+        # stating len(a_products), so any category with >8 A-products emitted
+        # self-contradicting structured data ("9 מוצרים…" followed by 8 names).
+        A_LIST_CAP = 12
+        shown = a_products[:A_LIST_CAP]
+        names = [p["name"] for p in shown]
         if len(names) == 1:
             names_str = names[0]
         else:
-            names_str = "، ".join(names[:-1]) + " ו-" + names[-1]
+            names_str = ", ".join(names[:-1]) + " ו-" + names[-1]
+        truncated = len(a_products) > len(names)
         entries.append({
             "@type": "Question",
             "name": f"אילו מוצרי {category_he} מקבלים ציון A מבארי?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": f"{len(a_products)} מוצרים קיבלו ציון A: {names_str}.",
+                "text": (
+                    f"{len(a_products)} מוצרים קיבלו ציון A, ביניהם: {names_str}."
+                    if truncated
+                    else f"{len(a_products)} מוצרים קיבלו ציון A: {names_str}."
+                ),
             },
         })
 

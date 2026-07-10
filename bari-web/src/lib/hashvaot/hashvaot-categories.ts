@@ -30,7 +30,7 @@ export const HASHVAOT_CATEGORIES: HashvaotCategory[] = [
     id: "supermarket",
     title: "מה שכתוב על האריזה — ומה שכתוב ברכיבים",
     status: "live",
-    countLabel: "16 השוואות",
+    countLabel: "18 השוואות",
     href: "/hashvaot/supermarket",
     description: "חלב, לחם, חטיפים, עוגות, גבינות ועוד",
     accent: "#BC6A33",

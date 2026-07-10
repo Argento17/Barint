@@ -108,6 +108,20 @@ export const VEG_PROTEIN_METRIC: MetricSpec = {
 // per-100g and the real shelf range is ~3–18.5g, so a 0–20 max keeps the top end (≈18.5g)
 // from clipping while still giving the low end (3g) a visible bar. Higher fiber is better, so
 // lowerIsBetter stays off: ≥7g (whole-grain territory) reads as good, <4g (refined flour) as poor.
+// Spoonable-yogurt protein metric: this shelf spans <3g to >13g protein per 100g, so the
+// generic DAIRY_PROTEIN_METRIC scale compresses the whole shelf into the low band.
+export const SPOONABLE_PROTEIN_METRIC: MetricSpec = {
+  key: "protein_g",
+  label: "חלבון",
+  unit: "ג׳",
+  perLabel: "ל-100 ג׳",
+  render: "bar",
+  scaleMax: 14,
+  good: 8,
+  poor: 4,
+  ariaUnit: "גרם חלבון ל-100 גרם",
+};
+
 export const FIBER_METRIC: MetricSpec = {
   key: "fiber_g",
   label: "סיבים",

@@ -1,0 +1,1287 @@
+{
+  "_meta": {
+    "category": "yogurt-drinkable",
+    "config_sha256": "e4015b49df8a1e41e615df7d52794dda4bf4718ded6c236d3bf889e1d786baba",
+    "exclusions": [
+      {
+        "barcode": "6664655",
+        "product_id": "bsip1_yogurt_6664655",
+        "reason": "TASK-515 dedup-drop (unchanged from HIGH-2 ruling): אקטימל לבן מארז -- byte-identical duplicate SKU of barcode 7290119380923 (KEPT, canonical EAN-13)."
+      },
+      {
+        "barcode": "7290116932774",
+        "product_id": "bsip1_yogurt_7290116932774",
+        "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): גו בננה-קרמל -- fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+      },
+      {
+        "barcode": "7290116934228",
+        "product_id": "bsip1_yogurt_7290116934228",
+        "reason": "TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): משקה יוגורט גו מלון תות -- sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule."
+      },
+      {
+        "barcode": "7290105364678",
+        "product_id": "bsip1_yogurt_7290105364678",
+        "reason": "TASK-546 near-duplicate cull: flavor variant of same line (cluster activia_drink; kept representative 7290107937542). Scored but not displayed."
+      },
+      {
+        "barcode": "7290107938396",
+        "product_id": "bsip1_yogurt_7290107938396",
+        "reason": "TASK-546 near-duplicate cull: pack/flavor variant of same line (cluster actimel_pack; kept representative 7290119380923). Scored but not displayed."
+      },
+      {
+        "barcode": "7290102031276",
+        "product_id": "bsip1_yogurt_7290102031276",
+        "reason": "TASK-546 near-duplicate cull: pack/flavor variant of same line (cluster actimel_pack; kept representative 7290119380923). Scored but not displayed."
+      },
+      {
+        "barcode": "55343",
+        "product_id": "bsip1_yogurt_55343",
+        "reason": "TASK-546 near-duplicate cull: flavor variant of same line (cluster yoplait_drink; kept representative 55336). Scored but not displayed."
+      },
+      {
+        "barcode": "55329",
+        "product_id": "bsip1_yogurt_55329",
+        "reason": "TASK-546 near-duplicate cull: flavor variant of same line (cluster yoplait_drink; kept representative 55336). Scored but not displayed."
+      }
+    ],
+    "generated": "2026-07-05T17:00:00Z",
+    "generator_version": "1.2.0",
+    "product_count": 17,
+    "retailer_breakdown": {
+      "shufersal": 15
+    },
+    "schema": "BariProductVM[]",
+    "schema_version": "v3",
+    "scored_count": 23,
+    "source_paths": {
+      "corpus_dirs": [
+        "C:\\Bari\\02_products\\yogurt_system\\bsip1_task515"
+      ],
+      "run_products_dir": [
+        "C:\\Bari\\02_products\\yogurt_system\\bsip2_task515_v3\\drinkable\\products"
+      ]
+    },
+    "subpool_filter": null,
+    "source_note": "TASK-515A FINAL v3: base = yogurt_drinkable_D7_SUPPRESS_v1.json (20-product conservative corpus, Product D7 sugar absolute-floor-only ruling). Consumer copy carried byte-for-byte from yogurt_drinkable_FINAL_v2.json (23-corpus, signed) for the 16 score/grade-unchanged products, with '23'->'20' count fix applied to every copied string. Re-authored from bsip2_trace.json for the 4 score/grade-changed products: 55343, 7290107938396, 7290115676051, 55329. Two surgical false-superlative fixes applied to otherwise-unchanged products (55336: '6 additives = highest' was already false vs GO products' 7/8; 58030: 'lowest overall score' broken by 55329's new-E drop). Caveat carried unchanged (Nutrition-cosigned absolute-floor text, CAVEAT_NUTRITION_COSIGN.md).",
+    "near_duplicate_cull": {
+      "task": "TASK-546",
+      "date": "2026-07-09",
+      "kept_count": 15,
+      "cut_count": 5,
+      "note": "Display-stage near-duplicate consolidation (owner review R2) -- NOT a BSIP0/BSIP1 data-quality exclusion. Scores/grades/traces untouched for all survivors. See cut_manifest for barcode-level reasons.",
+      "cut_manifest": [
+        {
+          "barcode": "7290105364678",
+          "name": "משקה אקטיביה אפרסק",
+          "score": 61.3,
+          "cluster": "activia_drink",
+          "kept_representative": "7290107937542",
+          "reason": "flavor variant of same line"
+        },
+        {
+          "barcode": "7290107938396",
+          "name": "מארז אקטימל תות",
+          "score": 48.6,
+          "cluster": "actimel_pack",
+          "kept_representative": "7290119380923",
+          "reason": "pack/flavor variant of same line"
+        },
+        {
+          "barcode": "7290102031276",
+          "name": "אקטימל תות בננה מארז",
+          "score": 49.5,
+          "cluster": "actimel_pack",
+          "kept_representative": "7290119380923",
+          "reason": "pack/flavor variant of same line"
+        },
+        {
+          "barcode": "55343",
+          "name": "יופלה משקה יוגורט טרופי",
+          "score": 36.5,
+          "cluster": "yoplait_drink",
+          "kept_representative": "55336",
+          "reason": "flavor variant of same line"
+        },
+        {
+          "barcode": "55329",
+          "name": "משקה יוגורט תות-מלון",
+          "score": 34.3,
+          "cluster": "yoplait_drink",
+          "kept_representative": "55336",
+          "reason": "flavor variant of same line"
+        }
+      ]
+    },
+    "brand_provenance": {
+      "7290102393299": {
+        "brand": "משק צוריאל",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290102393299"
+      },
+      "4068035": {
+        "brand": "מחלבות גד",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_4068035"
+      },
+      "7290115676051": {
+        "brand": "דנונה",
+        "basis": "manufacturer_when_subbrand_already_in_name",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290115676051"
+      },
+      "7290020711090": {
+        "brand": "מחלבות גד",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290020711090"
+      },
+      "7290020711007": {
+        "brand": "מחלבות גד",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290020711007"
+      },
+      "7290110573737": {
+        "brand": "דנונה",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290110573737"
+      },
+      "7290107937542": {
+        "brand": "דנונה",
+        "basis": "manufacturer_when_subbrand_already_in_name",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290107937542"
+      },
+      "7290110552244": {
+        "brand": "דנונה",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290110552244"
+      },
+      "7290105965738": {
+        "brand": "דנונה",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290105965738"
+      },
+      "7290019635567": {
+        "brand": "מחלבות גד",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290019635567"
+      },
+      "7290110325114": {
+        "brand": "יופלה גו",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290110325114"
+      },
+      "7290119380923": {
+        "brand": "דנונה",
+        "basis": "manufacturer_when_subbrand_already_in_name",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290119380923"
+      },
+      "7290110325121": {
+        "brand": "יופלה גו",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_7290110325121"
+      },
+      "55336": {
+        "brand": "יופלה",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_55336"
+      },
+      "58030": {
+        "brand": "יופלה",
+        "basis": "shufersal_page_sourced",
+        "source": "https://www.shufersal.co.il/online/he/p/P_58030"
+      }
+    },
+    "relocations": [
+      {
+        "action": "moved_in_from_spoonable",
+        "barcodes": [
+          "7290119380916",
+          "7290110578572"
+        ],
+        "reason": "retailer category משקאות-יוגורט; drinkable-config trace backs identical score (TASK-551)"
+      }
+    ]
+  },
+  "products": [
+    {
+      "barcode": "7290102393299",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "משק צוריאל",
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים מאומתים",
+        "ingredients": "חלב עיזים מפוסטר, סיבים תזונתיים(אינולין)",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 67.0,
+          "fat": 3.8,
+          "fiber": 2.0,
+          "protein": 3.5,
+          "sodium": 50.0,
+          "sugar": 3.8
+        },
+        "positiveSignals": [
+          "עיבוד מינימלי — רק חלב עיזים וסיבי אינולין",
+          "ללא מייצבים או עמילן"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290102393299",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UZK56_Z_P_7290102393299_1.png",
+      "insightLine": "חלב עיזים וסיבי אינולין בלבד, בלי עמילן או מייצב שיעשה את העבודה במקומם.",
+      "name": "יוגורט עיזים לשתייה",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "חלב עיזים וסיבי אינולין מרכיבים את המשקה כולו, בלי עמילן, מייצב או סוכר. חלב עיזים נוטה לתת פחות חלבון מחלב פרה באותו נפח, וזו התכונה הבולטת של המשקה הזה.",
+      "score": 77.2,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "4068035",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "מחלבות גד",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב בקר מפוסטר, מלח",
+        "limitingFactors": [],
+        "nutrition": {
+          "energyKcal": 50.0,
+          "fat": 3.0,
+          "fiber": null,
+          "protein": 2.5,
+          "sodium": 170.0,
+          "sugar": 3.3
+        },
+        "positiveSignals": [
+          "עיבוד מינימלי — רק חלב ומלח"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_4068035",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KTW26_Z_P_4068035_1.png",
+      "insightLine": "חלב ומלח בלבד, אבל המלח כרכיב שני הופך את זה למשקה חלב מלוח באופן יוצא דופן.",
+      "name": "אירן משקה יוגורט",
+      "novaGroup": 2,
+      "retailer": "shufersal",
+      "rowVerdict": "חלב בקר מפוסטר ומלח, שום דבר נוסף. הרשימה קצרה ככל האפשר, אבל המלח כרכיב שני מייצר משקה עם נתרן גבוה במיוחד, יוצא דופן למוצר חלב.",
+      "score": 73.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290115676051",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, מים, סוכר, סיבים תזונתיים, שיבולת שועל (1.8%), רכיבי חלב, רכז לימון, חומרי טעם וריח, מלח. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 53.0,
+          "fat": 1.4,
+          "fiber": 1.1,
+          "protein": 2.9,
+          "sodium": 77.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [
+          "שיבולת שועל אמיתית ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290115676051",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OAM50_Z_P_7290115676051_1.png",
+      "insightLine": "שיבולת שועל אמיתית ברשימה, אבל בכמות צנועה יחסית לתפקיד שהיא ממלאת בשם המוצר.",
+      "name": "משקה אקטיביה עם ש.שועל",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "שיבולת שועל אמיתית מופיעה ברשימה, לצד סוכר וחומרי טעם וריח, עם תרבית הביפידוס אקטירגולריס. השיבולת נוכחת בכמות מתונה בלבד, פחות דומיננטית ממה שהשם מרמז.",
+      "score": 72.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290020711090",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "מחלבות גד",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, סוכר, מחית אסאי וקסיס (מים, קסיס (3%), אסאי (1%)), קרם קוקוס (5%), תמצית טעם וריח.",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 86.0,
+          "fat": 3.5,
+          "fiber": null,
+          "protein": 3.0,
+          "sodium": 55.0,
+          "sugar": 6.0
+        },
+        "positiveSignals": [
+          "אסאי וקסיס אמיתיים ברשימה",
+          "ללא תוספי מזון מזוהים"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290020711090",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LHZ38_Z_P_7290020711090_1.png",
+      "insightLine": "מחית אסאי וקסיס אמיתית וקרם קוקוס אמיתי מרכיבים כאן משקה בלי אף תוסף מזון מזוהה.",
+      "name": "משקה יוגורט אסאי קוקוס",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "מחית אסאי וקסיס אמיתית מופיעה ברשימה, לצד קרם קוקוס אמיתי שתורם לטעם ולשומן. רשימה קצרה יחסית למשקה יוגורט מתובל, בלי שום תוסף מזון מזוהה.",
+      "score": 69.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290020711007",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "מחלבות גד",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, קרם קוקוס (5%), סוכר, תמצית טעם וריח, צבע מאכל (רכז גזר שחור).",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 80.0,
+          "fat": 3.5,
+          "fiber": null,
+          "protein": 3.2,
+          "sodium": 53.0,
+          "sugar": 4.8
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "B",
+      "id": "bsip1_yogurt_7290020711007",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LEU36_Z_P_7290020711007_1.png",
+      "insightLine": "השם מבטיח מלבי, אבל הטעם כאן מגיע כולו מתמצית טעם וריח, בלי חלב שקדים או מי ורדים שמאפיינים את הקינוח המסורתי.",
+      "name": "משקה יוגורט מלבי 3.5%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "קרם קוקוס וסוכר מרכיבים את הבסיס, עם צבע מאכל מריכוז גזר שחור ליצירת הגוון האופייני. \"מלבי\" בשם, אבל הטעם כאן מגיע כולו מתמצית טעם וריח, בלי חלב שקדים או מי ורדים שמאפיינים מלבי מסורתי.",
+      "score": 68.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110573737",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E955",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך.",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, חלבוני מי גבינה, מים, מחית תות (3.0%), עמילן טפיוקה מעובד (E-1442), חומרי טעם וריח, מייצב (לוקוסט-בין גאם), רכז לימון, מלח, רכז גזר שחור, ממתיקים (אצסולפאם k, סוכרלוז).מכיל חיידקי יוגורט. מתכון חדש",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "שלושה סוגי תוספים או יותר"
+        ],
+        "nutrition": {
+          "energyKcal": 59.0,
+          "fat": 1.0,
+          "fiber": null,
+          "protein": 7.9,
+          "sodium": 74.0,
+          "sugar": 3.4
+        },
+        "positiveSignals": [
+          "מחית תות אמיתית ברשימה",
+          "חלבון גבוה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110573737",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GFQ52_Z_P_7290110573737_1.png",
+      "insightLine": "מחית תות אמיתית ברשימה, אבל שני ממתיקים מלאכותיים בונים את המתיקות במקומה.",
+      "name": "משקה יוגורט פרו תות ללס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "חלבוני מי גבינה, עמילן טפיוקה מעובד וממתיקים מלאכותיים מרכיבים את המשקה. מחית תות אמיתית כן מופיעה ברשימה, לצד חלבון גבוה יחסית למשקה יוגורט, אבל המתיקות בפועל מגיעה בעיקר מהממתיקים המלאכותיים, מעבר לתרומת הפרי.",
+      "score": 62.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290107937542",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, מים, מחית תות (6.7%), סוכר לבן, סיבים תזונתיים, רכיבי חלב, מייצב (לוקוסט-בין גאם), חומרי טעם וריח, מלח. בתוספת החיידק הפרוביוטי ביפידוס אקטירגולריס.",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 47.0,
+          "fat": 1.2,
+          "fiber": 1.3,
+          "protein": 2.7,
+          "sodium": 56.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [
+          "מחית תות אמיתית ברשימה",
+          "תוספת סיבים אמיתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290107937542",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GNN56_Z_P_7290107937542_1.png",
+      "insightLine": "מחית תות אמיתית מובילה כאן את הטעם, בכמות שבאמת מורגשת בטעם ובמרקם.",
+      "name": "משקה אקטיביה תות 1.2%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "מחית תות אמיתית מובילה את הטעם, לצד סוכר לבן, סיבים תזונתיים ומייצב לוקוסט-בין גאם, עם תרבית הביפידוס אקטירגולריס. הפרי כאן נוכח בכמות משמעותית שמורגשת בפועל, מעבר לשם על התווית.",
+      "score": 61.4,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110552244",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E955",
+          "explanation_he": "סוכרלוז הוא ממתיק ללא קלוריות במוצרי ללא סוכר; מאושר ברמות הנוכחיות, אך מחקר על השפעות ארוכות טווח נמשך.",
+          "function_he": "ממתיק ללא קלוריות (פי ~600 מסוכרוז)",
+          "name_he": "סוכרלוז",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, מים, חלבוני מי גבינה, עמילן טפיוקה מעובד (E-1442), רכיבי חלב, חומרי טעם וריח, מייצב (לוקוסט-בין גאם), מלח, מווסת חומציות (חומצת לימון), ממתיקים (אצסולפאם k, סוכרלוז). מכיל חיידקי יוגורט",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "שלושה סוגי תוספים או יותר"
+        ],
+        "nutrition": {
+          "energyKcal": 61.0,
+          "fat": 1.0,
+          "fiber": null,
+          "protein": 8.0,
+          "sodium": 78.0,
+          "sugar": 3.6
+        },
+        "positiveSignals": [
+          "חלבון גבוה",
+          "ללא סוכר מוסף"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110552244",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AKZ42_Z_P_7290110552244_1.png",
+      "insightLine": "אין כאן פרי בכלל, רק חלבון גבוה וטעם מלאכותי לגמרי.",
+      "name": "משקה פרו20 ללת\"ס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "חלבוני מי גבינה, עמילן טפיוקה מעובד וממתיקים מלאכותיים מרכיבים את המשקה. אין כאן שום רכיב פרי, החלבון הגבוה מהונדס לגמרי, וגם הטעם מהונדס בעזרת חומרי טעם וריח.",
+      "score": 60.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290105965738",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, מים, פירות (מחית תות,מחית בננה) (6%), סוכר, סיבים תזונתיים, חומרי טעם וריח, רכז לימון, מייצב (לוקוסט בין גאם). בתוספת חיידק פרוביוטי BIFIDUS.",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 47.0,
+          "fat": 1.5,
+          "fiber": 1.2,
+          "protein": 1.9,
+          "sodium": 26.0,
+          "sugar": 4.9
+        },
+        "positiveSignals": [
+          "תות ובננה אמיתיים ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290105965738",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BQX62_Z_P_7290105965738_1.png",
+      "insightLine": "מחית תות ובננה אמיתית מובילה כאן את הטעם, אבל היא באה על חשבון ריכוז החלבון במשקה.",
+      "name": "לשתיה תות בננה",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "מחית תות ובננה אמיתית מובילה את הטעם, לצד סוכר וסיבים תזונתיים, עם תרבית ביפידוס. הפרי כאן אמיתי ותופס נתח משמעותי מהרשימה, אבל זה מגיע על חשבון ריכוז החלבון במשקה.",
+      "score": 60.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290019635567",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "מחלבות גד",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "חלב מפוסטר, מחית מנגו (16%), סוכר, תבלינים (0.08%) (קינמון, הל, ציפורן).",
+        "limitingFactors": [
+          "מוצר מעובד"
+        ],
+        "nutrition": {
+          "energyKcal": 103.0,
+          "fat": 3.0,
+          "fiber": null,
+          "protein": 3.0,
+          "sodium": 80.0,
+          "sugar": 12.0
+        },
+        "positiveSignals": [
+          "מנגו ותבלינים אמיתיים ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290019635567",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GHS60_Z_P_7290019635567_1.png",
+      "insightLine": "מנגו אמיתי בכמות גבוהה מוביל כאן, לצד תבלינים אמיתיים כמו קינמון והל.",
+      "name": "משקה יוגורט לאסי מנגו3%",
+      "novaGroup": 3,
+      "retailer": "shufersal",
+      "rowVerdict": "מחית מנגו בכמות גבוהה יחסית מובילה את הרשימה, יחד עם סוכר ותבלינים אמיתיים כמו קינמון, הל וציפורן. רשימה קצרה בסך הכל, אבל סגנון הלאסי המסורתי מביא איתו סוכר משמעותי.",
+      "score": 57.8,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110325114",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "יופלה גו",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E407",
+          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו.",
+          "function_he": "מייצב / חומר מסמיך ממקור אצות",
+          "name_he": "קרגינן",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E951",
+          "explanation_he": "אספרטם הוא ממתיק ללא קלוריות נפוץ; IARC סיווגה בסולם סיכון בינלאומי, אך JECFA אישרה מחדש את הרף המאושר לצריכה יומית.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+          "name_he": "אספרטם",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "יוגורט 0.7% שומן (0.76%) (חלב), מים, פירות מבושלים (6.4%) {תות (3.2%), בננה (3.2%)}, חלבוני חלב (6%), מייצבים (פקטין, קרגינן), עמילן מעובד (E-1442), צבע מאכל (רכז גזר שחור), חומרי טעם וריח, מווסת חומציות (חומצת לימון), ממתיקים (אספרטיים, אססולפאם k), חומר משמר (E-202). בתוספת חיידקי ביפידוס.",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "חמישה סוגי תוספים או יותר"
+        ],
+        "nutrition": {
+          "energyKcal": 54.0,
+          "fat": 0.5,
+          "fiber": null,
+          "protein": 8.4,
+          "sodium": 55.0,
+          "sugar": 3.6
+        },
+        "positiveSignals": [
+          "תות ובננה אמיתיים ברשימה",
+          "חלבון גבוה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110325114",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CLF36_Z_P_7290110325114_1.png",
+      "insightLine": "תות ובננה אמיתיים ברשימה, מוקפים בשורה ארוכה של מייצבים, ממתיקים וחומר משמר.",
+      "name": "משקה יוגורט GO תות בננה",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "חלבוני חלב, מייצבי פקטין וקרגינן, ממתיקים מלאכותיים וחומר משמר מרכיבים יחד תערובת תוספים ארוכה. תות ובננה אמיתיים כן מופיעים, לצד חלבון גבוה יחסית, אבל התערובת התומכת סביבם רחבה ומורכבת.",
+      "score": 57.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290119380923",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "דנונה",
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "d4_additives": [],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים מאומתים",
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלבוני מי גבינה), אבקת חלב, רכז פרי המונק, חומרי טעם וריח, ויטמין D, חיידקי L.casei DN114 (חלב).",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "יותר מסוג אחד של סוכר מוסף"
+        ],
+        "nutrition": {
+          "energyKcal": 52.0,
+          "fat": 1.6,
+          "fiber": 1.8,
+          "protein": 2.8,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [
+          "ללא תוספי מזון מזוהים",
+          "ויטמין D אמיתי ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290119380923",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IPO54_Z_P_7290119380923_1.png",
+      "insightLine": "רשימה ארוכה יחסית למשקה יוגורט, אבל בלי אף תוסף מזון מזוהה בתוכה.",
+      "name": "אקטימל לבן מארז",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "שמנת, אבקת חלב וסיבי עולש לסיבים תזונתיים מצטרפים לחלב, לצד ריכוז פרי המונק וויטמין D. הרשימה ארוכה יחסית למשקה פשוט, אבל היא נטולה לגמרי מתוספי מזון מזוהים.",
+      "score": 55.7,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110325121",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "יופלה גו",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E407",
+          "explanation_he": "קרגינן הוא מייצב שמקורו באצות ים; קיים דיון מדעי פעיל על השפעתו על מיקרוביום המעי, אם כי האיחוד האירופי אישר שימושו.",
+          "function_he": "מייצב / חומר מסמיך ממקור אצות",
+          "name_he": "קרגינן",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E951",
+          "explanation_he": "אספרטם הוא ממתיק ללא קלוריות נפוץ; IARC סיווגה בסולם סיכון בינלאומי, אך JECFA אישרה מחדש את הרף המאושר לצריכה יומית.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז) — IARC 2B/JECFA no-concern",
+          "name_he": "אספרטם",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E950",
+          "explanation_he": "אצסולפאם K הוא ממתיק ללא קלוריות נפוץ במוצרים ללא סוכר; מאושר ברמות הנוכחיות, ונבדק להשפעתו על מיקרוביום המעי.",
+          "function_he": "ממתיק ללא קלוריות (פי ~200 מסוכרוז)",
+          "name_he": "אצסולפאם K",
+          "tier": "dose-dependent"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "יוגורט 0.7% שומן (76%) (חלב), מים, חלבוני חלב (6.3%), פירות מבושלים (6.3%) {מנגו (4.2%), אננס (2.1%)}, מייצבים (אוליגופרוקטוז, פקטין, קרגינן), עמילן מעובד (E-1442), מווסת חומציות (חומצת לימון), חומרי טעם וריח, ממתיקים (אספרטיים, אססולפאם k), חומר משמר (E-202). בתוספת חיידקי ביפידוס. 20 גרם חלבון בבקבוק, מתוכם 16 גרם חלבוני מי גבינה, 4 גרם קזאינים .",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "חמישה סוגי תוספים או יותר",
+          "רשימת רכיבים ארוכה"
+        ],
+        "nutrition": {
+          "energyKcal": 53.0,
+          "fat": 0.5,
+          "fiber": null,
+          "protein": 8.4,
+          "sodium": 53.0,
+          "sugar": 3.3
+        },
+        "positiveSignals": [
+          "מנגו ואננס אמיתיים ברשימה",
+          "חלבון גבוה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "C",
+      "id": "bsip1_yogurt_7290110325121",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CLM34_Z_P_7290110325121_1.png",
+      "insightLine": "מנגו ואננס אמיתיים ברשימה, בתוך תערובת מייצבים וממתיקים ארוכה במיוחד.",
+      "name": "משקה יוגורט GO מנגו אננס",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "חלבוני חלב, מייצבי אוליגופרוקטוז, פקטין וקרגינן, ממתיקים מלאכותיים וחומר משמר מרכיבים תערובת תוספים רחבה. מנגו ואננס אמיתיים כן מופיעים ברשימה, לצד חלבון גבוה יחסית למשקה יוגורט.",
+      "score": 52.0,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290119380916",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "אקטימל",
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "d4_additives": [
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים מאומתים",
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, מחית תות (2%), סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלב מי גבינה), אבקת חלב, חומרי טעם וריח, רכז פרי המונק, חומר מייצב ( גואר גאם (בפסח: לוקוסט בין גאם), עמילן טפיוקה מעובד, ויטמין D, חיידקי L.CASEI DN114-001.(חלב).",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "יותר מסוג אחד של סוכר מוסף"
+        ],
+        "nutrition": {
+          "energyKcal": 52.0,
+          "fat": 1.5,
+          "fiber": 1.7,
+          "protein": 2.7,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_7290119380916",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IPH56_Z_P_7290119380916_1.png",
+      "insightLine": "סיבי עולש ואבקת חלב עושים כאן עבודה כפולה, בזמן שהתות עצמו נוכח בכמות סמלית בלבד.",
+      "name": "יוגורט פרוביוטי בטעם תות",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "גואר גאם, לוקוסט-בין גאם ועמילן טפיוקה מעובד מייצבים את המרקם, וסיבי עולש מספקים את הסיבים התזונתיים במקום התות. שמנת ואבקת חלב מצטרפות לחלב הרגיל, והתות עצמו נמצא ברשימה בכמות זעירה יחסית לשם המוצר.",
+      "score": 49.3,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "7290110578572",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "אקטימל",
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": null,
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
+      "d4_additives": [
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1442",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים מאומתים",
+        "ingredients": "חלב מפוסטר, מים, שמנת (חלב), סוכר לבן, סיבים תזונתיים (סיבי עולש), חלבוני חלב (חלבוני מי גבינה), אבקת חלב, עמילן טפיוקה מעובד, חומרי טעם וריח, חומר מייצב (לוקוסט בין גאם), רכז פרי המונק, רכז לימון, ויטמין D, חיידקי L.casei DN114-001 (חלב). לא מכיל פטל.",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "יותר מסוג אחד של סוכר מוסף",
+          "רשימת רכיבים ארוכה"
+        ],
+        "nutrition": {
+          "energyKcal": 51.0,
+          "fat": 1.5,
+          "fiber": 1.6,
+          "protein": 2.5,
+          "sodium": 30.0,
+          "sugar": 5.0
+        },
+        "positiveSignals": [],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_7290110578572",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NJP54_Z_P_7290110578572_1.png",
+      "insightLine": "המוצר מצהיר בפירוש שאין בו פטל, והטעם מגיע כולו מריכוז פרי המונק וחומרי טעם וריח.",
+      "name": "יוגורט בטעם פטל",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "התווית מציינת מפורשות שהמוצר אינו מכיל פטל, כך שהטעם מגיע כולו מריכוז פרי המונק וחומרי טעם וריח מלאכותיים. אבקת חלב, שמנת וסיבי עולש מצטרפים לחלב הרגיל, במתכון עם רשימה ארוכה יחסית.",
+      "score": 45.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "55336",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "יופלה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E330",
+          "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל.",
+          "function_he": "מווסת חומציות / מונע חמצון",
+          "name_he": "חומצת לימון",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E202",
+          "explanation_he": "פוטסיום סורבט נקשר בניתוחים תצפיתיים לעלייה בלחץ דם — הממצא מוקדם ולא שוכפל.",
+          "function_he": "חומר משמר אנטי-מיקרוביאלי",
+          "name_he": "פוטסיום סורבט",
+          "tier": "contested"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "72% יוגורט 2% שומן, מים, סוכר, 3.3% אפרסק מבושל, 2.8% בננה מבושלת, מייצבים (פקטין, גואר גאם*), עמילן מעובד (E1422), חומרי טעם וריח, מווסת חומציות (חומצת לימון), חומר משמר (E202). בתוספת חיידקי ביפידוס. *במוצר כשר לפסח: לוקוסט בין גאם",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "שלושה סוגי תוספים או יותר"
+        ],
+        "nutrition": {
+          "energyKcal": 62.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.4,
+          "sodium": 39.0,
+          "sugar": 9.6
+        },
+        "positiveSignals": [
+          "אפרסק ובננה אמיתיים ברשימה"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_55336",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CVH22_Z_P_55336_1.png",
+      "insightLine": "אפרסק ובננה אמיתיים ברשימה, אבל בכמות קטנה יחסית למייצבים שמלווים אותם.",
+      "name": "משקה יוגורט בננה אפרסק",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "בסיס יוגורט מהווה את רוב המשקה, עם אפרסק ובננה מבושלים בכמויות קטנות. מייצבים אחדים ברשימה תומכים במרקם, והחלבון במשקה נשאר נמוך יחסית לסוכר.",
+      "score": 36.6,
+      "source_traceability_status": "resolved"
+    },
+    {
+      "barcode": "58030",
+      "bariInterpretation": [],
+      "bestUseCases": [],
+      "brand": "יופלה",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_level": "sufficient",
+      "confidence_sub_reason": "low_extraction",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "d4_additives": [
+        {
+          "e_number": "E440",
+          "explanation_he": "פקטין הוא סיב תזונתי מסיס שמקורו בפירות הדר ותפוחים, המשמש ליצירת מרקם ג'ל טבעי ומזין חיידקי מעיים מיטיבים.",
+          "function_he": "חומר מסמיך / סיב תזונתי מסיס ממקור פירות",
+          "name_he": "פקטין",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E412",
+          "explanation_he": "גואר הוא חומר מסמיך טבעי המופק מזרעי גואר, ומשמש לשמירה על עקביות מרקם המוצר.",
+          "function_he": "חומר מסמיך / מייצב מים ממקור קטניות",
+          "name_he": "גואר",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E1422",
+          "explanation_he": "עמילן מעובד הוא עמילן שעבר עיבוד כימי לשיפור יציבות המרקם; הוא עובר עיכול כפחמימה רגילה ואינו נספג ישירות.",
+          "function_he": "מייצב מרקם / מונע הפרדת נוזלים",
+          "name_he": "עמילן מעובד",
+          "tier": "likely-neutral"
+        },
+        {
+          "e_number": "E333",
+          "explanation_he": "ציטרט סידן הוא מלח סידן של חומצת לימון, המשמש לאיזון ולהעשרה בסידן; הגוף מפרק אותו לציטרט ולסידן.",
+          "function_he": "מלח ציטרט — מקור סידן / מייצב",
+          "name_he": "סידן ציטרט",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E163",
+          "explanation_he": "אנטוציאנינים הם פיגמנט צמחי המשמש כצבע אדום-סגול, ומופק כאן מרכז גזר שחור.",
+          "function_he": "צבע מאכל אדום/סגול ממקור צמחי (רכז גזר שחור)",
+          "name_he": "אנטוציאנינים",
+          "tier": "functional"
+        },
+        {
+          "e_number": "E410",
+          "explanation_he": "לוקוסט-בין גאם הוא מייצב טבעי שמקורו בעץ החרוב, ומשמש לשמירה על מרקם קרמי ומניעת הפרדת נוזלים.",
+          "function_he": "מייצב טבעי ממקור חרוב",
+          "name_he": "לוקוסט-בין גאם",
+          "tier": "functional"
+        }
+      ],
+      "expansion": {
+        "comparisonContext": "",
+        "confidenceLabel": "נתונים בבדיקה",
+        "ingredients": "68% יוגורט 2.2% שומן, מים, תות מבושל (6%), סוכר, מייצבים (פקטין, גואר גאם* ),עמילן מעובד (E-1422), תוסף תזונה (סידן - טריקלציום ציטרט), חומרי טעם וריח, צבע מאכל (רכז גזר שחור), מווסת חומציות (רכז מיץ לימון ). בתוספת חיידקי ביפידוס. *במוצר כשר לפסח: לוקוסט בין גאם",
+        "limitingFactors": [
+          "רמת עיבוד גבוהה במיוחד",
+          "חמישה סוגי תוספים או יותר"
+        ],
+        "nutrition": {
+          "energyKcal": 58.0,
+          "fat": 1.5,
+          "fiber": null,
+          "protein": 2.3,
+          "sodium": 41.0,
+          "sugar": 8.0
+        },
+        "positiveSignals": [
+          "תות אמיתי ברשימה",
+          "תוספת סידן אמיתית"
+        ],
+        "servingNote": "ל-100 גרם"
+      },
+      "grade": "D",
+      "id": "bsip1_yogurt_58030",
+      "imageUrl": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GUX16_Z_P_58030_1.png",
+      "insightLine": "תוסף תזונה של סידן ציטרט מצטרף כאן לתות מבושל אמיתי, בשילוב לא שכיח למשקה יוגורט מתוק.",
+      "name": "שטוזים משקה תות",
+      "novaGroup": 4,
+      "retailer": "shufersal",
+      "rowVerdict": "תות מבושל אמיתי מופיע ברשימה, לצד מייצבי פקטין וגואר גאם ותוסף תזונה של סידן ציטרט. הסידן הנוסף כאן הוא תוספת תזונתית אמיתית שמצטרפת למשקה מתוק סטנדרטי.",
+      "score": 35.2,
+      "source_traceability_status": "resolved"
+    }
+  ],
+  "page_copy": {
+    "hero": {
+      "eyebrow": "משקאות יוגורט",
+      "title": "השוואת משקאות יוגורט לשתייה",
+      "productCount": 17,
+      "scoredCount": 17
+    },
+    "prologue": {
+      "sentences": [
+        "משקה יוגורט הוא לא סתם יוגורט בבקבוק. המרקם הנוזלי דורש לרוב מייצבים שיוגורט בכוס לא צריך, וכרבע מהמשקאות כאן משתמשים בממתיקים מלאכותיים כדי להעלות חלבון בלי להעלות סוכר.",
+        "בין 17 המשקאות שנבדקו כאן יש טווח רחב: יש כאלה עם שני רכיבים בלבד, ויש כאלה עם חמישה או שישה תוספים ברשימה אחת.",
+        "קצת פחות ממחצית מהמשקאות נשען על מחיות פרי אמיתיות, כרבע מהם על ממתיקים מלאכותיים במקום סוכר, ומיעוט קטן פשוט לא מוסיף כלום מעבר לחלב עצמו.",
+        "ההשוואה כאן בוחנת את התמונה המלאה: הרכב הרכיבים, התוספים, וכמות החלבון ביחס לכמות הסוכר."
+      ]
+    },
+    "methodology": {
+      "lines": [
+        "ההשוואה מבוססת על משקאות יוגורט שנאספו ונבדקו מתוך מידע גלוי לצרכן על המדף הישראלי.",
+        "לכל משקה נבחנים הרכב הרכיבים, הערכים התזונתיים, רמת העיבוד וההקשר הקטגורי שלו.",
+        "הדירוג בוחן את איכות המוצר כמכלול: קלוריות, חלבון וסוכר יחד עם שאר הרכיבים והתוספים.",
+        "ההשוואה נועדה לעזור בבחירה בין מוצרים דומים על אותו מדף, ואינה מהווה המלצה רפואית או תזונתית אישית."
+      ]
+    },
+    "caveat": {
+      "notes": [
+        {
+          "title": "הערת קטגוריה — סוכר במשקאות יוגורט נבדק מול רף קבוע מראש",
+          "body": "ברוב משקאות היוגורט בהשוואה זו כמות הסוכר קרובה מאוד בין מוצר למוצר, ולכן הציון של סוכר כאן נבדק מול רף קבוע מראש, בלי השוואה בין המשקאות עצמם. המשמעות: שני משקאות עם ציון כולל דומה יכולים להכיל כמות סוכר שונה למדי — כדאי לבדוק זאת בעצמכם אם זה חשוב לכם. שימו לב בפרט למשקאות פרי אחדים שחורגים מהאשכול הזה עם כמות סוכר גבוהה יותר באופן ניכר: לאסי מנגו, בננה-אפרסק או שטוזים תות."
+        }
+      ]
+    }
+  }
+}

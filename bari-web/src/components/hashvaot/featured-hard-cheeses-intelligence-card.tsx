@@ -63,7 +63,7 @@ export function FeaturedHardCheesesIntelligenceCard({ href, description }: Props
         ]}
         updatedLabel={formatComparisonUpdatedLine(hardCheesesCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#C9A96E", photo: "/hashvaot/themes/hard-cheeses.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/hard-cheeses.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
     </Link>

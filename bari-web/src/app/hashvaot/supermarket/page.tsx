@@ -13,6 +13,8 @@ import { FeaturedProteinBarsIntelligenceCard } from "@/components/hashvaot/featu
 import { FeaturedChocolateTabletsIntelligenceCard } from "@/components/hashvaot/featured-chocolate-tablets-intelligence-card";
 import { FeaturedChocolateBarsIntelligenceCard } from "@/components/hashvaot/featured-chocolate-bars-intelligence-card";
 import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/featured-brined-cheeses-intelligence-card";
+import { FeaturedYogurtIntelligenceCard } from "@/components/hashvaot/featured-yogurt-intelligence-card";
+import { FeaturedYogurtDrinksIntelligenceCard } from "@/components/hashvaot/featured-yogurt-drinks-intelligence-card";
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
 import { FeaturedCrackersIntelligenceCard } from "@/components/hashvaot/featured-crackers-intelligence-card";
@@ -38,6 +40,14 @@ import { brinedCheesesProducts, brinedCheesesPrologueSentences } from "@/lib/com
 import { cakesHardCookiesProducts } from "@/lib/comparisons/cakes-hard-cookies-page-data";
 import { cookiesCoffeeProducts } from "@/lib/comparisons/cookies-coffee-page-data";
 import { crackersProducts } from "@/lib/comparisons/crackers-page-data";
+import {
+  yogurtSpoonableProducts,
+  yogurtSpoonablePrologueSentences,
+} from "@/lib/comparisons/yogurt-spoonable-page-data";
+import {
+  yogurtDrinksProducts,
+  yogurtDrinksPrologueSentences,
+} from "@/lib/comparisons/yogurt-drinks-page-data";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -56,6 +66,8 @@ const JUICES_COMPARISON_HREF = "/hashvaot/juices";
 const CHEESE_COMPARISON_HREF = "/hashvaot/cheese";
 const MILK_COMPARISON_HREF = "/hashvaot/milk-comparison";
 const BRINED_CHEESES_COMPARISON_HREF = "/hashvaot/brined-cheeses";
+const YOGURT_COMPARISON_HREF = "/hashvaot/yogurt";
+const YOGURT_DRINKS_COMPARISON_HREF = "/hashvaot/yogurt-drinks";
 const CAKES_COMPARISON_HREF = "/hashvaot/cakes";
 const COOKIES_COFFEE_COMPARISON_HREF = "/hashvaot/cookies-coffee";
 const CRACKERS_COMPARISON_HREF = "/hashvaot/crackers";
@@ -78,6 +90,8 @@ export default function SupermarketCategoryPage() {
   const juicesDescription = `בדקנו ${juicesProducts.length} מיצים ומשקאות פירות: מיץ 100%, נקטרים, שייקים וסחוטי קר. רק מיצים סחוטים ב-100% הגיעו ל-A. גם מיץ 100% הוא סוכר נוזלי, ללא סיבים וללא תחושת שובע.`;
   const hardCheesesDescription = `בדקנו ${hardCheesesProducts.length} גבינות קשות וצהובות: רוב המדף מתקבץ סביב B, כי השומן הרווי הוא הגורם הכובל שמשותף לכולן. גבינה דלת-שומן אחת בלבד יוצאת מהמקבץ ומגיעה ל-A; גבינות מעובדות עם מייצבים מקבלות ציון נמוך יותר.`;
   const brinedCheesesDescription = `${brinedCheesesPrologueSentences[0]} ${brinedCheesesProducts.length} מוצרים בדף ההשוואה.`;
+  const yogurtSpoonableDescription = `${yogurtSpoonablePrologueSentences[0]} ${yogurtSpoonableProducts.length} מוצרים בדף ההשוואה.`;
+  const yogurtDrinksDescription = `${yogurtDrinksPrologueSentences[0]} ${yogurtDrinksProducts.length} מוצרים בדף ההשוואה.`;
   const cookiesCoffeeDescription = `ביסקוויטים מתוקים מעובדים, מלווי הקפה של המדף הישראלי. ${cookiesCoffeeProducts.length} מוצרים נבדקו — ציון C הוא תקרת הקטגוריה. ההבדלים: סוג השומן, כמות הסוכר, מורכבות רשימת הרכיבים.`;
   const cCount = cakesHardCookiesProducts.filter((p) => p.grade === "C").length;
   const dCount = cakesHardCookiesProducts.filter((p) => p.grade === "D").length;
@@ -126,6 +140,14 @@ export default function SupermarketCategoryPage() {
         <FeaturedBrinedCheesesIntelligenceCard
           href={BRINED_CHEESES_COMPARISON_HREF}
           description={brinedCheesesDescription}
+        />
+        <FeaturedYogurtIntelligenceCard
+          href={YOGURT_COMPARISON_HREF}
+          description={yogurtSpoonableDescription}
+        />
+        <FeaturedYogurtDrinksIntelligenceCard
+          href={YOGURT_DRINKS_COMPARISON_HREF}
+          description={yogurtDrinksDescription}
         />
         <FeaturedCookiesCoffeeIntelligenceCard
           href={COOKIES_COFFEE_COMPARISON_HREF}

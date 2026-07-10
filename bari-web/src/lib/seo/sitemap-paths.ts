@@ -6,6 +6,8 @@ export const ALL_INDEXABLE_PATHS = [
   "/hashvaot/bread",
   "/hashvaot/breakfast-cereals",
   "/hashvaot/brined-cheeses",
+  "/hashvaot/yogurt",
+  "/hashvaot/yogurt-drinks",
   "/hashvaot/cakes",
   "/hashvaot/cheese",
   "/hashvaot/chocolate-bars",

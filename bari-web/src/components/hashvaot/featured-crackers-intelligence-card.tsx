@@ -56,7 +56,7 @@ export function FeaturedCrackersIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(crackersCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#BF8F4A", photo: "/hashvaot/themes/crackers.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/crackers.jpg" }}
         className="group-hover/card:border-[#1F8F6A]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(31,143,106,0.28),0_0_60px_-26px_rgba(31,143,106,0.08)]"
       />
     </Link>
