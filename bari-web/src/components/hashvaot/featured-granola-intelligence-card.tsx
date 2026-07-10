@@ -5,11 +5,11 @@ import Link from "next/link";
 import {
   ComparisonIntelligenceHero,
 } from "@/components/comparisons/comparison-intelligence-hero";
-import { formatComparisonUpdatedLine } from "@/lib/comparisons/format-comparison-updated-line";
 import {
   granolaCorpusMeta,
   granolaProducts,
 } from "@/lib/comparisons/granola-page-data";
+import { deriveComparisonCardStats } from "@/lib/derived/comparison-card-stats";
 import { getComparisonPageChrome } from "@/lib/site-content/comparison-page-chrome";
 import { cn } from "@/lib/utils";
 
@@ -36,15 +36,8 @@ type Props = {
 };
 
 export function FeaturedGranolaIntelligenceCard({ href, description }: Props) {
-  const granolaScores = granolaProducts
-    .map((p) => p.score)
-    .filter((s): s is number => s != null);
-  const granolaScoreSpread = granolaScores.length
-    ? Math.round(Math.max(...granolaScores) - Math.min(...granolaScores))
-    : 0;
-  const granolaCDCount = granolaProducts.filter(
-    (p) => p.grade === "C" || p.grade === "D"
-  ).length;
+  const stats = deriveComparisonCardStats(granolaProducts, granolaCorpusMeta.generated);
+  const granolaCDCount = stats.gradeCounts.C + stats.gradeCounts.D;
 
   return (
     <Link
@@ -61,11 +54,11 @@ export function FeaturedGranolaIntelligenceCard({ href, description }: Props) {
         description={stripCardDigits(description)}
         insightLines={INSIGHT_LINES}
         stats={[
-          { value: granolaProducts.length, label: "מוצרים נותחו" },
+          { value: stats.productCount, label: "מוצרים נותחו" },
           { value: granolaCDCount, label: "בציון C או D" },
-          { value: granolaScoreSpread, label: "נקודות פער" },
+          { value: stats.scoreSpread ?? 0, label: "נקודות פער" },
         ]}
-        updatedLabel={formatComparisonUpdatedLine(granolaCorpusMeta.generated)}
+        updatedLabel={stats.updatedLabel}
         asLinkChild
         theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/granola.jpg" }}
         className="group-hover/card:border-[#7A8C5E]/30 group-hover/card:shadow-[0_40px_120px_-58px_rgba(122,140,94,0.28),0_0_60px_-26px_rgba(122,140,94,0.08)]"
