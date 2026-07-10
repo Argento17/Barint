@@ -123,6 +123,40 @@ export interface GuideGaugeGeometry {
    *  with headroom past the top zone boundary so the pass zone reads as a real zone). */
   domainMax: number;
   zones: GuideGaugeZone[];
+  /**
+   * TASK-575 (magnesium guide v2, nutrition spec §3 "gauge geometry") — suppress the
+   * generic pct:0/label:"0" tick that `buildGaugeRender` otherwise always emits. Used
+   * for a neutral corpus-range gauge where "0" is not a meaningful anchor (the
+   * reviewed range starts at a real observed minimum, not zero) — the geometry
+   * supplies its own boundary ticks via `referenceTicks` instead. Optional; default
+   * (absent/false) preserves the existing "0" tick for every other gauge (e.g. the
+   * unchanged safety gauge).
+   */
+  hideZeroTick?: boolean;
+  /**
+   * TASK-575 — a short numeric label at the domain max (e.g. "520"), rendered in the
+   * same row as the zone-boundary ticks. Symmetric with the implicit "0"/zone
+   * tickLabels — this is the one label that never has a natural zone boundary to
+   * attach to (the domain max IS the last zone's edge).
+   */
+  maxTickLabel?: string;
+  /**
+   * TASK-575 — plain, tone-free reference points (e.g. a corpus median) marked on the
+   * track as a thin dashed line, with their (Content-authored, verbatim) label
+   * rendered on ITS OWN line below the track — never inline in the short numeric tick
+   * row, which does not have room for a full sentence without colliding with an
+   * adjacent boundary tick (a real layout defect caught in this task's own visual
+   * verification pass). Carries no pass/fail/tone implication (spec §3).
+   */
+  referenceTicks?: { at: number; label: string }[];
+  /**
+   * TASK-575 — an additional overlay band on the track (e.g. the RDA all-sources
+   * context range, 310–420 mg) that is NOT a pass/fail zone and must never reuse the
+   * zone-tone system (spec §3: "must never be rendered as 'your supplement should
+   * give you 310-420 mg'"). Rendered as a visually distinct, un-toned outline/bracket
+   * with its own label + mandatory qualifier (both Content-authored, verbatim).
+   */
+  contextBand?: { from: number; to: number; label: string; qualifierLabel: string };
 }
 
 /** One tier of a Threshold Ladder, worst→best, left→right in the forced-LTR rail
@@ -227,6 +261,17 @@ export interface GuideProductVM {
   oneLinerHe: string;
   /** Factual retail channel — routing tag, not marketing copy. */
   channel?: GuideProductChannel | null;
+  /**
+   * TASK-575 (magnesium guide v2) — a short, neutral-register sub-classification
+   * phrase, Content-authored (copy package Slot 6), rendered as a small factual pill
+   * on the product row. Used to keep severity visibly distinct WITHIN a single
+   * descriptive group (e.g. group (c)'s "clean form, tolerance-note only" vs "known
+   * weaker-absorption form" vs "weaker-absorption form + crosses the safety UL") —
+   * this is NOT a ranking, letter, or score: it is a factual sub-label, optional, and
+   * absent for products where no such distinction applies. Rendered verbatim, never
+   * computed or paraphrased by the component.
+   */
+  classifierHe?: string | null;
 }
 
 // ─── Layer 1 — the buying rule (plan §3, item 1) ────────────────────────────────────
@@ -242,6 +287,14 @@ export interface GuideEducationSection {
   heading: string;
   /** Paragraph blocks. Content-authored; mock fixture only in this skeleton. */
   body: string[];
+  /**
+   * TASK-575 — optional structured source list (Content copy package Slot 8),
+   * rendered as clickable `target="_blank" rel="noopener"` links rather than bare
+   * citation text. `label` is the descriptive sentence naming what the source
+   * supports (Content-authored, verbatim); `url` is the canonical link. Absent for
+   * every section except the guide's "מקורות" (sources) section.
+   */
+  sources?: { label: string; url: string }[];
 }
 
 // ─── Layer 2 headline (TASK-504B, Product D7 empty-shortlist ruling) ────────────────
@@ -370,6 +423,37 @@ export interface GuidePageVM {
    * GATE-1 DRAFT — pending Content + Adversarial QA two-gate sign-off.
    */
   domesticBandsDisclosureHe?: string | null;
+
+  /**
+   * TASK-575 (magnesium guide v2) — renders `products` grouped by `GuideBucket` as
+   * FOUR FLAT, DESCRIPTIVE sections (GUIDE_BUCKET_ORDER: clears_all / passes_with_flag
+   * / fails / cannot_assess), with NO ranking, no tier ladder, no letters, no colored
+   * good→poor palette on the section headers. This is ADDITIVE and opt-in: default
+   * false/absent preserves the existing `GuideRecommendationTier` ranked-tier
+   * rendering path unchanged for any other guide that still relies on it (none does
+   * today — grep-verified at build time — but the old path is left intact rather than
+   * deleted, per the "do not break other guide surfaces" constraint). When true,
+   * `recommendationTierCaptions` / `veryRecommendedEmptyStateHe` /
+   * `cannotAssessSectionIntroHe` are ignored in favor of `groupLabelsHe` /
+   * `groupCaptionsHe` below.
+   */
+  useDescriptiveGroups?: boolean;
+
+  /**
+   * TASK-575 — per-bucket group SECTION HEADER text (copy package Slot 5 headers),
+   * only consulted when `useDescriptiveGroups` is true. Falls back to
+   * `GUIDE_BUCKET_LABELS_HE[bucket]` when a bucket is absent from this map.
+   */
+  groupLabelsHe?: Partial<Record<GuideBucket, string>>;
+
+  /**
+   * TASK-575 — per-bucket ONE-LINE caption rendered under the group header (copy
+   * package Slot 5 second lines), only consulted when `useDescriptiveGroups` is true.
+   * The `clears_all` bucket's caption doubles as its empty-state line (it is always
+   * empty for magnesium today, and the section still renders per spec §2 — "renders
+   * its empty-state caption").
+   */
+  groupCaptionsHe?: Partial<Record<GuideBucket, string>>;
 }
 
 // ─── Recommendation tiers (TASK-504 follow-on) ──────────────────────────────────────

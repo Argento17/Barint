@@ -163,6 +163,29 @@ export function GuideProductRow({
             ) : null}
           </div>
 
+          {/* TASK-575 (magnesium guide v2) — per-row severity classifier (copy package
+              Slot 6). Small, factual-register, neutral pill — NOT a rank/letter/score,
+              reuses the same neutral gray pill already used for the channel tag above.
+              Keeps severity visibly distinct WITHIN a descriptive group (e.g. group
+              (c)'s "clean form, tolerance-note only" vs a known weaker-absorption form
+              vs a form that also crosses the safety UL). Absent when the product has no
+              classifierHe (every group (a)/(b)/(d) product today). */}
+          {product.classifierHe ? (
+            <p className="mt-1.5">
+              <span
+                className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold"
+                style={{
+                  backgroundColor: "#F3F4F2",
+                  color: "#5A6168",
+                  border: "1px solid rgba(17,19,24,0.08)",
+                }}
+                data-testid="guide-row-classifier"
+              >
+                {product.classifierHe}
+              </span>
+            </p>
+          ) : null}
+
           {/* TASK-504B — the product's one-line verdict, ported verbatim from the
               approved copy (חלק 4). Rendered as-is, no summarization. Always visible —
               disclosure never gates this (spec v2 §3.1 / §6 non-goal). */}

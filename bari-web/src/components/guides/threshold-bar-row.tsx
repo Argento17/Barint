@@ -96,8 +96,27 @@ interface TrackBoundary {
 interface TrackTick {
   pct: number;
   label: string;
-  anchor: "start" | "center";
+  /** TASK-575 — "end" anchors flush to the track's right edge (mirrors "start"'s
+   *  flush-left), fixing a real clipping bug where a pct:100 "center" tick (e.g. the
+   *  domain-max label) rendered half outside the row's clipping ancestor — the exact
+   *  same trap the marker already solves via its own clamp/anchor logic, caught here
+   *  in this task's own screenshot verification pass. */
+  anchor: "start" | "center" | "end";
 }
+interface TrackContextBand {
+  startPct: number;
+  endPct: number;
+  label: string;
+  qualifierLabel: string;
+}
+interface TrackReferenceLine {
+  pct: number;
+  /** e.g. "190 מ״ג — חציון בין 15 מוצרים עם מינון ברור" — rendered on its OWN line
+   *  below the track, never inline in the short numeric tick row (see geometry
+   *  header comment: a real collision was caught in this task's visual QA pass). */
+  caption: string;
+}
+
 interface TrackRender {
   zones: TrackZone[];
   boundaries: TrackBoundary[];
@@ -108,6 +127,13 @@ interface TrackRender {
    *  room to wrap within their own zone column rather than overlapping a neighbor
    *  (v2 spec §5.2 flagged risk) — numeric gauge ticks stay single-line as before. */
   multilineTicks: boolean;
+  /** TASK-575 — an un-toned overlay band (e.g. the RDA all-sources context range),
+   *  distinct from the zone-tone system. Absent for every gauge except a geometry
+   *  that explicitly supplies `contextBand`. */
+  contextBand?: TrackContextBand;
+  /** TASK-575 — thin dashed reference lines (e.g. corpus median), each with its own
+   *  below-track caption (see TrackReferenceLine). */
+  referenceLines: TrackReferenceLine[];
 }
 
 function buildGaugeRender(
@@ -124,12 +150,37 @@ function buildGaugeRender(
     .slice(0, -1)
     .map((zone) => ({ pct: pct(zone.upTo, geometry.domainMax), style: zone.dividerStyle }));
   const ticks: TrackTick[] = [
-    { pct: 0, label: "0", anchor: "start" },
+    // TASK-575 — `hideZeroTick` drops this generic "0" anchor for a gauge whose
+    // domain does not meaningfully start at zero (e.g. a corpus-range gauge where the
+    // reviewed minimum is the honest left anchor, not zero). Every other gauge
+    // (including the unchanged safety gauge) keeps this tick exactly as before.
+    ...(geometry.hideZeroTick ? [] : [{ pct: 0, label: "0", anchor: "start" as const }]),
     ...geometry.zones
       .slice(0, -1)
       .filter((z) => z.tickLabel)
       .map((z) => ({ pct: pct(z.upTo, geometry.domainMax), label: z.tickLabel as string, anchor: "center" as const })),
+    // TASK-575 — a short domain-max label (e.g. "520"), symmetric with the zone
+    // tickLabels above but for the edge that has no natural zone boundary to attach
+    // to (the last zone's upper edge IS the domain max). anchor "end" (not "center")
+    // — a pct:100 center-anchored tick renders half outside the clipping ancestor.
+    ...(geometry.maxTickLabel ? [{ pct: 100, label: geometry.maxTickLabel, anchor: "end" as const }] : []),
   ];
+  const contextBand: TrackContextBand | undefined = geometry.contextBand
+    ? {
+        startPct: pct(geometry.contextBand.from, geometry.domainMax),
+        endPct: pct(geometry.contextBand.to, geometry.domainMax),
+        label: geometry.contextBand.label,
+        qualifierLabel: geometry.contextBand.qualifierLabel,
+      }
+    : undefined;
+  // TASK-575 — reference lines (e.g. corpus median) render as a thin dashed vertical
+  // line ON the track, with their full label as a separate below-track caption (never
+  // inline in the numeric tick row — that caused a real overlap with the "76" boundary
+  // tick, caught in this task's own visual verification pass).
+  const referenceLines: TrackReferenceLine[] = (geometry.referenceTicks ?? []).map((rt) => ({
+    pct: pct(rt.at, geometry.domainMax),
+    caption: `${rt.at} מ"ג — ${rt.label}`,
+  }));
   return {
     zones,
     boundaries,
@@ -140,6 +191,8 @@ function buildGaugeRender(
     markerPct: value != null ? Math.min(pct(value, geometry.domainMax), 100) : null,
     clamped: !!placement?.clamped,
     multilineTicks: false,
+    contextBand,
+    referenceLines,
   };
 }
 
@@ -173,6 +226,7 @@ function buildCategoricalRender(
     markerPct: tierIndex != null ? (tierIndex + 0.5) * zoneWidth : null,
     clamped: false,
     multilineTicks: true,
+    referenceLines: [],
   };
 }
 
@@ -308,6 +362,46 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
         ) : (
           <ThresholdMarkerFallback />
         )}
+
+        {/* TASK-575 — reference lines (e.g. corpus median): a thin dashed vertical line
+            ON the track, tone-free, distinct from the marker (filled circle) and from
+            zone boundaries (which carry a real zone/tone change). Its full label is a
+            below-track caption, not rendered here. */}
+        {render.referenceLines.map((rl, i) => (
+          <div
+            key={i}
+            aria-hidden
+            data-testid="threshold-reference-line"
+            className="absolute top-1/2"
+            style={{
+              left: `${rl.pct}%`,
+              height: "16px",
+              width: 0,
+              transform: "translate(-50%, -50%)",
+              borderInlineStart: "1.5px dashed #6B7070",
+            }}
+          />
+        ))}
+
+        {/* TASK-575 — context-band bracket (e.g. the RDA all-sources range). Deliberately
+            NOT a zone tint (spec §3: never reuse the pass/fail tone system for this) —
+            a plain dashed outline, drawn under the track, distinct from both the colored
+            zone fill above and the solid/dashed zone-boundary dividers. */}
+        {render.contextBand ? (
+          <div
+            aria-hidden
+            className="absolute"
+            style={{
+              top: "17px",
+              left: `${render.contextBand.startPct}%`,
+              width: `${render.contextBand.endPct - render.contextBand.startPct}%`,
+              height: "6px",
+              borderTop: "1.5px dashed #8A8F86",
+              borderInlineStart: "1.5px dashed #8A8F86",
+              borderInlineEnd: "1.5px dashed #8A8F86",
+            }}
+          />
+        ) : null}
       </div>
 
       {/* Tick labels — only meaningful anchors for a gauge (spec v1 §2), every tier
@@ -342,6 +436,10 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
               <span key={i} className="absolute whitespace-nowrap" style={{ left: 0 }}>
                 {t.label}
               </span>
+            ) : t.anchor === "end" ? (
+              <span key={i} className="absolute whitespace-nowrap" style={{ right: 0 }}>
+                {t.label}
+              </span>
             ) : (
               <span
                 key={i}
@@ -354,6 +452,34 @@ function ThresholdTrack({ render, state }: { render: TrackRender; state: GuideBa
           )}
         </div>
       )}
+
+      {/* TASK-575 — reference-line captions (e.g. corpus median), each its own line —
+          deliberately NOT inline in the numeric tick row above (a real overlap with
+          the "76" boundary tick was caught in this task's own screenshot verification
+          pass; see the geometry header comment). */}
+      {render.referenceLines.length > 0 ? (
+        <div className="mt-1 space-y-0.5" dir="rtl" data-testid="threshold-reference-line-caption">
+          {render.referenceLines.map((rl, i) => (
+            <p key={i} className="text-[11px] leading-[1.4]" style={{ color: "#6B7070" }}>
+              {rl.caption}
+            </p>
+          ))}
+        </div>
+      ) : null}
+
+      {/* TASK-575 — context-band label + mandatory qualifier (spec §3: the qualifier
+          must render wherever the band renders, never as a bare number). Rendered as
+          its own line so it never overlaps a positioned tick label. */}
+      {render.contextBand ? (
+        <p
+          className="mt-1 text-[11px] leading-[1.4]"
+          dir="rtl"
+          style={{ color: "#6B7070" }}
+          data-testid="threshold-context-band-label"
+        >
+          {render.contextBand.label} · {render.contextBand.qualifierLabel}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -55,6 +55,9 @@ export function GuidePageTemplate({
         cannotAssessSectionIntroHe={guide.cannotAssessSectionIntroHe}
         expanderLabels={guide.expanderLabels}
         thresholdGeometry={guide.thresholdGeometry}
+        useDescriptiveGroups={guide.useDescriptiveGroups}
+        groupLabelsHe={guide.groupLabelsHe}
+        groupCaptionsHe={guide.groupCaptionsHe}
         wide
       />
       <GuideEducationSpine sections={guide.educationSpine} wide />

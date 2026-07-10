@@ -15,10 +15,12 @@ import { Check } from "lucide-react";
 
 import {
   GUIDE_BUCKET_LABELS_HE,
+  GUIDE_BUCKET_ORDER,
   GUIDE_RECOMMENDATION_TIER_LABELS_HE,
   GUIDE_RECOMMENDATION_TIER_ORDER,
   GUIDE_BAR_ORDER,
   type GuideBarKey,
+  type GuideBucket,
   type GuideHeadlineFinding as GuideHeadlineFindingVM,
   type GuideProductVM,
   type GuideRecommendationTier,
@@ -77,6 +79,54 @@ function groupByTier(
   return { tiers, cannotAssess };
 }
 
+// TASK-575 (magnesium guide v2) — flat, bucket-keyed grouping for the DESCRIPTIVE
+// 4-group model. Unlike `groupByTier`, this does NOT call `computeRecommendationTier`
+// — `product.bucket` (already Nutrition/Product co-signed, see the guide data file's
+// precedence-rule comment) is read directly, since there is no ranked derivation left
+// to run. Products render in stable source-array order within a group — same
+// no-re-sort discipline as the tier path.
+function groupByBucket(products: GuideProductVM[]): Record<GuideBucket, GuideProductVM[]> {
+  const groups = {
+    clears_all: [],
+    passes_with_flag: [],
+    fails: [],
+    cannot_assess: [],
+  } as Record<GuideBucket, GuideProductVM[]>;
+  for (const product of products) {
+    groups[product.bucket].push(product);
+  }
+  return groups;
+}
+
+// TASK-575 — ONE flat, neutral, un-toned header style for every descriptive group
+// (spec: "Groups are descriptive sections, NOT a ranking; do not attach letters,
+// medals, ordering language, or per-product scores"). Deliberately does NOT reuse
+// TIER_TONE's good→poor palette or an icon that could read as a verdict signal —
+// reuses the same neutral gray pill already shipped for the product-row channel tag
+// (guide-product-row.tsx), just at section-header scale. Contrast: #3E444A on #F3F4F2
+// clears WCAG AA (>7:1) for 13px bold text.
+function GroupSectionHeader({ label, count }: { label: string; count: number }) {
+  return (
+    <div className="mb-3 flex items-center gap-2 rounded-xl">
+      <h2
+        className="inline-flex items-center whitespace-nowrap rounded-full font-extrabold"
+        style={{
+          padding: "5px 12px",
+          fontSize: "13px",
+          backgroundColor: "#F3F4F2",
+          border: "1px solid rgba(17,19,24,0.08)",
+          color: "#3E444A",
+        }}
+        data-testid="guide-group-header"
+      >
+        {label}
+      </h2>
+      <span className="text-[11px] font-semibold text-[#4E5663]">({count})</span>
+      <span className="h-px flex-1 bg-black/[0.06]" aria-hidden />
+    </div>
+  );
+}
+
 function TierSectionHeader({
   label,
   count,
@@ -126,6 +176,9 @@ export function GuideProductTable({
   domesticBandsDisclosureHe,
   benchmarkProducts,
   benchmarkSectionHeadingHe,
+  useDescriptiveGroups = false,
+  groupLabelsHe,
+  groupCaptionsHe,
   wide = false,
 }: {
   products: GuideProductVM[];
@@ -138,13 +191,16 @@ export function GuideProductTable({
   suppressedBars?: GuideBarKey[];
   /** See GuidePageVM.suppressedBarsDisclosureHe. RT-7: rendered in the SAME view as
    *  the tier list (this section), so the tier captions' "the only reservation is
-   *  dose" framing stays honest about what else isn't shown. */
+   *  dose" framing stays honest about what else isn't shown. TASK-575: when
+   *  `useDescriptiveGroups` is true this renders AFTER the groups, in a calm
+   *  informational box — never a per-product reason, never amber "warning" styling
+   *  (copy package Slot 3 / task requirement C). */
   suppressedBarsDisclosureHe?: string | null;
-  /** See GuidePageVM.recommendationTierCaptions. */
+  /** See GuidePageVM.recommendationTierCaptions. Ignored when useDescriptiveGroups. */
   recommendationTierCaptions?: Partial<Record<GuideRecommendationTier, string>>;
-  /** See GuidePageVM.veryRecommendedEmptyStateHe. */
+  /** See GuidePageVM.veryRecommendedEmptyStateHe. Ignored when useDescriptiveGroups. */
   veryRecommendedEmptyStateHe?: string | null;
-  /** See GuidePageVM.cannotAssessSectionIntroHe. */
+  /** See GuidePageVM.cannotAssessSectionIntroHe. Ignored when useDescriptiveGroups. */
   cannotAssessSectionIntroHe?: string | null;
   /** See GuidePageVM.expanderLabels. */
   expanderLabels?: { collapsed: string; expanded: string };
@@ -154,11 +210,20 @@ export function GuideProductTable({
   domesticBandsDisclosureHe?: string | null;
   benchmarkProducts?: GuideProductVM[];
   benchmarkSectionHeadingHe?: string | null;
+  /** See GuidePageVM.useDescriptiveGroups. */
+  useDescriptiveGroups?: boolean;
+  /** See GuidePageVM.groupLabelsHe. */
+  groupLabelsHe?: Partial<Record<GuideBucket, string>>;
+  /** See GuidePageVM.groupCaptionsHe. */
+  groupCaptionsHe?: Partial<Record<GuideBucket, string>>;
   wide?: boolean;
 }) {
   const displayedBars = GUIDE_BAR_ORDER.filter((bar) => !suppressedBars?.includes(bar));
   const excluded = bandExcludedBars ?? [];
-  const { tiers, cannotAssess } = groupByTier(products, displayedBars, excluded);
+  const { tiers, cannotAssess } = useDescriptiveGroups
+    ? { tiers: {} as Record<GuideRecommendationTier, GuideProductVM[]>, cannotAssess: [] as GuideProductVM[] }
+    : groupByTier(products, displayedBars, excluded);
+  const groups = useDescriptiveGroups ? groupByBucket(products) : null;
 
   return (
     <section
@@ -171,11 +236,10 @@ export function GuideProductTable({
           buttons — never re-authored here. */}
       <p className="text-[11px] leading-relaxed text-[#6B7070]">{buyLinkDisclosureLine}</p>
 
-      {/* RT-7 disclosure adjacency: rendered in the SAME view as the tier list below,
-          never on a separate scroll/tab, so the tier captions' "dose is the only
-          reservation" framing stays honest about the two bars this build doesn't
-          show at all. rubric honesty_constraint: disclosed, never silently vanished. */}
-      {suppressedBars && suppressedBars.length > 0 && suppressedBarsDisclosureHe ? (
+      {/* Legacy ranked-tier path only: RT-7 disclosure adjacency, amber-styled, at the
+          TOP of the section. TASK-575's descriptive-group path renders this same
+          content in a calm box AFTER the groups instead (below). */}
+      {!useDescriptiveGroups && suppressedBars && suppressedBars.length > 0 && suppressedBarsDisclosureHe ? (
         <p
           className="mt-1.5 text-[11px] leading-relaxed"
           style={{ color: "#8A6300" }}
@@ -200,6 +264,72 @@ export function GuideProductTable({
         </p>
       ) : null}
 
+      {useDescriptiveGroups && groups ? (
+        <div className="mt-4 space-y-8" data-testid="guide-descriptive-groups">
+          {GUIDE_BUCKET_ORDER.map((bucket) => {
+            const bucketProducts = groups[bucket];
+            const isEmpty = bucketProducts.length === 0;
+            // TASK-575 — spec §2: `clears_all` (group a) always renders, even when
+            // empty, because the empty state IS the guide's own headline finding
+            // ("renders its empty-state caption"). Every other empty group is simply
+            // omitted (none are empty for magnesium's current 18-product corpus).
+            if (isEmpty && bucket !== "clears_all") return null;
+
+            const label = groupLabelsHe?.[bucket] ?? GUIDE_BUCKET_LABELS_HE[bucket];
+            const caption = groupCaptionsHe?.[bucket];
+
+            return (
+              <div key={bucket} data-testid={`guide-group-${bucket}`}>
+                <GroupSectionHeader label={label} count={bucketProducts.length} />
+                {caption ? (
+                  <p
+                    className="-mt-1.5 mb-3 text-[12px] leading-[1.5]"
+                    style={{ color: "#6E756D" }}
+                    data-testid={`guide-group-caption-${bucket}`}
+                  >
+                    {caption}
+                  </p>
+                ) : null}
+                {!isEmpty ? (
+                  <div className="space-y-3">
+                    {bucketProducts.map((product, i) => (
+                      <GuideProductRow
+                        key={product.id}
+                        product={product}
+                        rank={i + 1}
+                        suppressedBars={suppressedBars}
+                        thresholdGeometry={thresholdGeometry}
+                        expanderLabels={expanderLabels}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+
+      {/* TASK-575 — market-information-gaps box (copy package Slot 3 / task
+          requirement C): calm, informational card, visually distinct from product
+          assessment, placed AFTER the groups (never a per-product reason, never an
+          amber "warning" treatment). No invented heading — only the Content-authored
+          paragraph renders. */}
+      {useDescriptiveGroups && suppressedBars && suppressedBars.length > 0 && suppressedBarsDisclosureHe ? (
+        <div
+          className="mt-8 rounded-2xl border p-4"
+          style={{ borderColor: "#E2E5E2", background: "#F7F8F6" }}
+          dir="rtl"
+          data-testid="guide-market-gaps-box"
+        >
+          <p className="text-[12px] leading-[1.6]" style={{ color: "#4E5663" }}>
+            {suppressedBarsDisclosureHe}
+          </p>
+        </div>
+      ) : null}
+
+      {!useDescriptiveGroups ? (
+      <>
       <div className="mt-4 space-y-8" data-testid="guide-domestic-bands">
         {GUIDE_RECOMMENDATION_TIER_ORDER.map((tier) => {
           const tierProducts = tiers[tier];
@@ -291,6 +421,8 @@ export function GuideProductTable({
             ))}
           </div>
         </div>
+      ) : null}
+      </>
       ) : null}
       {benchmarkProducts && benchmarkProducts.length > 0 ? (
         <div className="mt-10" data-testid="guide-tier-benchmark">

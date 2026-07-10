@@ -35,6 +35,26 @@ export function GuideEducationSpine({
                 </p>
               ))}
             </div>
+            {/* TASK-575 — structured source list (copy package Slot 8), rendered as
+                clickable links rather than bare citation text. */}
+            {section.sources && section.sources.length > 0 ? (
+              <ul className="mt-3 space-y-3" data-testid="guide-education-sources">
+                {section.sources.map((source, k) => (
+                  <li key={k} className="text-[13px] leading-[1.6] text-[#3E444A]">
+                    <p>{source.label}</p>
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dir="ltr"
+                      className="mt-0.5 inline-block break-all text-[12px] font-semibold text-[#167A58] underline underline-offset-2"
+                    >
+                      {source.url}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         ))}
       </div>
