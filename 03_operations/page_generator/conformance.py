@@ -63,8 +63,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 THIS_DIR = Path(__file__).resolve().parent          # .../page_generator
@@ -87,6 +88,37 @@ def norm_path(p: str | None) -> str:
     if not p:
         return ""
     return str(Path(p)).lower().replace("\\", "/").rstrip("/")
+
+
+# Top-level repo directories a config path may be re-anchored on.
+REPO_TOP_DIRS = ("01_framework", "02_products", "03_operations", "bari-web", "tasks")
+_DRIVE_RE = re.compile(r"^[A-Za-z]:")
+
+
+def resolve_repo_path(item: str | None) -> Path:
+    """Re-anchor a config-declared path onto THIS checkout.
+
+    Every page_generator config declares corpus_dirs / run_products_dir as an
+    absolute Windows path (``C:\\Bari\\02_products\\...``). POSIX does not parse a
+    drive letter, so such a string becomes ONE relative filename and ``is_dir()`` is
+    always False -- HARD-1 then fails for every category and the CI conformance job
+    can never pass, on any machine that is not this one (TASK-560).
+
+    The corpus and run-product trees are git-tracked, so the paths are valid once
+    re-anchored: split on the first recognised repo-top segment and rejoin under
+    REPO. Paths with no such segment are returned unchanged, so an genuinely bad
+    path still fails loudly instead of silently resolving.
+    """
+    if not item:
+        return Path("")
+    raw = str(item)
+    # Parse with Windows semantics when it looks like a drive path, so the parts
+    # split correctly even when running on Linux.
+    parts = PureWindowsPath(raw).parts if _DRIVE_RE.match(raw) else Path(raw).parts
+    for i, part in enumerate(parts):
+        if part in REPO_TOP_DIRS:
+            return REPO.joinpath(*parts[i:])
+    return Path(raw)
 
 
 def to_repo_relative(p: str | Path) -> str:
@@ -251,7 +283,11 @@ def registry_class(cat_norm: str, registry: dict) -> tuple[str | None, bool]:
 
 
 def corpus_dirs_resolve(cfg: dict) -> tuple[bool, list[str]]:
-    """Check corpus_dirs / run_products_dir point at existing directories."""
+    """Check corpus_dirs / run_products_dir point at existing directories.
+
+    Paths are re-anchored onto this checkout first (see resolve_repo_path): the
+    configs' absolute C:\\Bari\\... literals do not resolve anywhere else.
+    """
     missing: list[str] = []
     found_any = False
     for key in ("corpus_dirs", "run_products_dir"):
@@ -260,7 +296,7 @@ def corpus_dirs_resolve(cfg: dict) -> tuple[bool, list[str]]:
         for item in items:
             if not item:
                 continue
-            p = Path(item)
+            p = resolve_repo_path(item)
             if p.is_dir():
                 found_any = True
             else:
@@ -455,7 +491,10 @@ def evaluate(stem: str, cfg: dict, *, entries: list[dict], registry: dict,
         add("HARD-3-baseline_served", True, False,
             "config.baseline_json is null -> copy_stage has no live file to write; "
             "flip cannot propagate scores to the served page")
-    elif not Path(baseline).is_file():
+    elif not resolve_repo_path(baseline).is_file():
+        # Re-anchored onto THIS checkout: the raw absolute literal points at whatever
+        # C:\Bari happens to contain (another branch, another machine, or nothing at
+        # all on a Linux runner) rather than the tree being checked (TASK-560).
         add("HARD-3-baseline_served", True, False,
             f"baseline_json does not exist on disk: {baseline}")
     elif served is None:
