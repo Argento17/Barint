@@ -187,3 +187,10 @@ The loop's default is to KEEP RUNNING. Questions to the owner are a failure mode
 ## Report shape (each cycle and at every wall)
 Map first, prose second: **Dispatched** (TASK-NNN → capability) · **Returned + verified** (what you checked) ·
 **Closed** (id + close_reason) · **Next ready move** · and at a wall, **exactly what you need from the owner**.
+
+## After-action audit (owner ruling 2026-07-10 -- WIRED, not optional)
+At every end-of-run wall (out of ready work / tripwire stop / owner stop), before the final report: run
+the **`/telemetry`** skill for the after-action audit of THIS run -- lane ledger, inline-vs-delegated
+split, error origin-vs-catch, corrective actions. The learning flywheel depends on this being automatic:
+every run audits the SYSTEM, not just the deliverables. Skip only when the run made zero dispatches and
+zero closes (pure Q&A), and say so in one line.

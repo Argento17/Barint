@@ -38,6 +38,11 @@ Owner: kill Grok + Cursor CLI lanes; kill DeepSeek; Gemini subscription stays bu
 ✅ **ROUTER v5 FINAL SWEEP** — v4.2 law doc gets SUPERSEDED banner; dispatch.py.bak (v4 corpse) git-rm'd; stale blog-backlog lane line fixed; **grok + cursor-agent binaries UNINSTALLED from the machine, verified gone**; llm_event_schema deepseek strings = example payloads, deliberately left. Selftests re-run green post-sweep. Program remaining: owner merges the PR; TASK-585 remainder (agy revival, --search verify, dispatch_journal lane names).
 ✅ **TASK-583 PR MERGED** (owner, #106 → 7b035a90); branch+worktree cleaned. ✅ **TASK-585 CLOSED — router v5 FULLY PINNED, ALL LANES LIVE:** Codex sol/terra/luna (subscription PONG PASS) · **Gemini lane REVIVED** — root cause of every "dead lane" probe was agy 1.1's changed CLI (bare -p prints help; `--print` is headless); auth was alive all along, zero owner action; runner repointed npm-gemini→agy.exe, pinned **Gemini 3.1 Pro (High)**, selftest PASS 8.9s · web-search fixed+verified: `codex exec -c tools.web_search=true` · dispatch_journal CLOUD_LANES = v4.2 history note. Selftests all green after every edit (table byte-match / route 14/14 / codex / gemini). **PR: https://github.com/Argento17/Barint/pull/new/task585-lane-pins — owner merges; after that the router program is 100% closed.**
 
+## 🔀 ORCHESTRATE-MODE TEST RUN (2026-07-10 night, owner: "use the orchestrate mode in this run") — LIVE
+Owner approvals executed: (1) catalog fix → **TASK-588** dispatched BUILD-HEAVY (Codex sol, worktree C:/bari_wt_587, branch task588-catalog-registry); (2) **TWO-SPEED MERGE POLICY live** (recorded in CLAUDE.md + memory; first exercises: 585 lane-pins → 077e8ae0, codex-stdin fix → b5524728 — both internal, selftests green pre-push); (3) C7 containment stays; (4) **telemetry after-action audit WIRED into orchestrate.md** (end-of-run mandatory); (5) mascots reduced to **LUMO + OLI only**, Canva pipeline REMOVED (settings allows dropped; memory updated), asset path = OpenAI image gen (owner opt-in).
+**Router bug found+fixed on the FIRST real BUILD-HEAVY dispatch:** Windows .cmd shim truncates multi-line argv to line 1 — Codex received a one-line spec and correctly refused. Fix: prompt via stdin (`codex exec -`), multi-line PONG proven, Speed-1 merged (b5524728). Lane telemetry recorded the failed attempt (trigger "empty diff") — flywheel working as designed.
+🚀 TASK-588 IN FLIGHT (second attempt through the fixed pipe).
+
 ## 🛑 CI WAVE 5 (2026-07-10) — run_gates in CI: PROBED FIRST, DID NOT BUILD. Nothing shipped, nothing scored.
 The audit called "run_gates.py in CI" do-first/low-effort. Applying the TASK-560 lesson (never wire a gate without proving it can pass), I ran it against all 16 live shelves with re-anchored config paths **before** writing any workflow. **Result: 2 PASS (crackers, granola) / 14 FAIL.** Failing gates: **G1 SCHEMA 11 shelves · G3 SCOPE 10 · G5 GRADE-INTEGRITY 10.** These are real failures, not harness artifacts. No workflow was added, no score/config/schema was touched, worktree left clean.
 - 🛑 **TASK-565 BLOCKED** (run_gates in CI) — depends on 563 + 564. Wiring it now would red-X 14/16; mass-excepting would make the gate meaningless.
@@ -45,7 +50,21 @@ The audit called "run_gates.py in CI" do-first/low-effort. Applying the TASK-560
 - 🟡 **TASK-564 OPEN** (frontend-agent) — schema lag: `page_output_schema_v1.json` still marks `expansion.comparisonContext` REQUIRED, but that copy was deliberately removed on owner direction (TASK-546 de-cross-referencing). The *golden* brined_cheeses page fails its own schema on every product. Also `limitingFactors` typed array, arriving null. Fix the SCHEMA; do NOT re-add the copy. Same class as the TASK-431 schema-lag defect.
 - Registry note: TASK-562 was already taken by a concurrent session (sucralose red-team, TASK-557 line) — registry wins; used 563/564/565.
 
-## 🚀 TASK-587 DISPATCHED (2026-07-10 night) — magnesium guide v3.2: owner-confirmed polish round
+## ✅ TASK-587 CLOSED (2026-07-11) — magnesium guide v3.2 LIVE on master @ ba64bed7 (noindex)
+All three owner-confirmed fixes live (~75s post-push, strict markers + orchestrator live vision check):
+dose axis 76-520 (76 flush right, no dead lead-in, axis now matches the intro's "בין 76 ל-520"; safety
+gauge unchanged 0-based); RDA band = on-track shaded+bordered zone (floating dashed outline gone);
+education section findable (visible heading "ההסבר המלא ומקורות המידע" + 15w teaser, still collapsed).
+Full loop: Design D12 spec (in-code root causes) → Content ADDENDUM v3.2 (8bd401e4…) → Frontend
+84fd4ed0 (strings byte-exact by script; hideZeroTick deleted, 0 callers) → Design vision verify 17/17
+(gap-closing evidence incl. synthetic in-band dose for paint order) → QA gate-2 GO (0 CRITICAL/HIGH,
+geometry + strings independently re-measured). Amendments recorded in TASK-587.md: item-14 teaser
+standard = one sentence ≤2 lines @375px; process rule = scope amendments go DIRECT to implementer,
+never by peer relay. Monitors: RT-M1 truncated-axis tradeoff (owner-confirmed); RT-M2 paint-order
+unreachable in corpus. mg-citing one-liners flagged to the no-cited-values rewrite program, untouched
+here. Full detail: tasks/TASK-587.md.
+
+## 📜 TASK-587 scope log (original in-flight entry)
 Owner confirmed on direct question (AskUserQuestion): BOTH remaining scale issues + "can't find the
 deep content". (1) dose axis 76-520 (corpus min flush right; kills the dead 0-76 stretch; safety gauge
 stays 0-based); (2) RDA 310-420 band = on-track shaded zone, not the floating dashed outline box;
