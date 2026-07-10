@@ -32,7 +32,7 @@ export function HashvaotCategoryLanding({
       )}
     >
       <HomeContainer className="py-14 md:py-20">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#1F8F6A]/80">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#176F53]">
           {eyebrow}
         </p>
         <h1 className="mt-3 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">
