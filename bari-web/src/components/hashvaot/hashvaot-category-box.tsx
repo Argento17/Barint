@@ -77,6 +77,56 @@ function RawFoodsGlyph() {
   );
 }
 
+/** Madrichim hub — magnesium buying guide: split capsule + granules. */
+function MagnesiumGuideGlyph() {
+  return (
+    <svg className="hashvaot-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+      <rect
+        className="hashvaot-icon-g-stroke"
+        x="8.6"
+        y="3.4"
+        width="6.8"
+        height="17.2"
+        rx="3.4"
+        transform="rotate(45 12 12)"
+      />
+      <path
+        className="hashvaot-icon-g-fill"
+        d="M8.6 12h6.8v5.2a3.4 3.4 0 0 1-3.4 3.4 3.4 3.4 0 0 1-3.4-3.4z"
+        transform="rotate(45 12 12)"
+      />
+      <path className="hashvaot-icon-g-stroke" d="M8.6 12h6.8" transform="rotate(45 12 12)" />
+      <circle className="hashvaot-icon-g-solid" cx="5.4" cy="6.4" r="1.1" />
+      <circle className="hashvaot-icon-g-solid" cx="18.6" cy="17.6" r="1.1" />
+    </svg>
+  );
+}
+
+/** Madrichim hub — high-protein yogurt guide: cup + spoon. */
+function YogurtGuideGlyph() {
+  return (
+    <svg className="hashvaot-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        className="hashvaot-icon-g-stroke"
+        d="M6.8 8.5h10.4l-1.3 10.6a1.7 1.7 0 0 1-1.69 1.4H9.8a1.7 1.7 0 0 1-1.69-1.4z"
+      />
+      <path
+        className="hashvaot-icon-g-fill"
+        d="M7.5 13.5h9l-.66 5.4a1 1 0 0 1-1 .9H9.2a1 1 0 0 1-1-.9z"
+      />
+      <path className="hashvaot-icon-g-stroke" d="M15.2 8.5l3-4.6" />
+      <ellipse
+        className="hashvaot-icon-g-solid"
+        cx="18.9"
+        cy="3.2"
+        rx="1.7"
+        ry="1.15"
+        transform="rotate(-33 18.9 3.2)"
+      />
+    </svg>
+  );
+}
+
 type CategoryGlyph = () => ReactNode;
 
 /**
@@ -88,6 +138,8 @@ const CATEGORY_ICONS: Record<string, CategoryGlyph> = {
   supplements: SupplementsGlyph,
   "personal-care": PersonalCareGlyph,
   "raw-foods": RawFoodsGlyph,
+  "magnesium-guide": MagnesiumGuideGlyph,
+  "yogurt-glp1-guide": YogurtGuideGlyph,
 };
 const DEFAULT_CATEGORY_ICON: CategoryGlyph = SupermarketGlyph;
 

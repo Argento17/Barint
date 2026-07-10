@@ -41,15 +41,13 @@ export const MADRICHIM_CATEGORIES: HashvaotCategory[] = [
   },
   {
     id: "yogurt-glp1-guide",
-    // Title + description reused VERBATIM from the TASK-504A signed metadata
-    // (src/app/madrichim/yogurt-glp1/page.tsx) — not newly authored.
+    // OWNER 2026-07-10: yogurt guide pulled from live — grey building card, no
+    // link (route page removed in the same commit). Title + subtext reused
+    // VERBATIM from the TASK-504A signed metadata — not newly authored.
     title: "יוגורט עתיר חלבון: מדריך לבחירה",
-    status: "live",
-    href: "/madrichim/yogurt-glp1",
-    countLabel: "78 מוצרים נבדקו",
-    description:
+    status: "building",
+    comingSoonSubtext:
       "מדריך לבחירת יוגורט עתיר חלבון מתוך המדף הישראלי, ממוין לפי חלבון, נתרן וסוכר, מבוסס על הציונים שכבר פורסמו בהשוואת היוגורט.",
     accent: "#6E9C88",
-    ctaLabel: "מדריך קנייה",
   },
 ];
