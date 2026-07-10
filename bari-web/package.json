@@ -13,11 +13,13 @@
     "test:perf": "playwright test e2e/perf.spec.ts --project=mobile",
     "test:visual": "playwright test e2e/visual.spec.ts",
     "vision": "playwright test e2e/vision-probe.spec.ts",
+    "vision-in": "node scripts/vision-in.mjs",
     "test:e2e:all": "playwright test",
     "analyze": "next experimental-analyze",
     "lhci": "lhci autorun"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-auto-scroll": "^8.6.0",
