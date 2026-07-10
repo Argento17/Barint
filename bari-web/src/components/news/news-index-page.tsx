@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft } from "lucide-react";
 
@@ -103,7 +104,17 @@ export function NewsIndexPage() {
       <BlogEditorialBackdrop />
 
       <HomeContainer className="relative py-12 md:py-16 lg:py-20">
-        <header className="border-b border-black/[0.06] pb-10 md:pb-12">
+        <header className="relative border-b border-black/[0.06] pb-10 md:pb-12">
+          {/* OLI as news reporter, top-left of the header (RTL: opposite the text block).
+              Decorative — same idiom as the homepage LUMO (home-guides.tsx). */}
+          <Image
+            src="/mascots/mascot-oli-news-reporter.webp"
+            alt=""
+            width={800}
+            height={800}
+            aria-hidden
+            className="pointer-events-none absolute left-0 top-0 hidden w-40 lg:block xl:w-48"
+          />
           <div className="max-w-3xl">
             <p className="font-mono text-[0.68rem] font-bold uppercase tracking-[0.32em] text-[#167A58]">
               {newsIndex.eyebrow}

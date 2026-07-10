@@ -15,6 +15,9 @@ export interface HashvaotCategory {
   comingSoonSubtext?: string;
   accent: string;
   heroStat?: { value: string; label: string };
+  /** Live-card CTA label override. Absent → "לכל ההשוואות" (hashvaot default).
+   *  The madrichim hub sets "מדריך קנייה" — reused verbatim from the live blog CTAs. */
+  ctaLabel?: string;
 }
 
 // DRAFT — pending Content + QA sign-off

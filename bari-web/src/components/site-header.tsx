@@ -21,7 +21,7 @@ const navLinks = [
   { label: "השוואות", href: "/hashvaot" },
   { label: "קטלוג", href: "/catalog" },
   { label: "בלוג", href: "/blog" },
-  { label: "מדריכים", href: "/#guides" },
+  { label: "מדריכים", href: "/madrichim" },
   { label: "חדשות", href: "/news" },
 ] as const;
 

@@ -95,7 +95,7 @@ function LiveCard({ category }: { category: HashvaotCategory }) {
         )}
         style={{ backgroundColor: category.accent }}
       >
-        לכל ההשוואות
+        {category.ctaLabel ?? "לכל ההשוואות"}
         <ChevronLeft className="size-4 stroke-[2.5]" aria-hidden />
       </span>
     </Link>

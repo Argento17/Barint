@@ -582,3 +582,9 @@ export interface InventorySummaryVM {
   gradeDistribution: Record<BariGrade, number> & { unscored: number };
   _meta?: { warning?: string };
 }
+
+// ─── Supplement Guides (TASK-504) ───────────────────────────────────────────────
+// A deliberately separate contract from BariProductVM — see ./guide.ts header comment.
+// Re-exported here so canonical guide components read every guide type via
+// `@/lib/view-models` only, same convention as the glass-box re-export above.
+export * from "./guide";
