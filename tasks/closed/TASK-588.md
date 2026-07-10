@@ -2,7 +2,14 @@
 id: TASK-588
 title: Catalog-registry alignment: register all live categories + CI parity gate
 owner: frontend-agent
-status: RETURNED
+status: CLOSED
+close_reason: >
+  Owner merged PR #107 (origin/master 841d0c83; e1b25d19 verified ancestor). Orchestrator verified
+  pre-merge: C0 PASS 17/17 sha256, parity 18/18 + tsc independently re-run, zero new Hebrew strings
+  (all nameHe = references to signed-off hero eyebrow exports; cakes metadata byte-identical to
+  cakes/page.tsx). Post-merge spot-check on origin/master: registry index carries all category
+  definitions, validate-catalog-parity.mjs present, barint_ci step wired. /catalog now derives
+  18/18 live product-comparison categories; CI parity gate prevents future silent lag.
 priority: HIGH
 created_at: 2026-07-10
 depends_on: []

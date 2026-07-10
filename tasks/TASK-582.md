@@ -14,4 +14,9 @@ summary: >
 
 # TASK-582 — BSIP0 Shufersal acquisition script 404s on every request (stale URL template)
 
-<!-- opened with new_task.py; fill in context / scope / the deliverable -->
+## Routing record (orchestrator, 2026-07-10)
+Capability = BUILD-LIGHT. Primary (Codex gpt-5.6-terra) NOT dispatched — structural precondition
+failure: the exit criterion requires live HTTP canaries against Shufersal, and `codex exec` runs
+sandboxed without network. Fallback activated per Layer-0 invariant 6: owning Data Agent
+(claude-sonnet-5, explicit pin), trigger = "sandbox-network precondition (live canary unreachable
+from Codex sandbox)".
