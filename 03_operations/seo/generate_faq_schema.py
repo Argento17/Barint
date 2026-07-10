@@ -31,8 +31,34 @@ def load_products_sorted(data: dict) -> list[dict]:
     return sorted(products, key=lambda p: p.get("score", 0), reverse=True)
 
 
+def frontend_grade(product: dict) -> str:
+    """The grade the PAGE actually shows.
+
+    The engine emits a 6-grade scale (S >= 90), but the frozen ScoreChip has no S slot:
+    the frontend folds S into A (see bari-web/src/lib/comparisons/corpus.ts
+    frontendGradeFromScore / normalizeGrade). FAQ JSON-LD must agree with the rendered
+    chips, and copy law is explicit that copy never writes "S" -- emitting the raw engine
+    grade here leaked "ציון S" into live structured data while the chip beside it read "A",
+    and made the A-list undercount (S products were omitted).
+    """
+    if product.get("_aCappedToB"):
+        return "B"
+    score = product.get("score")
+    if not isinstance(score, (int, float)):
+        return product.get("grade", "")
+    if score >= 80:
+        return "A"
+    if score >= 65:
+        return "B"
+    if score >= 50:
+        return "C"
+    if score >= 35:
+        return "D"
+    return "E"
+
+
 def grade_a_products(products: list[dict]) -> list[dict]:
-    return [p for p in products if p.get("grade") == "A"]
+    return [p for p in products if frontend_grade(p) == "A"]
 
 
 def best_text(product: dict) -> str:
@@ -47,7 +73,7 @@ def build_faq_entries(products: list[dict], category_he: str) -> list[dict]:
     top = products[0]
     top_name = top.get("name", "")
     top_score = top.get("score", 0)
-    top_grade = top.get("grade", "")
+    top_grade = frontend_grade(top)
     top_insight = best_text(top)
 
     # Q1 — best product
@@ -61,19 +87,29 @@ def build_faq_entries(products: list[dict], category_he: str) -> list[dict]:
     })
 
     # Q2 — A-grade list (skip if none)
+    # The count and the enumeration must agree. The old code named a_products[:8] while
+    # stating len(a_products), so any category with >8 A-products emitted self-contradicting
+    # structured data ("9 מוצרים קיבלו ציון A:" followed by 8 names). Name them all when the
+    # set is small enough to read; above the cap, say "ביניהם" (among them) so the sentence
+    # stays true rather than implying the list is exhaustive.
+    A_LIST_CAP = 12
     a_products = grade_a_products(products)
     if a_products:
-        names = [p["name"] for p in a_products[:8]]
+        shown = a_products[:A_LIST_CAP]
+        names = [p["name"] for p in shown]
         if len(names) == 1:
             names_str = names[0]
         else:
-            names_str = "، ".join(names[:-1]) + " ו-" + names[-1]
+            names_str = ", ".join(names[:-1]) + " ו-" + names[-1]
+        truncated = len(a_products) > len(names)
+        lead = f"{len(a_products)} מוצרים קיבלו ציון A"
+        body = f"{lead}, ביניהם: {names_str}." if truncated else f"{lead}: {names_str}."
         entries.append({
             "@type": "Question",
             "name": f"אילו מוצרי {category_he} מקבלים ציון A מבארי?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": f"{len(a_products)} מוצרים קיבלו ציון A: {names_str}.",
+                "text": body,
             },
         })
 

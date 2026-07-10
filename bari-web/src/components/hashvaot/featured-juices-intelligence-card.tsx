@@ -63,7 +63,7 @@ export function FeaturedJuicesIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(juicesCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#E8A020", photo: "/hashvaot/themes/juices.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/juices.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>

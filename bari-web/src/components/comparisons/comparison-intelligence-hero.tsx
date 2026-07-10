@@ -72,7 +72,9 @@ export function ComparisonIntelligenceHero({
     <div
       className={cn(
         "relative overflow-hidden rounded-2xl",
-        "min-h-[22rem]",
+        // h-full: hub cards are grid items (stretch); without this a short-content card
+        // (e.g. yogurt) renders at min-h while its taller row-mate defines the row.
+        "h-full min-h-[22rem]",
         "border border-[rgba(17,19,24,0.09)] bg-white shadow-[0_1px_2px_rgba(17,19,24,0.05)]",
         className
       )}

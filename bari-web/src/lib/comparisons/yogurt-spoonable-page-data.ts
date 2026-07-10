@@ -11,17 +11,21 @@ import {
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
 import type { BariConfidence, BariProductVM } from "@/lib/view-models";
 
-// TASK-515B: spoonable-yogurt frontend wiring. Source: yogurt_spoonable_FINAL_v2.json
-// (sha256 83590cb7a5a288d2e60ea466dcfc51aef163c52268761c5d1e501a77abcaf447) — 78 products,
+// TASK-515B: spoonable-yogurt frontend wiring. Source (imported): yogurt_spoonable_frontend_v1.json
+// (sha256 c258f492e6fad3715d1f416fc792c19a6e8b351a158b545412789e7873bf00e8) — 52 products,
 // copy two-gate-signed (Content + Adversarial QA), run_gates PASS (G2/G3/G5 WARN-only —
-// image coverage 74/78 and no --run trace dir to cross-check scores, not blockers).
+// image coverage not a blocker; see current corpus JSON _meta for the live figure).
 // Mirrors yogurt-drinks-page-data.ts (same category system, same page_copy shape).
 //
-// Grades: this corpus carries 2 "S" products (92.6, 90.6) alongside A/B/C/D (no E).
-// loadComparisonCorpus's normalizeGrade already folds the engine's 6-grade S≥90 into "A"
-// (the frozen ScoreChip has no S slot — see corpus.ts frontendGradeFromScore) — both S
-// products recompute to "A" here, which is correct, not a bug: neither product's copy
-// mentions the letter S, so there is no copy/chip mismatch.
+// TASK-546 (2026-07-09): corpus culled of near-duplicates, 78 -> 52 survivors, scores/
+// grades unchanged (0 drift); brand field populated (green chip); all cross-referencing
+// copy removed + superlatives recomputed on the 52-set. sha256 above refreshed post-cull.
+//
+// Grades on the current 50-product corpus: S:2 A:7 B:21 C:10 D:9 E:1, score range
+// 34.3-92.6. loadComparisonCorpus's normalizeGrade already folds the engine's 6-grade
+// S>=90 into "A" (the frozen ScoreChip has no S slot — see corpus.ts
+// frontendGradeFromScore) — both S products recompute to "A" here, which is correct, not
+// a bug: neither product's copy mentions the letter S, so there is no copy/chip mismatch.
 //
 // Unit basis: every product's expansion.servingNote reads "ל-100 גרם" — per 100g, same
 // basis as yogurt-drinks (NOT per 100ml like milk/juices).
@@ -97,7 +101,7 @@ export const yogurtSpoonableCategoryNote: string = _pageCopy.caveat.notes
 export const yogurtSpoonableComparisonMetadata: Metadata = {
   title: "השוואת יוגורטים לאכילה בכפית | Bari",
   description:
-    'השוואת 78 יוגורטים לאכילה בכפית מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
+    'השוואת 50 יוגורטים לאכילה בכפית מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
 };
 
 // No shelf filters for this category (page_copy carries no shelf_lens_options, and the

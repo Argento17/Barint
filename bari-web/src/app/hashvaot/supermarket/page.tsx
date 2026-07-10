@@ -16,6 +16,8 @@ import { FeaturedBrinedCheesesIntelligenceCard } from "@/components/hashvaot/fea
 import { FeaturedCakesHardCookiesIntelligenceCard } from "@/components/hashvaot/featured-cakes-hard-cookies-intelligence-card";
 import { FeaturedCookiesCoffeeIntelligenceCard } from "@/components/hashvaot/featured-cookies-coffee-intelligence-card";
 import { FeaturedCrackersIntelligenceCard } from "@/components/hashvaot/featured-crackers-intelligence-card";
+import { FeaturedYogurtIntelligenceCard } from "@/components/hashvaot/featured-yogurt-intelligence-card";
+import { FeaturedYogurtDrinksIntelligenceCard } from "@/components/hashvaot/featured-yogurt-drinks-intelligence-card";
 import {
   HashvaotComparisonCardGrid,
 } from "@/components/hashvaot/hashvaot-group-section";
@@ -38,6 +40,14 @@ import { brinedCheesesProducts, brinedCheesesPrologueSentences } from "@/lib/com
 import { cakesHardCookiesProducts } from "@/lib/comparisons/cakes-hard-cookies-page-data";
 import { cookiesCoffeeProducts } from "@/lib/comparisons/cookies-coffee-page-data";
 import { crackersProducts } from "@/lib/comparisons/crackers-page-data";
+import {
+  yogurtSpoonableProducts,
+  yogurtSpoonablePrologueSentences,
+} from "@/lib/comparisons/yogurt-spoonable-page-data";
+import {
+  yogurtDrinksProducts,
+  yogurtDrinksPrologueSentences,
+} from "@/lib/comparisons/yogurt-drinks-page-data";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -59,6 +69,8 @@ const BRINED_CHEESES_COMPARISON_HREF = "/hashvaot/brined-cheeses";
 const CAKES_COMPARISON_HREF = "/hashvaot/cakes";
 const COOKIES_COFFEE_COMPARISON_HREF = "/hashvaot/cookies-coffee";
 const CRACKERS_COMPARISON_HREF = "/hashvaot/crackers";
+const YOGURT_COMPARISON_HREF = "/hashvaot/yogurt";
+const YOGURT_DRINKS_COMPARISON_HREF = "/hashvaot/yogurt-drinks";
 
 export default function SupermarketCategoryPage() {
   const cerealsDescription = `רוב דגני הבוקר במדף נושאים תווית «דגנים מלאים» — אבל לא כולם מצדיקים אותה. בדקנו ${cerealsProducts.length} מוצרים: אף אחד לא הגיע ל-A, הציון הגבוה ביותר הוא 75/B, וחמישה מוצרים מיועדים לילדים. גרנולה ומוזלי הופרדו לקטגוריה משלהם.`;
@@ -84,6 +96,8 @@ export default function SupermarketCategoryPage() {
   const crackersBGrade = crackersProducts.filter((p) => p.grade === "B").length;
   const crackersTop = crackersProducts.find((p) => p.rank === 1);
   const crackersDescription = `בדקנו ${crackersProducts.length} קרקרים מהמדף הישראלי: ${crackersAGrade} הגיע ל-A ו-${crackersBGrade} קיבלו B. ${crackersTop ? `${crackersTop.name} מוביל את הדף` : "המוביל בדף"} — קטגוריה נפרדת מלחם, כי בקרקר היבש הקלוריות ל-100 גרם גבוהות מטבעו.`;
+  const yogurtSpoonableDescription = `${yogurtSpoonablePrologueSentences[0]} ${yogurtSpoonableProducts.length} מוצרים בדף ההשוואה.`;
+  const yogurtDrinksDescription = `${yogurtDrinksPrologueSentences[0]} ${yogurtDrinksProducts.length} מוצרים בדף ההשוואה.`;
 
   return (
     <HashvaotCategoryLanding
@@ -122,6 +136,14 @@ export default function SupermarketCategoryPage() {
         <FeaturedBrinedCheesesIntelligenceCard
           href={BRINED_CHEESES_COMPARISON_HREF}
           description={brinedCheesesDescription}
+        />
+        <FeaturedYogurtIntelligenceCard
+          href={YOGURT_COMPARISON_HREF}
+          description={yogurtSpoonableDescription}
+        />
+        <FeaturedYogurtDrinksIntelligenceCard
+          href={YOGURT_DRINKS_COMPARISON_HREF}
+          description={yogurtDrinksDescription}
         />
         <FeaturedCookiesCoffeeIntelligenceCard
           href={COOKIES_COFFEE_COMPARISON_HREF}

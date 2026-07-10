@@ -52,7 +52,7 @@ export function FeaturedBreadIntelligenceCardLite({ href, description }: Props) 
           { value: breadComparisonPairs.length, label: "זוגות השוואה" },
         ]}
         asLinkChild
-        theme={{ accent: "#B0823C", photo: "/hashvaot/themes/bread.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/bread.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>

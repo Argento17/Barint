@@ -71,3 +71,42 @@ Cloud CLIs (Grok, Cursor, Gemini) bulk-upload the repo and run `git stash -u` on
 | `brined-cheeses.jpg` | Unsplash | 900×600 | ~96 KB (98,014 bytes) |
 | `cakes-hard-cookies.jpg` | Unsplash | 900×600 | ~86 KB (87,667 bytes) |
 | `cookies-coffee.jpg` | Unsplash | 900×600 | ~58 KB (59,615 bytes) |
+
+## Files added 2026-07-09
+
+| File | Source | Dimensions | Size |
+|---|---|---|---|
+| `yogurt-drinks.jpg` | Unsplash `photo-1650265929240`, **hand-cropped** (see below) | 900×600 | ~52 KB (53,712 bytes) |
+
+`yogurt.jpg` (strawberry jars) had been shared by BOTH yogurt cards. Owner ruling 2026-07-09:
+the strawberry jars read as **dense/spoonable** yogurt, so `yogurt.jpg` stays on the spoonable
+card (`/hashvaot/yogurt`), and the **drinks** card is the one that needed a distinct photo —
+now `yogurt-drinks.jpg` (a drinkable yogurt in a glass, matching "משקאות יוגורט לשתייה").
+
+### Cropping matters more than you'd think — two traps hit here
+
+1. **The card shows only the horizontal CENTRE ~56% of the file.** `ComparisonIntelligenceHero`
+   paints the photo into a portrait box (`w-[60%]`, `background-size: cover`, `position: center`).
+   For a 900×600 file that means **only x ∈ [198, 702] is ever visible.** Put the subject there or
+   it will be cropped away. The source's straight 3:2 auto-crop put the glass off-centre and the
+   card rendered the background plate instead.
+2. **The photo sits behind a light gradient at `opacity: 0.62`, so low-contrast images wash out
+   to nothing.** A white drink on white linen rendered as a near-blank card. Match the profile of
+   a theme that reads well — measure the visible band, don't eyeball the whole file:
+
+   | | contrast (L stddev) | luminance | saturation |
+   |---|---|---|---|
+   | `yogurt.jpg` (reads well) | 49.8 | 201 | 42 |
+   | first drinks crop (washed out) | 33.9 | 199 | 39 |
+   | shipped `yogurt-drinks.jpg` | 48.9 | 178 | 54 |
+
+   Rule of thumb: **visible-band contrast ≥ 45 and luminance ≥ 165.** The shipped crop centres the
+   glass and pulls the kiwi in as a colour anchor. The source's bright-yellow backdrop was cropped
+   out entirely (all other themes are neutral linen/marble/stone).
+
+Candidates rejected during sourcing, as a record of the prohibitions in action: one had visible
+branded packaging + text (hard prohibition); one had granola as the dominant subject (granola is
+its own category card); one was a dark moody fermentation jar (off-style — all themes are light,
+and a jar is not a drink); one showed bottles on a blue cloth outdoors (not editorial). Five
+further candidates passed the contrast screen but were all **dark** (luminance 91–128) and would
+have clashed with the light card family.

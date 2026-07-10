@@ -57,7 +57,7 @@ export function FeaturedChocolateBarsIntelligenceCard({ href, description }: Pro
         ]}
         updatedLabel={formatComparisonUpdatedLine(chocolateBarsCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#3D2314", photo: "/hashvaot/themes/chocolate-bars.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/chocolate-bars.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>

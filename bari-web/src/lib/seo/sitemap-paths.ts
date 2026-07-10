@@ -20,6 +20,8 @@ export const ALL_INDEXABLE_PATHS = [
   "/hashvaot/milk-comparison",
   "/hashvaot/protein-bars",
   "/hashvaot/snacks",
+  "/hashvaot/yogurt",
+  "/hashvaot/yogurt-drinks",
   "/blog",
   "/blog/bread-analysis",
   "/blog/milk-analysis",

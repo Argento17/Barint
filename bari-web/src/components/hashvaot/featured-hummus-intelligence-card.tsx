@@ -72,7 +72,7 @@ export function FeaturedHummusIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(hummusCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#BF9540", photo: "/hashvaot/themes/hummus.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/hummus.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>

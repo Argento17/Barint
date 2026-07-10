@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת יוגורטים לאכילה בכפית | Bari",
   description:
-    'השוואת 78 יוגורטים לאכילה בכפית מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
+    'השוואת 50 יוגורטים לאכילה בכפית מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
 };
 
 export default async function YogurtSpoonableComparisonRoute({

@@ -11,18 +11,26 @@ import {
 import type { ComparisonCategoryPageData } from "@/lib/comparisons/registry/types";
 import type { BariConfidence, BariProductVM } from "@/lib/view-models";
 
-// TASK-515A FINAL: drinkable-yogurt frontend wiring. Source: yogurt_drinkable_FINAL_v3.json
-// (sha256 ba5f7a10dbc626c61dcc916ce2d444cca6254812c1d0303e41ba8b4b6bb21ea5) — 20 products
-// (23-product FINAL_v2 corpus minus 3 exclusions: dedup-drop 6664655 + 2 missing-data
-// discards, see _meta.exclusions in the frontend JSON), copy two-gate-signed
+// TASK-515A FINAL: drinkable-yogurt frontend wiring. Source (imported): yogurt_drinkable_frontend_v1.json
+// (sha256 8cabc608e7c534e914d790e43de4f07759793b7897242ef5a0478c9bf332517d) — 15 products
+// (TASK-546 2026-07-09: 20 -> 15 after near-duplicate cull, 0 score/grade drift; brand
+// populated, cross-referencing copy removed, caveat recomputed on the 15-set), two-gate-signed
 // (Content + Adversarial QA), run_gates + validate_comparison_page both PASS. Includes
 // the first live E-grade product on any Bari shelf (barcode 55329). The product shape is
 // already near-identical to BariProductVM (camelCase nutrition,
 // expansion.consumerExplanation, bariInterpretation v2 shape) so this loader stays thin:
 // loadComparisonCorpus handles the generic pass-through + grade recompute (verified a
-// no-op for this corpus — recomputed grade matches the signed grade on all 20 products),
-// and this file only fixes the one real mismatch (confidence vocabulary) plus adds the
-// display-only metric column.
+// no-op for this corpus — recomputed grade matches the signed grade on all surviving
+// products), and this file only fixes the one real mismatch (confidence vocabulary) plus
+// adds the display-only metric column.
+//
+// TASK-551 (2026-07-09): +2 Actimel relocated from spoonable (retailer category
+// משקאות-יוגורט; re-scored under drinkable config = identical grade, both D). 15 -> 17.
+// TASK-546 (2026-07-08): corpus culled of near-duplicates, 20 -> 15 survivors, scores/
+// grades unchanged (0 drift) — see the JSON's own _meta.exclusions/generated for the
+// current snapshot; this file's provenance comment (sha256 line above) still describes
+// the pre-cull 20-product hash and is refreshed separately once the sha256 is recomputed.
+// Grades on the current 17-product corpus: B:5 C:8 D:4, score range 35.2-77.2.
 //
 // Unit basis: every product's expansion.servingNote reads "ל-100 גרם" — this corpus is
 // measured per 100g, NOT per 100ml like milk/juices (see yogurt-drinks-comparison-page.tsx
@@ -32,7 +40,7 @@ export type YogurtDrinksCorpusMeta = ComparisonCorpusMeta;
 
 /**
  * Backend confidence values on this corpus are "full" | "partial" (never "insufficient" —
- * all 20 products carry usable nutrition/ingredient data). "full" maps to the VM's
+ * all 15 products carry usable nutrition/ingredient data). "full" maps to the VM's
  * "verified" state per the view-models language boundary (see the BariConfidence comment
  * in @/lib/view-models). Anything unrecognised degrades to "insufficient" rather than
  * silently letting an invalid string reach the confidence-driven UI (ConfidenceRing /
@@ -99,7 +107,7 @@ export const yogurtDrinksCategoryNote: string = _pageCopy.caveat.notes
 export const yogurtDrinksComparisonMetadata: Metadata = {
   title: "השוואת משקאות יוגורט | Bari",
   description:
-    'השוואת 20 משקאות יוגורט מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
+    'השוואת 17 משקאות יוגורט מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
 };
 
 // No shelf filters for this category (page_copy carries no shelf_lens_options, and the

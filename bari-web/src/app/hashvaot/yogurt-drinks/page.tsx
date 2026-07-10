@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "השוואת משקאות יוגורט | Bari",
   description:
-    'השוואת 20 משקאות יוגורט מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
+    'השוואת 17 משקאות יוגורט מהמדף הישראלי — ציון Bari, חלבון וסוכר ל-100 גרם, רכיבים ותוספים. מידע, לא המלצה.',
 };
 
 export default async function YogurtDrinksComparisonRoute({

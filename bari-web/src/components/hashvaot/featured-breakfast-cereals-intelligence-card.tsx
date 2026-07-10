@@ -43,7 +43,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
       href={href}
       className={cn(
         "group/card block transition-[transform] duration-500 ease-out hover:-translate-y-[3px] motion-reduce:transition-none motion-reduce:hover:translate-y-0",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7A8C5E]"
+        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1F8F6A]"
       )}
     >
       <ComparisonIntelligenceHero
@@ -59,7 +59,7 @@ export function FeaturedBreakfastCerealsIntelligenceCard({ href, description }: 
         ]}
         updatedLabel={formatComparisonUpdatedLine(cerealsCorpusMeta.generated)}
         asLinkChild
-        theme={{ photo: "/hashvaot/themes/breakfast-cereals.jpg", accent: "#7A8C5E" }}
+        theme={{ photo: "/hashvaot/themes/breakfast-cereals.jpg", accent: "#1F8F6A" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>

@@ -65,7 +65,8 @@ export function FeaturedCookiesCoffeeIntelligenceCard({ href, description }: Pro
         updatedLabel={formatComparisonUpdatedLine(cookiesCoffeeCorpusMeta.generated)}
         asLinkChild
         theme={{
-          accent: "#C4975A",
+          // green accent stripe, site-wide (owner ruling 2026-07-09): no brown accents
+          accent: "#1F8F6A",
           photo: "/hashvaot/themes/cookies-coffee.jpg",
         }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"

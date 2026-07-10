@@ -637,13 +637,25 @@ def gate_coverage(frontend, corpus):
                 g.fail(f"v3 consumerTakeaway: {ct_pending}/{n} products still PENDING_COPY")
 
             # expansion.consumerExplanation.whyRated
+            # A field that is ABSENT is not "pending" — it means this page does not render
+            # the deep-dive block at all (the golden/assessment shape: see brined-cheeses,
+            # crackers, yogurt). Only a literal PENDING_COPY placeholder is a failure, which
+            # is the semantics consumerTakeaway and bariInterpretation already use. Counting
+            # absence as pending made this gate fail on already-shipped pages (crackers).
+            def _ce(p):
+                ce = (p.get("expansion") or {}).get("consumerExplanation")
+                return ce if isinstance(ce, dict) else None
+
+            ce_wr_pending = sum(1 for p in products if _ce(p) and _ce(p).get("whyRated") == pending)
             ce_wr_count = sum(
                 1 for p in products
-                if isinstance(p.get("expansion", {}).get("consumerExplanation"), dict)
-                and p["expansion"]["consumerExplanation"].get("whyRated", pending) != pending
+                if _ce(p) and _ce(p).get("whyRated") not in (None, "", pending)
             )
-            ce_wr_pending = n - ce_wr_count
-            g.info(f"v3 consumerExplanation.whyRated: {ce_wr_count}/{n} authored ({ce_wr_pending} PENDING)")
+            ce_wr_absent = n - ce_wr_count - ce_wr_pending
+            g.info(
+                f"v3 consumerExplanation.whyRated: {ce_wr_count}/{n} authored "
+                f"({ce_wr_pending} PENDING, {ce_wr_absent} not used by this page)"
+            )
             if ce_wr_pending > 0:
                 g.fail(f"v3 consumerExplanation.whyRated: {ce_wr_pending}/{n} products still PENDING_COPY")
 
@@ -660,15 +672,24 @@ def gate_coverage(frontend, corpus):
             if bi_pending_total > 0:
                 g.fail(f"v3 bariInterpretation.interpretation: {bi_pending_total}/{bi_total} entries still PENDING_COPY")
 
-            # bestUseCases
+            # bestUseCases — same rule: an empty/absent list means the page does not render
+            # the use-case tag row; only a literal PENDING_COPY tag is a failure.
+            buc_pending = sum(
+                1 for p in products
+                if isinstance(p.get("bestUseCases"), list)
+                and any(v == pending for v in p["bestUseCases"])
+            )
             buc_count = sum(
                 1 for p in products
                 if isinstance(p.get("bestUseCases"), list)
-                and len(p.get("bestUseCases", [])) > 0
-                and not any(v == pending for v in p.get("bestUseCases", []))
+                and len(p["bestUseCases"]) > 0
+                and not any(v == pending for v in p["bestUseCases"])
             )
-            buc_pending = n - buc_count
-            g.info(f"v3 bestUseCases: {buc_count}/{n} authored ({buc_pending} PENDING)")
+            buc_absent = n - buc_count - buc_pending
+            g.info(
+                f"v3 bestUseCases: {buc_count}/{n} authored "
+                f"({buc_pending} PENDING, {buc_absent} not used by this page)"
+            )
             if buc_pending > 0:
                 g.fail(f"v3 bestUseCases: {buc_pending}/{n} products still PENDING_COPY")
     else:

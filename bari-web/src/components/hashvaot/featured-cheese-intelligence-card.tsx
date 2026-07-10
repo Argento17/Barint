@@ -61,7 +61,7 @@ export function FeaturedCheeseIntelligenceCard({ href, description }: Props) {
         ]}
         updatedLabel={formatComparisonUpdatedLine(cheeseCorpusMeta.generated)}
         asLinkChild
-        theme={{ accent: "#D8CBB0", photo: "/hashvaot/themes/cheese.jpg" }}
+        theme={{ accent: "#1F8F6A", photo: "/hashvaot/themes/cheese.jpg" }}
         className="group-hover/card:shadow-[0_22px_48px_-28px_rgba(17,19,24,0.3)]"
       />
     </Link>
