@@ -245,3 +245,60 @@ em-dash spike does NOT. All 4 copy test suites green. Scan verified deterministi
 
 **This does not fix a single row of copy.** It stops the corpus getting worse while the
 sweep makes it better. Landing it is owner-gated because --check will block merges.
+
+---
+
+## ADVERSARIAL QA SIGN-OFF on the 19 drafts (2026-07-10) — PASS WITH FIXES
+
+The required second gate. QA re-derived every claim against source; did not trust the
+orchestrator spot-check.
+- CRITICAL objective MET: 19 "before" carried 35 hard-violation kinds; 19 "after" carry 0.
+  Zero fabrications. Every number and rank/superlative re-verified against the full shelf.
+- Grammar CLOSED (not a caveat): DictaBERT ran (package import per the http-shadow fix);
+  7 is_clean=False flags all adjudicated FALSE POSITIVES (smichut head-attachment + ktiv-male).
+- 6 disclosed roundings all honest; none changes a shopper conclusion.
+
+BLOCKING — RT-1 (HIGH): 4/6 hard-cheese drafts repeat the SODIUM figure across
+insightLine+rowVerdict (660/680/880/490). find_cross_field_value_repetition reported CLEAN
+because the drafts spell "מיליגרם" and the detector matched only גרם/מ"ג/מג — DETECTOR-BLIND,
+same failure class as the whole program.
+  → FIXED by orchestrator (commit 4195923b): NUTRITION_VALUE_RE now catches מיליגרם;
+    per-100g framing excluded; tests added; baseline regen 1002→974. Detector now flags all 4.
+  → COPY fix routed to Content (below). QA also flagged the drafts' rules_fixed note falsely
+    claimed "cross_field_value_repetition_avoided."
+MEDIUM: RT-2 "פחות משמעותית / הגרסה הקשה" (7296073735151) unidiomatic+imprecise; RT-3 two
+rowVerdicts trip number_density advisory; RT-4 "במקום סוכר לבן" define-by-negation-adjacent;
+RT-5 acceptable (sourced).
+Interpretation caveat (owner/Product call): if insightLine (collapsed row) and rowVerdict never
+co-render, RT-1 de-escalates to MEDIUM. Safe position taken: fix it regardless (cheap, can't be wrong).
+Report: scratchpad/datastate_signoff.md
+
+## Dispatched: Content fix round → datastate_rewrite_drafts_v2.json (RT-1 required, RT-2/4 addressed)
+
+---
+
+## BOTH GATES CLEARED — v2 SIGN-OFF: PASS (2026-07-10)
+
+Content v2 fixed all 5 QA findings; Adversarial QA re-verified the 8 changed strings.
+- RT-1 resolved: cross_field_value_repetition = 0/10 products (sharpened detector). Sodium
+  deduped, not dropped — each value appears exactly once.
+- 0 fabrications; 4 cross-refs re-derived independently (29g triangular grana fat, 34% spelt
+  ingredient, 28%-fat cheeses exist, block≡sliced byte-identical nutrition). 880 = sodium rank #1.
+- 0 deterministic-rule failures on the 8 changed strings; readability 8/8 clean.
+- Grammar: 6 flags / 2 fields, ALL confirmed smichut/ktiv-male false positives. (QA corrected
+  Content's undercount of "2 flags" — actual 6; non-blocking reporting-accuracy note to content.)
+- Both required sign-offs now on record (Content + Adversarial QA) per the two-gate HARD RULE.
+  This is the FIRST copy this program has taken cleanly through both gates.
+
+Orchestrator independently re-ran all detectors on v2: 0 on every rule, cross-field 0. Verified.
+
+## Owner review surface published
+Before/after Artifact (19 fields, grouped by product, removed data-state sentences highlighted):
+https://claude.ai/code/artifact/b5165faa-da04-47a5-a8dd-1c335fe86bab
+Built from datastate_rewrite_drafts_v2.json. NOTHING applied to live yet.
+
+## GATE TO GO LIVE (owner)
+1. Owner reads the rendered before/after and approves the copy.
+2. Owner lifts the PRODUCT DESCRIPTIONS FREEZE for this batch (still not lifted in writing).
+Then: apply 19 fields to the 2 live JSON on branch -> real-DOM render -> orchestrator reads
+rendered rows -> corpus gate --check (must stay green / lower) -> only then push (deploy = owner-gated).
