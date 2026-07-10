@@ -74,3 +74,37 @@ one lane defect that shipped green.**
 - **ROUTED:** C3 → TASK-589 (dispatch.py is router engineering, not an orchestrator hand-edit;
   BUILD-LIGHT, gpt-5.6-terra when dispatched).
 - Recurrence check: none of E1–E5 has appeared in a prior audit — no red flags.
+
+---
+
+# Addendum — continuation run ("merged. go on", same night)
+
+## Run header
+Owner: "merged. go on" + ruling "immediate lesson learned → expected in each task". Cycles: close
+TASK-588 → dispatch 582+589 → verify/close both → dispatch 590 (warm agent) → verify/close →
+register+dispatch 591 → verify/close. Disposition: 5 closes, 1 Speed-1 merge, 1 tripwire-1 owner
+digest item. Wall: owner decision (cereals fat discrepancies).
+
+## Lane ledger
+| # | lane | engine | what | tokens | wall | outcome |
+|---|------|--------|------|--------|------|---------|
+| 1 | BUILD-LIGHT | gpt-5.6-terra | TASK-589 telemetry fix | UNKNOWN (pre-fix telemetry, by definition) | ~19m | PASS 1st try |
+| 2 | fallback→Agent | sonnet | TASK-582 acquire fix | 161k+179k (incl. C0 rework resume) | ~10m+2.5m | PASS after 1 C0 bounce |
+| 3 | Agent (warm resume) | sonnet | TASK-590 shelf_watch fix | 245k | ~11m | PASS 1st try |
+| 4 | BUILD-LIGHT | gpt-5.6-terra | TASK-591 fat audit | UNKNOWN (local runner pre-port) | ~25m | PASS 1st try |
+| 5 | inline | fable-5 | verify ×5, merges, bookkeeping, 589 local port | UNTRACKED (~60k est) | — | done |
+
+## Error ledger (lag desc)
+| defect | origin | catch | lag | fix |
+|---|---|---|---|---|
+| E6 Speed-1 merge of locally-executed tooling left the LOCAL runner on old behavior | two-speed procedure design (today) | TASK-591's telemetry row (no duration/tokens) | 1 dispatch | local-port rule added to the policy memory; dispatch.py ported same cycle, selftests green |
+| E7 request-cap prose treated as soft (12 vs 3, then 4 vs 3) | spec authoring | agent disclosure ×2 | 0 (disclosed) | budgets-are-code rule in orchestrate.md step 3 |
+| E8 return contract missing self_check | agent authoring | C0 gate | 0 (gate) | none needed — the gate IS the control, it fired |
+| E9 orchestrator cwd stuck in test dir → 3 files misread as "missing" | inline verify | same cycle, before any action | ~3 min | discipline note; no file was touched on the false reading |
+
+## Consumption verdict
+Five closes with zero re-work on the build side (one C0 contract bounce, fixed in 2.5 minutes by
+resume — the warm-agent resume pattern also saved a full context rebuild on TASK-590). The audit's
+own machinery improved twice mid-run on its own findings (telemetry fix, then its local port when
+dogfooding exposed the divergence gap). Highest-ROI next: none pending — every defect this run has
+its codified fix applied; first run with zero open corrective actions.
