@@ -833,12 +833,18 @@ def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout
     cmd = [str(codex_exe), "exec", "-s", sandbox, "-C", str(cwd), "-m", model]
     if search:
         cmd += ["-c", "tools.web_search=true"]  # verified 2026-07-10; top-level --search does not exist on `exec`
-    cmd.append(prompt)
-    print(f"[codex] Invoking `codex exec` (sandbox={sandbox}, model={model}, cwd={cwd})...",
-          flush=True)
+    # Prompt goes via STDIN, never argv (fix 2026-07-10, first real BUILD-HEAVY dispatch):
+    # on Windows `codex` resolves through an npm .cmd shim, and cmd.exe batch argv cannot
+    # carry newlines — a multi-line 5-part spec silently truncated to its FIRST LINE and
+    # Codex (correctly) refused to act on a one-line spec. `codex exec -` reads the prompt
+    # from stdin, which preserves every byte.
+    cmd.append("-")
+    print(f"[codex] Invoking `codex exec` (sandbox={sandbox}, model={model}, cwd={cwd}, "
+          f"prompt via stdin)...", flush=True)
     try:
         proc = subprocess.run(cmd, cwd=str(cwd), capture_output=True, text=True,
-                               encoding="utf-8", errors="replace", timeout=timeout, shell=False)
+                               encoding="utf-8", errors="replace", timeout=timeout, shell=False,
+                               input=prompt)
     except subprocess.TimeoutExpired as e:
         partial = (e.stdout or "") if isinstance(e.stdout, str) else ""
         return 1, f"TIMEOUT after {timeout}s.\n{partial}"
