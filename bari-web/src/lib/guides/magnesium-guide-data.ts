@@ -48,8 +48,10 @@ import {
   type GuideGaugeGeometry,
   type GuideLadderGeometry,
   type GuideBarResult,
+  type GuideCardVisibleFacts,
   type GuidePageVM,
   type GuideProductVM,
+  type GuideV3Group,
 } from "@/lib/view-models";
 import { BAR_STATE_LABELS_HE } from "@/components/shared/bar-state-badge";
 import { tierIndexFromState } from "@/components/guides/threshold-bar-row";
@@ -515,6 +517,71 @@ const products: GuideProductVM[] = [
   }),
 ];
 
+// ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) — provisional group mapping ──
+// No `mag_guide_v3_structure_spec.md` existed at build time (checked
+// C:\Bari\02_products\supplements\magnesium\ — only the v2 copy package + nutrition
+// spec are present). Per the dispatch's own explicit fallback instruction, this
+// mapping applies the stated provisional rule as an ordered cascade (first match
+// wins), read off each product's ALREADY-COMPUTED bar states/form/dose above — it
+// invents no new fact about any product, only groups the existing ones:
+//   1. form is citrate or bisglycinate AND labelTransparency = pass (clean label) → g1
+//   2. otherwise, dose is known/verifiable (not the "לא ניתן לאימות" dose-unclear
+//      case) and the form is not pure oxide → g2 ("relatively low amount" is the
+//      dominant, form-independent finding for this remaining set)
+//   3. otherwise, form is pure oxide with a verifiable dose → g3
+//   4. otherwise (dose itself is not verifiable from the label at all,
+//      doseValueLabel === "לא ניתן לאימות") → g4
+// Result for the current 18-product corpus: g1=6 (#1,2,3,4,6,15), g2=5 (#5,7,8,9,10),
+// g3=4 (#11,12,13,14), g4=3 (#16,17,18) — 6+5+4+3=18, every product assigned exactly
+// once. This SUPERSEDES nothing about `bucket` (v2, still intact above) — `groupV3`
+// is a parallel, additive field. Expect this table to be replaced wholesale once
+// Nutrition's real v3 spec lands; the shape (one GuideV3Group per product) does not
+// change.
+const V3_GROUP_BY_BARCODE: Record<string, GuideV3Group> = {
+  "7290013464248": "g1", // 1 — Supherb Citrate+B6 (citrate, clean label)
+  "7290019444480": "g1", // 2 — Altman Bisglycinate (bisglycinate, clean label)
+  "7290011899967": "g1", // 3 — Altman Citrate 120 (citrate, clean label)
+  "7290018439043": "g1", // 4 — Nutricare WELL (bisglycinate, clean label)
+  "7290010207640": "g2", // 5 — NT L.C. Anti Leg Cramps (hydroxide, low dose)
+  "7290001943700": "g1", // 6 — Full-Mag Hadas (bisglycinate, clean label)
+  "7290015318532": "g2", // 7 — Tink Malate (malate, low dose)
+  "7290001066973": "g2", // 8 — Nutricare Malate (malate, low dose; extra label gap noted via classifierHe)
+  "0033984005181": "g2", // 9 — Solgar Ca+Mg+D3 (undisclosed oxide+citrate blend, low dose)
+  "7290018439579": "g2", // 10 — Nutricare Taurate (taurate, lowest verifiable dose)
+  "7290001065662": "g3", // 11 — Nutricare Oxide-520 (oxide, verifiable dose)
+  "7290017218564": "g3", // 12 — Altman Oxide-520 (oxide, verifiable dose)
+  "7290013142894": "g3", // 13 — Altman Magnesium UP (oxide, verifiable dose)
+  "7290019444206": "g3", // 14 — Altman Magnesium Balance (oxide, verifiable dose)
+  "7290001065594": "g1", // 15 — Nutricare Nano Liposomal (bisglycinate base, clean label)
+  "7290015318426": "g4", // 16 — Tink Oxide-520, no elemental/compound qualifier (dose unverifiable)
+  "7290015429245": "g4", // 17 — Amorphicure pH Magnesium (dose unverifiable)
+  "7290118816065": "g4", // 18 — TRIOMAG (dose AND form unresolved)
+};
+
+// Mechanical derivation only — never a second, independently-authored source of
+// truth for a fact already computed above (same discipline as `benchmarks` in
+// buildProduct). `whatMattersHe` is the one genuine COPY-SLOT-v3: the product's
+// existing oneLinerHe stands in for the real one-line "what matters" copy until the
+// v3 content package lands (see GuideCardVisibleFacts header comment in view-models).
+function visibleFactsV3For(product: GuideProductVM): GuideCardVisibleFacts {
+  const dose = product.benchmarks?.doseAdequacy;
+  const form = product.benchmarks?.formAbsorption;
+  return {
+    elementalDoseLabel:
+      dose?.value != null ? `${dose.valueLabel} מגנזיום יסודי` : (dose?.valueLabel ?? "לא ניתן לאימות"),
+    formLabel: form?.valueLabel ?? "לא ניתן לאמת",
+    // TASK-577 — genuine data gap, see GuideCardVisibleFacts header comment. Never
+    // fabricated: absent for all 18 products in this build.
+    servingsPerDayLabel: null,
+    whatMattersHe: product.oneLinerHe, // COPY-SLOT-v3
+  };
+}
+
+for (const product of products) {
+  product.groupV3 = V3_GROUP_BY_BARCODE[product.id] ?? null;
+  product.visibleFactsV3 = visibleFactsV3For(product);
+}
+
 // ─── Display suppression (rubric display_suppression_rule) — computed fresh from the
 // live `products` array above, never a hardcoded "hide these bars for magnesium" list
 // (rubric re_evaluated_per_build clause). For the current 18-product corpus this
@@ -723,4 +790,50 @@ export const magnesiumGuide: GuidePageVM = {
   // descriptive-group model instead of the retired flag-ladder vocabulary.
   buyLinkDisclosureLine: "קישור קנייה אינו משפיע על הכללה, על השיוך לקבוצה או על סדר ההצגה.",
   updatedLabel: "18 מוצרים · יולי 2026",
+
+  // ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) ──────────────────────────
+  // Owner-dictated readability restructure, 2026-07-10. Every string below is either
+  // (a) ported verbatim from the TASK-577 dispatch itself (the owner's own dictated
+  // text — the dispatch IS the gate-1-equivalent source for this structural build;
+  // final Hebrew still requires the real two-gate content package before this page
+  // can go live/indexed — see page.tsx's noindex status, unchanged by this task), or
+  // (b) the existing gate-2-approved v2 string, reused where the dispatch said to
+  // keep the v2 string temporarily. Nothing here is newly authored prose.
+  useV3Layout: true,
+
+  // Item 1 — the ONE intro sentence under the H1. OWNER-DICTATED, verbatim.
+  introSentenceHe:
+    "בדקנו 18 מוצרים מהמדף הישראלי. שלושה דברים חשובים במיוחד: כמות המגנזיום היסודי, הצורה הכימית ובהירות התווית.",
+
+  // Item 2 — "מה גילינו" box, 4 bullets. OWNER-DICTATED, verbatim (heading + all 4).
+  whatWeFoundHe: {
+    heading: "מה גילינו",
+    bullets: [
+      "מספר גדול על האריזה לא תמיד מייצג את כמות המגנזיום בפועל.",
+      "ציטראט הוא הצורה עם התמיכה הברורה ביותר מבין המוצרים שבדקנו.",
+      "מוצרים רבים מבוססים על אוקסיד, שנספג פחות.",
+      "בחלק מהמוצרים קשה להבין מהתווית כמה מגנזיום באמת מקבלים.",
+    ],
+  },
+
+  // Item 3 — the 4 v3 group section headers. OWNER-DICTATED, verbatim. Product
+  // MEMBERSHIP itself is on each product's own `groupV3` field (see the
+  // V3_GROUP_BY_BARCODE provisional mapping + its header comment above).
+  groupV3LabelsHe: {
+    g1: "ציטראט או ביסגליצינט עם תווית ברורה",
+    g2: "כמות נמוכה יחסית",
+    g3: "מבוססי אוקסיד",
+    g4: "לא ניתן להבין מהתווית",
+  },
+
+  // Item 5 — "איך לקרוא תווית מגנזיום", 3 bullets. OWNER-DICTATED, verbatim
+  // (heading + all 3).
+  howToReadLabelHe: {
+    heading: "איך לקרוא תווית מגנזיום",
+    bullets: [
+      'חפשו "מגנזיום יסודי", לא רק את משקל התרכובת.',
+      "בדקו את הצורה: ציטראט, ביסגליצינט, אוקסיד וכדומה.",
+      "בדקו כמה כמוסות נדרשות לקבלת הכמות הרשומה.",
+    ],
+  },
 };

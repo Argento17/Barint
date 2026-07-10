@@ -13,6 +13,7 @@
 import { GuideBuyingRule } from "@/components/guides/guide-buying-rule";
 import { GuideProductTable } from "@/components/guides/guide-product-table";
 import { GuideEducationSpine } from "@/components/guides/guide-education-spine";
+import { GuidePageTemplateV3 } from "@/components/guides/guide-page-template-v3";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import type { GuidePageVM } from "@/lib/view-models";
 
@@ -26,6 +27,13 @@ export function GuidePageTemplate({
    *  this skeleton since no real methodology copy exists yet. */
   methodologyLines?: string[];
 }) {
+  // TASK-577 (v3 STRUCTURAL rebuild) — opt-in branch. Every other guide (and
+  // magnesium itself, if this flag is ever reverted) renders through the unchanged
+  // v2 tree below.
+  if (guide.useV3Layout) {
+    return <GuidePageTemplateV3 guide={guide} methodologyLines={methodologyLines} />;
+  }
+
   return (
     <div
       className="bg-[#FCFCF9]"

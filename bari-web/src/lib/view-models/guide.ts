@@ -292,6 +292,18 @@ export interface GuideProductVM {
    * computed or paraphrased by the component.
    */
   classifierHe?: string | null;
+  /**
+   * TASK-577 (v3 restructure) — provisional group assignment for the v3 "immediately
+   * show products" section. See GuideV3Group header comment. null/absent on a guide
+   * that has not opted into `useV3Layout` (every guide except magnesium today).
+   */
+  groupV3?: GuideV3Group | null;
+  /**
+   * TASK-577 — the exactly-4-line always-visible card face. Required whenever the
+   * owning GuidePageVM sets `useV3Layout: true`; absent/undefined for every other
+   * guide (GuideProductRowV3 is never mounted for them).
+   */
+  visibleFactsV3?: GuideCardVisibleFacts;
 }
 
 // ─── Layer 1 — the buying rule (plan §3, item 1) ────────────────────────────────────
@@ -474,6 +486,123 @@ export interface GuidePageVM {
    * its empty-state caption").
    */
   groupCaptionsHe?: Partial<Record<GuideBucket, string>>;
+
+  // ── TASK-577 (v3 STRUCTURAL rebuild) ──────────────────────────────────────────────
+  // Purely additive, opt-in fields for the owner-dictated readability restructure.
+  // `useV3Layout: true` switches GuidePageTemplate to the new assembly (H1 + one
+  // intro sentence → "what we found" box → products immediately, 4 descriptive
+  // groups → "how to read the label" → collapsed education+sources → market-gaps
+  // box). Every field below is read ONLY on that branch; a guide that leaves this
+  // false/absent (every guide except magnesium today) is byte-identical to before.
+
+  /** Opt-in switch — see block header above. */
+  useV3Layout?: boolean;
+
+  /**
+   * ONE intro sentence under the H1 (v3 structure item 1). Owner-dictated verbatim —
+   * see magnesium-guide-data.ts for the exact string + provenance comment. Replaces
+   * `buyingRuleIntro` + the 4-card `buyingRule` grid entirely on the v3 branch (both
+   * fields stay present/unused on the VM for rollback, never read by the v3
+   * template).
+   */
+  introSentenceHe?: string | null;
+
+  /**
+   * "מה גילינו" box (v3 structure item 2) — heading + exactly 4 short findings.
+   * Owner-dictated verbatim, both heading and bullets.
+   */
+  whatWeFoundHe?: { heading: string; bullets: string[] } | null;
+
+  /**
+   * Section headers for the 4 v3 groups (GUIDE_V3_GROUP_ORDER), owner-dictated
+   * verbatim (v3 structure item 3): "ציטראט או ביסגליצינט עם תווית ברורה" /
+   * "כמות נמוכה יחסית" / "מבוססי אוקסיד" / "לא ניתן להבין מהתווית". No captions —
+   * the owner did not dictate a sub-caption per v3 group, so none is authored here.
+   */
+  groupV3LabelsHe?: Partial<Record<GuideV3Group, string>>;
+
+  /**
+   * "איך לקרוא תווית מגנזיום" section (v3 structure item 5) — heading + exactly 3
+   * bullets, after the products. Owner-dictated verbatim, both heading and bullets.
+   */
+  howToReadLabelHe?: { heading: string; bullets: string[] } | null;
+}
+
+// ─── TASK-577 (magnesium guide v3 STRUCTURAL rebuild) ──────────────────────────────
+// Owner-dictated readability restructure (2026-07-10): the live v2 page was ruled
+// unreadable (methodology-first, prose duplicating the cards, cards drowned in bars).
+// This block is purely ADDITIVE — every v2 field above is untouched and stays wired
+// for `GuidePageTemplate`'s existing branch; `GuidePageVM.useV3Layout` (below) is the
+// single opt-in switch a guide flips to render through the new structure instead.
+// Structure only — the Hebrew strings that ship through these fields are either (a)
+// the owner's own dictated text, ported verbatim (see magnesium-guide-data.ts for the
+// per-string provenance comment), or (b) the existing v2 string kept as a temporary
+// placeholder pending the real v3 copy package (marked `COPY-SLOT-v3` at the call
+// site) — this file authors none of it.
+
+/**
+ * TASK-577 — provisional per-product group for the v3 "immediately show products"
+ * section. Distinct from `GuideBucket` on purpose: v2's bucket model is a
+ * precedence-ranked pass/flag/fail/cannot-assess ladder; v3's owner-dictated grouping
+ * axis is different (citrate/bisglycinate-with-clean-label / relatively-low-dose /
+ * oxide-based / label-unclear) and does not map 1:1 onto the 4 bucket values. The
+ * mapping applied for the current 18-product corpus is PROVISIONAL (no
+ * `mag_guide_v3_structure_spec.md` existed at build time) — see the classification
+ * comment in magnesium-guide-data.ts. Expect this field's assignment to be
+ * recomputed once Nutrition's real spec lands; the type/shape itself does not change.
+ */
+export type GuideV3Group = "g1" | "g2" | "g3" | "g4";
+
+/** Display order: clean citrate/bisglycinate → lower dose → oxide-based → label-unclear
+ *  (owner-dictated order, magnesium guide v3 structure). */
+export const GUIDE_V3_GROUP_ORDER: readonly GuideV3Group[] = ["g1", "g2", "g3", "g4"] as const;
+
+/**
+ * TASK-577 — the ONE sanctioned toggle label for every v3 progressive-disclosure
+ * control on this page (per-product card detail, and the collapsed education+sources
+ * accordion) — owner-dictated verbatim in the TASK-577 dispatch itself ("moves under a
+ * 'לפרטים' disclosure"). Centralized here (not re-typed at each call site) so every
+ * disclosure on the page reads identically, same EXCEPTION-003-style discipline as
+ * GUIDE_RECOMMENDATION_TIER_LABELS_HE above.
+ */
+export const GUIDE_V3_DETAILS_LABEL_HE = "לפרטים";
+
+/**
+ * TASK-577 — the exactly-4-line always-visible card face (owner-dictated card
+ * contract, item 4): elemental mg, chemical form, labelled servings/day, and one
+ * "what matters" line. Everything else a product row can show (bar-state badges,
+ * classifier pill, full threshold-gauge stack) moves under the row's `לפרטים`
+ * disclosure — see GuideProductRowV3.
+ */
+export interface GuideCardVisibleFacts {
+  /** e.g. "200 מ״ג מגנזיום יסודי" — mechanically derived (doseValueLabel + the
+   *  "מגנזיום יסודי" term already established elsewhere in this guide's own
+   *  gate-2-approved copy, e.g. buyingRule's doseAdequacy explanation), never a new
+   *  authored phrase. null when dose itself is not verifiable (renders the existing
+   *  "לא ניתן לאימות" value label instead — never fabricated). */
+  elementalDoseLabel: string;
+  /** e.g. "ציטראט" — same value already carried on
+   *  `benchmarks.formAbsorption.valueLabel`, duplicated here only so the card face
+   *  never has to reach into the benchmarks map to find its own 4 lines. */
+  formLabel: string;
+  /**
+   * e.g. "2 קפליות ביום" — TASK-577: a genuine data gap for magnesium today. No
+   * per-product daily-serving-COUNT field exists anywhere upstream (checked
+   * magnesium-page-data.ts and the guide data file itself — only compound package
+   * sizes like "90 כמוסות" exist, never a daily dose count). null/absent → the
+   * component omits this line entirely rather than fabricate a count
+   * (missing-data-discard doctrine) — this is NOT the same field as `doseMg`, and is
+   * never derived from it.
+   */
+  servingsPerDayLabel?: string | null;
+  /**
+   * "מה חשוב לדעת: …" — the label prefix itself is owner-dictated verbatim (TASK-577
+   * dispatch, item 4). The sentence after it is COPY-SLOT-v3: every product below
+   * carries its existing (gate-2-approved) v2 `oneLinerHe` here as a temporary
+   * placeholder, pending the real one-line "what matters" copy from the v3 content
+   * package — never newly authored in this file.
+   */
+  whatMattersHe: string;
 }
 
 // ─── Recommendation tiers (TASK-504 follow-on) ──────────────────────────────────────
