@@ -257,7 +257,7 @@ export function HashvaotCategoryBox({ category }: { category: HashvaotCategory }
               className="inline-flex items-center gap-1.5 text-[0.85rem] font-bold"
               style={{ color: category.accent }}
             >
-              לכל ההשוואות
+              {category.ctaLabel ?? "לכל ההשוואות"}
               <ChevronLeft
                 className="size-4 stroke-[2.5] transition-transform duration-200 group-hover:-translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
                 aria-hidden

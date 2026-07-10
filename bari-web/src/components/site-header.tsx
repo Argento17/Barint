@@ -19,7 +19,9 @@ import {
 const navLinks = [
   { label: "קטלוג המוצרים", href: "/catalog" },
   { label: "בלוג", href: "/blog" },
+  { label: "חדשות", href: "/news" },
   { label: "השוואות", href: "/hashvaot" },
+  { label: "מדריכים", href: "/madrichim" },
 ] as const;
 
 export function SiteHeader() {

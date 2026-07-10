@@ -111,6 +111,18 @@ export function gradeDotOffset(dot: GradeDotPosition): string {
   return GRADE_DOT_POSITION[dot];
 }
 
+// TASK-504B fix (Design gate-2 MEDIUM M1): `typography.sectionEyebrow` above composites
+// to ~3.6:1 against light backgrounds — a pre-existing contrast debt shared with the
+// blog surfaces (TASK-494), not introduced by the guide template. The guide template
+// widens that token's blast radius (guide-buying-rule.tsx + the /madrichim hub both use
+// this hue), so per the fix instructions this override is scoped LOCALLY to the guide
+// surfaces rather than editing the shared `sectionEyebrow` value itself (that broader
+// fix is still open on the token-governance backlog for every consumer, including blog).
+// Same size/weight/tracking as `typography.sectionEyebrow`; only the color is darkened
+// to clear WCAG AA (measured 7.43:1 on the guide's #FCFCF9/#F7F7F2 backgrounds).
+export const GUIDE_SECTION_EYEBROW_CLASS =
+  "font-mono text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#0F5C42]";
+
 /** Horizontal padding for hero, prologue, lenses, methodology in web layout. */
 export function comparisonWebSectionPaddingClass(): string {
   return BARI_COMPARISON_TOKENS.webTable.sectionPaddingClass;

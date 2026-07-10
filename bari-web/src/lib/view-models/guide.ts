@@ -1,0 +1,411 @@
+// Bari Supplement Guides — View Model contract (TASK-504, Wave 0 skeleton).
+//
+// Source of truth: 01_framework/product/supplement_guides_concrete_plan_v1.md
+// (owner-approved execution contract, §1 verdict layer / §2 six bars / §3 page shape /
+// §4 buy button / §5 migration).
+//
+// This is a DELIBERATELY SEPARATE contract from BariProductVM (the food/supplement
+// comparison-page VM). Guides retire ordinal ranking and score/grade display entirely —
+// forcing guide data through BariProductVM would drag `score`/`grade` fields back onto
+// the page. A guide's product is a bar-state record, nothing else.
+//
+// Hard constraints carried from the plan (do not relax without a plan amendment):
+//   - No numeric score, no A–E letter grade, anywhere in a guide.
+//   - Bar states are PASS / FLAG / FAIL / CANNOT_VERIFY only — never a 5th "graded" state.
+//   - Buckets group products; they are NOT an ordinal ranking within a bucket.
+//   - Benchmark placement is always product-vs-EXTERNAL-STANDARD (dose range, cert bar,
+//     benchmark median price) — never product-vs-field ordering (that recreates ranking
+//     by stealth per red-team RT-A3).
+//   - verdict data (bars/bucket/defaultPick/benchmark) and `buyUrl` are separate fields
+//     and must never be derived from one another (§4 mechanical separation). A missing
+//     buyUrl must never hide or gate a product.
+//   - The actual bar-threshold RUBRIC (what makes a given product's dose bar PASS vs FLAG)
+//     is a versioned config file owned by Nutrition (plan §6 pre-build step) — it does not
+//     exist yet. This file defines the SHAPE the rubric's output must be transformed into,
+//     not the rubric itself. Nothing here computes a bar state from raw product data.
+
+// ─── The six bars (plan §2 — Nutrition's amended attribute set) ────────────────────
+export type GuideBarKey =
+  | "doseAdequacy" // 1. vs literature-derived effective range, hedged as such
+  | "formAbsorption" // 2. tier by form class; blend rule → cannot_verify for undisclosed blends
+  | "thirdPartyVerification" // 3. two-tier: directory-confirmed / manufacturer-stated
+  | "priceFairness" // 4. ₪ per effective unit / absorbed-mg
+  | "safety" // 5. UL crossing = visible bar-level FAIL, never a tooltip
+  | "labelTransparency"; // 6. dose disclosure honesty; undisclosed → cannot_verify, never assumed low
+
+export const GUIDE_BAR_ORDER: readonly GuideBarKey[] = [
+  "doseAdequacy",
+  "formAbsorption",
+  "thirdPartyVerification",
+  "priceFairness",
+  "safety",
+  "labelTransparency",
+] as const;
+
+// Structural field labels (name the bar itself — not marketing copy). These are the
+// vocabulary terms from the approved plan §2, not Content-authored narrative lines.
+// Final on-page phrasing of the "buying rule" explanation for each bar is Content's job
+// (GuideBuyingRuleBar.explanation below) — these are the short column/legend labels only.
+export const GUIDE_BAR_LABELS_HE: Record<GuideBarKey, string> = {
+  doseAdequacy: "מינון",
+  formAbsorption: "צורה וספיגה",
+  thirdPartyVerification: "בדיקת צד שלישי",
+  priceFairness: "הוגנות מחיר",
+  safety: "בטיחות",
+  labelTransparency: "שקיפות תווית",
+};
+
+// ─── Bar state — the verdict-layer primitive (plan §1) ─────────────────────────────
+// Exactly 4 states. No 5th "graded" tier. No numeric value ever attached.
+export type GuideBarState = "pass" | "flag" | "fail" | "cannot_verify";
+
+export interface GuideBarResult {
+  bar: GuideBarKey;
+  state: GuideBarState;
+  /** Short Hebrew note shown on hover/expand (e.g. why a bar FLAGged). Optional —
+   *  CANNOT_VERIFY bars should generally carry a note explaining what is missing
+   *  (missing-data discard discipline: state why, never assume). */
+  note?: string | null;
+}
+
+// ─── Bucket (plan §1) — groups products; not a ranking ─────────────────────────────
+export type GuideBucket =
+  | "clears_all" // עובר את כל ספי הקנייה — unordered
+  | "passes_with_flag" // עובר עם דגל
+  | "fails" // לא עובר
+  | "cannot_assess"; // לא ניתן להעריך
+
+export const GUIDE_BUCKET_LABELS_HE: Record<GuideBucket, string> = {
+  clears_all: "עובר את כל ספי הקנייה",
+  passes_with_flag: "עובר עם דגל",
+  fails: "לא עובר",
+  cannot_assess: "לא ניתן להעריך",
+};
+
+/** Display order for bucket sections on the page (plan §1 order). */
+export const GUIDE_BUCKET_ORDER: readonly GuideBucket[] = [
+  "clears_all",
+  "passes_with_flag",
+  "fails",
+  "cannot_assess",
+] as const;
+
+// ─── Per-bar threshold geometry (TASK-504C — threshold infographic spec v1) ─────────
+// Static, per-BAR (not per-product) description of the "fixed external standard" a
+// discriminating bar draws its gauge/ladder against (spec §2/§3: "the standard is a
+// fact independent of this product"). ONE geometry object is shared by every product
+// row for that bar — this is deliberately NOT duplicated per product. Populated only
+// for the bars that have an anatomy defined (today: doseAdequacy, formAbsorption,
+// safety, labelTransparency — spec §1); thirdPartyVerification/priceFairness carry no
+// geometry until Product confirms an anatomy for them (spec §1 note).
+export type GuideThresholdAnatomy = "gauge" | "ladder";
+
+/** One contiguous zone of a Threshold Gauge, in ascending domain order. */
+export interface GuideGaugeZone {
+  /** Upper bound of this zone in the gauge's own numeric domain (mg). Zones are
+   *  contiguous from 0; the LAST zone's `upTo` equals the geometry's `domainMax`. */
+  upTo: number;
+  /** Tone driving this zone's low-opacity background tint — reuses a bar-state tone
+   *  (never a new hue), spec §2/§6. */
+  tone: GuideBarState;
+  /** Divider line style at this zone's UPPER boundary (WCAG 1.4.1 — never color-only,
+   *  spec §7.1). "dashed" = an advisory line (e.g. EFSA soft-caution); "solid" = a hard
+   *  boundary (e.g. UL veto, or the pass floor itself). */
+  dividerStyle: "solid" | "dashed";
+  /** Rendered directly under this boundary's tick, e.g. "150 (חצי סף)". Omit for a
+   *  boundary that isn't a labeled anchor (spec §2: "only the meaningful anchors"). */
+  tickLabel?: string;
+}
+
+export interface GuideGaugeGeometry {
+  anatomy: "gauge";
+  /** The gauge's numeric domain is 0..domainMax (spec §2 domain+overflow rule — chosen
+   *  with headroom past the top zone boundary so the pass zone reads as a real zone). */
+  domainMax: number;
+  zones: GuideGaugeZone[];
+}
+
+/** One tier of a Threshold Ladder, worst→best, left→right in the forced-LTR rail
+ *  (spec §3 direction rule — stated once, shared by both ladder bars). */
+export interface GuideLadderTier {
+  /** e.g. "נמוכה" / "בינונית" / "גבוהה" — the tier name itself (spec §3 exact wording). */
+  label: string;
+  /** The 2–3 forms/values grouped into this tier, ported VERBATIM from already
+   *  gate-1-approved copy (spec §3: "port those groupings verbatim, do not
+   *  re-derive") — never newly authored here. Optional: not every ladder tier has a
+   *  sub-grouping worth naming (labelTransparency's tiers do not, spec §3). */
+  sublabel?: string;
+  tone: GuideBarState;
+}
+
+export interface GuideLadderGeometry {
+  anatomy: "ladder";
+  /** Worst→best order, left→right in the forced-LTR rail. */
+  tiers: GuideLadderTier[];
+}
+
+export type GuideThresholdGeometry = GuideGaugeGeometry | GuideLadderGeometry;
+
+// ─── Per-product threshold placement (replaces the single flat `benchmark` field) ───
+// One placement per DISCRIMINATING bar (spec §8: the old one-benchmark-per-product
+// field "cannot carry 4 independent benchmarks as-is"). `value`/`tierIndex` of `null`
+// means the underlying bar state is `cannot_verify` — the component renders the
+// spec's honest no-marker/no-fill fallback, NEVER a fabricated position (spec §2/§3,
+// the owner's explicit "keep it honest, no fake position" ask).
+//
+// Always product-vs-EXTERNAL-STANDARD only (plan red-team RT-A3, spec §8 non-goal) —
+// never product-vs-field ranking. The caption's qualitative clause (spec §2 "· {short
+// verdict clause}") is intentionally NOT a field here: it is sourced from the bar's
+// own existing `GuideBarResult.note` at render time (spec §2: "Content's existing
+// per-bar note field ... never invented here") rather than duplicated onto this type.
+export interface GuideThresholdPlacement {
+  /** Gauge bars only: the product's numeric value in the geometry's domain unit (mg).
+   *  null = cannot_verify (render the hollow mid-track placeholder ring). Ignored for
+   *  ladder bars. */
+  value?: number | null;
+  /** Gauge bars only: true when `value` exceeds the geometry's `domainMax` — clamp the
+   *  marker at the domain end with a "+" glyph (spec §2 domain+overflow rule) instead
+   *  of stretching the domain to fit an outlier. Ignored for ladder bars. */
+  clamped?: boolean;
+  /** Ladder bars only: 0-based index into the geometry's `tiers` array (worst→best)
+   *  for this product's tier. null = cannot_verify (render every tier neutral, no
+   *  fill, no caret — spec §3 CANNOT_VERIFY row). Ignored for gauge bars. */
+  tierIndex?: number | null;
+  /** Pre-rendered product value label, e.g. "250 מ״ג" / "ציטראט" / "לא ניתן לאימות" —
+   *  never computed by the component. */
+  valueLabel: string;
+}
+
+// ─── Pricing (plan §2.4 / §4) ───────────────────────────────────────────────────────
+/** Factual retail channel tag (creatine domestic products only). */
+export type GuideProductChannel = "domestic_shelf" | "import_iherb" | "import_myprotein";
+
+export const GUIDE_PRODUCT_CHANNEL_LABELS_HE: Record<GuideProductChannel, string> = {
+  domestic_shelf: "מדף בישראל",
+  import_iherb: "הזמנה מחו״ל · iHerb",
+  import_myprotein: "הזמנה מחו״ל · MyProtein",
+};
+
+export interface GuidePricing {
+  /** Pre-rendered, e.g. "₪0.42 לגרם אפקטיבי". Backend computes; UI never derives. */
+  pricePerEffectiveUnitLabel: string;
+}
+
+// ─── One product's guide record ─────────────────────────────────────────────────────
+export interface GuideProductVM {
+  id: string;
+  name: string;
+  brand?: string | null;
+  imageUrl?: string | null;
+  /** Exactly one result per GUIDE_BAR_ORDER entry (6 total). */
+  bars: GuideBarResult[];
+  bucket: GuideBucket;
+  /** "הבחירה הפשוטה" (plan §1) — at most ONE product on the page carries this flag.
+   *  Criterion (cheapest per effective unit among all-bar-clearers) is stated inline
+   *  by the page, never implied by styling alone. */
+  isDefaultPick?: boolean;
+  /**
+   * TASK-504C: one threshold placement per DISCRIMINATING bar (replaces the old
+   * single `benchmark` field — see GuideThresholdPlacement header). Absent entry for
+   * a bar → that bar renders without a gauge/ladder (either it has no geometry defined
+   * yet, e.g. thirdPartyVerification/priceFairness, or it is suppressed entirely — see
+   * GuidePageVM.suppressedBars). Optional at the VM level so non-discriminating bars
+   * never need a placeholder entry.
+   */
+  benchmarks?: Partial<Record<GuideBarKey, GuideThresholdPlacement>>;
+  pricing: GuidePricing | null;
+  /** Plain retailer link, no affiliate params (plan §4). Separate from verdict data —
+   *  never gate inclusion, bucket, or display order on whether this is set. */
+  buyUrl: string | null;
+  /**
+   * TASK-504B — the product's one-line verdict, ported VERBATIM from the Content
+   * Agent's gate-1-approved copy (חלק 4 of magnesium_guide_copy_v1.md, one line per
+   * product). This is NOT computed or summarized by the frontend — it is pre-authored
+   * prose stating the deciding bar(s) for that product. Rendered as-is, same
+   * verbatim-render discipline as `rowVerdict` on BariProductVM.
+   */
+  oneLinerHe: string;
+  /** Factual retail channel — routing tag, not marketing copy. */
+  channel?: GuideProductChannel | null;
+}
+
+// ─── Layer 1 — the buying rule (plan §3, item 1) ────────────────────────────────────
+export interface GuideBuyingRuleBar {
+  bar: GuideBarKey;
+  /** One-line plain-Hebrew explanation of what this bar checks and why it matters.
+   *  Content-authored; NOT present yet in this Wave 0 skeleton (mock fixture only). */
+  explanation: string;
+}
+
+// ─── Layer 3 — the education spine (plan §3, item 3) ────────────────────────────────
+export interface GuideEducationSection {
+  heading: string;
+  /** Paragraph blocks. Content-authored; mock fixture only in this skeleton. */
+  body: string[];
+}
+
+// ─── Layer 2 headline (TASK-504B, Product D7 empty-shortlist ruling) ────────────────
+// Rendered ONLY when the `clears_all` bucket is empty for this guide (0 products clear
+// every bar). Content-authored (magnesium_guide_copy_v1.md חלק 3), rendered verbatim —
+// the template never paraphrases or computes this text. Per the D7 ruling
+// (supplement_guides_d7_cosign_v1.md §1), this leads the products section, BEFORE the
+// bucket table, and the `passes_with_flag` bucket is then promoted below it as the
+// practical shortlist — no new bucket, no default pick manufactured from a lower tier.
+export interface GuideHeadlineFinding {
+  /** The honest one-line finding (e.g. "אף מוצר ... לא עובר את כל ספי הקנייה."). */
+  title: string;
+  /** Supporting paragraphs — includes the no-default-pick statement and the
+   *  passes_with_flag shortlist detail, ported verbatim from the approved copy. */
+  body: string[];
+}
+
+// ─── Full guide page payload ─────────────────────────────────────────────────────────
+export interface GuidePageVM {
+  slug: string;
+  /** "איך לבחור [X]" (plan §3 H1 frame). */
+  h1: string;
+  subtitle?: string | null;
+  /**
+   * TASK-504C add-on — optional hero mascot image shown beside the H1 (same placement
+   * family as SeedOilsArticleHero / catalog's OLI). Self-hosted only under
+   * `public/mascots/` (TASK-478 same-origin rule) — never a remote/hotlinked URL.
+   * `alt` is a real, meaningful description (this mascot is not decorative filler —
+   * it depicts the guide's own subject matter), so it is NOT rendered `aria-hidden`
+   * like the purely decorative mascots elsewhere. null/absent → no hero image.
+   */
+  heroImage?: { src: string; alt: string; width: number; height: number } | null;
+  buyingRuleIntro?: string | null;
+  buyingRule: GuideBuyingRuleBar[];
+  products: GuideProductVM[];
+  educationSpine: GuideEducationSection[];
+  /** Plan §4 on-page rule, verbatim, near the buy buttons: "קישור קנייה אינו משפיע על
+   *  הכללה, על דגלים או על סדר הצגה." Rendered as-is — not re-authored by the template. */
+  buyLinkDisclosureLine: string;
+  updatedLabel?: string | null;
+  /**
+   * TASK-504B — the empty-clears-all headline (see GuideHeadlineFinding above).
+   * null/absent when the `clears_all` bucket has at least one product — buckets then
+   * render in their ordinary, un-promoted form.
+   */
+  headlineFinding?: GuideHeadlineFinding | null;
+  /**
+   * TASK-504C — per-BAR gauge/ladder geometry (see GuideThresholdGeometry header).
+   * Keyed by the same GuideBarKey as `benchmarks` on each product. A bar absent from
+   * this map renders as a plain badge (no infographic) wherever it appears — this is
+   * how thirdPartyVerification/priceFailness degrade gracefully until an anatomy is
+   * defined for them (spec §1).
+   */
+  thresholdGeometry?: Partial<Record<GuideBarKey, GuideThresholdGeometry>>;
+
+  /**
+   * TASK-504C — rubric `display_suppression_rule`
+   * (supplement_guides_bar_rubric_v1.yaml): bars computed here, fresh per build, from
+   * the live `products` array — NEVER a hardcoded per-guide exclusion list (the
+   * rubric's own re_evaluated_per_build clause). See
+   * `src/lib/guides/guide-suppression.ts:computeSuppressedBars`. A bar listed here is
+   * DISPLAY-suppressed only: `GuideProductTable`/`GuideProductRow` skip rendering its
+   * row entirely, but bucket_logic upstream (which produced `product.bucket`) already
+   * evaluated all 6 bars unchanged — this field never feeds back into bucket math.
+   */
+  suppressedBars?: GuideBarKey[];
+
+  /** Bars excluded from tier-GATING only (see computeBandExcludedBars). */
+  bandExcludedBars?: GuideBarKey[];
+
+  /**
+   * TASK-504C — the ONE guide-level line disclosing which bar(s) were suppressed and
+   * why (rubric honesty_constraint: "disclosed, never silently vanished"). Content-
+   * authored, two-gate sign-off required — this Wave 1 build ships it as a literal
+   * `"// TODO CONTENT (two-gate)"` placeholder string, not real copy. null/absent when
+   * `suppressedBars` is empty (nothing to disclose).
+   */
+  suppressedBarsDisclosureHe?: string | null;
+
+  /**
+   * TASK-504 recommendation-tiers build (RT-6): one caption per RANKED tier
+   * (`GuideRecommendationTier`, below) — replaces the retired `bucketSubCaptions`.
+   * `very_recommended` never reads this field when empty — its empty state uses
+   * `veryRecommendedEmptyStateHe` instead. Content-authored, both gates passed
+   * (magnesium_guide_tier_copy_v1.md Slot 1).
+   */
+  recommendationTierCaptions?: Partial<Record<GuideRecommendationTier, string>>;
+
+  /**
+   * TASK-504 recommendation-tiers build — honest one-line state shown under the
+   * `very_recommended` (מומלץ מאוד) tier header when it has zero products (rubric
+   * `recommendation_tier_mapping.tiers[very_recommended].empty_state_handling`: render
+   * the tier unconditionally, never hide it). Content-authored, both gates passed
+   * (magnesium_guide_tier_copy_v1.md Slot 2).
+   */
+  veryRecommendedEmptyStateHe?: string | null;
+
+  /**
+   * TASK-504 recommendation-tiers build — intro line for the `cannot_assess` section,
+   * which renders OUTSIDE the 4 ranked tiers (rubric
+   * `recommendation_tier_mapping.tiers[cannot_assess].display_position`) — a genuine
+   * data gap (e.g. TRIOMAG's undisclosed blend), never folded into `not_recommended`.
+   * Content-authored, both gates passed (magnesium_guide_tier_copy_v1.md Slot 3).
+   */
+  cannotAssessSectionIntroHe?: string | null;
+
+  /**
+   * TASK-504 recommendation-tiers build — per-row expander toggle labels (Design spec
+   * v2 §3.3: one expander per product row reveals the 4-bar threshold-gauge detail,
+   * collapsed by default). Content-authored, both gates passed
+   * (magnesium_guide_tier_copy_v1.md Slot 4).
+   */
+  expanderLabels?: { collapsed: string; expanded: string };
+
+  /**
+   * TASK-504 creatine — world-reference products rendered BELOW domestic A/B/C/D bands,
+   * never interleaved into ranked tiers.
+   */
+  benchmarkProducts?: GuideProductVM[];
+
+  /** Heading for the benchmark section (creatine only). */
+  benchmarkSectionHeadingHe?: string | null;
+
+  /**
+   * TASK-504 creatine — non-collapsible disclosure at the TOP of domestic bands.
+   * GATE-1 DRAFT — pending Content + Adversarial QA two-gate sign-off.
+   */
+  domesticBandsDisclosureHe?: string | null;
+}
+
+// ─── Recommendation tiers (TASK-504 follow-on) ──────────────────────────────────────
+// Display-layer relabeling of the existing bucket_logic buckets, PLUS one display-only
+// split predicate (`dose_adequacy_sole_caveat`) applied only to `passes_with_flag`
+// members — see 01_framework/nutrition/supplement_guides_bar_rubric_v1.yaml
+// `recommendation_tier_mapping`. Does NOT touch bucket_logic, bar states, or any
+// computed field — `GuideProductVM.bucket` remains the authoritative source; tiers are
+// derived from it (see src/lib/guides/guide-recommendation-tiers.ts), never hardcoded
+// per-product. `cannot_assess` is deliberately NOT a member of this type — it renders
+// in a separate, out-of-tier section (rubric: "never folded into לא מומלץ").
+export type GuideRecommendationTier =
+  | "very_recommended" // מומלץ מאוד — maps from clears_all_bars (all 6 bars PASS)
+  | "recommended" // מומלץ — passes_with_flag, non-PASS displayed set is exactly {doseAdequacy}
+  | "good" // טוב — passes_with_flag, non-PASS displayed set contains any other bar
+  | "not_recommended"; // לא מומלץ — maps from fails (>=1 bar FAIL)
+
+/** Ordered display: מומלץ מאוד → מומלץ → טוב → לא מומלץ. No sort within a tier — products
+ *  render in their existing array order (stable, non-scored). `cannot_assess` renders
+ *  separately below this ordered list, never interleaved. */
+export const GUIDE_RECOMMENDATION_TIER_ORDER: readonly GuideRecommendationTier[] = [
+  "very_recommended",
+  "recommended",
+  "good",
+  "not_recommended",
+] as const;
+
+/**
+ * EXCEPTION-003: these 4 Hebrew strings are sanctioned as tier-HEADING field values
+ * ONLY. Never introduce "מומלץ"/"מומלץ מאוד"/"טוב"/"לא מומלץ" inside prose/body copy —
+ * the hebrew_readability.py gate HARD-fails a bare tier word in a sentence (kind
+ * `recommendation`); only this field-value usage is exempt.
+ */
+export const GUIDE_RECOMMENDATION_TIER_LABELS_HE: Record<GuideRecommendationTier, string> = {
+  very_recommended: "מומלץ מאוד",
+  recommended: "מומלץ",
+  good: "טוב",
+  not_recommended: "לא מומלץ",
+};
