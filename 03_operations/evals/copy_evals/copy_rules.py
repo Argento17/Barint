@@ -196,6 +196,30 @@ def antithesis_hard_fires(text: str) -> bool:
     return ANTITHESIS_RE.search(text) is not None
 
 
+# "במקום X" (instead of X) is the SAME define-by-negation family the owner bans,
+# but ANTITHESIS_RE only knows "לא / אלא / ולא" and misses it — the gap the QA
+# sign-off found live: "ממותקת באגבה במקום סוכר" passed antithesis=0 on 2026-07-10
+# after having been removed once already (v2→regressed→v4). "במקום" also has an
+# innocent SPATIAL sense ("במקום אחד" = in one place, "במקום הנכון" = the right
+# place), so this fires only on "instead-of <noun>" and excludes the spatial /
+# ordinal / demonstrative follow-words. Tuned against all 19 live "במקום"
+# occurrences: 17 are "instead of X" (fire), 2 are spatial (silent).
+_BIMKOM_RE = re.compile(r"במקום\s+([^\s.,;:!?—-]+)")
+_BIMKOM_SPATIAL_FOLLOW = frozenset({
+    "אחד", "אחת", "הנכון", "הנכונה", "נכון", "זה", "זו", "זאת", "הזה", "הזו",
+    "ראשון", "ראשונה", "שני", "שנייה", "שלישי", "אחר", "אחרת", "מרכזי", "בטוח",
+})
+
+
+def bimkom_define_by_negation_fires(text: str) -> bool:
+    """HARD: True iff a 'במקום <noun>' (instead-of) define-by-negation appears,
+    excluding the innocent spatial sense. Same owner ban as antithesis."""
+    for m in _BIMKOM_RE.finditer(text):
+        if m.group(1) not in _BIMKOM_SPATIAL_FOLLOW:
+            return True
+    return False
+
+
 # ---------------------------------------------------------------------------
 # number_density — advisory heuristic, never hard-fails
 # ---------------------------------------------------------------------------

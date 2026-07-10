@@ -65,13 +65,38 @@ def main() -> int:
         if fired:
             failures.append(f"{label}: expected silence, fired")
 
+    # ── bimkom define-by-negation (QA sign-off gap, 2026-07-10) ──────────────
+    print("\nbimkom_define_by_negation — MUST FIRE (owner define-by-negation ban)")
+    BIMKOM_FIRE = [
+        ("instead of sugar", "ממותקת באגבה במקום סוכר."),
+        ("instead of flour", "עמילן ושמן דקל במקום קמח."),
+        ("instead of 28%", "ב-9% שומן במקום 28%."),
+        ("instead of the strawberry", "מפיקים את הסיבים במקום התות."),
+    ]
+    BIMKOM_SILENT = [
+        ("in one place", "כל מאפייני ההנדסה במקום אחד."),
+        ("the right place", "ממקמים אותו במקום הנכון."),
+        ("in this place", "גבינה טובה במקום זה."),
+    ]
+    for label, text in BIMKOM_FIRE:
+        fired = R.bimkom_define_by_negation_fires(text)
+        print(f"  [{'ok  ' if fired else 'FAIL'}] {label:<24} {text[:34]}")
+        if not fired:
+            failures.append(f"bimkom {label}: expected fire, silent")
+    for label, text in BIMKOM_SILENT:
+        fired = R.bimkom_define_by_negation_fires(text)
+        print(f"  [{'ok  ' if not fired else 'FAIL'}] {label:<24} {text[:34]}")
+        if fired:
+            failures.append(f"bimkom {label}: expected silence (spatial), fired")
+
     print()
     if failures:
         print(f"FAILED ({len(failures)}):")
         for f in failures:
             print("  -", f)
         return 1
-    print(f"all nutrition-citation tests passed ({len(POSITIVE)} fire, {len(NEGATIVE)} silent)")
+    print(f"all nutrition-citation + bimkom tests passed ({len(POSITIVE)} fire, {len(NEGATIVE)} silent, "
+          f"{len(BIMKOM_FIRE)} bimkom-fire, {len(BIMKOM_SILENT)} bimkom-silent)")
     return 0
 
 

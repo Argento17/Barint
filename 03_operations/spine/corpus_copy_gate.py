@@ -124,6 +124,8 @@ def scan_shelf(data: dict) -> dict[str, int]:
                 counts["stock_phrase"] += 1
             if R.antithesis_hard_fires(text):
                 counts["antithesis"] += 1
+            if R.bimkom_define_by_negation_fires(text):
+                counts["bimkom_define_by_negation"] += 1
             if R.sodium_term_hard_fires(text):
                 counts["sodium_term"] += 1
             if R.nutrition_value_citation_hard_fires(text):
@@ -145,6 +147,7 @@ GATED_RULES = frozenset({
     "ingredient_count", "stock_phrase", "antithesis",
     "cross_field_value_repetition", "sodium_term",
     "nutrition_value_citation",  # OWNER RULING 2026-07-10: no cited nutrition values
+    "bimkom_define_by_negation",  # "במקום X" instead-of, the define-by-negation gap QA found
 })
 
 
