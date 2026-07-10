@@ -2,7 +2,7 @@
 id: TASK-582
 title: BSIP0 Shufersal acquisition script 404s on every request (stale URL template)
 owner: data-agent
-status: IN_PROGRESS
+status: CHANGES_REQUESTED
 priority: MEDIUM
 created_at: 2026-07-10
 depends_on: []

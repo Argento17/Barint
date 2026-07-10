@@ -2,7 +2,14 @@
 id: TASK-589
 title: Router telemetry: entry rows + tokens/duration in router_v5_log
 owner: frontend-agent
-status: IN_PROGRESS
+status: CLOSED
+close_reason: >
+  BUILD-LIGHT (Codex gpt-5.6-terra) delivered in worktree; orchestrator verified: C0 PASS (sha256
+  match), all three selftests independently re-run green in the worktree AND again in the Speed-1
+  merge worktree (--selftest-table byte-match, --selftest-route 14/14, new --selftest-telemetry:
+  start row / end duration+tokens / pre-run-crash entry row), diff scan telemetry-only (122+/17-,
+  MODEL_BINDING read not modified). Lane obeyed the new sandbox-git rule: clean tree, no fallback
+  git-dir. Speed-1 internal merge pushed: origin/master 841d0c83 -> 9f793f5b.
 priority: LOW
 created_at: 2026-07-10
 depends_on: []

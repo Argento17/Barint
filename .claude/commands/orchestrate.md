@@ -137,6 +137,17 @@ Then:
 **6. Persist durable state.** Registry status + `close_reason` and `DISPATCH_BOARD.md` are the durable
 record — never leave state only in this chat. There is no dashboard to regenerate.
 
+**6b. Codify the lesson PER TASK (owner ruling 2026-07-10 — "that's what I expect in each task of the
+orchestrator").** Lesson capture is a per-task step, not an end-of-run afterthought. At every close /
+CHANGES_REQUESTED / fallback / defect, before moving to the next task, ask: *what system file would
+have prevented this, and what follow-up does the defect deserve?* Then act immediately:
+(a) reversible playbook/skill/agent-text edit in your lane → APPLY NOW (like the sandbox-git rule,
+written into this file the same cycle the defect appeared); (b) a fix outside your lane or in code →
+REGISTER the task now with the audit finding cited (like TASK-589, registered the moment telemetry
+came up short); (c) log the lesson on the board line for the task, one sentence. The end-of-run
+`/telemetry` audit then *checks this happened* (a defect with no same-cycle codification is itself a
+finding) — it is the backstop, never the first place a lesson lands.
+
 **7. Loop.** Background dispatches re-invoke you on completion — when one returns, re-enter at step 5
 (verify) then step 2 (next ready move). Keep going until a wall.
 
