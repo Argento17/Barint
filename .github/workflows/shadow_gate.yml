@@ -7,7 +7,7 @@ name: Shadow Gate — engine backtest
 
 on:
   pull_request:
-    paths:
+    paths: &engine_paths
       - "03_operations/bsip2/proto_v0/src/score_engine.py"
       - "03_operations/bsip2/proto_v0/src/constants.py"
       - "03_operations/bsip2/proto_v0/src/nova_proxy.py"
@@ -19,6 +19,10 @@ on:
       - "03_operations/bsip2/proto_v0/src/trace_writer.py"
       - "03_operations/shadow/**"
       - ".github/workflows/shadow_gate.yml"
+  # Direct push-to-master = live Vercel deploy; gate must run on that path too (TASK-554).
+  push:
+    branches: [master]
+    paths: *engine_paths
   workflow_dispatch: {}
 
 jobs:
