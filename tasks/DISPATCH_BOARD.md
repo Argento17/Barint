@@ -164,9 +164,12 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
 - ▶️ **TASK-614 (re-score) — NOW UNBLOCKED & READY.** All comma paths fixed. Next: re-enrich bread/crackers/
   cheese from corrected captures → re-score on current engine → apply |Δ|≤30 (orchestrator authority) +
   surface cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
-- 🖌️ **TASK-622 (PD-3.1 refinements) — DISPATCHED to Codex terra (worktree C:/bari_wt_622), background.**
-  Owner round-2: English internal chrome (VerdictRow stays Hebrew = consumer-facing) + human list columns +
-  strong status line + values-on-bars + human action phrasing + evidence not-retrieved status fix.
+- ✅ **TASK-622 (PD-3.1 refinements) CLOSED — merged 88a2cdda.** Codex gpt-5.6-terra built all 6 owner
+  points; Opus render-verified (screenshots): English internal chrome (consumer Hebrew header/footer gone,
+  VerdictRow stays Hebrew + 'Consumer-facing verdict' label), human list columns (pid hidden, Good/Partial
+  data-quality labels), status line above cards, values-on-bars + 'higher is better', human action phrasing
+  (PID_SPLIT → tech audit only), evidence not-retrieved now 'Missing'. Codex-built + Opus cross-vendor
+  verified — the routing pattern working end-to-end. Owner viewing.
 - ✅ **TASK-620 (PD-3.1) CLOSED — owner-approved + render-verified.** Kept the COMPLETE Claude build
   (overview-tab + 3 separate namespace cards + real ComparisonRow verdict w/ 'Estimated' badge + 2D
   profile bars + deterministic bullets + attention-checks), which was already integrated with the live
