@@ -10,8 +10,12 @@ Per STF memo `2026-07-11_product-dossier-architecture.md` §4:
   is diagnostic shadow state in the MVP -- it CANNOT change current
   publication."
 
-Four checks, per the PD-2 delegation spec:
-  - barcode              -- STUB (registry-dependent, TASK-609 not joined yet)
+Four checks, per the PD-2 delegation spec (barcode join WIRED as a follow-up,
+TASK-610 registry-interface increment):
+  - barcode              -- REAL: reads Layer 1's registry-adjudicated
+                             barcode_state (see lib/registry_interface.py +
+                             lib/layer1_identity.py) -- never re-derives its
+                             own verdict from the raw served barcode string.
   - source_traceability  -- REAL: Layer-2 manifest coverage + BSIP2 trace presence
   - calculation          -- REAL: imports run_gates.gate_grade_integrity (G5) per product
   - publishability       -- REAL but diagnostic-only aggregate of the above two;
@@ -68,24 +72,47 @@ class CheckResult:
 
 
 # ---------------------------------------------------------------------------
-# barcode -- documented STUB, registry-dependent (out of PD-2 scope)
+# barcode -- REAL, reads Layer 1's registry-adjudicated barcode_state
 # ---------------------------------------------------------------------------
 
-def check_barcode(served_product: dict) -> CheckResult:
-    """Registry-dependent. TASK-609 (PD-1) owns the 5-state barcode
-    adjudication (verified/found_but_conflicting/malformed/not_found/
-    pending_manual_review) + recovered_gtin candidates. Until that join is
-    wired (explicit follow-up, NOT this task), this check always returns
-    UNKNOWN -- it never fabricates a verified/malformed verdict from the
-    served barcode string alone, because that is exactly the un-adjudicated
-    guess the registry exists to replace.
+# Registry barcode_status -> this check's PASS/FAIL/WARN/UNKNOWN verdict.
+# "verified" is the only clean pass; "found_but_conflicting"/"not_found" are
+# real adjudicated failures (not stubs); "malformed"/"pending_manual_review"
+# are real adjudicated warns (a human/registry-process step is still owed,
+# but it is not a fabricated verdict -- registry_ops.py already produced it).
+_BARCODE_STATUS_TO_CHECK_STATUS = {
+    "verified": "pass",
+    "found_but_conflicting": "fail",
+    "not_found": "fail",
+    "malformed": "warn",
+    "pending_manual_review": "warn",
+}
+
+
+def check_barcode(layer1: dict) -> CheckResult:
+    """Reads Layer 1's already-registry-adjudicated `barcode_state` (see
+    lib/registry_interface.py's resolve_bari_pid()/get_registry_record() and
+    lib/layer1_identity.py's assemble_layer1()) -- this function never
+    re-derives a verdict from the raw served barcode string itself, because
+    that is exactly the un-adjudicated guess the registry (TASK-609/PD-1)
+    exists to replace. UNKNOWN is reserved for the genuine remainder: the
+    product's pid did not resolve against the registry at all (registry
+    miss, or an ambiguous alias PD-1 already routed to
+    pending_manual_review and excluded from its alias table), or the
+    registry file itself is absent from this worktree.
     """
-    return CheckResult(
-        "barcode",
-        "unknown",
-        evidence=[f"served barcode field (unadjudicated): {served_product.get('barcode')!r}"],
-        reason="stub pending registry join (TASK-609 PD-1); see lib/registry_interface.py",
-    )
+    status = layer1.get("barcode_state", {}).get("status", "unknown")
+    reason = layer1.get("barcode_state", {}).get("reason")
+    recovered_gtin = layer1.get("recovered_gtin")
+    evidence = [
+        f"pid_status: {layer1.get('pid_status')}",
+        f"registry barcode_status: {status!r}",
+        f"served barcode field (unadjudicated): {layer1.get('barcode_state', {}).get('served_barcode_unadjudicated')!r}",
+    ]
+    if recovered_gtin:
+        evidence.append(f"recovered_gtin: {recovered_gtin!r}")
+    check_status = _BARCODE_STATUS_TO_CHECK_STATUS.get(status, "unknown")
+    return CheckResult("barcode", check_status, evidence=evidence, reason=reason)
 
 
 # ---------------------------------------------------------------------------
@@ -134,7 +161,23 @@ def check_calculation(served_product: dict, trace: Optional[dict]) -> CheckResul
     single_frontend = {"products": [served_product]}
     barcode = rg.get_barcode_from_product(served_product)
     traces = {barcode: trace}
-    gate_result = rg.gate_grade_integrity(single_frontend, traces, config={})
+    try:
+        gate_result = rg.gate_grade_integrity(single_frontend, traces, config={})
+    except Exception as e:
+        # run_gates.gate_grade_integrity is imported, not reimplemented (per
+        # this module's docstring) -- it can raise on a served product whose
+        # copy-field shape it doesn't expect (observed: some granola products
+        # carry a non-dict consumer-copy field, an upstream data shape issue
+        # unrelated to this compiler or the registry join). A single
+        # product's calculation check failing to even RUN is honestly a
+        # WARN ("cannot verify"), never a DossierBuildError -- it must not
+        # abort every other product's dossier in the same shelf/build.
+        return CheckResult(
+            "calculation", "warn",
+            evidence=[f"run_gates.gate_grade_integrity raised {type(e).__name__}: {e}"],
+            reason="calculation check could not run for this product (upstream run_gates exception, "
+                   "not a structural dossier-build failure)",
+        )
     status_map = {"PASS": "pass", "FAIL": "fail", "WARN": "warn", "SKIP": "warn"}
     return CheckResult(
         "calculation",
@@ -156,9 +199,11 @@ def check_publishability(source_traceability: CheckResult, calculation: CheckRes
     NEVER read by any live page-generation or serving code path in this
     compiler or elsewhere -- it exists purely for the internal inspection
     view (PD-3) to render.
-    barcode is intentionally excluded from the pass/fail computation (it is
-    a stub returning "unknown", not a real verdict yet) but is still
-    reported for visibility.
+    barcode is intentionally excluded from the pass/fail computation --
+    per the PD-2 delegation spec this aggregate stays scoped to
+    source_traceability + calculation only, even now that barcode is a real
+    (registry-derived) verdict rather than a stub -- but is still reported
+    for visibility.
     """
     sub = {"source_traceability": source_traceability.status, "calculation": calculation.status}
     if sub["source_traceability"] == "pass" and sub["calculation"] == "pass":
@@ -180,8 +225,9 @@ def run_all_checks(
     layer2_cells: Dict[str, dict],
     match_note: str,
     trace: Optional[dict],
+    layer1: dict,
 ) -> Dict[str, CheckResult]:
-    barcode = check_barcode(served_product)
+    barcode = check_barcode(layer1)
     source_traceability = check_source_traceability(layer2_cells, match_note, has_trace=trace is not None)
     calculation = check_calculation(served_product, trace)
     publishability = check_publishability(source_traceability, calculation, barcode)

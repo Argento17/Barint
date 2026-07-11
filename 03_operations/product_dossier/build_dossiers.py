@@ -134,6 +134,15 @@ def discover_shelf_configs(only: Optional[List[str]] = None) -> List[Tuple[str, 
             continue
         if "baseline_json" not in cfg or "run_products_dir" not in cfg:
             continue
+        # Defensive guard (unrelated to the registry join -- discovered while
+        # running a full-corpus build to verify TASK-610's join): two shelf
+        # configs (yogurt_drinkable.json, yogurt_spoonable.json) carry
+        # baseline_json: null. rebase_path()/Path() cannot accept None; skip
+        # rather than crash discovery for every OTHER shelf. Not a silent
+        # data fix -- these two shelves are simply not eligible for a
+        # dossier build until their config is corrected (outside PD-2 scope).
+        if cfg.get("baseline_json") is None:
+            continue
         baseline_key = str(rebase_path(cfg["baseline_json"]))
         if baseline_key in seen_baseline:
             continue
@@ -155,7 +164,37 @@ def _sha256_of_obj(obj) -> str:
     return hashlib.sha256(canon.encode("utf-8")).hexdigest()
 
 
-def build_layer3(product: dict, trace: Optional[dict], layer2_cells: Dict[str, dict], meta: dict) -> Layer3:
+# identity_confidence: derived purely from Layer 1's registry-adjudicated
+# barcode_state (never from an assessment/publication_record value -- axis
+# rules forbid it, and it wouldn't make sense anyway: this is a RECORD
+# confidence, not a product-quality judgment). "verified" is the only clean
+# high; the two real-but-unresolved-review states sit lower; the two
+# adjudicated-bad states sit lowest; an unresolved pid (registry miss, or
+# this worktree has no registry at all) is honestly None -- there is no
+# registry signal to score at all, this is not a case to guess a number for.
+_BARCODE_STATUS_TO_IDENTITY_CONFIDENCE = {
+    "verified": 1.0,
+    "pending_manual_review": 0.5,
+    "malformed": 0.3,
+    "found_but_conflicting": 0.2,
+    "not_found": 0.1,
+}
+
+
+def _identity_confidence(layer1: dict) -> Tuple[Optional[float], str, Optional[str]]:
+    status = layer1.get("barcode_state", {}).get("status")
+    if layer1.get("pid_status") != "resolved" or status not in _BARCODE_STATUS_TO_IDENTITY_CONFIDENCE:
+        return (
+            None,
+            "unresolved_pid_no_registry_signal",
+            f"pid_status={layer1.get('pid_status')!r}, registry barcode_status={status!r}: "
+            f"no adjudicated registry signal to score",
+        )
+    value = _BARCODE_STATUS_TO_IDENTITY_CONFIDENCE[status]
+    return value, "registry_barcode_status_mapped", f"mapped from registry barcode_status={status!r}"
+
+
+def build_layer3(product: dict, trace: Optional[dict], layer2_cells: Dict[str, dict], meta: dict, layer1: dict) -> Layer3:
     cov = layer2_evidence.coverage_stats(layer2_cells)
 
     # --- assessment: BSIP2 trace ONLY when present; published fallback is
@@ -189,8 +228,10 @@ def build_layer3(product: dict, trace: Optional[dict], layer2_cells: Dict[str, d
                 note="not recoverable without a trace",
             )
 
-    # --- data_quality: computed from Layer-2 coverage only. Never reads an
-    # assessment or publication_record value.
+    # --- data_quality: computed from Layer-2 coverage (+ Layer-1 registry
+    # signal for identity_confidence) only. Never reads an assessment or
+    # publication_record value.
+    identity_confidence_value, identity_confidence_derivation, identity_confidence_note = _identity_confidence(layer1)
     data_quality: Dict[str, Metric] = {
         "evidence_completeness": Metric(
             key="evidence_completeness", axis="data_quality",
@@ -203,9 +244,10 @@ def build_layer3(product: dict, trace: Optional[dict], layer2_cells: Dict[str, d
             derivation="layer2_coverage", inputs=["layer2_evidence"],
         ),
         "identity_confidence": Metric(
-            key="identity_confidence", axis="data_quality", value=None,
-            derivation="stub_pending_registry_join", inputs=["layer1_identity"],
-            note="barcode/pid adjudication pending TASK-609 registry join",
+            key="identity_confidence", axis="data_quality",
+            value=identity_confidence_value,
+            derivation=identity_confidence_derivation, inputs=["layer1_identity"],
+            note=identity_confidence_note,
         ),
         "image_confidence": Metric(
             key="image_confidence", axis="data_quality", value=None,
@@ -250,8 +292,8 @@ def build_dossier_for_product(
     )
     layer1 = layer1_identity.assemble_layer1(product, layer2_cells)
     trace = traces.get(barcode)
-    layer3 = build_layer3(product, trace, layer2_cells, meta)
-    checks = layer4_checks.run_all_checks(product, layer2_cells, match_note, trace)
+    layer3 = build_layer3(product, trace, layer2_cells, meta, layer1)
+    checks = layer4_checks.run_all_checks(product, layer2_cells, match_note, trace, layer1)
 
     return {
         "generation": {
@@ -304,16 +346,29 @@ def process_shelf(shelf_id: str, cfg: dict, config_path: Path, by_pair, by_gtin,
     category_folder = category_folder_from_config(cfg)
 
     dossiers = []
+    pid_resolved = 0
     for product in products:
         dossier = build_dossier_for_product(
             product, shelf_id, category_folder, by_pair, by_gtin, traces, meta, config_path
         )
-        dossiers.append((layer1_identity.reg.provisional_key(product), dossier))
+        # Key by the real bari_pid when the registry resolved this product;
+        # provisional_key (the served id) is the fallback ONLY for the
+        # genuinely unresolvable case (registry miss / registry absent) --
+        # never a re-adjudication, per lib/registry_interface.py.
+        layer1 = dossier["layer_1"]
+        if layer1["pid_status"] == "resolved" and layer1["pid"]:
+            pid_resolved += 1
+            key = layer1["pid"]
+        else:
+            key = layer1["provisional_key"]
+        dossiers.append((key, dossier))
 
     stats = {
         "product_count": len(products),
         "trace_dir_found": any_dir_found,
         "trace_count_available": len(traces),
+        "pid_resolved_count": pid_resolved,
+        "pid_unresolved_count": len(dossiers) - pid_resolved,
     }
     return shelf_id, dossiers, stats
 
@@ -342,7 +397,9 @@ def cmd_build(args) -> int:
 
     total_products = 0
     total_dossiers = 0
+    total_pid_resolved = 0
     check_tally: Dict[str, Dict[str, int]] = {}
+    registry_barcode_status_tally: Dict[str, int] = {}
 
     for shelf_id, cfg, config_path in shelves:
         shelf_id_out, dossiers, stats = process_shelf(shelf_id, cfg, config_path, by_pair, by_gtin, args.limit)
@@ -364,12 +421,19 @@ def cmd_build(args) -> int:
                 check_tally.setdefault(check_name, {"pass": 0, "fail": 0, "warn": 0, "unknown": 0})
                 check_tally[check_name][check_result["status"]] = check_tally[check_name].get(check_result["status"], 0) + 1
 
+            registry_status = dossier["layer_1"]["barcode_state"]["status"]
+            registry_barcode_status_tally[registry_status] = registry_barcode_status_tally.get(registry_status, 0) + 1
+
         total_products += stats["product_count"]
         total_dossiers += len(dossiers)
+        total_pid_resolved += stats.get("pid_resolved_count", 0)
         summary["shelves"][shelf_id_out] = stats
 
     summary["total_products"] = total_products
     summary["total_dossiers_written"] = total_dossiers
+    summary["total_pid_resolved"] = total_pid_resolved
+    summary["total_pid_unresolved"] = total_dossiers - total_pid_resolved
+    summary["registry_barcode_status_tally"] = registry_barcode_status_tally
     summary["layer4_check_tally"] = check_tally
 
     assert_write_boundary(MANIFEST_SUMMARY_PATH)
@@ -378,6 +442,8 @@ def cmd_build(args) -> int:
     print(f"Built {total_dossiers} dossiers across {len(shelves)} shelves ({total_products} products scanned).")
     print(f"Sample written to: {out_dir}")
     print(f"Manifest summary: {MANIFEST_SUMMARY_PATH}")
+    print(f"pid resolved: {total_pid_resolved}/{total_dossiers}; registry barcode_status tally: "
+          f"{json.dumps(registry_barcode_status_tally, sort_keys=True)}")
     print(f"Layer-4 check tally: {json.dumps(check_tally, sort_keys=True)}")
     return 0
 
