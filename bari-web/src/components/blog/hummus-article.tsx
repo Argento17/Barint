@@ -8,6 +8,7 @@ import { HummusArticleHero } from "@/components/blog/hummus-article-hero";
 import { HummusScoreDistribution } from "@/components/blog/hummus-score-distribution";
 import { HummusSodiumTable } from "@/components/blog/hummus-sodium-table";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { SharePageButton } from "@/components/shared/share-page-button";
 import {
   hummusArticle,
@@ -301,6 +302,7 @@ export function HummusArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         <HummusArticleHero />
 

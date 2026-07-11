@@ -9,6 +9,7 @@ import { FoodDyesArticleHero } from "@/components/blog/food-dyes-article-hero";
 import { FoodDyesReferenceTable } from "@/components/blog/food-dyes-reference-table";
 import { FoodDyesDualFormula } from "@/components/blog/food-dyes-dual-formula";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { SharePageButton } from "@/components/shared/share-page-button";
 import { HASHVAOT_HREF, foodDyesArticle } from "@/lib/blog/food-dyes-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
@@ -198,6 +199,7 @@ export function FoodDyesArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         <FoodDyesArticleHero />
 

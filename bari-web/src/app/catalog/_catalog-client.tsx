@@ -39,7 +39,7 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
         <div className="min-w-0">
           <p
             className="font-mono text-[10px] font-bold uppercase tracking-[0.2em]"
-            style={{ color: "var(--fg3, #5E6560)" }}
+            style={{ color: "#167A58" }}
           >
             BARI CATALOG
           </p>

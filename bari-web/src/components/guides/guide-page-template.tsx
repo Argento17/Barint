@@ -15,6 +15,7 @@ import { GuideProductTable } from "@/components/guides/guide-product-table";
 import { GuideEducationSpine } from "@/components/guides/guide-education-spine";
 import { GuidePageTemplateV3 } from "@/components/guides/guide-page-template-v3";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import type { GuidePageVM } from "@/lib/view-models";
 
 export function GuidePageTemplate({
@@ -40,6 +41,7 @@ export function GuidePageTemplate({
       data-testid="guide-page-template"
       data-guide-slug={guide.slug}
     >
+      <MobileActionBar title={guide.h1} />
       <GuideBuyingRule
         h1={guide.h1}
         subtitle={guide.subtitle}

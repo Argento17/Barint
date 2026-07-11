@@ -58,7 +58,7 @@ export function getFeaturedCerealDuel(): FeaturedCerealDuel | null {
   const hasFiber = vitabix.fiberPer100g > 0 && lyon.fiberPer100g > 0;
 
   return {
-    title: "מי באמת פחות מתוק?",
+    title: "אתם יודעים מה נמצא בדגני הבוקר שלכם?",
     eyebrow: "דגני בוקר",
     matchupLine:
       vitabix.brand +

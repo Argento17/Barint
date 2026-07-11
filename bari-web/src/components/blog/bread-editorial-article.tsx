@@ -18,6 +18,7 @@ import type {
   BreadArticleBlockTone,
   BreadArticleContent,
 } from "@/lib/comparisons/bread-types";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
 
@@ -328,6 +329,7 @@ export function BreadEditorialArticle({ article }: { article: BreadArticleConten
         siteHeaderOffsetClass
       )}
     >
+      <MobileActionBar title={article.title} />
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_80%_0%,rgba(31,143,106,0.09),transparent_60%)]"
         aria-hidden

@@ -10,6 +10,7 @@ import { SugarAlcoholsChart1 } from "@/components/blog/sugar-alcohols-chart1";
 import { SugarAlcoholsChart2 } from "@/components/blog/sugar-alcohols-chart2";
 import { SugarAlcoholsEfsaCard } from "@/components/blog/sugar-alcohols-efsa-card";
 import { SugarAlcoholsFrontVsBack } from "@/components/blog/sugar-alcohols-front-vs-back";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import {
   hero,
   mechanism,
@@ -187,6 +188,7 @@ function TakeawaySection() {
 export function SugarAlcoholsArticle() {
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         {/* 1. Hero */}
         <ArticleHero />

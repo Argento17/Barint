@@ -21,6 +21,7 @@ import type { Metadata } from "next";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { HomeContainer } from "@/components/home/section-frame";
+import { BlogEditorialBackdrop } from "@/components/blog/blog-editorial-backdrop";
 import {
   buildInventoryRows,
   buildInventorySummary,
@@ -53,11 +54,13 @@ export default function CatalogPage() {
   return (
     <main
       className={cn(
-        "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
+        "relative overflow-hidden min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
       )}
     >
-      <HomeContainer className="py-8 md:py-12">
+      <BlogEditorialBackdrop />
+
+      <HomeContainer className="relative py-8 md:py-12">
         <CatalogClient summary={summary} initialRows={rows} detailsById={detailsById} />
       </HomeContainer>
     </main>
