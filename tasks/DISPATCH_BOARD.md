@@ -87,9 +87,22 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   Root causes (fat=null→placeholder EV-026; cookies=per-serving/per-100g basis err; comma-thousands
   sodium) → BSIP0 parser fix (other session). **Baseline now = whole corpus captured except ~15
   genuinely-unavailable products (13 NOT_FOUND + 2 Yohananof-exclusive).**
-- ⏳ **NEXT (orchestrator, after PD-2 join returns):** consolidated manifest rebuild + census +
-  registry recompile (folds batch-4/5 captures) — deferred while PD-2 join reads manifest/registry.
-  Then TASK-614 unblocks when the parser fix lands.
+- ✅ **TASK-610 (PD-2) registry-join CLOSED-increment — committed 4d293211.** 620/620 dossiers resolve
+  to real bari_pid; layer_1 surfaces registry barcode_status (verified 388/malformed 117/pending 115)
+  + recovered_gtin; layer_4 barcode check real; data_quality.identity_confidence derived (namespace-
+  clean). Orchestrator-verified: selftest 4/4+bonus, write-boundary guard blocks out-of-tree writes,
+  only 4 files touched, no served/registry/baseline writes. **PD-2 remaining: committed baseline
+  (blocked on parser fix, R-D).** → **TASK-615 (MED):** 2 yogurt configs baseline_json:null → 67
+  products not built (pre-existing config defect; join guards the crash).
+- 🔴 **MANIFEST-INTEGRATION GAP FOUND at consolidation → TASK-616 DISPATCHED (data-agent aa609e04).**
+  Consolidated manifest rebuild left coverage STUCK at 567/710 — batch-4/5 retained raw captures
+  (captured.nutrition_raw_keys + full_page_text) but in a bespoke LIST shape lacking the
+  `nutrition_raw_source.rows` dict build_manifest.py scans for → ~120 captures on disk but INVISIBLE.
+  Data present, not lost. TASK-616 = canonicalization transform (map to the golden batch-3 shape) →
+  rebuild manifest+census (target ~687/710) → recompile registry. **LESSON (6b, lesson_trigger=failure):
+  a scrape's acceptance test must be "manifest coverage rises," not "files written" — bespoke scrape
+  tooling that doesn't emit the canonical retention schema = [[owner_systematic_not_artisanal]] drift.**
+- ⏳ **NEXT:** TASK-616 integrates captures → then TASK-614 re-score unblocks when the parser fix lands.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
