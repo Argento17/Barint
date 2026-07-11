@@ -24,6 +24,8 @@ from datetime import datetime, timezone
 
 sys.path.insert(0, str(pathlib.Path(r"C:\Bari\03_operations\bsip1\core")))
 from ingredient_enricher import enrich as enrich_product
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "_shared"))
+from bsip0_nutrition import _normalize_decimal_comma
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
@@ -41,9 +43,7 @@ def _parse_num(raw):
     # Strip thousands separators: if comma is followed by exactly 3 digits (and not a
     # decimal separator), it's a thousands comma — remove it. "1,200" → "1200".
     # Then handle decimal comma: "0,5" → "0.5".
-    import re as _re
-    s = _re.sub(r",(\d{3})(?!\d)", r"\1", s)  # remove thousands comma
-    s = s.replace(",", ".")                     # remaining commas are decimal separators
+    s = _normalize_decimal_comma(s)
     m = _NUM_RE.search(s)
     if m:
         try:

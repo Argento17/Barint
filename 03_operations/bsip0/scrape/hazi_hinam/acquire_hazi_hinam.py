@@ -57,7 +57,7 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 from playwright.sync_api import sync_playwright
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "_shared"))
-from bsip0_nutrition import classify_nutr_label  # noqa: E402
+from bsip0_nutrition import _normalize_decimal_comma, classify_nutr_label  # noqa: E402
 
 RETAILER_ID = "hazi_hinam"
 RETAILER_NAME = "חצי חינם"
@@ -119,7 +119,7 @@ def _clean_quantity(raw: str) -> str:
     downstream parse_num just needs the digits."""
     if not raw:
         return raw
-    m = _NUM_RE.search(str(raw).replace(",", "."))
+    m = _NUM_RE.search(_normalize_decimal_comma(str(raw)))
     return m.group(1) if m else raw
 
 

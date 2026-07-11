@@ -452,8 +452,12 @@ _NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
 #     period-decimal corpus.
 # Carrefour (EU comma-decimal) is OFF-banned and disabled; do NOT add EU-decimal
 # handling here — the live corpus is period-decimal only.
-_THOUSANDS_COMMA_RE = re.compile(r"(?<=\d),(?=\d{3}(?:\D|$))")
-_DECIMAL_COMMA_RE = re.compile(r"(?<=\d),(?=\d{1,2}(?:\D|$))")
+# A thousands number must start with a non-zero integer part. In particular,
+# ``0,123`` is a three-decimal value, not a grouped integer.
+_THOUSANDS_NUMBER_RE = re.compile(r"(?<!\d)([1-9]\d*(?:,\d{3})+)(?!\d)")
+_DECIMAL_COMMA_RE = re.compile(
+    r"(?<=0),(?=\d{3}(?:\D|$))|(?<=\d),(?=\d{1,2}(?:\D|$))"
+)
 
 
 def _normalize_decimal_comma(s: str) -> str:
@@ -466,7 +470,7 @@ def _normalize_decimal_comma(s: str) -> str:
     """
     if not s:
         return s
-    s = _THOUSANDS_COMMA_RE.sub("", s)
+    s = _THOUSANDS_NUMBER_RE.sub(lambda m: m.group(1).replace(",", ""), s)
     s = _DECIMAL_COMMA_RE.sub(".", s)
     return s
 
@@ -1294,6 +1298,8 @@ def _selftest() -> int:
         ("1,200", "1200"),
         ("16,000", "16000"),
         ("1,234.5", "1234.5"),
+        ("0,123", "0.123"),
+        ("0,5", "0.5"),
         ("16.5", "16.5"),
         ("16,5", "16.5"),
         ("7", "7"),
@@ -1310,6 +1316,8 @@ def _selftest() -> int:
         ("1,200", 1200.0),
         ("16,000", 16000.0),
         ("1,234.5", 1234.5),
+        ("0,123", 0.123),
+        ("0,5", 0.5),
         ("16.5", 16.5),
         ("16,5", 16.5),
         ("פחות מ 0.5", 0.5),

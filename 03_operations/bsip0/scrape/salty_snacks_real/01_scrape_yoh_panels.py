@@ -19,6 +19,9 @@ from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 from bs4 import BeautifulSoup
 
 HERE = pathlib.Path(__file__).parent
+sys.path.insert(0, str(HERE.parent / "_shared"))
+from bsip0_nutrition import _normalize_decimal_comma  # noqa: E402
+
 FRONTEND = pathlib.Path(r"C:\Bari\bari-web\src\data\comparisons\salty_snacks_frontend_v4.json")
 CATALOG = pathlib.Path(r"C:\Bari\03_operations\bsip0\scrape\shufersal_frozen_vegetables\rescraper\yoh_named_catalog.json")
 OUT_DIR = pathlib.Path(r"C:\Bari\02_products\salty_snacks\bsip0_outputs")
@@ -53,7 +56,7 @@ def parse_number(text):
     """Return (value, is_threshold). 'L 0.5' / 'פחות מ 0.5' => (0.5, True)."""
     if text is None:
         return None, False
-    t = clean(text).replace(",", ".")
+    t = _normalize_decimal_comma(clean(text))
     is_thr = bool(re.search(r"(^|\s)L\s|פחות\s*מ|<", t))
     t = re.sub(r"(^|\s)L(\s|$)", " ", t)
     t = t.replace("<", "").replace("פחות מ", "")

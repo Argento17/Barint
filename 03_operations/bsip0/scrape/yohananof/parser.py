@@ -1,10 +1,14 @@
 from pathlib import Path
 import json
 import re
+import sys
 from bs4 import BeautifulSoup
 
 
 BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR.parent / "_shared"))
+from bsip0_nutrition import _normalize_decimal_comma  # noqa: E402
+
 OUTPUT_DIR = BASE_DIR / "outputs"
 RETAILER = "yohananof"
 RETAILER_DIR = OUTPUT_DIR / RETAILER
@@ -23,7 +27,7 @@ def parse_number(text):
         return None
 
     text = clean(text)
-    text = text.replace(",", ".")
+    text = _normalize_decimal_comma(text)
     text = text.replace("L ", "")
     text = text.replace("<", "")
     text = text.replace("פחות מ", "")
