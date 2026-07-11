@@ -1,4 +1,4 @@
-# Capability Router v5 — HARD-STONED (owner-approved 2026-07-10, TASK-583)
+# Capability Router v5.2 — HARD-STONED (owner-approved 2026-07-11, TASK-600)
 
 **This document is law for all model routing in the Bari Agent OS.** It supersedes Router
 v4.2 (BAND=FUNCTION) and every lane memory that conflicts with it. Changing this document
@@ -48,6 +48,11 @@ separately.
    orchestrate, and ideate work. Opus 4.8 remains on QA: the Adversarial QA pin and
    Claude-side CHALLENGE stay `claude-opus-4-8` unchanged. Fallbacks stay within tier,
    across vendor.
+10. **ORCHESTRATOR DEFAULT PIN.** The orchestrator / main-loop default model is ALWAYS
+    `claude-opus-4-8`. The SST strategist tier (Fable 5 = `claude-fable-5`, Sol 5.6 =
+    `gpt-5.6-sol`) engages ONLY through the STRATEGY-CONSULT capability, i.e. when the owner
+    invokes the `/stf` (Strategy Task Force) skill — never as the ambient session model. Opus
+    4.8 also remains the Adversarial-QA and Claude-side CHALLENGE pin (unchanged).
 
 ---
 
@@ -91,7 +96,7 @@ router.
 | CONTENT | claude-fable-5 | claude-sonnet-5 | Content Agent, pinned | Spawn failure or 2 consecutive rejected drafts |
 | BUILD-HEAVY | codex gpt-5.6-terra¹ | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
 | BUILD-LIGHT | codex gpt-5.6-terra¹ | claude-sonnet-5 agent | same | same |
-| STRATEGY-CONSULT | codex gpt-5.6-sol via `codex exec` READ-ONLY sandbox (the Claude side of the debate is the orchestrator session itself = Fable 5) | fable-only debate (degraded: cross-vendor lost - flag it) | `codex exec`, sandbox `read-only` | API/CLI error or auth pending |
+| STRATEGY-CONSULT | Claude seat = `claude-fable-5` EXPLICIT, obtained as a Fable-pinned participant (the orchestrator default is Opus 4.8, so the Fable seat is convened for the meeting, not the ambient session); GPT seat = `gpt-5.6-sol` via `codex exec` READ-ONLY | fable-only debate (degraded: cross-vendor lost - flag it) | `codex exec`, sandbox `read-only` | API/CLI error or auth pending |
 | GRUNT | codex gpt-5.6-luna¹ | claude-haiku-4-5 (Agent tool) | `codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback | API/CLI error, or any output failing its validator once |
 | EVIDENCE-RESEARCH | gpt-5.5 + web search | Claude Research Agent (sonnet pin) | Codex web-search config / opencode API | API error or timeout 120s |
 | ENGINEERING-RESEARCH | codex gpt-5.6-terra + web search¹ | Claude Research Agent (sonnet pin) | `codex exec -c tools.web_search=true`, read-only sandbox | same |

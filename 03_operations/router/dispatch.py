@@ -9,8 +9,8 @@ doc wins — fix the code, not the doc (the doc changes only on an explicit owne
 `--selftest-table` asserts the two stay byte-matched on the Layer 1 and Layer 2 tables
 (the doc's own operational-appendix law).
 
-What v5 is
-----------
+What v5.2 is
+------------
 A capability-routing library + a selftest CLI:
   - `route(TaskAttributes) -> Capability`   — Layer 1's ordered questions, first match wins.
   - `MODEL_BINDING`                          — Layer 2's model table, runtime-usable.
@@ -222,7 +222,7 @@ LAYER2_TABLE: list[tuple[str, str, str, str, str]] = [
      "Nonzero exit, empty diff, sandbox refusal, or auth pending"),
     ("BUILD-LIGHT", "codex gpt-5.6-terra¹", "claude-sonnet-5 agent", "same",
      "same"),
-    ("STRATEGY-CONSULT", "codex gpt-5.6-sol via `codex exec` READ-ONLY sandbox (the Claude side of the debate is the orchestrator session itself = Fable 5)",
+    ("STRATEGY-CONSULT", "Claude seat = `claude-fable-5` EXPLICIT, obtained as a Fable-pinned participant (the orchestrator default is Opus 4.8, so the Fable seat is convened for the meeting, not the ambient session); GPT seat = `gpt-5.6-sol` via `codex exec` READ-ONLY",
      "fable-only debate (degraded: cross-vendor lost - flag it)",
      "`codex exec`, sandbox `read-only`", "API/CLI error or auth pending"),
     ("GRUNT", "codex gpt-5.6-luna¹", "claude-haiku-4-5 (Agent tool)",
