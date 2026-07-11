@@ -222,10 +222,21 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
     for 10 grade-changed rows, 0 fabricated; ingredients + excluded 7290016967074 untouched). Parity diverge=0.
     Caught+fixed ANOTHER comma path (task616_type_b) + a false superlative. **DEPLOY-BLOCKED: 10 PENDING_COPY
     rows need Content Agent + two-gate before go-live; consumer deploy=owner merge.**
-- ⚠️ **TASK-630 REGISTERED (follow-up):** re-scored shelves regressed to calc-FAIL (bread18/crackers17/
-  cheese17) — NOT bad scores (parity diverge=0), a **trace-wiring gap** (629's new traces not in the config
-  run_products_dir build_dossiers reads). Fix = same trace-backfill pattern → flips ~52 to pass. Also fix
-  parity_gate.py cp1252 Hebrew-print crash.
+- ✅ **TASK-630 (trace-wiring) CLOSED — Codex terra + Opus-verified on main tree (traces 8f706b0c, order-fix aa05de42).**
+  Surgical trace-backfill of the 52 corrected barcodes → new run dir FIRST in each config's run_products_dir
+  (build_dossiers is FIRST-dir-wins, L349 — my dispatch spec said the opposite; corrected). Main-tree flip
+  CONFIRMED: bread 23/23 calc PASS, crackers 0 fail, cheese 45/47, protein_bars 32/32; aggregate calc fail
+  **111→61 (−50)**; parity diverge=0 (matched=704 agree=704). parity_gate cp1252 fixed + selftest PASS.
+  Scores byte-identical to served (untouched). RESIDUAL: 2 cheese (7290019635383, 56272) pre-existing 0.2pt
+  JSON-vs-trace rounding, not in the 629 set — separate micro-gap.
+- ✅ **TASK-631 (task616_type_b comma audit) CLOSED — Codex terra + Opus-verified (4de34ed1).** Corpus-wide
+  re-derive-vs-stored: 120 records (53 type_b + 67 type_a), **exactly 1 mismatch = crackers 7290018790328
+  already caught+re-scored by 629** (50.3/C→35.0/D). Bug isolated to that one product; no new corruption.
+  Producer hardened (new canonicalize_task616_type_b.py routes through the shared parser; --selftest guards
+  1,200→1200). No served JSON / published score touched.
+- 🚫 **10 PENDING_COPY rows — BLOCKED by the ACTIVE product-descriptions freeze** (owner rewriting ALL
+  descriptions; no lane touches rowVerdict/insightLine/expansion without owner handoff). NOT dispatched to
+  Content. Owner-handoff digest item; gates consumer deploy of the 629 re-score.
 - 📋 **Deferred (tracked):** re-score PIPELINE build (614's root gap) · re-scrape 17 never-captured · 6
   PID_SPLIT shelf-mapping → Product Agent · cookies_coffee basis defect (>30, digest).
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
