@@ -114,13 +114,20 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   Structurally resolves the TASK-607 misclassification. → **TASK-618 (MED):** recovered_gtins() key
   mismatch (true_gtin_discovered) strands the 3 truncations' recovered_gtin — flagged, deliberately
   not touched by 613 (stability guard).
-- 🚀 **PD-3 (TASK-611) DISPATCHED** — internal inspection view (Frontend Agent). Utilitarian MVP per
-  memo §5: internal-only route (noindex), Page-1 = identity+barcode status, Layer-4 check panel,
-  per-field evidence cells, publication_record score-as-copied, simple 2D radar/bars w/ assessment↔
-  data_quality toggle (NOT 3D), + corpus list/filter. Reads compiler dossiers read-only; polish/Page-2/
-  scanner deferred. Reversible, internal, no consumer deploy. Owner steers design on review.
-- ⏳ **Still blocked externally:** TASK-614 re-score (parser fix, other session). Ready: TASK-617
-  (coverage gate), TASK-618 (recovered_gtin key fix).
+- ✅ **TASK-611 (PD-3) CLOSED → 🏁 PD MVP COMPLETE** (commits c543ff15 + ab5bfd84, NOT pushed). Internal
+  inspection view: /internal/dossier (corpus list, filter to calc-FAIL/malformed/missing-evidence) +
+  /internal/dossier/[pid] (identity + 4-check panel + evidence cells + publication_record beside the
+  calc-check + assessment↔data_quality DISJOINT toggles, never blended). Real-DOM verified (687 rows;
+  calc-fail filter=77 matches manifest); noindex + robots-disallow /internal/; tsc+build clean;
+  tripwire-1 clean (0 served/score files). Radar=plain bars (memo fallback); Page-2 deferred. **Deploy
+  = owner-gated (internal noindex tool, local only).** Owner steers visual design on review.
+- 🏁 **PRODUCT DOSSIER MVP DONE:** PD-1 registry (687) + PD-2 compiler/join (620/620→687 resolve) +
+  PD-3 view. Only the committed dossier baseline remains (blocked on the parser fix, R-D).
+- 🚀 **DISPATCHED (final cleanup):** TASK-618 (recovered_gtin key fix, a9…) · TASK-617 (manifest-
+  coverage acceptance gate — the TASK-615 prevention).
+- ⏳ **WALL approaching:** after 617/618, only TASK-614 (re-score) remains — BLOCKED on the external
+  parser fix (other session). Owner review points: PD-3 rendered view; cookies 5-6× defect (numbers
+  come with the re-score).
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
