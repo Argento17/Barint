@@ -23,10 +23,17 @@ caught 2 bimkom leaks the agent's self-check missed → v3. **Blind judge (orche
 - **NEXT ready:** TASK-550 M2 (fold approved §H5 voice + judge into content_agent_v1 = scalable sweep
   engine; owner ruled pace via choosing full /orchestrate) · then remaining ~14 value-citing shelves.
 - **NOTHING LIVE.** Go-live (apply shelves to pages + deploy) = owner trigger (consumer-facing).
+- **TASK-596 (2026-07-11, owner-approved) — RETURNED, PR up:** corrected the 15 CONFIRMED cereals
+  `expansion.nutrition.fat` values (0.5 → 2.0–13.6 g, raw-panel replay, 0/15 mismatch). Both gates
+  identical to baseline (no new fails), tsc+build clean, render-verified. PR
+  `github.com/Argento17/Barint/pull/new/task596-cereals-fat-fix` → **owner merge** (consumer-facing).
+  **Phase 2 diagnosis: NOT a scoring tripwire** — bsip2 traces already scored on the CORRECT fat
+  (L1 fat_g = replay value, not 0.5); Δscore = 0 for all 15. Bug was frontend-build/display-data only.
 - **OWNER-GATED CRITICALS (digest, not actionable by loop):** TASK-475 (57 products on lost ingredient
   handoff, rescore=tripwire-1), TASK-463 (~97 false "no limiting factors", freeze-blocked), TASK-563 (8
-  shelves non-recoverable traces), TASK-591 (cereals fat wrong 75%, tripwire-1), TASK-545 (rice-drink
-  override lost). All prior-surfaced; still awaiting owner rulings.
+  shelves non-recoverable traces), ~~TASK-591 (cereals fat wrong 75%, tripwire-1)~~ → **RESOLVED by
+  TASK-596: display-data fix, scores already correct → no re-score/tripwire needed**, TASK-545 (rice-drink
+  override lost). Remaining prior-surfaced; still awaiting owner rulings.
 
 ## 🌙 UNATTENDED 3AM RUN (2026-07-11) — dispatch pass, branch task506 — IN FLIGHT
 Operating constraints: native Sonnet subagents only (cloud/CLI lanes queued for supervised morning);
