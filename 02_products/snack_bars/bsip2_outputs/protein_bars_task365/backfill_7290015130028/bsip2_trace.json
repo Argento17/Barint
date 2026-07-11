@@ -1,0 +1,40 @@
+{
+  "bsip2_version": "trace_backfill_v1",
+  "algorithm_version": "historical_lens_output_not_reexecuted",
+  "trace_generated_at": "2026-06-21T13:40:52.920848Z",
+  "specification_version": "TASK-627 trace-only backfill from rerank_table_rescore.json",
+  "input_reference": {
+    "canonical_product_id": "backfill_7290015130028",
+    "barcode": "7290015130028",
+    "product_name_he": "WIN חטיף חלבון קרם חלב",
+    "brand": "חטיף חלב WIN",
+    "source_retailers": [
+      "shufersal"
+    ],
+    "bsip1_source_path": null,
+    "audit_ref": null,
+    "bsip1_schema_version": null,
+    "load_errors": []
+  },
+  "evaluation_status": "historical_trace_backfill",
+  "run_id": "protein_bars_task365_rescore_20260621_134052",
+  "category": "protein_bar",
+  "nova_proxy": null,
+  "confidence_score": null,
+  "dimension_scores": null,
+  "final_score_estimate": 51.5,
+  "grade_estimate": "C",
+  "explanation_drivers": [
+    "PROTEIN_BAR_MALTITOL_TIER1",
+    "BASE_CAP_55"
+  ],
+  "backfill_provenance": {
+    "source_rerank_table": "rerank_table_rescore.json",
+    "source_run_record": "run_record_rescore.json",
+    "source_score": 51.5,
+    "source_grade": "C",
+    "served_score": 51.5,
+    "served_grade": "C",
+    "score_identity_assertion": "passed"
+  }
+}
