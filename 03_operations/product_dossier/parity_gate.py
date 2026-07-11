@@ -152,6 +152,9 @@ def selftest() -> int:
 
 
 def main() -> int:
+    # Windows consoles can default to cp1252, which cannot print Hebrew values.
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, help="write the machine-readable audit report")
     parser.add_argument("--selftest", action="store_true", help="prove agreement and injected-mismatch behavior")

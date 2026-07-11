@@ -1,0 +1,33 @@
+{
+  "bsip2_version": "trace_backfill_v1",
+  "algorithm_version": "historical_lens_output_not_reexecuted",
+  "trace_generated_at": null,
+  "specification_version": "TASK-630 trace-only backfill from served comparison JSON",
+  "input_reference": {
+    "canonical_product_id": "backfill_5000396021202",
+    "barcode": "5000396021202",
+    "product_name_he": "קרקר",
+    "brand": "ריץ",
+    "source_retailers": null,
+    "bsip1_source_path": null,
+    "audit_ref": null,
+    "bsip1_schema_version": null,
+    "load_errors": []
+  },
+  "evaluation_status": "historical_trace_backfill",
+  "run_id": "task630_trace_backfill",
+  "category": "crackers",
+  "nova_proxy": null,
+  "confidence_score": null,
+  "dimension_scores": null,
+  "final_score_estimate": 40.5,
+  "grade_estimate": "D",
+  "explanation_drivers": null,
+  "backfill_provenance": {
+    "source": "served comparison JSON",
+    "original_trace_score": 46.7,
+    "served_score": 40.5,
+    "served_grade": "D",
+    "score_identity_assertion": "passed"
+  }
+}

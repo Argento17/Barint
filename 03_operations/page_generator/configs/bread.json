@@ -4,7 +4,11 @@
   "corpus_dirs": [
     "C:\\Bari\\03_operations\\bsip1\\run_bread_conform_001\\output"
   ],
-  "run_products_dir": "C:\\Bari\\02_products\\bread\\bsip2_outputs\\run_bread_conform_001\\products",
+  "_task630_comment": "2026-07-11 TASK-630: append trace-only backfill second, so corrected served scores override stale traces without re-scoring; original traces remain first for uncorrected barcodes.",
+  "run_products_dir": [
+    "C:\\Bari\\02_products\\bread\\bsip2_outputs\\run_bread_conform_001\\products",
+    "C:\\Bari\\02_products\\bread\\bsip2_outputs\\run_bread_task630_backfill\\products"
+  ],
   "baseline_json": "C:\\Bari\\bari-web\\src\\data\\comparisons\\bread_frontend_v4.json",
   "retailer_scope": ["shufersal"],
   "subpool_filter": null,

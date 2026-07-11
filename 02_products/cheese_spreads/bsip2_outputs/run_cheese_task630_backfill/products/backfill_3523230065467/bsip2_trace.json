@@ -1,0 +1,33 @@
+{
+  "bsip2_version": "trace_backfill_v1",
+  "algorithm_version": "historical_lens_output_not_reexecuted",
+  "trace_generated_at": null,
+  "specification_version": "TASK-630 trace-only backfill from served comparison JSON",
+  "input_reference": {
+    "canonical_product_id": "backfill_3523230065467",
+    "barcode": "3523230065467",
+    "product_name_he": null,
+    "brand": "סואניון",
+    "source_retailers": null,
+    "bsip1_source_path": null,
+    "audit_ref": null,
+    "bsip1_schema_version": null,
+    "load_errors": []
+  },
+  "evaluation_status": "historical_trace_backfill",
+  "run_id": "task630_trace_backfill",
+  "category": "cheese-spreads",
+  "nova_proxy": null,
+  "confidence_score": null,
+  "dimension_scores": null,
+  "final_score_estimate": 68.0,
+  "grade_estimate": "B",
+  "explanation_drivers": null,
+  "backfill_provenance": {
+    "source": "served comparison JSON",
+    "original_trace_score": 63.8,
+    "served_score": 68.0,
+    "served_grade": "B",
+    "score_identity_assertion": "passed"
+  }
+}
