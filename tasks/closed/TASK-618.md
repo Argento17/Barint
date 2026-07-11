@@ -2,9 +2,16 @@
 id: TASK-618
 title: registry recovered_gtins() key-name mismatch: 3 true truncations get no recovered_gtin
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-07-11
+close_reason: >
+  Key-alias fix DELIVERED (data-agent, commit fff30a15) + orchestrator-verified. recovered_gtins()
+  now reads the real committed field names (`barcode` + `true_gtin_discovered`) — no invented keys.
+  VERIFIED: commit=2 registry files, --check PASS, distribution malformed 129→126 / found_but_conflicting
+  0→3 (sum 687), recovered_gtin populated on EXACTLY the 3 yogurt truncations (7290000055336 /
+  7290000058030 / 7290004068035), 684 records byte-identical. --selftest extended + PASS. Deterministic.
+  The 3 genuine truncations now correctly carry their recovered GTIN + found_but_conflicting status.
 depends_on: []
 blocks: []
 category_id: null

@@ -123,11 +123,16 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   = owner-gated (internal noindex tool, local only).** Owner steers visual design on review.
 - 🏁 **PRODUCT DOSSIER MVP DONE:** PD-1 registry (687) + PD-2 compiler/join (620/620→687 resolve) +
   PD-3 view. Only the committed dossier baseline remains (blocked on the parser fix, R-D).
-- 🚀 **DISPATCHED (final cleanup):** TASK-618 (recovered_gtin key fix, a9…) · TASK-617 (manifest-
-  coverage acceptance gate — the TASK-615 prevention).
-- ⏳ **WALL approaching:** after 617/618, only TASK-614 (re-score) remains — BLOCKED on the external
-  parser fix (other session). Owner review points: PD-3 rendered view; cookies 5-6× defect (numbers
-  come with the re-score).
+- ✅ **TASK-617 CLOSED** (commit e19d14fa) — manifest-coverage acceptance gate + 17-entry NOT_FOUND
+  allowlist; --files catches non-ingested captures (real e2e proof, zero manifest drift), --corpus
+  693/710 / 0 unexplained PASS, --selftest PASS. Closes the TASK-615 lesson loop.
+- ✅ **TASK-618 CLOSED** (commit fff30a15) — recovered_gtins() reads true_gtin_discovered; the 3 yogurt
+  truncations now carry recovered_gtin + found_but_conflicting (malformed 129→126); 684 byte-identical,
+  --check/--selftest PASS. Orchestrator-verified (distribution + exactly-3-changed).
+- 🧱 **WALL: out of ready work.** Ready queue EMPTY. Only **TASK-614 (re-score)** remains — BLOCKED on
+  the external BSIP0 parser fix (other session). **Owner review points (digest):** (1) PD-3 rendered
+  inspection view (`/internal/dossier`, local) — steer visual design; (2) cookies_coffee 5-6× defect
+  (>30, numbers arrive with the re-score). Orchestrator idle until the parser fix lands or owner input.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
