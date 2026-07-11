@@ -14,6 +14,7 @@
 /coverage
 /test-results/
 /e2e/vision-out/
+/.vision-in/
 
 # next.js
 /.next/
@@ -44,3 +45,9 @@ next-env.d.ts
 
 # Agent OS lives ONLY at C:\Bari — never snapshot it into the website (TASK-131)
 /Bari/
+
+# Product Dossier dev data (TASK-611 / PD-3) — derived cache synced from the
+# compiler's own gitignored, UNCOMMITTED sample output (03_operations/
+# product_dossier/dossiers_sample). Regenerate via `npm run sync:dossiers`;
+# never hand-edited, never committed (R-D: no committed baseline pre-parser-fix).
+/src/data/dossiers_generated/

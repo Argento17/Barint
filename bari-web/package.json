@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "validate-corpus": "node scripts/validate-corpus.mjs",
+    "sync:dossiers": "node scripts/sync-dossiers.mjs",
     "test:e2e": "playwright test e2e/smoke.spec.ts",
     "test:a11y": "playwright test e2e/a11y.spec.ts",
     "test:perf": "playwright test e2e/perf.spec.ts --project=mobile",

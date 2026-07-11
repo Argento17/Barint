@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { absoluteUrl } from "@/lib/site-url";
 
-const DISALLOW = ["/api/", "/dev/", "/admin/", "/admin"];
+const DISALLOW = ["/api/", "/dev/", "/admin/", "/admin", "/internal/"];
 
 const AI_AND_SEARCH_BOTS = [
   "Googlebot",
