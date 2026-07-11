@@ -28,10 +28,12 @@ not ship.
 | פחמימה ריקה | implies metabolic verdict; not panel-readable; sounds like a health claim in consumer Hebrew | בעיקר פחמימה קלה + fiber/protein figures from scrape |
 | **null** (the word "null"), field-path tokens (d4_additives, expansion.X, _wholeGrainClaim, backtick-wrapped paths), JSON/code identifiers of any kind | Harvest #2 ruling #1 — code language in consumer copy is a credibility collapse and a structural leakage failure | When data is absent: "לא צוין על האריזה" / "רשימת הרכיבים המלאה לא נקראה מהאריזה". Never state "null"; never expose a field name. |
 | שורת בארי (as a section heading or structural closer label) | Harvest #2 ruling #2 — retired from the spine; הקשר במדף is the closing beat | Replace with הקשר במדף section |
-| **"<מותג>? תחשוב שוב" / "תחשבו שוב" / any mocking or attacking of a brand by name** | Harvest #3 rule 1 — brand-directed dismissive rhetoric is banned; Bari critiques composition, never brand character. (Owner's example: "שוגי? תחשוב שוב" — "very negatively towards a brand, not where Bari wants to be.") | Critique the product's formulation directly: "82% קמח תירס מעובד ו-435 מיליגרם נתרן — זה מה שיש כאן." |
+| **"<מותג>? תחשוב שוב" / "תחשבו שוב" / any mocking or attacking of a brand by name** | Harvest #3 rule 1 — brand-directed dismissive rhetoric is banned; Bari critiques composition, never brand character. (Owner's example: "שוגי? תחשוב שוב" — "very negatively towards a brand, not where Bari wants to be.") | Critique the formulation directly: "קמח תירס מעובד בראש הרשימה ומליחות גבוהה — זה מה שיש כאן." (An ingredient proportion like "82% קמח תירס" stays legal; a panel figure like "435 מיליגרם נתרן" does not — §1.6 R1.) |
 | **Bare juxtaposition of facts without the finding ("הוויטמינים הוספו; הסיבים — לא" standing alone)** | Harvest #3 rule 2 — information-dumping: facts side-by-side without the "so what" are not a verdict, they are data. Every line must carry the insight, not raw data. | Frame the finding: "הוויטמינים הוספו מבחוץ; הדגן המלא שיספק סיבים — לא נמצא כאן." |
-| **Trailing nutrition-fact tails in insightLine / rowVerdict ("נתרן: 110 מיליגרם ל-100 גרם" / "סוכר: 22.4 גרם ל-100 גרם" appended to verdicts)** | Harvest #3 rule 3 — raw per-100g numbers recited at the end of a verdict are not insight, they are the nutrition section. A number appears in a verdict ONLY when it IS the finding (framed), never as a trailing data tail. Owner: "Why do we have still nutritional facts in the product description? we dont need that." | State numbers only when they ARE the finding: "ו-435 מיליגרם נתרן ל-100 גרם — הגבוה ביותר בקטגוריה" (anchored, comparative, framed as finding). Never append "נתרן: X, סוכר: Y" as a data tail. |
+| **Trailing nutrition-fact tails in insightLine / rowVerdict ("נתרן: 110 מיליגרם ל-100 גרם" / "סוכר: 22.4 גרם ל-100 גרם" appended to verdicts)** | Harvest #3 rule 3 — raw per-100g numbers recited at the end of a verdict are not insight, they are the nutrition section. A number appears in a verdict ONLY when it IS the finding (framed), never as a trailing data tail. Owner: "Why do we have still nutritional facts in the product description? we dont need that." | SUPERSEDED 2026-07-10 (§1.6 R1): nutrition figures never appear in consumer prose at all — not even framed as the finding. Describe the read in plain absolute words ("מלוח מאוד", "עשיר בסוכר"). Never append "נתרן: X, סוכר: Y" as a data tail. |
 | **Technical additive dump in rowVerdict / insightLine (E-numbers, chemical names: "E471", "מונו- ודיגליצרידים של חומצות שומן", long additive laundry lists)** | Harvest #4 H4-3 — additive generalization: verdict prose is not the additive panel. Dumping codes or chemical names into the verdict is information noise and duplicates the sub-dropdown. | Generalize: "תוספי מזון" or "מספר תוספי מזון ברשימה". For contested-tier additives: "שחלקם שנויים במחלוקת". Per-additive names, codes, and tier detail live **only** in the additive sub-dropdown — never in insightLine / rowVerdict / comparisonContext. |
+| **Verbal grade recitation ("נשאר ב-A", "עוצר ב-B כי…", "יורד ב-D", "B הוא הציון שההרכב מרוויח")** | TASK-533 round 2 / C3 ruling 2026-07-08 — the score chip (72/B) already renders the grade beside the text; a verdict that also states the letter is the UI captioning itself, and "X. עוצר ב-[grade] כי Y" is itself a template skeleton every product falls into. Full reversal of the 2026-06-02 grade-rationale rule — see `row_description_standard_v1.md` §2a. | State the food fact only; let the badge carry the grade. Naming the letter is banned, and since 2026-07-10 relative-standing claims ("מהבולטים בקטגוריה") are banned too (§1.6 R2). |
+| **Score-mechanism narration in plain Hebrew ("הציון נשאר ב-A כי רשימת הרכיבים מבוססת על טקסט העמוד בלבד, ולכן רמת העיבוד אינה מאומתת", "לא ניתן לאמת את רמת העיבוד מהנתונים הזמינים")** | TASK-533 round 2 / C3 ruling (Principle A), 2026-07-08 — describing Bari's own confidence tier / extraction method / processing-classification mechanism is the algorithm narrating itself, even with zero Tier-4 vocabulary. Same failure class as raw score mechanics, just translated into words. | Describe the product in food language and stop: "יוגורט נקי ופשוט." A missing fact is stated as "לא צוין על האריזה" — never a sentence about Bari's own reading/verification. (The old suggested repair "בלי צילום תווית מלא…" is itself REVOKED — "צילום תווית" is hard-banned per the 2026-07-08 owner ruling, and narrating an ingredient COUNT is banned per H4-P2.) |
 
 ### Constructive-recommendation carve-out (Harvest #1, E009 — owner ruling 2026-06-19)
 
@@ -82,13 +84,20 @@ revisions. Avoid the whole family up front. (Full repair examples: `10_translati
 | **T13** | Passive nominalization at the closer ("הציפייה ... מושארת בחוץ") | LLM-Hebrew passive register (T5 sibling) landing the final beat | Active, plain phrasing ("כל עוד לא מצפים ממנו לחלבון"). |
 | **T14** | Boilerplate `limitingFactors` pasted verbatim across products | automation/translationese tell **+ factual hazard** — a generic "low protein/fiber" limiter landed on top-scoring products where it is **false** | `limitingFactors` must be **product-specific and factually true for THAT product**; an inapplicable limiter is a fabrication — remove it. Verify each vs the product's own scrape. |
 
-**CARVE-OUTS — legitimate Hebrew, do NOT flag (milk run, 2026-06-25).** The gate and
-authors must not over-correct into mush. Distinguish the bare contrastive **closer**
-(banned, T1/T11) from these (allowed):
-- **`לא X ולא Y`** (neither/nor) — legitimate idiomatic Hebrew. Not a tell.
-- **A single in-prose `אבל`** that **resolves into a full clause** — fine; T11 bans only the repeated terminal *shape* across a shelf, never one connective `אבל`.
-- **`לא X אלא Y`** (not X but rather Y) **naming the positive alternative** — this is the **APPROVED repair form**, not a tell.
-- Discriminator: a closer that **adds a positive alternative or a full resolving clause** is allowed; a closer that **only negates, repeated shelf-wide,** is the tell.
+**CARVE-OUTS — REVISED 2026-07-10 (owner overhaul; supersedes the milk-run 2026-06-25
+carve-outs).** The gate and authors must not over-correct into mush, but two of the
+old carve-outs are DEAD — the define-by-negation ban is now ZERO-EXCEPTION and
+mechanically enforced (`copy_rules.ANTITHESIS_RE`: `,לא` / `ולא` / `אלא` anywhere):
+- ~~`לא X ולא Y` (neither/nor)~~ — **REMOVED.** `ולא` hard-fires the gate wherever it
+  appears. Restate positively, or split into two sentences.
+- **A single in-prose `אבל`** that **resolves into a full clause** — still fine; T11 bans
+  only the repeated terminal *shape* across a shelf, never one connective `אבל`.
+- ~~`לא X אלא Y` naming the positive alternative~~ — **REMOVED** (owner ruling
+  2026-07-10, zero exception; this exact carve-out caused 11/20 content_agent_v1 pilot
+  products to fail the hard gate). `אלא` never appears in consumer copy. The repair is
+  to state the positive directly, with no negation at all.
+- "במקום Y" (instead-of) is the SAME banned family (`bimkom_define_by_negation_fires`);
+  only the innocent spatial sense ("במקום אחד") passes.
 
 **Two failure modes (owner ruling, file 8 H5-R3):** T1–T7 are the **F1
 translationese-punch** axis. The opposite failure is **F2 neutral-bland** — no
@@ -97,10 +106,26 @@ substance in natural connected Hebrew* (file 2 §0.5). `(!)` is seasoning used
 sparingly and only when earned — more than once on a shelf is overuse.
 
 > ⚠️ Calibration guards (do NOT over-flag): `אשר` is natural Hebrew, not a tell; an
-> earned short-fragment closer is allowed; the three CARVE-OUTS above (`לא X ולא Y`,
-> a single resolving in-prose `אבל`, `לא X אלא Y` naming a positive) are explicitly
-> allowed — T11 is a **shelf-level monotony** check, not a line-level `אבל` ban. Only
-> the patterns above fire.
+> earned short-fragment closer is allowed; the ONE surviving carve-out (a single
+> resolving in-prose `אבל`) is explicitly allowed — T11 is a **shelf-level monotony**
+> check, not a line-level `אבל` ban. Only the patterns above fire.
+
+---
+
+## 1.6 Owner copy-law overhaul — 2026-07-10 rulings (HARD; supersede any contrary guidance elsewhere in this file)
+
+Encoded for every consumer-copy author, including the `content_agent_v1` wired brief
+(TASK-550 M2 voice fold). Each rule is mechanically gated where noted — a fire fails
+the page, not just the review.
+
+| # | Rule | Gate |
+|---|---|---|
+| **R1** | **No cited nutrition values in prose.** No grams / מ"ג / מיליגרם / קלוריות / קק"ל / nutrient-percent anywhere in consumer prose ("26 גרם", "660 מ\"ג", "32% שומן" — all dead). Translate the panel into PLAIN ABSOLUTE WORDS — "חלבון גבוה", "מלוח", "רזה", "עשיר בשומן"; naming the read in words is REQUIRED, only the figure is banned. Ingredient PROPORTIONS stay allowed ("40% טחינה", "95% חיטה", "69% חומוס") — they describe what the food is made of, not its panel. | `copy_rules.nutrition_value_citation_hard_fires` (HARD) |
+| **R2** | **No corpus-relative rank / superlative / median findings in consumer prose.** "הכי", "ה… ביותר", "מהבולטים במדף", "נדיר במדף", "מוביל את המדף", "מעל/מתחת לחציון", what-it-beats framing — all dead. Describe the product ON ITS OWN TERMS: salty / rich / lean / clean. Retires the prose use of `superlatives_allowed` (the engine's RT-1 gate now expects ZERO superlatives). Internal scoring and QA rank checks are unaffected. | engine RT-1 + red-team |
+| **R3** | **The anchor voice.** Owner calibration line: "גאודה הולנדית קלאסית, עשירה ומלוחה. היא מכילה חלבון גבוה אך גם שומן גבוה. מדובר במוצר יחסית נקי אבל יש לשים לב לכמות הנצרכת." Three beats: (1) identity + sensory/textural character → (2) nutritional read in plain absolute words → (3) practical takeaway. Short. Native. Own terms. | voice-match / naturalness judge |
+| **R4** | **Define-by-negation: zero exception.** "X, לא Y", `ולא`, `אלא`, and "במקום Y" (instead-of) are banned with NO carve-out — the old "לא X אלא Y naming a positive" approval is REVOKED (it caused 11/20 pilot failures). Restate positively or split sentences. | `antithesis_hard_fires` + `bimkom_define_by_negation_fires` (HARD) |
+| **R5** | **Cleanliness claims require the full additive picture.** Never "בלי תוספות נוספות" / "רשימה נקייה" while the list carries acidity regulators, stabilizers, emulsifiers, or seasoning blends beyond the base — counting only the preservative is a false claim (hummus RT-1 class). Generalized additive naming per H4-3 still applies. | red-team |
+| **R6** | **No templated nutrient tail across products.** The same qualitative nutrient clause may not close more than a handful (working bar: 5) of products' lines on one shelf ("חלבון ונתרן סבירים" ×12 — the hummus RT-2 defect). Every line's closing read is specific to THAT product. | validate_copy_authored CHECK 2/4 + red-team |
 
 ---
 
@@ -116,7 +141,7 @@ and `missing_data_discard_rule`.)
 **Tier A — verifiable from the product's own scraped data → may state directly,
 with the source implied by the data:**
 - ingredient-list length / presence of named additives that appear on the label
-- sugar / saturated fat / fiber / protein per 100g *as parsed from the product*
+- sugar / saturated fat / fiber / protein per 100g *as parsed from the product* — the panel GROUNDS a plain-words read; since 2026-07-10 the figure itself never appears in consumer prose (§1.6 R1)
 - "no added sugar" / "gluten-free" *if it's on the label*
 - the Bari score/grade *as displayed* (never the raw mechanic)
 
@@ -171,9 +196,9 @@ Every "דורש אימות לפני פרסום" flag must be closed individually
 
 A review with any surviving "דורש אימות" flag does not ship in publication mode.
 
-### P-2: Every compositional claim must be per-100g and source-cited
+### P-2: Compositional claims are per-100g-grounded — expression superseded 2026-07-10
 
-Numeric claims (sugar, saturated fat, fiber, protein) must be stated per 100g and attributed to the product's own scraped panel. A parenthetical "(לוח ערכים תזונתיים)" is sufficient attribution, but a raw number with no referent fails the gate.
+The VERIFICATION basis is unchanged: every compositional read must be grounded in the product's own scraped per-100g panel. The EXPRESSION rule changed (§1.6 R1): the figure itself no longer appears in consumer prose — the panel grounds a plain-words read ("עשיר בסוכר", "מלוח"), and the numbers live only in the structured UI fields (nutrition table, chips).
 
 ### P-3: "מתועש" and "מעובד" require a structural anchor in the same paragraph
 
@@ -217,5 +242,12 @@ Any line intended as dry wit or criticism must pass the HebEMO anger + disgust g
 ### Banned / correct-me (for 5_banned_phrases_and_claims.md)
 - **סודיום / סודים** — never; the Hebrew term for sodium is **נתרן**. (Now a HARD fail in hebrew_readability.)
 - **ברי** as the brand name — the brand is spelled **בארי**. ('ברי' as the ordinary word, and goji berry, are fine.) (HARD fail when used as brand-subject.)
-- **Restating the nutrition numbers** already shown in the values/table inside the prose (e.g. repeating '10.1 גרם חלבון', '31%'). Say what they mean, don't re-list them. (Advisory flag.)
+- **Restating the nutrition numbers** already shown in the values/table inside the prose (e.g. repeating '10.1 גרם חלבון', '31%'). Say what they mean, don't re-list them. **UPGRADED to HARD rule 2026-07-08 (TASK-533, owner ruling):** when the number duplicates a value the row UI already displays (protein bar, calorie chip, score chip) with no comparison/rank/gap attached, it is a hard fail, not an advisory flag. See `01_framework/editorial/row_description_standard_v1.md` §5c Rule A and `insight_line_spec_v1.md` Rule 6.
 - **Over-using the em-dash (—)** as a structural crutch. Minimize; most can become a comma or a full stop. (Advisory flag.)
+- **"X ו-Y הם הגורם המגביל" / any "limiting factor" sentence that names a bare category ("רשימת הרכיבים", "רמת העיבוד") instead of the real finding** — HARD fail 2026-07-08 (TASK-533, owner ruling): broken subject-verb agreement (compound subject vs. singular "הגורם") AND semantically empty even when grammatically fixed. Name the real fired driver from the trace, or state a genuine confidence gap ("לא ניתן לאמת את רמת העיבוד המדויקת מהנתונים הזמינים"). See `01_framework/editorial/row_description_standard_v1.md` §5c Rule B and `insight_line_spec_v1.md` Rule 7.
+
+### H3 rulings (owner review of content_agent_v1, 2026-07-10, TASK-550 — see `8_edit_feedback_log.md` §H3 for full verbatim entries)
+
+- **"קל מבחינה תזונתית" / "קל יחסית מבחינה תזונתית" (and feminine forms)** — HARD BAN (H3-R2). "קל" carries a positive, diet-adjacent connotation in Hebrew while the intended meaning is *nutritionally poor* — inverted valence, and not idiomatic. **Approved replacement construction (owner verbatim, use as the model):** "בתור מקור לארוחת בוקר, אתם לא מקבלים כאן הרבה ערכים תזונתיים." When a product is nutritionally thin, say so directly, in the second person, without euphemism.
+- **Rank contradiction: describing the shelf's #1 (or any top-ranked) product's OVERALL profile as "בינוני/נמוך/חלש יחסית למדף"** — HARD BAN (H3-R1). A dimension score being mid (e.g. nutrient_density) does not license a shelf-relative mediocrity claim about the product's overall standing — dimension ≠ rank. "Best ≠ excellent" cuts the other way here: the honest construction names the frame explicitly — "top of *this* shelf, while the shelf itself is unremarkable in absolute terms" — never "מדורג/הפרופיל הכולל בינוני יחסית למדף" for the actual shelf leader. Per-dimension notes in `bariInterpretation` are unaffected (a genuinely mid dimension score is a true, dimension-scoped fact) — the ban is on generalizing it into an overall/shelf-rank claim in `insightLine`/`rowVerdict`/`consumerTakeaway`/`whyRated`/`watchOut`/`context`.
+- **THE WORST PATTERN (owner's words, H3-R3): opening with "רשימת הרכיבים..." as the finding, then reciting ≥2 separate nutrition values** — each clause may individually pass the recite-vs-insight heuristic (the numbers do comparison work), yet the whole reads as a spec sheet with connectors, not a verdict. Lead with the FINDING; the ingredient list is evidence, never the opener. If two nutrition values must appear, they serve ONE point, not two consecutive recitations. Resolve contrasts in flowing prose — minimize the em-dash across the WHOLE product's copy (not merely ≤1 per paragraph); prefer zero.

@@ -26,11 +26,15 @@ voice; rotate. New phrases enter only after they appear in a Tom edit (file 8).
 ## C. "X הוא לא בהכרח Y" (the workhorse — repaired 2026-06-22, TASK-374)
 > ⚠️ The earlier phrasing **"X לא תמיד אומר Y"** is **retired as a calque** (translationese tell T2 in `10_translationese_taxonomy.md`; owner flagged "נקי לא תמיד אומר חזק" as weird). Keep the move's intent; use the natural Hebrew form below. The "זה לא אומר Y" variant is on watch for the same reason.
 - מוצר נקי הוא לא בהכרח מוצר חזק תזונתית.
-- אריזה קטנה היא לא בהכרח מוצר קל תזונתית.
 - מתוק זה לא אוטומטית גרוע. מתועש מדי — שם מתחילה הבעיה.
 - פרווה שימושית, אבל היא לא בהכרח פשוטה.
-- "ללא גלוטן" הוא מידע חשוב, לא ציון תזונתי.
-- טענה אחת על האריזה היא התחלה, לא סוף הסיפור.
+- "ללא גלוטן" הוא מידע חשוב. ציון תזונתי הוא סיפור נפרד.
+- טענה אחת על האריזה היא רק ההתחלה של הסיפור.
+
+> ⚠️ 2026-07-10 repairs: "אריזה קטנה היא לא בהכרח מוצר קל תזונתית" RETIRED ("קל
+> תזונתית" is H3-R2 hard-banned). Two comma+לא phrasings above were repaired —
+> the comma+`לא` shape now hard-fires `copy_rules.ANTITHESIS_RE` with zero
+> exceptions (§1.6 R4 in file 5).
 
 ## D. Whole-picture framing (anti single-villain)
 - הבעיה היא לא רכיב אחד. הבעיה היא התמונה הכוללת.
@@ -50,7 +54,7 @@ voice; rotate. New phrases enter only after they appear in a Tom edit (file 8).
 - מוצר בינוני הוא לא בהכרח מוצר רע — לפעמים הוא פשוט מוצר מוגבל.
 
 **Positive**
-- מוצר חזק יחסית למדף, לא קסם תזונתי.
+- מוצר חזק, בלי קסמים תזונתיים. *(repaired 2026-07-10: the old ", לא קסם תזונתי" closer is comma+לא, hard-banned; "יחסית למדף" dropped per §1.6 R2 — no shelf-standing claims)*
 - בסיס טוב. עוד יותר טוב כשלא מתייחסים אליו כאל כל הארוחה.
 - אין כאן הבטחות גדולות מדי. פשוט מוצר שעושה את העבודה.
 
@@ -64,10 +68,28 @@ voice; rotate. New phrases enter only after they appear in a Tom edit (file 8).
 - ילד לא אוכל אריזה. הוא אוכל את מה שיש בקערה.
 - הילדים רואים אריזה. אנחנו רואים רשימת רכיבים.
 
-## H. Benefit/limit bullet patterns (from milk gold, S1)
-- Positive bullet: `רשימת רכיבים קצרה: <מה בדיוק>` · `חלבון טבעי סביר ל־100 מ״ל`
+## H. Benefit/limit bullet patterns (from milk gold, S1 — takeaway pattern revised 2026-07-10)
+- Positive bullet: `רשימת רכיבים קצרה: <מה בדיוק>` · `חלבון טבעי סביר`
 - Caution bullet (limit + consequence): `חלבון זניח — אינו תחליף לחלבון מהמדף` · `המים הם הרכיב הראשון — אחוז <X> נמוך בפועל`
-- takeaway: `<תיאור קצר> — <מה זה לא>.`  e.g. `משקה קל — לא מקור חלבון.`
+- takeaway: a plain read of what the product IS and what it serves — e.g. `משקה קל ומרענן; כמקור חלבון הוא זניח.` *(the old `<תיאור קצר> — <מה זה לא>` negation template is RETIRED — define-by-negation, §1.6 R4)*
+
+## I. The anchor voice + plain-words nutritional reads (owner overhaul, 2026-07-10)
+
+**Owner calibration line (the register every product read aims at):**
+> "גאודה הולנדית קלאסית, עשירה ומלוחה. היא מכילה חלבון גבוה אך גם שומן גבוה. מדובר במוצר יחסית נקי אבל יש לשים לב לכמות הנצרכת."
+
+**Three beats:** (1) identity + sensory/textural character → (2) the nutritional read in
+plain absolute words → (3) a practical takeaway. Short. Native. The product on ITS OWN
+TERMS — never its shelf rank, never its panel figures (file 5 §1.6 R1–R2).
+
+**Approved plain-words descriptor bank** (naming the read is REQUIRED; only the figure is banned):
+- חלבון: `חלבון גבוה` · `עשיר בחלבון` · `חלבון זניח` · `דל חלבון`
+- שומן: `עשיר בשומן` · `עשיר` · `רזה` · `דל שומן`
+- נתרן: `מלוח` · `מלוח מאוד` · `מליחות גבוהה` · `דל נתרן`
+- סוכר: `מתוק מאוד` · `עשיר בסוכר` · `ממותק` · `דל סוכר`
+- סיבים: `עשיר בסיבים` · `דל סיבים`
+- אנרגיה: `צפוף קלורית` · `דל קלוריות`
+- Ingredient proportions stay allowed and useful: `40% טחינה` · `95% חיטה מלאה`.
 
 
 <!-- Appended 2026-07-04 from the owner naturalness-labeling session (TASK-506) -->

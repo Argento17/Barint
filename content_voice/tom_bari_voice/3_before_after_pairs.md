@@ -1,5 +1,12 @@
 # 3 — Before / After Training Pairs (Tom / Bari Hebrew)
 
+> ⚠️ **2026-07-10 OWNER COPY-LAW OVERHAUL (file 5 §1.6 supersedes conflicting
+> content below):** pairs that cite nutrition figures ("X גרם ל-100 גרם"), shelf
+> ranks/superlatives ("ה… ביותר בקטגוריה", "נדיר במדף"), or the "לא X אלא Y"
+> repair form predate the overhaul. Match each pair's TRANSFORMATION (the move),
+> never its superseded number/rank/negation content. The current calibration
+> register is the owner anchor line — see file 4 §I.
+
 The single highest-leverage teaching artifact: verbatim "generic draft → how Tom
 writes it" pairs, each annotated with the **fingerprint move** it demonstrates.
 The Content Agent should read these before writing, and match the *transformation*,

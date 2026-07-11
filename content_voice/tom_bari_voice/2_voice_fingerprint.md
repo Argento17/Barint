@@ -1,5 +1,14 @@
 # 2 — Voice Fingerprint (Tom / Bari Hebrew) · v1.0
 
+> ⚠️ **2026-07-10 OWNER COPY-LAW OVERHAUL (read file 5 §1.6 FIRST — it supersedes
+> anything below that conflicts):** no cited nutrition values in consumer prose
+> (plain absolute words instead — "חלבון גבוה", "מלוח"; ingredient proportions OK);
+> no corpus rank/superlative/median claims; the anchor voice is the 3-beat
+> identity → plain-words read → practical takeaway; define-by-negation is banned
+> with ZERO exceptions ("ולא"/"אלא"/comma+"לא"/"במקום Y"). Examples below that
+> cite figures or shelf ranks predate the overhaul — they illustrate arc/technique
+> only; their number/rank content is superseded.
+
 **Status: v1.0 — confirmed and locked.**
 Built from S1–S3 (milk gold lists, cake intros/notes, cereal notes), confirmed by
 **Harvest #1** (17 tracked-change edits on the first real cakes draft, 2026-06-19),

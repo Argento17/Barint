@@ -538,3 +538,208 @@ Write the מה מגביל section entirely from the nutrition block (sugar, sodi
 **Promotion status:** promoted → file 2 §6 (HARD RULE zero code tokens) + file 5 §1 (correct handling of null ingredient lists) (2026-06-19)
 
 **Notes:** The agent's handling in v0 was directionally correct (no invented ingredients) but used both an evasive framing and internal field language. The ruling clarifies both dimensions.
+
+---
+
+## Session H3 — Cereals v2, first `content_agent_v1` shelf · owner review 2026-07-10 (TASK-550)
+
+First owner read of copy authored by the real LLM engine (not the deterministic placeholder).
+Three rows reviewed; all three defects are systemic, not one-off.
+
+---
+
+### H3-R1 — Rank contradiction: the #1 product described as mediocre *relative to the shelf* · 2026-07-10 · ALL modes · HARD
+
+**Agent draft (failing example):**
+> "הפרופיל התזונתי הכולל של ויטביקס נשאר בינוני יחסית למדף, וזה נכון גם כשרשימת הרכיבים קצרה ונקייה מאוד."
+
+**Owner ruling:**
+> "the first fact is not true. weetbix is the first in the shelf and therefore הפרופיל התזונתי הכולל של ויטביקס נשאר בינוני יחסית למדף - not a true statement. other analysis is good enough."
+
+**Verified:** ויטביקס (5010029000061) scores 74.7 — the **maximum** of all 20 products (range 32.2–74.7). It is rank 1/20. The claim "בינוני יחסית למדף" is therefore false by construction. The error repeats across FIVE fields: `insightLine`, `rowVerdict`, `consumerTakeaway`, `whyRated`, `watchOut` — and `context` compounds it with "בחלק הבינוני-עליון" (upper-middle) for a product that is first.
+
+**Root cause:** the model read a *dimension* score (nutrient density = mid) and generalized it into a *shelf-relative standing* claim. Dimension ≠ rank. This is the Delifkan fat-contradiction failure class (Ruling 2) one level up: framing that contradicts the product's own trace.
+
+**What to do instead:**
+This is precisely where "best ≠ excellent" applies — and the draft inverted the reference frame. The honest construction names the frame explicitly:
+- ✅ top of *this* shelf, while the shelf itself is unremarkable in absolute terms
+- ⛔ "בינוני יחסית למדף" for the shelf leader — relative to the shelf, it is the best
+
+**Promotion status:** to be enforced mechanically — a rank-aware framing guard (a product at rank 1 may not be framed as at-or-below shelf average on its OVERALL profile). Routed to content-agent (engine + prompt).
+
+**Notes:** Owner explicitly approved the rest of the analysis for this row ("other analysis is good enough") — the protein/sugar findings stand. Only the reference frame is wrong.
+
+---
+
+### H3-R2 — "קל מבחינה תזונתית": wrong Hebrew, inverted valence · 2026-07-10 · ALL modes · HARD
+
+**Agent draft (failing example):**
+> "הסיבים נמוכים יחסית לקטגוריה, ובתור מקור לארוחת בוקר המוצר קל יחסית מבחינה תזונתית."
+
+**Owner ruling:**
+> "the ending is bad. 'ובתור מקור לארוחת בוקר המוצר קל יחסית מבחינה תזונתית' the קל יחסית מבחינה תזונתית is wrong hebrew and logically flawed."
+
+**Owner's replacement (verbatim, use as the model):**
+> "בתור מקור לארוחת בוקר, אתם לא מקבלים כאן הרבה ערכים תזונתיים."
+
+**Verified:** the construction appears twice on 7297488098688 — in `rowVerdict` and again in `watchOut` ("מדובר במוצר קל מבחינה תזונתית").
+
+**Why it fails:** "קל" carries a positive, diet-adjacent connotation while the intended meaning is *nutritionally poor* — the valence is inverted. It is also not idiomatic Hebrew. The owner's replacement is direct, second-person, and says the true thing plainly.
+
+**What to do instead:**
+Ban "קל מבחינה תזונתית" / "קל יחסית מבחינה תזונתית" and their variants. When a product is nutritionally thin, say so to the reader directly, in the second person, without euphemism.
+
+**Promotion status:** → file 5 banned-phrase list; the owner's replacement sentence is an approved construction. Routed to content-agent.
+
+---
+
+### H3-R3 — THE WORST PATTERN: ingredient-list opener → recited nutrition values · 2026-07-10 · ALL modes · HARD
+
+**Agent draft (failing example):**
+> "רשימת הרכיבים של פצפוצי האורז כוללת שלושה מרכיבים בלבד, ואפס תוספי מזון. הסיבים, לעומת זאת, נמוכים משמעותית מרוב הדגנים במדף — פחות מגרם אחד ל-100 גרם. הנתרן עומד על 390 מיליגרם ל-100 גרם, גבוה משמעותית מהחציון."
+
+**Owner ruling:**
+> "this is the worst pattern that the writer does. The pattern is 'the ingredients list is X', 'the nutritional value repetition' here was the sodium. I get what its trying to say - but the flow is wrong, and also using here em dash. not the standard we strive for."
+
+**The pattern, named:** open by stating what the ingredient list *is* → then recite one nutrition value → then recite another. Each sentence is individually legal (the numbers do comparison work, so the recite heuristic clears them), yet the whole reads as a spec sheet with connectors. The flow is wrong.
+
+**Compounding:** em-dash used as the workhorse pivot. Present in BOTH `insightLine` and `rowVerdict` for this product. Per-paragraph the rule is satisfied; the owner's standard is to *minimize*, and the shelf overusesit.
+
+**What to do instead:**
+Lead with the finding, not with an inventory of the label. The ingredient list is evidence, not an opening. If two nutrition values must appear, they serve one point — not two consecutive recitations. Resolve contrasts in flowing prose, not on an em-dash.
+
+**Promotion status:** highest-priority prompt + gate work. The existing recite heuristic does NOT catch this (each clause carries a comparison). Needs a structural check: ingredient-list opener followed by ≥2 recited nutrition values. Routed to content-agent.
+
+**Notes:** Orchestrator-caused regression, logged honestly: this row was re-authored *at my instruction* to demote a thin "lowest sugar" superlative. The rewrite traded a superlative defect for the owner's most-disliked pattern. A fix directed at one gate can walk straight into another failure the gates do not measure.
+
+---
+
+## Session H4 — 30-row site-wide sample, owner review · 2026-07-10 (TASK-576)
+
+Owner read 21 of 30 sampled live rows (stratified across all 19 shelves, un-annotated).
+Verdicts verbatim, then the extracted pattern set and its site-wide measurement.
+
+**Approved outright (6/21):** rows 12, 13, 15, 16, 17, 19.
+**Approved except em-dash (2/21):** rows 1, 14 — "הכל מעולה חוץ מהאם-דש".
+**Needs work (13/21).**
+
+---
+
+### H4-P1 — THE PRIMARY DEFECT: the copy scores the product, it does not DESCRIBE it
+
+**Owner, row 3:** "לשכתב. האלגוריתם מבין את פרופיל המוצר אבל לא מתאר אותו כמו שצריך"
+**Owner, row 7:** "לשכתב - תיאור גרוע מאוד"
+**Owner, row 10:** "אין כאן תיאור מוצר"
+**Owner, row 4:** "אין פה שום תיאור שאפשר להבין ממנו משהו על המוצר"
+
+This is a NEW axis, orthogonal to every gate we run. Readability, naturalness, the
+integrity battery, the antithesis rule and the recite heuristic all ask *is this true,
+legal, well-formed?* **None asks: does this tell the reader what the product IS.** The
+engine reasons correctly about the scoring profile and then reports that reasoning back
+instead of describing the food. Highest-priority editorial fix; not mechanically detectable.
+
+---
+
+### H4-P2 — Ingredient counts are BANNED (hard)
+
+**Owner, row 4:** "התבנית של 'שלושה רכיבים בלבד' - לא מקובלת."
+**Owner, row 5:** "ראה הערה 4 לגבי ציון מספר הרכיבים. אני לא רוצה לראות את זה כתוב."
+
+Never write the NUMBER of ingredients. "שלושה רכיבים בלבד" / "חמישה רכיבים" etc. tell the
+reader nothing about the product. The short ingredient list may be *shown* as a structured
+fact; it must not be narrated as an insight.
+**Measured: 63/710 live rows (9%), 108 occurrences.**
+Note: the cereals v2 copy authored under TASK-550 violates this (Vitabix "בזכות שלושה
+רכיבים בלבד"; rice-apple "שלושה רכיבים, אפס תוספי מזון") — copy the orchestrator praised.
+
+---
+
+### H4-P3 — Nutritional values repeated across fields
+
+**Owner, rows 6, 8, 11, 20:** "יש כאן חזרתיות על הערכים התזונתיים" / "חזרתיות יתר" /
+"חזרתיות על כל הערכים התזונתיים שצריך לשנות"
+
+The same figure restated in insightLine + rowVerdict + takeaway + whyRated.
+**Measured (strict: identical number+unit in ≥2 distinct consumer fields): 239/710 rows
+(34%), 378 distinct repeated values.** Worst: hummus 35, crackers 32, protein_combined 30,
+hard_cheeses 29, cereals 17, cheese 17.
+
+---
+
+### H4-P4 — Em-dash
+
+**Owner, rows 1 and 14:** "הכל מעולה חוץ מהאם-דש."
+The ONLY defect in two otherwise-approved rows. Confirms the standing minimize-em-dash rule.
+**Measured: 584/710 rows (82%), 1,801 occurrences.** Clean shelves prove it is reachable:
+yogurt_drinkable 2, yogurt_spoonable 10, crackers 0.
+
+---
+
+### H4-P5 — Padding: stop when the sentence is done
+
+**Owner, row 2:** "אפשר לסיים ב'חלה קלאסית'. התוספת מיותרת."
+A trailing clause that earns nothing. End on the strong noun.
+
+---
+
+### H4-P6 — Vague stock phrase "עושים את רוב העבודה כאן"
+
+**Owner, row 18:** "אני רואה הרבה פעמים תיאור של 'עושים את רוב העבודה כאן'. זה לא תמיד ברור
+למה מתכוונים. אני מציע לשנות את הניסוח הזה"
+
+**Measured — and the owner's impression overstates the frequency: 6/710 rows** carry the
+phrase family (רוב העבודה / עושים את העבודה), not "many". Real, but small. Fix the six;
+do not build a gate for it.
+
+---
+
+### H4-P7 — Ungrammatical sentence AND grade spelled in prose
+
+**Owner, row 21:** "הכל בסדר חוץ מ'הם הפשרה שמשאירה אותו ב-B' זה לא משפט תקני"
+
+Two defects in one clause. The owner flagged the grammar. The second is worse and he did not
+name it: **"ב-B" spells the grade in prose**, which the standing rule forbids — the grade is
+the badge, never the sentence.
+**Measured: 142/710 rows (20%), 184 occurrences** of grade-in-prose, INCLUDING live copy that
+writes "ציון S." (bread_v3) — directly against the owner's own S-grade ruling that consumer
+copy never writes "S". Worst: cheese 45, bread_v3 32, hard_cheeses 29, bread_v4 25.
+
+---
+
+### Sizing implied by this review
+Of 21 rows read: 6 clean, 2 em-dash-only, ~4 nutrition-repetition, ~3 no-description
+(full rewrite), plus padding / phrase / grammar singles. Extrapolated to 710 rows, the
+sweep splits roughly into a large TOUCH tier (em-dash, grade-in-prose, antithesis,
+ingredient counts — all deterministic) and a REWRITE tier of order 25–30% driven by H4-P1,
+which no gate can find and only the judge or the owner can.
+
+---
+
+## Session H5 — OWNER ANCHOR EXAMPLE for the description overhaul · 2026-07-10 (TASK-576)
+
+After rejecting v1/v2 (cited nutrition values) and v3 (removed numbers but recited the
+profile in corpus-ranked analyst-speak), the owner gave the target line himself. This is
+the calibration anchor for ALL description copy — the voice the engine must match.
+
+**Owner's model line (גאודה מאסדם, a plain product with no ingredient data):**
+> גאודה הולנדית קלאסית, עשירה ומלוחה. היא מכילה חלבון גבוה אך גם שומן גבוה. מדובר במוצר יחסית נקי אבל יש לשים לב לכמות הנצרכת.
+
+**What this teaches (the corrections to our prior attempts):**
+1. **Naming nutrient QUALITIES in plain words is CORRECT, not a violation.** "חלבון גבוה",
+   "שומן גבוה" is exactly what he wants. The ban is on cited VALUES (numbers: grams/mg/%),
+   never on saying a nutrient is high or low. v3's mistake was NOT "high protein" — it was
+   the clunky corpus-relative form "מהגבוהים בין הגאודות המלאות בסקירה".
+2. **Plain and ABSOLUTE, not corpus-ranked.** Say "high protein but also high fat" — not
+   "among the highest full-goudas in the review". The description is about the FOOD, not its
+   rank. Rank lives in the score, not the prose.
+3. **Three beats, short:**
+   - (a) IDENTITY + sensory character: "גאודה הולנדית קלאסית, עשירה ומלוחה"
+   - (b) NUTRITIONAL READ in plain words: "מכילה חלבון גבוה אך גם שומן גבוה"
+   - (c) PRACTICAL TAKEAWAY / the catch: "יחסית נקי אבל יש לשים לב לכמות הנצרכת"
+4. It is a genuine short ANALYSIS — the algorithm understands the profile and SAYS it like a
+   person would, not a spec sheet and not a ranking. Owner: "Of course I would expect the
+   engine to know better." The engine is meant to produce this unaided.
+
+This anchor + the hard nutrition_value_citation gate ([[owner_no_cited_nutritional_values]])
+together define the standard: no numbers, but a plain-language nutritional read with identity
+and a takeaway. Apply corpus-wide (502 rows).
