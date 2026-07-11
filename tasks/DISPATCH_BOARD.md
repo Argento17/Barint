@@ -136,9 +136,11 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   cp1252-safe `--selftest` (13 cases). Verified: controlled HEAD-vs-fixed replay over 14,840 rows = **46
   changed, ALL sodium, all thousands-comma, all ≤1895 mg (ceiling 2000)**, rest byte-identical. Lesson
   contract PASS (regression_test). **TASK-614 now UNBLOCKED.**
-- ⏳ **TASK-614 (re-score)** — READY next (was blocked only on TASK-619). Re-enrich bread/crackers/cheese
-  from corrected captures → re-score on current engine → apply |Δ|≤30 (orchestrator authority) + surface
-  cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
+- ⏳ **TASK-614 (re-score)** — UNBLOCKED, **sequenced AFTER TASK-620** (not parallel): 614's final step
+  regenerates `bari-web/src/data/comparisons/bread|crackers|cheese_frontend_*.json`, which TASK-620's
+  PD→VM adapter READS — running both = a comparison-JSON writer/reader race. Serialize. On PD-3.1 return:
+  re-enrich bread/crackers/cheese from corrected captures → re-score on current engine → apply |Δ|≤30
+  (orchestrator authority) + surface cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
 - 🖼️ **TASK-620 (PD-3.1 Overview UI) — owner-approved plan → DISPATCHED (Frontend Agent sonnet).** 3 tabs
   (Overview default / Evidence / Technical-audit), reuse real VerdictRow via thin PD→VM adapter
   (`getProductByBarcode`; owner blessed Option A), 3 separate namespace cards (never blended), 2D profile

@@ -199,6 +199,10 @@ The loop's default is to KEEP RUNNING. Questions to the owner are a failure mode
   background subagent and keep working other ready moves while it resolves; or (c) if it is genuinely
   one of the 5 tripwires, add it to the digest and stop only THAT move, not the loop. "Should I…?" to
   the owner for anything non-tripwire is drift.
+- **Answer direct factual asks FIRST.** When an owner turn contains a directly-answerable factual
+  question (a URL, a number, a yes/no, a path), answer it in the FIRST line of your reply — before any
+  further tool work. Investigating for two more tool batches while the owner waits for a one-line answer
+  is a latency miss (telemetry 2026-07-11: owner had to re-ask "where is the URL?"). Answer, then continue.
 - **Batch, never drip.** Owner-relevant items accumulate into ONE end-of-run digest (per the Owner
   Interaction Contract). Never ping the owner mid-loop for validation, preference, or confirmation the
   system can produce itself.
