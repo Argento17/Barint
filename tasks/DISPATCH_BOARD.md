@@ -141,10 +141,19 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   PD→VM adapter READS — running both = a comparison-JSON writer/reader race. Serialize. On PD-3.1 return:
   re-enrich bread/crackers/cheese from corrected captures → re-score on current engine → apply |Δ|≤30
   (orchestrator authority) + surface cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
-- 🖼️ **TASK-620 (PD-3.1 Overview UI) — owner-approved plan → DISPATCHED (Frontend Agent sonnet).** 3 tabs
-  (Overview default / Evidence / Technical-audit), reuse real VerdictRow via thin PD→VM adapter
-  (`getProductByBarcode`; owner blessed Option A), 3 separate namespace cards (never blended), 2D profile
-  visual, deterministic insight bullets, attention-checks. English. No store/scoring/compiler change.
+- ⚠️ **ROUTING VIOLATION CAUGHT (owner, 2026-07-11) — no single-vendor bias (HARD RULE).** The run had
+  gone 100% Claude because I trusted dispatch.py's stale `PIN-AT-AUTH` DOCSTRING instead of probing.
+  Probed: `--selftest-codex` PONG exit 0 (Codex LIVE), `--selftest` PONG exit 0 (GPT pipe LIVE) — and
+  `MODEL_BINDING` already binds `gpt-5.6-terra`; only the docstring was stale. Codified: memory
+  `router_no_single_vendor_probe_lanes` + orchestrate.md Guardrails lane-preflight hard rule + audit CA-4
+  corrected. **Corrective dispatches (both OpenAI):**
+- 🖼️ **TASK-620 (PD-3.1 Overview UI) — RE-ROUTED to Codex terra (gpt-5.6-terra), worktree `C:/bari_wt_620`
+  (branch task620-pd31), background.** (Claude Frontend Agent build killed — it was the mis-routed
+  fallback.) Owner-approved Option A: 3 tabs, real VerdictRow via thin PD→VM adapter, 3 separate namespace
+  cards, 2D profile, deterministic bullets. Orchestrator does live real-DOM verify on merge.
+- 🛡️ **TASK-619 parser fix — GPT-5.5-pro cross-vendor CHALLENGE dispatched (background).** Closes the
+  single-vendor verification gap on the committed fix (producer was Claude → challenger is GPT). Committed
+  code stands unless the challenge surfaces a real defect.
 - 📊 **Telemetry after-action audit QUEUED** (owner asked) — running now that TASK-619 (the parser fix) is
   closed; covers the run through PD MVP + parser fix.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only

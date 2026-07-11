@@ -232,6 +232,16 @@ The loop's default is to KEEP RUNNING. Questions to the owner are a failure mode
   confirm before any further action.
 - **Route by capability (Layer 1), bind the model in Layer 2 — never default everything to the Claude
   `Agent` tool.** See step 3/4. Grunt/bookkeeping → the GRUNT capability, not your hands.
+- **LANE PREFLIGHT (HARD RULE, owner 2026-07-11 — no single-vendor bias).** NEVER infer a lane's
+  availability from a docstring, memory, or code comment (`PIN-AT-AUTH` and the like are point-in-time,
+  NOT runtime truth). At run start — and before ever claiming a lane is down — PROBE it:
+  `python 03_operations/router/dispatch.py --selftest-codex` (Codex build) and `--selftest` (opencode
+  GPT). Exit 0 = live. **BUILD → Codex is PRIMARY;** a Claude `Agent`-tool build is the FALLBACK, valid
+  ONLY after an OBSERVED trigger (nonzero exit / empty diff / timeout / spawn failure) logged with the
+  trigger — "I assumed it was down" is not a trigger. **Cross-vendor CHALLENGE is mandatory** at
+  correctness/precedent/tripwire forks, always a different company than the producer (Claude-built → GPT;
+  OpenAI-built → Claude). **A run that used only one vendor is a red flag — self-audit before closing.**
+  (Memory: [[router_no_single_vendor_probe_lanes]].)
 - **Never write CLOSED without artifact verification.** The router never closes; you do, on evidence.
 - **OFF ban** is absolute (TASK-238): any OFF finding is a launch blocker; every data-adjacent prompt
   carries the guard.

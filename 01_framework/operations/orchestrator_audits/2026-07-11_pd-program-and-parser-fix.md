@@ -72,10 +72,18 @@
    the guard should evaluate the *proposed* content (Edit new_string), or exempt additive lesson-field
    edits. *Saving: removes the Bash-write workaround; this is the 2nd occurrence (see summary) → recurrence.*
    (Routed — §8.)
-4. **Surface the BUILD-lane capacity gap.** Codex (BUILD-HEAVY/LIGHT/GRUNT primary) is `PIN-AT-AUTH` —
-   unauthenticated — so **every** build this run fell to the Claude Agent-tool fallback (single-vendor,
-   no cross-vendor build option). Not a bug, but the whole BUILD lane has no primary until the owner runs
-   `codex login`. *Owner action item.* (Digest — §7.)
+4. **🔴 ROUTING VIOLATION (corrected 2026-07-11, owner-caught) — single-vendor bias.** The whole run ran
+   100% on Claude; **OpenAI was used zero times.** My original CA-4 above blamed "Codex is `PIN-AT-AUTH`,
+   unauthenticated" — **that was ALSO wrong**: I inferred it from a stale docstring and never probed.
+   Actual probe (2026-07-11): `dispatch.py --selftest-codex` → PONG exit 0 (Codex LIVE); `--selftest` →
+   PONG exit 0 (GPT pipe LIVE). Both lanes were green all run. Two failures: (a) treated a point-in-time
+   doc as runtime truth instead of a 2-second probe; (b) ran **zero cross-vendor challenges** on a
+   corpus-wide parser correctness change + an architecture plan. **Fix (HARD RULE, enforced):** lane
+   preflight probe in orchestrate.md; BUILD→Codex primary, Claude build only on an OBSERVED fallback
+   trigger; cross-vendor challenge mandatory; single-vendor run = red flag. Memory:
+   `router_no_single_vendor_probe_lanes`. **Retroactive corrective:** TASK-620 re-routed to Codex terra;
+   GPT cross-vendor challenge run on the committed TASK-619 parser fix. *Saving: restores paid Codex/GPT
+   capacity + the cross-vendor error-catching the run threw away.*
 
 ## 7. Consumption verdict
 Token-efficient on the product: 2 well-scoped delegated builds, zero build rework, correct parallelism.
@@ -99,7 +107,9 @@ not the build, is where this run leaked time.
   close-guard should validate the proposed post-edit content or exempt additive lesson-field edits on an
   already-CLOSED task. **This is the 2nd occurrence without a fix → flagged 🔴 recurring process failure**
   per the audit standard; it should get its own tracked task.
-- **CA-4 (owner):** `codex login` to restore the BUILD lane's cross-vendor primary.
+- **CA-4 (APPLIED — hard rule):** lane-preflight-probe + no-single-vendor-bias wired into
+  `.claude/commands/orchestrate.md` Guardrails; memory `router_no_single_vendor_probe_lanes`. Codex + GPT
+  probed LIVE (both PONG). Retroactive: TASK-620 → Codex terra; GPT challenge → TASK-619 parser fix.
 
 > Recurrence watch: **cp1252 Hebrew-console crashes** appeared again this run (selftest print + my own
 > re-run). Well-known ([[hebrew_shell_corruption_and_verify_gotchas]]); caught same-cycle each time, but
