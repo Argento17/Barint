@@ -1,14 +1,14 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `bari-web/src/data/comparisons/cookies_coffee_frontend_v2.json`
-**Generated:** 2026-07-10T09:28:29Z  |  **Elapsed:** 0.1s
+**Input:** `C:\Bari\bari-web\src\data\comparisons\cookies_coffee_frontend_v2.json`
+**Generated:** 2026-07-11T15:38:31Z  |  **Elapsed:** 0.2s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
-| [WARN] G2 COVERAGE | WARN |
+| [FAIL] G2 COVERAGE | FAIL |
 | [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
 | [WARN] G5 GRADE-INTEGRITY | WARN |
@@ -16,14 +16,14 @@
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
 
-**Overall: PASS**
+**Overall: FAIL**
 
 ## Detail
 
 ### [PASS] G1 SCHEMA
   INFO: Document validates against schema
 
-### [WARN] G2 COVERAGE
+### [FAIL] G2 COVERAGE
   INFO: imageUrl: 117/117 non-null
   INFO: name: 117/117 non-null
   INFO: score: 117/117 non-null
@@ -40,7 +40,9 @@
   INFO: expansion.confidenceLabel: 117/117
   WARN: No corpus provided — imageUrl regression check skipped
   INFO: name: all products have Hebrew characters in name
-  INFO: verdict coverage: every product has an authored insightLine or rowVerdict
+  FAIL: insightLine: 4/117 products still PENDING_COPY (page authored but incomplete)
+  FAIL: rowVerdict: 4/117 products still PENDING_COPY (page authored but incomplete)
+  FAIL: 4/117 products render NO verdict — both insightLine and rowVerdict are unauthored (PENDING/null/empty/missing) after the copy stage ran — barcodes: 7290122781359, 7290000061245, 7290118423904, 7290118422617
   INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
 
 ### [WARN] G3 SCOPE

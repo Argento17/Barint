@@ -12,25 +12,25 @@
   ],
   "image_url": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12564721_7290118422617.jpg&w=256&q=75",
   "normalized_nutrition_per_100g": {
-    "energy_kcal": 92.0,
-    "fat_g": 4.9,
-    "fat_saturated_g": 2.4,
+    "energy_kcal": 539.0,
+    "fat_g": 29.0,
+    "fat_saturated_g": 14.0,
     "fat_trans_g": null,
     "cholesterol_mg": null,
-    "sodium_mg": 14.0,
-    "carbohydrates_g": 11.2,
-    "sugars_g": 6.0,
+    "sodium_mg": 80.0,
+    "carbohydrates_g": 66.0,
+    "sugars_g": 35.0,
     "dietary_fiber_g": null,
-    "protein_g": 0.6
+    "protein_g": 3.5
   },
-  "energy_kcal": 92.0,
-  "fat_g": 4.9,
-  "fat_saturated_g": 2.4,
+  "energy_kcal": 539.0,
+  "fat_g": 29.0,
+  "fat_saturated_g": 14.0,
   "fat_trans_g": null,
-  "protein_g": 0.6,
-  "carbohydrates_g": 11.2,
-  "sugars_g": 6.0,
-  "sodium_mg": 14.0,
+  "protein_g": 3.5,
+  "carbohydrates_g": 66.0,
+  "sugars_g": 35.0,
+  "sodium_mg": 80.0,
   "dietary_fiber_g": null,
   "cholesterol_mg": null,
   "ingredients_text_he": "קרם בטעם וניל עם שברי עוגיות (45%) (סוכר, שמנים צמחיים, עמילן תירס, קמח חיטה (מכיל גלוטן), מלח, אבקת קקאו, סירופ גלוקוזה, חומרי תפיחה (E503, E500), מתחלב (לציטין סויה), חומרי טעם וריח, מעכב חימצון (מיצוי רוזמרין)), קמח חיטה, שמנים צמחיים, סוכר, קמח סויה, מלח, חומרי תפיחה (E450 ,E500), מתחלב (E471), מעכב חימצון (מיצוי רוזמרין), חומרי טעם וריח. העוגיות מכילות כ- 4.5% שברי עוגיות.",
@@ -275,5 +275,32 @@
     "has_protein_isolate_or_concentrate": false
   },
   "enrichment_version": "bsip1_enrichment_v1",
-  "enrichment_warnings": []
+  "enrichment_warnings": [],
+  "correction_provenance": {
+    "task": "TASK-634",
+    "corrected_at": "2026-07-11T15:33:02.605130Z",
+    "reason": "per_serving_mislabeled_as_per_100g (Yohananof capture path); owner-approved |delta_score|>30 correction (2026-07-11)",
+    "source": "task602_cookies_coffee_rescrape_20260711 canonical Shufersal direct scrape (selected_basis=per_100g, insufficient=False)",
+    "old_nutrition_per_100g": {
+      "energy_kcal": 92.0,
+      "fat_g": 4.9,
+      "fat_saturated_g": 2.4,
+      "sodium_mg": 14.0,
+      "carbohydrates_g": 11.2,
+      "sugars_g": 6.0,
+      "dietary_fiber_g": null,
+      "protein_g": 0.6
+    },
+    "new_nutrition_per_100g": {
+      "energy_kcal": 539.0,
+      "fat_g": 29.0,
+      "fat_saturated_g": 14.0,
+      "fat_trans_g": null,
+      "sodium_mg": 80.0,
+      "carbohydrates_g": 66.0,
+      "sugars_g": 35.0,
+      "dietary_fiber_g": null,
+      "protein_g": 3.5
+    }
+  }
 }

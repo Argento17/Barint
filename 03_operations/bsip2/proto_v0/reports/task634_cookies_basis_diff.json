@@ -1,0 +1,107 @@
+{
+  "task": "TASK-634",
+  "run_date": "2026-07-11",
+  "source_of_correction": "task602_cookies_coffee_rescrape_20260711 canonical Shufersal direct scrape (selected_basis=per_100g, insufficient=False); cross-validated for 7290000061245 against pre-existing independent bsip1_cookies_61245.json Shufersal capture (identical values)",
+  "engine": "EXISTING BSIP2 score_engine.py (proto_v0, algorithm_version 0.4.1); scoring flags identical to the original run_cakes_001 batch runner (BARI_FAT_TECH_V1 default-on, six other flags off) -- no scoring-rule change",
+  "owner_approval": "owner explicitly approved 2026-07-11 clearing the |delta score|>30 gate for these 4 products specifically; measured deltas are -18.4 to -23.9, i.e. within the normal orchestrator-delegated <=30 band -- approval stands regardless",
+  "products": [
+    {
+      "barcode": "7290122781359",
+      "name": "מיני עוגיות קלאסי 80 גרם",
+      "basis_diagnosis": "needs_rescrape (no original Shufersal capture existed for this barcode; original scrape source was Yohananof, whose captured per-100g field held a per-serving value). Corrected via task602 direct Shufersal re-scrape.",
+      "old_score": 53.4,
+      "old_grade": "C",
+      "new_score": 35.0,
+      "new_grade": "D",
+      "delta": -18.4,
+      "grade_changed": true,
+      "corrected_nutrition_per_100g": {
+        "energyKcal": 465.0,
+        "protein": 9.0,
+        "sugar": 22.8,
+        "fat": 18.0,
+        "fiber": 5.5,
+        "sodium": 275.0
+      },
+      "copy_status": "PENDING_COPY"
+    },
+    {
+      "barcode": "7290000061245",
+      "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם",
+      "basis_diagnosis": "parse-bug/source-selection defect, CONFIRMED via re-parse of the EXISTING banked raw HTML (raw_store/shufersal/cookies_coffee/P_61245, captured 2026-06-13): the current TASK-239 basis-aware parser applied to that SAME raw HTML already yields the correct per-100g panel (527 kcal). The served value (97 kcal) came from a SEPARATE, wrong Yohananof-sourced BSIP1 lineage (bsip1_cakes_7290000061245) that got wired into this shelf instead of the pre-existing correct Shufersal-sourced lineage (bsip1_cookies_61245, barcode stored bare as '61245'), whose nutrition (527/28.2/11.9/170/62/34/6.4) matches the task602 re-scrape exactly.",
+      "old_score": 37.4,
+      "old_grade": "D",
+      "new_score": 15.5,
+      "new_grade": "E",
+      "delta": -21.9,
+      "grade_changed": true,
+      "corrected_nutrition_per_100g": {
+        "energyKcal": 527.0,
+        "protein": 6.4,
+        "sugar": 34.0,
+        "fat": 28.2,
+        "fiber": null,
+        "sodium": 170.0
+      },
+      "copy_status": "PENDING_COPY"
+    },
+    {
+      "barcode": "7290118423904",
+      "name": "קראנץ שוקו וניל עוגיות 200 גרם",
+      "basis_diagnosis": "needs_rescrape (no original Shufersal capture existed for this barcode; original scrape source was Yohananof, whose captured per-100g field held a per-serving value). Corrected via task602 direct Shufersal re-scrape.",
+      "old_score": 34.2,
+      "old_grade": "E",
+      "new_score": 10.3,
+      "new_grade": "E",
+      "delta": -23.9,
+      "grade_changed": false,
+      "corrected_nutrition_per_100g": {
+        "energyKcal": 554.0,
+        "protein": 3.0,
+        "sugar": 37.0,
+        "fat": 32.0,
+        "fiber": null,
+        "sodium": 110.0
+      },
+      "copy_status": "PENDING_COPY"
+    },
+    {
+      "barcode": "7290118422617",
+      "name": "קראנץ קרם וניל עוגיות 200 גרם",
+      "basis_diagnosis": "needs_rescrape (no original Shufersal capture existed for this barcode; original scrape source was Yohananof, whose captured per-100g field held a per-serving value). Corrected via task602 direct Shufersal re-scrape.",
+      "old_score": 33.7,
+      "old_grade": "E",
+      "new_score": 10.9,
+      "new_grade": "E",
+      "delta": -22.8,
+      "grade_changed": false,
+      "corrected_nutrition_per_100g": {
+        "energyKcal": 539.0,
+        "protein": 3.5,
+        "sugar": 35.0,
+        "fat": 29.0,
+        "fiber": null,
+        "sodium": 80.0
+      },
+      "copy_status": "PENDING_COPY"
+    }
+  ],
+  "pd_rebuild": {
+    "command": "python 03_operations/product_dossier/build_dossiers.py --shelves cookies_coffee",
+    "result": "Built 117 dossiers across 1 shelves; Layer-4 calculation check 117 pass / 0 fail; barcode check 97 pass / 0 fail / 20 warn"
+  },
+  "parity_gate": {
+    "command": "python 03_operations/product_dossier/parity_gate.py",
+    "result": "matched=704 agree=704 diverge=0 (after syncing bari-web/src/data/dossiers_generated/index.json publishedScore/publishedGrade for the 4 barcodes -- no generator script for that static index was found in the repo; corrected the 4 known rows directly, zero fabrication, values mirror the served JSON exactly)",
+    "unrelated_pre_existing_gaps": "6 COVERAGE_GAP entries on bread_frontend_v3.json -- pre-existing, confirmed legacy/superseded file per task602_batch5.md finding ('bread_frontend_v3.json has zero live import references'), unrelated to cookies_coffee/TASK-634, not fixed here"
+  },
+  "gate_battery": {
+    "run_gates_py": "FAIL (G2 COVERAGE: 4/117 PENDING_COPY -- EXPECTED, the 4 corrected rows intentionally await new copy per instruction #5; G1/G4/G6/G8 PASS)",
+    "validate_comparison_page_py": "FAIL (4 hard gates: PENDING [expected, my 4 rows], counts [pre-existing 119 vs 117 drift, unrelated], ingredients [pre-existing barcode 80083764 truncation, unrelated], copy-authored [pre-existing banned-pattern on 4 OTHER unrelated barcodes]; score==trace PASS 117/117 0 mismatch; superlative PASS after rank/categoryTotal recompute for all 117 products -- required side-effect of the 4 score corrections shifting the whole shelf's rank order)"
+  },
+  "side_effects_corrected": [
+    "rank field recomputed for all 117 products (112 changed) to stay consistent with the new score order -- required by rank_check.py R0; stable-sort-by-score-desc, matching rank_check.py's own algorithm exactly",
+    "categoryTotal left at 117 (unchanged, product count did not change)",
+    "_meta.grade_distribution recomputed: C 10->8, D 26->27, E 83->82"
+  ]
+}

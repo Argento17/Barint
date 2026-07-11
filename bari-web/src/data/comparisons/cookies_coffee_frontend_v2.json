@@ -10,9 +10,9 @@
     "task": "TASK-283 Wave 1 — cookies-coffee v1 (56 products) + run_cakes_001 cookies subset merged",
     "provenance": "cookies_coffee: BSIP0 cookies_coffee_bsip0_raw_20260613T163431 → run_cookies_005; new cookies: run_cakes_001 (Shufersal + Yochananof 2-retailer scrape)",
     "grade_distribution": {
-      "C": 10,
-      "D": 26,
-      "E": 83
+      "C": 8,
+      "D": 27,
+      "E": 82
     },
     "off_used": false,
     "copy_status": "COMPLETE — all 122 products have rowVerdict + insightLine copy; consumerTakeaway/bariInterpretation for existing 56 products remains pending per task scope",
@@ -198,7 +198,46 @@
         "comparisonContext": 0
       },
       "source_staging": "C:\\Bari\\02_products\\cookies_coffee\\staging\\task393_rescore\\cookies_coffee_task393_staged.json"
-    }
+    },
+    "corrections": [
+      {
+        "task": "TASK-634",
+        "date": "2026-07-11",
+        "reason": "4 products had per-serving nutrition mislabeled as per-100g (Yohananof capture path) -> published scores inflated. Corrected to true per-100g (task602 canonical Shufersal re-scrape, cross-validated for 7290000061245 against a pre-existing independent Shufersal BSIP1 capture) and re-scored through the existing BSIP2 engine (no scoring-rule change). Owner-approved 2026-07-11 for a |delta score|>30 correction; measured deltas were actually -18.4 to -23.9 (within the normal <=30 delegated band; owner approval stands regardless).",
+        "barcodes": [
+          "7290122781359",
+          "7290000061245",
+          "7290118423904",
+          "7290118422617"
+        ],
+        "fields_corrected": [
+          "score",
+          "grade",
+          "confidence*",
+          "expansion.nutrition",
+          "bariInterpretation[].score"
+        ],
+        "fields_reset_to_pending_copy": [
+          "insightLine",
+          "rowVerdict",
+          "consumerTakeaway",
+          "bestUseCases",
+          "expansion.bottomLine",
+          "bariInterpretation[].explanation_he"
+        ],
+        "fields_preserved_unchanged": [
+          "id",
+          "name",
+          "brand",
+          "imageUrl",
+          "retailer",
+          "expansion.ingredients",
+          "expansion.servingNote",
+          "d4_additives",
+          "novaGroup"
+        ]
+      }
+    ]
   },
   "page_copy": {
     "hero": {
@@ -609,30 +648,29 @@
       "name": "מיני עוגיות קלאסי 80 גרם",
       "barcode": "7290122781359",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F3%2F13233648_729012278135901-13-2026_14-17-59.jpg&w=256&q=75",
-      "score": 53.4,
-      "grade": "C",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
+      "score": 35.0,
+      "grade": "D",
+      "confidence": "full",
+      "confidence_label_he": "נתונים מאומתים",
+      "confidence_tooltip_he": "הנתונים מאומתים ממקור ישיר. הציון מבוסס על נתוני תזונה ורכיבים מלאים.",
       "confidence_sub_reason": null,
-      "insightLine": "61% קמח מלא — שומן רווי נמוך מאוד, גלוטן מוסף ועיבוד תעשייתי.",
-      "rowVerdict": "מיני עוגיות פיטנס קלאסי מגיעות ל-C בזכות 61% קמח חיטה מלא וסוכר נמוך יחסית למדף. השומן הרווי הנמוך מאוד הוא יתרון אמיתי. גלוטן חיטה מוסף ברשימה מסמן ייצור תעשייתי, עדיין רחוק מאפייה פשוטה.",
+      "insightLine": "PENDING_COPY",
+      "rowVerdict": "PENDING_COPY",
       "expansion": {
         "nutrition": {
-          "energyKcal": 93.0,
-          "protein": 1.8,
-          "sugar": 4.6,
-          "fat": 3.6,
-          "satFat": 0.4,
-          "fiber": 1.1,
-          "sodium": 55.0
+          "energyKcal": 465.0,
+          "protein": 9.0,
+          "sugar": 22.8,
+          "fat": 18.0,
+          "fiber": 5.5,
+          "sodium": 275.0
         },
         "ingredients": "קמח חיטה מלא (61%) (קמח חיטה, סובין, נבט) (מכיל גלוטן), סוכר, שמן צמחי, גלוטן חיטה, תמצית לתת שעורה, חומרי תפיחה (E503, E500, E450), עמילן, מלח, מתחלב (לציטין סויה), מווסת חומציות (חומצת לימון)",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidenceLabel": "נתונים מאומתים",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [],
-        "bottomLine": "קמח מלא כרכיב ראשון — נדיר בקטגוריה. חומרי תפיחה מרובים."
+        "bottomLine": "PENDING_COPY"
       },
       "retailer": "yohananof",
       "novaGroup": 3,
@@ -694,43 +732,42 @@
           "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל."
         }
       ],
-      "consumerTakeaway": "קמח מלא כרכיב עיקרי, סוכר נמוך מאוד, שומן רווי מינימלי.",
+      "consumerTakeaway": "PENDING_COPY",
       "bariInterpretation": [
         {
           "dimension": "processing_quality",
-          "score": 58,
+          "score": 56.0,
           "label_he": "איכות עיבוד",
-          "explanation_he": "61% קמח מלא כרכיב ראשון. גלוטן מוסף ושלושה חומרי תפיחה מורידים את הציון."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "glycemic_quality",
-          "score": 72,
+          "score": 49.0,
           "label_he": "עומס גליקמי",
-          "explanation_he": "5 גרם סוכר — נמוך מאוד לעוגייה. שיבולת שועל וסיבים מוסיפים להאטת הספיגה."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "additive_quality",
-          "score": 42,
+          "score": 48.0,
           "label_he": "תוספים",
-          "explanation_he": "שלושה חומרי תפיחה, לציטין סויה ועמילן — יותר תוספים ממה שמצופה בפרופיל זה."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "calorie_density",
-          "score": 50,
+          "score": 35.0,
           "label_he": "צפיפות קלורית",
-          "explanation_he": "נתוני הקלוריות חסרים; שומן רווי 0 גרם מסמן צפיפות נמוכה יחסית לקטגוריה."
+          "explanation_he": "PENDING_COPY"
         }
       ],
       "bestUseCases": [
-        "חטיף בוקר עם קפה כאלטרנטיבה לעוגייה מתוקה",
-        "ילדים שצורכים פחות סוכר"
+        "PENDING_COPY"
       ],
       "_category_routed": "biscuit",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 5,
+      "rank": 35,
       "categoryTotal": 117,
       "brand": "פיטנס"
     },
@@ -807,7 +844,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 6,
+      "rank": 5,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -904,7 +941,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 7,
+      "rank": 6,
       "categoryTotal": 117,
       "brand": "דני וגלית"
     },
@@ -974,7 +1011,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 8,
+      "rank": 7,
       "categoryTotal": 117,
       "brand": "האחים"
     },
@@ -1036,7 +1073,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 9,
+      "rank": 8,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1109,7 +1146,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 10,
+      "rank": 9,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -1180,7 +1217,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 11,
+      "rank": 10,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1313,7 +1350,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 12,
+      "rank": 11,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -1376,7 +1413,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 13,
+      "rank": 12,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1492,7 +1529,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 14,
+      "rank": 13,
       "categoryTotal": 117,
       "brand": "אביבה"
     },
@@ -1583,7 +1620,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 15,
+      "rank": 14,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1699,7 +1736,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 16,
+      "rank": 15,
       "categoryTotal": 117,
       "brand": "מן"
     },
@@ -1773,7 +1810,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 17,
+      "rank": 16,
       "categoryTotal": 117,
       "brand": "דני וגלית"
     },
@@ -1835,7 +1872,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 18,
+      "rank": 17,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1905,7 +1942,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 19,
+      "rank": 18,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -1968,7 +2005,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 20,
+      "rank": 19,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -2038,7 +2075,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 21,
+      "rank": 20,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -2129,7 +2166,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 22,
+      "rank": 21,
       "categoryTotal": 117,
       "brand": "ג'ייקוב אנד אס"
     },
@@ -2208,7 +2245,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 23,
+      "rank": 22,
       "categoryTotal": 117,
       "brand": "החוש השישי"
     },
@@ -2314,7 +2351,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 24,
+      "rank": 23,
       "categoryTotal": 117,
       "brand": "הדר"
     },
@@ -2413,7 +2450,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 25,
+      "rank": 24,
       "categoryTotal": 117,
       "brand": "הדר"
     },
@@ -2542,7 +2579,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 26,
+      "rank": 25,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -2671,7 +2708,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 27,
+      "rank": 26,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -2800,7 +2837,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 28,
+      "rank": 27,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -2809,30 +2846,29 @@
       "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם",
       "barcode": "7290000061245",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12329757_7290000061245.jpg&w=256&q=75",
-      "score": 37.4,
-      "grade": "D",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "סוכר לפני קמח ברשימה — 36% מילוי, שני ספים חצויים.",
-      "rowVerdict": "עוגיות שוקוצ'יפס הממולאות של אסם מגיעות ל-D. סוכר מופיע ראשון ברשימת הרכיבים — לפני הקמח. 36% מהמוצר הוא מילוי. הנתרן נמוך — יתרון לקטגוריה.",
+      "score": 15.5,
+      "grade": "E",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction",
+      "insightLine": "PENDING_COPY",
+      "rowVerdict": "PENDING_COPY",
       "expansion": {
         "nutrition": {
-          "energyKcal": 97.0,
-          "protein": 1.2,
-          "sugar": 6.2,
-          "fat": 5.2,
-          "satFat": 2.2,
+          "energyKcal": 527.0,
+          "protein": 6.4,
+          "sugar": 34.0,
+          "fat": 28.2,
           "fiber": null,
-          "sodium": 31.0
+          "sodium": 170.0
         },
         "ingredients": "סוכר, קמח חיטה (מכיל גלוטן), שמנים צמחיים, נטיפי שוקולד מריר (8%) (מכיל סויה), עמילנים, אגוזים (לוז, מלך), קמח סויה, סיבים תזונתיים (סיבי במבוק), אבקת קקאו (1.3%), חומרי תפיחה (E500 ,E503), מלח, מתחלב (לציטין סויה), חומרי טעם וריח, אבקת ביצים, חומצת מאכל(חומצת לימון). מוצקי קקאו בשוקולד לפחות 44%. העוגיות מכילות 36% מילוי.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidenceLabel": "נתונים בבדיקה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [],
-        "bottomLine": "סוכר לפני קמח ברשימה; 36% מילוי; נתונים ליחידה בלבד."
+        "bottomLine": "PENDING_COPY"
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -2880,42 +2916,42 @@
           "explanation_he": "חומצת לימון כתוסף שימור נקשרה במחקר תצפיתי לעלייה בלחץ דם; ממצא זה אינו נוגע ללימון עצמו ומוקדם ולא שוכפל."
         }
       ],
-      "consumerTakeaway": "סוכר כרכיב ראשון; 36% מילוי; נתוני תזונה ליחידה.",
+      "consumerTakeaway": "PENDING_COPY",
       "bariInterpretation": [
         {
           "dimension": "processing_quality",
-          "score": 32,
+          "score": 35.0,
           "label_he": "איכות עיבוד",
-          "explanation_he": "סוכר כרכיב ראשון; E500, E503, לציטין סויה — מוצר ייצור מסיבי."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "glycemic_quality",
-          "score": 40,
+          "score": 10.0,
           "label_he": "עומס גליקמי",
-          "explanation_he": "סוכר ראשון ועמילנים ברשימה — עומס גליקמי גבוה גם אם הנתון ליחידה נראה נמוך."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "additive_quality",
-          "score": 42,
+          "score": 30.0,
           "label_he": "תוספים",
-          "explanation_he": "E500 ו-E503, לציטין כמתחלב — מסמן עיבוד תעשייתי."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "calorie_density",
-          "score": 40,
+          "score": 35.0,
           "label_he": "צפיפות קלורית",
-          "explanation_he": "נתוני 100 גרם לא אומתו; 97 קק\"ל ליחידה מסמן צפיפות לא נמוכה."
+          "explanation_he": "PENDING_COPY"
         }
       ],
       "bestUseCases": [
-        "כיבוד לילדים במנה מוגבלת"
+        "PENDING_COPY"
       ],
       "_category_routed": "biscuit",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 29,
+      "rank": 93,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -3019,7 +3055,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 30,
+      "rank": 28,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -3113,7 +3149,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 31,
+      "rank": 29,
       "categoryTotal": 117,
       "brand": "צ'וקטה"
     },
@@ -3211,7 +3247,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 32,
+      "rank": 30,
       "categoryTotal": 117,
       "brand": "בבקה"
     },
@@ -3285,7 +3321,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 33,
+      "rank": 31,
       "categoryTotal": 117,
       "brand": "גנדולה"
     },
@@ -3370,7 +3406,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 34,
+      "rank": 32,
       "categoryTotal": 117,
       "brand": "גטניו"
     },
@@ -3455,7 +3491,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 35,
+      "rank": 33,
       "categoryTotal": 117,
       "brand": "גטניו"
     },
@@ -3579,7 +3615,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 36,
+      "rank": 34,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -3588,30 +3624,29 @@
       "name": "קראנץ שוקו וניל עוגיות 200 גרם",
       "barcode": "7290118423904",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12579334_7290118423904.jpg&w=256&q=75",
-      "score": 34.2,
+      "score": 10.3,
       "grade": "E",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "45% קרם וניל תעשייתי — הביסקוויט הוא המיעוט.",
-      "rowVerdict": "קרמוגית קראנץ שוקו וניל מגיעה ל-E. יותר ממחצית המוצר הוא קרם תעשייתי — שמנים צמחיים, חומרי תפיחה ומתחלבים — עם שברי עוגיות. אבקת קקאו מסבירה את 'שוקו' בשם. פרופיל E ללא תחרות.",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction",
+      "insightLine": "PENDING_COPY",
+      "rowVerdict": "PENDING_COPY",
       "expansion": {
         "nutrition": {
-          "energyKcal": 94.0,
-          "protein": 0.5,
-          "sugar": 6.3,
-          "fat": 5.4,
-          "satFat": 2.4,
+          "energyKcal": 554.0,
+          "protein": 3.0,
+          "sugar": 37.0,
+          "fat": 32.0,
           "fiber": null,
-          "sodium": 19.0
+          "sodium": 110.0
         },
         "ingredients": "קרם בטעם וניל עם שברי עוגיות (45%) (סוכר, שמנים צמחיים, עמילן תירס, קמח חיטה (מכיל גלוטן), מלח, אבקת קקאו, סירופ גלוקוזה, חומרי תפיחה (E503, E500), מתחלב (לציטין סויה), חומרי טעם וריח, מעכב חימצון (מיצוי רוזמרין)), קמח חיטה, שמנים צמחיים, סוכר, אבקת קקאו (4.5%), קמח סויה, מלח, חומרי תפיחה (E450 ,E500), מתחלב (E471), מעכב חימצון (מיצוי רוזמרין), חומרי טעם וריח. העוגיות מכילות כ- 4.5% שברי עוגיות.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidenceLabel": "נתונים בבדיקה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [],
-        "bottomLine": "כמעט מחצית מהמוצר הוא קרם תעשייתי — לא ביסקוויט."
+        "bottomLine": "PENDING_COPY"
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -3673,42 +3708,42 @@
           "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "45% קרם תעשייתי מעובד עם עוגיות — שוקו וניל כתיוג בלבד.",
+      "consumerTakeaway": "PENDING_COPY",
       "bariInterpretation": [
         {
           "dimension": "processing_quality",
-          "score": 22,
+          "score": 35.0,
           "label_he": "איכות עיבוד",
-          "explanation_he": "45% קרם תעשייתי עם E503, E500, E450, E471, לציטין סויה. הרכיב הראשי הוא מוצר מעובד בתוך מוצר מעובד."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "glycemic_quality",
-          "score": 35,
+          "score": 10.0,
           "label_he": "עומס גליקמי",
-          "explanation_he": "נתוני הסוכר ליחידה (6 גרם) לא מתורגמים ל-100 גרם — הפרופיל הגליקמי האמיתי לא אומת."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "additive_quality",
-          "score": 25,
+          "score": 48.0,
           "label_he": "תוספים",
-          "explanation_he": "E503, E500, E450, E471, לציטין סויה — חמישה תוספים בקרם בלבד, ועוד בחלק הביסקוויט."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "calorie_density",
-          "score": 38,
+          "score": 20.0,
           "label_he": "צפיפות קלורית",
-          "explanation_he": "94 קק\"ל ליחידה מסמן מוצר עשיר. שמנים צמחיים בקרם ובביסקוויט."
+          "explanation_he": "PENDING_COPY"
         }
       ],
       "bestUseCases": [
-        "כיבוד ילדים במנה אחת"
+        "PENDING_COPY"
       ],
       "_category_routed": "biscuit",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 37,
+      "rank": 116,
       "categoryTotal": 117,
       "brand": "קרמוגית"
     },
@@ -3717,30 +3752,29 @@
       "name": "קראנץ קרם וניל עוגיות 200 גרם",
       "barcode": "7290118422617",
       "imageUrl": "https://yochananof.co.il/_next/image?url=https%3A%2F%2Fapi.yochananof.co.il%2Fmedia%2Fcatalog%2Fproduct%2Fcache%2F7d40ab1d2c85da43a7701c1338d70a16%2F1%2F2%2F12564721_7290118422617.jpg&w=256&q=75",
-      "score": 33.7,
+      "score": 10.9,
       "grade": "E",
-      "confidence": "verified",
-      "confidence_label_he": "מבוסס על נתונים מלאים",
-      "confidence_tooltip_he": "הציון מבוסס על רשימת הרכיבים ולוח התזונה המלאים.",
-      "confidence_sub_reason": null,
-      "insightLine": "45% קרם וניל — זהה לגרסת השוקו ללא קקאו.",
-      "rowVerdict": "קרמוגית קראנץ קרם וניל מגיעה ל-E. המבנה זהה לגרסת השוקו: קרם תעשייתי עם שמנים צמחיים ומתחלבים שמהווים רוב המוצר, ושברי עוגיות. ההבדל היחידי: אין קקאו.",
+      "confidence": "partial",
+      "confidence_label_he": "נתונים בבדיקה",
+      "confidence_tooltip_he": "חלק מהנתונים בבדיקה. הציון עשוי להתעדכן כשיתווספו נתונים מאומתים.",
+      "confidence_sub_reason": "low_extraction",
+      "insightLine": "PENDING_COPY",
+      "rowVerdict": "PENDING_COPY",
       "expansion": {
         "nutrition": {
-          "energyKcal": 92.0,
-          "protein": 0.6,
-          "sugar": 6.0,
-          "fat": 4.9,
-          "satFat": 2.4,
+          "energyKcal": 539.0,
+          "protein": 3.5,
+          "sugar": 35.0,
+          "fat": 29.0,
           "fiber": null,
-          "sodium": 14.0
+          "sodium": 80.0
         },
         "ingredients": "קרם בטעם וניל עם שברי עוגיות (45%) (סוכר, שמנים צמחיים, עמילן תירס, קמח חיטה (מכיל גלוטן), מלח, אבקת קקאו, סירופ גלוקוזה, חומרי תפיחה (E503, E500), מתחלב (לציטין סויה), חומרי טעם וריח, מעכב חימצון (מיצוי רוזמרין)), קמח חיטה, שמנים צמחיים, סוכר, קמח סויה, מלח, חומרי תפיחה (E450 ,E500), מתחלב (E471), מעכב חימצון (מיצוי רוזמרין), חומרי טעם וריח. העוגיות מכילות כ- 4.5% שברי עוגיות.",
-        "confidenceLabel": "מבוסס על נתונים מלאים",
+        "confidenceLabel": "נתונים בבדיקה",
         "servingNote": "ל-100 גרם",
         "positiveSignals": [],
         "limitingFactors": [],
-        "bottomLine": "זהה לגרסת השוקו ללא קקאו — E מאותן סיבות."
+        "bottomLine": "PENDING_COPY"
       },
       "retailer": "yohananof",
       "novaGroup": 4,
@@ -3802,42 +3836,42 @@
           "explanation_he": "תמציות רוזמרין הן נוגד חמצון טבעי ממשפחת הפוליפנולים, המשמש לשמירה על רעננות; אושר לשימוש על ידי רשויות האיחוד האירופי."
         }
       ],
-      "consumerTakeaway": "גרסת וניל טהור של קרמוגית — פרופיל תעשייתי מלא.",
+      "consumerTakeaway": "PENDING_COPY",
       "bariInterpretation": [
         {
           "dimension": "processing_quality",
-          "score": 22,
+          "score": 35.0,
           "label_he": "איכות עיבוד",
-          "explanation_he": "45% קרם תעשייתי. E450, E471, E500, לציטין — זהה לגרסת השוקו."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "glycemic_quality",
-          "score": 35,
+          "score": 10.0,
           "label_he": "עומס גליקמי",
-          "explanation_he": "נתוני הסוכר ליחידה (6 גרם) לא מתורגמים ל-100 גרם. הפרופיל הגליקמי לא אומת במלואו."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "additive_quality",
-          "score": 25,
+          "score": 48.0,
           "label_he": "תוספים",
-          "explanation_he": "E450, E471, E500, לציטין — זהה לגרסת השוקו וניל."
+          "explanation_he": "PENDING_COPY"
         },
         {
           "dimension": "calorie_density",
-          "score": 38,
+          "score": 25.0,
           "label_he": "צפיפות קלורית",
-          "explanation_he": "94 קק\"ל ליחידה עם שמנים צמחיים — זהה לגרסת השוקו."
+          "explanation_he": "PENDING_COPY"
         }
       ],
       "bestUseCases": [
-        "כיבוד ילדים במנה אחת"
+        "PENDING_COPY"
       ],
       "_category_routed": "dessert",
       "_has_phvo": false,
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 38,
+      "rank": 114,
       "categoryTotal": 117,
       "brand": "קרמוגית"
     },
@@ -3948,7 +3982,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 39,
+      "rank": 36,
       "categoryTotal": 117,
       "brand": "קראנץ'"
     },
@@ -4053,7 +4087,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 40,
+      "rank": 37,
       "categoryTotal": 117,
       "brand": "שופרסל"
     },
@@ -4158,7 +4192,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 41,
+      "rank": 38,
       "categoryTotal": 117,
       "brand": "שופרסל"
     },
@@ -4296,7 +4330,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 42,
+      "rank": 39,
       "categoryTotal": 117,
       "brand": "פיטנס"
     },
@@ -4406,7 +4440,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 43,
+      "rank": 40,
       "categoryTotal": 117,
       "brand": "גולון"
     },
@@ -4491,7 +4525,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 44,
+      "rank": 41,
       "categoryTotal": 117,
       "brand": "קופסת העוגיות של רחלי"
     },
@@ -4623,7 +4657,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 45,
+      "rank": 42,
       "categoryTotal": 117,
       "brand": "קראנץ'"
     },
@@ -4704,7 +4738,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 46,
+      "rank": 43,
       "categoryTotal": 117,
       "brand": "השדה"
     },
@@ -4786,7 +4820,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 47,
+      "rank": 44,
       "categoryTotal": 117,
       "brand": "השדה"
     },
@@ -4925,7 +4959,7 @@
         "shufersal",
         "yohananof"
       ],
-      "rank": 48,
+      "rank": 45,
       "categoryTotal": 117,
       "brand": "פיטנס"
     },
@@ -5063,7 +5097,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 49,
+      "rank": 46,
       "categoryTotal": 117,
       "brand": "פיטנס"
     },
@@ -5167,7 +5201,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 50,
+      "rank": 47,
       "categoryTotal": 117,
       "brand": "גולון"
     },
@@ -5256,7 +5290,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 51,
+      "rank": 48,
       "categoryTotal": 117,
       "brand": "השדה"
     },
@@ -5341,7 +5375,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 52,
+      "rank": 49,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -5420,7 +5454,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 53,
+      "rank": 50,
       "categoryTotal": 117,
       "brand": "גנדולה"
     },
@@ -5525,7 +5559,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 54,
+      "rank": 51,
       "categoryTotal": 117,
       "brand": "צ'וקטה"
     },
@@ -5606,7 +5640,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 55,
+      "rank": 52,
       "categoryTotal": 117,
       "brand": "ROSHEN"
     },
@@ -5725,7 +5759,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 56,
+      "rank": 53,
       "categoryTotal": 117,
       "brand": "ROSHEN"
     },
@@ -5810,7 +5844,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 57,
+      "rank": 54,
       "categoryTotal": 117,
       "brand": "PASTICERE"
     },
@@ -5909,7 +5943,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 58,
+      "rank": 55,
       "categoryTotal": 117,
       "brand": "PASTICERE"
     },
@@ -6017,7 +6051,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 59,
+      "rank": 56,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -6098,7 +6132,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 60,
+      "rank": 57,
       "categoryTotal": 117,
       "brand": "מן"
     },
@@ -6169,7 +6203,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 61,
+      "rank": 58,
       "categoryTotal": 117,
       "brand": "שר"
     },
@@ -6260,7 +6294,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 62,
+      "rank": 59,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -6335,7 +6369,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 63,
+      "rank": 60,
       "categoryTotal": 117,
       "brand": "ללא מיתוג"
     },
@@ -6413,7 +6447,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 64,
+      "rank": 61,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -6491,7 +6525,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 65,
+      "rank": 62,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -6569,7 +6603,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 66,
+      "rank": 63,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -6661,7 +6695,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 67,
+      "rank": 64,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -6773,7 +6807,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 68,
+      "rank": 65,
       "categoryTotal": 117,
       "brand": "Tulino"
     },
@@ -6865,7 +6899,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 69,
+      "rank": 66,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -6977,7 +7011,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 70,
+      "rank": 67,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -7076,7 +7110,7 @@
         "shufersal",
         "yohananof"
       ],
-      "rank": 71,
+      "rank": 68,
       "categoryTotal": 117,
       "brand": "צ'וקטה"
     },
@@ -7147,7 +7181,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 72,
+      "rank": 69,
       "categoryTotal": 117,
       "brand": "לוטוס"
     },
@@ -7218,7 +7252,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 73,
+      "rank": 70,
       "categoryTotal": 117,
       "brand": "לוטוס"
     },
@@ -7289,7 +7323,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 74,
+      "rank": 71,
       "categoryTotal": 117,
       "brand": "לוטוס"
     },
@@ -7360,7 +7394,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 75,
+      "rank": 72,
       "categoryTotal": 117,
       "brand": "לוטוס"
     },
@@ -7451,7 +7485,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 76,
+      "rank": 73,
       "categoryTotal": 117,
       "brand": "פרה"
     },
@@ -7563,7 +7597,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 77,
+      "rank": 74,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -7668,7 +7702,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 78,
+      "rank": 75,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -7739,7 +7773,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 79,
+      "rank": 76,
       "categoryTotal": 117,
       "brand": "מן"
     },
@@ -7844,7 +7878,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 80,
+      "rank": 77,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -7938,7 +7972,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 81,
+      "rank": 78,
       "categoryTotal": 117,
       "brand": "ROSHEN"
     },
@@ -8030,7 +8064,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 82,
+      "rank": 79,
       "categoryTotal": 117,
       "brand": "שופרסל"
     },
@@ -8226,7 +8260,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 83,
+      "rank": 80,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -8346,7 +8380,7 @@
         "shufersal",
         "yohananof"
       ],
-      "rank": 84,
+      "rank": 81,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -8459,7 +8493,7 @@
         "shufersal",
         "yohananof"
       ],
-      "rank": 85,
+      "rank": 82,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -8565,7 +8599,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 86,
+      "rank": 83,
       "categoryTotal": 117,
       "brand": "שופרסל"
     },
@@ -8671,7 +8705,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 87,
+      "rank": 84,
       "categoryTotal": 117,
       "brand": "שופרסל"
     },
@@ -8776,7 +8810,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 88,
+      "rank": 85,
       "categoryTotal": 117,
       "brand": "באלזן"
     },
@@ -8868,7 +8902,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 89,
+      "rank": 86,
       "categoryTotal": 117,
       "brand": "PASTICERE"
     },
@@ -8973,7 +9007,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 90,
+      "rank": 87,
       "categoryTotal": 117,
       "brand": "אוראו"
     },
@@ -9071,7 +9105,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 91,
+      "rank": 88,
       "categoryTotal": 117,
       "brand": "נוטלה"
     },
@@ -9169,7 +9203,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 92,
+      "rank": 89,
       "categoryTotal": 117,
       "brand": "אוראו"
     },
@@ -9281,7 +9315,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 93,
+      "rank": 90,
       "categoryTotal": 117,
       "brand": "בלזן"
     },
@@ -9359,7 +9393,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 94,
+      "rank": 91,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -9471,7 +9505,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 95,
+      "rank": 92,
       "categoryTotal": 117,
       "brand": "Tulino"
     },
@@ -9562,7 +9596,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 96,
+      "rank": 94,
       "categoryTotal": 117,
       "brand": "באלזן"
     },
@@ -9675,7 +9709,7 @@
         "shufersal",
         "yohananof"
       ],
-      "rank": 97,
+      "rank": 95,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -9780,7 +9814,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 98,
+      "rank": 96,
       "categoryTotal": 117,
       "brand": "עלית"
     },
@@ -9934,7 +9968,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 99,
+      "rank": 97,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -10039,7 +10073,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 100,
+      "rank": 98,
       "categoryTotal": 117,
       "brand": "אוראו"
     },
@@ -10151,7 +10185,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 101,
+      "rank": 99,
       "categoryTotal": 117,
       "brand": "צ'וקטה"
     },
@@ -10297,7 +10331,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 102,
+      "rank": 100,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -10443,7 +10477,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 103,
+      "rank": 101,
       "categoryTotal": 117,
       "brand": "לה פזואלוס"
     },
@@ -10555,7 +10589,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 104,
+      "rank": 102,
       "categoryTotal": 117,
       "brand": "מילקה"
     },
@@ -10667,7 +10701,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 105,
+      "rank": 103,
       "categoryTotal": 117,
       "brand": "פינוקיות"
     },
@@ -10772,7 +10806,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 106,
+      "rank": 104,
       "categoryTotal": 117,
       "brand": "מילקה"
     },
@@ -10890,7 +10924,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 107,
+      "rank": 105,
       "categoryTotal": 117,
       "brand": "קראנץ'"
     },
@@ -11016,7 +11050,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 108,
+      "rank": 106,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -11142,7 +11176,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 109,
+      "rank": 107,
       "categoryTotal": 117,
       "brand": "מילקה"
     },
@@ -11268,7 +11302,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 110,
+      "rank": 108,
       "categoryTotal": 117,
       "brand": "אסם"
     },
@@ -11435,7 +11469,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 111,
+      "rank": 109,
       "categoryTotal": 117,
       "brand": "נסטלה"
     },
@@ -11576,7 +11610,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 112,
+      "rank": 110,
       "categoryTotal": 117,
       "brand": "VOILA"
     },
@@ -11708,7 +11742,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 113,
+      "rank": 111,
       "categoryTotal": 117,
       "brand": "פלדמן"
     },
@@ -11848,7 +11882,7 @@
       "_source_retailers": [
         "yohananof"
       ],
-      "rank": 114,
+      "rank": 112,
       "categoryTotal": 117,
       "brand": "מילקה"
     },
@@ -11946,7 +11980,7 @@
       "_source_retailers": [
         "shufersal"
       ],
-      "rank": 115,
+      "rank": 113,
       "categoryTotal": 117,
       "brand": "מרבה"
     },
@@ -12059,7 +12093,7 @@
         }
       ],
       "bestUseCases": [],
-      "rank": 116,
+      "rank": 115,
       "categoryTotal": 117,
       "brand": "אסם"
     },
