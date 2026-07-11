@@ -15,6 +15,21 @@ const baseSecurityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
 ];
 
+// TASK-557 visual pass: the sweeteners guide draft embeds a youtube-nocookie.com video
+// slot (build brief item 6). Scoped to that one route rather than widened into
+// baseSecurityHeaders — no other page embeds an iframe today, so the allowance should not
+// have a broader blast radius than the feature that needs it. `frame-src` governs iframes
+// THIS page embeds; it does not affect whether this page itself can be framed (that's
+// `frame-ancestors`, already covered by X-Frame-Options, which the catch-all `/:path*`
+// rule below still applies to this route — headers from multiple matching sources merge,
+// so this array only needs to ADD the CSP, not repeat the base set).
+const sweetenerGuideSecurityHeaders = [
+  {
+    key: "Content-Security-Policy",
+    value: "frame-src 'self' https://www.youtube-nocookie.com",
+  },
+];
+
 const adminSecurityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -32,6 +47,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/admin/:path*", headers: adminSecurityHeaders },
       { source: "/api/admin/:path*", headers: adminSecurityHeaders },
+      { source: "/madrichim/sweeteners", headers: sweetenerGuideSecurityHeaders },
       { source: "/:path*", headers: baseSecurityHeaders },
     ];
   },

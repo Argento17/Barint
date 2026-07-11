@@ -8,6 +8,8 @@
 **Pairs with:** Nutrition's per-category grounding guide (`row_description_grounding_v1.md`) — what each category's verdict may *truthfully* cite
 **Supersedes:** v1's terse decision-driver single-line model (35–80 char tag). See §0 for the pivot.
 
+> **v3 PATCH (2026-07-08, TASK-533 round 2, C3 ruling — binding):** this document's central "grade-as-earned-payoff" move (§0's "approved target voice," §2a, §32/§34 below) is **RETIRED.** Grade recitation in verdict prose ("עוצר ב-B כי…") is now banned outright — see §2a's replacement text and §5d. Everything else in this v2 model (standing → why → catch, anti-template rule, trace-anchor requirement, length gate) still stands; only the "name the grade" ending is gone. Read §2a and §5d before writing any verdict from this document.
+
 ---
 
 ## 0. Why this exists — and what changed in v2
@@ -74,7 +76,26 @@ The failure mode is the same as v1's trivia-first, one level up: opening on a fo
 
 These extend the existing forbidden lists in `insight_line_spec_v1` (§Tone) and `assertive_writing_v1` (§4). A line containing any of these does not publish.
 
-### 2a. Grade-RATIONALE rule (v2 reversal of v1's grade-restatement ban)
+### 2a. Grade-recitation ban (v3 reversal — C3 ruling, TASK-533 round 2, 2026-07-08)
+
+**SUPERSEDED.** v1 banned naming the grade. v2 (below, kept for the historical record) reversed that into a "grade-as-earned-payoff" rule ("עוצר ב-B כי…"). **v3 reverses v2 back to a ban, and this time it is final.** The owner's live-review of the yogurt pages (TASK-533) found the v2 model — even executed well — reads as **the row captioning its own score chip**: the grade already sits beside the verdict as a badge (72/B); a verdict that also says "עוצר ב-B" is the UI restating itself in prose, and every verdict that leads with the grade-reason move starts sounding the same regardless of the product ("X. עוצר ב-B כי Y" is itself a template skeleton — see §5d Rule 1).
+
+**BANNED — any verbal grade reference in `rowVerdict` / `consumerTakeaway` / `insightLine` / `expansion.consumerExplanation.whyRated`:**
+```
+נשאר ב-A / עוצר ב-B / יורד ב-D / נשאר ב-E
+עוצר ב-B — זה מה שמעצב את הציון כאן
+B הוא הציון שההרכב הזה מרוויח בפועל
+זה הגורם המרכזי שממתן את הציון ל-C
+הציון משקף… / ה-B מבוסס על הציון
+```
+The grade badge (72/B) is rendered beside the text by the UI. The verdict text says what's true about the **food**; it never states, restates, or leads to the letter. If a sentence would read differently depending on whether the grade were A or D, that dependency itself is the leak — write the same honest food-observation and let the badge carry the grade.
+
+**Relative position remains allowed** (adds information the chip can't show, and never restates the grade itself):
+- ALLOWED: "מהבולטים בקטגוריה" / "מהחלשים במדף המעדנים" / "הרשימה הקצרה ביותר במדף"
+- ALLOWED: comparison to a *named peer* with the reason ("רשימה קצרה מהשוקולד הלאומי של הגולן").
+
+<details>
+<summary>v2 text (2026-06-02, RETIRED 2026-07-08 — kept for history, do not follow)</summary>
 
 **v1 banned naming the grade. v2 reverses this.** Naming the grade as the **earned conclusion of a real reason** is now correct and wanted — it is the fourth move of the verdict (§1). The owner's example *requires* it: "עוצר ב-B כי הבסיס בנוי על חלב ואבקת חלב מועשרים."
 
@@ -97,6 +118,8 @@ The grade names the conclusion the reasoning earned. This is the verdict landing
 ```
 
 **The test:** does the grade arrive *attached to a real, specific reason* the reader can act on? If yes → wanted. If it merely re-announces the chip or says the score "reflects" something → banned. The difference between "עוצר ב-B כי הבסיס מתוק" (wanted) and "ה-B משקף את ההרכב" (banned) is whether a reason is actually delivered.
+
+</details>
 
 **Relative position remains allowed** (adds info the chip can't show):
 - ALLOWED: "מהבולטים בקטגוריה" / "מהחלשים במדף המעדנים" / "הרשימה הקצרה ביותר במדף"
@@ -224,6 +247,38 @@ category, re-author that category's verdicts so the catch may cite sodium causal
 (`patch_granola_verdicts_v2.py`, 2026-06-05). All other live categories (bread, milk,
 snacks, cheese, yogurt, hummus, maadanim, cereals) are to be re-audited against Rules A–C
 and rebuilt to the same bar — each grounded in its own run's trace, not granola's.
+
+---
+
+## 5c. No UI-duplicate recitation + real limiting-factor driver (added 2026-07-08, owner ruling, TASK-533)
+
+The 2026-07-08 owner review of the live yogurt pages rejected the copy wholesale on two grounds that generalize to every category, not just yogurt. Both are now hard rules.
+
+**Rule A — a verdict never recites a number the row UI already displays.** The row shows a protein bar and a calorie/kcal chip next to the verdict text, not instead of it. A sentence like "10.5 גרם חלבון ל-100 גרם" sitting beside a protein bar that already reads 10.5 is not analysis — it is the UI captioning itself twice. A number earns a place in the verdict only when it is a **comparison**, a **verified rank/superlative** (checked against the full corpus for that shelf, not eyeballed), a **gap/contradiction**, or a **threshold finding that changes the reading of the product**. Test: delete the number — does the UI chip/bar still carry the exact same fact without it? If yes, cut the number or reframe it. This binds `insightLine`, `rowVerdict`, `consumerTakeaway`, and every `expansion.consumerExplanation` field — the rule follows the fact, not the field name.
+
+**Rule B — a "limiting factor" names the real fired driver, never a category placeholder.** "רשימת הרכיבים ורמת העיבוד הם הגורם המגביל" fails on two axes at once: it is grammatically broken (a compound subject against the singular "הגורם"), and even if the grammar were fixed it says nothing — "the ingredient list" is a category-of-thing, not a finding. The catch must point at the actual dimension the trace fired lowest or the actual cap/penalty applied — a real compositional finding, in food language. **Correction (2026-07-08, §5d Principle A):** when the real limitation is a data-confidence gap rather than a compositional one, do **not** name the confidence/verification mechanism itself ("רמת העיבוד המדויקת לא מאומתת" is score-mechanism narration, not a food fact — see §5d). State the consumer-facing evidence boundary in food language instead: "בלי צילום תווית מלא לא נהפוך את זה להבטחה חזקה יותר." A product with a 3-ingredient, additive-free list does not get "the ingredient list" named as its own limiter; that is not what the data shows.
+
+**These extend the existing rules, they don't replace them:** §6 Trace-Anchor Requirement already required every number to come from real data — Rule A adds that a *real* number can still be the wrong choice if it only duplicates what the UI already shows. §1 Rule B (mandatory drivers) already required naming a signal the trace actually fired — Rule B here closes the loophole where a category name ("ingredient list", "processing level") was used as if it were a signal.
+
+**Publish Checklist additions (items 9–10):**
+9. **No UI-duplicate numbers** — every number in the verdict is a comparison, verified rank, gap, or threshold finding, not a restatement of the protein bar / calorie chip / score chip? *(§5c Rule A)*
+10. **Limiting factor is the real driver** — the catch names the specific dimension/cap/penalty/confidence-gap the trace actually shows, never a bare category label standing in for a finding? *(§5c Rule B)*
+
+---
+
+## 5d. Grade recitation ban + Principle A/B (C3 ruling, TASK-533 round 2, 2026-07-08)
+
+The round-1 yogurt re-author fixed the §5c phrases but not the underlying pattern — Adversarial QA's independent challenge (GATE-2 Track C) failed it on voice for two reasons that generalize past yogurt. Full text lives in `editorial_intelligence_v3.md` §"Framework Invisibility" (Principle A / Principle B); this section is the verdict-copy-specific summary and is the authoritative pointer for §2a.
+
+**Grade recitation is banned, full stop** — see §2a above (v3 reversal). The score chip renders the grade; the verdict text never does.
+
+**Principle A — no score-mechanism narration.** A verdict may never explain *why the score is what it is* by describing Bari's own confidence classification, extraction method, or processing-level determination — even in plain Hebrew with zero Tier-4 vocabulary. "רמת העיבוד אינה מאומתת מהנתונים הזמינים" is the algorithm narrating itself just as much as "NOVA confidence: low" would be; only the vocabulary changed. The allowed move is the **evidence boundary in food language**: describe the product, then honestly bound the claim using ordinary shelf terms (a label photo, what the package states) — never the pipeline. This binds `insightLine`, `rowVerdict`, `consumerTakeaway`, `expansion.consumerExplanation.whyRated`, **and `bariInterpretation`** — any field that could be read as "why did this get its score."
+
+**Principle B — cluster-honest, not fake-unique.** Zero byte-identical `consumerTakeaway` strings is the bar (RT-3), but the fix is never fabricated differentiation. Before varying a line, apply the test: *what verified fact about THIS product justifies writing it differently from its shelf neighbor?* Valid anchors: ingredients, added sugar/sweeteners, protein/calorie profile, fat level, milk source, lactose-free status, named additives, the product's own stated flavor, package/use-case, governed price. If no such fact exists, the products are a genuine cluster — write similar, honest cluster language for both; do not invent a nutritional distinction to force uniqueness.
+
+**Publish Checklist additions (items 11–12):**
+11. **No verbal grade** — zero instances of "נשאר/עוצר/יורד ב-[grade]" or any grade-restatement construction, in any of the four bound fields? *(§2a, §5d)*
+12. **No score-mechanism narration** — the confidence/extraction/processing-classification mechanism is never named as a reason; any evidence limit is stated as a food-language boundary instead? *(§5d Principle A)*
 
 ---
 

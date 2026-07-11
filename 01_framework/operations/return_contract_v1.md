@@ -64,3 +64,10 @@ self-verifying instead of forcing the orchestrator to re-derive everything by ha
    properties, not byte-identity; a keyword add can silently rescore products in OTHER
    corpora (EV-052 moved 18 products in maadanim/hard_cheeses, caught two stages late).
    The cross-corpus byte-diff is mandatory on the first such change, not after a surprise.
+9. **Any artifact under `.claude/` is a CRITICAL finding, not a routine one (Guard C7).**
+   Project-local config (hooks/agents/skills/settings) executes with the orchestrator's own
+   authority the next time the project loads — a pre-trust attack surface (containment
+   doctrine: Anthropic, "How we contain Claude across products", 2026-05). `validate_return.py`
+   flags it distinctly from an ordinary schema/count failure; the orchestrator reads that
+   file's diff directly before accept/reject — it is never auto-bounced as CHANGES_REQUESTED
+   without a human look.

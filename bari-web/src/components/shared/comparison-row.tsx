@@ -16,6 +16,7 @@ import {
   MetricColumn,
   type MetricSpec,
 } from "@/components/shared/comparison-metric-column";
+import { shouldBlendWhiteForCategory } from "@/lib/comparisons/thumbnail-blend-white-categories";
 import type { BariProductVM } from "@/lib/view-models";
 import { GLASS_BOX_WITHHOLD_LABEL } from "@/lib/view-models";
 import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
@@ -186,7 +187,7 @@ export const ComparisonRow = memo(function ComparisonRow({
           <BariProductThumbnail
             product={product}
             size="fill"
-            blendWhite={category === "magnesium"}
+            blendWhite={shouldBlendWhiteForCategory(category)}
           />
         </span>
         <span className="bari-cmp-namecell">

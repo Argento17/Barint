@@ -943,6 +943,20 @@ def _d4_normalize(s: str) -> str:
     return s.strip().lower()
 
 
+def _d4_normalize_name(s: str) -> str:
+    """H4 fix (yogurt additive-display audit, TASK-515 follow-up) — Hebrew NAME
+    matching only. Additionally collapses whitespace jitter immediately around a
+    hyphen inside a compound Hebrew term (scrape artifact, e.g. "בין -גאם" from a
+    stray space vs the registry's "בין-גאם" / "בין גאם") into a single space, so a
+    stray space before/after a hyphen doesn't defeat an otherwise-correct
+    match_patterns_he substring match. Deliberately NOT used for e-number matching
+    (E-330 / E-472b etc. rely on the literal hyphen position staying put — folding
+    it in there would break real E-number detection project-wide)."""
+    n = _d4_normalize(s)
+    n = _re.sub(r"\s*-\s*", " ", n)
+    return _re.sub(r"\s+", " ", n).strip()
+
+
 def detect_additives_d4(ingredient_text: str) -> list:
     """TASK-179S — detect D4 additive tier findings from ingredient text.
 
@@ -972,25 +986,42 @@ def detect_additives_d4(ingredient_text: str) -> list:
         return []
 
     norm = _d4_normalize(ingredient_text)
+    norm_name = _d4_normalize_name(ingredient_text)   # H4 fix: hyphen-jitter-tolerant copy, name matching only
     # Track (e_number, first_occurrence_pos, match_source) per additive
     findings_map: dict = {}   # e_number → {entry, pos, match_source}
 
     for e_num, entry in GLASSBOX_W2_ADDITIVES.items():
         # Extract the numeric portion (E450, E472e → digits are 450, 472)
         # Match the full e_num string in various formats.
-        e_bare = e_num.lstrip("E")   # e.g. "330", "472e", "450"
+        e_bare = e_num.lstrip("E")   # e.g. "330", "472e", "472b", "450"
 
         # Build E-number patterns: E330, E-330, ה-330, with optional space before digits.
-        # For composite E-numbers like E472e we match just the numeric part (E472 / E-472).
         e_digits = _re.match(r"(\d+)", e_bare)
         e_num_str = e_digits.group(1) if e_digits else e_bare
+        has_letter_suffix = e_num_str != e_bare   # e.g. "472e"/"472b" vs bare "472"
 
-        e_patterns = [
-            f"e{e_bare.lower()}",          # e330 / e472e
-            f"e-{e_num_str}",              # e-330
-            f"e {e_num_str}",              # e 330 (stray space)
-            f"ה-{e_num_str}",             # ה-330 (Hebrew E-number citation)
-        ]
+        if has_letter_suffix:
+            # H3 fix (yogurt additive-display audit): composite/letter-suffixed E-numbers
+            # (E472e=DATEM, E472b=LACTEM, E160a, ...) MUST match only their OWN full
+            # suffix. A bare "e-472"/"e 472"/"ה-472" pattern here would ALSO match every
+            # OTHER sibling in the same digit family (E472a/b/c/d/f) — which is exactly
+            # how a real E-472b (LACTEM) ingredient got silently mislabeled as E472e
+            # (DATEM): the old bare-digit fallback pattern matched first and there was no
+            # E472b entry to compete for the match. Restrict to the full suffixed form,
+            # with/without dash/space, so distinct suffix siblings never cross-match.
+            e_patterns = [
+                f"e{e_bare.lower()}",          # e472e / e472b
+                f"e-{e_bare.lower()}",         # e-472e / e-472b
+                f"e {e_bare.lower()}",         # e 472e (stray space)
+                f"ה-{e_bare.lower()}",        # ה-472e (Hebrew E-number citation)
+            ]
+        else:
+            e_patterns = [
+                f"e{e_bare.lower()}",          # e330
+                f"e-{e_num_str}",              # e-330
+                f"e {e_num_str}",              # e 330 (stray space)
+                f"ה-{e_num_str}",             # ה-330 (Hebrew E-number citation)
+            ]
 
         # TASK-181D digit-boundary guard: an E-number match must NOT be immediately
         # followed by another digit, otherwise "e141" falsely matches inside "e1412"
@@ -1012,13 +1043,15 @@ def detect_additives_d4(ingredient_text: str) -> list:
                     break
                 start = idx + 1
 
-        # Hebrew name matching (match_patterns_he from the entry)
+        # Hebrew name matching (match_patterns_he from the entry). Uses the
+        # hyphen-jitter-tolerant normalizer (H4 fix) — e-number matching above is
+        # unaffected and keeps using the literal-hyphen `norm`.
         name_match_pos = None
         for pattern in entry.get("match_patterns_he", []):
-            norm_pat = _d4_normalize(pattern)
+            norm_pat = _d4_normalize_name(pattern)
             if not norm_pat:
                 continue
-            idx = norm.find(norm_pat)
+            idx = norm_name.find(norm_pat)
             if idx != -1:
                 if name_match_pos is None or idx < name_match_pos:
                     name_match_pos = idx

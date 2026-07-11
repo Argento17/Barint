@@ -8,7 +8,8 @@ description: Check whether live Bari categories will re-flow on a scoring switch
 **Owner lane:** Orchestrator. Enforces the **zero-different-category mandate**: after the
 sweep, no live category may be structurally "different" — each conforms to the uniform spine
 path or is **DELETED entirely** (page + route). Delete is the default fallback; there is no
-third option. `milk` is the one no-delete carve-out.
+third option. Milk included — the old milk carve-out is retired (owner de-freeze 2026-06-22;
+milk re-flows and ships exactly like every other category).
 
 ## Use this when
 - "Run conformance", "do all categories still re-flow", "check the spine", before any go-live,
@@ -21,7 +22,7 @@ python 03_operations/page_generator/conformance.py --slug <cat>   # one (route s
 python 03_operations/page_generator/conformance.py --slug <cat> --json
 ```
 It runs **3 HARD checks** through the REAL `affected_set` mapper (not a stub) to prove a live
-category would re-flow on a score flip. Exit 2 = a non-conformer (or milk pause).
+category would re-flow on a score flip. Exit 2 = a non-conformer.
 
 ## What "conform" means (and what it does NOT)
 - Conformance proves **reachability** — that a flip would re-flow the category. It does **not**
@@ -38,8 +39,9 @@ it** (page + route) per the mandate, rather than special-casing the spine.
 
 ## Baseline (re-verify, do NOT freeze)
 As of 2026-06-18: 12 conform / 0 deferred / 0 non-conforming. Bread re-flows as
-`class=published`. Milk re-flows but pauses exit-2 for owner approval if it moves. Treat these
-as numbers to re-verify on each run, never as values to hold fixed.
+`class=published`. Milk re-flows like every other category (de-frozen, owner 2026-06-22 — if
+the script still emits a milk pause, that pause logic is stale and should be removed). Treat
+these as numbers to re-verify on each run, never as values to hold fixed.
 
 ## Return contract
 State the exact command run, the pass/fail per slug, and — honestly — that this is a

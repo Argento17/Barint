@@ -45,6 +45,7 @@ import { BARI_COMPARISON_TOKENS } from "@/lib/design/bari-comparison-tokens";
 import { InventoryGradeChip } from "./inventory-grade-chip";
 import type { BariGrade, BariProductVM, InventoryProductRowVM } from "@/lib/view-models";
 import { ExpansionSection } from "@/components/shared/expansion-section";
+import { fireEvent } from "@/lib/analytics";
 
 // ── Row type extended with optional buy URL (future-ready) ──────────────────
 
@@ -209,6 +210,25 @@ function BrandTag({ brand, productName }: { brand: string | null | undefined; pr
   );
 }
 
+// ── Canonical product page link ───────────────────────────────────────────────
+// TASK-471: every row with a barcode (sku) gets a link to its canonical
+// /p/[barcode] page, alongside the existing name → category-comparison link.
+// Absent when the row has no barcode (never fabricate one).
+
+function ProductPageLink({ sku }: { sku: string | null }) {
+  if (!sku) return null;
+  return (
+    <Link
+      href={`/p/${sku}`}
+      className="inline-flex w-fit items-center gap-1 text-[11px] font-medium transition-colors hover:underline"
+      style={{ color: "var(--fg3, #5E6560)" }}
+      title="עמוד המוצר"
+    >
+      עמוד מוצר ←
+    </Link>
+  );
+}
+
 // ── Dormant buy affordance ────────────────────────────────────────────────────
 // C1 fix: text → var(--fg3, #5E6560) which yields ≥5.9:1 on #FFFFFF and #FBFBF9.
 // "Inert" feel preserved via: very light border (0.10 opacity) + icon at 40% opacity.
@@ -217,7 +237,15 @@ function BrandTag({ brand, productName }: { brand: string | null | undefined; pr
 // when a per-product retailer URL is wired later, this links to the product's listing
 // on the chain's site. Dormant state = greyed + "בקרוב" tooltip (no inline text, to keep
 // the pill from clipping in the fixed-width column).
-function BuyAffordance({ buyUrl }: { buyUrl?: string | null }) {
+function BuyAffordance({
+  buyUrl,
+  barcode,
+  category,
+}: {
+  buyUrl?: string | null;
+  barcode?: string | null;
+  category?: string;
+}) {
   if (buyUrl) {
     return (
       <a
@@ -231,6 +259,12 @@ function BuyAffordance({ buyUrl }: { buyUrl?: string | null }) {
           color: "var(--bari-green-deep, #176F53)",
           background: "#FAFAF8",
         }}
+        onClick={() =>
+          fireEvent("outbound_click", {
+            barcode: barcode ?? "",
+            category: category ?? "",
+          })
+        }
       >
         <Store className="h-3 w-3" aria-hidden />
         צפייה ברשת
@@ -284,10 +318,10 @@ function FilterBar({ filters, onChange, categoryOptions, retailerOptions }: Filt
           type="search"
           value={filters.q}
           onChange={(e) => onChange({ ...filters, q: e.target.value })}
-          placeholder="חיפוש שם מוצר, מותג..."
+          placeholder="חיפוש שם מוצר, מותג או ברקוד..."
           dir="rtl"
           className="w-full rounded-full border border-[rgba(17,19,24,0.12)] bg-white pe-9 ps-4 py-1.5 text-sm text-[#111318] placeholder:text-[#888C88] focus:outline-none focus:ring-2 focus:ring-[#1F8F6A]/40"
-          aria-label="חיפוש מוצר"
+          aria-label="חיפוש מוצר לפי שם או ברקוד"
         />
       </div>
 
@@ -490,12 +524,23 @@ export function ProductTable({
         }
       }
       if (q) {
-        const haystack = [r.name, r.brand ?? "", r.categoryNameHe, r.retailer.nameHe].join(" ").toLowerCase();
+        const haystack = [r.name, r.brand ?? "", r.categoryNameHe, r.retailer.nameHe, r.sku ?? ""]
+          .join(" ")
+          .toLowerCase();
         if (!haystack.includes(q)) return false;
       }
       return true;
     });
   }, [rows, filters, externalQ, resolvedCategoryName]);
+
+  // Exact barcode match: offers a direct jump to the canonical /p/[barcode] page.
+  // Only fires on an exact sku match (not a substring) so it doesn't appear for
+  // every partial numeric search — a deliberate, precise trigger.
+  const exactBarcodeMatch = useMemo(() => {
+    const q = (externalQ.trim() || filters.q.trim());
+    if (!q) return null;
+    return rows.find((r) => r.sku === q) ?? null;
+  }, [rows, filters.q, externalQ]);
 
   // Sort the filtered set. ציון sorts by numeric score (unscored always last);
   // text columns use Hebrew locale compare. Default (no key) = as-passed order.
@@ -570,6 +615,22 @@ export function ProductTable({
         categoryOptions={categoryOptions}
         retailerOptions={retailerOptions}
       />
+
+      {/* Exact barcode match: direct jump to the canonical /p/[barcode] page */}
+      {!loading && !error && exactBarcodeMatch && (
+        <Link
+          href={`/p/${exactBarcodeMatch.sku}`}
+          className="flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-medium transition-colors hover:bg-[#F1F8F4]"
+          style={{
+            borderColor: "rgba(31,143,106,0.25)",
+            background: "#F6FBF8",
+            color: "#155C3C",
+          }}
+        >
+          <ChevronRight className="h-4 w-4 rotate-180" aria-hidden />
+          התאמת ברקוד מדויקת: מעבר לעמוד המוצר של {exactBarcodeMatch.name}
+        </Link>
+      )}
 
       {!loading && !error && (
         <p
@@ -834,6 +895,7 @@ function DesktopRow({
                   {row.brand}
                 </span>
               )}
+              {!isAdmin && <ProductPageLink sku={row.sku} />}
             </div>
           </div>
         </td>
@@ -875,7 +937,7 @@ function DesktopRow({
         {/* Buy affordance (public only) — tighter horizontal padding so the pill fits */}
         {!isAdmin && (
           <td style={{ padding: "13px 12px" }}>
-            <BuyAffordance buyUrl={row.buyUrl} />
+            <BuyAffordance buyUrl={row.buyUrl} barcode={row.sku} category={row.categoryId} />
           </td>
         )}
 
@@ -1023,10 +1085,13 @@ function MobileRow({
           <p className="truncate text-xs" style={{ color: "var(--fg3, #5E6560)" }}>
             {row.categoryNameHe} · {row.retailer.nameHe}
           </p>
+          {hasExpansion && <ProductPageLink sku={row.sku} />}
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <InventoryGradeChip grade={row.grade} />
-          {showBuy && !hasExpansion && <BuyAffordance buyUrl={row.buyUrl} />}
+          {showBuy && !hasExpansion && (
+            <BuyAffordance buyUrl={row.buyUrl} barcode={row.sku} category={row.categoryId} />
+          )}
           {hasExpansion && detail && (
             <button
               id={triggerId}

@@ -1,0 +1,1135 @@
+# Supplement Guides — Bar Rubric v1 (TASK-504A)
+#
+# Type: Versioned, machine-readable scoring-presentation config (Rulings-as-Config mandate).
+# Owner: Nutrition Agent (D7 co-signer with Product Agent required before this governs live copy).
+# Status: PROPOSED — awaiting Product Agent co-sign (D7). Governs the מדריכים (Guides) product
+#   only (TASK-504 plan). Does NOT govern BSIP2, score_engine.py, constants.py, or any published
+#   food score. Zero BSIP2/food-scoring exposure (see firewall block below).
+# Input plan: 01_framework/product/supplement_guides_concrete_plan_v1.md (§1 verdict layer,
+#   §2 the six bars, blend rule).
+# Input science base: 01_framework/nutrition/supplement_guides_science_cosign_v1.md,
+#   01_framework/nutrition/creatine_evidence_cosign_v1.md,
+#   01_framework/nutrition/functional_dose_ingredient_ruling_v1.md.
+# Validated against live data: bari-web/src/lib/comparisons/magnesium-page-data.ts (18 products,
+#   local tree) and bari-web/src/lib/comparisons/creatine-page-data.ts (31 products, origin/master
+#   PR #86 — not present in the local tree at authoring time; pulled via
+#   `git show origin/master:bari-web/src/lib/comparisons/creatine-page-data.ts`).
+# Companion doc: 01_framework/nutrition/supplement_guides_bar_rubric_companion_v1.md
+#   (threshold-by-threshold rationale + full validation table).
+
+meta:
+  version: "v1"
+  task: "TASK-504A"
+  date: "2026-07-04"
+  author: "Nutrition Agent"
+  status: "PROPOSED — Product Agent D7 co-sign required before this governs any published guide"
+  scope: "Supplement Guides (מדריכים) product only — magnesium and creatine at v1"
+
+# ── HARD RULE 1 — ANTI-DRIFT INVARIANT (non-negotiable) ──────────────────────
+anti_drift_invariant:
+  rule: >
+    This config MUST NOT define, and no implementation of it may compute, any composite or
+    weighted numeric score. Bar-states (PASS / FLAG / FAIL / CANNOT-VERIFY) never sum, average,
+    or otherwise combine into a number. There is no "N/6 bars passed" percentage, no point value
+    per bar-state, and no numeric field anywhere in this config that a generator could sort
+    products by. Bucket membership (see bucket_logic below) is a categorical GROUPING, not a
+    rank — the four buckets are unordered as a set (the plan's own language: "clears every bar
+    — unordered").
+  why: >
+    This is the single load-bearing finding of the entire TASK-504 redirection: ranking
+    supplements by a composite number was the owner's identified failure mode. A bar rubric
+    that quietly re-introduces a "pass count" is the exact rule-accretion risk the Nutrition
+    science co-sign named explicitly (supplement_guides_science_cosign_v1.md §6, tripwire 2:
+    "a real future temptation to bolt a composite number back on top of the bars").
+  enforcement: >
+    Any future proposal to add a numeric aggregate on top of these bar-states is a NEW
+    scoring-presentation rule and requires a fresh Product + Nutrition D6/D7 review. It does not
+    ship under this config's authority, no matter how small the change looks.
+
+# ── HARD RULE 2 — FIREWALL ────────────────────────────────────────────────────
+firewall:
+  bsip2_exposure: "none"
+  statement: >
+    This rubric governs the Supplement Guides page-presentation layer only. It does not touch
+    BSIP2, score_engine.py, constants.py, any BEV/EV entry, any food category's published grade,
+    or the Supplement Intelligence Engine's (SIE) internal composite-scoring math
+    (magnesium_model_v3, tier_factor, adjusted_dose). The SIE is architecturally a sibling
+    engine to BSIP2 (functional_dose_ingredient_ruling_v1.md §5) and this rubric is a further
+    downstream presentation layer on top of the SIE's dossiers — it reads dossier facts
+    (effective_dose, forms, safety.upper_limit_UL) but produces bar-states, not scores.
+  display_hard_rule_carried_over: >
+    Per magnesium-page-data.ts's own header comment and the science co-sign §2.4: NO absorbed-mg,
+    NO adjusted_dose_mg, NO tier_factor, NO "bav_class" jargon may appear in bar-state computation
+    OUTPUT (consumer-facing labels/copy). Bars may READ these internal dossier fields to derive a
+    PASS/FLAG/FAIL/CANNOT-VERIFY state, but the state itself — never the underlying number — is
+    what ships. See spec_conflict_flag_price_fairness below for where the redirection plan's own
+    wording risked violating this rule.
+
+# ── SPEC-CONFLICT FLAG (raised per Spec-Conflict Duty, not silently resolved) ─
+spec_conflict_flags:
+  - id: "SCF-1-price-fairness-absorbed-mg"
+    conflicting_instruction: >
+      supplement_guides_concrete_plan_v1.md / the TASK-504A delegation both use the phrase
+      "per absorbed-mg for magnesium" for the Price Fairness bar's denominator.
+    conflict: >
+      "Absorbed-mg" is exactly the internal tier-factor-adjusted figure the standing hard rule
+      (magnesium-page-data.ts header; science co-sign §2.4) forbids computing/displaying anywhere
+      — it is the same adjusted_dose = elemental_mg × tier_factor(bav_class) math the v3 engine
+      uses internally. Rebuilding this inside a Price Fairness bar would quietly resurrect the
+      composite tier-factor model this entire redirection exists to strip out of consumer-facing
+      output, and it would make Price Fairness silently double up with the Form/Absorption bar
+      (which already grades the form-tier question) — a form of the same rule-accretion risk the
+      anti-drift invariant above forecloses.
+    resolution_taken: >
+      Price Fairness is defined below as price PER DISCLOSED / ADMINISTERED effective-dose unit
+      (₪ per 300 mg elemental-day-equivalent for magnesium; ₪ or $ per 3 g for creatine) — the
+      label-stated number, with NO bioavailability adjustment applied. This mirrors exactly how
+      creatine's own price_per_3g_label field already works in the live data (computed off
+      disclosed grams, never an "effective absorbed" figure) and keeps Price Fairness answering a
+      genuinely distinct question from Form/Absorption ("is this a fair price for what the label
+      says you get" vs. "does what the label says you get actually absorb well"). Flagging this
+      here rather than silently complying, per the standing Spec-Conflict Duty.
+    status: "resolved as documented — recommend Product Agent confirm at D7"
+
+# ── THE SIX BARS ──────────────────────────────────────────────────────────────
+bars:
+
+  - id: "dose_adequacy"
+    hebrew_label: "התאמת המינון"
+    measures: >
+      Whether the disclosed daily dose of the active ingredient sits at, above, or meaningfully
+      below the literature-derived effective range for the effect the product is sold for.
+    rule_general: >
+      Compare the disclosed DAILY dose (not per-serving, not per-capsule unless daily count is
+      also disclosed) against the supplement's dossier min_effective value. Thresholds are set at
+      min_effective and 0.5 × min_effective (the SIE's own existing fairy-dust convention,
+      already used verbatim in functional_dose_ingredient_ruling_v1.md §3.2's creatine table:
+      >=3g PASS-equivalent / 1.5-3g FLAG-equivalent / <1.5g FAIL-equivalent / undisclosed
+      CANNOT-VERIFY). This rubric generalizes that exact table to any supplement via its own
+      dossier's min_effective, rather than inventing a new number.
+    states:
+      PASS: "disclosed daily dose >= min_effective"
+      FLAG: "0.5 * min_effective <= disclosed daily dose < min_effective"
+      FAIL: "disclosed daily dose < 0.5 * min_effective (fairy-dust / decorative amount)"
+      CANNOT-VERIFY: >
+        daily dose not computable — no per-serving figure, no servings-per-day instruction, or a
+        blended/undisclosed-ratio formulation makes the active amount unknowable. Includes the
+        case where a PER-UNIT dose is stated (e.g. "0.75 g per capsule") but the required daily
+        serving count is not disclosed, so the DAILY total cannot be computed (see California
+        Gold Nutrition capsules in the validation table — a rubric-driven reclassification vs.
+        the current live "below_floor" tag; flagged in the companion note).
+    per_supplement:
+      magnesium:
+        min_effective_mg_per_day: 300
+        source: "03_operations/supplement_engine/proto_v0/evidence_dossiers/magnesium.yaml effective_dose.min_effective"
+        unit: "mg elemental Mg / day"
+        hedge: "literature-derived, dossier-sourced; NEEDS-ENV-VERIFY per dossier lifecycle (semi-annual re-sync)"
+        pass_threshold: 300
+        flag_band: [150, 299]
+        fail_below: 150
+      creatine:
+        min_effective_g_per_day: 3.0
+        source: "creatine_evidence_cosign_v1.md §1 row 12 / functional_dose_ingredient_ruling_v1.md §3.2, ISSN 2017 (PMID:28615996)"
+        unit: "g creatine monohydrate-equivalent / day"
+        hedge: "literature-derived, VERIFIED-primary tier per Research verification pass"
+        pass_threshold: 3.0
+        flag_band: [1.5, 2.99]
+        fail_below: 1.5
+        loading_phase_exception: >
+          A product explicitly and correctly labeled as a loading-phase protocol (~20 g/day,
+          4x5g, for 5-7 days) is NOT scored against the maintenance floor — annotate as
+          "loading protocol," not run through this bar at all. No loading-phase product exists
+          in the current 31-product corpus; this exception is defined for forward compatibility.
+
+  - id: "form_absorption"
+    hebrew_label: "צורה כימית וספיגה"
+    measures: >
+      Whether the chemical form/delivery form of the active ingredient is the evidence-preferred
+      form, an acceptable-but-lesser form, or a form with directional evidence of inferior
+      real-world delivery.
+    rule_general: >
+      Tier lookup by disclosed chemical form against the dossier's forms ladder. This bar grades
+      the FORM CLASS, not the dose math — a product whose elemental/gram figure is ambiguous can
+      still get a determinate Form state if the compound identity itself is known (see the
+      Tink Oxide-520 / Amorphicure carbonate rows in the validation table: dose is
+      CANNOT-VERIFY but form is still gradable as oxide/carbonate = FAIL). CANNOT-VERIFY is
+      reserved for the case where the FORM ITSELF is an undisclosed blend — see blend_rule.
+    blend_rule:
+      statement: >
+        REQUIRED (closes the live Solgar-D vs TRIOMAG-null inconsistency, red-team RT-A5). Any
+        blended/multi-form product with no per-form ratio split on the label gets
+        form_absorption = CANNOT-VERIFY, applied IDENTICALLY to every blend regardless of which
+        forms are blended or how the product otherwise scores. This is a single, uniform rule —
+        no case-by-case judgment calls per blend.
+      applies_to_magnesium_example: ["Solgar Ca+Mg+D3 (oxide+citrate, ratio undisclosed)", "TRIOMAG (citrate+bisglycinate+taurate, ratio undisclosed)"]
+      distinguished_from: >
+        A SINGLE, disclosed form with an AMBIGUOUS DOSE reading (e.g. Tink Oxide-520: form=oxide
+        is known, but whether "520mg" means elemental or compound mass is not) is NOT a blend —
+        the form bar still resolves (oxide=LOW=FAIL) even though the dose_adequacy bar is
+        separately CANNOT-VERIFY. Conflating "form unknown" with "dose-reading unknown" was the
+        exact failure mode this rule closes.
+    states:
+      magnesium:
+        PASS: "HIGH tier — citrate, aspartate, lactate, chloride, bisglycinate/glycinate (tier-band placement; evidence confidence is NOT uniform across this tier — see evidence_confidence_split below, per Research's independent per-citation verification, magnesium_form_ladder_verification_v1.md)"
+        FLAG: "MODERATE tier — malate, taurate, hydroxide"
+        FAIL: >
+          LOW tier — oxide, carbonate, sulfate (sulfate added per the NIH ODS primary-source
+          sentence itself, which names it alongside oxide as less bioavailable; no sulfate
+          product exists in the current corpus, added for forward compatibility). Directional
+          evidence for materially lower fractional absorption vs. NIH-named organic salts
+          (citrate, aspartate, lactate, chloride) is independently confirmed by Research as
+          real and institutionally sourced (magnesium_form_ladder_verification_v1.md §1c, §5
+          "cleared for use as-is": "citrate absorbs better than oxide (directional, Moderate
+          tier)"). FAIL is used deliberately here, not FLAG, because this is the core "the big
+          number on the box lies to you" finding the guide exists to surface.
+        CANNOT-VERIFY: "UNRESOLVED — blend with undisclosed form ratio (blend_rule above)"
+        tier_lookup_source: "magnesium.yaml forms{preferred, acceptable, poor}; magnesium_model_v3_bioav_adjusted_dose_spec.md BAV_TIER_FACTORS"
+        evidence_confidence_split: >
+          BAKED IN 2026-07-04 per Research's independent per-citation verification
+          (03_operations/reports/research/magnesium_form_ladder_verification_v1.md), received
+          mid-authoring of this config. The bar-STATE for bisglycinate/glycinate products
+          remains PASS (same tier band as citrate) — Research's own recommendation (§5,
+          "Needs softening") is to keep the tier-band placement, because (a) the tier factor is
+          a coarse calibration constant that never asserts an individual absorption
+          percentage, which insulates the PASS/FAIL classification from this specific finding,
+          and (b) bisglycinate's absorption-via-dipeptide-chelate-transport mechanism is a
+          real, separately-documented physiological pathway independent of these three PMIDs.
+          What DOES change is the confidence/citation basis attached to that PASS state:
+            - citrate, aspartate, lactate, chloride: Moderate confidence, directly named by the
+              NIH ODS institutional fact sheet (independently confirmed real wording, though the
+              live ODS page itself returned HTTP 403 to direct fetch — confirmed via
+              independent secondary-source corroboration per the verification report; a direct
+              re-fetch is still recommended before this exact sentence ships as a verbatim
+              quote in guide copy).
+            - bisglycinate / glycinate: PASS on tier-band placement, but evidence-hedged.
+              NOT named by the NIH ODS sentence at all. The three PMIDs previously cited for
+              this ladder do NOT cleanly support a bisglycinate-superiority claim on inspection:
+              PMID:39770988 (Pajuelo et al. 2024) showed NO significant plasma response for
+              bisglycinate in its own human arm and carries an undisclosed-in-copy conflict of
+              interest (2 of 5 authors affiliated with Lubrizol Life Science, the maker of the
+              proprietary comparator ingredient the study was actually designed to evaluate);
+              PMID:30761462 (Ates et al. 2019) is a mouse study, not human evidence, and must
+              carry an explicit "(animal study)" qualifier if ever cited (Hard Rule 4);
+              PMID:7815675 (Schuette et al. 1994) found a bisglycinate advantage only in the 4
+              most malabsorption-impaired of 12 ileal-resection patients, not across the sample
+              or in a general population. **None of these three PMIDs may be cited in guide
+              copy to support a bisglycinate-specific "well-absorbed" claim.** If bisglycinate
+              is discussed in copy beyond its tier badge, it must be hedged as "considered
+              well-absorbed via a distinct chelate-transport mechanism" — never stated with the
+              same confidence, or against the same citation, as the citrate claim.
+          See citation_gaps below for the per-PMID disposition.
+      creatine:
+        PASS: "monohydrate (any branded sub-line — Creapure, general, mislabeled 'Elite' naming — all resolve to monohydrate identity)"
+        FLAG: >
+          Alternative form with no evidenced advantage over monohydrate (HCl, buffered/
+          "alkaline," ethyl ester, citrate, malate). FLAG, not FAIL — the dossier's own ruling
+          is these forms are "evidence-orphaned for a premium claim," explicitly NOT inferior or
+          unsafe (creatine_evidence_cosign_v1.md §3.1 point 2). Using FAIL here would misstate
+          the evidence in the harsher direction, which the Nutrition co-sign explicitly bans
+          (§2.4 banned list: "a claim that alternative creatine forms... are unsafe or
+          lower-quality").
+        FAIL: "reserved — no creatine form in the current evidence base meets this bar; not populated today"
+        CANNOT-VERIFY: "form not disclosed on label at all"
+        tier_lookup_source: "creatine_evidence_cosign_v1.md §1 row 14; creatine_monohydrate.yaml forms"
+
+  - id: "third_party_verification"
+    hebrew_label: "בדיקת צד שלישי"
+    measures: "Whether an independent certifying body's registry confirms the product's testing claim."
+    rule_general: >
+      Two-tier base structure per the plan, extended by one deterministic sub-split of the
+      "manufacturer-stated" tier (see states.FAIL below) needed to correctly classify a case
+      already present in the live creatine corpus (a claim that WAS checked against a registry
+      and not found, vs. a claim that has simply not been checked yet).
+    states:
+      PASS: >
+        directory-confirmed — Bari directly checked the certifying body's public registry
+        (e.g. nsfsport.com) and found a matching, active entry for the SPECIFIC product/SKU.
+      FLAG: >
+        manufacturer-stated and NOT contradicted — the claim appears on the label/brand page but
+        has either (a) not yet been checked against the named registry, or (b) checking was
+        attempted and blocked/inconclusive (e.g. Informed-Sport's checker site refusing access on
+        every attempt). Both sub-cases get the same state: an unresolved, not-yet-disprovable
+        claim.
+      FAIL: >
+        manufacturer-stated AND CHECKED AND NOT FOUND — the claim was actively verified against
+        the named registry and no matching entry exists for this product (a claim contradicted by
+        a real verification attempt, not merely unverified). This is a genuine label-integrity
+        finding, distinct from FLAG's "haven't checked yet." Example in the current corpus: Naked
+        Nutrition's "NSF-certified" claim, checked, no matching registry entry found
+        (creatine-page-data.ts wb-naked-creatine).
+      CANNOT-VERIFY: >
+        no third-party-testing claim appears anywhere on the label or product page. THIS IS
+        EXPLICITLY NOT A DEDUCTION. Per the standing missing-data-discard doctrine ("unknown is
+        acceptable... never punish/cap") and the live copy's own existing framing of the ESN
+        product ("ללא טענת הסמכה שלא ניתנת לאימות — שקיפות מלאה," i.e. presented as the FAIREST
+        comparison in the table, not a deficiency), an absent claim carries zero negative
+        inference. A product that never claimed certification cannot fail a check that was never
+        invoked.
+    ruling_on_the_task's_direct_question: >
+      TASK-504A asked explicitly: for "none," is the call FAIL or CANNOT-VERIFY? Answer:
+      CANNOT-VERIFY. The FAIL state above is reserved for a claim that was made and then
+      contradicted by an actual check — not for the mere absence of a claim.
+    per_product_discipline: >
+      Every cert claim must be fact-checked against the certifying body's registry before a PASS
+      or FAIL state ships in consumer copy — this is a per-product fact-check requirement, not a
+      Nutrition evidence-tier judgment (science co-sign §2.1). This config defines the STATE
+      LOGIC; it does not itself perform the registry lookups.
+
+  - id: "price_fairness"
+    hebrew_label: "הוגנות המחיר"
+    measures: "Price per unit of disclosed effective dose, relative to comparable products."
+    denominator: >
+      Price / (disclosed daily dose / min_effective), i.e. price normalized to "one day's worth
+      of the literature effective dose" — NOT an absorbed/adjusted-mg denominator (see
+      spec_conflict_flags.SCF-1 above). For magnesium: price per 300 mg elemental/day-equivalent.
+      For creatine: price per 3 g/day-equivalent (identical to the live price_per_3g_label
+      convention already in creatine-page-data.ts).
+    boundary_method:
+      chosen: "same-currency-pool median, computed at guide-build time from the currently displayed, price-disclosed corpus"
+      thresholds:
+        PASS: "<= 1.25x pool median"
+        FLAG: "> 1.25x and <= 2.0x pool median"
+        FAIL: "> 2.0x pool median"
+      justification: >
+        (1) Deterministic and reproducible without a separately-maintained "benchmark price"
+        config that would go stale between guide regenerations — it reuses price data Bari
+        already collects, no new acquisition burden. (2) A pure "relative to the local Israeli
+        set" median has a known failure mode: if every local product were overpriced, they'd all
+        look "fair" relative to each other. Where a larger, more diverse reference pool exists —
+        creatine's 13-country worldwide benchmark table, built for exactly this purpose — it is
+        folded into the SAME median pool as the priced Israeli rows for a larger, more robust n,
+        rather than scored against a separate, smaller Israeli-only median. (3) 1.25x / 2.0x are
+        simple, auditable, single-criterion multipliers (25% and 100% premiums) consistent with
+        the anti-drift invariant's ban on any weighted/composite math. (4) Degrades gracefully:
+        magnesium has no worldwide benchmark set today, so its median is computed over its own
+        priced Israeli rows only; if one is added later, it folds in the same way creatine's does
+        — no rubric rewrite required.
+      currency_rule: >
+        NEVER mix currencies without a sourced, dated FX rate. Israeli-shelf products (₪) and
+        worldwide-benchmark products ($) are scored against SEPARATE, same-currency medians. Bari
+        does not fabricate or estimate an FX rate to force a single cross-currency pool — that
+        would be an invented number, which Hard Rule 1 forbids. If a future guide needs
+        cross-currency price fairness, that requires a separate, explicitly-sourced FX-rate
+        ruling, not a default assumption inside this config.
+      range_handling: >
+        Where a source discloses a price as a range (e.g. "$0.19-0.26"), use the arithmetic
+        midpoint uniformly, both for computing the pool median and for classifying that product.
+      versioning_note: >
+        Medians are NOT frozen constants. They are recomputed from the live displayed corpus at
+        every guide build, per the standing re-flow doctrine ("nothing is frozen... version the
+        numbers"). The specific medians computed in the companion validation table (0.93 ₪/3g
+        Israeli creatine pool; 0.225 $/3g worldwide pool, both dated 2026-07-04) are a snapshot,
+        not a hardcoded threshold.
+    states:
+      CANNOT-VERIFY: >
+        price not collected this round for this SKU, OR the daily effective dose itself is
+        CANNOT-VERIFY (no denominator computable — this state cascades from the dose_adequacy
+        bar's own CANNOT-VERIFY, it is not independently re-derived).
+
+  - id: "safety"
+    hebrew_label: "בטיחות"
+    measures: "Whether the disclosed dose crosses an established, whole-product-applicable safety threshold."
+    rendering_rule: >
+      A FAIL on this bar is a bar-level, always-visible block — never a tooltip, never collapsed
+      — per the standing "visible, not tooltip" precedent (TASK-384A) and the Nutrition science
+      co-sign §4's general rule: a safety signal applying to the WHOLE PRODUCT regardless of
+      use-context renders as a bar-level FAIL; a signal specific to a use-context or subpopulation
+      renders as a SCOPED NOTE attached to the relevant claim, never as a bar state on the
+      product. See scoped_notes below for the creatine bipolar example.
+    per_supplement:
+      magnesium:
+        ul_computation: >
+          Compare disclosed daily ELEMENTAL mg against two dossier-sourced thresholds
+          (magnesium.yaml safety block, Nutrition D8 graded-reading ruling, FLAG-2):
+          NIH/IOM 350 mg/day supplemental = hard veto line; EFSA 250 mg/day supplemental =
+          soft GI-tolerance note line. Both are GI-tolerance thresholds (reversible osmotic
+          effect), not systemic-toxicity ceilings — framed to consumers as such, never as a
+          poisoning risk.
+        states:
+          PASS: "disclosed elemental dose <= 250 mg/day"
+          FLAG: >
+            250 < disclosed elemental dose <= 350 mg/day. Matches the GI_NOTE_EFSA caveat
+            ALREADY shipped on the two 250mg B-grade products in the live corpus (Supherb
+            Citrate+B6, Altman Bisglycinate) — this bar state formalizes an existing,
+            already-signed-off editorial pattern rather than inventing a new one.
+          FAIL: "disclosed elemental dose > 350 mg/day — hard UL veto, visible block, always"
+          CANNOT-VERIFY: "elemental dose not computable (see dose_adequacy CANNOT-VERIFY cases)"
+        source: "magnesium.yaml safety.upper_limit_UL / safety.ul_note_threshold; NEEDS-ENV-VERIFY per dossier lifecycle (semi-annual NIH/EFSA re-sync — routine maintenance flag, distinct from the pending-citation-verification flags in citation_gaps below)"
+      creatine:
+        ul_computation: >
+          No established UL exists in the current evidence base (3 independent kidney-function
+          meta-analyses, PMID:31375416/41199218/42035842, plus ISSN 2017 PMID:28615996: studies
+          up to 30 g/day for 5 years report no dose-dependent harm in healthy adults).
+        states:
+          PASS: "always — by definition of 'no established UL,' every creatine product passes this bar on current evidence, regardless of dose"
+          FLAG: "not used for creatine at v1 — no graded safety threshold exists to FLAG against"
+          FAIL: "not used for creatine at v1 — no UL exists to cross; would require new dossier evidence to ever populate"
+          CANNOT-VERIFY: "not used for creatine at v1 — safety is computable (PASS) independent of dose knowledge, since there is no threshold to compare against"
+        source: "creatine_evidence_cosign_v1.md §1 rows 15-16"
+
+  - id: "label_transparency"
+    hebrew_label: "שקיפות התיוג"
+    measures: >
+      Whether the label discloses its own dose honestly and completely — a distinct question
+      from whether the disclosed dose (if any) is adequate (dose_adequacy bar). A product can
+      PASS this bar and still FAIL dose_adequacy (an honestly-disclosed low dose), and a product
+      can FAIL this bar independent of any known dose value (a marketed ingredient with zero
+      quantification anywhere).
+    states:
+      PASS: >
+        Per-serving dose disclosed as a specific, unambiguously-interpretable number — either
+        stated directly in the active-ingredient's elemental/effective unit, or stated as
+        compound mass WITH an accompanying elemental-conversion note on the label itself (fully
+        transparent math, nothing left for Bari to infer).
+      FLAG: >
+        Dose disclosed only as compound/formulation mass with NO elemental or per-active
+        conversion note on the label — Bari can chemically back-calculate the effective figure
+        via a stable, known molecular-weight fraction, but the LABEL ITSELF does not do this
+        math for the consumer. A genuine, lesser transparency gap (example: Nutricare Malate,
+        label states "700mg malate" only; elemental ~135mg is a Bari-side calculation, not a
+        label-stated fact). Also covers a per-unit dose disclosed with no daily-serving
+        instruction (California Gold Nutrition capsules: 0.75g/capsule stated, daily capsule
+        count absent).
+      FAIL: >
+        The named active ingredient appears on the label/front-of-pack with ZERO quantification
+        anywhere — no gram figure, no percentage, no range. This is the "fairy-dusting" pattern
+        explicitly named as a dose-honesty violation in creatine_evidence_cosign_v1.md §4
+        ("'Contains creatine' marketing language with zero quantification anywhere on the label").
+        Distinguished from CANNOT-VERIFY below: FAIL requires that NO number of any kind is
+        present; a stated-but-ambiguous number is CANNOT-VERIFY, not FAIL, because ambiguity is
+        not proven intent to obscure, whereas a total absence of quantification while naming the
+        ingredient on-pack is itself the labeling-honesty finding.
+      CANNOT-VERIFY: >
+        A number IS present but its unit/basis is genuinely ambiguous and Bari cannot resolve it
+        (e.g. "520 mg" with no "elemental" or "from magnesium oxide" qualifier, where the
+        elemental-vs-compound reading differs by a large multiple), OR the active ingredient sits
+        inside an undisclosed multi-form blend (same root cause as the form_absorption
+        CANNOT-VERIFY / blend_rule). This state carries NO penalty per the missing-data-discard
+        doctrine — it is a data gap, not a proven dishonesty finding, which is exactly why it is
+        kept distinct from FAIL above.
+    explicitly_out_of_scope_for_this_bar: >
+      Data-provenance caveats about BARI'S OWN sourcing (e.g. "figure is from a US label; the
+      Israeli retail SKU was not independently re-verified," as with Solgar Ca+Mg+D3) are NOT a
+      label_transparency finding — the manufacturer's own label IS clear in that case; the gap is
+      in Bari's data-collection completeness, not the manufacturer's disclosure honesty. These
+      stay as a `confidenceLabel` / data-provenance note outside the bar system, unchanged from
+      existing practice. Conflating the two would misattribute a Bari data-collection gap as a
+      manufacturer honesty failure.
+
+# ── SCOPED (NON-BAR) SAFETY NOTES ────────────────────────────────────────────
+scoped_notes:
+  rule: >
+    A safety signal specific to a use-context or subpopulation (not the whole product,
+    regardless of context) NEVER renders as a bar state. It attaches as a note wherever the
+    relevant claim/context appears in copy, per Nutrition science co-sign §4.
+  current_instances:
+    - ingredient: "creatine"
+      context: "adjunctive use for mood/depression support in individuals with bipolar disorder"
+      statement_basis: "creatine_evidence_cosign_v1.md §2.4 — documented risk of manic/hypomanic switch, corroborated independently by two source reviews; specific PMID still pending Research pull (see ship-gate item 8 in that document)"
+      rendering: "attaches ONLY where mood/depression framing (creatine_evidence_cosign_v1.md §1 row 11) appears in guide copy; never a blanket product-level flag; never rendered on a product that carries no mood/depression claim"
+
+# ── BUCKET LOGIC ───────────────────────────────────────────────────────────
+bucket_logic:
+  buckets:
+    - id: "clears_all_bars"
+      hebrew_label: "עובר את כל ספי הקנייה"
+      definition: "all 6 bars = PASS. Zero FLAG, zero FAIL, zero CANNOT-VERIFY."
+      display_order: "unordered set, per the plan's own language"
+    - id: "passes_with_flag"
+      hebrew_label: "עובר עם דגל"
+      definition: "no bar = FAIL, AND at least one bar is FLAG or CANNOT-VERIFY"
+    - id: "fails"
+      hebrew_label: "לא עובר"
+      definition: "at least one bar = FAIL (any of the 6 — Safety FAIL is one instance of this, not a separate rule)"
+    - id: "cannot_assess"
+      hebrew_label: "לא ניתן להעריך"
+      definition: >
+        no bar = FAIL, AND dose_adequacy = CANNOT-VERIFY (the foundational bar — if the actual
+        delivered amount of the active ingredient cannot be established at all, no other bar's
+        state is meaningful as a buying signal)
+  evaluation_order: >
+    Evaluate top-to-bottom, first match wins (deterministic, single pass):
+    1. If ANY bar = FAIL -> bucket = fails.
+       (A known, actionable problem is never hidden behind an "insufficient data" framing —
+       this is why fails is checked BEFORE cannot_assess, even though a fails-bucket product may
+       also carry unrelated CANNOT-VERIFY bars elsewhere.)
+    2. Else if dose_adequacy = CANNOT-VERIFY -> bucket = cannot_assess.
+    3. Else if any bar in {FLAG, CANNOT-VERIFY} -> bucket = passes_with_flag.
+    4. Else (all 6 bars = PASS) -> bucket = clears_all_bars.
+  worked_distinction: >
+    This ordering is what correctly separates two magnesium products that look superficially
+    similar: Tink Oxide-520 (form=oxide is KNOWN and FAILs; dose is ambiguous) routes to
+    `fails` under rule 1, while TRIOMAG (form itself is an undisclosed 3-way blend, dose also
+    unresolved, but NO bar affirmatively FAILs) routes to `cannot_assess` under rule 2. The two
+    look alike ("no score shown") under the old null/null display but are NOT the same finding —
+    one is a known-bad form, the other is genuinely unknowable. See the companion doc's
+    validation table for the full worked case.
+
+default_pick_rule:
+  hebrew_label: "הבחירה הפשוטה"
+  rule: >
+    Among products in the `clears_all_bars` bucket ONLY, pick the single cheapest by
+    price_fairness's own price-per-effective-unit figure (same currency pool as used for that
+    bar). Single criterion, deterministic, no secondary judgment factors.
+  empty_bucket_handling: >
+    If `clears_all_bars` is empty for a given guide/pool, NO default pick is shown. Do not
+    fall back to `passes_with_flag` and do not relax the bucket requirement — an explicit
+    "no default pick today" is more honest than manufacturing one from a lower bucket. (This
+    fires for BOTH magnesium and the creatine Israeli-shelf pool as of the 2026-07-04
+    validation pass — see companion doc.)
+  tie_handling: >
+    If two or more clears_all_bars products tie at the minimum price-per-effective-unit, list
+    all tied products rather than arbitrarily selecting one. If a UI requires a single row,
+    break the tie by earliest catalog/scrape order (a stable, mechanical, non-editorial
+    criterion) — this has not fired in the current corpus.
+
+# ── DISPLAY SUPPRESSION RULE ──────────────────────────────────────────────────
+display_suppression_rule:
+  status: "APPROVED — Product Agent proposal, Nutrition D7 co-sign landed 2026-07-04 (this entry)"
+  origin: >
+    Product Agent, 03_operations/reports/product/magnesium_guide_bar_revision_call_v1.md §A/B/C
+    (magnesium's third_party_verification and price_fairness bars both resolve to
+    CANNOT-VERIFY for 18/18 displayed products — confirmed via structural parse of
+    magnesium-guide-data.ts, per that report's premise check).
+  trigger: >
+    At guide-build time, for each of the 6 bars independently: the per-product BADGE for that
+    bar is suppressed from the product table/rows for this guide's build IF AND ONLY IF that
+    bar's computed state is CANNOT-VERIFY for 100% of the products in the guide's currently
+    displayed corpus (not "mostly," not "90%+" — exactly 100%, and only the CANNOT-VERIFY
+    state — see nutrition_refinement_of_product_proposal below for why this is narrower than
+    Product's original text).
+  nutrition_refinement_of_product_proposal: >
+    Product's original proposal text (magnesium_guide_bar_revision_call_v1.md §C) triggered
+    suppression on ANY bar-state being 100% uniform across the corpus, regardless of WHICH
+    state (PASS, FLAG, FAIL, or CANNOT-VERIFY). Nutrition narrows this to CANNOT-VERIFY only,
+    on scientific-governance grounds, anticipating the same objection an independent
+    adversarial read would raise:
+      - A uniform FAIL (every displayed product crosses a real, checked threshold — e.g. a
+        hypothetical guide where every product fails the safety bar's UL check) is not "zero
+        discriminating information" in the sense the original proposal meant (no per-product
+        variance to show). It is the opposite: a genuine, market-wide, actionable finding —
+        the maximum-alarm case, not the minimum-information case. Suppressing it would hide a
+        known, actionable problem, directly contradicting the principle bucket_logic's own
+        evaluation_order already states one layer up ("a known, actionable problem is never
+        hidden behind an 'insufficient data' framing"). A uniform FAIL bar must ALWAYS render,
+        with no exception.
+      - A uniform PASS (every displayed product clears a real, checked threshold) is a
+        determinate, positive finding, not a data gap — it says "this criterion was checked
+        and the entire displayed market meets it," which is itself informative and evidences
+        the checklist was actually applied. Suppressing a passing bar risks reading as
+        selective disclosure even where none is intended, for no offsetting benefit. Kept
+        visible, unconditionally.
+      - CANNOT-VERIFY is categorically different from both: it is Bari's own admission that no
+        determination was possible at all (missing_data_discard_rule doctrine — "unknown is
+        acceptable... never punish/cap"). When that admission is identical for every product
+        in the corpus, repeating "we could not determine this" once per row adds nothing beyond
+        stating it once, plainly, at the guide level. This is the ONLY bar-state where uniform
+        repetition is genuinely redundant rather than a hidden finding — which is exactly the
+        real-world case this rule was written for (magnesium's third_party_verification and
+        price_fairness, both 18/18 CANNOT-VERIFY).
+  what_still_happens_when_suppressed:
+    - "The bar's STATE is still computed and still feeds bucket_logic exactly as before — this
+       is a DISPLAY rule only, never a computation rule. Bucket math (clears_all_bars /
+       passes_with_flag / fails / cannot_assess) is unchanged and continues to evaluate all 6
+       bars, per HARD RULE 1's anti-drift invariant. This preserves the honest '0/18 clear
+       every bar' finding without touching, re-deriving, or re-approving the bucket logic."
+    - "The bar is NOT deleted from the buying-rule explanation layer (layer 1) — the reader
+       still learns what the bar checks and why it matters."
+    - "A single, guide-level disclosure line states plainly: which bar(s) were suppressed, the
+       count (e.g. '18/18'), and WHY — split into the two honest reasons Product's report
+       distinguishes: 'not yet collected' (a Bari data-acquisition gap, e.g. price_fairness
+       pending an Israeli pricing scrape) vs. 'no claims exist in this market to check' (a
+       corpus fact, e.g. no magnesium brand in the displayed set makes a certification claim
+       at all — conflating the two would misattribute a market-structure fact as a Bari
+       collection gap). This line is Content-authored and goes through the same two-gate
+       sign-off (Content + Adversarial QA) as any other consumer-facing string — this rubric
+       entry states the LOGIC, not the shipped wording."
+    - "If suppression under this rule would leave a guide with ZERO rendered per-product bar
+       badges (all 6 bars uniformly CANNOT-VERIFY at once, a case that has not occurred in the
+       validated corpus), the guide-level disclosure line must say so explicitly ('no bar
+       could be assessed for this corpus this round') rather than rendering a silently empty
+       table. No new machinery is needed — this is the same disclosure requirement applied at
+       its limit."
+  re_evaluated_per_build: >
+    Computed fresh at every guide build from the live corpus, per the standing re-flow
+    doctrine ("nothing is frozen... version the numbers"). This is NOT a hardcoded exclusion
+    list keyed to a bar name or a guide slug — it must never be implemented as "hide
+    price_fairness and third_party_verification on the magnesium guide." The same bar renders
+    normally wherever it discriminates: third_party_verification and price_fairness both stay
+    fully visible on the creatine guide today (7/N NSF-directory-verified rows; real
+    price_per_3g_label variance across the corpus), and would re-appear on a future magnesium
+    guide the moment Israeli pricing data lands or a magnesium brand makes a certification
+    claim — no rubric edit required either way.
+  guardrail_never_hides_a_fail: >
+    This rule may NEVER suppress a bar on which any product in the displayed corpus resolves
+    to FAIL, and may NEVER suppress a bar merely because every product resolves to the SAME
+    determinate PASS or FAIL state. The trigger is CANNOT-VERIFY-only, exactly and
+    exclusively, by construction (see trigger above). This guardrail line is deliberately
+    redundant with the trigger definition — it exists to block a future edit that widens the
+    trigger back to "any uniform state," which is the exact drift risk this Nutrition
+    refinement was written to close.
+  honesty_constraint: >
+    A suppressed bar is disclosed, never silently vanished. "Not assessed this round" (with
+    the specific reason) must be stated in guide-level copy near the product table, not just
+    buried in an upstream paragraph the reader may have scrolled past.
+  anti_drift_invariant_check: >
+    Compliant with HARD RULE 1. No numeric aggregate is introduced, no bar-states are summed
+    or averaged, no new 5th bar-state is created, and bucket_logic's 4-bucket, 6-bar evaluation
+    is untouched — bucket_logic continues to read all 6 bar states exactly as computed. This
+    is a presentation-layer rule governing which badges render; it carries no computational
+    authority and cannot be sorted or ranked by.
+  missing_data_discard_doctrine_check: >
+    Compliant. The doctrine governs how missing data affects a PRODUCT's standing (never
+    punish/cap a product for a data gap) — it does not speak to display deduplication of an
+    identically-repeated CANNOT-VERIFY state across an entire table. No product's bucket
+    outcome, bar-state, or copy changes under this rule; only a redundant per-row badge is
+    replaced by one clear guide-level statement, and only for the one state that is Bari's own
+    admission of "no determination possible" — never for a determinate PASS or FAIL finding.
+  firewall_check: >
+    Compliant with HARD RULE 2. Display-only; no BSIP2/score_engine.py/constants.py/SIE
+    exposure; governs the Supplement Guides page-presentation layer only.
+
+# ── BAND-GATING EXCLUSION RULE (TASK-504, owner ruling "rank on what varies") ─
+band_gating_exclusion_rule:
+  status: "PROPOSED — Nutrition-authored D6, Product Agent D7 co-sign pending (this entry, 2026-07-04)"
+  id: "GATE-EXCL-1"
+  origin: >
+    Owner ruling relayed via Product Agent, TASK-504 creatine band-map review:
+    "rank on what varies" — a bar that cannot possibly discriminate among the ranked
+    pool (because not one product in that pool ever resolves it to PASS) must not be
+    allowed to gate every product in that pool into a lower band than their actual,
+    checkable performance warrants.
+  distinguished_from_display_suppression_rule: >
+    A DIFFERENT mechanism from display_suppression_rule above, triggered by a
+    broader condition and producing a narrower effect. Keep both rules distinct and
+    both independently auditable — do not merge them:
+      - display_suppression_rule triggers on exactly "100% CANNOT-VERIFY" (every
+        product's state for the bar is identically the SAME cannot-verify admission)
+        and its effect is to remove the bar from RENDERING entirely — no badge shown
+        anywhere for that bar, on any product, for this guide build.
+      - band_gating_exclusion_rule (this entry) triggers on the broader condition
+        "no product resolves PASS for this bar, AND no product resolves FAIL for
+        this bar." The non-PASS states present may be a genuine MIX of CANNOT-VERIFY
+        and FLAG — heterogeneous, informative, per-product content, not an identical
+        repeated admission. Its effect is narrower: the bar is removed ONLY from the
+        set used to determine a product's BAND/tier. It stays fully RENDERED — every
+        product's individual badge/claim for that bar still displays exactly as
+        computed. Nothing is hidden; a bar simply stops being allowed to gate a
+        ranking it cannot discriminate on.
+  trigger: >
+    Computed at guide-build time, per bar, over the RANKED pool only (the domestic/
+    shelf pool a guide bands into A/B/C/D — NOT the benchmark pool, which is
+    display-separated per the owner's "wb-* out of the tiers" ruling and is never
+    banded at all). A bar is gating-excluded IFF, across every product in that ranked
+    pool: (a) the bar's state is never PASS (no existential witness of PASS anywhere
+    in the pool — a pure existence check; "0%" language below is prose shorthand for
+    this, never a computed ratio), AND (b) the bar's state is never FAIL. Both
+    conditions are existential negations (NOT-EXISTS-PASS AND NOT-EXISTS-FAIL),
+    evaluated in a single pass over the pool — no count, no ratio, no threshold
+    compared against a computed number.
+  guardrail_inherits_never_hides_a_fail: >
+    Condition (b) makes this rule structurally incapable of ever excluding a bar
+    that has shown a real FAIL anywhere in the ranked pool — the same
+    guardrail_never_hides_a_fail protection display_suppression_rule already
+    carries, inherited here by construction, not by cross-reference alone.
+  effect: >
+    Produces a second, distinct exclusion list — `bandExcludedBars` — separate from
+    `suppressedBars`. `bandExcludedBars` feeds ONLY the band/tier computation (the
+    caveat-set test inside passes_with_flag_split_rule_v2 below). It must NOT be
+    unioned into, or reused as, the array that decides what renders per product —
+    that stays `GUIDE_BAR_ORDER minus suppressedBars`, untouched by this rule. A
+    future implementation that collapses these two lists into one violates this
+    rule's own stated distinction; it is not a valid simplification.
+  bucket_logic_untouched: >
+    This rule never touches bucket_logic (clears_all / fails / cannot_assess /
+    passes_with_flag), which continues to evaluate all 6 RAW bar states exactly as
+    before. It only amends how a product ALREADY placed in the passes_with_flag
+    bucket is split into a B or C tier. A product's bucket is decided before this
+    rule is ever consulted.
+  decision_on_display: >
+    RULING (Nutrition, this entry) — KEEP THE BAR DISPLAYED; exclude only from
+    gating. Unlike display_suppression_rule's trigger (an identical, redundant
+    admission repeated on every row), a gating-excluded bar under THIS rule
+    typically carries heterogeneous, genuinely informative per-product content —
+    e.g. creatine's third-party bar shows 9 distinct manufacturer-stated claims
+    (Informed Sport, Informed Choice, HPLC, iTested — each a real, differentiated
+    fact about that specific product) alongside 14 "no claim at all" rows.
+    Suppressing the badge would delete real information a reader may care about
+    (which brands at least CLAIM testing, even unverified) for no honesty gain — the
+    problem this rule solves is "this bar shouldn't gate the ranking," not "this bar
+    has nothing left to say." Hiding it would also make the mandatory disclosure
+    line below harder to verify against the visible table — a reader could no
+    longer confirm for themselves that several products do carry a claim, it simply
+    isn't registry-verified. Keeping it visible is the more honest choice precisely
+    because it hides nothing.
+  re_evaluated_per_build: >
+    Same discipline as display_suppression_rule: computed fresh from the live
+    ranked pool at every guide build, never a hardcoded per-guide/per-bar list.
+    Today's concrete instance — thirdPartyVerification excluded from creatine's
+    domestic band-gating (0/23 PASS, 0/23 FAIL across the 23-product ranked pool;
+    genuinely split 14 CANNOT-VERIFY / 9 FLAG) — re-evaluates automatically the day
+    a domestic creatine product becomes registry-verified (introducing a PASS) or a
+    checked claim is found false (introducing a FAIL); either event ends this bar's
+    exclusion without a rubric edit.
+  anti_drift_check: >
+    Compliant with HARD RULE 1. The trigger is two ANDed existential negations over
+    a fixed per-product bar-state field — no sum, no average, no percentage compared
+    to a threshold, no new bar-state, no field a generator could sort by. The
+    "0%"/"100%" language used here and in display_suppression_rule is prose
+    shorthand for a universal/existential quantifier over an already-computed,
+    finite set of categorical states — never an arithmetic ratio computed and
+    compared against a cutoff.
+  disclosure_line_draft_gate1: >
+    Mandatory, non-collapsible, rendered at the top of the domestic bands section
+    (not a footnote/tooltip) whenever this rule has excluded a bar. GATE-1 DRAFT
+    ONLY — pending Content authorship + Adversarial QA sign-off (two-gate) before
+    shipping as consumer-facing copy:
+    "מדף המוצרים הישראלי מדורג לפי מינון, צורה כימית, הוגנות מחיר ושקיפות תיוג —
+    ארבעת הדברים שניתן לבדוק ולהשוות ישירות מהתווית והמחיר. בדיקת צד שלישי מול מאגר
+    בדיקה עצמאי אינה משפיעה על הדירוג כאן, כי אף מוצר מהמדף הישראלי אינו נושא רישום
+    כזה כרגע (חלקם מציגים טענת בדיקה בדף היצרן, ללא אימות מול מאגר). הטענות עצמן
+    עדיין מוצגות בכרטיס כל מוצר. להשוואה מול מוצרים שכן אומתו מול מאגר עצמאי, ראו את
+    קבוצת מוצרי הייחוס העולמיים למטה."
+
+# ── RECOMMENDATION TIER MAPPING (TASK-504 follow-on, display layer) ──────────
+recommendation_tier_mapping:
+  status: >
+    Nutrition D7 delivered 2026-07-04 (this entry). Product Agent D7 co-sign on the AMENDED
+    passes_with_flag_split_rule below is still required before this governs live copy (Hard
+    Rule 8 / D7 dual-key) — Product's original proposal signed off on a DIFFERENT split
+    mechanism (a count threshold), which this entry supersedes on anti-drift grounds. The
+    other four tier mappings (very_recommended, not_recommended, cannot_assess placement,
+    tier ordering) are unchanged from Product's proposal and are co-signed as-is below.
+  origin: >
+    Product Agent, 03_operations/reports/product/magnesium_guide_recommendation_tiers_v1.md
+    — owner directive to replace the pass/flag bucket labels on the magnesium buying guide
+    with 4 named recommendation tiers and retire "הרשימה המעשית להתחיל ממנה."
+  scope: >
+    Supplement Guides (מדריכים) display layer only. Does not touch bucket_logic, bar states,
+    or any computed field in magnesium-guide-data.ts. A relabeling of the 4 existing buckets
+    plus one additional display-only split predicate applied only to members already
+    computed as passes_with_flag.
+  tiers:
+    - id: "very_recommended"
+      hebrew_label: "מומלץ מאוד"
+      maps_from_bucket: "clears_all_bars"
+      definition: "all 6 bars = PASS. bucket_logic's own definition, unchanged — no new predicate."
+      empty_state_handling: >
+        CO-SIGNED. Render this tier header unconditionally, even when empty (0/18 as of
+        2026-07-04). State an honest one-line empty-state line (Content-authored, two-gate)
+        rather than omitting the tier — an empty top tier is the guide's own headline finding
+        (headlineFinding.title: "אף מוצר מגנזיום במדף הישראלי לא עובר את כל ספי הקנייה"), not
+        a display bug to hide, and the tier must not need rebuilding the day a product clears
+        all 6 bars.
+    - id: "recommended"
+      hebrew_label: "מומלץ"
+      maps_from_bucket: "passes_with_flag"
+      split_predicate: "dose_adequacy_sole_caveat (see passes_with_flag_split_rule below)"
+    - id: "good"
+      hebrew_label: "טוב"
+      maps_from_bucket: "passes_with_flag"
+      split_predicate: "dose_adequacy_sole_caveat (see passes_with_flag_split_rule below)"
+    - id: "not_recommended"
+      hebrew_label: "לא מומלץ"
+      maps_from_bucket: "fails"
+      definition: "at least one bar = FAIL. bucket_logic's own definition, unchanged — no new predicate."
+    - id: "cannot_assess"
+      hebrew_label: "לא ניתן להעריך"
+      maps_from_bucket: "cannot_assess"
+      display_position: >
+        CO-SIGNED. OUTSIDE the 4 ranked tiers, a separate section below them — never folded
+        into לא מומלץ. A genuine data gap (TRIOMAG's undisclosed 3-way blend, ratio never
+        published) is not an actionable negative finding; per missing_data_discard_doctrine
+        and bucket_logic's own worked_distinction (Tink Oxide-520, a known-bad form, correctly
+        routes to fails; TRIOMAG, a genuinely unknowable form, correctly routes here).
+
+  passes_with_flag_split_rule:
+    id: "dose_adequacy_sole_caveat"
+    status: >
+      NUTRITION AMENDMENT. Replaces Product's original proposal (count the number of
+      non-PASS displayed bars; 1 -> מומלץ, >=2 -> טוב), which this review ruled a violation
+      of HARD RULE 1 (see anti_drift_ruling below). This is the only version of the
+      מומלץ/טוב split this rubric authorizes.
+      SUPERSEDED (2026-07-04) wherever band_gating_exclusion_rule has excluded one or more
+      bars from gating for the guide/pool in question — see passes_with_flag_split_rule_v2
+      below. Where band_gating_exclusion_rule excludes zero bars (e.g. magnesium today), v1
+      and v2 compute identically; v2 is a strict generalization, not a behavior change, for
+      that case. This v1 entry is kept for its worked history and anti_drift_ruling below,
+      which v2 inherits rather than repeats.
+    displayed_bars: >
+      Per display_suppression_rule above, only 4 of the 6 bars render a per-product badge on
+      this guide build: dose_adequacy, form_absorption, safety, label_transparency
+      (third_party_verification and price_fairness are both suppressed 18/18 CANNOT-VERIFY
+      for magnesium). The split predicate operates only over these 4.
+    rule: >
+      Compute the SET of displayed bars whose state is NOT PASS. This is a set-membership /
+      identity test, never a count or a cardinality comparison:
+        - If that set is EXACTLY {dose_adequacy} (dose is the only non-PASS bar; form,
+          safety, and label are all PASS) -> tier = מומלץ.
+        - If that set is non-empty and CONTAINS ANY bar other than dose_adequacy
+          (form_absorption, safety, or label_transparency — whether or not dose_adequacy is
+          also a member) -> tier = טוב.
+      No cardinality of the set (|set|) is ever computed or compared against a numeric
+      threshold. The predicate asks WHICH bar(s) are in the caveat set, never HOW MANY.
+      passes_with_flag's own bucket definition guarantees the set is never empty here, so
+      every member of this bucket resolves to exactly one of the two tiers.
+    nutritional_grounding: >
+      A dose_adequacy-only caveat means the product's chemical form, safety profile, and
+      label honesty are all clean (PASS) — the sole open question is a quantity shortfall
+      against the full literature-effective range (still >= 0.5x min_effective, i.e. not
+      fairy-dust per the dose_adequacy bar's own FLAG definition), correctable simply by the
+      consumer taking a larger daily amount or stacking with another source. It is not a
+      finding about the product's quality. A form_absorption, safety, or label_transparency
+      caveat is categorically different in kind: it says something about the compound's
+      absorption tier, a GI-tolerance soft-note, or the clarity of the label itself —
+      properties of the product a consumer cannot fix by taking more of it. This is why a
+      product carrying a SINGLE non-dose caveat sits in טוב, not מומלץ, even though — under
+      Product's original count rule — it would have shown the same "1 flag" profile as a
+      dose-only product. The split is grounded directly in the bars' own stated `measures`
+      definitions above (dose_adequacy vs. form_absorption/safety/label_transparency), not a
+      new nutritional judgment invented for this proposal.
+    per_product_result_2026_07_04:
+      - product: "Altman Citrate 120 (200mg citrate)"
+        caveat_set: ["dose_adequacy"]
+        tier: "מומלץ"
+      - product: "Nutricare WELL (168mg bisglycinate)"
+        caveat_set: ["dose_adequacy"]
+        tier: "מומלץ"
+      - product: "Supherb Citrate+B6 (250mg citrate)"
+        caveat_set: ["dose_adequacy", "safety"]
+        tier: "טוב"
+      - product: "Altman Bisglycinate (250mg bisglycinate)"
+        caveat_set: ["dose_adequacy", "safety"]
+        tier: "טוב"
+      - product: "NT L.C. Anti Leg Cramps (190mg hydroxide)"
+        caveat_set: ["dose_adequacy", "form_absorption"]
+        tier: "טוב"
+    result_note: >
+      Produces the IDENTICAL tier assignment to Product's original count-based rule on the
+      current 18-product corpus (2 x מומלץ, 3 x טוב) — the amendment changes the MECHANISM (a
+      compliant categorical lookup instead of a prohibited count), not today's visible output.
+      The two rules diverge on a hypothetical future product with a single NON-dose caveat and
+      a clean dose bar (e.g. a full-dose product on a moderate-tier form): Product's count
+      rule would place it in מומלץ (1 non-PASS bar); this rule places it in טוב (the caveat
+      set does not equal {dose_adequacy}). That divergence is the proof this is a genuine
+      qualitative replacement, not the same computation relabeled.
+
+  anti_drift_ruling:
+    question: >
+      Does counting the number of non-PASS displayed bars and thresholding at 1-vs-2+ violate
+      HARD RULE 1 (the anti-drift invariant)?
+    ruling: "YES — Product's original split rule, as proposed, violates the anti-drift invariant."
+    reasoning: >
+      Counting the number of non-PASS bars is arithmetically identical to assigning an
+      implicit point value of 1 to every FLAG/CANNOT-VERIFY bar and 0 to every PASS bar,
+      SUMMING those points, and comparing the sum to a threshold (1 vs >=2). That is exactly
+      the "point value per bar-state" pattern and the "no numeric field... a generator could
+      sort by" pattern HARD RULE 1 names verbatim. That the resulting number is used only to
+      place a product into one of two named buckets, is never stored, and is never shown to
+      the consumer does not change that a composite numeric aggregate was COMPUTED — HARD
+      RULE 1 bans the computation itself ("no implementation of it may compute"), not merely
+      its storage or display. This is precisely the "real future temptation to bolt a
+      composite number back on top of the bars" tripwire named in
+      supplement_guides_science_cosign_v1.md §6 tripwire 2 — a coarse, binary-thresholded
+      count is still a count, and rule-accretion risk does not shrink just because the
+      threshold is small and the output has only two labels.
+
+      This is also distinguishable from bucket_logic's own existing threshold language ("at
+      least one bar is FLAG or CANNOT-VERIFY", "if ANY bar = FAIL"), which Product's proposal
+      cites as precedent (§6 of the proposal doc). bucket_logic's rules are EXISTENTIAL
+      quantifiers — do any bars match a state, yes or no — and never enumerate or compare a
+      cardinality greater than one. The moment a rule asks "are there >= 2 non-PASS bars" it
+      has moved from existence-testing to counting, a different and prohibited kind of
+      computation: an existential test needs no intermediate numeric variable, while a >=2
+      threshold requires computing |{non-PASS bars}| as a number first. That intermediate
+      number is exactly the composite the invariant forbids, independent of whether it is
+      ever displayed or stored.
+    disposition: >
+      Product's count-threshold rule is NOT co-signed and does not ship. The
+      dose_adequacy_sole_caveat rule above is co-signed in its place as the only authorized
+      מומלץ/טוב split mechanism.
+
+  rest_of_mapping_cosign:
+    clears_all_to_very_recommended: "CO-SIGNED — unchanged bucket_logic definition, no computation introduced."
+    empty_tier_handling: "CO-SIGNED — see empty_state_handling above."
+    fails_to_not_recommended: "CO-SIGNED — unchanged bucket_logic definition, no computation introduced."
+    cannot_assess_separate_section: "CO-SIGNED — see display_position above."
+    tier_ordering_no_within_tier_sort: >
+      CO-SIGNED. Ordered tier NAMES only (מומלץ מאוד -> מומלץ -> טוב -> לא מומלץ), לא ניתן
+      להעריך shown separately. Within a tier, stable catalog/scrape order — never re-sorted by
+      any derived value. No score, percentile, or "N/6" accompanies any tier name in copy.
+
+  passes_with_flag_split_rule_v2:
+    status: >
+      NUTRITION AMENDMENT (this entry, 2026-07-04) — supersedes passes_with_flag_split_rule
+      (v1, dose_adequacy_sole_caveat) wherever band_gating_exclusion_rule has excluded one or
+      more bars from gating for the guide/pool in question. Where NO bar is gating-excluded,
+      v1 and v2 are mathematically identical — v2 is a strict generalization, not a behavior
+      change, for that case. Product Agent D7 co-sign required before this governs live copy
+      (same dual-key discipline as v1's own co-sign requirement above).
+    bugfix_this_amendment_also_makes: >
+      Product/QA flagged a code-level inversion in the shipped
+      computeRecommendationTier (bari-web/src/lib/guides/guide-recommendation-tiers.ts): it
+      tests `nonPassDisplayed.length === 1 && nonPassDisplayed[0] === "doseAdequacy"`, which
+      is FALSE when nonPassDisplayed is EMPTY (length 0) — an empty caveat set therefore falls
+      through to the ELSE branch ("good"/C), ranking a product that clears every gating bar
+      BELOW a product whose only gating caveat is dose. That is backwards: the cleaner product
+      must never rank below the dose-flagged one. This defect is latent whenever a product's
+      ONLY raw non-pass bar happens to be a suppressed or gating-excluded one — it was not
+      observed in magnesium's validated 18-product table (no product there currently has an
+      empty displayed-caveat set) but is a general code defect, not a creatine-only one.
+      Flagging for Product/Frontend to re-check magnesium's own table under this same fix as a
+      follow-up; re-validating magnesium is out of this task's scope today.
+    gating_bars_definition: >
+      GATING_BARS = GUIDE_BAR_ORDER minus suppressedBars (display_suppression_rule) minus
+      bandExcludedBars (band_gating_exclusion_rule above). This is a THIRD, distinct bar-list
+      from the `displayedBars` used for rendering (GUIDE_BAR_ORDER minus suppressedBars ONLY —
+      bandExcludedBars never affects rendering). CAVEAT_SET(product) = the subset of
+      GATING_BARS whose state is not PASS for that product.
+    rule: >
+      Within the passes_with_flag bucket only (bucket_logic itself is unchanged — see
+      bucket_logic_untouched in band_gating_exclusion_rule above):
+        - If CAVEAT_SET(product) is a SUBSET of {dose_adequacy} — i.e. CAVEAT_SET is EITHER
+          the empty set OR exactly {dose_adequacy}, the only two members of
+          {dose_adequacy}'s powerset — tier = מומלץ (recommended / B).
+        - Else (CAVEAT_SET contains at least one bar other than dose_adequacy, whether or not
+          dose_adequacy is also a member) — tier = טוב (good / C).
+      This is a strict generalization of v1's equality test (CAVEAT_SET == {dose_adequacy})
+      to a subset test (CAVEAT_SET ⊆ {dose_adequacy}), covering the one additional case v1's
+      raw-bucket guarantee made structurally impossible before band_gating_exclusion_rule
+      existed: CAVEAT_SET = ∅.
+    ordering_within_recommended: >
+      "Cleaner ranks higher" (Product's requirement) is satisfied as a DETERMINISTIC,
+      CATEGORICAL two-group stable partition within the מומלץ/B tier's display order — never a
+      new band, never a numeric score:
+        1. List every product with CAVEAT_SET = ∅ first.
+        2. Then list every product with CAVEAT_SET = {dose_adequacy}.
+        3. Within each of the two groups, break ties by stable catalog/scrape order — the same
+           tie-break convention default_pick_rule already uses.
+      Every gating bar's own badge (dose_adequacy in particular) remains independently visible
+      on every B-tier card regardless of this ordering, so a reader can see directly which of
+      the two sub-groups a given row belongs to without a new label being invented for it.
+    band_a_ruling: >
+      RULING (Nutrition, this entry): מומלץ מאוד / very_recommended keeps its EXISTING,
+      UNCHANGED definition — bucket === clears_all_bars, i.e. literal 6-of-6 RAW bars PASS,
+      including whichever bar band_gating_exclusion_rule excludes from gating. It is NOT
+      redefined or dropped for a domestic/ranked sub-guide, and does not become "clears every
+      gating bar" as a lesser threshold reusing the same tier. Reasoning: the top tier must
+      mean the identical thing everywhere it appears — on the domestic pool, the benchmark
+      band, and any future guide — or the label itself becomes a source of the score-collision
+      risk already flagged in this task's prior return (a bare top-tier badge inviting a
+      numeric-scale inference). Reusing it for two different thresholds (literal-clears-all on
+      the benchmark band vs. clears-what's-checkable on the domestic pool) would be strictly
+      worse for consumer trust than an honestly empty top tier, and is explicitly rejected. The
+      "may read as broken" concern is already a SOLVED problem in this exact rubric:
+      empty_state_handling (recommendation_tier_mapping.tiers[0], above) already requires an
+      unconditional tier header plus an honest one-line empty-state finding rather than
+      omitting the tier — the identical pattern already shipping on magnesium (0/18
+      clears_all) and already drafted in creatine's own shipped headline-finding copy ("אף
+      מוצר מהמדף הישראלי לא אומת מול מאגר בדיקת צד שלישי..."). No new mechanism is needed;
+      apply the existing one.
+    anti_drift_check: >
+      CAVEAT_SET ⊆ {dose_adequacy} is a subset-membership test over a FIXED, two-element
+      candidate set (∅, {dose_adequacy}) — logically an OR of two identity tests (is
+      CAVEAT_SET empty? OR does CAVEAT_SET equal {dose_adequacy} exactly?), never a cardinality
+      comparison against a numeric threshold. This is the same category of test v1's own
+      anti_drift_ruling already validated (equality/existence, not counting), extended by one
+      Boolean OR branch, not by an arithmetic generalization. The intra-band ordering above is
+      a stable, two-group partition plus the pre-existing catalog-order tie-break — identical
+      in kind to default_pick_rule's own tie-break, not a new score. No numeric field,
+      percentage, or "N/6" is introduced anywhere in this amendment. band_gating_exclusion_rule
+      above carries its own, separate anti-drift check for the exclusion trigger itself; this
+      check covers only the downstream tier-split predicate.
+
+  final_no_numeric_field_confirmation: >
+    Confirmed: the endorsed rule set above introduces no numeric field, no percentage, no
+    stored count, and nothing sortable beyond the 4 named tier labels themselves. The
+    dose_adequacy_sole_caveat predicate (v1) and its generalized gating_caveat_subset form
+    (v2, above) are both evaluated fresh at guide-build time as set-membership/subset tests
+    over already-computed bar states; neither writes a new numeric field to any product
+    record, and tier membership stays a categorical grouping, never a rank, per HARD RULE 1.
+
+# ── CITATION GAPS (do not fabricate; mark pending) ───────────────────────────
+citation_gaps:
+  - id: "magnesium-form-ladder-pmids"
+    affects_bar: "form_absorption (magnesium)"
+    verification: "verified-and-hedged (2026-07-04) — superseded from pending-research-pull"
+    superseding_report: "03_operations/reports/research/magnesium_form_ladder_verification_v1.md"
+    note: >
+      UPDATE 2026-07-04: Research independently verified all three PMIDs (real, not retracted,
+      correctly attributed) but found none of the three cleanly support the ladder claim AS
+      STATED without a caveat. Per-citation disposition, baked into the form_absorption bar's
+      evidence_confidence_split above:
+    per_citation:
+      - pmid: "PMID:39770988"
+        resolves_to: "Pajuelo et al. 2024, Nutrients 16(24):4367"
+        finding: "Human RCT n=40, but bisglycinate arm showed NO significant plasma response; 2 of 5 authors affiliated with Lubrizol Life Science (undisclosed conflict of interest, the study's proprietary comparator ingredient was the only one with a sustained positive result)"
+        disposition: "verification: hedged — do not cite to support a bisglycinate-superiority claim; disclose COI if cited for any other purpose"
+      - pmid: "PMID:30761462"
+        resolves_to: "Ates et al. 2019, Biological Trace Element Research (Balb/c mice)"
+        finding: "Animal-only study, no human arm"
+        disposition: "verification: hedged — mechanistic/preclinical background only, per Hard Rule 4; must carry an explicit '(animal study)' qualifier if cited at all; never as human evidence"
+      - pmid: "PMID:7815675"
+        resolves_to: "Schuette, Lashner & Janghorbani 1994, JPEN (n=12, ileal-resection patients)"
+        finding: "Chelate-vs-oxide advantage significant only in the 4 of 12 patients with the most severe pre-existing malabsorption; not significant across the full sample; population-restricted (surgical malabsorption patients, not general healthy adults)"
+        disposition: "verification: hedged — weak-to-moderate, population-restricted; do not extrapolate to a general-population 'bisglycinate beats oxide' claim"
+      - source: "NIH ODS Health Professional Fact Sheet (institutional primary source, independently confirmed wording)"
+        finding: "Names aspartate, citrate, lactate, and chloride as more bioavailable than oxide and sulfate. Does NOT name glycinate or bisglycinate at all."
+        disposition: "cleared for use as the load-bearing directional citation for citrate/aspartate/lactate/chloride specifically; NOT a citable basis for a bisglycinate claim"
+    dossier_annotation_recommended: >
+      magnesium.yaml's forms.form_ladder_confidence field currently states a single undifferentiated
+      "medium-high" for the whole ladder. Per Research's recommendation (§5), this should be split:
+      Moderate for the NIH-named forms (citrate/aspartate/lactate/chloride), Weak-to-Moderate and
+      explicitly population-qualified for bisglycinate/glycinate. This is a Nutrition Agent
+      dossier-annotation call (not made by Research); recommended as a follow-up edit to
+      magnesium.yaml, tracked here so the guide's citation confidence does not silently outrun the
+      dossier's own confidence label.
+    residual_gap: >
+      Direct WebFetch to ods.od.nih.gov returned HTTP 403 in Research's environment; the NIH ODS
+      quote is confirmed via independent secondary-source corroboration, not a first-party page
+      fetch. Recommend one direct re-fetch (different tool/session) before the exact sentence
+      ships as a verbatim blockquote in guide copy — matches the same ship-gate discipline already
+      applied to creatine's NIH ODS no-UL claim.
+
+  - id: "magnesium-EFSA-2021-date-defect"
+    affects: "existing live copy — bari-web/src/lib/comparisons/magnesium-page-data.ts lines 152, 156, 193, 197"
+    verification: "confirmed-defect (2026-07-04)"
+    note: >
+      NOT a form_absorption or safety BAR-STATE issue (the underlying 250mg EFSA value and its
+      GI-tolerance framing are both independently confirmed correct) — this is a citation-date
+      defect already shipped in the LIVE magnesium comparison page, caught as a bonus finding
+      squarely inside this verification pass's UL-claims scope. No EFSA magnesium opinion dated
+      2021 exists; the real primary dates are 2001 (EU Scientific Committee on Food opinion,
+      original 250mg NOAEL) and 2015 (EFSA NDA Panel reaffirmation in the magnesium Dietary
+      Reference Values opinion). This rubric and its companion doc use no year, or "EFSA
+      (2001/2015)" — never "EFSA (2021)" — anywhere the 250mg figure is cited. Flagging the live
+      copy defect here for whoever next touches magnesium-page-data.ts (Content/Nutrition); not
+      fixed as part of this rubric-authoring task (out of this task's file scope), but must not be
+      propagated into any new guide copy built from this config.
+  - id: "creatine-bipolar-caution-pmid"
+    affects: "scoped_notes.current_instances[0]"
+    verification: "pending-research-pull"
+    note: "Per creatine_evidence_cosign_v1.md ship-gate item 8 — the caution statement itself is defensible to ship now as a general clinical caution; a specific supporting PMID is not yet nailed down."
+  - id: "magnesium-UL-routine-resync"
+    affects_bar: "safety (magnesium)"
+    verification: "needs-env-verify (routine, semi-annual — distinct from a pending-citation gap)"
+    note: "magnesium.yaml lifecycle.review_by flags UL re-sync against current NIH ODS + EFSA primary sheets as semi-annual due to known discrepancy history (D7/D8 revision chain already in the dossier)."
+
+# ── KNOWN OPEN GAPS (surfaced, not resolved here) ────────────────────────────
+open_gaps:
+  - id: "unproven-delivery-technology-claims"
+    example: "Nutricare Nano Liposomal Magnesium — 'nano liposomal' delivery-technology claim with insufficient evidence"
+    finding: >
+      The prior BSIP2-adjacent SIE composite model had a dedicated mechanism (cap_1_insufficient_
+      evidence) for an unproven delivery-technology/enhancement claim layered on top of an
+      otherwise-known base chemical form. NONE of the 6 bars in this rubric, as scoped by the
+      TASK-504A plan, captures this pattern — form_absorption grades the base chemical form
+      honestly (bisglycinate = HIGH = PASS) regardless of an unsubstantiated "nano" claim riding
+      on top of it.
+    recommendation: >
+      Flagging for Product + Nutrition follow-up rather than resolving unilaterally: either (a)
+      a 7th bar for unsubstantiated delivery/technology claims, or (b) an explicit scope
+      extension of label_transparency to cover claims-substantiation, not just dose-disclosure
+      completeness. Either is a scope change beyond the approved 6-bar plan and needs its own
+      D6/D7 pass, per the anti-drift/no-accretion doctrine — NOT added to this v1 config
+      unilaterally. Until resolved, a product with an unsubstantiated technology claim will
+      display its true, honest chemical-form bar-state with no bar surfacing the claim itself;
+      the claims-discipline rules in creatine_evidence_cosign_v1.md §3 / the science co-sign §3
+      still govern what may be SAID in copy about it, independent of this rubric.
+
+changelog:
+  - version: "v1"
+    date: "2026-07-04"
+    change: "Initial authoring — 6 bars, blend rule, bucket logic, default-pick rule, anti-drift invariant, firewall. Validated against live magnesium (18) and creatine (31, pulled from origin/master) product data."
+  - version: "v1 (pre-issuance correction)"
+    date: "2026-07-04"
+    change: >
+      Baked in Research's independent per-citation verification
+      (magnesium_form_ladder_verification_v1.md), received mid-authoring, before finalizing this
+      config. form_absorption bar-STATE for magnesium is unchanged (bisglycinate stays PASS,
+      same tier band as citrate) but the evidence-confidence basis is now split and hedged:
+      citrate/aspartate/lactate/chloride carry Moderate, NIH-ODS-named confidence; bisglycinate/
+      glycinate carry weaker, population-restricted, partly COI-affected support and may not cite
+      PMID:39770988 or PMID:30761462 for a superiority claim. Added sulfate to the LOW/FAIL tier
+      (NIH-ODS-named, no current corpus product). Added the magnesium-EFSA-2021-date-defect
+      citation-gap entry (a live-copy fix flagged, not made here). No bar-state/bucket outcome in
+      the validation table changed as a result of this correction — see companion doc §7.
+  - version: "v1 (display_suppression_rule added)"
+    date: "2026-07-04"
+    change: >
+      Added the display_suppression_rule top-level block. Origin: Product Agent's
+      03_operations/reports/product/magnesium_guide_bar_revision_call_v1.md, proposing that a
+      bar's per-product badge suppress from the rendered table when its state is 100% uniform
+      across the displayed corpus (motivated by magnesium's third_party_verification and
+      price_fairness bars both resolving CANNOT-VERIFY for 18/18 products). Nutrition D7
+      co-sign granted WITH A REFINEMENT: narrowed the trigger from "any uniform state" to
+      "uniform CANNOT-VERIFY only" — a uniform FAIL is a real, actionable, market-wide finding
+      that must never be hidden, and a uniform PASS is a determinate positive finding that
+      should stay visible; only CANNOT-VERIFY (Bari's own admission of no determination) is
+      genuinely redundant when repeated identically per row. Display-only: bucket_logic's 6-bar
+      evaluation and the anti-drift invariant (HARD RULE 1) are both explicitly unaffected — no
+      numeric aggregation, no new bar-state, no bucket-math change. Full co-sign review:
+      01_framework/nutrition/supplement_guides_suppression_rule_cosign_v1.md.
+  - version: "v1 (recommendation_tier_mapping added)"
+    date: "2026-07-04"
+    change: >
+      Added the recommendation_tier_mapping top-level block (TASK-504 follow-on). Reviewed
+      Product Agent's proposed 4-tier display relabeling
+      (03_operations/reports/product/magnesium_guide_recommendation_tiers_v1.md), which
+      replaces the pass/flag bucket labels with מומלץ מאוד / מומלץ / טוב / לא מומלץ. RULED
+      Product's proposed מומלץ/טוב split predicate — count the number of non-PASS displayed
+      bars among passes_with_flag members, threshold at 1 (מומלץ) vs >=2 (טוב) — a violation
+      of HARD RULE 1: a count-and-threshold computes an implicit point-value-per-bar-state sum
+      before comparing it to a cutoff, which is a composite numeric aggregate by construction
+      regardless of whether the number is ever stored or shown, and is exactly the
+      "point value per bar-state" / rule-accretion pattern the invariant and
+      supplement_guides_science_cosign_v1.md §6 tripwire 2 both name. Replaced it with
+      dose_adequacy_sole_caveat: a set-membership predicate (is dose_adequacy the ONLY
+      non-PASS displayed bar, yes/no — never a cardinality comparison) that reaches the
+      IDENTICAL tier split on the current 18-product corpus (2 x מומלץ: Altman Citrate 120,
+      Nutricare WELL; 3 x טוב: Supherb Citrate+B6, Altman Bisglycinate, NT L.C. Anti Leg
+      Cramps) through a compliant mechanism, and diverges from Product's rule on hypothetical
+      future single-non-dose-caveat products — proof it is a genuine qualitative replacement,
+      not the same computation relabeled. Co-signed the rest of Product's mapping unchanged:
+      clears_all_bars -> מומלץ מאוד (with unconditional, honestly-labeled empty-tier
+      rendering), fails -> לא מומלץ, cannot_assess (TRIOMAG) as a separate out-of-tier
+      section, ordered tier display with no within-tier sort. Zero numeric fields,
+      percentages, or sortable scores introduced anywhere. Product Agent D7 co-sign on the
+      amended split rule specifically is still outstanding before this governs live copy.
+      Full co-sign review: 01_framework/nutrition/supplement_guides_tier_mapping_cosign_v1.md.
+  - version: "v1 (band_gating_exclusion_rule + passes_with_flag_split_rule_v2 added)"
+    date: "2026-07-04"
+    change: >
+      Added band_gating_exclusion_rule (id GATE-EXCL-1) per owner ruling "rank on what
+      varies," relayed via Product Agent during TASK-504's creatine domestic band-map review.
+      Generalizes display_suppression_rule's 100%-CANNOT-VERIFY trigger to a broader condition
+      — a bar is excluded from BAND/TIER GATING (not from display) when no product in the
+      ranked pool ever resolves it to PASS, AND no product resolves it to FAIL (the no-FAIL
+      clause inherits guardrail_never_hides_a_fail). Kept structurally distinct from
+      display_suppression_rule: this rule's effect is narrower (gating only, via a new
+      `bandExcludedBars` list) even though its trigger is broader (any non-PASS mix, not just
+      uniform CANNOT-VERIFY). RULED to keep the excluded bar fully DISPLAYED — creatine's
+      third_party_verification bar carries genuine, heterogeneous per-product claims (9 FLAG +
+      14 CANNOT-VERIFY across the 23-product domestic pool, zero PASS, zero FAIL) that a reader
+      should still see; only the bar's power to GATE the ranking is removed. Concrete instance:
+      creatine's domestic third_party_verification bar excludes from gating; price_fairness,
+      form_absorption, dose_adequacy, and label_transparency all retain real PASS instances in
+      the domestic pool and stay live gating bars, exactly matching "rank on what varies."
+
+      Also added passes_with_flag_split_rule_v2, superseding v1 (dose_adequacy_sole_caveat)
+      wherever a bar is gating-excluded. Fixes an inversion bug in the shipped
+      computeRecommendationTier (nonPassDisplayed.length===1 check is false when the set is
+      EMPTY, so an all-clear-on-gating-bars product fell through to "good"/C, below a
+      dose-only-caveat product in "recommended"/B) by generalizing the split predicate from
+      set-EQUALITY (CAVEAT_SET == {dose_adequacy}) to set-SUBSET (CAVEAT_SET ⊆
+      {dose_adequacy}) — still a categorical identity test, not a count, per anti_drift_check.
+      Ruled מומלץ מאוד/very_recommended stays UNCHANGED (bucket===clears_all_bars, literal 6/6
+      PASS) rather than redefined for the domestic pool, so the tier means the same thing
+      everywhere; "cleaner ranks above dose-only" is satisfied by a documented, deterministic
+      two-group stable ordering WITHIN the מומלץ/B tier, not a new band. Resulting domestic
+      creatine distribution: 0 מומלץ מאוד, 10 מומלץ (9 clean + 1 dose-only, in that display
+      order), 7 טוב, 4 לא מומלץ, 2 לא ניתן להעריך (of 23) — up from the pre-amendment 0/0/17/4/2
+      because 9 products previously miscategorized as טוב (whose only caveat was the
+      non-differentiating, now-excluded third-party bar) move to מומלץ. Both new blocks are
+      Nutrition-authored D6 proposals; Product Agent D7 co-sign is required before either
+      governs live copy.

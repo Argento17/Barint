@@ -1219,6 +1219,28 @@ GLASSBOX_W2_ADDITIVES: dict = {
         "match_patterns_he": ["DATEM", "datem", "חומצה טרטרית מונו ודיגליצרידים"],
         "cosmetic_mup": True,
     },
+    # H3 fix (yogurt additive-display audit, TASK-515 follow-up): E472b (LACTEM) was
+    # previously UNREGISTERED and got silently mislabeled as E472e/DATEM by a bare
+    # "e-472"/"e 472" fallback pattern that used to live on the E472e entry above (see
+    # the detect_additives_d4() pattern-generation fix in score_engine.py in the same
+    # change — composite/letter-suffixed E-numbers now only match their OWN full suffix).
+    # No approved Hebrew compound name for LACTEM was found on any scanned label or in
+    # any prior signed-off copy library entry; every observed label spells it generically
+    # as "מתחלב (E-472b)" (emulsifier + bare E-number) — so name_he uses that literal,
+    # conservative, label-verbatim form rather than inventing a translated compound name.
+    "E472b": {
+        "name_he": "מתחלב (E-472b)",
+        "name_en": "Lactic acid esters of mono- and diglycerides (LACTEM)",
+        "tier": "likely-neutral",
+        "function_he": "חומר תחליב",
+        "match_patterns_he": ["LACTEM", "lactem", "E472b", "E-472b"],
+        "cosmetic_mup": True,
+        # Deliberately NOT score_eligible / NOT tier="contested" — same conservative
+        # default as the sibling E472e/DATEM entry above; no scoring judgment made here
+        # (Data Agent implements, does not invent, scoring tiers). additive_class parity
+        # with DATEM/mono-diglycerides/SSL/PGPR in ingredient_taxonomy.py's "emulsifier_medium"
+        # bucket (EV-045) means this fix is display-only — see H3 return record.
+    },
     "E415": {
         "name_he": "קסנטן",
         "name_en": "Xanthan gum",

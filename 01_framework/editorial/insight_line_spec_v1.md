@@ -173,6 +173,26 @@ Do not write a line that is only meaningful if you know other products in the ca
 
 Exception: Type 3 lines often reference relative standing — "אחד מ-3 מוצרים ללא ממתיקים" is acceptable because it is verifiable and names the rarity rather than naming a specific competing product.
 
+### Rule 6: Never recite a number the row UI already displays (added TASK-533, owner ruling 2026-07-08)
+
+The row UI shows the protein bar, the calorie/kcal chip, and the score/grade chip *next to* the copy, not instead of it. A number earns its place in the line only when it carries information those UI elements do not already show. Restating "10.5 גרם חלבון" beside a protein bar that already reads 10.5 is not an insight line — it's a caption reading its own label.
+
+A number may appear ONLY when it is:
+- a **comparison** ("4 גרם יותר חלבון מהמוצר השני במדף"),
+- a **verified rank/superlative** across the full corpus for that shelf ("החלבון הגבוה ביותר מבין 78 היוגורטים המוצקים שנבדקו") — the rank must be checked against the real dataset, not eyeballed,
+- a **gap or contradiction** ("החלבון הגבוה ביותר בקטגוריה, לצד רשימת התוספים הארוכה ביותר בה"), or
+- a **threshold finding that changes the reading of the product** ("2.5 גרם חלבון בלבד — פחות ממחצית מרוב המוצרים במדף הזה").
+
+**The test:** delete the number. Does the row UI (protein bar / calorie chip / score chip) still tell the reader the exact same fact with the number gone? If yes, the number was duplicating the UI — cut it or reframe it as a comparison, rank, or gap. This applies to `insightLine`, `rowVerdict`, `consumerTakeaway`, and every `expansion.consumerExplanation` field alike; the rule governs the fact, not the field name it lives in.
+
+### Rule 7: Limiting-factor claims name the real fired driver, never a category-of-thing (added TASK-533, owner ruling 2026-07-08)
+
+A sentence that names what is holding a score back must point at the actual signal the trace fired for THAT product — the lowest-scoring dimension, the specific cap or penalty applied, or (when the limitation is a data-confidence gap rather than a compositional finding) the actual confidence issue. It is never acceptable to substitute a vague category label — "רשימת הרכיבים", "רמת העיבוד" — standing in alone as if naming a category explains anything. That is empty: it tells the reader a *kind of thing exists* without saying what was actually found.
+
+If the real driver is uncertainty (e.g. the processing-quality dimension is capped because ingredient text came from a page-text fallback rather than a label scan, so NOVA confidence is low) — say that plainly: "לא ניתן לאמת את רמת העיבוד המדויקת מהנתונים הזמינים." That is honest and specific. It is not the same sentence as pretending the ingredient list itself is the problem when the real product is a 3-ingredient, additive-free item.
+
+This also closes a live grammar defect: constructions like "X ו-Y **הם** הגורם המגביל" mismatch a compound subject against a singular predicate ("הגורם," singular) — a sentence that is broken Hebrew regardless of what it names. Fixing the grammar alone ("הם **הגורמים** המגבילים") is not sufficient if the named "X ו-Y" is still a vague category rather than the real finding — both defects must be corrected together.
+
 ---
 
 ## The Grammar Test
@@ -184,6 +204,8 @@ Before publishing any insight line, run this test:
 3. Does the line use any forbidden word from the tone table? **If yes: remove it.**
 4. Is the line 12 words or fewer? **If no: cut.**
 5. Does the line name only what is observable, not what it means? **If it names a conclusion: cut the conclusion.**
+6. Does any number in the line duplicate a value already shown by the row UI (protein bar / calorie chip / score chip) without adding a comparison, verified rank, or gap? **If yes: cut or reframe it (Rule 6).**
+7. If the line names a "limiting factor," does it name the real fired driver from the trace — not a vague category like "ingredient list" or "processing level" standing alone? **If it's a category-of-thing with no specific finding: rewrite (Rule 7).**
 
 ---
 

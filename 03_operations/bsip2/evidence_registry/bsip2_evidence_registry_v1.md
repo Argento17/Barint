@@ -170,6 +170,19 @@ study_objects:
 | **risk_of_misuse** | Allulose quantities are not declared on Israeli labels; can only flag presence, not exact grams. Apply a flag + conservative partial credit. |
 | **notes** | Long-term large-scale human safety trials are limited. Score adjustment is sound; full caloric recalculation requires quantity — flag-only until quantity is detectable. |
 
+**Shelf-relevance note (measured 2026-07-10, TASK-557) — no tier or score change.** A corpus scan
+over `02_products/` (1,922 distinct products carrying ingredient text) found **allulose in 0
+products**. The `allulose_adjusted_sugar_g` adjustment therefore currently fires on nothing. EV-004
+remains scientifically sound and stays live; it simply has **zero corpus exposure today**, and it
+must not anchor or lead any consumer-facing sweetener content.
+
+Regulatory context (verify before any consumer use): the **EU has not authorised allulose** — EFSA
+(June 2025, DOI `10.2903/j.efsa.2025.9468`) concluded its safety "cannot be established" after the
+applicant failed to supply requested data. Israel's MoH has published a D-allulose novel-food
+guidance (`gov.il` doc `fcs-35388024-d-allulose`), **not primary-verified** (HTTP 403 to automated
+fetch). Also note this entry cites an **FDA** added-sugar labelling exemption, which is a US rule
+with no Israeli force. Re-check this entry if allulose ever appears in a scanned corpus.
+
 ---
 
 ### EV-005 — Polyol Osmotic Laxative Threshold
@@ -445,6 +458,27 @@ study_objects:
 | **required_input_fields** | `ingredients_list`, `extracted_sweeteners` |
 | **risk_of_misuse** | Applying a score penalty for saccharin would unfairly disadvantage long-standing diet products where the risk is population-level, not individual |
 | **notes** | Related to EV-004 (allulose) and EV-005 (polyols). The three sweetener findings together form a sweetener tier: (1) allulose/mogroside V — preferred, (2) stevia/erythritol — neutral, (3) sucralose/saccharin — flag. |
+
+**Staleness note (2026-07-10, TASK-557) — no tier or score change; two corrections.**
+
+1. **The `BSIP2_relevance` text is out of date.** It states "current BSIP2 treats all non-caloric
+   sweeteners as neutral." The engine already applies a tiered sweetener penalty
+   (`constants.py:285-287`: fermentation-derived / sugar-alcohol / synthetic) plus polyol tier
+   penalties. Any consumer content must describe the **engine**, never this sentence.
+2. **The saccharin arm has no shelf exposure.** Measured over 1,922 distinct products carrying
+   ingredient text: **saccharin 0, aspartame 0**; **sucralose 54** (snack_bars 25, yogurt 18) and
+   **acesulfame-K 15** (almost entirely yogurt). Only the **sucralose** arm of this finding is
+   shelf-relevant. The `risk_of_misuse` concern about penalising saccharin is moot on this corpus.
+
+Additionally, this entry lists **erythritol as "neutral"**, which predates the 2023 cardiovascular
+signal (Witkowski, *Nat Med*, DOI `10.1038/s41591-023-02223-9`). That signal measured **plasma**
+erythritol, which is substantially produced endogenously via the pentose phosphate pathway and rises
+with hyperglycaemia and oxidative stress, so it may be a marker of cardiometabolic disease rather
+than a consequence of dietary intake. No regulator (FDA, EFSA) changed its erythritol assessment in
+response. The paper's US (n=2,149) and European (n=833) validation cohorts are **internal** to the
+same paper, not independent replication. **Conclusion: no tier change, and no alarm.** Erythritol
+remains the best-tolerated polyol under EV-005. Recorded so the "neutral" label is understood as
+examined rather than unexamined. Shelf presence: 11 products.
 
 **Corroboration addendum (2026-06-18) — no score change.** An external research dump (owner, Evidence Horizon-Scan) surfaced three 2026 lines on non-caloric sweeteners: a *Frontiers in Nutrition* mouse model reporting sucralose/stevia-induced metabolic + genetic changes in offspring (intergenerational), a UK Biobank association with cardiovascular-disease risk, and an appetite-stimulation / satiety-disruption mechanism. These **corroborate the existing EV-017 high-risk classification of sucralose** — they do **not** justify a new signal or a heavier penalty:
 - **Posture unchanged.** EV-017 stays `should_affect_score_now: false` (flag/disclosure, not a score deduction) — the dysbiosis mechanism remains high inter-individual variability, and the new arms are mouse (intergenerational) or observational (UK Biobank CVD), not population-level RCT evidence that would lift it to a score-moving tier.

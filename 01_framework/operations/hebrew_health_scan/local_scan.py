@@ -96,17 +96,26 @@ def run_claude(date, out_path, stamp):
     flags = ["-p", "--allowedTools", "WebSearch", "WebFetch", "Write", "Read",
              "--permission-mode", "bypassPermissions", "--model", MODEL]
     cmd = (["cmd", "/c", "claude"] + flags) if os.name == "nt" else (["claude"] + flags)
-    log("invoking headless claude (model=%s, timeout=%ss) ..." % (MODEL, CLAUDE_TIMEOUT), stamp)
+    # Stream claude's stdout/stderr straight to disk (not captured in memory) so that if this python
+    # process is killed mid-read — e.g. the intermittent Task Scheduler 0xC000013A — the partial
+    # output survives and the failure is diagnosable next time.
+    so_path = SCANS / "claude_stdout.txt"
+    se_path = SCANS / "claude_stderr.txt"
+    log("invoking headless claude (model=%s, timeout=%ss, pid=%s) ..." % (MODEL, CLAUDE_TIMEOUT, os.getpid()), stamp)
     try:
-        r = subprocess.run(cmd, input=prompt, cwd=str(REPO_ROOT), capture_output=True, text=True,
-                           encoding="utf-8", errors="replace", timeout=CLAUDE_TIMEOUT)
+        with so_path.open("w", encoding="utf-8", errors="replace") as so, \
+             se_path.open("w", encoding="utf-8", errors="replace") as se:
+            r = subprocess.run(cmd, input=prompt, cwd=str(REPO_ROOT), stdout=so, stderr=se,
+                               text=True, encoding="utf-8", errors="replace", timeout=CLAUDE_TIMEOUT)
     except subprocess.TimeoutExpired:
         log("claude timed out after %ss" % CLAUDE_TIMEOUT, stamp)
         return False
-    tail = (r.stdout or "").strip().splitlines()[-1:] or [""]
+    out_txt = so_path.read_text(encoding="utf-8", errors="replace") if so_path.exists() else ""
+    tail = out_txt.strip().splitlines()[-1:] or [""]
     log("claude exit=%s · %s" % (r.returncode, tail[0][:160]), stamp)
     if r.returncode != 0:
-        log("claude stderr: %s" % (r.stderr or "").strip()[:200], stamp)
+        err_txt = se_path.read_text(encoding="utf-8", errors="replace") if se_path.exists() else ""
+        log("claude stderr: %s" % err_txt.strip()[:300], stamp)
     return out_path.exists()
 
 
@@ -161,6 +170,16 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
+    # Under Task Scheduler (no interactive console) the nested `claude` Node CLI raises a console
+    # CTRL_C/CTRL_BREAK that would otherwise terminate THIS process with 0xC000013A before the read
+    # completes — the root cause of every dead scheduled run. Ignore those signals so `claude` runs
+    # to completion. (Verified 2026-07-04: with SIG_IGN the scheduled run returns 0; without it, dies.)
+    import signal
+    for _sig in ("SIGINT", "SIGBREAK"):
+        try:
+            signal.signal(getattr(signal, _sig), signal.SIG_IGN)
+        except (AttributeError, ValueError, OSError):
+            pass
     if a.selftest:
         return selftest()
 

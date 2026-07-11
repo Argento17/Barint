@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `02_products/yogurt_system/bsip2_task515_v3/frontend_out/yogurt_drinkable_FINAL_v3.json`
-**Generated:** 2026-07-05T15:50:27Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-08T19:52:18Z  |  **Elapsed:** 0.1s
 
 ## Summary
 
@@ -9,9 +9,9 @@
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
 | [WARN] G2 COVERAGE | WARN |
-| [PASS] G3 SCOPE | PASS |
+| [WARN] G3 SCOPE | WARN |
 | [PASS] G4 OFF | PASS |
-| [PASS] G5 GRADE-INTEGRITY | PASS |
+| [WARN] G5 GRADE-INTEGRITY | WARN |
 | [PASS] G6 COPY-SAFETY | PASS |
 | [SKIP] G7 PARITY | SKIP |
 | [PASS] G8 DATA-SANITY | PASS |
@@ -46,19 +46,36 @@
   INFO: v3 bariInterpretation.interpretation: 200/200 authored (0 PENDING)
   INFO: v3 bestUseCases: 20/20 authored (0 PENDING)
 
-### [PASS] G3 SCOPE
+### [WARN] G3 SCOPE
   INFO: Displayed products: 20
-  INFO: Scored products (trace dirs): 23
-  INFO: Declared exclusions in _meta: 3
-  INFO:   missing barcode 6664655: excluded — TASK-515 dedup-drop (unchanged from HIGH-2 ruling): אקטימל לבן מארז -- byte-identical duplicate SKU of barcode 7290119380923 (KEPT, canonical EAN-13).
-  INFO:   missing barcode 7290116932774: excluded — TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): גו בננה-קרמל -- fat_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule.
-  INFO:   missing barcode 7290116934228: excluded — TASK-515 owner-directed dump (superseding the prior HIGH-1 discard ruling): משקה יוגורט גו מלון תות -- sugars_g unrecoverable across all 4 retailers (rescrape acc0c9ac), not just this retailer panel. missing_data_discard_rule.
+  WARN: Run directory not found: None
 
 ### [PASS] G4 OFF
   INFO: No OFF markers detected in frontend JSON or displayed corpus records
 
-### [PASS] G5 GRADE-INTEGRITY
+### [WARN] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
+  WARN: barcode=7290102393299: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=4068035: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290115676051: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290020711090: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290020711007: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290110573737: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290110552244: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290107937542: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290105364678: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290105965738: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290019635567: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290110325114: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290119380923: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290107938396: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290110325121: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=7290102031276: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=55336: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=55343: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=58030: no trace found in --run dir, cannot verify score vs trace
+  WARN: barcode=55329: no trace found in --run dir, cannot verify score vs trace
+  INFO: All grade/score checks passed
 
 ### [PASS] G6 COPY-SAFETY
   INFO: No copy-safety violations detected

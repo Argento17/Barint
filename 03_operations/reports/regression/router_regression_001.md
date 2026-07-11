@@ -1,15 +1,15 @@
 # BSIP2 Router v2 Regression Report
 
-**Run date:** 2026-06-09 16:23 UTC
-**Router:** router_v2
+**Run date:** 2026-07-02 16:04 UTC
+**Router:** router_v2.5
 **Corpus:** v1
-**Overall:** PASS
+**Overall:** FAIL
 
 | Status | Count |
 |--------|-------|
-| PASS   | 16  |
+| PASS   | 15  |
 | WARN   | 0  |
-| FAIL   | 0  |
+| FAIL   | 1  |
 | TOTAL  | 16   |
 
 ---
@@ -30,13 +30,14 @@ Failure mode tested: `protein contamination`
 Category: **snack_bar_granola** (expected: snack_bar_granola) | Conf: 0.9 (high) | Anchor: True | Subtype: granola
 Raw scores: `snack_bar_granola=3.200  cereal=0.550  dessert=0.500`
 
-### ✓ `dairy_flavor_contamination_biscuit` — PASS
+### ✗ `dairy_flavor_contamination_biscuit` — FAIL
 
 **Yogurt-flavored biscuit — must NOT route to dairy_protein despite yogurt mention**  
 Failure mode tested: `dairy flavor contamination`  
-Category: **snack_bar_granola** (expected: snack_bar_granola) | Conf: 0.92 (high) | Anchor: False | Subtype: None
-Suppressed signals: `dairy_protein:יוגורט(flavor_suppressor)`
+Category: **biscuit** (expected: snack_bar_granola) | Conf: 0.88 (high) | Anchor: True | Subtype: plain_biscuit
 Raw scores: `snack_bar_granola=1.150  whole_food_fat=0.250  dairy_protein=0.095`
+
+**Issues:** FAIL: category='biscuit' (expected 'snack_bar_granola'); FAIL: anchor_override=True (expected False)
 
 ### ✓ `real_yogurt_anchors` — PASS
 
@@ -78,7 +79,7 @@ Raw scores: `whole_food_fat=1.950  snack_bar_granola=1.900  dessert=1.700  cerea
 **Cornflakes with added protein — anchor must fire for cereal**  
 Failure mode tested: `anchor stability`  
 Category: **cereal** (expected: cereal) | Conf: 0.93 (high) | Anchor: True | Subtype: cornflakes
-Raw scores: `cereal=2.100  dairy_protein=0.700  snack_bar_granola=0.300`
+Raw scores: `cereal=2.100  dairy_protein=0.850  snack_bar_granola=0.300`
 
 ### ✓ `context_gate_mixed_nuts` — PASS
 
@@ -133,8 +134,6 @@ Raw scores: ``
 
 ---
 
-## Signal Suppression Log
+## Failures Requiring Action
 
-These cases had contaminating signals that were suppressed by context gating.
-
-- **dairy_flavor_contamination_biscuit** (snack_bar_granola): dairy_protein:יוגורט(flavor_suppressor)
+- `dairy_flavor_contamination_biscuit`: FAIL: category='biscuit' (expected 'snack_bar_granola'); FAIL: anchor_override=True (expected False)

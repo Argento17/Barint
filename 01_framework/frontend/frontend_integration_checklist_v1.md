@@ -162,6 +162,21 @@ For each component, check: Does it exist? Does it match the spec in `ui_stabiliz
 
 **Missing components (list):**
 
+**Addendum — product-photo white-background treatment (TASK-534, 2026-07-08):** product
+photos with a baked-in solid white background (retail/e-commerce shots — supplements,
+yogurt) render as a mismatched "white box inside a cream tile" if shown at default tile
+fill (#F7F7F2). `BariProductThumbnail`'s `blendWhite` prop (`bari-web/src/components/
+comparisons/bari-product-thumbnail.tsx`) swaps the tile fill to pure white for those
+categories only — border/shadow/geometry are unchanged, this is a fill-color swap, not a
+new visual spec. It is driven by a single codified declaration,
+`shouldBlendWhiteForCategory()` in `bari-web/src/lib/comparisons/
+thumbnail-blend-white-categories.ts` — every call site (comparison rows, guide
+shortlists, and any future surface) reads that one function instead of a local
+`category === "..."` check. When onboarding a new retail-photo category, register its
+slug in that file's `BLEND_WHITE_CATEGORIES` set; do not add a second per-callsite
+boolean. (Prior failure: yogurt shipped with the white-box mismatch because the flag was
+a manual per-call opt-in and nobody flipped it for the new category.)
+
 ---
 
 ## Section 4 — Design-System Discovery

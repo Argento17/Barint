@@ -151,9 +151,25 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   (branch task620-pd31), background.** (Claude Frontend Agent build killed — it was the mis-routed
   fallback.) Owner-approved Option A: 3 tabs, real VerdictRow via thin PD→VM adapter, 3 separate namespace
   cards, 2D profile, deterministic bullets. Orchestrator does live real-DOM verify on merge.
-- 🛡️ **TASK-619 parser fix — GPT-5.5-pro cross-vendor CHALLENGE dispatched (background).** Closes the
-  single-vendor verification gap on the committed fix (producer was Claude → challenger is GPT). Committed
-  code stands unless the challenge surfaces a real defect.
+- 🛡️ **TASK-619 CHALLENGE RAN (Codex terra read-only; gpt-5.5-pro pin dead on ChatGPT auth) → VERDICT
+  DO-NOT-SHIP (verified real).** The committed shared-parser fix is CORRECT but INCOMPLETE: 4+ sibling
+  BSIP0 nutrition paths still do blind `replace(",",".")` BEFORE the shared parser — CONFIRMED at
+  `acquire_hazi_hinam.py:122` (feeds NutritionalValues_For100Gr), `yohananof/parser.py:26`,
+  `pipeline/extractor.py:74` (OCR), `salty_snacks_real/01_scrape_yoh_panels.py:56`, `yohananof_milk/04...`.
+  Plus a locale edge case (`0,123` 3-decimal → corrupted). Great ROI on the cross-vendor challenge. → TASK-621.
+- 🔧 **TASK-621 (comma completeness) REGISTERED — patch the sibling paths through `_normalize_decimal_comma`
+  + harden the 3-decimal case. BLOCKS TASK-614.** (Was going to Codex, but `acquire_hazi_hinam.py` is
+  UNTRACKED — HEAD-worktree wouldn't contain it; needs the dirty-tree handling below.)
+- ⛔ **TASK-614 (re-score) — RE-BLOCKED on TASK-621** (must fix ALL comma paths before re-scoring, or the
+  re-score runs on partially-corrupt data — challenge's decision-level-replay caveat).
+- 🧩 **TASK-620 (PD-3.1) — Codex terra BUILT it (overview.tsx + dossier-verdict-row.tsx + tabs;
+  tsc-clean IN THE WORKTREE), but STALE-BASE COLLISION on merge:** worktree branched off HEAD, but main's
+  `loader.ts` is uncommitted-modified with its OWN `getProductByBarcode` (→BarcodeProductEntry, feeds the
+  untracked `/p/[barcode]`); Codex added a 2nd `getProductByBarcode` (→BariProductVM). Needs reconciliation
+  on the live tree (salvage net-new + re-point adapter to the existing resolver), NOT a blind merge.
+- 🌳 **STATE ISSUE (surfaced to owner):** the repo carries a large pre-existing uncommitted/untracked pile
+  (loader.ts M, /p/[barcode] ??, hazi_hinam ??, +~100 more from before this session) → HEAD-based Codex
+  worktrees are systematically stale for those files. Must reconcile the base before further isolated builds.
 - 📊 **Telemetry after-action audit QUEUED** (owner asked) — running now that TASK-619 (the parser fix) is
   closed; covers the run through PD MVP + parser fix.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only

@@ -65,11 +65,11 @@ Work through these stages in order. Do not skip stages or reorder them.
 
 **Required for every category before advancing to BSIP2 Readiness. Do not skip.**
 
-- Dispatch `red-team-agent` with the current corpus (scored JSON) and category methodology rationale
-- Red-Team Agent produces a challenge report at `02_products/{category}/reports/red_team_{corpus_version}.md`
-- Red-Team report must classify every finding as CRITICAL / HIGH / MEDIUM
+- Dispatch the **Adversarial QA Agent** (Track C — the merged QA + Red-Team gate, successor to the retired `red-team-agent`) with the current corpus (scored JSON) and category methodology rationale
+- It produces a challenge report at `02_products/{category}/reports/red_team_{corpus_version}.md`
+- The report must classify every finding as CRITICAL / HIGH / MEDIUM
 - **Gate:** No CRITICAL findings may remain open before advancing. HIGH findings must be resolved or explicitly accepted (documented in the report)
-- If CRITICAL findings are present: halt, return the report to Nutrition Agent for resolution, re-run Red-Team after fix
+- If CRITICAL findings are present: halt, return the report to Nutrition Agent for resolution, re-run the challenge after fix
 - Output: `red_team_{corpus_version}.md` — challenge report with all findings at CLOSED or explicitly accepted status
 
 ### 6. BSIP2 Readiness
@@ -87,20 +87,6 @@ Work through these stages in order. Do not skip stages or reorder them.
   - Validate Hebrew label coverage
 - Output: `frontend_package.json` — structured for Bari website consumption
 
-### 9. FAQ Schema Generation
-
-**Required for every category before render_local_page. Do not skip.**
-
-- Run `03_operations/seo/generate_faq_schema.py` on the promoted frontend JSON
-- Args: `--input`, `--category-he` (Hebrew name), `--url` (canonical URL), `--out`
-- **Coverage gates (script exits 1 if violated):** `product_count >= 5`; products array non-empty
-- WARNs (non-blocking): top product has no insightLine; no A-grade products
-- Copy output to `bari-web/src/data/seo/{category}_faq_schema.json`
-- Add two lines to the route page (`import { buildFaqScript }` + `import rawFaqSchema`) and wrap the return in `<><script .../><PageComponent /></>`
-- **Red-team checklist addition:** verify no FAQ answer contains a product name, score, or claim not verbatim present in the frontend JSON; verify `_bari_meta` block is absent from the rendered HTML
-- To regenerate all categories at once: `python 03_operations/seo/run_all_faq_schemas.py`
-- Output: `bari-web/src/data/seo/{category}_faq_schema.json`
-
 ### 8. D4 Additive Wiring
 
 **Required for every category. Do not skip.**
@@ -115,6 +101,20 @@ Work through these stages in order. Do not skip stages or reorder them.
 - **Invariant check (hard):** assert score, grade, and glassBox are byte-identical after writing
 - Products with no BSIP1 ingredient text: log them; do not write an empty array; leave key absent
 - Output: updated `*_frontend_vN.json` + console summary (products enriched / not found / invariant result)
+
+### 9. FAQ Schema Generation
+
+**Required for every category before render_local_page. Do not skip.**
+
+- Run `03_operations/seo/generate_faq_schema.py` on the promoted frontend JSON
+- Args: `--input`, `--category-he` (Hebrew name), `--url` (canonical URL), `--out`
+- **Coverage gates (script exits 1 if violated):** `product_count >= 5`; products array non-empty
+- WARNs (non-blocking): top product has no insightLine; no A-grade products
+- Copy output to `bari-web/src/data/seo/{category}_faq_schema.json`
+- Add two lines to the route page (`import { buildFaqScript }` + `import rawFaqSchema`) and wrap the return in `<><script .../><PageComponent /></>`
+- **Red-team checklist addition:** verify no FAQ answer contains a product name, score, or claim not verbatim present in the frontend JSON; verify `_bari_meta` block is absent from the rendered HTML
+- To regenerate all categories at once: `python 03_operations/seo/run_all_faq_schemas.py`
+- Output: `bari-web/src/data/seo/{category}_faq_schema.json`
 
 ### 10. Terminal Page Validation (pre-ship gate battery)
 
@@ -210,11 +210,11 @@ At each stage, produce a structured JSON artifact named as specified above. Afte
 | BSIP0 Gate | Category Team + Data Architecture |
 | BSIP1 Enrichment | Data Architecture |
 | QA Gate | QA Lead |
-| Red-Team Challenge | Red-Team Agent |
+| Red-Team Challenge | Adversarial QA Agent (Track C) |
 | BSIP2 Readiness | Scoring Governance Lead |
 | Frontend Packaging | Frontend Architect |
 | FAQ Schema Generation | Data Agent (script) + Frontend Agent (route injection) |
 | D4 Additive Wiring | Data Agent (script) + Content Agent (copy doc) |
 | Terminal Page Validation | Orchestrator (`validate_comparison_page.py`) |
-| Terminal Red-Team + C3 Bracket | Red-Team Agent + C3 (router) |
+| Terminal Red-Team + C3 Bracket | Adversarial QA Agent + C3 (router) |
 | Orchestrator After-Action Report | Orchestrator |

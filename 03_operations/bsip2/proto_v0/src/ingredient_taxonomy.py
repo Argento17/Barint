@@ -134,7 +134,27 @@ _ADDITIVES: list[Identity] = [
     Identity(
         canonical="datem", e_number="E472e",
         additive_class="emulsifier_medium", is_named_concern=False,
-        synonyms_he=("DATEM", "E472e", "E-472e", "E472", "E-472"),
+        # H3 fix (yogurt additive-display/score audit, TASK-515 follow-up): the bare
+        # "E472"/"E-472" synonyms below were REMOVED. Bare "E472" is not a valid label
+        # designation (every real E472-series additive carries a mandatory letter
+        # suffix a-f) — carrying it here made resolve_additive()'s longest-substring
+        # match silently swallow ANY other E472x ingredient (observed: a real E-472b
+        # LACTEM declaration resolved to canonical="datem" because no "lactem" entry
+        # existed to compete for the match). Score impact of the mis-resolution was
+        # ZERO (both datem and lactem share additive_class="emulsifier_medium" — same
+        # ECS-v1 weight bucket, EV-045), but the identity/display was wrong. See the
+        # "lactem" entry below for the correct E472b identity.
+        synonyms_he=("DATEM", "E472e", "E-472e"),
+    ),
+    Identity(
+        canonical="lactem", e_number="E472b",
+        # Same ECS-v1 weight bucket as datem/mono_diglyceride/ssl/pgpr (EV-045 bundles
+        # "mono/diglycerides, DATEM, SSL, PGPR" as one medium-concern class) — LACTEM
+        # (lactic acid esters of mono/diglycerides) is structurally the same ester
+        # family as DATEM (diacetyl tartaric acid esters of mono/diglycerides).
+        # additive_class parity here is why the H3 mis-resolution was score-neutral.
+        additive_class="emulsifier_medium", is_named_concern=False,
+        synonyms_he=("LACTEM", "E472b", "E-472b"),
     ),
     Identity(
         canonical="ssl", e_number="E481",

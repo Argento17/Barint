@@ -1,0 +1,68 @@
+{
+  "name": "run_funnel_report",
+  "description": "\n        Run a Google Analytics Data API funnel report.\n\nSee the funnel report guide at\nhttps://developers.google.com/analytics/devguides/reporting/data/v1/funnels\nfor details and examples.\n\nArgs:\n    property_id: The Google Analytics property ID. Accepted formats are:\n      - A number\n      - A string consisting of 'properties/' followed by a number\n    funnel_steps: A list of funnel steps. Each step should be a dictionary\n      containing:\n      - 'name': (str) Display name for the step\n      - 'filter_expression': (Dict) Complete filter expression for the step\n      OR for simple event-based steps:\n      - 'name': (str) Display name for the step\n      - 'event': (str) Event name to filter on\n    date_ranges: A list of date ranges\n      (https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange)\n      to include in the report.\n    funnel_breakdown: Optional breakdown dimension to segment the funnel.\n      This creates separate funnel results for each value of the dimension.\n      Example: {\"breakdown_dimension\": \"deviceCategory\"}\n    funnel_next_action: Optional next action analysis configuration.\n      This analyzes what users do after completing or dropping off from\n      the funnel.\n      Example: {\"next_action_dimension\": \"eventName\", \"limit\": 5}\n    segments: Optional list of segments to apply to the funnel.\n    return_property_quota: Whether to return current property quota\n      information.\n\nReturns:\n    Dict containing the funnel report response with funnel results\n    including:\n    - funnel_table: Table showing progression through funnel steps\n    - funnel_visualization: Data for visualizing the funnel\n    - property_quota: (if requested) Current quota usage information\n\nRaises:\n    ValueError: If funnel_steps is empty or contains invalid configurations\n    Exception: If the API request fails\n\n\n        ## Hints for arguments\n\n        Here are some hints that outline the expected format and requirements\n        for arguments.\n\n        ### Hints for `funnel_breakdown`\n\n        The `funnel_breakdown` parameter allows you to segment funnel results by a dimension:\n        ```json\n        {\n            \"breakdown_dimension\": \"deviceCategory\"\n        }\n        ```\n        Common breakdown dimensions include:\n        - `deviceCategory` - Desktop, Mobile, Tablet\n        - `country` - User's country\n        - `operatingSystem` - User's operating system\n        - `browser` - User's browser\n\n        ### Hints for `funnel_next_action`\n\n        The `funnel_next_action` parameter analyzes what users do after completing or dropping off from the funnel:\n        ```json\n        {\n            \"next_action_dimension\": \"eventName\",\n            \"limit\": 5\n        }\n        ```\n        Common next action dimensions include:\n        - `eventName` - Next events users trigger\n        - `pagePath` - Next pages users visit\n\n        ### Hints for `segments`\n\n        The `segments` parameter allows you to segment funnel results by user criteria.\n        Each segment is a dictionary passed directly to `data_v1alpha.Segment()`.\n        See https://developers.google.com/analytics/devguides/reporting/data/v1/funnels#segments\n        for details and examples.\n\n        ### Hints for `date_ranges`:\n        Example date_range arguments:\n      1. A single date range:\n\n        [ {\"start_date\": \"2025-01-01\", \"end_date\": \"2025-01-31\", \"name\": \"Jan2025\"} ]\n\n      2. A relative date range using 'yesterday' and 'today':\n        [ {\"start_date\": \"yesterday\", \"end_date\": \"today\", \"name\": \"YesterdayAndToday\"} ]\n\n      3. A relative date range using 'NdaysAgo' and 'today':\n        [ {\"start_date\": \"30daysAgo\", \"end_date\": \"yesterday\", \"name\": \"Previous30Days\"}]\n\n      4. Multiple date ranges:\n        [ {\"start_date\": \"2025-01-01\", \"end_date\": \"2025-01-31\", \"name\": \"Jan2025\"}, {\"start_date\": \"2025-02-01\", \"end_date\": \"2025-02-28\", \"name\": \"Feb2025\"} ]\n    \n\n        ### Hints for `funnel_steps`\n        Example funnel_steps configurations:\n\n    1. Simple event-based step (first open/visit):\n        {\"name\": \"First open/visit\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"first_open\"}}, {\"funnel_event_filter\": {\"event_name\": \"first_visit\"}}]}}, \"is_directly_followed_by\": false}\n\n    2. Field filter for organic traffic:\n        {\"name\": \"Organic visitors\", \"filter_expression\": {\"funnel_field_filter\": {\"field_name\": \"firstUserMedium\", \"string_filter\": {\"match_type\": 4, \"value\": \"organic\", \"case_sensitive\": false}}}, \"is_directly_followed_by\": false}\n\n    3. Simple event filter:\n        {\"name\": \"Session start\", \"filter_expression\": {\"funnel_event_filter\": {\"event_name\": \"session_start\"}}, \"is_directly_followed_by\": false}\n\n    4. Multiple events with OR condition:\n        {\"name\": \"Screen/Page view\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"screen_view\"}}, {\"funnel_event_filter\": {\"event_name\": \"page_view\"}}]}}, \"is_directly_followed_by\": false}\n\n    5. Purchase events (multiple event types):\n        {\"name\": \"Purchase\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"purchase\"}}, {\"funnel_event_filter\": {\"event_name\": \"in_app_purchase\"}}]}}, \"is_directly_followed_by\": false}\n\n    6. Event with parameter filter (value > 50):\n        {\"name\": \"Add to cart (value > 50)\", \"filter_expression\": {\"funnel_event_filter\": {\"event_name\": \"add_to_cart\", \"funnel_parameter_filter_expression\": {\"funnel_parameter_filter\": {\"event_parameter_name\": \"value\", \"numeric_filter\": {\"operation\": 4, \"value\": {\"double_value\": 50.0}}}}}}, \"is_directly_followed_by\": false}\n\n    7. Complex AND condition (page view + specific path):\n        {\"name\": \"Home page view\", \"filter_expression\": {\"and_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"page_view\"}}, {\"funnel_field_filter\": {\"field_name\": \"pageLocation\", \"string_filter\": {\"match_type\": 4, \"value\": \"/\", \"case_sensitive\": false}}}]}}, \"is_directly_followed_by\": false}\n\n\n    ## Complete Funnel Example\n\n    A typical e-commerce funnel with 5 steps:\n    [\n        {\"name\": \"First open/visit\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"first_open\"}}, {\"funnel_event_filter\": {\"event_name\": \"first_visit\"}}]}}, \"is_directly_followed_by\": false},\n        {\"name\": \"Organic visitors\", \"filter_expression\": {\"funnel_field_filter\": {\"field_name\": \"firstUserMedium\", \"string_filter\": {\"match_type\": 4, \"value\": \"organic\", \"case_sensitive\": false}}}, \"is_directly_followed_by\": false},\n        {\"name\": \"Session start\", \"filter_expression\": {\"funnel_event_filter\": {\"event_name\": \"session_start\"}}, \"is_directly_followed_by\": false},\n        {\"name\": \"Screen/Page view\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"screen_view\"}}, {\"funnel_event_filter\": {\"event_name\": \"page_view\"}}]}}, \"is_directly_followed_by\": false},\n        {\"name\": \"Purchase\", \"filter_expression\": {\"or_group\": {\"expressions\": [{\"funnel_event_filter\": {\"event_name\": \"purchase\"}}, {\"funnel_event_filter\": {\"event_name\": \"in_app_purchase\"}}]}}, \"is_directly_followed_by\": false}\n    ]\n\n    \n\n        ",
+  "inputSchema": {
+    "properties": {
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Property Id"
+      },
+      "funnel_steps": {
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "title": "Funnel Steps",
+        "type": "array"
+      },
+      "date_ranges": {
+        "default": null,
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "title": "Date Ranges",
+        "type": "array"
+      },
+      "funnel_breakdown": {
+        "additionalProperties": true,
+        "default": null,
+        "title": "Funnel Breakdown",
+        "type": "object"
+      },
+      "funnel_next_action": {
+        "additionalProperties": true,
+        "default": null,
+        "title": "Funnel Next Action",
+        "type": "object"
+      },
+      "segments": {
+        "default": null,
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "title": "Segments",
+        "type": "array"
+      },
+      "return_property_quota": {
+        "default": false,
+        "title": "Return Property Quota",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "property_id",
+      "funnel_steps"
+    ],
+    "title": "run_funnel_reportParams",
+    "type": "object"
+  }
+}

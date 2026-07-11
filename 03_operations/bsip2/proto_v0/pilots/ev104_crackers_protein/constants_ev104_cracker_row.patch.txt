@@ -1,0 +1,19 @@
+--- a/03_operations/bsip2/proto_v0/src/constants.py
++++ b/03_operations/bsip2/proto_v0/src/constants.py
+@@ PROTEIN_SCALE_TABLES @@
+ PROTEIN_SCALE_TABLES = {
+     "dairy_protein":     [(0,0),(3,20),(5,35),(7,50),(9,65),(11,85),(13,95),(99,100)],
+     "sauce_spread":      [(0,0),(2,12),(4,28),(6,45),(8,62),(11,82),(14,95),(99,100)],
+     # --- FROZEN categories (modelled; require P2 owner sign-off before shipping) ---
+     "milk_dairy":        [(0,0),(2,30),(3,55),(4,70),(6,88),(8,95),(99,100)],
+     "yogurt":            [(0,0),(2,20),(3.5,40),(5,58),(7,75),(9,90),(11,95),(99,100)],
+     "bread":             [(0,0),(4,30),(6,45),(8,60),(10,72),(13,85),(99,95)],
+     "snack_bar_granola": [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
++    "cracker":           [(0, 0), (3, 15), (5, 30), (7, 45), (9, 58), (11, 75), (13, 85), (16, 95), (99, 100)],  # EV-104, n=53 corpus anchor -- PILOT-VERIFIED, NOT YET APPLIED
+     "default":           [(0,0),(3,15),(6,30),(10,50),(15,70),(20,85),(25,95),(99,95)],
+ }
+
+NOTE: NOT applied to constants.py on disk. Reference diff for the future real commit
+once Adversarial QA completes Condition 5 and Product Agent lifts the pilot-only
+restriction. Do not apply without that sign-off. Also register EV-104 in
+bsip2_evidence_registry_v1.md/.json ONLY at that point (Condition 6).

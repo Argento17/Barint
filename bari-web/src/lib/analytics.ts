@@ -27,7 +27,11 @@ export type BariEventName =
   // GA4 Enhanced Measurement's auto-detected `form_submit`, which is known to
   // be unreliable for forms that call preventDefault() + fetch() instead of
   // a native submit/navigation (this form's pattern) — see newsletter-signup.tsx.
-  | "newsletter_signup";
+  | "newsletter_signup"
+  // Fired on an affiliate/retailer `buyUrl` click (TASK-522). Properties are
+  // limited to product/category identifiers already present in the row data
+  // — never user data — e.g. { barcode, category }. See product-table.tsx.
+  | "outbound_click";
 
 export type BariEventProperties = Record<string, string | number | boolean>;
 

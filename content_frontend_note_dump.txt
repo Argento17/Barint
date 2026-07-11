@@ -1,0 +1,38 @@
+{
+  "note_for_content_and_frontend_stage": "The DRINKABLE (yogurt_drinks / TASK-515A) page requires the sugar category-caveat box on go-live: the shelf-relative sugar guard FAILS on the drinkable pool (IQR scale below the low-variance floor) so sugar stays UNSET / absolute-floor-only for that pool -- consumers need the standard yellow category-caveat explaining why. Nutrition D13 has already approved the caveat copy for this situation; this run does NOT author it -- Content/Frontend attach the existing D13-approved copy to the yogurt_drinks page at build time.",
+  "authored_here": false
+}
+---ev105_final---
+{
+  "id": "EV-105v2-FINAL",
+  "status": "SCORED / PROPOSAL -- NOT LIVE -- not written to constants.py",
+  "supersedes": "EV-105v2 (v2, run_yogurt_task515_bsip2_v2) -- computed on the pre-exclusion 96/24 pool split; this run's 94/23 split (post the 3 Nutrition-ruled display exclusions) is the FINAL shipping proposal.",
+  "approval_state": "Nutrition Agent D6: APPROVED (the exclusion ruling that produced this corpus IS the D6 approval for the recomputed constants). Product Agent D7: PENDING co-sign before any constants.py edit or go-live.",
+  "topic": "Yogurt sugar shelf-relative -- TWO-POOL split (spoonable vs drinkable), recomputed from the 117-product TASK-515/515A SHIPPING corpus (122 loaded - 2 soy out-of-scope - 3 Nutrition-ruled display exclusions).",
+  "floor_and_bands_inherited_unchanged_from_EV-088": {
+    "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+    "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+    "SUGAR_SHELF_REL_YOGURT_B_MAX": 3
+  },
+  "spoonable": {
+    "SUGAR_SHELF_REL_YOGURT_SPOONABLE_MEDIAN": 4.65,
+    "SUGAR_SHELF_REL_YOGURT_SPOONABLE_IQR_SCALE": 4.6,
+    "SUGAR_SHELF_REL_YOGURT_SPOONABLE_N": 80,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+    "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+    "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+    "guard_pass": true
+  },
+  "drinkable": {
+    "SUGAR_SHELF_REL_YOGURT_DRINKABLE_MEDIAN": 4.95,
+    "SUGAR_SHELF_REL_YOGURT_DRINKABLE_IQR_SCALE": 1.85,
+    "SUGAR_SHELF_REL_YOGURT_DRINKABLE_N": 22,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR": 62,
+    "SUGAR_SHELF_REL_YOGURT_FLOOR_THRESHOLD_G": 12.0,
+    "SUGAR_SHELF_REL_YOGURT_P_MAX": 6,
+    "SUGAR_SHELF_REL_YOGURT_B_MAX": 3,
+    "guard_pass": false
+  }
+}

@@ -5,7 +5,7 @@ description: Guide Claude for Bari website UI work — comparison pages, Hebrew 
 
 # Bari Frontend UI Skill
 
-**Owner:** Frontend Architect
+**Owner:** Frontend Agent (implementation) · Design Agent (spec/conformance authority)
 
 ## Use this skill when…
 
@@ -15,6 +15,11 @@ description: Guide Claude for Bari website UI work — comparison pages, Hebrew 
 - You are creating or modifying a reusable UI component
 - You are reviewing a frontend PR for UI quality
 - A user says "build a comparison page", "fix the RTL layout", "add a component", "make it accessible", "review the UI", or "improve the frontend"
+
+Authoritative companions (read for any non-trivial comparison-page work):
+- `C:\Bari\.claude\agents\design-agent.md` — the frozen Gen 1 constraints table + drift detection
+- `C:\Bari\.claude\agents\frontend-agent.md` — canonical component rules + key paths
+- `C:\Bari\01_framework\operations\golden_comparison_page_playbook_v1.md` — the end-to-end shelf process (golden example: `/hashvaot/brined-cheeses`)
 
 ---
 
@@ -26,32 +31,91 @@ Bari is a product comparison platform for Hebrew-speaking consumers. Every UI de
 2. **Hebrew-first** — RTL layout is the primary layout, not an afterthought
 3. **Trust through consistency** — reuse established components before inventing new ones
 4. **Accessibility is non-negotiable** — not a post-launch task
+5. **Conformance, not creativity** — Bari is in a conformance phase. The comparison-page look is FROZEN. New visual structure comes from the uniform spine / generate_page path, never from improvisation.
 
 ---
 
-## Comparison Pages
+## Comparison Pages — the frozen Gen 1 architecture
 
-Comparison pages are the core UI surface of Bari. Follow these rules:
+Comparison pages are the core UI surface of Bari. The architecture is FROZEN
+(design-agent.md, "Gen 1 Design Constraints"). There is **no** category header +
+filter panel + product grid + comparison drawer layout — that architecture does
+not exist on Bari and must never be built.
 
-### Structure
+### Page structure (exactly 4 sections)
 
-- Every comparison page must have: category header, filter panel, product grid, comparison drawer
-- Do not add structural elements that do not serve the comparison task
-- Product grid must support at least 3 and at most 12 products in a single view without horizontal scroll on desktop
+Every comparison page is exactly:
+
+**Hero → Prologue → ProductTable → Methodology**
+
+- **Hero** — max 280px mobile, single sentence, no aggregate statistics.
+- **Prologue** — 2–3 pre-authored sentences. Up to 3 data-journalism charts may appear in the prologue (owner-sanctioned amendment, golden playbook Stage 6): built in **recharts** (never hand-rolled SVG, never CDN chart libs), data-driven from the frontend JSON, readable at 375px. **Grade is never color-encoded in charts** — uniform ink dots; grade appears only as a text lane label.
+- **ProductTable** — one row per product, rendered in the JSON `products` array order (pre-sorted score-descending by the pipeline; the UI never sorts).
+- **Methodology** — plain muted footer text: 12px / `#AAAAAA`, no card, no border, no heading (frozen table, design-agent.md). Values must be read from the token file, never hardcoded — see "Known spec-vs-code deltas" below.
+
+Never add a section between Prologue and ProductTable. Never add page-level structure beyond the 4 sections without a design-exception registry entry.
+
+### Rows and expansion (no drawer — ever)
+
+- Collapsed row: **72px height (80px max), 56px product image**, verdict/insight line below the name. Token source: `BARI_COMPARISON_TOKENS.layout` (`rowHeightMobile: "72px"`, `rowHeightMobileMax: "80px"`, `rowImageSize: "56px"`).
+- Expansion is **inline only** — the row expands in place to show nutrition + ingredients + confidence. **No drawer, no modal, no sheet, no overlay.** No headings inside the expansion.
+- Score chip (`ScoreChip`): **color-coded by grade via `gradePalette`** (owner directive 2026-06-03) — one hue family per grade A→E (green → olive → gold → orange → red), monotonic good→poor. Same chip geometry for all grades; only accent/bg/text/border colors vary. Display format per the frozen table: `72 · B · טוב` (numeric + grade letter + tier word; grade conveyed by both letter and color). Never revert to a neutral chip; never add a second color axis or per-product color outside the A–E ramp.
+- Filter: **collapsed at 0px scroll, sticky FAB appears after 300px scroll, max 3 filter dimensions.** Multiple filter dimensions must not be open by default.
+- Max 1 highlighted comparison pair per page.
+
+### Canonical components (source of truth: `src/components/shared/`)
+
+All frontend code lives in `C:\bari\bari-web`. Key paths (frontend-agent.md):
+
+```
+src/components/shared/            Canonical Gen 1 components (source of truth)
+src/components/comparisons/       Category page assemblies + legacy pages
+src/lib/view-models/index.ts      BariProductVM — the only type the UI touches
+src/lib/comparisons/registry/     Category registration (add new categories here)
+src/lib/design/bari-comparison-tokens.ts  Design tokens
+src/data/comparisons/             Frontend JSON datasets
+src/app/hashvaot/                 Comparison page routes
+```
+
+Canonical shared components include: `score-chip.tsx`, `comparison-row.tsx`, `comparison-table.tsx`, `expansion-section.tsx`, `methodology-footer.tsx`, `category-hero.tsx`, `category-prologue.tsx`, `comparison-metric-column.tsx`, `confidence-marker.tsx` / `confidence-indicator.tsx`, `AdditivePanel.tsx`, `glass-box-flag.tsx`. Extend these; do not fork them. Category-specific polish must be scoped (e.g. a `.bc-page` style block) so shared components never regress for other categories.
+
+Token rule: never hardcode a value that exists in `src/lib/design/bari-comparison-tokens.ts` or `bari-web/colors_and_type.css` — read it from the token source. `colors_and_type.css` is read-only.
+
+### Known spec-vs-code deltas (do not "fix" silently)
+
+Verified discrepancies between the frozen-spec docs and the shipped code. If your work touches these, flag them to the Design Agent — do not resolve them unilaterally in either direction:
+
+- **Chip tier word:** design-agent.md specifies `72 · B · טוב`; the shipped chip renders numeric + grade letter only — the tier word was deliberately removed ("FIX-2", `comparison-row.tsx`). Do not re-add the tier word without a Design Agent ruling.
+- **Methodology color:** frozen table says 12px / `#AAAAAA`; the token file (`bari-comparison-tokens.ts` → `methodology`) says 12px / `#666C67`; the shipped `methodology-footer.tsx` renders `text-[11px] text-[#6B7070]`. The structural constraint (no card / no border / no heading) is unambiguous; take exact values from the token file.
+
+### View Model boundary (hard)
+
+- UI components consume **`BariProductVM`** (and the other VM types) from `@/lib/view-models` **only**. The UI layer never imports from `lib/comparisons/`, `lib/bsip/`, or any scoring module, and never touches raw BSIP fields.
+- **The UI never sorts, never rounds, never interprets.** `products` arrive pre-ordered (scored desc, insufficient appended last); scores arrive pre-rounded; hero aggregates (`averageScore`, `topProduct`) arrive pre-computed; confidence labels (`confidence_label_he` etc.) arrive pre-rendered — render them verbatim.
+- Trace/provenance fields on the VM (e.g. `nova_class`, `modifier`, `gatedScore`) are presentation-irrelevant — never rendered.
 
 ### Data Display
 
-- Attribute labels must be pulled from the approved label registry — do not invent display names
-- Attribute values must be traceable to enrichment output — do not hardcode product data
-- Missing values must render as an explicit empty state ("לא ידוע" or equivalent), not as blank cells
-- Do not show raw internal slugs or IDs to users
+- Attribute labels come from the approved label registry / the pre-rendered Hebrew strings on the VM — do not invent display names.
+- Attribute values must be traceable to pipeline output — do not hardcode product data.
+- **Missing values render an explicit "data could not be retrieved" state** — the null-state pill / "—" / the backend's pre-rendered Hebrew label — never a blank cell, never a fabricated value, and **never a substitute source. Open Food Facts is banned project-wide for every field, including images** (off_ban_hard_rule). Unknown is acceptable; OFF is not.
+- **No framework vocabulary in any rendered string:** NOVA, BSIP, cap, floor, structural_class, matrix_integrity, pillar, dimension, run/flag/EV ids, internal slugs. Consumer copy is plain Hebrew.
+- Product images are self-hosted only (`bari-web/public/products/`, same-origin via `next/image`) — never hotlink retailer/Cloudinary/external hosts for new categories.
 
-### Comparison Drawer
+### Legacy quarantine (frontend-agent.md)
 
-- The comparison drawer must show a max of 4 products side-by-side
-- Attributes shown in the drawer must be the same set for all selected products
-- Highlight winning values per attribute only when the comparison is unambiguous
-- Do not highlight when comparison is subjective
+**Do not import** into canonical components: `bari-grade-badge.tsx`, `dimension-bars.tsx`, `bari-interpretation-panel.tsx`, or anything from `src/components/snack/`. Quarantined legacy files are not touched during canonical build sprints — document, defer. (Note: `comparison-row.tsx` currently imports `BariGradeBadge` — a pre-existing condition; do not extend the pattern to new code, and do not "clean it up" mid-task without a Design Agent ruling.)
+
+### Drift detection (design-agent.md — flag any of these as a violation)
+
+- A chart or visualization above the first product row (prologue charts are the sanctioned exception)
+- The user must make a choice before seeing a product
+- A summary statistic before rows
+- Multiple filter dimensions open by default
+- More than 1 comparison pair
+- Score shown with a verbal interpretation beside it
+- A heading inside the expansion section
+- Any drawer / modal / sheet / overlay for product detail
 
 ---
 
@@ -81,6 +145,7 @@ RTL is the default layout direction for the Bari website. Follow these rules:
 
 - Always test in a Hebrew locale browser environment, not just by flipping CSS
 - Check: text overflow, truncation direction, icon placement, input cursor position
+- Mobile-first: 375px is the primary viewport
 
 ---
 
@@ -91,10 +156,11 @@ All Bari UI must meet WCAG 2.1 AA as a minimum.
 ### Required
 
 - All interactive elements must have accessible labels (`aria-label` or visible text)
-- Color contrast must meet AA ratios — do not use color alone to convey meaning
-- Keyboard navigation must work for the full comparison flow: filter, select products, open drawer, navigate attributes
+- Color contrast must meet AA ratios — do not use color alone to convey meaning (the grade chip carries the grade in the letter AND the color; the colorblind-safe position dot on the accent bar is part of this)
+- Keyboard navigation must work for the full comparison flow: filter, expand/collapse rows inline (Enter/Space on the row button), navigate expansion content
 - Focus indicators must be visible — do not remove the default outline without providing a replacement
 - Images must have `alt` text — product images must describe the product
+- Gate: `npm run test:a11y` (axe-core WCAG2 A/AA) must pass on touched routes
 
 ### Forbidden
 
@@ -109,15 +175,16 @@ All Bari UI must meet WCAG 2.1 AA as a minimum.
 
 Before creating a new component:
 
-1. Check the Bari component library for an existing component that covers the use case
+1. Check `src/components/shared/` for an existing component that covers the use case
 2. If an existing component almost fits: extend it, do not fork it
-3. If no existing component fits: propose the new component to the Frontend Architect before building
+3. If no existing component fits: a NEW canonical component requires the **Design Agent's approved, conforming visual spec before implementation** (design-agent.md Hard Rule 6)
 
 When building a component:
 
 - Props must be typed and documented
 - Component must handle empty/loading/error states explicitly
 - Component must be tested in RTL and LTR contexts even if only RTL is expected in production
+- Consume tokens; never duplicate values that exist in `bari-comparison-tokens.ts`
 
 ---
 
@@ -140,11 +207,17 @@ When reviewing UI, explicitly flag any of the above as a violation requiring rev
 ## Forbidden Actions
 
 - Do not ship a comparison page with hardcoded product data
+- Do not build a comparison drawer, modal, sheet, or overlay — expansion is inline only
+- Do not add a 5th page section or a section between Prologue and ProductTable
+- Do not sort, round, or interpret data in the UI — the VM arrives final
+- Do not put framework vocabulary (NOVA, BSIP, cap, floor, structural_class, matrix_integrity, pillar, dimension) in any rendered string
+- Do not use Open Food Facts for anything, ever
 - Do not ship RTL layout that was not tested in a Hebrew locale environment
-- Do not add a new component without checking the existing component library first
+- Do not add a new component without checking `src/components/shared/` first, or without a Design Agent spec if it is new
+- Do not import quarantined legacy files into canonical components
 - Do not remove or suppress accessibility features to meet a visual design preference
 - Do not use generic AI UI patterns listed above
-- Do not add new page-level UI structure without Frontend Architect approval
+- Do not add new page-level UI structure without a design-exception registry entry
 
 ---
 
@@ -177,9 +250,9 @@ For a UI review or implementation task, produce:
 
 | Responsibility | Owner |
 |---|---|
-| Comparison Page Structure | Frontend Architect |
-| Hebrew RTL Layout | Frontend Architect |
-| Accessibility | Frontend Architect + QA Lead |
-| Component Library | Frontend Architect |
-| Copy and Labels | Category Team |
-| Visual Design Approval | Product Owner |
+| Comparison Page Structure | Frontend Agent (implementation) / Design Agent (spec) |
+| Hebrew RTL Layout | Frontend Agent |
+| Accessibility | Frontend Agent + Adversarial QA Agent |
+| Component Library | Frontend Agent |
+| Copy and Labels | Content pipeline (two-gate sign-off) |
+| Visual Design Approval | Design Agent (Gen 1 conformance) |

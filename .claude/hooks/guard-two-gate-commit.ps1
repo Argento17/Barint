@@ -52,7 +52,19 @@ try {
 
     # Gate on STAGED files only -- that is exactly what the commit will contain.
     $staged = git -C $commitRepo diff --cached --name-only 2>$null
-    $candidates = @($staged) | Where-Object { $_ -match "bari-web/src/data/comparisons/.*\.json$" } | Sort-Object -Unique
+    # Comparison JSON: the original scope. Subject to BOTH the sign-off check and the
+    # JSON-only copy-authored validator.
+    $jsonCandidates = @($staged) | Where-Object { $_ -match "bari-web/src/data/comparisons/.*\.json$" } | Sort-Object -Unique
+    # 2026-07-10: guide copy modules (/madrichim) carry owner-facing consumer strings but lived
+    # OUTSIDE this gate entirely, so guide copy could be committed with zero sign-off -- the exact
+    # hole the two-gate hard rule exists to close (CLAUDE.md, owner ruling 2026-06-20).
+    # verify_signoffs.py is content-type agnostic (hashes the staged blob, finds the record by
+    # basename), so these are gated by the same sha256-pinned record.
+    # Scope is deliberately the DATA modules only, not src/app/madrichim/**/page.tsx: those are
+    # layout/route files, and gating them would re-create the 2026-07-04 false-block class where
+    # unrelated work was blocked by a dirty content file.
+    $guideCandidates = @($staged) | Where-Object { $_ -match "bari-web/src/lib/guides/.*\.ts$" } | Sort-Object -Unique
+    $candidates = @($jsonCandidates) + @($guideCandidates) | Where-Object { $_ } | Sort-Object -Unique
     if (-not $candidates -or $candidates.Count -eq 0) { exit 0 }
 
     # 2026-07-10 (TASK-567): sha256-pinned approval records replace the existence/mtime
@@ -116,10 +128,11 @@ try {
     # also pass the deterministic copy-authored gate (banned data-state narration phrases,
     # mass-repeated sentences, baseline template fingerprints). Runs only when the validator exists;
     # infrastructure errors fail OPEN (this try/catch), but a real validator FAIL blocks the commit.
+    # NOTE: --json only. Guide .ts modules are gated by the sha256 sign-off record above, not here.
     $validator = Join-Path $markerRoot "03_operations\spine\validate_copy_authored.py"
-    if (Test-Path $validator) {
+    if ((Test-Path $validator) -and (@($jsonCandidates).Count -gt 0)) {
         $copyFails = @()
-        foreach ($f in $candidates) {
+        foreach ($f in $jsonCandidates) {
             $full = Join-Path $commitRepo ($f -replace "/", "\")
             if (-not (Test-Path $full)) { continue }
             # cmd /c wrapper: PS 5.1 wraps native stderr into ErrorRecords under EAP=Stop,

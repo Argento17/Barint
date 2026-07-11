@@ -253,3 +253,53 @@ export function buildInventoryProductDetails(): Map<string, BariProductVM> {
 
   return map;
 }
+
+// ─── Barcode product index (TASK-471) ────────────────────────────────────────
+
+/**
+ * One entry in the barcode → product index that backs the canonical /p/[barcode]
+ * page. Joins the flat row (which already carries `sku` = barcode, categoryNameHe,
+ * comparisonHref, retailer) with the full BariProductVM detail (editorial fields,
+ * nutrition, ingredients) by the shared product `id`.
+ *
+ * DISPLAY-ONLY: both halves are read verbatim from the existing corpus payload.
+ * Nothing here recomputes, reorders, or rounds a score/grade/nutrition value.
+ */
+export interface BarcodeProductEntry {
+  row: InventoryProductRowVM;
+  detail: BariProductVM;
+}
+
+/**
+ * Build a Map<barcode, BarcodeProductEntry> across the full live registry.
+ *
+ * Products with a null/absent barcode are excluded — they simply have no
+ * canonical /p/ page (never fabricate a barcode to give them one).
+ *
+ * If two products across categories somehow share a barcode (not expected in the
+ * live corpus — each category's barcodes are scoped to its own scrape), the last
+ * one encountered wins; this mirrors the existing dedup-by-id behavior of
+ * buildInventoryProductDetails and is a display-only tie-break, never a scoring one.
+ *
+ * Pure function — no auth, no I/O. Safe to call from generateStaticParams and
+ * from the page Server Component alike.
+ */
+export function buildBarcodeProductIndex(): Map<string, BarcodeProductEntry> {
+  const rows = buildInventoryRows();
+  const details = buildInventoryProductDetails();
+  const index = new Map<string, BarcodeProductEntry>();
+
+  for (const row of rows) {
+    if (!row.sku) continue; // no fabricated barcodes — skip products without one
+    const detail = details.get(row.id);
+    if (!detail) continue; // defensive: row without a matching detail VM
+    index.set(row.sku, { row, detail });
+  }
+
+  return index;
+}
+
+/** Look up a single product by barcode. Returns null when not found (→ notFound()). */
+export function getProductByBarcode(barcode: string): BarcodeProductEntry | null {
+  return buildBarcodeProductIndex().get(barcode) ?? null;
+}

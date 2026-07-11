@@ -25,7 +25,15 @@ export function BariProductThumbnail({
   /** When true, swap the tile's cream fill (#F7F7F2) for pure white so the photo's
    *  baked-in white background dissolves into the tile — no mismatched "white box
    *  inside a cream tile" look. Border + shadow are retained so the card edge stays
-   *  defined (pharmacy/e-commerce style). Used for retail supplement shots.
+   *  defined (pharmacy/e-commerce style). Used for retail product shots (supplements,
+   *  yogurt).
+   *  TASK-534: do NOT set this from a local `category === "..."` check at the call
+   *  site — that is exactly how the yogurt pages shipped with the mismatch (the
+   *  original per-callsite boolean only ever got flipped for magnesium). Resolve it
+   *  through `shouldBlendWhiteForCategory()` in
+   *  `@/lib/comparisons/thumbnail-blend-white-categories` — the single place that
+   *  declares which categories get this treatment — so every current and future call
+   *  site (table rows, guide shortlists, featured cards, …) stays in sync.
    *  Default false → every other category renders byte-identical. */
   blendWhite?: boolean;
 }) {

@@ -2,7 +2,15 @@
 id: TASK-599
 title: Router v5.1: strategist tier law (sol+fable never build/grunt) + STRATEGY-CONSULT capability
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
+close_reason: >
+  Router v5.1 live: owner tier map = Layer-0 invariant 9 (table verbatim + SST never-build/grunt +
+  Opus-stays-QA + within-tier-cross-vendor fallback rule), BUILD-HEAVY re-bound sol->terra,
+  STRATEGY-CONSULT capability at Q2 with strategist_consult() read-only sol lane. Orchestrator
+  verified: C0 PASS, selftests independently re-run green in lane worktree AND merge worktree
+  (table byte-match, route 15/15 incl. new fixture, telemetry), law-doc diff read (owner table
+  verbatim). Speed-1 internal merge origin/master 9f793f5b -> ed37d4a3; LOCAL PORT done same cycle
+  (both law files synced byte-exact from origin, selftests green locally - per the local-port rule).
 priority: HIGH
 created_at: 2026-07-11
 depends_on: []

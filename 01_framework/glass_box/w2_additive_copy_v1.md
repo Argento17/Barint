@@ -436,6 +436,27 @@ regulatory action paired with its counter-position.
 
 ---
 
+## Wave 8 addendum — E951 aspartame (TASK-515A, 2026-07-05)
+
+**Added 2026-07-05.** Data's TASK-515A d4-fix added aspartame (E951) detection to 4 GO-labeled
+yogurt-drink products (barcodes 7290110325121, 7290110325114, 7290116932774, 7290116934228) —
+score 0-diff, `additive_quality` was already floored. The D4 finding shipped with tier `contested`
+and `function_he` set, but `explanation_he` was empty, so the tooltip rendered blank. This entry
+fills that gap. Authored against the same standards (≤120-char limit, DEC-006, no invented data)
+and the same depth/tone as the E950 entry above; framed as `contested` per the corrected d4
+justification (`additive_tiered_library_v1.md` §7.1 #38), not the `dose-dependent` register used
+for E950/E955.
+
+### E951 — אספרטם (Aspartame)
+**Tier:** contested
+**Explanation (final):** אספרטם הוא ממתיק ללא קלוריות נפוץ; IARC סיווגה בסולם סיכון בינלאומי, אך JECFA אישרה מחדש את הרף המאושר לצריכה יומית.
+**Grounding:** `additive_tiered_library_v1.md` §7.1 EV-059 #38 — IARC 2023 Group 2B ("possibly carcinogenic") vs JECFA 2023 "no convincing evidence" + reaffirmed ADI 40 mg/kg. Genuine split between hazard classification (IARC) and risk assessment (JECFA/FDA/EFSA); metabolized to phenylalanine/aspartate/methanol with no intact absorption. Framed on the same regulatory-split register as E171/E320 (state the classifying body and the counter-position, no verdict). DEC-006 verified: the banned word "מסרטן" is not used — "סיווגה בסולם סיכון בינלאומי" states the IARC action factually, mirroring the E320 precedent ("נושא סיווג סיכון בינלאומי" replacing the same banned word). Institutional gender checked: IARC (סוכנות, fem) takes "סיווגה"; JECFA (ועדה, fem) takes "אישרה" — same convention as the live EFSA/E224 line ("EFSA הסירה"). Character count: 116.
+**Grammar gate:** two medium-confidence FLAGs on 'נפוץ' vs anchor 'קלוריות' (gender + number) — same false-positive pattern already present, undocumented, in the live CONTENT-SIGNED E950 line above (identical "ממתיק ללא קלוריות נפוץ" construction, re-verified 2026-07-05: E950 trips the identical two flags plus two more on 'ונבדק'/'ברמות'). Proximity-scan anchors to the nearest bare noun ("קלוריות", Fem Plur) instead of the true head noun the adjective modifies ("ממתיק", Masc Sing — "a common sweetener"). Sentence is grammatically correct Hebrew; dismissed as false positive per the same reasoning as the E330/E224 precedent dismissals, both medium-confidence and left for human (Content Agent) review rather than auto-fixed.
+**Leakage gate:** offline `hebrew_readability.analyze()` → `is_clean = True`, 0 flags, readability 95.
+**Status:** DRAFT — round-2 fix (TASK-515A RT-3). Content-agent authored 2026-07-05; pending Adversarial QA / Red-Team gate re-run alongside the rest of the drinkable-category copy.
+
+---
+
 ## Content sign-off
 
 - All 20 lines reviewed against Bari editorial standards (insight_line_spec + row_description_standard).

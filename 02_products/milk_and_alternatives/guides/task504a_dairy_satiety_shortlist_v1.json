@@ -1,0 +1,1074 @@
+{
+  "_meta": {
+    "task": "TASK-504A",
+    "purpose": "Data-prep shortlist for a /madrichim suppressed-appetite (GLP-1-lens) dairy guide. UNORDERED — no 1-N ranking. NO scoring change, NO new scrape, NO enrichment.",
+    "generated_ts": "2026-07-05T06:48:45",
+    "generated_by": "Data Agent",
+    "category": "milk_and_alternatives",
+    "ordering": "none — array order is barcode-sorted for file determinism only; Frontend/Content must not treat array position as a recommendation rank",
+    "basis_confirmed": "per_100ml — single disclosed basis for every product on the live page (expansion.servingNote == 'ל-100 מ״ל' for all 18; assertion enforced at build time, not assumed)",
+    "gating_ruling_applied": {
+      "satiety_support": "DROPPED entirely — Nutrition excluded it as a gameable, not-honestly-caveatable proxy for this use. Not present anywhere in this file.",
+      "nutrient_density_dimension_score": "DROPPED / not relied upon for the protein bar — cross-category-calibrated, misrepresents milk. Protein bar uses RAW protein_g + energy_kcal only (see protein_density block).",
+      "added_sugar_basis": "added_sugar_sources_count (L3, ingredient-derived), NOT sugars_g (natural lactose / unmeasured for plant milks). sugars_g retained only in the transparency panel, explicitly labeled NOT-added-sugar."
+    },
+    "source_frontend_json": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+    "source_frontend_run_id": "task409_rederive_milk_20260626",
+    "source_frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+    "source_frontend_flag_vector": {
+      "BARI_RECAL_P0": "off",
+      "BARI_FAT_TECH_V1": "on",
+      "BARI_SHELF_RELATIVE_V1": "on",
+      "BARI_REDLABEL_V1": "off",
+      "BARI_DAIRY_SAT_FAT_INFER": "off",
+      "BARI_SODIUM_SHELF_RELATIVE_V1": "off",
+      "BARI_DAIRY_PROTEIN_REWEIGHT_V1": "off",
+      "BARI_GRAD_SODIUM_V1": "off",
+      "BARI_SODIUM_CEREAL": "off"
+    },
+    "source_bsip2_trace_run": "run_006_shelfrel_refreeze",
+    "source_bsip2_trace_dir": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/",
+    "source_bsip1_dir": "03_operations/bsip1/run_milk_002/output/",
+    "score_grade_cross_check": "PASS — all 18 products' trace.final_score_estimate/grade_estimate matched frontend score/grade exactly before this dataset trusted the trace as an extension source",
+    "product_count": 18,
+    "off_used": false,
+    "rescore_performed": false,
+    "rescrape_performed": false,
+    "enrichment_performed": false,
+    "field_coverage_N_of_18": {
+      "nameHe": "18/18",
+      "protein_g_per100": "18/18",
+      "protein_g_per_serving": "18/18",
+      "energy_kcal_per100": "18/18",
+      "protein_g_per_100kcal_derived": "18/18",
+      "added_sugar_sources_count": "18/18",
+      "sodium_mg_per100": "16/18",
+      "published_score": "18/18",
+      "published_grade": "18/18"
+    }
+  },
+  "corpus_stats": {
+    "basis": "per_100ml, across all 18 products on the live milk_and_alternatives shelf (milk_frontend_v1.json)",
+    "sodium_mg_per100": {
+      "n": 16,
+      "min": 40.0,
+      "median": 44.0,
+      "max": 100.0,
+      "stdev": 15.53
+    },
+    "protein_g_per100": {
+      "n": 18,
+      "min": 0.0,
+      "median": 2.35,
+      "max": 6.5,
+      "stdev": 1.68
+    },
+    "energy_kcal_per100": {
+      "n": 18,
+      "min": 15.0,
+      "median": 55.5,
+      "max": 69.0,
+      "stdev": 15.06
+    },
+    "note": "For Nutrition to lock the sodium 3-band cutoffs (structure already set; mg thresholds provisional) and for Content to sanity-check the protein/energy bands. Computed directly from this dataset's own per-product values above (recomputed here, not copied from elsewhere)."
+  },
+  "products": [
+    {
+      "barcode": "5411188112709",
+      "nameHe": "שקדים ללא סוכר",
+      "brand": "אלפרו",
+      "milkProductType": "almond",
+      "milkProductTypeLabel": "שקדים",
+      "filterTags": [
+        "type:almond",
+        "low_sugar"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 0.5,
+        "energy_kcal_per100": 15.0,
+        "protein_g_per_100kcal_derived": 3.33,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 1.0,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 60.0,
+        "sodium_mg_per_serving": 120.0
+      },
+      "published_score_grade": {
+        "score": 46.2,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 1.2,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 0.0,
+        "dietary_fiber_g": 0.3
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_5411188112709/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_5411188112709.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "5411188124689",
+      "nameHe": "שיבולת שועל ללא סוכר",
+      "brand": "אלפרו",
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "filterTags": [
+        "type:oat",
+        "low_sugar",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 0.0,
+        "energy_kcal_per100": 40.0,
+        "protein_g_per_100kcal_derived": 0.0,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 0.0,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": null,
+        "sodium_mg_per_serving": null
+      },
+      "published_score_grade": {
+        "score": 49.7,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 1.5,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 5.8,
+        "dietary_fiber_g": 1.2
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [
+        "sodium_mg_per100"
+      ],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_5411188124689/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_5411188124689.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "5411188300328",
+      "nameHe": "שוקו משקה סויה",
+      "brand": "אלפרו",
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "filterTags": [
+        "type:soy",
+        "high_protein"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.1,
+        "energy_kcal_per100": 61.0,
+        "protein_g_per_100kcal_derived": 5.08,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.2,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 1,
+        "added_sugar_ingredient_terms": [
+          "סוכר"
+        ],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 60.0,
+        "sodium_mg_per_serving": 120.0
+      },
+      "published_score_grade": {
+        "score": 33.5,
+        "grade": "E",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 7.6,
+        "fat_g": 1.8,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 7.9,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_5411188300328/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_5411188300328.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290000051352",
+      "nameHe": "חלב מלא בטעם של פעם 1ליטר לפחות 3.4%שומן",
+      "brand": "תנובה",
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "filterTags": [
+        "type:dairy",
+        "no_additives",
+        "high_protein",
+        "high_score"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.3,
+        "energy_kcal_per100": 67.0,
+        "protein_g_per_100kcal_derived": 4.93,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.6,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 41.0,
+        "sodium_mg_per_serving": 82.0
+      },
+      "published_score_grade": {
+        "score": 85,
+        "grade": "A",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 3.8,
+        "fat_saturated_g": 2.3,
+        "carbohydrates_g": 5.0,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290000051352/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290000051352.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290014760141",
+      "nameHe": "משקה שקדים",
+      "brand": "תנובה אלטרנטיב",
+      "milkProductType": "almond",
+      "milkProductTypeLabel": "שקדים",
+      "filterTags": [
+        "type:almond"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 1.6,
+        "energy_kcal_per100": 56.0,
+        "protein_g_per_100kcal_derived": 2.86,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 3.2,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 1,
+        "added_sugar_ingredient_terms": [
+          "סוכר"
+        ],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 100.0,
+        "sodium_mg_per_serving": 200.0
+      },
+      "published_score_grade": {
+        "score": 51.5,
+        "grade": "C",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 2.6,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 6.0,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290014760141/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290014760141.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290019790259",
+      "nameHe": "חלב טבעי 4% 1 ליטר",
+      "brand": "מחלבות רמת הגולן",
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "filterTags": [
+        "type:dairy",
+        "no_additives",
+        "high_protein",
+        "high_score"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.4,
+        "energy_kcal_per100": 69.0,
+        "protein_g_per_100kcal_derived": 4.93,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.8,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": null,
+        "sodium_mg_per_serving": null
+      },
+      "published_score_grade": {
+        "score": 85,
+        "grade": "A",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 4.0,
+        "fat_saturated_g": 2.4,
+        "carbohydrates_g": 4.9,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [
+        "sodium_mg_per100"
+      ],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290019790259/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290019790259.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290102392094",
+      "nameHe": "חלב עיזים בקרטון 1 ליטר",
+      "brand": "משק צוריאל",
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב עיזים",
+      "filterTags": [
+        "type:dairy",
+        "no_additives",
+        "high_protein",
+        "high_score"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.4,
+        "energy_kcal_per100": 68.0,
+        "protein_g_per_100kcal_derived": 5.0,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.8,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 50.0,
+        "sodium_mg_per_serving": 100.0
+      },
+      "published_score_grade": {
+        "score": 85,
+        "grade": "A",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 3.9,
+        "fat_saturated_g": 2.3,
+        "carbohydrates_g": 4.9,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290102392094/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290102392094.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290107932134",
+      "nameHe": "חלב בבקבוק 1% מועשר- מהדרין",
+      "brand": "יטבתה",
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב פרה",
+      "filterTags": [
+        "type:dairy",
+        "high_protein"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.4,
+        "energy_kcal_per100": 43.0,
+        "protein_g_per_100kcal_derived": 7.91,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.8,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 42.0,
+        "sodium_mg_per_serving": 84.0
+      },
+      "published_score_grade": {
+        "score": 55.5,
+        "grade": "C",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 5.0,
+        "fat_g": 1.0,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 5.1,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290107932134/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290107932134.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290110324926",
+      "nameHe": "משקה סויה ללא תוספת סוכר",
+      "brand": "תנובה אלטרנטיב",
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "filterTags": [
+        "type:soy",
+        "high_protein"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.3,
+        "energy_kcal_per100": 32.0,
+        "protein_g_per_100kcal_derived": 10.31,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.6,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 60.0,
+        "sodium_mg_per_serving": 120.0
+      },
+      "published_score_grade": {
+        "score": 56.7,
+        "grade": "C",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 1.8,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 0.5,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290110324926/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290110324926.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290110325619",
+      "nameHe": "משקה שיבולת שועל",
+      "brand": "תנובה אלטרנטיב",
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "filterTags": [
+        "type:oat",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 1.3,
+        "energy_kcal_per100": 55.0,
+        "protein_g_per_100kcal_derived": 2.36,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 2.6,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 40.0,
+        "sodium_mg_per_serving": 80.0
+      },
+      "published_score_grade": {
+        "score": 47.6,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 3.0,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 5.0,
+        "dietary_fiber_g": 1.5
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290110325619/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290110325619.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290114313865",
+      "nameHe": "חלב נטול לקטוז מועשר בחלבון 2% שומן 1 ליטר",
+      "brand": "טרה",
+      "milkProductType": "dairy",
+      "milkProductTypeLabel": "חלב מועשר בחלבון",
+      "filterTags": [
+        "type:protein_drink",
+        "no_additives",
+        "high_protein",
+        "high_score"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 6.5,
+        "energy_kcal_per100": 64.0,
+        "protein_g_per_100kcal_derived": 10.16,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 13.0,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 45.0,
+        "sodium_mg_per_serving": 90.0
+      },
+      "published_score_grade": {
+        "score": 71.0,
+        "grade": "B",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 2.0,
+        "fat_saturated_g": 1.2,
+        "carbohydrates_g": 4.9,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290114313865/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290114313865.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290116936116",
+      "nameHe": "משקה סויה ללא סוכרים 1 ליטר",
+      "brand": "תנובה אלטרנטיב",
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "filterTags": [
+        "type:soy",
+        "no_additives",
+        "high_protein",
+        "low_sugar",
+        "high_score"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.3,
+        "energy_kcal_per100": 32.0,
+        "protein_g_per_100kcal_derived": 10.31,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 6.6,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 60.0,
+        "sodium_mg_per_serving": 120.0
+      },
+      "published_score_grade": {
+        "score": 63.9,
+        "grade": "C",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": null,
+        "fat_g": 2.0,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 0.5,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290116936116/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290116936116.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7290119385560",
+      "nameHe": "משקה סויה בריסטה 500 מ\"ל",
+      "brand": "אלפרו",
+      "milkProductType": "soy",
+      "milkProductTypeLabel": "סויה",
+      "filterTags": [
+        "type:soy",
+        "high_protein",
+        "low_sugar",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 3.3,
+        "energy_kcal_per100": 46.0,
+        "protein_g_per_100kcal_derived": 7.17,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 16.5,
+        "serving_size_g": 500.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 1,
+        "added_sugar_ingredient_terms": [
+          "סוכר"
+        ],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 43.0,
+        "sodium_mg_per_serving": 215.0
+      },
+      "published_score_grade": {
+        "score": 49.9,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 2.5,
+        "fat_g": 2.1,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 2.7,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7290119385560/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7290119385560.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7394376619939",
+      "nameHe": "משקה בריסטה שיבולת שועל",
+      "brand": "אוטלי",
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "filterTags": [
+        "type:oat",
+        "low_sugar",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 1.1,
+        "energy_kcal_per100": 61.0,
+        "protein_g_per_100kcal_derived": 1.8,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 2.2,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 40.0,
+        "sodium_mg_per_serving": 80.0
+      },
+      "published_score_grade": {
+        "score": 49.8,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 3.4,
+        "fat_g": 3.0,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 7.1,
+        "dietary_fiber_g": 0.8
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7394376619939/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7394376619939.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7394376620904",
+      "nameHe": "משקה שיבולת שועל ללא סוכר",
+      "brand": "אוטלי",
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "filterTags": [
+        "type:oat",
+        "low_sugar",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 1.0,
+        "energy_kcal_per100": 44.0,
+        "protein_g_per_100kcal_derived": 2.27,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 2.0,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 48.0,
+        "sodium_mg_per_serving": 96.0
+      },
+      "published_score_grade": {
+        "score": 50.5,
+        "grade": "C",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 0.0,
+        "fat_g": 1.5,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 6.3,
+        "dietary_fiber_g": 0.7
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7394376620904/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7394376620904.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "7394376621451",
+      "nameHe": "משקה בריסטה שיבולת שועל להקצפה",
+      "brand": "אוטלי",
+      "milkProductType": "oat",
+      "milkProductTypeLabel": "שיבולת שועל",
+      "filterTags": [
+        "type:oat",
+        "low_sugar",
+        "coffee"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 1.1,
+        "energy_kcal_per100": 61.0,
+        "protein_g_per_100kcal_derived": 1.8,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 2.2,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 40.0,
+        "sodium_mg_per_serving": 80.0
+      },
+      "published_score_grade": {
+        "score": 49.8,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 3.4,
+        "fat_g": 3.0,
+        "fat_saturated_g": 0.3,
+        "carbohydrates_g": 7.1,
+        "dietary_fiber_g": 0.8
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_7394376621451/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_7394376621451.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "8000215204219",
+      "nameHe": "משקה אורז אורגני",
+      "brand": "ויטאריז",
+      "milkProductType": "rice",
+      "milkProductTypeLabel": "אורז",
+      "filterTags": [
+        "type:rice",
+        "no_additives"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 0.3,
+        "energy_kcal_per100": 55.0,
+        "protein_g_per_100kcal_derived": 0.55,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 0.6,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 40.0,
+        "sodium_mg_per_serving": 80.0
+      },
+      "published_score_grade": {
+        "score": 46.3,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 4.9,
+        "fat_g": 1.0,
+        "fat_saturated_g": null,
+        "carbohydrates_g": 11.0,
+        "dietary_fiber_g": null
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_8000215204219/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_8000215204219.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    },
+    {
+      "barcode": "8000215204554",
+      "nameHe": "משקה אורז קוקוס אורגני",
+      "brand": "ויטאריז",
+      "milkProductType": "rice",
+      "milkProductTypeLabel": "אורז",
+      "filterTags": [
+        "no_additives"
+      ],
+      "basis": "per_100ml (single disclosed basis for every product on the live page — confirmed via expansion.servingNote)",
+      "protein_density": {
+        "protein_g_per100": 0.4,
+        "energy_kcal_per100": 65.0,
+        "protein_g_per_100kcal_derived": 0.62,
+        "protein_g_per_100kcal_method": "protein_g_per100 / energy_kcal_per100 * 100 — arithmetic only, from the two RAW disclosed values above; not the engine's nutrient_density dimension score (excluded per Nutrition ruling: that score is cross-category-calibrated and misrepresents milk)",
+        "protein_g_per_serving": 0.8,
+        "serving_size_g": 200.0,
+        "per_serving_method": "protein_g_per100 * serving_size_g / 100 (arithmetic conversion using the already-scraped BSIP1 serving_size_g label field; not a new measurement)"
+      },
+      "added_sugar": {
+        "added_sugar_sources_count": 0,
+        "added_sugar_ingredient_terms": [],
+        "source": "BSIP2 trace L3_inferred_classifications.added_sugar_sources_count (ingredient-derived; already-parsed, not recomputed here)",
+        "caveat": "This bar is intentionally NOT built from sugars_g. sugars_g in this corpus is overwhelmingly natural lactose for dairy products (and often unmeasured for plant milks) and is not a proxy for added sugar. added_sugar_sources_count counts distinct added-sugar ingredient markers detected in the label's ingredient text."
+      },
+      "sodium": {
+        "sodium_mg_per100": 40.0,
+        "sodium_mg_per_serving": 80.0
+      },
+      "published_score_grade": {
+        "score": 48.1,
+        "grade": "D",
+        "confidence": "verified",
+        "note": "Shown for benchmark placement ONLY. This dataset is UNORDERED — do not sort/rank by this field for the guide."
+      },
+      "other_disclosed_nutrition_per100 (transparency panel — NOT for the added-sugar bar)": {
+        "sugars_g_total_NOT_added_sugar": 4.9,
+        "fat_g": 2.4,
+        "fat_saturated_g": 1.4,
+        "carbohydrates_g": 10.0,
+        "dietary_fiber_g": 0.7
+      },
+      "confidence_level": "sufficient",
+      "missing_fields": [],
+      "provenance": {
+        "frontend_source": "bari-web/src/data/comparisons/milk_frontend_v1.json",
+        "frontend_run_id": "task409_rederive_milk_20260626",
+        "frontend_engine_sha": "5f2e611db7417d1e31e9ae548afde041d5a148a9",
+        "bsip2_trace_source": "02_products/milk_and_alternatives/intelligence_bsip2/run_006_shelfrel_refreeze/products/bsip1_8000215204554/bsip2_trace.json",
+        "bsip1_source": "03_operations/bsip1/run_milk_002/output/bsip1_8000215204554.json",
+        "score_grade_cross_checked_against_trace": true
+      }
+    }
+  ]
+}

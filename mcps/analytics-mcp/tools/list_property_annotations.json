@@ -1,0 +1,24 @@
+{
+  "name": "list_property_annotations",
+  "description": "Returns annotations for a property.\n\nAnnotations are a feature that allows you to leave notes on GA4 for specific dates or periods.\nThey are typically used to record service releases, marketing campaign launches or changes,\nand rapid traffic increases or decreases due to external factors.\n\nArgs:\n    property_id: The Google Analytics property ID. Accepted formats are:\n      - A number\n      - A string consisting of 'properties/' followed by a number",
+  "inputSchema": {
+    "properties": {
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Property Id"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "title": "list_property_annotationsParams",
+    "type": "object"
+  }
+}

@@ -1,7 +1,7 @@
 # Bari Page Generator — Gate Report
 
 **Input:** `02_products/yogurt_system/bsip2_task515_v3/frontend_out/yogurt_spoonable_FINAL_v2.json`
-**Generated:** 2026-07-05T15:23:26Z  |  **Elapsed:** 0.1s
+**Generated:** 2026-07-08T19:52:18Z  |  **Elapsed:** 0.2s
 
 ## Summary
 
@@ -24,7 +24,7 @@
   INFO: Document validates against schema
 
 ### [WARN] G2 COVERAGE
-  INFO: imageUrl: 74/78 non-null
+  INFO: imageUrl: 78/78 non-null
   INFO: name: 78/78 non-null
   INFO: score: 78/78 non-null
   INFO: grade: 78/78 non-null

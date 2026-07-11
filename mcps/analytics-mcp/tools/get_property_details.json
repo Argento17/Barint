@@ -1,0 +1,24 @@
+{
+  "name": "get_property_details",
+  "description": "Returns details about a property.\nArgs:\n    property_id: The Google Analytics property ID. Accepted formats are:\n      - A number\n      - A string consisting of 'properties/' followed by a number",
+  "inputSchema": {
+    "properties": {
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Property Id"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "title": "get_property_detailsParams",
+    "type": "object"
+  }
+}

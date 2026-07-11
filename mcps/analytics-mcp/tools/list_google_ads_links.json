@@ -1,0 +1,24 @@
+{
+  "name": "list_google_ads_links",
+  "description": "Returns a list of links to Google Ads accounts for a property.\n\nArgs:\n    property_id: The Google Analytics property ID. Accepted formats are:\n      - A number\n      - A string consisting of 'properties/' followed by a number",
+  "inputSchema": {
+    "properties": {
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Property Id"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "title": "list_google_ads_linksParams",
+    "type": "object"
+  }
+}

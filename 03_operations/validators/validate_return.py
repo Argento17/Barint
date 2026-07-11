@@ -27,6 +27,11 @@ Checks (all <100ms, zero model cost):
                      histogram / most_common / min-max (Rule 5).
   C6 CITATIONS     — any PMID/DOI in the contract is format-checked and, if
                      verify_citations.py is present, passed through it; never trusted raw.
+  C7 CONTAINMENT   — any artifact written under `.claude/` is a CRITICAL finding: project-local
+                     config (hooks/agents/skills/settings) executes with the orchestrator's own
+                     authority the next time it loads, before any trust/review step ("How we
+                     contain Claude across products", Anthropic, 2026-05). This is never
+                     auto-bounced as an ordinary CHANGES_REQUESTED — see orchestrate.md step 5.
 
 Exit codes (mirrors run_gates.py):
   0  all HARD checks PASS (WARN allowed)
@@ -104,14 +109,22 @@ class Report:
     def warn(self, cid: str, ok: bool, detail: str) -> None:
         self.checks.append((cid, "WARN", "PASS" if ok else "WARN", detail))
 
+    def critical(self, cid: str, ok: bool, detail: str) -> None:
+        """Fails the gate like `hard`, but is rendered distinctly — a CRITICAL finding is
+        never meant to be silently auto-bounced; it exists to force a human look (C7)."""
+        self.checks.append((cid, "CRITICAL", "PASS" if ok else "FAIL", detail))
+
     @property
     def failed(self) -> bool:
-        return any(lvl == "HARD" and st == "FAIL" for _, lvl, st, _ in self.checks)
+        return any(lvl in ("HARD", "CRITICAL") and st == "FAIL" for _, lvl, st, _ in self.checks)
 
     def render(self, task: str) -> str:
         lines = [f"validate_return :: {task}", "-" * 60]
         for cid, lvl, st, detail in self.checks:
-            mark = {"PASS": "PASS", "FAIL": "FAIL", "WARN": "WARN"}[st]
+            if lvl == "CRITICAL":
+                mark = "CRITICAL-FAIL" if st == "FAIL" else "PASS"
+            else:
+                mark = {"PASS": "PASS", "FAIL": "FAIL", "WARN": "WARN"}[st]
             lines.append(f"  [{mark}] {cid:<14} {detail}")
         verdict = "FAIL" if self.failed else "PASS"
         lines.append("-" * 60)
@@ -211,6 +224,29 @@ def check_artifacts(c: dict, root: Path, rep: Report) -> None:
         ok = actual == claimed
         rep.hard(f"C2[{i}].sha", ok,
                  f"{rel}: sha256 {'matches' if ok else f'MISMATCH claimed={claimed[:12]}.. actual={actual[:12]}..'}")
+
+
+CONTAINMENT_RE = re.compile(r"(^|/)\.claude/", re.I)
+
+
+def check_containment(c: dict, rep: Report) -> None:
+    """C7: any lane-written artifact under `.claude/` is a pre-trust attack surface —
+    hooks/agents/skills/settings execute with the orchestrator's authority the next time
+    the project loads, before any review step. Flag CRITICAL, not HARD: the orchestrator
+    must read the actual diff, not just note the gate failed (see orchestrate.md step 5)."""
+    hits = []
+    for a in c.get("artifacts", []):
+        if not isinstance(a, dict):
+            continue
+        rel = str(a.get("path", "")).replace("\\", "/")
+        if CONTAINMENT_RE.search(rel):
+            hits.append(rel)
+    if hits:
+        rep.critical("C7.containment", False,
+                     f"lane wrote under .claude/: {hits} — read this diff yourself before "
+                     f"accept/reject; do not auto-bounce or silently re-dispatch")
+    else:
+        rep.warn("C7.containment", True, "no artifacts under .claude/")
 
 
 def check_counts_form(c: dict, rep: Report) -> None:
@@ -319,6 +355,7 @@ def validate(contract: dict, root: Path, run_commands: bool) -> Report:
     rep = Report()
     if check_schema(contract, rep):
         check_artifacts(contract, root, rep)
+        check_containment(contract, rep)
         check_counts_form(contract, rep)
         check_distribution(contract, rep)
         check_commands(contract, rep, run_commands, root)
@@ -369,16 +406,35 @@ def run_selftest() -> int:
             "self_check": "n/a",
         }
 
+        # otherwise-clean contract, but one artifact lands under .claude/ — must fail on C7 alone
+        claude_file = tmp / ".claude" / "settings.json"
+        claude_file.parent.mkdir(parents=True, exist_ok=True)
+        claude_file.write_text("{}\n", encoding="utf-8")
+        claude_sha = _sha256(claude_file)
+        containment = {
+            "task": "SELFTEST-CONTAINMENT",
+            "proposed_status": "RETURNED",
+            "artifacts": [{"path": ".claude/settings.json", "action": "modified", "sha256": claude_sha}],
+            "counts": {},
+            "commands_run": [],
+            "not_done": [],
+            "self_check": "n/a",
+        }
+
         r_pass = validate(passing, tmp, run_commands=False)
         r_fail = validate(failing, tmp, run_commands=False)
+        r_contain = validate(containment, tmp, run_commands=False)
         print(r_pass.render("SELFTEST-PASS"))
         print()
         print(r_fail.render("SELFTEST-FAIL"))
         print()
+        print(r_contain.render("SELFTEST-CONTAINMENT"))
+        print()
 
-        ok = (not r_pass.failed) and r_fail.failed
+        ok = (not r_pass.failed) and r_fail.failed and r_contain.failed
         print(f"SELFTEST: passing->{'PASS' if not r_pass.failed else 'FAIL'}, "
-              f"failing->{'FAIL(correct)' if r_fail.failed else 'PASS(WRONG)'}  =>  "
+              f"failing->{'FAIL(correct)' if r_fail.failed else 'PASS(WRONG)'}, "
+              f"containment->{'FAIL(correct)' if r_contain.failed else 'PASS(WRONG)'}  =>  "
               f"{'OK' if ok else 'BROKEN'}")
         return 0 if ok else 1
     finally:

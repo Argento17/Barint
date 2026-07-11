@@ -1,18 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ChecksPanel } from "@/components/internal/dossier/checks-panel";
-import { EvidenceCellsTable } from "@/components/internal/dossier/evidence-cells-table";
-import { IdentityHeader } from "@/components/internal/dossier/identity-header";
-import { NamespaceBars } from "@/components/internal/dossier/namespace-bars";
-import { PublicationRecordBlock } from "@/components/internal/dossier/publication-record-block";
+import { DetailTabs } from "@/components/internal/dossier/detail-tabs";
+import { EvidenceTab } from "@/components/internal/dossier/evidence-tab";
+import { OverviewTab } from "@/components/internal/dossier/overview-tab";
 import { Shell } from "@/components/internal/dossier/shell";
+import { TechnicalAuditTab } from "@/components/internal/dossier/technical-tab";
 import { dossierDataAvailable, loadDossier, loadDossierIndex } from "@/lib/dossier/data";
+import { resolveVerdict } from "@/lib/dossier/verdict";
 
 export const dynamic = "force-dynamic";
 
-// Internal-only Page-1 inspection view (TASK-611 / PD-3, memo §5). Read-only:
-// renders exactly what build_dossiers.py produced, never recomputes anything.
+// Internal-only Page-1 inspection view (TASK-611 / PD-3, memo §5; human-readable
+// Overview added TASK-620 / PD-3.1). Read-only: renders exactly what
+// build_dossiers.py produced (+ the live comparison VM resolved for the verdict
+// row) — never recomputes anything, never invents a score/verdict/insight.
 export default async function DossierDetailPage({ params }: { params: Promise<{ pid: string }> }) {
   const { pid } = await params;
 
@@ -30,29 +32,25 @@ export default async function DossierDetailPage({ params }: { params: Promise<{ 
   if (!dossier) notFound();
 
   const index = loadDossierIndex();
+  const verdict = resolveVerdict(dossier);
 
   return (
     <Shell wide>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between" dir="ltr" lang="en">
         <Link href="/internal/dossier" className="text-xs font-medium text-neutral-500 underline">
-          ← חזרה לרשימה
+          ← Back to list
         </Link>
-        <span className="text-xs text-neutral-400">
-          מדף: {dossier.generation.shelf_id} · נוצר: {new Date(dossier.generation.generated_at).toLocaleString("he-IL")} ·
-          compiler {dossier.generation.compiler_version}
-        </span>
+        <span className="font-mono text-xs text-neutral-400">{pid}</span>
       </div>
 
-      <div className="space-y-6">
-        <IdentityHeader layer1={dossier.layer_1} />
-        <ChecksPanel layer4={dossier.layer_4} />
-        <PublicationRecordBlock publicationRecord={dossier.layer_3.publication_record} calculationCheck={dossier.layer_4.calculation} />
-        <NamespaceBars layer3={dossier.layer_3} />
-        <EvidenceCellsTable layer2={dossier.layer_2} />
-      </div>
+      <DetailTabs
+        overview={<OverviewTab dossier={dossier} verdict={verdict} />}
+        evidence={<EvidenceTab layer2={dossier.layer_2} />}
+        technical={<TechnicalAuditTab dossier={dossier} />}
+      />
 
-      <p className="mt-6 text-[0.65rem] text-neutral-300">
-        {index.totalProducts} מוצרים בקובץ אינדקס זה · מקור: {index.sourceDir}
+      <p className="mt-6 text-[0.65rem] text-neutral-300" dir="ltr" lang="en">
+        {index.totalProducts} products in this index · source: {index.sourceDir}
       </p>
     </Shell>
   );

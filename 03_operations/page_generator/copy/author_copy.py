@@ -52,8 +52,42 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+_COPY_DIR = Path(__file__).resolve().parent
+if str(_COPY_DIR) not in sys.path:
+    sys.path.insert(0, str(_COPY_DIR))
+
+from copy_constants import BANNED_CONSUMER_PHRASES
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+
+
+class BannedPhraseError(ValueError):
+    """Raised when authored copy contains a banned consumer phrase."""
+
+
+def enforce_clean(text: str, field: str) -> str:
+    """Reject copy that narrates data-state or score mechanism (P541)."""
+    if not text:
+        return text
+    for phrase in BANNED_CONSUMER_PHRASES:
+        if phrase in text:
+            raise BannedPhraseError(
+                f"banned phrase {phrase!r} in field {field!r}"
+            )
+    return text
+
+
+def _enforce(text: str | None, field: str) -> str | None:
+    if text is None or not isinstance(text, str):
+        return text
+    return enforce_clean(text, field)
+
+
+def _enforce_list(items: list | None, field: str) -> list:
+    if not items:
+        return list(items or [])
+    return [_enforce(x, f"{field}[{i}]") for i, x in enumerate(items)]
 
 # ---------------------------------------------------------------------------
 # Story-tag → short Hebrew descriptor (consumer vocabulary, not framework)
@@ -62,7 +96,7 @@ if hasattr(sys.stdout, "reconfigure"):
 # ---------------------------------------------------------------------------
 
 _STORY_DESC = {
-    "processing_is_the_ceiling": "מידת העיבוד היא הגורם המגביל",
+    "processing_is_the_ceiling": "רמת עיבוד גבוהה יחסית לקטגוריה",
     "modest_nutrient_density":   "צפיפות תזונתית מתונה",
     "calorie_dense":             "צפיפות קלורית גבוהה",
     "sugar_load":                "תכולת סוכר גבוהה",
@@ -182,7 +216,8 @@ def _positive_signals(sheet):
         if s not in seen:
             seen.add(s)
             deduped.append(s)
-    return deduped[:3] if deduped else ["מאפיינים תזונתיים לבחינה"]
+    result = deduped[:3] if deduped else ["מאפיינים תזונתיים לבחינה"]
+    return _enforce_list(result, "_positive_signals")
 
 
 def _limiting_factors(sheet):
@@ -226,7 +261,7 @@ def _limiting_factors(sheet):
         if f not in seen:
             seen.add(f)
             deduped.append(f)
-    return deduped[:2]
+    return _enforce_list(deduped[:2], "_limiting_factors")
 
 
 def _insight_line(sheet, grade, score):
@@ -247,7 +282,7 @@ def _insight_line(sheet, grade, score):
 
     if story in ("processing_is_the_ceiling", "heavy_processing_additives",
                  "distance_from_whole_food"):
-        line = "מוצר עם מאפייני עיבוד מורכבים — מידת העיבוד היא הגורם המרכזי בציון"
+        line = "מוצר עם מאפייני עיבוד מורכבים — העיבוד הוא הנקודה הבולטת בהרכב"
     elif story in ("calorie_dense",):
         kcal = nut.get("kcal")
         if kcal is not None:
@@ -282,7 +317,7 @@ def _insight_line(sheet, grade, score):
     else:
         line = "מאפיינים תזונתיים לבחינה ביחס למדף"
 
-    return line
+    return _enforce(line, "_insight_line")
 
 
 def _row_verdict(sheet, grade, score):
@@ -300,14 +335,14 @@ def _row_verdict(sheet, grade, score):
 
     # Opening: what the score reflects (grade badge only, never in prose)
     if grade and score_val is not None:
-        opening = f"הציון מבטא הערכה כוללת של המוצר ביחס לקטגוריה."
+        opening = "מדורג ביחס לשאר מוצרי הקטגוריה לפי הרכב וערכים תזונתיים."
     else:
-        opening = "הציון מבטא הערכה של המוצר ביחס לקטגוריה."
+        opening = "מדורג ביחס לשאר מוצרי הקטגוריה לפי הרכב וערכים תזונתיים."
 
     # Middle: honest driver
     if story in ("processing_is_the_ceiling", "heavy_processing_additives",
                  "distance_from_whole_food"):
-        middle = "מידת העיבוד של המוצר היא הגורם המגביל המרכזי — יש פרמטרים הקשורים לתהליך הייצור שמשפיעים על הציון."
+        middle = "מידת העיבוד של המוצר בולטת — פרמטרים הקשורים לתהליך הייצור ניכרים בהרכב."
     elif story in ("calorie_dense",):
         kcal = nut.get("kcal")
         if kcal is not None:
@@ -350,7 +385,7 @@ def _row_verdict(sheet, grade, score):
     else:
         closing = "יש לשקול את הנתונים ביחס לצרכים האישיים."
 
-    return f"{opening} {middle} {closing}"
+    return _enforce(f"{opening} {middle} {closing}", "_row_verdict")
 
 
 def _comparison_context(sheet, grade, score, stats):
@@ -389,24 +424,27 @@ def _comparison_context(sheet, grade, score, stats):
     if not lines:
         lines.append("המוצר מתאפיין בפרמטרים ייחודיים לו ביחס לשאר הרשימה.")
 
-    return " ".join(lines[:2])
+    return _enforce(" ".join(lines[:2]), "_comparison_context")
 
 
 def _page_copy(category, sheets):
     """Deterministic baseline page-level copy."""
     n = len(sheets)
     return {
-        "story_headline": (
+        "story_headline": _enforce(
             f"השווינו {n} מוצרים בקטגוריית {category} — "
-            "ניתוח תזונתי מבוסס נתוני תווית."
+            "ניתוח תזונתי מבוסס נתוני תווית.",
+            "_page_copy.story_headline",
         ),
-        "story_teaser": (
+        "story_teaser": _enforce(
             "ההשוואה מתבססת על ערכים תזונתיים, רשימת רכיבים ורמת עיבוד — "
-            "לא על פרמטר בודד."
+            "לא על פרמטר בודד.",
+            "_page_copy.story_teaser",
         ),
-        "philosophy_note": (
+        "philosophy_note": _enforce(
             "המידע נועד לספק הקשר והשוואה בין מוצרים, "
-            "ולא מהווה המלצה רפואית או תזונתית."
+            "ולא מהווה המלצה רפואית או תזונתית.",
+            "_page_copy.philosophy_note",
         ),
     }
 
@@ -415,25 +453,61 @@ def _page_copy(category, sheets):
 # v3: milk-depth authoring functions
 # ---------------------------------------------------------------------------
 
-# Strength → short Hebrew phrase for dimension interpretation
-_STRENGTH_PHRASE = {
-    "חזק":   "ביצועים גבוהים",
-    "בינוני": "ביצועים בינוניים",
-    "נמוך":  "ביצועים נמוכים",
-}
-
-# Dimension key → short consumer-vocabulary note for interpretation baseline
-_DIM_INTERPRETATION_BASELINE = {
-    "processing_quality":  "רמת העיבוד של המוצר",
-    "additive_quality":    "נוכחות תוספי מזון",
-    "nutrient_density":    "צפיפות תזונתית — חלבון וסיבים",
-    "protein_quality":     "תרומת חלבון",
-    "calorie_density":     "צפיפות קלורית",
-    "glycemic_quality":    "פרופיל גליקמי וסוכרים",
-    "fat_quality":         "פרופיל שומן",
-    "satiety_support":     "תמיכה בתחושת שובע",
-    "regulatory_quality":  "מצב תוויות ורגולציה",
-    "whole_food_integrity": "שלמות המזון ומרחק מהמקור",
+# Dimension key -> {strength -> short, qualitative, category-relative Hebrew note}.
+# TASK-533 round-2 / TASK-538 (2026-07-08, C3 Principle A): no raw grams, no score
+# parenthetical, no framework/mechanism vocabulary, no grade. Category-relative
+# and hedged (satiety_support keeps a non-absolute "פוטנציאל" hedge per spec).
+_DIM_INTERPRETATION_PHRASES = {
+    "processing_quality": {
+        "חזק":   "רשימת רכיבים מינימלית, קרובה לצורתה הטבעית של המזון.",
+        "בינוני": "העיבוד כאן ברמה בינונית ביחס לקטגוריה.",
+        "נמוך":  "עיבוד משמעותי יחסית לשאר המוצרים בקטגוריה.",
+    },
+    "additive_quality": {
+        "חזק":   "פרופיל תוספים נקי ביחס לקטגוריה.",
+        "בינוני": "פרופיל תוספים בינוני ביחס לקטגוריה.",
+        "נמוך":  "פרופיל תוספים חלש יחסית לשאר הקטגוריה.",
+    },
+    "nutrient_density": {
+        "חזק":   "צפיפות תזונתית גבוהה יחסית לקטגוריה — הרבה ערך תזונתי ביחס לקלוריות.",
+        "בינוני": "צפיפות תזונתית בינונית ביחס לקטגוריה.",
+        "נמוך":  "צפיפות תזונתית נמוכה יחסית לקטגוריה.",
+    },
+    "protein_quality": {
+        "חזק":   "תרומת חלבון גבוהה ביחס לשאר הקטגוריה.",
+        "בינוני": "תרומת חלבון בינונית ביחס לקטגוריה.",
+        "נמוך":  "תרומת חלבון נמוכה ביחס לשאר הקטגוריה.",
+    },
+    "calorie_density": {
+        "חזק":   "צפיפות קלורית נמוכה יחסית לקטגוריה.",
+        "בינוני": "צפיפות קלורית בינונית ביחס לקטגוריה.",
+        "נמוך":  "צפיפות קלורית גבוהה יחסית לקטגוריה.",
+    },
+    "glycemic_quality": {
+        "חזק":   "פרופיל גליקמי נוח יחסית לקטגוריה — עומס סוכר מוגבל.",
+        "בינוני": "פרופיל גליקמי בינוני ביחס לקטגוריה.",
+        "נמוך":  "פרופיל גליקמי פחות נוח יחסית לקטגוריה — עומס סוכר גבוה יותר.",
+    },
+    "fat_quality": {
+        "חזק":   "פרופיל שומן נוח יחסית לקטגוריה.",
+        "בינוני": "פרופיל שומן בינוני ביחס לקטגוריה.",
+        "נמוך":  "פרופיל שומן פחות נוח יחסית לקטגוריה.",
+    },
+    "satiety_support": {
+        "חזק":   "פוטנציאל לתחושת שובע גבוה יחסית לקטגוריה, בעיקר בזכות החלבון.",
+        "בינוני": "פוטנציאל לתחושת שובע בינוני ביחס לקטגוריה.",
+        "נמוך":  "פוטנציאל לתחושת שובע נמוך יחסית לקטגוריה.",
+    },
+    "regulatory_quality": {
+        "חזק":   "עומד בדרישות התיוג הבסיסיות למוצרי חלב בישראל.",
+        "בינוני": "התיוג עומד ברוב הדרישות הבסיסיות, אך לא בכולן.",
+        "נמוך":  "התיוג לא עומד בכל הדרישות הבסיסיות למוצרי חלב.",
+    },
+    "whole_food_integrity": {
+        "חזק":   "מבוסס על חלב ורכיבים שלמים, בלי תוספים או רכיבים מבודדים.",
+        "בינוני": "מבוסס בעיקר על חלב, עם כמה רכיבים מעובדים או מבודדים.",
+        "נמוך":  "מרוחק יחסית ממבנה מזון שלם — רכיבים מבודדים או מעובדים בהרכב.",
+    },
 }
 
 
@@ -443,12 +517,15 @@ def _author_bari_interpretation(bari_interp_inputs):
 
     For each entry in bari_interp_inputs (key/label/score/strength):
       - If score is null → interpretation = 'נתון לא זמין'
-      - Else → one short baseline Hebrew sentence: "<label> — <strength phrase> (<score>)"
-        Law-abiding: no grade in prose, no framework vocabulary, sodium/fat as fact only.
+      - Else → one short, qualitative, category-relative Hebrew sentence keyed by
+        (dimension key, strength tier). Law-abiding: no grade in prose, no raw grams,
+        no score parenthetical, no framework/mechanism vocabulary, sodium/fat as fact
+        only (never causal). TASK-533 round-2 / TASK-538 (C3 Principle A, 2026-07-08).
 
     Returns a list matching the bariInterpretation schema:
       [{key, label, score, strength, interpretation}, ...]
-    The key/label/score/strength are passed through unchanged (already deterministic).
+    The key/label/score/strength are passed through unchanged (already deterministic) —
+    only `interpretation` is (re)written by this function.
     """
     result = []
     for entry in (bari_interp_inputs or []):
@@ -460,17 +537,25 @@ def _author_bari_interpretation(bari_interp_inputs):
         if score is None or strength == "data not available":
             interpretation = "נתון לא זמין"
         else:
-            dim_note = _DIM_INTERPRETATION_BASELINE.get(key, label)
-            strength_phrase = _STRENGTH_PHRASE.get(strength, strength)
-            score_int = int(round(score))
-            interpretation = f"{dim_note} — {strength_phrase} ({score_int})"
+            phrase_bank = _DIM_INTERPRETATION_PHRASES.get(key)
+            if phrase_bank and strength in phrase_bank:
+                interpretation = phrase_bank[strength]
+            elif phrase_bank:
+                # Unknown strength label for a known dimension — fall back to the
+                # "בינוני" (middle) phrasing rather than exposing the raw strength token.
+                interpretation = phrase_bank.get("בינוני", f"{label} — ביחס לקטגוריה.")
+            else:
+                interpretation = f"{label} — ביחס לקטגוריה."
 
         result.append({
             "key": key,
             "label": label,
             "score": score,
             "strength": strength,
-            "interpretation": interpretation,
+            "interpretation": _enforce(
+                interpretation,
+                f"_author_bari_interpretation[{key}].interpretation",
+            ),
         })
     return result
 
@@ -530,7 +615,7 @@ def _author_consumer_explanation(sheet, grade, score):
     elif add_count == 0:
         why = "הציון מבטא מוצר ללא תוספי מזון מזוהים ברשימת הרכיבים."
     else:
-        why = "הציון מבטא הערכה כוללת של הרכב המוצר ביחס לקטגוריה."
+        why = "מדורג לפי שקלול הרכב המוצר ביחס לקטגוריה."
 
     # good[]: at least one entry grounded in facts
     good = _positive_signals(sheet)
@@ -558,11 +643,11 @@ def _author_consumer_explanation(sheet, grade, score):
     takeaway = _consumer_takeaway(sheet, grade, score)
 
     return {
-        "whyRated": why,
-        "good": good,
-        "watchOut": list(watch_out),
-        "context": context,
-        "takeaway": takeaway,
+        "whyRated": _enforce(why, "_author_consumer_explanation.whyRated"),
+        "good": _enforce_list(good, "_author_consumer_explanation.good"),
+        "watchOut": _enforce_list(watch_out, "_author_consumer_explanation.watchOut"),
+        "context": _enforce(context, "_author_consumer_explanation.context"),
+        "takeaway": _enforce(takeaway, "_author_consumer_explanation.takeaway"),
     }
 
 
@@ -607,7 +692,7 @@ def _author_best_use_cases(sheet):
             tags.append("מאפיינים תזונתיים טובים")
     if not tags:
         tags = ["לבחינה"]
-    return tags
+    return _enforce_list(tags, "_author_best_use_cases")
 
 
 # ---------------------------------------------------------------------------
@@ -735,5 +820,38 @@ def main():
     print("[author_copy] NOTE: baseline_placeholder — not milk-quality.")
 
 
+def _collect_template_strings() -> list[tuple[str, str]]:
+    """Harvest every baseline template bank entry for self-test."""
+    entries: list[tuple[str, str]] = []
+    for tag, desc in _STORY_DESC.items():
+        entries.append((f"_STORY_DESC[{tag}]", desc))
+    for dim, tiers in _DIM_INTERPRETATION_PHRASES.items():
+        for tier, phrase in tiers.items():
+            entries.append((f"_DIM_INTERPRETATION_PHRASES[{dim}][{tier}]", phrase))
+    for label, phrase in _GRADE_LABEL.items():
+        entries.append((f"_GRADE_LABEL[{label}]", phrase))
+    return entries
+
+
+def self_test() -> int:
+    """Run enforce_clean on every template bank entry. Exit 0 on PASS."""
+    failures: list[str] = []
+    for field, text in _collect_template_strings():
+        try:
+            enforce_clean(text, field)
+        except BannedPhraseError as exc:
+            failures.append(str(exc))
+    if failures:
+        print(f"[FAIL] author_copy template self-test: {len(failures)} banned hit(s)")
+        for msg in failures[:20]:
+            print(f"  · {msg}")
+        return 1
+    print(f"[PASS] author_copy template self-test ({len(_collect_template_strings())} entries)")
+    return 0
+
+
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] not in ("--selftest",):
+        main()
+    else:
+        sys.exit(self_test())

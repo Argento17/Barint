@@ -11,6 +11,7 @@ catch them in ONE command instead of via a red-team block:
   - ingredient sanity    (no truncation '(' '{' / trailing comma / marketing-bleed) [RT-4/5, C3-after/final CRIT-2]
   - stale-rank copy       (verdicts claiming #1/'בראש' flagged for manual confirm) [RT-1]
   - image presence        (every product has an imageUrl; optional HTTP check)
+  - copy-authored         (baseline template fingerprint / mass-templating) [P536]
 
 Usage:
   python validate_comparison_page.py --json <frontend_json> --traces <run_dir/products> [--http]
@@ -246,6 +247,33 @@ def main():
                 dead.append(p["barcode"])
         print(f"[{'FAIL' if dead else 'PASS'}] image HTTP    ({len(dead)} dead)")
         if dead: fails.append(("image-http", dead))
+
+    # 8. copy-authored — baseline template fingerprint gate (P536).
+    ca_path = os.path.join(os.path.dirname(__file__), "validate_copy_authored.py")
+    if os.path.exists(ca_path):
+        try:
+            import subprocess
+            proc = subprocess.run(
+                [sys.executable, ca_path, "--json", a.json, "--emit-json"],
+                capture_output=True, encoding="utf-8", errors="replace", timeout=120,
+            )
+            ca = json.loads(proc.stdout or "{}")
+            ca_fail = not ca.get("passed", False)
+            n_hits = (ca.get("banned_hits", 0) + ca.get("sentence_repeat_hits", 0)
+                      + ca.get("phrase_hits", 0) + ca.get("template_hits", 0)
+                      + ca.get("mass_template_hits", 0))
+            print(f"[{'FAIL' if ca_fail else 'PASS'}] copy-authored ({n_hits} signal(s): "
+                  f"banned={ca.get('banned_hits', 0)} sentence={ca.get('sentence_repeat_hits', 0)} "
+                  f"fingerprint={ca.get('phrase_hits', 0)} mass={ca.get('mass_template_hits', 0)}) "
+                  f"[validate_copy_authored.py]")
+            if ca_fail:
+                fails.append(("copy-authored", ca.get("findings", [])[:8]))
+        except Exception as e:  # noqa: BLE001 — validator hiccup must not break ship gate
+            print(f"[WARN] copy-authored (validate_copy_authored.py error: {e}) — run standalone")
+            warns.append(("copy-authored", f"validate_copy_authored.py error: {e}"))
+    else:
+        print("[WARN] copy-authored (validate_copy_authored.py absent)")
+        warns.append(("copy-authored", "validate_copy_authored.py absent"))
 
     print("-" * 60)
     if fails:

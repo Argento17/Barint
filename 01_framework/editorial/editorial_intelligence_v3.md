@@ -75,6 +75,24 @@ Framework visibility is a failure state, not a feature. When the reader notices 
 
 This principle applies to UX, editorial copy, scoring explanations, and methodology pages alike. The measure of good methodology documentation is not completeness — it is whether a reader finishes it understanding Bari better, or understanding Bari's taxonomy better. Those are different outcomes.
 
+#### Principle A — no score-mechanism narration (C3 ruling, TASK-533 round 2, 2026-07-08)
+
+A specific, recurring failure mode of Framework Invisibility: copy that explains **why the score is what it is by narrating the scoring machine**, even when it never names a Tier-4 term outright. The yogurt round-1 re-author passed a literal leakage scan (no "NOVA", no "cap", no raw score number) and still failed Framework Invisibility, because sentences like *"נשאר ב-A כי רשימת הרכיבים מבוססת על טקסט העמוד בלבד, ולכן רמת העיבוד אינה מאומתת"* describe **the pipeline's own data-confidence classification** — the algorithm narrating itself in plain words is still the algorithm narrating itself.
+
+**The rule:** when a product's real limiting driver is a provenance/confidence artifact (page-text-only extraction, an internal confidence tier, an unverified processing classification), **omit it as a score explanation.** Never write "the score stayed/dropped because…", never name the internal cap, tier, or classification mechanism — even in translated, jargon-free words.
+
+**What IS allowed — the evidence boundary, stated in food language:** Bari may tell the reader the honest limit of what it can say about *the product* (not about its own pipeline), using ordinary shelf vocabulary: a full label photo, what the package states, what wasn't verified. Approved model: *"יוגורט נקי ופשוט משני רכיבים; בלי צילום תווית מלא לא נהפוך את זה להבטחה חזקה יותר."* That sentence describes the food and is honest about the limit of the claim — it never mentions data sources, confidence tiers, or extraction methods.
+
+**This applies everywhere a scored dimension gets a sentence — including `bariInterpretation`, the per-dimension panel note** (10 rows: processing, additives, nutrient density, protein, calories, glycemic, fat, satiety, regulatory, whole-food-integrity). A dimension note is a short, qualitative, **category-relative** sentence (e.g. "צפיפות קלורית נמוכה יחסית לקטגוריה") — never a raw-gram recitation ("58 קק"ל, 10.5 גרם חלבון") and never a `(score)` parenthetical. Raw numbers there duplicate the UI (Rule A, `row_description_standard_v1.md` §5c) *and* invite the reader to reverse-engineer the scoring formula from ten data points — the opposite of framework invisibility. The canonical implementation is `03_operations/page_generator/copy/author_copy.py::_author_bari_interpretation()` — any new category's dimension panel should route through it rather than hand-authoring per-product interpretation strings.
+
+#### Principle B — cluster-honest, not fake-unique (C3 ruling, TASK-533 round 2, 2026-07-08)
+
+Uniqueness is not, by itself, quality. A shelf of 78 yogurts contains real clusters — several near-identical plain, additive-free cups that differ mainly by brand and milk-fat percentage. Forcing 78 "distinct insights" onto a corpus with genuine duplicates pushes the writer toward **fabricating differentiation that isn't in the data** — the same failure class as the butter-clustering and salty-snacks-fabricated-identity precedents (see memory `butter_clustering_honest_finding`, `salty_snacks_fabricated_identity`).
+
+**The test before varying any line:** *what verified product fact makes me write this differently?* Valid anchors: observed ingredients, added sugar/sweeteners, protein/calorie profile, fat level, milk source (cow/goat/sheep), lactose-free status, additives/stabilizers named in the trace, flavor stated on the product's own label, package/use-case, price (only if governed data). Brand alone is not a valid anchor unless it maps to a real attribute.
+
+If a product cannot answer that test against its shelf neighbors, it is genuinely part of a cluster — write **honest cluster language** that says so ("יוגורט טבעי פשוט עם רשימת רכיבים קצרה; מול דומים במדף הבחירה כאן תהיה בעיקר לפי מחיר וטעם, לא בגלל יתרון תזונתי חריג"), not a byte-identical mass paste and not an invented distinction. A byte-identical `consumerTakeaway` across products is still a defect (RT-3) — but the fix is to surface the *real* differentiator each product already carries (its own stated flavor, its own milk source, its own fat%), not to manufacture a nutritional claim that isn't there.
+
 ---
 
 ### Consumer Attention Test

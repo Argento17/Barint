@@ -1,0 +1,24 @@
+{
+  "name": "get_custom_dimensions_and_metrics",
+  "description": "Returns the property's custom dimensions and metrics.\n\nArgs:\n    property_id: The Google Analytics property ID. Accepted formats are:\n      - A number\n      - A string consisting of 'properties/' followed by a number",
+  "inputSchema": {
+    "properties": {
+      "property_id": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "title": "Property Id"
+      }
+    },
+    "required": [
+      "property_id"
+    ],
+    "title": "get_custom_dimensions_and_metricsParams",
+    "type": "object"
+  }
+}

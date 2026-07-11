@@ -13,12 +13,16 @@ POST note: Search Analytics is a POST query (a read — it mutates nothing). The
 `http` module is GET-only by design, so this client carries a tiny stdlib POST helper
 scoped to this one read-query use; it still performs no write to any Google resource.
 
-AUTH: OAuth2 — Search Console has no static API key. The honest path: obtain an OAuth2
-access token with the `webmasters.readonly` scope (service account with site access, or a
-user-consent flow) and provide it as GSC_ACCESS_TOKEN, plus GSC_SITE_URL (the property,
-e.g. "https://bari.co.il/" or "sc-domain:bari.co.il"). Status is NEEDS-ENV-VERIFY:
-endpoints + payloads are correct and stable, but a live run needs a connected, verified
-Search Console property and a fresh token. Tokens expire (~1h) — refresh externally.
+AUTH: OAuth2 — Search Console has no static API key. Two paths, in priority order:
+1. GSC_ACCESS_TOKEN env var (a raw ~1h token) — for one-off manual runs.
+2. SERVICE ACCOUNT (the standing path, wired 2026-07-04 TASK-505): auto-mints fresh
+   `webmasters.readonly` tokens from the same GA4 reader key
+   (ga4-mcp-reader@toms-budget; key at GSC_SA_KEY_FILE, default the ga4-mcp key path).
+   Requires the service account added as a user on the Search Console property
+   (done 2026-07-04) and the `google-auth` package (present). Tokens are cached and
+   auto-refreshed in-process.
+GSC_SITE_URL defaults to "sc-domain:bari.digital" (owner-confirmed Domain property,
+2026-07-04); override via env for any other property.
 
 Docs: https://developers.google.com/webmaster-tools/v1/searchanalytics/query
 """
@@ -34,16 +38,43 @@ from dataclasses import dataclass
 
 from .http_client import USER_AGENT, HttpError
 
-CLIENT_VERSION = "1.0"
+CLIENT_VERSION = "1.1"
 API = "https://searchconsole.googleapis.com/webmasters/v3"
+
+_DEFAULT_SA_KEY = r"C:\Users\HP\.config\ga4-mcp\ga4-mcp-reader-key.json"
+_GSC_SCOPE = "https://www.googleapis.com/auth/webmasters.readonly"
+_sa_credentials = None  # cached google.oauth2 credentials, refreshed on expiry
+
+
+def _sa_key_file() -> str:
+    return os.environ.get("GSC_SA_KEY_FILE", _DEFAULT_SA_KEY)
+
+
+def _sa_token() -> str:
+    """Mint (and cache) an access token from the service-account key. Returns '' if
+    the key file or google-auth is unavailable — callers fall back to env token."""
+    global _sa_credentials
+    try:
+        if _sa_credentials is None:
+            if not os.path.isfile(_sa_key_file()):
+                return ""
+            from google.oauth2 import service_account  # deferred import
+            _sa_credentials = service_account.Credentials.from_service_account_file(
+                _sa_key_file(), scopes=[_GSC_SCOPE])
+        if not _sa_credentials.valid:
+            from google.auth.transport.requests import Request  # deferred import
+            _sa_credentials.refresh(Request())
+        return _sa_credentials.token or ""
+    except Exception:
+        return ""
 
 
 def _token() -> str:
-    return os.environ.get("GSC_ACCESS_TOKEN", "")
+    return os.environ.get("GSC_ACCESS_TOKEN", "") or _sa_token()
 
 
 def _site() -> str:
-    return os.environ.get("GSC_SITE_URL", "")
+    return os.environ.get("GSC_SITE_URL", "sc-domain:bari.digital")
 
 
 def is_configured() -> bool:
