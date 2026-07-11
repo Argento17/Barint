@@ -14,6 +14,9 @@ if sys.stdout.encoding and sys.stdout.encoding.lower() not in ("utf-8", "utf8"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR.parent / "_shared"))
+from bsip0_nutrition import _normalize_decimal_comma  # noqa: E402
+
 RETAILER_DIR = BASE_DIR / "outputs" / "yohananof_milk"
 BSIP1_OUT = Path(r"C:\Bari\03_operations\bsip1\run_milk_002\output")
 BSIP1_OUT.mkdir(parents=True, exist_ok=True)
@@ -33,7 +36,7 @@ def parse_number(text):
     if not text:
         return None
     text = clean(text)
-    text = text.replace(",", ".").replace("פחות מ", "").replace("<", "").strip()
+    text = _normalize_decimal_comma(text).replace("פחות מ", "").replace("<", "").strip()
     match = re.search(r"(\d+(?:\.\d+)?)", text)
     return float(match.group(1)) if match else None
 

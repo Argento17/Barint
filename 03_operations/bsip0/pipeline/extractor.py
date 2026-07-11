@@ -1,4 +1,9 @@
 import re
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scrape" / "_shared"))
+from bsip0_nutrition import _normalize_decimal_comma  # noqa: E402
 
 
 TARGET_FIELDS = {
@@ -67,14 +72,14 @@ def normalize_text(text: str) -> str:
     if not text:
         return ""
 
-    return (
+    normalized = (
         str(text)
         .replace("״", '"')
         .replace("׳", "'")
-        .replace(",", ".")
         .replace("־", "-")
         .strip()
     )
+    return _normalize_decimal_comma(normalized)
 
 
 def clean_lines_from_ocr(ocr_obj: dict) -> list[str]:
