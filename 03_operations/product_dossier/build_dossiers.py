@@ -105,13 +105,26 @@ def normalize_dirs(value) -> List[str]:
     return list(value)
 
 
-def category_folder_from_config(cfg: dict) -> Optional[str]:
+def category_folders_from_config(cfg: dict) -> List[str]:
+    """Return every product-category folder configured for this shelf.
+
+    Some shelves intentionally merge historical runs from more than one
+    category (cookies_coffee includes cakes_hard_cookies).  Capture matching
+    must permit each configured corpus, not just the first one.
+    """
     candidates = normalize_dirs(cfg.get("run_products_dir")) + normalize_dirs(cfg.get("corpus_dirs"))
+    folders = []
     for c in candidates:
         m = re.search(r"02_products[\\/]+([^\\/]+)[\\/]", c or "")
-        if m:
-            return m.group(1)
-    return None
+        if m and m.group(1) not in folders:
+            folders.append(m.group(1))
+    return folders
+
+
+def category_folder_from_config(cfg: dict) -> Optional[str]:
+    """Compatibility wrapper for callers that only need the first folder."""
+    folders = category_folders_from_config(cfg)
+    return folders[0] if folders else None
 
 
 def discover_shelf_configs(only: Optional[List[str]] = None) -> List[Tuple[str, dict, Path]]:
@@ -343,7 +356,7 @@ def process_shelf(shelf_id: str, cfg: dict, config_path: Path, by_pair, by_gtin,
         any_dir_found = True
         for bc, t in rg.load_bsip2_traces(str(run_dir)).items():
             traces.setdefault(bc, t)
-    category_folder = category_folder_from_config(cfg)
+    category_folder = category_folders_from_config(cfg)
 
     dossiers = []
     pid_resolved = 0
@@ -579,6 +592,28 @@ def cmd_selftest(args) -> int:
         print("[PASS] missing capture -> every field cell is the exact null_cell() shape (no imputation)")
     else:
         failures.append(f"missing-capture path did not produce pure null cells: note={note} cells={cells}")
+
+    # (3b) A retailer/GTIN hit from another category is not evidence for this
+    # product.  It must retain the exact null-cell shape, rather than emitting
+    # retrieved cells with null parsed values.
+    wrong_category_rec = {
+        "retailer": "shufersal", "gtin": "9999999999998",
+        "capture_file": "02_products/bread/bsip0_outputs/synthetic.json",
+        "object_path": "/0", "scrape_timestamp": "2026-01-01T00:00:00Z",
+        "content_hash": "synthetic-wrong-category", "canonical": True,
+    }
+    collision_cells, collision_note = layer2_evidence.assemble_layer2_for_product(
+        "shufersal", "9999999999998", "milk_and_alternatives",
+        {("shufersal", "9999999999998"): wrong_category_rec},
+        {"9999999999998": [wrong_category_rec]},
+    )
+    if collision_note == "category_mismatch_capture" and all(c == null for c in collision_cells.values()):
+        print("[PASS] cross-category retailer/GTIN collision -> exact null cells (not retrieved)")
+    else:
+        failures.append(
+            "cross-category retailer/GTIN collision was not null/not_retrieved: "
+            f"note={collision_note} cells={collision_cells}"
+        )
 
     # (4) Layer-2 dereference matches replay_harness on a sample (dynamic --
     # compare against a live replay() run, not hardcoded constants)

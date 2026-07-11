@@ -154,6 +154,51 @@ def build_capture_index(manifest: dict) -> Tuple[Dict[Tuple[str, str], dict], Di
     return by_pair, by_gtin
 
 
+def _is_in_category(rec: dict, category_folder) -> bool:
+    """Whether a capture belongs to the product's configured corpus.
+
+    A retailer/GTIN pair alone is not sufficient: GTINs can collide across
+    shelves in the manifest.  With a configured category, every successful
+    match must therefore pass this path guard.
+    """
+    if not category_folder:
+        return True
+    capture_file = str(rec.get("capture_file") or "").replace("\\", "/")
+    folders = [category_folder] if isinstance(category_folder, str) else category_folder
+    return any(f"/{folder}/" in capture_file for folder in folders)
+
+
+def _deduplicate_equivalent_captures(candidates: List[dict], retailer: str) -> List[dict]:
+    """Collapse only byte-identical canonical captures.
+
+    The TASK-626 cookies cluster has a legacy ``unknown`` manifest row and a
+    retailer-tagged row for the same raw capture.  Same GTIN alone is never
+    enough to collapse candidates; a content hash is required.  Prefer the
+    requested retailer, then a tagged retailer over ``unknown``, so the chosen
+    record is deterministic and preserves the best manifest provenance.
+    """
+    groups: Dict[str, List[dict]] = {}
+    unique: List[dict] = []
+    for rec in candidates:
+        content_hash = rec.get("content_hash")
+        if not content_hash:
+            unique.append(rec)
+            continue
+        groups.setdefault(content_hash, []).append(rec)
+
+    def preference(rec: dict) -> tuple:
+        return (
+            rec.get("retailer") != retailer,
+            rec.get("retailer") == "unknown",
+            str(rec.get("retailer") or ""),
+            str(rec.get("capture_file") or ""),
+            str(rec.get("object_path") or ""),
+        )
+
+    unique.extend(min(group, key=preference) for group in groups.values())
+    return unique
+
+
 def find_capture(
     retailer: str,
     gtin: str,
@@ -167,7 +212,8 @@ def find_capture(
     (None, "ambiguous_capture_match") instead, which surfaces as a
     not_retrieved cell + Layer-4 traceability flag rather than a silent
     wrong-product join):
-      1. Exact (retailer, gtin) match.
+      1. Exact (retailer, gtin) match, only when its capture belongs to the
+         product's category folder.
       2. gtin-only match, filtered to capture_file paths under the
          product's own category folder (derived from the shelf config's
          corpus_dirs/run_products_dir, e.g. "breakfast_cereals"). Applied
@@ -176,26 +222,28 @@ def find_capture(
          `retailer` tag on manifest records is not always populated for
          legacy captures ("unknown"), so retailer alone is not a reliable
          disambiguator.
-      3. If step 2 still yields 0 or >1 candidates, return ambiguous /
+         Byte-identical duplicate records (same content hash) are one capture,
+         not an ambiguity; the tagged record is preferred deterministically.
+      3. If step 2 still yields 0 or >1 distinct captures, return ambiguous /
          not-found rather than picking one arbitrarily.
     """
     rec = by_pair.get((retailer, gtin))
-    if rec is not None:
+    if rec is not None and _is_in_category(rec, category_folder):
         return rec, "matched_retailer_gtin"
 
     candidates = by_gtin.get(gtin, [])
     if not candidates:
         return None, "no_canonical_capture"
 
-    if category_folder:
-        filtered = [c for c in candidates if f"/{category_folder}/" in c["capture_file"].replace("\\", "/")]
-    else:
-        filtered = candidates
+    filtered = [c for c in candidates if _is_in_category(c, category_folder)]
+    filtered = _deduplicate_equivalent_captures(filtered, retailer)
 
     if len(filtered) == 1:
         return filtered[0], "matched_gtin_category_filtered"
-    if len(candidates) == 1:
+    if len(candidates) == 1 and not category_folder:
         return candidates[0], "matched_gtin_only"
+    if rec is not None:
+        return None, "category_mismatch_capture"
     return None, "ambiguous_capture_match"
 
 
