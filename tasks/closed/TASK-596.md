@@ -2,7 +2,15 @@
 id: TASK-596
 title: Correct published fat values baked from EV-026 parser bug (cereals confirmed set)
 owner: orchestrator
-status: RETURNED
+status: CLOSED
+close_reason: >
+  Owner merged PR #108 → origin/master e100b686. Orchestrator verified pre-merge: branch diff was
+  exactly 15 expansion.nutrition.fat lines, every value matching the TASK-591 evidence table
+  (2.0–13.6g); Δ=0 score claim independently confirmed (bsip2 traces scored on correct fat all
+  along — 72968 L1 fat_g=9.4, served 55.0/C coherent). Post-merge: 0 fat==0.5 remaining on origin
+  cereals. Display-data fix only, no score movement — TASK-591 cereals tripwire-1 DISSOLVED. 7
+  NO_EVIDENCE hits (bread/yogurt) correctly untouched. Honesty note: cereals grid doesn't render
+  fat, so this corrects the published record, not a visitor-visible number.
 priority: HIGH
 created_at: 2026-07-11
 depends_on: []

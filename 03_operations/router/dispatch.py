@@ -9,8 +9,8 @@ doc wins — fix the code, not the doc (the doc changes only on an explicit owne
 `--selftest-table` asserts the two stay byte-matched on the Layer 1 and Layer 2 tables
 (the doc's own operational-appendix law).
 
-What v5 is
-----------
+What v5.2 is
+------------
 A capability-routing library + a selftest CLI:
   - `route(TaskAttributes) -> Capability`   — Layer 1's ordered questions, first match wins.
   - `MODEL_BINDING`                          — Layer 2's model table, runtime-usable.
@@ -182,28 +182,30 @@ def find_free_port(start: int = SERVER_PORT_RANGE[0], end: int = SERVER_PORT_RAN
 LAYER1_TABLE: list[tuple[int, str, str, str]] = [
     (1, "Output fully determined by written rules, validator exists?", "DETERMINISTIC",
      "Validator exit 0"),
-    (2, "Needs decomposition, architecture, or ambiguous scope?", "PLANNING",
+    (2, "Explicit strategist consultation? (owner-invoked /stf, or an owner-ordered strategist debate/second-strategist opinion)", "STRATEGY-CONSULT",
+     "Verdict memo: positions, cruxes, converged recommendation, dissent recorded honestly"),
+    (3, "Needs decomposition, architecture, or ambiguous scope?", "PLANNING",
      "Written spec with acceptance criteria + the re-routing decision for the implementation"),
-    (3, "Produces consumer-facing Hebrew copy?", "CONTENT",
+    (4, "Produces consumer-facing Hebrew copy?", "CONTENT",
      "Copy validators pass AND both gates signed, sha256-pinned"),
-    (4, "Coding with ANY complexity signal (checklist below)?", "BUILD-HEAVY",
+    (5, "Coding with ANY complexity signal (checklist below)?", "BUILD-HEAVY",
      "Builds clean, tests pass, reviewed diff, return contract validates"),
-    (5, "Coding with NO complexity signal?", "BUILD-LIGHT", "Same as BUILD-HEAVY"),
-    (6, "Mechanical non-code work (renames, fills, conversions)?", "GRUNT",
+    (6, "Coding with NO complexity signal?", "BUILD-LIGHT", "Same as BUILD-HEAVY"),
+    (7, "Mechanical non-code work (renames, fills, conversions)?", "GRUNT",
      "Re-verified by validator/orchestrator; zero unexplained diffs"),
-    (7, "Evidence research (papers, regulation, government sources, nutrition science, "
+    (8, "Evidence research (papers, regulation, government sources, nutrition science, "
         "competitors)?", "EVIDENCE-RESEARCH",
      "Every claim carries a source; citations pass verify_citations.py"),
-    (8, "Engineering research (GitHub, libraries, frameworks, APIs, implementation patterns)?",
+    (9, "Engineering research (GitHub, libraries, frameworks, APIs, implementation patterns)?",
      "ENGINEERING-RESEARCH",
      "Recommendation names exact versions + licenses + a working proof snippet"),
-    (9, "Bulk one-pass reading, or judging images / rendered pages?", "VISION-LONGREAD",
+    (10, "Bulk one-pass reading, or judging images / rendered pages?", "VISION-LONGREAD",
      "Structured report produced (only artifact type accepted)"),
-    (10, "Scoring or nutrition philosophy?", "DOMAIN-JUDGMENT",
+    (11, "Scoring or nutrition philosophy?", "DOMAIN-JUDGMENT",
      "Reasoned recommendation citing the governing framework docs"),
-    (11, "Needs an independent second opinion (or follows any delivery above)?", "CHALLENGE",
+    (12, "Needs an independent second opinion (or follows any delivery above)?", "CHALLENGE",
      "Verdict with evidence, produced cross-vendor per Invariant 3"),
-    (12, "Anything else", "GENERAL", "Return contract validates"),
+    (13, "Anything else", "GENERAL", "Return contract validates"),
 ]
 
 # (capability, primary_exact, fallback_exact, pipe, fallback_trigger) — raw doc prose,
@@ -214,12 +216,15 @@ LAYER2_TABLE: list[tuple[str, str, str, str, str]] = [
      "Model unavailable"),
     ("CONTENT", "claude-fable-5", "claude-sonnet-5", "Content Agent, pinned",
      "Spawn failure or 2 consecutive rejected drafts"),
-    ("BUILD-HEAVY", "codex gpt-5.6-sol¹",
+    ("BUILD-HEAVY", "codex gpt-5.6-terra¹",
      "claude-sonnet-5 (Frontend/Data agent)",
      "`codex exec` in a worktree, sandbox `workspace-write`",
      "Nonzero exit, empty diff, sandbox refusal, or auth pending"),
     ("BUILD-LIGHT", "codex gpt-5.6-terra¹", "claude-sonnet-5 agent", "same",
      "same"),
+    ("STRATEGY-CONSULT", "Claude seat = `claude-fable-5` EXPLICIT, obtained as a Fable-pinned participant (the orchestrator default is Opus 4.8, so the Fable seat is convened for the meeting, not the ambient session); GPT seat = `gpt-5.6-sol` via `codex exec` READ-ONLY",
+     "fable-only debate (degraded: cross-vendor lost - flag it)",
+     "`codex exec`, sandbox `read-only`", "API/CLI error or auth pending"),
     ("GRUNT", "codex gpt-5.6-luna¹", "claude-haiku-4-5 (Agent tool)",
      "`codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback",
      "API/CLI error, or any output failing its validator once"),
@@ -255,6 +260,8 @@ class TaskAttributes:
     """
     # Q1 — DETERMINISTIC
     deterministic_validator_exists: bool = False
+    # Explicit owner invocation only; never inferred.
+    strategist_consult: bool = False
     # Q2 — PLANNING (sits above ALL implementation; an ambiguous build never reaches a
     # builder directly)
     needs_planning: bool = False
@@ -295,25 +302,27 @@ def route(attrs: TaskAttributes) -> str:
     Returns a Capability name (a LAYER1_TABLE capability / a MODEL_BINDING key)."""
     if attrs.deterministic_validator_exists:       # Q1
         return "DETERMINISTIC"
-    if attrs.needs_planning:                       # Q2
+    if attrs.strategist_consult:                   # Q2
+        return "STRATEGY-CONSULT"
+    if attrs.needs_planning:                       # Q3
         return "PLANNING"
-    if attrs.consumer_hebrew_copy:                 # Q3
+    if attrs.consumer_hebrew_copy:                 # Q4
         return "CONTENT"
-    if attrs.is_coding:                             # Q4 / Q5
+    if attrs.is_coding:                             # Q5 / Q6
         return "BUILD-HEAVY" if has_complexity_signal(attrs) else "BUILD-LIGHT"
-    if attrs.mechanical:                            # Q6
+    if attrs.mechanical:                            # Q7
         return "GRUNT"
-    if attrs.evidence_research:                     # Q7
+    if attrs.evidence_research:                     # Q8
         return "EVIDENCE-RESEARCH"
-    if attrs.engineering_research:                  # Q8
+    if attrs.engineering_research:                  # Q9
         return "ENGINEERING-RESEARCH"
-    if attrs.vision_longread:                       # Q9
+    if attrs.vision_longread:                       # Q10
         return "VISION-LONGREAD"
-    if attrs.domain_judgment:                       # Q10
+    if attrs.domain_judgment:                       # Q11
         return "DOMAIN-JUDGMENT"
-    if attrs.needs_challenge:                       # Q11
+    if attrs.needs_challenge:                       # Q12
         return "CHALLENGE"
-    return "GENERAL"                                 # Q12
+    return "GENERAL"                                 # Q13
 
 
 def resolve_challenge_model(producer_vendor: str | None) -> tuple[str, str]:
@@ -359,7 +368,7 @@ MODEL_BINDING: dict[str, dict[str, str]] = {
         "fallback_trigger": "Spawn failure or 2 consecutive rejected drafts",
     },
     "BUILD-HEAVY": {
-        "primary": "gpt-5.6-sol", "fallback": "claude-sonnet-5",
+        "primary": "gpt-5.6-terra", "fallback": "claude-sonnet-5",
         "pipe": "codex exec in a worktree, sandbox workspace-write",
         "fallback_trigger": "Nonzero exit, empty diff, sandbox refusal, or auth pending",
     },
@@ -367,6 +376,12 @@ MODEL_BINDING: dict[str, dict[str, str]] = {
         "primary": "gpt-5.6-terra", "fallback": "claude-sonnet-5",
         "pipe": "codex exec in a worktree, sandbox workspace-write",
         "fallback_trigger": "Nonzero exit, empty diff, sandbox refusal, or auth pending",
+    },
+    "STRATEGY-CONSULT": {
+        "primary": "gpt-5.6-sol",
+        "fallback": "fable-only debate (degraded: cross-vendor lost - flag it)",
+        "pipe": "codex exec, sandbox read-only",
+        "fallback_trigger": "API/CLI error or auth pending",
     },
     "GRUNT": {
         "primary": "gpt-5.6-luna", "fallback": "claude-haiku-4-5",
@@ -849,7 +864,7 @@ def _resolve_codex_cmd() -> Path:
 
 
 def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout: int,
-                     search: bool = False) -> tuple[int, str, int | None]:
+                     search: bool = False, skip_git_repo_check: bool = False) -> tuple[int, str, int | None]:
     """Low-level `codex exec` invocation.
 
     CLI-version note (verified 2026-07-10 against codex-cli 0.144.1): `codex exec
@@ -874,6 +889,8 @@ def _run_codex_exec(prompt: str, *, model: str, sandbox: str, cwd: Path, timeout
         )
     codex_exe = _resolve_codex_cmd()
     cmd = [str(codex_exe), "exec", "-s", sandbox, "-C", str(cwd), "-m", model]
+    if skip_git_repo_check:
+        cmd.append("--skip-git-repo-check")
     if search:
         cmd += ["-c", "tools.web_search=true"]  # verified 2026-07-10; top-level --search does not exist on `exec`
     # Prompt goes via STDIN, never argv (fix 2026-07-10, first real BUILD-HEAVY dispatch):
@@ -924,13 +941,46 @@ def _dispatch_codex_build(capability: str, prompt: str, *, task: str, cwd: Path,
 
 def build_heavy(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAULT_TIMEOUT
                  ) -> LaneResult:
-    """BUILD-HEAVY (Layer 1 Q4): coding with any complexity signal. `codex exec`,
-    sandbox workspace-write, explicit --cd <worktree>. `worktree` is required — this
+    """BUILD-HEAVY (Layer 1 Q5): coding with any complexity signal. `codex exec`,
+    model gpt-5.6-terra, sandbox workspace-write, explicit --cd <worktree>. `worktree` is required — this
     never dispatches against the live tree."""
     log_dispatch_start(task=task, capability="BUILD-HEAVY",
                        model_used=MODEL_BINDING["BUILD-HEAVY"]["primary"])
     return _dispatch_codex_build("BUILD-HEAVY", prompt, task=task, cwd=worktree,
                                   sandbox="workspace-write", timeout=timeout)
+
+
+def strategist_consult(prompt: str, *, task: str, worktree: Path | None = None,
+                       timeout: int = DEFAULT_TIMEOUT) -> LaneResult:
+    """STRATEGY-CONSULT (Layer 1 Q2): read-only Sol consultation; stdout is the deliverable.
+
+    This lane never writes. When no worktree is supplied, it runs in an isolated temporary
+    directory and explicitly skips Codex's git-repository check.
+    """
+    capability = "STRATEGY-CONSULT"
+    log_dispatch_start(task=task, capability=capability,
+                       model_used=MODEL_BINDING[capability]["primary"])
+    model = resolve_primary_model(capability)
+    started = time.monotonic()
+    if worktree is None:
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            exit_code, output, tokens_used = _run_codex_exec(
+                prompt, model=model, sandbox="read-only", cwd=Path(tmp), timeout=timeout,
+                skip_git_repo_check=True,
+            )
+    else:
+        exit_code, output, tokens_used = _run_codex_exec(
+            prompt, model=model, sandbox="read-only", cwd=worktree, timeout=timeout,
+        )
+    duration_s = time.monotonic() - started
+    ok = exit_code == 0 and bool(output.strip())
+    trigger = "" if ok else "API/CLI error or auth pending"
+    result = LaneResult(exit_code, output, model, False, trigger, ok)
+    log_telemetry_v5(task=task, capability=capability, model_used=model, was_fallback=False,
+                     trigger=trigger, exit_criterion_met=ok, duration_s=duration_s,
+                     tokens_used=tokens_used)
+    return result
 
 
 def build_light(prompt: str, *, task: str, worktree: Path, timeout: int = DEFAULT_TIMEOUT
@@ -1159,6 +1209,9 @@ class RouteFixture:
 ROUTE_FIXTURES: list[RouteFixture] = [
     RouteFixture("deterministic_validator",
                  TaskAttributes(deterministic_validator_exists=True), "DETERMINISTIC"),
+    RouteFixture("explicit_owner_strategist_consult",
+                 TaskAttributes(strategist_consult=True, needs_planning=True, is_coding=True),
+                 "STRATEGY-CONSULT"),
     RouteFixture("ambiguous_build_request",
                  TaskAttributes(needs_planning=True, is_coding=True, cross_module=True),
                  "PLANNING"),  # PLANNING must win even though complexity signals are present
