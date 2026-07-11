@@ -27,10 +27,10 @@ export function AttentionChecks({ layer4 }: { layer4: Layer4Checks }) {
       {attention.map(({ id, label, check }) => (
         <div key={id} className="rounded-md border border-neutral-200 p-3">
           <div className="mb-1 flex items-center justify-between">
-            <span className="text-sm font-medium text-neutral-800">{label}</span>
+            <span className="text-sm font-medium text-neutral-800">{humanAction(id, label)}</span>
             <CheckStatusBadge status={check.status} label={check.status.toUpperCase()} />
           </div>
-          {check.reason ? <p className="text-xs text-neutral-500">{check.reason}</p> : null}
+          <p className="text-xs text-neutral-500">{humanExplanation(id, check.status)}</p>
         </div>
       ))}
 
@@ -58,4 +58,13 @@ export function AttentionChecks({ layer4 }: { layer4: Layer4Checks }) {
       )}
     </div>
   );
+}
+
+function humanAction(id: keyof Layer4Checks, fallback: string): string {
+  return ({ barcode: "Review barcode identity", source_traceability: "Review source traceability", calculation: "Review score reproducibility", publishability: "Review publication record" } as const)[id] ?? fallback;
+}
+
+function humanExplanation(id: keyof Layer4Checks, status: string): string {
+  const detail = ({ barcode: "This product may share or conflict with another barcode-derived record.", source_traceability: "The source evidence does not yet provide a complete traceable record.", calculation: "The published score is not fully reproduced by the available trace data.", publishability: "The diagnostic publication checks need review before relying on this record." } as const)[id];
+  return status === "unknown" ? `${detail} The check outcome is currently unavailable.` : detail;
 }

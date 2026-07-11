@@ -47,8 +47,8 @@ export function EvidenceTab({ layer2 }: { layer2: Layer2Evidence }) {
               const cell = layer2[field];
               const meta = LAYER2_FIELD_META[field] ?? { label: field, unit: "" };
               const missing = cell.status !== "retrieved" || cell.value === null;
-              const confidenceLabel =
-                cell.status !== "retrieved" ? "Not available" : cell.flags.length > 0 ? "Flagged" : "Confirmed";
+              const confidenceLabel = missing ? "Not available" : cell.flags.length > 0 ? "Flagged" : "Confirmed";
+              const statusLabel = missing ? "Missing" : "Retrieved";
               return (
                 <tr key={field} className="border-t border-neutral-100 odd:bg-white even:bg-neutral-50/50">
                   <td className="px-3 py-2 font-medium">{meta.label}</td>
@@ -61,8 +61,8 @@ export function EvidenceTab({ layer2 }: { layer2: Layer2Evidence }) {
                     {cell.source ? "Retailer product page (direct scrape)" : "—"}
                   </td>
                   <td className="px-3 py-2 text-xs">
-                    <span className={cell.status === "retrieved" ? "text-emerald-700" : "text-neutral-400"}>
-                      {cell.status === "retrieved" ? "Retrieved" : "Not retrieved"}
+                    <span className={missing ? "text-neutral-400" : "text-emerald-700"}>
+                      {statusLabel}
                     </span>
                   </td>
                   <td className="px-3 py-2 text-xs text-neutral-500">{confidenceLabel}</td>

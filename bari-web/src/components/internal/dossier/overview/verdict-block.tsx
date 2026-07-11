@@ -43,7 +43,7 @@ export function VerdictBlock({
   return (
     <div className="rounded-md border border-neutral-200 p-4">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold text-neutral-700">Bari verdict</h2>
+        <div><h2 className="text-sm font-semibold text-neutral-700">Bari verdict</h2><p className="mt-0.5 text-xs text-neutral-400">Consumer-facing verdict</p></div>
         <span
           className={cn(
             "inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold",

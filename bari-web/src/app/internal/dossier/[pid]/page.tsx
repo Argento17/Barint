@@ -11,47 +11,12 @@ import { resolveVerdict } from "@/lib/dossier/verdict";
 
 export const dynamic = "force-dynamic";
 
-// Internal-only Page-1 inspection view (TASK-611 / PD-3, memo §5; human-readable
-// Overview added TASK-620 / PD-3.1). Read-only: renders exactly what
-// build_dossiers.py produced (+ the live comparison VM resolved for the verdict
-// row) — never recomputes anything, never invents a score/verdict/insight.
 export default async function DossierDetailPage({ params }: { params: Promise<{ pid: string }> }) {
   const { pid } = await params;
-
-  if (!dossierDataAvailable()) {
-    return (
-      <Shell wide>
-        <p className="rounded-md bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          לא נמצאו נתוני dossier. הרץ <code className="font-mono">npm run sync:dossiers</code>.
-        </p>
-      </Shell>
-    );
-  }
-
+  if (!dossierDataAvailable()) return <Shell wide><p className="rounded-md bg-amber-50 px-4 py-3 text-sm text-amber-800">No dossier data found. Run <code className="font-mono">npm run sync:dossiers</code>.</p></Shell>;
   const dossier = loadDossier(pid);
   if (!dossier) notFound();
-
   const index = loadDossierIndex();
   const verdict = resolveVerdict(dossier);
-
-  return (
-    <Shell wide>
-      <div className="mb-4 flex items-center justify-between" dir="ltr" lang="en">
-        <Link href="/internal/dossier" className="text-xs font-medium text-neutral-500 underline">
-          ← Back to list
-        </Link>
-        <span className="font-mono text-xs text-neutral-400">{pid}</span>
-      </div>
-
-      <DetailTabs
-        overview={<OverviewTab dossier={dossier} verdict={verdict} />}
-        evidence={<EvidenceTab layer2={dossier.layer_2} />}
-        technical={<TechnicalAuditTab dossier={dossier} />}
-      />
-
-      <p className="mt-6 text-[0.65rem] text-neutral-300" dir="ltr" lang="en">
-        {index.totalProducts} products in this index · source: {index.sourceDir}
-      </p>
-    </Shell>
-  );
+  return <Shell wide><div className="mb-4 flex items-center justify-between"><Link href="/internal/dossier" className="text-xs font-medium text-neutral-500 underline">← Back to list</Link><span className="font-mono text-xs text-neutral-400">{pid}</span></div><DetailTabs overview={<OverviewTab dossier={dossier} verdict={verdict} />} evidence={<EvidenceTab layer2={dossier.layer_2} />} technical={<TechnicalAuditTab dossier={dossier} />} /><p className="mt-6 text-[0.65rem] text-neutral-300">{index.totalProducts} products in this index · source: {index.sourceDir}</p></Shell>;
 }

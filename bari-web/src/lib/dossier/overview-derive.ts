@@ -107,6 +107,13 @@ export interface ActionItem {
   detail: string | null;
 }
 
+const ACTION_COPY: Record<keyof Layer4Checks, { label: string; detail: string }> = {
+  barcode: { label: "Review barcode identity", detail: "This product may share or conflict with another barcode-derived record." },
+  source_traceability: { label: "Review source traceability", detail: "The source evidence does not yet provide a complete traceable record." },
+  calculation: { label: "Review score reproducibility", detail: "The published score is not fully reproduced by the available trace data." },
+  publishability: { label: "Review publication record", detail: "The diagnostic publication checks need review before relying on this record." },
+};
+
 /** Up to 3 recommended actions, one per failed/warn layer_4 check. */
 export function deriveRecommendedActions(layer4: Layer4Checks): ActionItem[] {
   const entries = Object.entries(layer4) as [keyof Layer4Checks, Layer4Check][];
@@ -114,9 +121,9 @@ export function deriveRecommendedActions(layer4: Layer4Checks): ActionItem[] {
     .filter(([, check]) => check.status === "fail" || check.status === "warn")
     .map(([id, check]) => ({
       checkId: id,
-      label: LAYER4_CHECK_LABEL[id] ?? id,
+      label: ACTION_COPY[id].label,
       status: check.status,
-      detail: check.reason ?? check.evidence[0] ?? null,
+      detail: ACTION_COPY[id].detail,
     }))
     .slice(0, 3);
 }
