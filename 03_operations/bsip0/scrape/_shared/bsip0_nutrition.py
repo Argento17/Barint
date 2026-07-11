@@ -432,6 +432,44 @@ _LESS_THAN_MARKERS = ("פחות מ", "פחות", "פחותמ", "<", "עד ", "מ
 # Number extraction regex for retailer-agnostic parsers
 _NUM_RE = re.compile(r"(\d+(?:[.,]\d+)?)")
 
+# ── Comma disambiguation (TASK-619) ─────────────────────────────────────────────
+#
+# THE BUG: every retailer-agnostic number parse used a blanket ``.replace(",", ".")``
+# to "normalise" a decimal comma. Israeli retail nutrition panels (Shufersal, Victory,
+# Yohananof) are ALL period-decimal — a comma in these panels is a THOUSANDS
+# separator, never a decimal point. ``"1,200"`` (= 1200) was being read as ``"1.200"``
+# -> ``1.2``, a 1000x understatement. For sodium this is severe: a genuine 1200 mg/100g
+# panel value collapsed to 1.2 mg and sailed through every plausibility gate (both
+# ceilings check for values that are too HIGH, never absurdly low). Batch-5
+# (crackers/cookies) flagged exactly this signature on salty shelves.
+#
+# THE FIX: disambiguate BEFORE extracting the number.
+#   * digit,DDD with no further digits (exactly 3 trailing digits, then non-digit/end)
+#     = thousands separator -> strip the comma: "1,200"->"1200", "16,000"->"16000",
+#     "1,234.5"->"1234.5" (thousands comma + period decimal both present).
+#   * digit,D or digit,DD (1-2 trailing digits) = decimal comma -> convert to a period:
+#     "16,5"->"16.5". Defensive only — this form is not expected in the live
+#     period-decimal corpus.
+# Carrefour (EU comma-decimal) is OFF-banned and disabled; do NOT add EU-decimal
+# handling here — the live corpus is period-decimal only.
+_THOUSANDS_COMMA_RE = re.compile(r"(?<=\d),(?=\d{3}(?:\D|$))")
+_DECIMAL_COMMA_RE = re.compile(r"(?<=\d),(?=\d{1,2}(?:\D|$))")
+
+
+def _normalize_decimal_comma(s: str) -> str:
+    """Disambiguate a Hebrew-retail comma as thousands-separator vs decimal-point.
+
+    Must run BEFORE any bare ``.replace(",", ".")`` style normalisation — see the
+    TASK-619 module-level note above. Thousands groups are stripped first so a
+    genuine decimal comma (1-2 trailing digits) is never mistaken for the tail of a
+    thousands group, and vice versa.
+    """
+    if not s:
+        return s
+    s = _THOUSANDS_COMMA_RE.sub("", s)
+    s = _DECIMAL_COMMA_RE.sub(".", s)
+    return s
+
 
 def parse_value_bound(raw) -> tuple[float | None, bool]:
     """Parse a raw Hebrew nutrition value → ``(value, is_upper_bound)``.
@@ -552,7 +590,11 @@ def _to_float(v) -> float | None:
     s = (s.replace("פחות מ", "").replace("פחות", "").replace("<", "")
            .replace("גרם", "").replace('מ"ג', "").replace("מ”ג", "")
            .replace("mg", "").replace("kcal", "").replace("ק\"ג", "")
-           .replace(",", ".").strip())
+           .strip())
+    # TASK-619: comma = thousands separator in this corpus, NEVER a decimal point.
+    # Must disambiguate BEFORE the blanket comma->period substitution used to sit
+    # here (see _normalize_decimal_comma module note).
+    s = _normalize_decimal_comma(s)
     m = re.search(r"-?\d+(?:\.\d+)?", s)
     return float(m.group()) if m else None
 
@@ -1099,7 +1141,8 @@ def _parse_victory_nutrition(soup) -> dict:
 
         for pattern, field in _VICTORY_LABEL_MAP:
             if pattern.search(label_text):
-                val_match = _NUM_RE.search(value_text.replace(",", "."))
+                # TASK-619: comma = thousands separator here, never a decimal point.
+                val_match = _NUM_RE.search(_normalize_decimal_comma(value_text))
                 if val_match:
                     raw_val = val_match.group(1)
                     unit = _sniff_unit(value_text)
@@ -1168,7 +1211,8 @@ def _parse_yohananof_nutrition(soup) -> dict:
         label = label_el.get_text(" ", strip=True)
         full = li.get_text(" ", strip=True)
         value_text = full.replace(label, "", 1).strip() if label else full
-        nums = _NUM_RE.findall(value_text.replace(",", "."))
+        # TASK-619: comma = thousands separator here, never a decimal point.
+        nums = _NUM_RE.findall(_normalize_decimal_comma(value_text))
         # Structural guard: a single nutrition row carries exactly one value token.
         if len(nums) > 1:
             return _insufficient()
@@ -1238,3 +1282,69 @@ def extract_nutrition_raw_auto(soup) -> dict:
     return {"rows": [], "tables": [], "selection": {"selected_basis": "unknown",
             "selected_table_index": None, "selected_table_header": "",
             "competing_table_count": 0, "insufficient": True}, "html": ""}
+
+
+# ── TASK-619 selftest ────────────────────────────────────────────────────────
+#
+# Regression coverage for the comma-thousands-vs-decimal disambiguation fix.
+# Run: python 03_operations/bsip0/scrape/_shared/bsip0_nutrition.py --selftest
+
+def _selftest() -> int:
+    cases_normalize = [
+        ("1,200", "1200"),
+        ("16,000", "16000"),
+        ("1,234.5", "1234.5"),
+        ("16.5", "16.5"),
+        ("16,5", "16.5"),
+        ("7", "7"),
+    ]
+    failures = []
+    for raw, expected in cases_normalize:
+        got = _normalize_decimal_comma(raw)
+        status = "OK" if got == expected else "FAIL"
+        if status == "FAIL":
+            failures.append((raw, expected, got))
+        print(f"[{status}] _normalize_decimal_comma({raw!r}) = {got!r} (expected {expected!r})")
+
+    cases_to_float = [
+        ("1,200", 1200.0),
+        ("16,000", 16000.0),
+        ("1,234.5", 1234.5),
+        ("16.5", 16.5),
+        ("16,5", 16.5),
+        ("פחות מ 0.5", 0.5),
+        ("7", 7.0),
+    ]
+    for raw, expected in cases_to_float:
+        got = _to_float(raw)
+        status = "OK" if got == expected else "FAIL"
+        if status == "FAIL":
+            failures.append((raw, expected, got))
+        print(f"[{status}] _to_float({raw!r}) = {got!r} (expected {expected!r})")
+
+    # parse_num / parse_value_bound must agree with _to_float on the same inputs
+    # (they route through it) and preserve the less-than-bound semantics.
+    assert parse_num("1,200") == 1200.0
+    assert parse_num("16,000") == 16000.0
+    assert parse_value_bound("פחות מ 0.5") == (0.5, True)
+    assert parse_sodium_mg("1,200 מג") == 1200.0  # the exact live-corpus signature
+
+    if failures:
+        print(f"\n{len(failures)} FAILURE(S): {failures}")
+        return 1
+    print(f"\nAll {len(cases_normalize) + len(cases_to_float)} selftest cases passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys as _sys
+    if "--selftest" in _sys.argv:
+        # Hardening (TASK-619 follow-up): a bare Windows/cp1252 console (incl. CI)
+        # raises UnicodeEncodeError on the raw Hebrew test strings the selftest
+        # prints (e.g. "פחות מ 0.5"). Reconfigure stdout to UTF-8 so the selftest
+        # is console-safe without depending on PYTHONIOENCODING being set. The
+        # assertions still run against the real Hebrew inputs — only the print
+        # encoding changes.
+        if hasattr(_sys.stdout, "reconfigure"):
+            _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        raise SystemExit(_selftest())
