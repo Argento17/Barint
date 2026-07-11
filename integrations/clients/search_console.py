@@ -32,7 +32,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass
 
-from .http import USER_AGENT, HttpError
+from .http_client import USER_AGENT, HttpError
 
 CLIENT_VERSION = "1.0"
 API = "https://searchconsole.googleapis.com/webmasters/v3"

@@ -12,7 +12,7 @@ from __future__ import annotations
 import urllib.parse
 from dataclasses import dataclass, field
 
-from .http import HttpError, get_json
+from .http_client import HttpError, get_json
 
 API = "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
 

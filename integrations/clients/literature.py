@@ -23,7 +23,7 @@ import os
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
 
-from .http import get, get_json
+from .http_client import get, get_json
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 EUROPEPMC = "https://www.ebi.ac.uk/europepmc/webservices/rest"

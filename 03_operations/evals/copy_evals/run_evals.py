@@ -50,12 +50,42 @@ sys.path.insert(0, str(REPO_ROOT))
 from integrations.clients.hebrew_readability import analyze as readability_analyze  # noqa: E402
 
 
-def _load_grammar_gate():
-    """Opt-in: DictaBERT-morph grammar gate (~440MB model download on first use)."""
+def _load_grammar_gate(required: bool = False):
+    """Opt-in: DictaBERT-morph grammar gate (~440MB model download on first use).
+
+    Parameters
+    ----------
+    required : bool
+        When True (i.e. ``--with-grammar`` was explicitly requested) a gate
+        failure is FATAL — prints ``ERROR / GATE-DID-NOT-RUN`` and returns
+        ``None`` so the *caller* can exit 1.  This prevents the silent-pass
+        bug: a caller that gets ``None`` back with ``required=True`` MUST
+        NOT continue as if grammar ran cleanly (TASK-566).
+        When False (grammar was never requested) unavailability is advisory.
+    """
     try:
-        from integrations.clients.hebrew_grammar_gate import analyze as grammar_analyze
+        from integrations.clients.hebrew_grammar_gate import (
+            analyze as grammar_analyze,
+            GateDidNotRunError,
+            gate_status,
+        )
+        status, msg = gate_status()
+        if status != "ok":
+            raise GateDidNotRunError(msg)
         return grammar_analyze
-    except Exception as exc:  # ImportError, RuntimeError (missing torch/transformers), etc.
+    except Exception as exc:  # ImportError, GateDidNotRunError, etc.
+        sentinel = "ERROR / GATE-DID-NOT-RUN: hebrew_grammar_gate"
+        msg = f"{sentinel}: {type(exc).__name__}: {exc}"
+        if required:
+            print(msg, file=sys.stderr)
+            print("[ERROR] Grammar gate was explicitly requested (--with-grammar) "
+                  "but could not initialize. Texts analysed below would be reported "
+                  "as grammar-clean even though the gate did NOT run — that is the "
+                  "silent-pass bug TASK-566 was filed to fix. Aborting.",
+                  file=sys.stderr)
+            # Return None; caller checks for None when required=True and exits 1.
+            return None
+        # Optional path: warn but continue with readability-only.
         print(f"[warn] grammar gate unavailable ({type(exc).__name__}: {exc}) — "
               f"continuing readability-only.", file=sys.stderr)
         return None
@@ -138,7 +168,10 @@ def main() -> int:
         return 1
 
     cases = load_cases()
-    grammar_analyze = _load_grammar_gate() if args.with_grammar else None
+    grammar_analyze = _load_grammar_gate(required=args.with_grammar) if args.with_grammar else None
+    if args.with_grammar and grammar_analyze is None:
+        # _load_grammar_gate already printed ERROR / GATE-DID-NOT-RUN; hard-fail here.
+        return 1
 
     results = []
     for case in cases:

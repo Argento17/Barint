@@ -34,7 +34,7 @@ import csv
 import os
 from dataclasses import dataclass, field
 
-from .http import get_json
+from .http_client import get_json
 from .provenance import Provenance, stamp
 
 CLIENT_VERSION = "1.0"

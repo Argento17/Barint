@@ -44,7 +44,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from urllib.parse import urljoin
 
-from .http import get
+from .http_client import get
 from .provenance import Provenance, stamp
 
 CLIENT_VERSION = "1.2"  # 1.2 = Super-Pharm PriceTransparency.WS grid reader (TASK-171G)

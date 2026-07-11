@@ -51,7 +51,7 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-CLIENT_VERSION = "1.0"
+CLIENT_VERSION = "1.1"  # 1.1: fail-loud on env/import error (TASK-566)
 _MODEL_ID = "dicta-il/dictabert-morph"
 
 # ---------------------------------------------------------------------------
@@ -61,8 +61,58 @@ _model = None
 _tokenizer = None
 
 
+class GateDidNotRunError(RuntimeError):
+    """Raised when the grammar gate could not initialize.
+
+    This exception is DELIBERATELY DISTINCT from ordinary RuntimeError so that
+    callers can check ``isinstance(exc, GateDidNotRunError)`` and surface it as
+    GATE-DID-NOT-RUN rather than as a grammar-clean result.  A caller that
+    catches this and reports the text as "clean" is wrong — that is exactly the
+    silent-failure mode this exception class prevents.
+
+    The error message always starts with the sentinel prefix
+    ``ERROR / GATE-DID-NOT-RUN:`` so that log-scanners can detect gate
+    non-runs without parsing the full Python traceback.
+    """
+    SENTINEL_PREFIX = "ERROR / GATE-DID-NOT-RUN: hebrew_grammar_gate"
+
+
+def gate_status() -> tuple[str, str | None]:
+    """Probe whether the grammar gate is operational WITHOUT running analysis.
+
+    Returns
+    -------
+    ("ok", None)
+        transformers + torch are importable and the model can be loaded.
+    ("error", message)
+        The gate cannot run; *message* explains why.  Callers MUST treat this
+        as GATE-DID-NOT-RUN and must NOT count affected texts as grammar-clean.
+
+    Intended for CLI entry-points and orchestrators that need to fail fast
+    before iterating over a corpus.
+    """
+    try:
+        _load_model()
+        return ("ok", None)
+    except GateDidNotRunError as exc:
+        return ("error", str(exc))
+    except Exception as exc:  # noqa: BLE001  # unexpected — still not OK
+        return ("error", f"{GateDidNotRunError.SENTINEL_PREFIX}: unexpected error: {exc}")
+
+
 def _load_model():
-    """Load DictaBERT-morph on first call; cache in module globals."""
+    """Load DictaBERT-morph on first call; cache in module globals.
+
+    Raises
+    ------
+    GateDidNotRunError
+        If ``transformers``/``torch`` are not importable, or if the model
+        itself fails to load.  The message always starts with
+        ``ERROR / GATE-DID-NOT-RUN:`` so callers and log scanners can detect
+        it without parsing Python tracebacks.  NEVER catch this silently —
+        catching and returning ``is_clean=True`` (or equivalent "no flags")
+        is the silent-pass bug TASK-566 was filed to fix.
+    """
     global _model, _tokenizer
     if _model is not None:
         return _model, _tokenizer
@@ -74,9 +124,15 @@ def _load_model():
         _model = AutoModel.from_pretrained(_MODEL_ID, trust_remote_code=True)
         logger.debug("DictaBERT-morph loaded from cache / HF hub.")
     except ImportError as exc:
-        raise RuntimeError(
-            "hebrew_grammar_gate requires `transformers` and `torch`. "
-            "They are listed as installed (TASK-341); check your venv."
+        raise GateDidNotRunError(
+            f"{GateDidNotRunError.SENTINEL_PREFIX}: requires `transformers` and `torch` "
+            f"— they were verified present at TASK-341; check your venv "
+            f"(original error: {exc})"
+        ) from exc
+    except Exception as exc:
+        raise GateDidNotRunError(
+            f"{GateDidNotRunError.SENTINEL_PREFIX}: model load failed "
+            f"(model={_MODEL_ID}, error: {type(exc).__name__}: {exc})"
         ) from exc
     return _model, _tokenizer
 

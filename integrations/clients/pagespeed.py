@@ -16,7 +16,7 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass
 
-from .http import get_json
+from .http_client import get_json
 
 API = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
 

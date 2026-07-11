@@ -24,7 +24,7 @@ import os
 import urllib.parse
 from dataclasses import dataclass, field
 
-from .http import HttpError, get_json
+from .http_client import HttpError, get_json
 
 CLIENT_VERSION = "1.0"
 API = "https://api.semanticscholar.org/graph/v1"

@@ -24,7 +24,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from dataclasses import dataclass
 
-from .http import HttpError, get_json
+from .http_client import HttpError, get_json
 
 CLIENT_VERSION = "1.0"
 API = "https://api.biorxiv.org"

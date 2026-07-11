@@ -71,7 +71,7 @@ if str(_REPO_ROOT) not in sys.path:
 try:
     from integrations.clients.literature import pubmed_fetch
     from integrations.clients.crossref import get_doi, CrossrefWork
-    from integrations.clients.http import HttpError
+    from integrations.clients.http_client import HttpError
     _CLIENTS_AVAILABLE = True
 except ImportError as _ie:
     print(f"[WARN] Could not import clients: {_ie}", file=sys.stderr)
