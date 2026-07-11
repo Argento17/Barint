@@ -52,10 +52,30 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   **DP-2 (non-blocking): do you intend the PD to REPLACE served JSONs as the publication source
   within ~a quarter? If not-now → derive-first correct (recommended).** STF never implements; PD
   build tasks register only on owner accept. TASK-608 BLOCKED on owner accept.
-- 🟢 **4 LANES PARALLEL (owner: "3-4 tasks running in parallel"):** ✅ PD-1 registry DONE →
-  · PD-2 skeleton (sonnet worktree, ab3d5431 — BUILD-HEAVY Claude fallback, trigger=avoid 2nd
-  concurrent dispatch.py; registry-independent L2/L3/L4 scaffolding) · batch-4 scrape cheese+
-  yogurt-spoonable (sonnet, ae3c4422) · batch-5 scrape partials (sonnet, a9f440e7) — 3 still live.
+- 🟢 **PARALLEL WAVE (owner: "3-4 tasks in parallel") — RESULTS:** ✅ PD-1 registry · ✅ PD-2 skeleton ·
+  ✅ batch-4 cheese · ✅ bread diagnosis — all DONE this wave. **LIVE now:** batch-5 partials (resumed
+  a9f440e7 — had self-stalled mid-run) · PD-2 registry-join (a67bfb15, main tree no-commit — wires
+  resolve_bari_pid to PD-1 registry now that it's live).
+- ✅ **TASK-610 (PD-2) SKELETON committed** — build_dossiers.py (one shelf-agnostic compiler) +
+  lib/{layer1..layer4,registry_interface}. L2 REUSES replay_harness (byte-match in selftest, not
+  forked); L3 enforces 3 namespaces at construction (cross-namespace/overall_score = fatal
+  NamespaceViolation); L4 imports run_gates G5; OFF-source=build-fail; missing=null no-imputation.
+  selftest 4/4+bonus PASS (orchestrator re-ran in main tree). Salvaged from a 133-commit-stale agent
+  worktree as net-new files. **Registry-join now dispatched (unblocked); committed baseline still
+  waits on parser fix (R-D).** TASK-610 stays open (join + baseline remain).
+- ✅ **TASK-602 BATCH 4 (cheese+yogurt-spoonable) DONE** — 67/69 blind resolved (2 NOT_FOUND =
+  Yohananof-exclusive SKUs, honest), brined skipped (36/36 covered). Tripwire-1 clean (agent+report:
+  0 served-JSON diff). 64/67 FULLY_MATCH, 3 MATERIAL (small isolated, no systemic pattern), 2
+  NO_EVIDENCE. Caught 2 false-positive brand matches pre-commit (Tara≠Strauss, Tnuva≠Ski) → re-resolved.
+  **Barcode: 20/69 short codes ALL resolve to their OWN code on Shufersal (no GTIN13 exists) →
+  benign-SKU confirmed again, NOT truncation.** Captures committed per-shelf; manifest NOT rebuilt
+  (orchestrator consolidates after batch-5).
+- ✅ **TASK-612 (bread fat diagnosis) CLOSED → TASK-614.** VERDICT SCORE-MOVING (verified: trace
+  scored on placeholder fat, formula reproduced 18/18): 14/18 move Δ−0.1..−6.0, **1 grade flip B→C**
+  (keto bread 7290014321168), max |Δ|=6.0 — **all ≤30 → orchestrator authority, NOT owner-gated.**
+  → **TASK-614 (HIGH, BLOCKED on batch-5+consolidated-manifest+parser-fix):** systematic re-score of
+  bread (+ other MATERIAL shelves) on CURRENT engine w/ corrected nutrition, full re-audit +
+  Adversarial QA, verify every |Δ|≤30; excl. 7290016967074 (identity anomaly). Consumer deploy = owner-merge.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
