@@ -1,0 +1,39 @@
+{
+  "task": "TASK-631",
+  "producer": "canonicalize_task616_type_b.reconstruct_nutrition_numeric",
+  "parser_path": "parse_nutrition_rows -> bare_to_raw_keys -> parse_nutrition_numeric",
+  "tolerance": 0.05,
+  "records_checked": 120,
+  "task616_type_b_records_checked": 53,
+  "non_shared_precomputed_records_checked": 120,
+  "records_by_canonicalization_schema": {
+    "task616_type_b_rows_reconstructed_from_nutrition_raw": 53,
+    "task616_type_a_captured_rename": 67
+  },
+  "mismatches": [
+    {
+      "file": "02_products/crackers/bsip0_outputs/task602_crackers_rescrape_20260711/crackers_frontend_v1_rescrape_results_canonical.json",
+      "shelf": "crackers_frontend_v1",
+      "barcode": "7290018790328",
+      "name": "קרקר מרובע מלוח",
+      "canonicalization_schema": "task616_type_b_rows_reconstructed_from_nutrition_raw",
+      "field": "sodium_mg",
+      "stored_value": 1.2,
+      "recomputed_value": 1200.0,
+      "comma_thousands_signature": true
+    }
+  ],
+  "mismatch_count": 1,
+  "score_affecting_flags": [
+    {
+      "shelf": "crackers_frontend_v1",
+      "barcode": "7290018790328",
+      "field": "sodium_mg",
+      "old_to_new": [
+        1.2,
+        1200.0
+      ],
+      "note": "Capture correction is score-affecting; served crackers output was not touched by TASK-631. TASK-629 records the already-applied shared-parser re-score as 50.3/C -> 35.0/D."
+    }
+  ]
+}
