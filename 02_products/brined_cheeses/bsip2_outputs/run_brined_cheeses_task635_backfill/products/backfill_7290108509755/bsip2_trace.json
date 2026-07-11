@@ -1,0 +1,34 @@
+{
+  "bsip2_version": "trace_backfill_v1",
+  "algorithm_version": "historical_lens_output_not_reexecuted",
+  "trace_generated_at": null,
+  "specification_version": "TASK-635 trace-only backfill from served comparison JSON",
+  "input_reference": {
+    "canonical_product_id": "backfill_7290108509755",
+    "barcode": "7290108509755",
+    "product_name_he": null,
+    "brand": "יורו מחלבות אירופה",
+    "source_retailers": null,
+    "bsip1_source_path": null,
+    "audit_ref": null,
+    "bsip1_schema_version": null,
+    "load_errors": []
+  },
+  "evaluation_status": "historical_trace_backfill",
+  "run_id": "task635_trace_backfill",
+  "category": "brined_cheeses",
+  "nova_proxy": null,
+  "confidence_score": null,
+  "dimension_scores": null,
+  "final_score_estimate": 64.6,
+  "grade_estimate": "C",
+  "explanation_drivers": null,
+  "backfill_provenance": {
+    "source": "served comparison JSON",
+    "triage_class": "A",
+    "original_trace_score": 66.7,
+    "served_score": 64.6,
+    "served_grade": "C",
+    "score_identity_assertion": "passed"
+  }
+}
