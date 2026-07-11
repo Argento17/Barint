@@ -108,10 +108,19 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   Lesson (correction): verify the mechanism before quantifying a corpus-wide crisis.
 - ✅ **TASK-616 CLOSED** (commit 431c30b3) — yogurt configs baseline_json null→served JSONs; **all 18/18
   shelves now build (620→687 dossiers)**; orchestrator-verified (commit=2 configs only, --selftest PASS).
-- 🟢 **LIVE:** TASK-613 (barcode reason-code split, registry-reason-split a9a22293 — recompiling registry).
-- ⏳ **NEXT:** TASK-614 re-score unblocks when the parser fix lands (baseline clean + integrated).
-  Ready non-blocked: TASK-617 (coverage gate) · **PD-3 (internal inspection view)** = the ready marquee,
-  launch after TASK-613 frees the registry (owner may steer the UI first — offered in digest).
+- ✅ **TASK-613 CLOSED** (commit 853dc31c) — barcode_reason additive split: non_gtin_retailer_sku 45 /
+  truncated_or_invalid 3 (the known yogurt truncations) / unclassified 81 (honest). --check+--selftest
+  PASS, additive-only, enum stable; orchestrator-verified (distribution re-derived, invariant holds).
+  Structurally resolves the TASK-607 misclassification. → **TASK-618 (MED):** recovered_gtins() key
+  mismatch (true_gtin_discovered) strands the 3 truncations' recovered_gtin — flagged, deliberately
+  not touched by 613 (stability guard).
+- 🚀 **PD-3 (TASK-611) DISPATCHED** — internal inspection view (Frontend Agent). Utilitarian MVP per
+  memo §5: internal-only route (noindex), Page-1 = identity+barcode status, Layer-4 check panel,
+  per-field evidence cells, publication_record score-as-copied, simple 2D radar/bars w/ assessment↔
+  data_quality toggle (NOT 3D), + corpus list/filter. Reads compiler dossiers read-only; polish/Page-2/
+  scanner deferred. Reversible, internal, no consumer deploy. Owner steers design on review.
+- ⏳ **Still blocked externally:** TASK-614 re-score (parser fix, other session). Ready: TASK-617
+  (coverage gate), TASK-618 (recovered_gtin key fix).
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
