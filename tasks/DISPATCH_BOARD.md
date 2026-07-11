@@ -12,6 +12,17 @@ given session (was, 2026-07-04) — then the owner opens/merges PRs from the pus
 
 ---
 
+⚖️ **SCORE-CHANGE AUTHORITY DELEGATED (owner ruling 2026-07-11):** *"full authority for any score
+change, unless it's more than 30 points then there's a defect. Otherwise you are clear."* The
+orchestrator applies published-score MOVEMENTS from verified data corrections **autonomously** through
+the existing engine when **`|Δ|≤30`pts**; **`|Δ|>30` = DEFECT** (bad data/parse/match → investigate,
+do NOT ship). Scoring-philosophy/method redesign still escalates; consumer deploy still owner-merge
+(two-speed). Codified: CLAUDE.md tripwire-1 amendment + decision_authority_matrix row 1 + memory
+`owner_score_change_authority`. **First application:** TASK-612 bread fat — if the diagnosis says
+score-moving and each |Δ|≤30, the orchestrator now applies the correction instead of parking it.
+
+---
+
 ## 🏗️ MAJOR PROGRAM STARTED — PRODUCT DOSSIER "PD" (2026-07-11, owner) — TASK-608
 Owner turned the barcode/traceability worry into a program: **one canonical Product Dossier per
 product** — 4 layers (Identity / Raw-evidence+provenance / Derived-analysis / Checks), explicit
@@ -41,6 +52,43 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   **DP-2 (non-blocking): do you intend the PD to REPLACE served JSONs as the publication source
   within ~a quarter? If not-now → derive-first correct (recommended).** STF never implements; PD
   build tasks register only on owner accept. TASK-608 BLOCKED on owner accept.
+- 🟢 **4 LANES PARALLEL (owner: "3-4 tasks running in parallel"):** ✅ PD-1 registry DONE →
+  · PD-2 skeleton (sonnet worktree, ab3d5431 — BUILD-HEAVY Claude fallback, trigger=avoid 2nd
+  concurrent dispatch.py; registry-independent L2/L3/L4 scaffolding) · batch-4 scrape cheese+
+  yogurt-spoonable (sonnet, ae3c4422) · batch-5 scrape partials (sonnet, a9f440e7) — 3 still live.
+- ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
+  registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
+  0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
+  conflicting 0. pid = bari_+96-bit SHA256 over [v1,shelf,served_id,name] (opaque, insertion-stable,
+  never barcode-derived). **Orchestrator-verified:** write-boundary clean (0 served JSON), --selftest
+  + --check PASS (re-run in main tree off CURRENT manifest — derived artifact, recompile as coverage
+  grows), R-B compliant (only pid/aliases/barcode_status/recovered_gtin + name_provenance POINTER, no
+  facts copied), served-rows-vs-registry gap = 0. **→ TASK-613 (MEDIUM):** malformed conflates benign
+  Shufersal SKU vs true truncation — add reason_code split (batch-3 lesson). PD-2 will wire the
+  registry join after its skeleton lands.
+- ✅ **TASK-602 BATCH 3 RETURNED + VERIFIED (bread 0→23/23, chocolate 58/58 FULLY_MATCH).** Tripwire-1
+  CLEAN (git-verified: commits 4b167c79/8cd74516 touched ZERO served comparison JSON — only capture
+  dirs/manifest/census/reports). **TWO baseline-reshaping corrections:** (1) 🔵 **census was
+  undercounting** — full re-census (orchestrator-run) = **567/710 captured, only 143 blind** (NOT the
+  398 reported; old census tool missed pre-milk-pilot captures, e.g. chocolate showed 0 but had 58
+  from June TASK-362). Real blind shelves: cheese 37, hard_cheeses 31, cookies_coffee 21, crackers 19,
+  protein 17, cakes 7, bread_v3 6, juices 3, milk 1, yogurt_spoonable 1. (2) 🔵 **"21% truncated
+  barcodes" LARGELY FALSE** — 15/23 bread short codes are GENUINE Shufersal fresh-item SKUs that
+  name-resolve directly (ld+json gtin == served), NOT truncation → **TASK-607 severity drops sharply**
+  (true truncations = the small yogurt-drink-class set only). PD-1 registry must distinguish
+  benign_retailer_sku vs true_truncation (feed to PD-1 verify). (3) 🔴 **TASK-612 registered
+  (tripwire-1, owner):** bread 18/23 published fat = placeholder 0.25/0.5g vs live 1.0-9.1g (EV-026
+  signature, same as cereals) — recorded not corrected; read-only score-dependence diagnosis queued.
+- ✅ **OWNER ACCEPTED (2026-07-11): "Go from my end. good outcome" (DP-1) + "Yes agree. derive-first.
+  We'll revisit this later" (DP-2).** TASK-608 CLOSED (memo delivered + accepted; moved to closed/,
+  committed e6b37990). **PD-1/2/3 registered → TASK-609/610/611.** **🚀 PD-1 (TASK-609) DISPATCHED**
+  BUILD-HEAVY Codex terra, worktree C:/bari_wt_pd1 off e6b37990 (bg bjbs6jv0m): identity registry —
+  mint opaque immutable insertion-stable `bari_pid` (content-hash, NEVER barcode-derived) + alias
+  table (served id / legacy bsip1 id / (retailer,gtin) manifest → pid, collision+split detection) +
+  5-state barcode adjudication w/ real GTIN check-digit validation + recovered_gtin from committed
+  602 tables. Writes ONLY 03_operations/product_dossier/registry/; tripwire-1 firewall + OFF-ban +
+  missing=NULL asserted in code; determinism (rebuild byte-identical) + selftest required. Orchestrator
+  commits post-verification (sandbox-git rule). **PD-2 (610) deps 609 + parser fix; PD-3 (611) deps 610.**
 - 🚀 **TASK-602 BATCH 3 DISPATCHED** (baseline scrape, "before all get the very best baseline") —
   Data Agent sonnet (ab96c4175dfe860c5, live network), bread + chocolate(bars+tablets) ~110 products.
   Resolves truncated barcodes BY NAME + records a reconciliation table (served-trunc→true-GTIN) but

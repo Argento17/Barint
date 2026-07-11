@@ -4,7 +4,7 @@ title: Served corpus barcode integrity: 146/710 products have a barcode too shor
 owner: data-agent
 status: BLOCKED
 blocker: owner decision - backfill served barcode fields with recovered GTINs? (touches published JSON identity); + root-cause truncation source. Re-scrape recovers GTINs regardless.
-priority: HIGH
+priority: MEDIUM
 created_at: 2026-07-11
 depends_on: []
 blocks: []
