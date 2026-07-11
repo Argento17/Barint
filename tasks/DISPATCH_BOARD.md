@@ -23,6 +23,19 @@ score-moving and each |Δ|≤30, the orchestrator now applies the correction ins
 
 ---
 
+## 📈 STF GROWTH-ENGINE RULING (2026-07-11, owner) — TASK-635..638
+Memo `01_framework/governance/stf_memos/2026-07-11_growth-engine.md`. Search/GEO = PRIMARY engine,
+Facebook → secondary; killed the 2-3k-follower gate (outreach starts now w/ findings); email backbone +
+WhatsApp amplifier retention; owner KEPT paid social w/ a ~50% engaged-session quality bar. Bottleneck =
+traffic, not engagement (GA4: 23 humans/wk but 5.08 pp/session). Vercel retired as headline metric
+(bot-inflated ~64x). LANE LEDGER (cross-vendor, owner-corrected):
+- **TASK-635** SEO+GEO pass on live /hashvaot → **Terra/Codex** BUILD-HEAVY in worktree `C:/bari_wt_635`
+  (bg). Draft-only Hebrew copy → two-gate; orchestrator commits post-verify (Codex can't push).
+- **TASK-636** GSC wiring + measurement-truth + paid-social quality bar → **Sonnet** (Claude, needs
+  analytics-mcp) (bg).
+- **TASK-637** retention (email backbone + WhatsApp amplifier) — plan staged, awaiting owner ESP/Channel calls.
+- **TASK-638** findings-based outreach kit — queued.
+
 ## 🏗️ MAJOR PROGRAM STARTED — PRODUCT DOSSIER "PD" (2026-07-11, owner) — TASK-608
 Owner turned the barcode/traceability worry into a program: **one canonical Product Dossier per
 product** — 4 layers (Identity / Raw-evidence+provenance / Derived-analysis / Checks), explicit
@@ -234,19 +247,21 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
   already caught+re-scored by 629** (50.3/C→35.0/D). Bug isolated to that one product; no new corruption.
   Producer hardened (new canonicalize_task616_type_b.py routes through the shared parser; --selftest guards
   1,200→1200). No served JSON / published score touched.
-- 🟢 **OWNER APPROVED BOTH parked items (2026-07-11): "Approved for both, go ahead."** Freeze released for
-  the 10 rows; >30 re-score cleared for the 4 cookies. Both dispatched:
-  - 🔧 **TASK-633 (Content Agent, fable, bg)** — author the 10 grade-changed rows (6 bread + 4 crackers),
-    Tom voice, NO cited nutritional values, describe on own terms → then **Adversarial QA gate (two-gate)**.
-  - 🔧 **TASK-634 (Data Agent, sonnet, MAIN tree, bg)** — cookies_coffee basis fix: diagnose per-serving-
-    as-per-100g for 4 (7290122781359/7290000061245/7290118423904/7290118422617), correct to true per-100g,
-    re-score (>30 owner-cleared), rebuild PD + parity diverge=0; grade-changed rows → PENDING_COPY.
-  - 🔧 **TASK-632 (Codex terra, read-only diag, bg)** — triage remaining 61 calc-FAILs (A backfill-safe /
-    B1-B2 run-mismatch / C genuine defect) per the TASK-563 don't-certify-wrong-scores caution.
-- 🗄️ **(historical) 10 PENDING_COPY rows were BLOCKED by the product-descriptions freeze** — now released
-  above (TASK-633). Was: no lane touches rowVerdict/insightLine/expansion without owner handoff.
+- ✅ **OWNER APPROVED BOTH parked items (2026-07-11) — BOTH DONE + a triage-driven wave:**
+  - ✅ **TASK-633 CLOSED (369e990a)** — 10 copy rows (6 bread + 4 crackers) authored + **two-gate SIGN-OFF**
+    (red-team caught+resolved 3 overclaims: soy-flour purity, unsupported sat-fat, partial-list). Staged;
+    only the 20 copy fields changed. **Consumer deploy = owner merge.**
+  - ✅ **TASK-634 CLOSED (b79eeb7c)** — cookies basis fix: 4 corrected from task602 Shufersal scrape,
+    re-score |Δ|18-24 (all ≤30, NOT >30 as estimated), 2 grade flips; score==trace 4/4; **4 rows→PENDING_COPY**
+    (need Content+two-gate under freeze → owner release, like the 10).
+  - ✅ **TASK-632 CLOSED** — triage: 61 calc-FAILs = 59 backfill-safe + 2 genuine cheese rounding.
+  - ✅ **TASK-639 CLOSED (31229f47)** — backfill wave: 59 flipped. **Calc-FAIL 61→2, ALL-GREEN 64%→70%,
+    parity diverge=0.** Only 2 cheese class-C rounding remain.
+- 📋 **Residuals (internal, no owner needed):** 2 cheese class-C 0.2pt rounding (7290019635383, 56272) ·
+  E223/E224 mismatch on 8434165658523 (ingredients_raw vs d4_additives; copy uses generic סולפיט) ·
+  4685027 whole-wheat 40%(context) vs 76%(ingredients) conflict → Data · retire legacy bread_frontend_v3 (6 parity gaps).
 - 📋 **Deferred (tracked):** re-score PIPELINE build (614's root gap) · re-scrape 17 never-captured · 6
-  PID_SPLIT shelf-mapping → Product Agent · cookies_coffee basis defect (>30, digest).
+  PID_SPLIT shelf-mapping → Product Agent.
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
   Re-enrich+re-score bread/crackers/cheese on corrected engine via the uniform pipeline → regenerate
   comparison JSON → rebuild PD (stays aligned). PROPOSAL only: |Δ|≤30 apply-set, >30 = defect (stop),
