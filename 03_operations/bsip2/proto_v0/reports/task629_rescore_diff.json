@@ -1,0 +1,560 @@
+{
+  "task": "TASK-629",
+  "delta_cap": 30.0,
+  "excluded_barcodes": [
+    "7290016967074"
+  ],
+  "follow_up_fixes_applied_for_pd_parity": {
+    "bread_config_repoint": "03_operations/page_generator/configs/bread.json baseline_json re-pointed from bread_frontend_v3.json (stale, unserved) to bread_frontend_v4.json (the actual live/served file) -- was pointing PD-build sourcing at the wrong file. v3 itself left untouched/undeleted (still referenced by a few legacy admin/SEO utility scripts outside this pipeline).",
+    "bread_v3_v4_resync": "03_operations/bsip1/task629_corrected/sync_bread_v3.py re-applied the identical whitelist correction (score/grade/confidence*/insightLine/rowVerdict/expansion.nutrition) to the 22 correctable barcodes bread_frontend_v3.json shares with v4 (excl. 7290016967074), restoring the pre-existing documented invariant '23 survivors byte-identical between v3 and v4' that this task's v4-only correction would otherwise have broken. v3's rank/_hash_no_rank recomputed for all 29 v3 products; the 6 v3-only crackers-split products (barcodes 74252, 96086000966, 96086000577, 7296073134459, 7296073134442, 8434165658523) were NOT touched.",
+    "pd_stale_file_cleanup": "6 stale bread dossier files from a prior (pre-config-repoint) build_dossiers.py run were deleted before the final rebuild+sync so the PD index reflects only the current 23-product bread corpus."
+  },
+  "critical_catch_shared_parser_reverify": {
+    "what": "Before finalizing, every one of the 79 corrected-capture records (bread 23 + crackers 19 + cheese 37, all with status=scraped and a persisted nutrition_raw_source.rows block) was RE-DERIVED independently from its raw rows through the shared, TASK-621-hardened parser chain (parse_nutrition_rows -> bare_to_raw_keys -> parse_nutrition_numeric in 03_operations/bsip0/scrape/_shared/bsip0_nutrition.py) and cross-checked against the capture file's own precomputed nutrition_numeric field, via 03_operations/bsip1/task629_corrected/reverify_via_shared_parser.py.",
+    "finding": "1/79 mismatch: crackers barcode 7290018790328 (קרקר מרובע מלוח, a SALTED cracker) carried sodium_raw='1,200 מג' (1200 mg) in its raw row, but the capture file's own precomputed nutrition_numeric.sodium_mg was 1.2 -- the exact TASK-621 comma-thousands bug, still present in whatever produced this capture's canonicalization_schema='task616_type_b_rows_reconstructed_from_nutrition_raw'. This is NOT the same code path TASK-621 patched (a different, capture-canonicalization-side reconstruction), so it was not caught by that fix. Using the trusted-but-wrong 1.2mg would have UNDER-corrected the score (inflating it) and produced a FALSE SUPERLATIVE claim caught downstream by validate_comparison_page.py's rank_check.py ('claims max sodium (own=1.2) but the max is 754.0 held by a different product').",
+    "fix_applied": "03_operations/bsip1/task629_corrected/crackers/output/bsip1_7290018790328.json patched to sodium_mg=1200.0 (re-derived value); re-scored via rescore_all.py (new score 35.0/D vs the wrong-sodium score of 44.2/D vs originally-published 50.3/C); crackers_frontend_v1.json's entry for this barcode corrected to score=35.0, expansion.nutrition.sodium=1200.0 (grade stays D, unchanged from the already-applied C->D transition, so no additional PENDING_COPY churn). Post-fix: shared-parser reverify shows 0/79 mismatches, and validate_comparison_page.py's superlative check flips from '2 false' to '0 false'.",
+    "escalation_note_to_capture_canonicalize_lane": "The capture-canonicalize agent/lane should be told its task616_type_b_rows_reconstructed_from_nutrition_raw canonicalization schema is NOT routing nutrition_numeric through the shared parser and can reproduce the comma-thousands defect independently of TASK-621's fix. This was a one-instance catch in a 79-record sample, not a corpus-wide audit of that schema."
+  },
+  "rows": [
+    {
+      "shelf": "bread",
+      "barcode": "1902325",
+      "name": "חלה קלועה",
+      "old_score": 57.7,
+      "old_grade": "C",
+      "new_score": 57.3,
+      "new_grade": "C",
+      "delta": -0.4,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "2079033",
+      "name": "לחם דגנים לייט",
+      "old_score": 83.1,
+      "old_grade": "A",
+      "new_score": 78.8,
+      "new_grade": "B",
+      "delta": -4.3,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "2079217",
+      "name": "לחם מחמצת שיפון+אגוזים",
+      "old_score": 70.1,
+      "old_grade": "B",
+      "new_score": 65.1,
+      "new_grade": "B",
+      "delta": -5.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "2079477",
+      "name": "לחם אחיד פרוס",
+      "old_score": 75.2,
+      "old_grade": "B",
+      "new_score": 74.5,
+      "new_grade": "B",
+      "delta": -0.7,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "2079927",
+      "name": "לחם דגנים מלא",
+      "old_score": 83.0,
+      "old_grade": "A",
+      "new_score": 79.0,
+      "new_grade": "B",
+      "delta": -4.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "2079996",
+      "name": "לחם אחיד פרוס קל",
+      "old_score": 82.0,
+      "old_grade": "A",
+      "new_score": 77.6,
+      "new_grade": "B",
+      "delta": -4.4,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "3054183",
+      "name": "לחם שיפון מלא מסטמכר",
+      "old_score": 86.8,
+      "old_grade": "A",
+      "new_score": 87.2,
+      "new_grade": "A",
+      "delta": 0.4,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "3268252",
+      "name": "לחם חיטה מלא לילדים",
+      "old_score": 89.7,
+      "old_grade": "A",
+      "new_score": 89.0,
+      "new_grade": "A",
+      "delta": -0.7,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "3268429",
+      "name": "לחם ירוק מקמח מלא",
+      "old_score": 92.7,
+      "old_grade": "S",
+      "new_score": 89.4,
+      "new_grade": "A",
+      "delta": -3.3,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "4685027",
+      "name": "לחם מחמצת וחיטה מלאה קל",
+      "old_score": 68.0,
+      "old_grade": "B",
+      "new_score": 64.0,
+      "new_grade": "C",
+      "delta": -4.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "481197",
+      "name": "לחם מחמצת גרעינים",
+      "old_score": 88.2,
+      "old_grade": "A",
+      "new_score": 86.3,
+      "new_grade": "A",
+      "delta": -1.9,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "481203",
+      "name": "לחם מחמצת קמח מלא",
+      "old_score": 89.3,
+      "old_grade": "A",
+      "new_score": 87.5,
+      "new_grade": "A",
+      "delta": -1.8,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "497044",
+      "name": "לחם ברמן אקטיב",
+      "old_score": 83.0,
+      "old_grade": "A",
+      "new_score": 83.3,
+      "new_grade": "A",
+      "delta": 0.3,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "574370",
+      "name": "לחם שיפון קל",
+      "old_score": 86.9,
+      "old_grade": "A",
+      "new_score": 86.0,
+      "new_grade": "A",
+      "delta": -0.9,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "6451484",
+      "name": "לחם מחמצת אגוזים צימוקים",
+      "old_score": 69.0,
+      "old_grade": "B",
+      "new_score": 69.0,
+      "new_grade": "B",
+      "delta": 0.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "6451507",
+      "name": "לחם מחמצת מכוסמין",
+      "old_score": 69.0,
+      "old_grade": "B",
+      "new_score": 69.0,
+      "new_grade": "B",
+      "delta": 0.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290014321168",
+      "name": "לחם לס פרוס קיטו",
+      "old_score": 70.0,
+      "old_grade": "B",
+      "new_score": 64.0,
+      "new_grade": "C",
+      "delta": -6.0,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290016245325",
+      "name": "לחם טחינה פרוס",
+      "old_score": 94.8,
+      "old_grade": "S",
+      "new_score": 90.8,
+      "new_grade": "S",
+      "delta": -4.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290016967074",
+      "name": "לחם חיטה מלאה",
+      "old_score": 66.0,
+      "old_grade": "B",
+      "new_score": null,
+      "new_grade": null,
+      "delta": null,
+      "status": "EXCLUDED_IDENTITY_ANOMALY"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290018500316",
+      "name": "לחם כוסמין לבן",
+      "old_score": 81.6,
+      "old_grade": "A",
+      "new_score": 81.2,
+      "new_grade": "A",
+      "delta": -0.4,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290018500460",
+      "name": "לחם אנג'ל חצי מלא",
+      "old_score": 69.0,
+      "old_grade": "B",
+      "new_score": 69.0,
+      "new_grade": "B",
+      "delta": 0.0,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "7290018540329",
+      "name": "פיתה פיתה",
+      "old_score": 79.2,
+      "old_grade": "B",
+      "new_score": 77.6,
+      "new_grade": "B",
+      "delta": -1.6,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "bread",
+      "barcode": "9398281",
+      "name": "מארז פיתות אסליות",
+      "old_score": 75,
+      "old_grade": "B",
+      "new_score": 75,
+      "new_grade": "B",
+      "delta": 0,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "5000396021202",
+      "name": "קרקר",
+      "old_score": 46.7,
+      "old_grade": "D",
+      "new_score": 40.5,
+      "new_grade": "D",
+      "delta": -6.2,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290011489595",
+      "name": "קרקר טופז שומשום",
+      "old_score": 51.0,
+      "old_grade": "C",
+      "new_score": 27.0,
+      "new_grade": "E",
+      "delta": -24.0,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290013740083",
+      "name": "קרקר דגנים ללת\"ס",
+      "old_score": 62.1,
+      "old_grade": "C",
+      "new_score": 54.2,
+      "new_grade": "C",
+      "delta": -7.9,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290013740809",
+      "name": "קרקר כוסמין סלק",
+      "old_score": 77.0,
+      "old_grade": "B",
+      "new_score": 71.2,
+      "new_grade": "B",
+      "delta": -5.8,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290013740823",
+      "name": "קרקר כוסמין טבעי",
+      "old_score": 79.2,
+      "old_grade": "B",
+      "new_score": 73.3,
+      "new_grade": "B",
+      "delta": -5.9,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290018790328",
+      "name": "קרקר מרובע מלוח",
+      "old_score": 50.3,
+      "old_grade": "C",
+      "new_score": 35.0,
+      "new_grade": "D",
+      "delta": -15.3,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING",
+      "note": "FINAL value after shared-parser reverify fix (see critical_catch_shared_parser_reverify) -- superseded an intermediate 44.2 that carried a comma-thousands sodium bug (1.2 instead of 1200mg)"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290112963918",
+      "name": "קרקר דק רוזמרין פיטנס",
+      "old_score": 75.2,
+      "old_grade": "B",
+      "new_score": 67.6,
+      "new_grade": "B",
+      "delta": -7.6,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290112968821",
+      "name": "קרקר דק פיטנס בטטה",
+      "old_score": 73.7,
+      "old_grade": "B",
+      "new_score": 65.9,
+      "new_grade": "B",
+      "delta": -7.8,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7290115205176",
+      "name": "קרקר דק כפרי פיטנס",
+      "old_score": 73.8,
+      "old_grade": "B",
+      "new_score": 66.2,
+      "new_grade": "B",
+      "delta": -7.6,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7296073134442",
+      "name": "קרקר פריך עם קמח שיפון",
+      "old_score": 77.2,
+      "old_grade": "B",
+      "new_score": 77.2,
+      "new_grade": "B",
+      "delta": 0.0,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7296073134459",
+      "name": "קרקר פריך בסגנון שוודי",
+      "old_score": 78.0,
+      "old_grade": "B",
+      "new_score": 78.1,
+      "new_grade": "B",
+      "delta": 0.1,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7296073398875",
+      "name": "קרם קרקר",
+      "old_score": 66.9,
+      "old_grade": "B",
+      "new_score": 66.1,
+      "new_grade": "B",
+      "delta": -0.8,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7296073659945",
+      "name": "קרקר דק רוזמרין",
+      "old_score": 78.6,
+      "old_grade": "B",
+      "new_score": 73.3,
+      "new_grade": "B",
+      "delta": -5.3,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "7296073659952",
+      "name": "קרקר דק כפרי",
+      "old_score": 75.0,
+      "old_grade": "B",
+      "new_score": 69.7,
+      "new_grade": "B",
+      "delta": -5.3,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "74252",
+      "name": "קרקר שומשום אסם",
+      "old_score": 63.4,
+      "old_grade": "C",
+      "new_score": 55.1,
+      "new_grade": "C",
+      "delta": -8.3,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "74375",
+      "name": "קרקר זהב אסם",
+      "old_score": 51.7,
+      "old_grade": "C",
+      "new_score": 43.4,
+      "new_grade": "D",
+      "delta": -8.3,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "8434165658523",
+      "name": "קרקר קרם קרקר",
+      "old_score": 70.4,
+      "old_grade": "B",
+      "new_score": 63.6,
+      "new_grade": "C",
+      "delta": -6.8,
+      "status": "APPLIED_GRADE_CHANGED_COPY_PENDING"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "96086000577",
+      "name": "קרקר כוסמין אורגני",
+      "old_score": 83.9,
+      "old_grade": "A",
+      "new_score": 84.2,
+      "new_grade": "A",
+      "delta": 0.3,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "crackers",
+      "barcode": "96086000966",
+      "name": "קרקר כוסמין מלא ושומשום",
+      "old_score": 86.0,
+      "old_grade": "A",
+      "new_score": 86.0,
+      "new_grade": "A",
+      "delta": 0.0,
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "cheese",
+      "barcode": "7290112342102",
+      "name": "גבינה 5% בצל מקורמל",
+      "old_score": 44.9,
+      "old_grade": "D",
+      "new_score": 44.6,
+      "new_grade": "D",
+      "delta": -0.3,
+      "out_of_scope_drift_observed": [
+        "d4_additives_drift_not_applied (independent additive-KB update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    },
+    {
+      "shelf": "cheese",
+      "barcode": "7290114310918",
+      "name": "קוטג' 5%",
+      "old_score": 74.7,
+      "old_grade": "B",
+      "new_score": 74.7,
+      "new_grade": "B",
+      "delta": 0.0,
+      "out_of_scope_drift_observed": [
+        "novaGroup_drift_not_applied (3->2, independent NOVA-proxy update)"
+      ],
+      "status": "APPLIED_GRADE_UNCHANGED_COPY_KEPT"
+    }
+  ],
+  "defects": []
+}
