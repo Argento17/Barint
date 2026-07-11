@@ -234,9 +234,17 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
   already caught+re-scored by 629** (50.3/C→35.0/D). Bug isolated to that one product; no new corruption.
   Producer hardened (new canonicalize_task616_type_b.py routes through the shared parser; --selftest guards
   1,200→1200). No served JSON / published score touched.
-- 🚫 **10 PENDING_COPY rows — BLOCKED by the ACTIVE product-descriptions freeze** (owner rewriting ALL
-  descriptions; no lane touches rowVerdict/insightLine/expansion without owner handoff). NOT dispatched to
-  Content. Owner-handoff digest item; gates consumer deploy of the 629 re-score.
+- 🟢 **OWNER APPROVED BOTH parked items (2026-07-11): "Approved for both, go ahead."** Freeze released for
+  the 10 rows; >30 re-score cleared for the 4 cookies. Both dispatched:
+  - 🔧 **TASK-633 (Content Agent, fable, bg)** — author the 10 grade-changed rows (6 bread + 4 crackers),
+    Tom voice, NO cited nutritional values, describe on own terms → then **Adversarial QA gate (two-gate)**.
+  - 🔧 **TASK-634 (Data Agent, sonnet, MAIN tree, bg)** — cookies_coffee basis fix: diagnose per-serving-
+    as-per-100g for 4 (7290122781359/7290000061245/7290118423904/7290118422617), correct to true per-100g,
+    re-score (>30 owner-cleared), rebuild PD + parity diverge=0; grade-changed rows → PENDING_COPY.
+  - 🔧 **TASK-632 (Codex terra, read-only diag, bg)** — triage remaining 61 calc-FAILs (A backfill-safe /
+    B1-B2 run-mismatch / C genuine defect) per the TASK-563 don't-certify-wrong-scores caution.
+- 🗄️ **(historical) 10 PENDING_COPY rows were BLOCKED by the product-descriptions freeze** — now released
+  above (TASK-633). Was: no lane touches rowVerdict/insightLine/expansion without owner handoff.
 - 📋 **Deferred (tracked):** re-score PIPELINE build (614's root gap) · re-scrape 17 never-captured · 6
   PID_SPLIT shelf-mapping → Product Agent · cookies_coffee basis defect (>30, digest).
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
