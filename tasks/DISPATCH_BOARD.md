@@ -106,9 +106,12 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   truncations corpus-wide (short codes = genuine Shufersal SKUs/PLUs; only ~3 yogurt-drinks were real).
   PD registry is now the identity source of truth; no mass backfill needed. Reason-code split → TASK-613.
   Lesson (correction): verify the mechanism before quantifying a corpus-wide crisis.
-- ⏳ **NEXT:** TASK-614 re-score unblocks when the parser fix lands (baseline now clean + integrated).
-  Ready non-blocked: TASK-613 (reason-code split), TASK-616 (yogurt configs), TASK-617 (coverage gate),
-  PD-3 (internal inspection view — PD-2 compiler stable).
+- ✅ **TASK-616 CLOSED** (commit 431c30b3) — yogurt configs baseline_json null→served JSONs; **all 18/18
+  shelves now build (620→687 dossiers)**; orchestrator-verified (commit=2 configs only, --selftest PASS).
+- 🟢 **LIVE:** TASK-613 (barcode reason-code split, registry-reason-split a9a22293 — recompiling registry).
+- ⏳ **NEXT:** TASK-614 re-score unblocks when the parser fix lands (baseline clean + integrated).
+  Ready non-blocked: TASK-617 (coverage gate) · **PD-3 (internal inspection view)** = the ready marquee,
+  launch after TASK-613 frees the registry (owner may steer the UI first — offered in digest).
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
