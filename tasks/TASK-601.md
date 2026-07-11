@@ -2,8 +2,7 @@
 id: TASK-601
 title: BSIP0 MUST workstream: capture provenance manifest + replay-everything harness (STF-converged prerequisite)
 owner: data-agent
-status: BLOCKED
-blocker: owner go/no-go on the BSIP0 enhancement program start (STF memo 2026-07-11); do NOT dispatch until approved
+status: IN_PROGRESS
 priority: MEDIUM
 created_at: 2026-07-11
 depends_on: []
