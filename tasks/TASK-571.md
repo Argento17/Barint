@@ -38,6 +38,17 @@ Vercel **Deployment Checks** (docs: https://vercel.com/docs/deployment-checks). 
 - GitHub identifies checks by JOB NAME; if we ever rename these jobs, the Deployment Checks selection must be updated or promotion stalls (documented Vercel limitation).
 - After enabling, the next master push is the live test: watch the deployment page show "Checks" between Build and Promote.
 
+## Click-path VERIFIED ready (orchestrator, 2026-07-11, "go ahead")
+All six job names confirmed to exist on origin/master AND to run on every master push (no `paths:`
+filter on the push trigger — the paths filters are pull_request-only, so no required check can be
+skipped-and-stall):
+- `barint_ci.yml`: `frontend` (:19), `python-tests` (:63), `off-sweep` (:102), `e2e-smoke` (:120)
+- `bari_page_gates.yml`: `conformance` (:22), `off-ban-census` (:46)
+Both workflows: `on.push.branches: [master]`, no push-paths filter. Excluded checks (shadow-backtest,
+validate-returns, run_gates) correctly stay out (path-filtered / PR-only / not-in-CI). **Owner: the
+step-3 selection list is accurate as written — safe to enable. Closes when you confirm it's on and
+the next push shows the Checks step (or sooner if you'd rather I close on your word).**
+
 # TASK-571 — Vercel: hold production alias until checks pass (deployment gating)
 
 <!-- opened with new_task.py; fill in context / scope / the deliverable -->
