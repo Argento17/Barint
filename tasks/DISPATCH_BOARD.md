@@ -12,6 +12,43 @@ given session (was, 2026-07-04) — then the owner opens/merges PRs from the pus
 
 ---
 
+## 🏗️ MAJOR PROGRAM STARTED — PRODUCT DOSSIER "PD" (2026-07-11, owner) — TASK-608
+Owner turned the barcode/traceability worry into a program: **one canonical Product Dossier per
+product** — 4 layers (Identity / Raw-evidence+provenance / Derived-analysis / Checks), explicit
+barcode STATES (verified/conflicting/malformed/not-found/pending — barcode NOT mandatory, broken =
+lower confidence not broken pipeline), a **2D radar** (NOT 3D) with user-selectable layers, and a
+2-page internal inspection interface → **foundation for Bari's barcode scanner**. **Owner amendment
+(load-bearing): the PD encapsulates BSIP0+BSIP1+BSIP2 in ONE spine — "a huge structural shift."**
+Owner rule: **do NOT combine product quality and data quality into one score.**
+- Owner directive sequence: **(1) continue the baseline scrape FIRST**, then **(2) STF-review the PD
+  architecture → resolution.** Both running concurrently (independent workstreams).
+- ✅ **STF CONVERGED (2 rounds, zero surviving cruxes) — VERDICT MEMO DELIVERED:**
+  `01_framework/governance/stf_memos/2026-07-11_product-dossier-architecture.md` (+ 3 appendix
+  position files). Both SST seats independently chose **DERIVE** (deterministic compiled projection
+  over the 601-manifest/replay/BSIP2-traces/served-JSON, one shelf-agnostic compiler, committed
+  baseline + `--check`), NOT a new writable store BSIP0/1/2 read-from/write-to; storage migrates into
+  the PD contract later field-family-by-family behind parity gates. **Debate produced net-new
+  structure neither blind position held alone:** (A) mint opaque immutable `bari_pid` — existing ids
+  are barcode-derived, 146/710 truncated → poisoned key (Sol conceded); registry owns ONLY
+  pid+alias-table+barcode-adjudication+recovered_gtin; (B) identity-adjacent facts (name/brand/pkg/
+  urls) = provenance-pointed projections, NOT registry copies (Sol's CRUX C); (C) **THREE** disjoint
+  L3 namespaces — `assessment` (BSIP2) / `data_quality` (record health) / **`publication_record`**
+  (served value verbatim, pending a calc check that may FAIL) — Fable's CRUX C, keeps tripwire-1 +
+  traceability-honesty from colliding. Quality≠data-quality enforced by TYPE (axis decl, cross-
+  namespace read = build fail, no overall_score). OFF-never + missing=NULL structural (build fail /
+  no imputation path). **→ OWNER DECISION POINT 1: accept architecture → authorize MVP (PD-1 registry
+  backfill starts NOW / PD-2 compiler+baseline waits on parser fix / PD-3 internal Page-1 view).**
+  **DP-2 (non-blocking): do you intend the PD to REPLACE served JSONs as the publication source
+  within ~a quarter? If not-now → derive-first correct (recommended).** STF never implements; PD
+  build tasks register only on owner accept. TASK-608 BLOCKED on owner accept.
+- 🚀 **TASK-602 BATCH 3 DISPATCHED** (baseline scrape, "before all get the very best baseline") —
+  Data Agent sonnet (ab96c4175dfe860c5, live network), bread + chocolate(bars+tablets) ~110 products.
+  Resolves truncated barcodes BY NAME + records a reconciliation table (served-trunc→true-GTIN) but
+  does NOT backfill served JSON (TASK-607 owner-gated). Retain raw → rebuild manifest → census delta →
+  replay discrepancy table. OFF banned, no score/JSON writes, MATERIAL Δ → movement table + STOP.
+
+---
+
 ## 🟢 SUPERVISED /orchestrate RUN (2026-07-11, owner: "Run /orchestrate (full registry)") — LIVE
 Active program = TASK-576 corpus copy overhaul (no cited nutritional values; owner-approved §H5 3-beat
 anchor voice). Enforcement + judge SHIPPED this session (task506): nutrition_value_citation + bimkom +
