@@ -2,7 +2,7 @@
 id: TASK-602
 title: Full corpus traceability: re-scrape the 398 no-capture products, manifest them, verify vs published
 owner: data-agent
-status: IN_PROGRESS
+status: RETURNED
 priority: HIGH
 created_at: 2026-07-11
 depends_on: []
