@@ -1,0 +1,10 @@
+# dossiers_sample/ and generation_manifest.json are throwaway inspection
+# output from build_dossiers.py's default (no --check/--selftest) run --
+# regenerated wholesale on every invocation, never hand-edited, and
+# EXPLICITLY not meant to be committed while it is a pre-parser-fix
+# projection (TASK-610 / STF memo R-D). Committing dossier_baseline.jsonl
+# is a deliberate future action (after the BSIP0 parser fix + replay
+# re-baseline) -- that filename is intentionally NOT listed here.
+dossiers_sample/
+generation_manifest.json
+__pycache__/
