@@ -80,6 +80,12 @@ Reaching each capability (all dispatches run_in_background):
   (it will invent a fallback git-dir if asked). Spec the lane to leave a clean working tree + the
   return contract; the ORCHESTRATOR commits and pushes after verification. Pass multi-line specs via
   the lane function's `prompt` arg (delivered over stdin — never rely on argv).
+  **Dirty-tree commit guard (audit 2026-07-11):** before committing a lane's file list on a dirty
+  tree, run `git diff --stat` over that list — any file whose diff size is an outlier vs the lane's
+  described change (an import rename is 1-2 lines, not 51) gets its diff READ; mixed ambient content
+  is partial-staged (HEAD content + only the lane's lines via `git hash-object -w` +
+  `update-index --cacheinfo`) or excluded. Never commit ambient/owner-held edits under a task's
+  commit message (first catch: TASK-566 nearly committed TASK-505's owner-held search_console.py edits).
 - **GRUNT** — primary: Codex (`gpt-5.6 luna`) via `grunt_primary`; mechanical, **zero-judgment-call**
   work only — count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
   bookkeeping. Route to GRUNT ONLY when the output is 100% determined by a stated rule — if the task
