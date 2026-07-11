@@ -15,3 +15,10 @@ summary: >
 # TASK-553 — build_copy_inputs.py hygiene: code the superlative margin gate + de-hardcode S_VERBATIM
 
 <!-- opened with new_task.py; fill in context / scope / the deliverable -->
+
+## Dispatch log
+- 2026-07-11 03:xx (unattended orchestrate run) — dispatched Data Agent (claude-sonnet pin,
+  background). Capability = BUILD-LIGHT; **fallback activation logged (Router v5 Layer-0 inv. 6):
+  primary Codex terra SKIPPED — trigger = unattended-run operating constraint (native Sonnet only;
+  cloud/CLI lanes queued for supervised morning).** Scratch outputs only — product-descriptions
+  freeze respected; no live JSON regeneration. No commit; orchestrator commits post-verification.

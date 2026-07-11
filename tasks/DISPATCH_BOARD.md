@@ -12,6 +12,28 @@ given session (was, 2026-07-04) — then the owner opens/merges PRs from the pus
 
 ---
 
+## 🌙 UNATTENDED 3AM RUN (2026-07-11) — dispatch pass, branch task506 — IN FLIGHT
+Operating constraints: native Sonnet subagents only (cloud/CLI lanes queued for supervised morning);
+no consumer deploy; no published-score movement; commits to dedicated branch only; full autonomous
+close on verified non-tripwire returns. Digest: `tasks/digests/2026-07-11-orchestrate.md`.
+**Registry hygiene (done):** TASK-575/577/580/587 (CLOSED) moved to tasks/closed/ (board_check misfiled findings).
+**DISPATCHED (background, all sonnet-pinned; Codex primaries skipped with fallback triggers logged in each task file):**
+- **TASK-566** → Data Agent (BUILD-LIGHT fallback) — rename integrations/clients/http.py (stdlib shadow)
+  + fail-loud grammar/readability gate callers; subsumes TASK-584's rename (tree quiet at 3AM).
+- **TASK-553** → Data Agent (BUILD-LIGHT fallback) — code superlative margin gate per
+  superlatives_allowed_policy_v1 + de-hardcode S_VERBATIM; scratch only, freeze respected.
+- **TASK-552** → Nutrition Agent (DOMAIN-JUDGMENT) — READ-ONLY ledger-gap diagnosis
+  (score_after_cap − penalty ≠ score_after_penalty, ~4pt, #37 7290102399802) + systemic census.
+  Un-blocked via question-conversion (read-only report = reversible); any fix stays owner-gated.
+- **TASK-562** → Research Agent (EVIDENCE-RESEARCH fallback) — Israeli sucralose (E955) bakery
+  authorization + corpus bearing of EFSA 2026 dechlorination finding; recommend-only, no score exposure.
+- **Ghost triage** (board-queued since CI Wave 3) → general-purpose sonnet — read-only classification
+  of ~119 pre-compaction ghost opens + TASK-200/201/202 reopen-or-close; recommendations only.
+**QUEUED for supervised lanes / owner:** TASK-572 (BSIP0 label-warning capture — live scraping build),
+TASK-573 (USDA FDC ingredient exposure — needs FDC_API_KEY = external account, owner opt-in),
+TASK-543 (yogurt mirror reconcile — data-agent WIP full), TASK-550 M2 (fold owner-approved §H5 anchor
+voice + judge into content_agent_v1 — content lane, after owner rules on TASK-576 sweep pace).
+
 ## 🟢 APPROVED PROGRAM WAVE 1 (2026-07-10, owner "approved. go ahead") — paper trails + gating
 **PR: https://github.com/Argento17/Barint/pull/new/task564-schema-lag** (commit 5b5b70d6). Owner merges.
 - ✅ **TASK-561 CLOSED** — bread baseline v3→v4 applied (Product Agent decision; its "byte-identical" claim was FALSE — 15/23 differ incl. one grade flip; v4 was re-scored post-creation; lineage → TASK-563 bucket). Bread exception removed: **conformance 16/16, exception list EMPTY — first fully clean spine.**

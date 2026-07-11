@@ -15,3 +15,11 @@ summary: >
 # TASK-562 — Sucralose heat-dechlorination: Israeli authorisation in baked goods + bearing on scored products
 
 <!-- opened with new_task.py; fill in context / scope / the deliverable -->
+
+## Dispatch log
+- 2026-07-11 03:xx (unattended orchestrate run) — dispatched Research Agent (claude-sonnet pin,
+  background). Capability = EVIDENCE-RESEARCH; **fallback activation logged (Router v5 Layer-0
+  inv. 6): primary Codex --search SKIPPED — trigger = unattended-run operating constraint; the
+  activated fallback IS the router's stated fallback (Research Agent, sonnet).** Read-only
+  evidence report; EFSA/ADI never moves a score (standing law) — any scoring implication is
+  flag-only for Nutrition + owner.
