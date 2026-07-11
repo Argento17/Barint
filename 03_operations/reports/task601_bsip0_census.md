@@ -1,16 +1,16 @@
 # TASK-601 BSIP0 Capture Census
 
-- Total captures: 2564 (manifest records).
-- Canonical captures: 1306 (manifest records).
-- Duplicates superseded: 1258 (manifest records).
-- Distinct GTINs: 1110 (canonical records with GTIN).
+- Total captures: 2680 (manifest records).
+- Canonical captures: 1364 (manifest records).
+- Duplicates superseded: 1316 (manifest records).
+- Distinct GTINs: 1112 (canonical records with GTIN).
 
 ## Per-retailer capture breakdown
 
-- shufersal: 1619/2564 captures
-- tiv_taam: 18/2564 captures
-- unknown: 869/2564 captures
-- yohananof: 58/2564 captures
+- shufersal: 1735/2680 captures
+- tiv_taam: 18/2680 captures
+- unknown: 869/2680 captures
+- yohananof: 58/2680 captures
 
 ## Served-product coverage
 
@@ -23,7 +23,7 @@
 | cereals_frontend_v2 | 20 | 20 | 0 |
 | cheese_frontend_v4 | 47 | 10 | 37 |
 | chocolate_bars_frontend_v1 | 23 | 23 | 0 |
-| chocolate_tablets_frontend_v1 | 35 | 33 | 2 |
+| chocolate_tablets_frontend_v1 | 35 | 35 | 0 |
 | cookies_coffee_frontend_v2 | 117 | 96 | 21 |
 | crackers_frontend_v1 | 53 | 34 | 19 |
 | granola_frontend_v2 | 22 | 22 | 0 |
@@ -38,7 +38,7 @@
 | yogurt_spoonable_frontend_v1 | 50 | 49 | 1 |
 | yogurt_spoonable_frontend_v1_redteam_ledger | 0 | 0 | 0 |
 
-Total served products: 710; HAS_CANONICAL_CAPTURE: 565/710; NO_CAPTURE: 145/710.
+Total served products: 710; HAS_CANONICAL_CAPTURE: 567/710; NO_CAPTURE: 143/710.
 
 ## Replay distribution marker
 
