@@ -92,17 +92,23 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   + recovered_gtin; layer_4 barcode check real; data_quality.identity_confidence derived (namespace-
   clean). Orchestrator-verified: selftest 4/4+bonus, write-boundary guard blocks out-of-tree writes,
   only 4 files touched, no served/registry/baseline writes. **PD-2 remaining: committed baseline
-  (blocked on parser fix, R-D).** → **TASK-615 (MED):** 2 yogurt configs baseline_json:null → 67
+  (blocked on parser fix, R-D).** → **TASK-616 (MED, open):** 2 yogurt configs baseline_json:null → 67
   products not built (pre-existing config defect; join guards the crash).
-- 🔴 **MANIFEST-INTEGRATION GAP FOUND at consolidation → TASK-616 DISPATCHED (data-agent aa609e04).**
-  Consolidated manifest rebuild left coverage STUCK at 567/710 — batch-4/5 retained raw captures
-  (captured.nutrition_raw_keys + full_page_text) but in a bespoke LIST shape lacking the
-  `nutrition_raw_source.rows` dict build_manifest.py scans for → ~120 captures on disk but INVISIBLE.
-  Data present, not lost. TASK-616 = canonicalization transform (map to the golden batch-3 shape) →
-  rebuild manifest+census (target ~687/710) → recompile registry. **LESSON (6b, lesson_trigger=failure):
-  a scrape's acceptance test must be "manifest coverage rises," not "files written" — bespoke scrape
-  tooling that doesn't emit the canonical retention schema = [[owner_systematic_not_artisanal]] drift.**
-- ⏳ **NEXT:** TASK-616 integrates captures → then TASK-614 re-score unblocks when the parser fix lands.
+- ✅ **MANIFEST-INTEGRATION GAP FOUND + FIXED → TASK-615 CLOSED (canonicalization, commit 5302d5a8).**
+  Consolidated rebuild left coverage STUCK at 567/710 — batch-4/5 captures were retained but in a
+  bespoke shape build_manifest.py can't scan (~120 invisible). data-agent canonicalized (found TWO
+  schemas: Type-A captured-wrapper rename + Type-B flat→rows reconstruction from Hebrew label vocab).
+  **Orchestrator-verified: tripwire-1 clean, census 567→693/710, registry --check/--selftest PASS
+  (verified 442→535), Type-B fidelity spot-check 8/8 rows correctly paired, honest discards (1 empty
+  cookies, 1 PLU/GTIN).** BASELINE NOW INTEGRATED. Lesson codified (memory scrape_capture_canonical_
+  format; prevention gate = **TASK-617** (BLOCKED, manifest-coverage acceptance assertion)).
+- ✅ **TASK-607 CLOSED — barcode "truncation" alarm was FALSE.** 3 batches + census = 0 true
+  truncations corpus-wide (short codes = genuine Shufersal SKUs/PLUs; only ~3 yogurt-drinks were real).
+  PD registry is now the identity source of truth; no mass backfill needed. Reason-code split → TASK-613.
+  Lesson (correction): verify the mechanism before quantifying a corpus-wide crisis.
+- ⏳ **NEXT:** TASK-614 re-score unblocks when the parser fix lands (baseline now clean + integrated).
+  Ready non-blocked: TASK-613 (reason-code split), TASK-616 (yogurt configs), TASK-617 (coverage gate),
+  PD-3 (internal inspection view — PD-2 compiler stable).
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /

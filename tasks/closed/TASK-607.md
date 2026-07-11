@@ -2,10 +2,23 @@
 id: TASK-607
 title: Served corpus barcode integrity: 146/710 products have a barcode too short to be a valid GTIN
 owner: data-agent
-status: BLOCKED
-blocker: owner decision - backfill served barcode fields with recovered GTINs? (touches published JSON identity); + root-cause truncation source. Re-scrape recovers GTINs regardless.
+status: CLOSED
 priority: MEDIUM
 created_at: 2026-07-11
+lesson_trigger: correction
+lesson_outcome: implementation_task
+lesson_generated_task_id: TASK-613
+lesson_evidence: "TASK-602 batch-3/4/5 barcode reconciliation: 0 true_truncation across ~120 short codes (all benign Shufersal SKUs/PLUs); census + registry confirm"
+lesson_signature: barcode_short_misread_as_truncation
+lesson_related: [TASK-613]
+close_reason: >
+  ALARM RESOLVED as largely FALSE. The 146/710 truncated-barcode scare was a misread: three
+  re-scrape batches + the census confirm 0 true truncations corpus-wide (short codes are genuine
+  Shufersal SKUs/PLUs that resolve directly; only ~3 yogurt-drinks were true truncations). The PD-1
+  identity registry is now the identity source of truth (bari_pid = join key, barcode = attribute)
+  and holds recovered_gtin. No mass served-barcode backfill needed. Reason-code split -> TASK-613.
+  LESSON (correction): verify the MECHANISM (short != truncated) by resolving a sample against the
+  retailer before quantifying a corpus-wide integrity crisis.
 depends_on: []
 blocks: []
 category_id: null
