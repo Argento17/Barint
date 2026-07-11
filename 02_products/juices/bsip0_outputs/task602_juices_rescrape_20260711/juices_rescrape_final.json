@@ -1,0 +1,1620 @@
+{
+  "schema": "task602_batch2_retention_v1",
+  "task": "TASK-602",
+  "shelf": "juices",
+  "run_ts": "2026-07-11T06:34:04.131220+00:00",
+  "total_targets": 17,
+  "records": [
+    {
+      "status": "scraped",
+      "barcode": "7290004030100",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%9E%D7%99%D7%A5+%D7%AA%D7%A4%D7%95%D7%96%D7%99%D7%9D+%D7%95%D7%9C%D7%A0%D7%A1%D7%99%D7%94+%D7%A1%D7%97%D7%95%D7%98&size=20",
+      "name": "מיץ תפוזים סחוט ולנס",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "43",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "10.2",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "8.7",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "0.52",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "43",
+        "carbs": "10.2",
+        "sugar": "8.7",
+        "protein": "0.52"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 43.0,
+        "fat_g": null,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": null,
+        "carbohydrates_g": 10.2,
+        "sugars_g": 8.7,
+        "dietary_fiber_g": null,
+        "protein_g": 0.52
+      },
+      "ingredients_raw": "100% מיץ תפוזים סחוט טבעי",
+      "scrape_timestamp": "2026-07-11T06:26:07.928429+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-003",
+      "target_name_served": "100% מיץ תפוזים ולנסיה סחוט 1 ליטר פריני",
+      "published_nutrition": {
+        "energyKcal": 43.0,
+        "protein": 0.52,
+        "sugar": 8.7,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290013608260",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A5-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%A8%D7%99/%D7%9E%D7%99%D7%A5-%D7%A8%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D-%D7%A1%D7%97%D7%95%D7%98-100%25/p/P_7290013608260",
+      "name": "מיץ רימונים סחוט 100%",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "12.6",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "54",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "13",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "per_100g",
+            "subInfo": "100 גרם",
+            "rows": [
+              {
+                "value": "12.6",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "54",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "13",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              }
+            ]
+          },
+          {
+            "table_index": 1,
+            "basis": "unknown",
+            "subInfo": "100 מ\"ל מוכן",
+            "rows": [
+              {
+                "value": "12.6",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "54",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "13",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "per_100g",
+          "selected_table_index": 0,
+          "selected_table_header": "100 גרם",
+          "competing_table_count": 2,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"12.6\">\n                                    \n\n                                    \n                                    \n                                        12.6\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"54\">\n                                    \n\n                                    \n                                        54\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"13\">\n                                    \n\n                                    \n                                        13\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n</div><div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"12.6\">\n                                    \n\n                                    \n                                    \n                                        12.6\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"54\">\n                                    \n\n                                    \n                                        54\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"13\">\n                                    \n\n                                    \n                                        13\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "12.6",
+        "energy": "54",
+        "protein": "0",
+        "carbs": "13",
+        "fat": "0",
+        "sodium": "0 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 54.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 13.0,
+        "sugars_g": 12.6,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מיץ רימונים",
+      "scrape_timestamp": "2026-07-11T06:23:48.189838+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-006",
+      "target_name_served": "מיץ רימונים 100%מיץ סחוט טרי מצונן 1ליט",
+      "published_nutrition": {
+        "energyKcal": 54.0,
+        "protein": 0.0,
+        "sugar": 12.6,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290000525969",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%9E%D7%99%D7%A5+%D7%AA%D7%A4%D7%95%D7%96%D7%99%D7%9D+%D7%A1%D7%97%D7%95%D7%98&size=20",
+      "name": "מיץ תפוזים סחוט 1 ל",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "47",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חומצות שומן רוויות (גרם) מתוך סך השומנים"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חומצות שומן טראנס (גרם) מתוך סך השומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "10.2",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "8.2",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "0.7",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          },
+          {
+            "value": "30",
+            "unit": "מג",
+            "label": "ויטמין C (מג)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "47",
+        "fat": "0",
+        "saturated_fat": "0",
+        "trans_fat": "0",
+        "sodium": "0",
+        "carbs": "10.2",
+        "sugar": "8.2",
+        "protein": "0.7"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 47.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": 0.0,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 10.2,
+        "sugars_g": 8.2,
+        "dietary_fiber_g": null,
+        "protein_g": 0.7
+      },
+      "ingredients_raw": "מיץ תפוזים",
+      "scrape_timestamp": "2026-07-11T06:26:08.328595+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-001",
+      "target_name_served": "מיץ תפוזים סחוט 1 ליטר",
+      "published_nutrition": {
+        "energyKcal": 47.0,
+        "protein": 0.7,
+        "sugar": 8.2,
+        "fat": 0.0,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290013153395",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A5-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%A8%D7%99/%D7%A4%D7%A8%D7%99%D7%92%D7%AA-%D7%A8%D7%99%D7%9E%D7%95%D7%A0%D7%99%D7%9D-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%91%D7%A2%D7%99/p/P_7290013153395",
+      "name": "פריגת רימונים סחוט טבעי",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "12.6",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "54",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "12.6",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "per_100g",
+            "subInfo": "100 גרם",
+            "rows": [
+              {
+                "value": "12.6",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "54",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "12.6",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "per_100g",
+          "selected_table_index": 0,
+          "selected_table_header": "100 גרם",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"12.6\">\n                                    \n\n                                    \n                                    \n                                        12.6\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"54\">\n                                    \n\n                                    \n                                        54\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"12.6\">\n                                    \n\n                                    \n                                    \n                                        12.6\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "12.6",
+        "energy": "54",
+        "carbs": "12.6",
+        "fat": "0",
+        "sodium": "0 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 54.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 12.6,
+        "sugars_g": 12.6,
+        "dietary_fiber_g": null,
+        "protein_g": null
+      },
+      "ingredients_raw": "מיץ רימוניםn",
+      "scrape_timestamp": "2026-07-11T06:23:55.180406+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-005",
+      "target_name_served": "סחוט 1 ליטר רימונים",
+      "published_nutrition": {
+        "energyKcal": 54.0,
+        "protein": null,
+        "sugar": null,
+        "fat": 0.0,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290110114886",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A5-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%A8%D7%99/%D7%9E%D7%99%D7%A5-%D7%A7%D7%9C%D7%9E%D7%A0%D7%98%D7%99%D7%A0%D7%95%D7%AA-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%91%D7%A2%D7%99/p/P_7290110114886",
+      "name": "מיץ קלמנטינות סחוט טבעי",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "9.8",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "44",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0.5",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "9.8",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן"
+          },
+          {
+            "value": "25",
+            "unit": "מג",
+            "label": "C ויטמין"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "per_100g",
+            "subInfo": "100 גרם",
+            "rows": [
+              {
+                "value": "9.8",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "44",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0.5",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "9.8",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              },
+              {
+                "value": "25",
+                "unit": "מג",
+                "label": "C ויטמין"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "per_100g",
+          "selected_table_index": 0,
+          "selected_table_header": "100 גרם",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"9.8\">\n                                    \n\n                                    \n                                    \n                                        9.8\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"44\">\n                                    \n\n                                    \n                                        44\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0.5\">\n                                    \n\n                                    \n                                    \n                                        0.5\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"9.8\">\n                                    \n\n                                    \n                                    \n                                        9.8\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"25\">\n                                    \n\n                                    \n                                        25\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">C ויטמין</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "9.8",
+        "energy": "44",
+        "protein": "0.5",
+        "carbs": "9.8",
+        "fat": "0",
+        "sodium": "0 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 44.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 9.8,
+        "sugars_g": 9.8,
+        "dietary_fiber_g": null,
+        "protein_g": 0.5
+      },
+      "ingredients_raw": "מיץ קלמנטינות",
+      "scrape_timestamp": "2026-07-11T06:23:57.669601+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-011",
+      "target_name_served": "סחוט קלמנטינה 2 ליטר",
+      "published_nutrition": {
+        "energyKcal": 44.0,
+        "protein": 0.5,
+        "sugar": null,
+        "fat": 0.0,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290003009640",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%A1%D7%97%D7%95%D7%98+%D7%AA%D7%A4%D7%95%D7%96&size=20",
+      "name": "סחוט טרי תפוז 1 ליטר",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "43",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "9.6",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "8.6",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "0.7",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          },
+          {
+            "value": "30",
+            "unit": "מג",
+            "label": "ויטמין C (מג)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "43",
+        "fat": "0",
+        "sodium": "0",
+        "carbs": "9.6",
+        "sugar": "8.6",
+        "protein": "0.7"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 43.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 9.6,
+        "sugars_g": 8.6,
+        "dietary_fiber_g": null,
+        "protein_g": 0.7
+      },
+      "ingredients_raw": "מיץ תפוזיםn",
+      "scrape_timestamp": "2026-07-11T06:26:08.743954+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-002",
+      "target_name_served": "סחוט תפוז 1 ליטר",
+      "published_nutrition": {
+        "energyKcal": 43.0,
+        "protein": 0.7,
+        "sugar": 8.6,
+        "fat": 0.0,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "NOT_FOUND",
+      "barcode": "7290008690713",
+      "retailer": null,
+      "name": "מיץ חמוציות 1 ליטר",
+      "nutrition_raw_source": null,
+      "nutrition_numeric": null,
+      "ingredients_raw": null,
+      "scrape_timestamp": "2026-07-11T06:34:04.131173+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam(no_search_match)"
+      ],
+      "note": "checked Shufersal + Tiv Taam; genuinely not found. missing-data-discard rule applies.",
+      "target_id": "jc-017",
+      "target_name_served": "מיץ חמוציות 1 ליטר",
+      "published_nutrition": {
+        "energyKcal": 49.0,
+        "protein": 0.0,
+        "sugar": 11.4,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": 5.0
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290019056720",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A6%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%98%D7%A8%D7%99%D7%9D/%D7%9E%D7%A9%D7%A7%D7%94-%D7%A7%D7%9C-%D7%A2%D7%A0%D7%91%D7%99%D7%9D-%D7%A7%D7%A8%D7%99%D7%A1%D7%98%D7%9C/p/P_7290019056720",
+      "name": "משקה קל ענבים קריסטל",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "4.7",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "20",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "4.9",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "6",
+            "unit": "מג",
+            "label": "נתרן"
+          },
+          {
+            "value": "1.25",
+            "unit": "",
+            "label": "כפיות סוכר"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "unknown",
+            "subInfo": "100 מ\"ל",
+            "rows": [
+              {
+                "value": "4.7",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "20",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "4.9",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "6",
+                "unit": "מג",
+                "label": "נתרן"
+              },
+              {
+                "value": "1.25",
+                "unit": "",
+                "label": "כפיות סוכר"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "unknown",
+          "selected_table_index": 0,
+          "selected_table_header": "100 מ\"ל",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"4.7\">\n                                    \n\n                                    \n                                    \n                                        4.7\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"20\">\n                                    \n\n                                    \n                                        20\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"4.9\">\n                                    \n\n                                    \n                                    \n                                        4.9\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"6\">\n                                    \n\n                                    \n                                        6\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"1.25\">\n                                    \n\n                                    \n                                    \n                                        1.25\n                                    \n                                </div>\n<div class=\"name\"></div>\n<div class=\"text\">כפיות סוכר</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "4.7",
+        "energy": "20",
+        "protein": "0",
+        "carbs": "4.9",
+        "fat": "0",
+        "sodium": "6 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 20.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 6.0,
+        "carbohydrates_g": 4.9,
+        "sugars_g": 4.7,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, סוכר לבן, מיץ ענבים* (2%), סוכר פירות (פרוקטוז), מווסת חומציות (חומצה ציטרית), צבע מאכל (E150d), חומרי טעם וריח, מעכב חמצון (חו מצה אסקורבית), משמרים (202E, סולפיט), ממתיק (סוכרלוז). *עשוי מרכז.n",
+      "scrape_timestamp": "2026-07-11T06:24:04.440252+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-018",
+      "target_name_served": "מיץ ענבים 2 ליטר",
+      "published_nutrition": {
+        "energyKcal": 20.0,
+        "protein": 0.0,
+        "sugar": 4.7,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": 6.0
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290006822192",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%9E%D7%99%D7%A5+%D7%97%D7%9E%D7%95%D7%A6%D7%99%D7%95%D7%AA+%D7%93%D7%99%D7%90%D7%98&size=20",
+      "name": "נקטר חמוציות דיאט",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "9",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "5",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "2.5",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "1.2",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "0.25",
+            "unit": "",
+            "label": "כפיות סוכר מתוך סך הפחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "9",
+        "fat": "0",
+        "sodium": "5",
+        "carbs": "2.5",
+        "sugar": "1.2",
+        "protein": "0"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 9.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 5.0,
+        "carbohydrates_g": 2.5,
+        "sugars_g": 1.2,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, מיץ חמוציות (25% )  (עשוי מרכז), פרוקטוזה, מסמיך - פקטין, ממתקים - סוכרלוז, אססולאם קי",
+      "scrape_timestamp": "2026-07-11T06:26:09.604745+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-019",
+      "target_name_served": "מיץ חמוציות דיאט 1 ליטר",
+      "published_nutrition": {
+        "energyKcal": 9.0,
+        "protein": 0.0,
+        "sugar": 1.2,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": 5.0
+      },
+      "extraction_bug_fixed": "sodium raw row was {value:5, unit:מג}; my ad-hoc tiv_taam bare-extraction did not append the מג unit marker before calling bn.parse_sodium_mg (the shared parser requires it), so the >10-implies-mg heuristic mis-fired and multiplied 5 mg x1000 -> 5000. Corrected to 5.0 mg, matching the raw row and published value."
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290000136523",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%92%27%D7%90%D7%9E%D7%A4+%D7%A2%D7%A0%D7%91%D7%99%D7%9D&size=20",
+      "name": "גאמפ ענבים 1.5 ליטר",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "20",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "12",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "4.8",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "4.5",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "1",
+            "unit": "",
+            "label": "כפיות סוכר מתוך סך הפחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "20",
+        "fat": "0",
+        "sodium": "12",
+        "carbs": "4.8",
+        "sugar": "4.5",
+        "protein": "0"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 20.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 12.0,
+        "carbohydrates_g": 4.8,
+        "sugars_g": 4.5,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "רכיבים: מים , מיץ תפוח עץ מרכז  (12%), מיץ ענבים מרכז (5%), (מכיל 10% או יותר רכיבי פרי) , סוכר , מווסת חומציות (חומצת לימון , טרי סודיום ציטראט)  , צבע מאכל (קרמל E150d)  , חומרי טעם וריח , חומר משמר (פוטסיום סורבט , סולפיט (E224))  , ממתיק (אססולפם K , סוכרלוז)  .n.n",
+      "scrape_timestamp": "2026-07-11T06:26:10.200068+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-020",
+      "target_name_served": "ג'אמפ ענבים 1.5 ליטר",
+      "published_nutrition": {
+        "energyKcal": 20.0,
+        "protein": 0.0,
+        "sugar": 4.5,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": 12.0
+      }
+    },
+    {
+      "status": "NOT_FOUND",
+      "barcode": "7290001247891",
+      "retailer": null,
+      "name": "נקטר אפרסקים פחית 330 מ\"ל",
+      "nutrition_raw_source": null,
+      "nutrition_numeric": null,
+      "ingredients_raw": null,
+      "scrape_timestamp": "2026-07-11T06:34:04.131199+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam(no_search_match)"
+      ],
+      "note": "checked Shufersal + Tiv Taam; genuinely not found. missing-data-discard rule applies.",
+      "target_id": "jc-021",
+      "target_name_served": "נקטר אפרסקים פחית 330 מ\"ל",
+      "published_nutrition": {
+        "energyKcal": 40.0,
+        "protein": 0.0,
+        "sugar": 9.4,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290001247723",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%A0%D7%A7%D7%98%D7%A8+%D7%AA%D7%95%D7%AA+%D7%91%D7%A0%D7%A0%D7%94&size=20",
+      "name": "ספרינג נקטר תות בננה",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "41",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "10.2",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "9.4",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "2.25",
+            "unit": "",
+            "label": "כפיות סוכר מתוך סך הפחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          },
+          {
+            "value": "2.25",
+            "unit": "גרם",
+            "label": "מתוכם סוכר מוסף (גרם)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "41",
+        "fat": "0",
+        "sodium": "0",
+        "carbs": "10.2",
+        "sugar": "9.4",
+        "protein": "0"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 41.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 10.2,
+        "sugars_g": 9.4,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "רכיבים: מים, מיץ תפוחים* (14%), מיץ תפוזים* (12%), מחית בננה (8.5%), סוכר לבן, מחית תות שדה* (3%), מיץ אסרולה* (2.5%), רכז גזר סגול, חומרי טעם וריח טבעיים, מווסת חומציות (חומצה ציטרית). *עשוי מרכז",
+      "scrape_timestamp": "2026-07-11T06:26:11.046309+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-022",
+      "target_name_served": "נקטר תות בננה פחית 330 מ\"ל",
+      "published_nutrition": {
+        "energyKcal": 41.0,
+        "protein": 0.0,
+        "sugar": 9.4,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "NOT_FOUND",
+      "barcode": "7290019056737",
+      "retailer": null,
+      "name": "מיץ אשכולית 2 ליטר",
+      "nutrition_raw_source": null,
+      "nutrition_numeric": null,
+      "ingredients_raw": null,
+      "scrape_timestamp": "2026-07-11T06:34:04.131208+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam(no_search_match)"
+      ],
+      "note": "checked Shufersal + Tiv Taam; genuinely not found. missing-data-discard rule applies.",
+      "target_id": "jc-023",
+      "target_name_served": "מיץ אשכולית 2 ליטר",
+      "published_nutrition": {
+        "energyKcal": 20.0,
+        "protein": 0.0,
+        "sugar": 4.5,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290001247730",
+      "retailer": "tiv_taam",
+      "source_url": "https://www.tivtaam.co.il/v2/retailers/1062/branches/924/products?appId=4&filters=%7B%22must%22%3A+%7B%22exists%22%3A+%5B%22family.id%22%2C+%22family.categoriesPaths.id%22%2C+%22branch.regularPrice%22%5D%2C+%22term%22%3A+%7B%22branch.isActive%22%3A+true%2C+%22branch.isVisible%22%3A+true%7D%7D%2C+%22mustNot%22%3A+%7B%22term%22%3A+%7B%22branch.regularPrice%22%3A+0%7D%7D%7D&from=0&isSearch=true&languageId=1&query=%D7%A0%D7%A7%D7%98%D7%A8+%D7%9E%D7%A0%D7%92%D7%95&size=20",
+      "name": "ספרינג נקטר מנגו 330",
+      "shelf": "juices",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "40",
+            "unit": "קלוריות",
+            "label": "אנרגיה (קלוריות)"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים (גרם)"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן (מג)"
+          },
+          {
+            "value": "9.9",
+            "unit": "גרם",
+            "label": "סך הפחמימות (גרם)"
+          },
+          {
+            "value": "9",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות (גרם)"
+          },
+          {
+            "value": "2.25",
+            "unit": "",
+            "label": "כפיות סוכר מתוך סך הפחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים (גרם)"
+          }
+        ]
+      },
+      "nutrition_raw_bare": {
+        "energy": "40",
+        "fat": "0",
+        "sodium": "0",
+        "carbs": "9.9",
+        "sugar": "9",
+        "protein": "0"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 40.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 9.9,
+        "sugars_g": 9.0,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, מחית מנגו* (25%), סוכר לבן, מווסת חומציות (חומצה ציטרית), מעכב חמצון (חומצה אסקורבית), חומרי טעם וריח טבעיים.n*עשוי מרכז.",
+      "scrape_timestamp": "2026-07-11T06:26:11.439193+00:00",
+      "fallback_chain": [
+        "shufersal(failed)",
+        "tiv_taam"
+      ],
+      "target_id": "jc-024",
+      "target_name_served": "נקטר מנגו פחית 330 מ\"ל",
+      "published_nutrition": {
+        "energyKcal": 40.0,
+        "protein": 0.0,
+        "sugar": 9.0,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290019056355",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A6%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%98%D7%A8%D7%99%D7%9D/%D7%AA%D7%A4%D7%95%D7%96%D7%99%D7%A0%D7%94-%D7%9C%D7%99%D7%9E%D7%95%D7%A0%D7%93%D7%94-%D7%A0%D7%A2%D7%A0%D7%A2/p/P_7290019056355",
+      "name": "תפוזינה לימונדה נענע",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "4.4",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "20",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "6.3",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן"
+          },
+          {
+            "value": "1.6",
+            "unit": "גרם",
+            "label": "רב כהלים"
+          },
+          {
+            "value": "1",
+            "unit": "",
+            "label": "כפיות סוכר"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "unknown",
+            "subInfo": "100 מ\"ל",
+            "rows": [
+              {
+                "value": "4.4",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "20",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "6.3",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              },
+              {
+                "value": "1.6",
+                "unit": "גרם",
+                "label": "רב כהלים"
+              },
+              {
+                "value": "1",
+                "unit": "",
+                "label": "כפיות סוכר"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "unknown",
+          "selected_table_index": 0,
+          "selected_table_header": "100 מ\"ל",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"4.4\">\n                                    \n\n                                    \n                                    \n                                        4.4\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"20\">\n                                    \n\n                                    \n                                        20\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"6.3\">\n                                    \n\n                                    \n                                    \n                                        6.3\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"1.6\">\n                                    \n\n                                    \n                                    \n                                        1.6\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">רב כהלים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"1\">\n                                    \n\n                                    \n                                        1\n                                    \n                                    \n                                </div>\n<div class=\"name\"></div>\n<div class=\"text\">כפיות סוכר</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "4.4",
+        "energy": "20",
+        "protein": "0",
+        "carbs": "6.3",
+        "fat": "0",
+        "sodium": "0 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 20.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 6.3,
+        "sugars_g": 4.4,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, מיץ אגסים* (7.2%), מיץ לימון* (3.1%), סוכר לבן, רכיבי אשכוליות (1.6%), מחזק טעם (אריתריטול), סוכר פירות (פרוקטוז), מווסתי חומצי ות (חומצה ציטרית,  E332ii), חומרי טעם וריח, מייצב (E414), רכז קורטם, צבע מאכל (כלורופילין), מיצוי נענע  (0.005%), ממתיק (סוכרלוז).*ע שוי מרכז.n",
+      "scrape_timestamp": "2026-07-11T06:24:22.858434+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-025",
+      "target_name_served": "לימונענע 1.5 ליטר",
+      "published_nutrition": {
+        "energyKcal": 20.0,
+        "protein": 0.0,
+        "sugar": 4.4,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290019056591",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A6%D7%99%D7%9D-%D7%95%D7%A0%D7%A7%D7%98%D7%A8%D7%99%D7%9D/%D7%A1%D7%A4%D7%A8%D7%99%D7%A0%D7%92-%D7%A2%D7%A0%D7%91%D7%99%D7%9D/p/P_7290019056591",
+      "name": "ספרינג ענבים",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "9.5",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "40",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "10.1",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "12",
+            "unit": "מג",
+            "label": "נתרן"
+          },
+          {
+            "value": "2.5",
+            "unit": "",
+            "label": "כפיות סוכר"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "unknown",
+            "subInfo": "100 מ\"ל",
+            "rows": [
+              {
+                "value": "9.5",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "40",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "10.1",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "12",
+                "unit": "מג",
+                "label": "נתרן"
+              },
+              {
+                "value": "2.5",
+                "unit": "",
+                "label": "כפיות סוכר"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "unknown",
+          "selected_table_index": 0,
+          "selected_table_header": "100 מ\"ל",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"9.5\">\n                                    \n\n                                    \n                                    \n                                        9.5\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"40\">\n                                    \n\n                                    \n                                        40\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"10.1\">\n                                    \n\n                                    \n                                    \n                                        10.1\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"12\">\n                                    \n\n                                    \n                                        12\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"2.5\">\n                                    \n\n                                    \n                                    \n                                        2.5\n                                    \n                                </div>\n<div class=\"name\"></div>\n<div class=\"text\">כפיות סוכר</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "9.5",
+        "energy": "40",
+        "protein": "0",
+        "carbs": "10.1",
+        "fat": "0",
+        "sodium": "12 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 40.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 12.0,
+        "carbohydrates_g": 10.1,
+        "sugars_g": 9.5,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, סוכר לבן, מיץ תפוחים* (5.6%), מיץ ענבים* (3.5%),  מווסתי חומציות (חומצה מאלית, חומצה ציטרית, E331iii), צבע מאכל (E150d),  , חומ רי טעם וריח, מעכב חמצון (חומצה אסקורבית). *עשוי מרכזn",
+      "scrape_timestamp": "2026-07-11T06:24:25.337963+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-026",
+      "target_name_served": "ענבים 1.5 ליטר",
+      "published_nutrition": {
+        "energyKcal": 40.0,
+        "protein": 0.0,
+        "sugar": 9.5,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": 12.0
+      }
+    },
+    {
+      "status": "scraped",
+      "barcode": "7290013153418",
+      "retailer": "shufersal",
+      "source_url": "https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%99%D7%99%D7%A0%D7%95%D7%AA-%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%9B%D7%94%D7%9C%D7%99%D7%99%D7%9D-%D7%95%D7%AA%D7%99%D7%A8%D7%95%D7%A9/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%A7%D7%9C%D7%99%D7%9D/%D7%9E%D7%99%D7%A5-%D7%A1%D7%97%D7%95%D7%98-%D7%98%D7%A8%D7%99/%D7%9E%D7%99%D7%A5-%D7%A1%D7%97%D7%95%D7%98-%D7%9C%D7%99%D7%9E%D7%95%D7%9F-%D7%A0%D7%A2%D7%A0%D7%A2/p/P_7290013153418",
+      "name": "מיץ סחוט לימון נענע",
+      "nutrition_raw_source": {
+        "rows": [
+          {
+            "value": "9.3",
+            "unit": "גרם",
+            "label": "סוכרים מתוך פחמימות"
+          },
+          {
+            "value": "39",
+            "unit": "קל",
+            "label": "אנרגיה"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "חלבונים"
+          },
+          {
+            "value": "9.5",
+            "unit": "גרם",
+            "label": "פחמימות"
+          },
+          {
+            "value": "0",
+            "unit": "גרם",
+            "label": "שומנים"
+          },
+          {
+            "value": "0",
+            "unit": "מג",
+            "label": "נתרן"
+          },
+          {
+            "value": "2.25",
+            "unit": "",
+            "label": "כפיות סוכר"
+          }
+        ],
+        "tables": [
+          {
+            "table_index": 0,
+            "basis": "per_100g",
+            "subInfo": "100 גרם",
+            "rows": [
+              {
+                "value": "9.3",
+                "unit": "גרם",
+                "label": "סוכרים מתוך פחמימות"
+              },
+              {
+                "value": "39",
+                "unit": "קל",
+                "label": "אנרגיה"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "חלבונים"
+              },
+              {
+                "value": "9.5",
+                "unit": "גרם",
+                "label": "פחמימות"
+              },
+              {
+                "value": "0",
+                "unit": "גרם",
+                "label": "שומנים"
+              },
+              {
+                "value": "0",
+                "unit": "מג",
+                "label": "נתרן"
+              },
+              {
+                "value": "2.25",
+                "unit": "",
+                "label": "כפיות סוכר"
+              }
+            ]
+          }
+        ],
+        "selection": {
+          "selected_basis": "per_100g",
+          "selected_table_index": 0,
+          "selected_table_header": "100 גרם",
+          "competing_table_count": 1,
+          "insufficient": false
+        },
+        "html": "<div aria-labelledby=\"ערכים תזונתיים\" class=\"nutritionList\" tabindex=\"0\">\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"9.3\">\n                                    \n\n                                    \n                                    \n                                        9.3\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">סוכרים מתוך פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"39\">\n                                    \n\n                                    \n                                        39\n                                    \n                                    \n                                </div>\n<div class=\"name\">קל</div>\n<div class=\"text\">אנרגיה</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">חלבונים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"9.5\">\n                                    \n\n                                    \n                                    \n                                        9.5\n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">פחמימות</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">גרם</div>\n<div class=\"text\">שומנים</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"0\">\n                                    \n\n                                    \n                                        0\n                                    \n                                    \n                                </div>\n<div class=\"name\">מג</div>\n<div class=\"text\">נתרן</div>\n</div>\n<div class=\"nutritionItem\">\n<div class=\"number tooltip-js\" data-placement=\"bottom\" title=\"2.25\">\n                                    \n\n                                    \n                                    \n                                        2.25\n                                    \n                                </div>\n<div class=\"name\"></div>\n<div class=\"text\">כפיות סוכר</div>\n</div>\n</div>"
+      },
+      "nutrition_raw_bare": {
+        "sugar": "9.3",
+        "energy": "39",
+        "protein": "0",
+        "carbs": "9.5",
+        "fat": "0",
+        "sodium": "0 מג"
+      },
+      "nutrition_numeric": {
+        "energy_kcal": 39.0,
+        "fat_g": 0.0,
+        "fat_saturated_g": null,
+        "fat_trans_g": null,
+        "cholesterol_mg": null,
+        "sodium_mg": 0.0,
+        "carbohydrates_g": 9.5,
+        "sugars_g": 9.3,
+        "dietary_fiber_g": null,
+        "protein_g": 0.0
+      },
+      "ingredients_raw": "מים, סוכר, מיץ לימון מרכז (6%), תאי אשכולית (3.8%), פרוקטוז, מווסתי חומציות: תלת אשלגן ציטרט, חומצה ציטרית",
+      "scrape_timestamp": "2026-07-11T06:24:27.834973+00:00",
+      "fallback_chain": [
+        "shufersal"
+      ],
+      "target_id": "jc-027",
+      "target_name_served": "סחוט לימונענע 1 ליטר",
+      "published_nutrition": {
+        "energyKcal": 39.0,
+        "protein": 0.0,
+        "sugar": 9.3,
+        "fat": null,
+        "satFat": null,
+        "fiber": null,
+        "sodium": null
+      }
+    }
+  ]
+}
