@@ -188,6 +188,12 @@ validator, provenance/index updates) — never instructions, policy, copy, scori
 
 **7. Loop.** Background dispatches re-invoke you on completion — when one returns, re-enter at step 5
 (verify) then step 2 (next ready move). Keep going until a wall.
+- **POLL your own lanes — never make the owner wake you (owner ruling 2026-07-11).** The async
+  completion notice can LAG behind the lane's real `EXIT`. After dispatching background lanes, do NOT
+  report "running" and park the loop; before you go idle, check the lane yourself — read its run log /
+  `EXIT`/`MET` line / output-file size. A finished lane you haven't picked up is a stall the owner has
+  to notice for you, which is a process failure. If lanes are genuinely still mid-flight, either keep
+  working another ready move or (long horizon) schedule a wakeup — don't stop with "let me know when."
 
 ## Loop autonomy (owner directive 2026-07-04 — "drift the system into more loop, less questions")
 
