@@ -47,6 +47,7 @@ at `C:\bari\bari-web\` (the Next.js app, formerly the standalone `C:\bari-web` r
 
 ## Where to look
 - Architecture: `ARCHITECTURE.md`, `REPO_MAP.md`
+- Model routing: `01_framework/operations/capability_router_v5.md` (Capability Router v5.2, canonical; implemented by `03_operations/router/dispatch.py`, `--selftest-table` asserts doc↔code parity)
 - Scoring: `.claude/scoring.md` — read before any BSIP/scoring task
 - Project context: `.claude/project.md`
 - Skills (canonical): root `.claude/skills/` — the single source of truth for the Agent OS. The website's own scoped config lives at `bari-web/.claude/`; do not mirror Agent OS skills into it (TASK-131 → TASK-134).

@@ -1,0 +1,62 @@
+# Lesson-resolution gate (TASK-604) - REQUIRED, fails closed.
+#
+# CI-resident counterpart of the local guard-lesson-on-close.ps1 hook. Both call the SAME
+# validator (03_operations/validators/check_lesson_resolution.py) - single interpretation,
+# never divergent copies. The local hook fails OPEN on infra error (house convention: a
+# broken hook must never brick unrelated local work); THIS job fails CLOSED - it is the
+# binding guarantee the STF verdict memo names as the one genuinely new governance
+# commitment (01_framework/governance/stf_memos/2026-07-11_lesson-resolution-mechanism.md):
+# "if CI is not mandatory, the guarantee does not exist."
+#
+# Only tasks/TASK-*.md files CHANGED IN THE PR are gated (git diff base...HEAD), and only
+# those that land at `status: CLOSED` in the PR's HEAD version - same convention as
+# c0_return_gate.yml / signoff_gate.yml: legacy closed tasks predate the gate and never
+# fail a PR that didn't touch them.
+name: Lesson Resolution Gate
+
+on:
+  pull_request:
+    paths:
+      - "tasks/TASK-*.md"
+      - "03_operations/validators/check_lesson_resolution.py"
+      - ".github/workflows/lesson_resolution_gate.yml"
+  workflow_dispatch: {}
+
+jobs:
+  check-lesson-resolution:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validator selftest (fixture matrix - proves both PASS and each REJECT case)
+        run: python 03_operations/validators/check_lesson_resolution.py --selftest
+
+      - name: Lesson-resolution gate on TASK files that close in this PR
+        run: |
+          set -e
+          mapfile -t files < <(git diff --name-only --diff-filter=ACM \
+            "${{ github.event.pull_request.base.sha }}...HEAD" -- 'tasks/TASK-*.md')
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No tasks/TASK-*.md files changed in this PR - nothing to gate."
+            exit 0
+          fi
+          rc=0
+          for f in "${files[@]}"; do
+            if ! grep -qE '^status:\s*CLOSED\s*$' "$f"; then
+              echo "$f: not CLOSED in this PR's HEAD - skip (gate only fires at the CLOSE transition)"
+              continue
+            fi
+            echo "::group::Lesson-resolution gate: $f"
+            if ! python 03_operations/validators/check_lesson_resolution.py "$f"; then
+              echo "::error file=$f::Lesson-resolution contract unsatisfied (see 01_framework/operations/lesson_resolution_contract_v1.md) - CLOSE is blocked"
+              rc=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $rc

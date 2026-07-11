@@ -299,3 +299,5 @@ Status: **LIVE** — `transformers` + `torch` installed; `HF_TOKEN` set in `.env
 - Consumer vocabulary only. Write as if explaining to someone in a supermarket, not a data analyst.
 - Short and specific. Every sentence earns its place.
 - Leakage check embedded. Before finalizing any copy, verify against the framework vocabulary list.
+
+<!-- Canonical routing law: capability_router_v5.md (Capability Router v5.2). Adapter pointer, not duplicated law (TASK-605 parity). -->

@@ -29,7 +29,7 @@ follow it for any frontend work).
 - Task registry: `tasks/` (one `TASK-NNN.md` per task; YAML `status:`)
 - Return contract (your return block must end with its JSON):
   `01_framework/operations/return_contract_v1.md`
-- Routing/lane law: `01_framework/operations/bari_router_v4_2.md` (canonical; `lane_routing_rules_v1.md` = wire appendix)
+- Routing/lane law: `01_framework/operations/capability_router_v5.md` (Capability Router v5.2, canonical; implemented by `03_operations/router/dispatch.py`, `--selftest-table` asserts doc↔code parity)
 
 ## Conventions
 

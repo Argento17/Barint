@@ -58,6 +58,10 @@ KNOWN_OWNERS = {
 }
 OPEN_STATES = ("IN_PROGRESS", "BLOCKED")
 PRIORITIES = ("CRITICAL", "HIGH", "MEDIUM", "LOW")
+# TASK-604: lesson-resolution provenance enum — kept in sync with TRIGGERS in
+# 03_operations/validators/check_lesson_resolution.py and
+# 01_framework/operations/lesson_resolution_contract_v1.md.
+LESSON_TRIGGERS = ("failure", "correction", "recurrence", "user_complaint", "none")
 
 
 def existing_ids():
@@ -122,6 +126,13 @@ def main():
     ap.add_argument("--blocks", default="", help="comma-separated TASK ids waiting on this")
     ap.add_argument("--category-id", default=None, help="comparison category id, or omit for null")
     ap.add_argument("--summary", default=None, help="1-3 line summary of what the task delivers")
+    ap.add_argument("--origin-task", default=None,
+                     help="TASK-604: TASK id this follow-up was generated FROM — writes "
+                          "'origin_task: TASK-NNN' so check_lesson_resolution.py can verify "
+                          "reciprocal provenance back to the originating task. Optional, additive.")
+    ap.add_argument("--lesson-trigger", default=None,
+                     help="TASK-604: failure|correction|recurrence|user_complaint|none — writes "
+                          "'lesson_trigger:' on the NEW task itself. Optional, additive.")
     args = ap.parse_args()
 
     # ── validate ──────────────────────────────────────────────────────────────
@@ -141,6 +152,21 @@ def main():
     if owner not in KNOWN_OWNERS:
         print(f"warning: owner '{owner}' is not a known agent slug "
               f"({', '.join(sorted(KNOWN_OWNERS))}). Creating anyway.", file=sys.stderr)
+
+    # TASK-604: optional lesson-resolution provenance flags — additive only, no effect
+    # on the frontmatter when omitted (existing behavior/defaults unchanged).
+    origin_task = None
+    if args.origin_task:
+        origin_task = normalize_id(args.origin_task)
+        if not origin_task:
+            sys.exit(f"error: --origin-task '{args.origin_task}' is not a valid TASK id")
+
+    lesson_trigger = None
+    if args.lesson_trigger:
+        lesson_trigger = args.lesson_trigger.strip().lower()
+        if lesson_trigger not in LESSON_TRIGGERS:
+            sys.exit(f"error: --lesson-trigger must be one of {', '.join(LESSON_TRIGGERS)} "
+                     f"(got {args.lesson_trigger!r})")
 
     if args.parent:
         parent = normalize_id(args.parent)
@@ -187,6 +213,14 @@ def main():
         f"depends_on: {id_list(args.depends_on)}",
         f"blocks: {id_list(args.blocks)}",
         f"category_id: {args.category_id if args.category_id else 'null'}",
+    ]
+    # TASK-604: additive-only provenance lines — omitted entirely (no frontmatter change)
+    # when neither flag is given, so the no-new-flags path is byte-identical to before.
+    if origin_task:
+        lines.append(f"origin_task: {origin_task}")
+    if lesson_trigger:
+        lines.append(f"lesson_trigger: {lesson_trigger}")
+    lines += [
         "summary: >",
         f"  {summary}",
         "---",
@@ -199,6 +233,10 @@ def main():
     path.write_text("\n".join(lines), encoding="utf-8")
     print(f"created {path}")
     print(f"  {tid}  {status}  {priority}  owner={owner}")
+    if origin_task:
+        print(f"  origin_task={origin_task}")
+    if lesson_trigger:
+        print(f"  lesson_trigger={lesson_trigger}")
     print("  add it to tasks/DISPATCH_BOARD.md when you dispatch it.")
     return 0
 

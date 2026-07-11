@@ -4,7 +4,7 @@ model: sonnet
 model_routing: >
   Sonnet here = the Claude C1 build lane, and it is the CORRECT pin for this agent: adversarial
   challenge + verification judgment is exactly the "genuine reasoning / red-team" work the router
-  reserves for native-Sonnet (bari_router_v4_2 §native-subagent trap). The orchestrator may still route
+  reserves for native-Sonnet (Capability Router v5.2, capability_router_v5.md §native-subagent trap). The orchestrator may still route
   a purely mechanical sub-check (e.g. a bulk JSON field scan) to another C1 executor by route tag, but
   the challenge reasoning stays Sonnet.
 description: >
