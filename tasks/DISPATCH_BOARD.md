@@ -202,8 +202,20 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
 - 🧭 **EMERGING THEME (3/4 lanes):** the corpus's issues are mostly **plumbing, not bad data/scores** —
   trace-emission gaps (backfill), capture-matcher misses (re-attach/re-scrape), a few real data errors
   (cookies basis; comma/fat). Underlying scores/data largely CORRECT. Lower-risk program than 're-score all'.
-- ⏳ **1 lane still running:** TASK-624 (barcode adjudication, Sonnet). Consolidated corrected plan → owner
-  when it lands.
+- ✅ **TASK-624 (barcode) CLOSED — committed 6a5fccf8.** 152 → 6 recovered / 121 benign-SKU (verified 76/76
+  vs retailer image slugs) / 25 true-review. Registry updated (--check/--selftest PASS). Mostly a non-defect.
+- ✅ **All 4 diagnostic lanes closed (623/624/625/626).** Consolidated finding: **the corpus is mostly
+  PLUMBING-broken, not score/data-broken.** Owner ruling: **plumbing-first, and score moves ≤30 are
+  AUTONOMOUS — don't defer** (owner 2026-07-11). 3 fix lanes now running:
+- 🔧 **TASK-627 (trace-backfill) — Codex terra, worktree, bg.** Emit standard BSIP2 traces for protein_bars
+  (pilot) from existing rerank table → calc check warn→pass, **scores UNCHANGED**. Template for bespoke shelves.
+- 🔧 **TASK-628 (capture-matcher fix) — Codex terra, worktree, bg.** Attach the 24 cookies_coffee ambiguous
+  captures + fix the cross-category GTIN-collision (retrieved-with-null) bug. No score change.
+- 🔁 **TASK-629 (re-score bread/crackers/cheese) — Data Agent sonnet, MAIN tree, bg.** Codex-worktree can't
+  run the C:\Bari-hardcoded pipeline (614 proved it) → Data Agent on main. Apply |Δ|≤30 autonomously (owner
+  mandate), >30=defect stop+surface, rebuild PD + parity-gate green. Orchestrator re-audits vs traces; deploy=owner.
+- 📋 **Deferred (tracked):** re-score PIPELINE build (614's root gap) · re-scrape 17 never-captured · 6
+  PID_SPLIT shelf-mapping → Product Agent · cookies_coffee basis defect (>30, digest).
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
   Re-enrich+re-score bread/crackers/cheese on corrected engine via the uniform pipeline → regenerate
   comparison JSON → rebuild PD (stays aligned). PROPOSAL only: |Δ|≤30 apply-set, >30 = defect (stop),
