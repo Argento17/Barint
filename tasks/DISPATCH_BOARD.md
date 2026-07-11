@@ -162,14 +162,15 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   UNTRACKED — HEAD-worktree wouldn't contain it; needs the dirty-tree handling below.)
 - ⛔ **TASK-614 (re-score) — RE-BLOCKED on TASK-621** (must fix ALL comma paths before re-scoring, or the
   re-score runs on partially-corrupt data — challenge's decision-level-replay caveat).
-- 🧩 **TASK-620 (PD-3.1) — Codex terra BUILT it (overview.tsx + dossier-verdict-row.tsx + tabs;
-  tsc-clean IN THE WORKTREE), but STALE-BASE COLLISION on merge:** worktree branched off HEAD, but main's
-  `loader.ts` is uncommitted-modified with its OWN `getProductByBarcode` (→BarcodeProductEntry, feeds the
-  untracked `/p/[barcode]`); Codex added a 2nd `getProductByBarcode` (→BariProductVM). Needs reconciliation
-  on the live tree (salvage net-new + re-point adapter to the existing resolver), NOT a blind merge.
-- 🌳 **STATE ISSUE (surfaced to owner):** the repo carries a large pre-existing uncommitted/untracked pile
-  (loader.ts M, /p/[barcode] ??, hazi_hinam ??, +~100 more from before this session) → HEAD-based Codex
-  worktrees are systematically stale for those files. Must reconcile the base before further isolated builds.
+- ✅ **TASK-620 (PD-3.1) CLOSED — owner-approved + render-verified.** Kept the COMPLETE Claude build
+  (overview-tab + 3 separate namespace cards + real ComparisonRow verdict w/ 'Estimated' badge + 2D
+  profile bars + deterministic bullets + attention-checks), which was already integrated with the live
+  loader.ts. Render-verified real DOM (HTTP 200), tsc clean; owner viewed and approved. Redundant Codex
+  worktree (620) discarded. *Process lesson: killing a near-complete build to retro-satisfy the routing
+  rule wasted effort — codified in `router_no_single_vendor_probe_lanes`.*
+- 🌳 **TREE STATE RESOLVED (owner-authorized 2026-07-11):** the full working-tree pile (954 untracked + 63
+  M + 18 D = 1035 files) committed as `2f6f6adb` → **HEAD now reflects reality, tree CLEAN, tsc passes.**
+  Stale-base worktree hazard eliminated (TASK-621's `hazi_hinam` is now tracked at HEAD).
 - 📊 **Telemetry after-action audit QUEUED** (owner asked) — running now that TASK-619 (the parser fix) is
   closed; covers the run through PD MVP + parser fix.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
