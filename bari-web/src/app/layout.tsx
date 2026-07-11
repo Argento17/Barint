@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/site-header";
-import { HomeFooter } from "@/components/home/home-footer";
-import { ConsentManager } from "@/components/shared/consent-manager";
-import { GA4Script } from "@/components/shared/ga4-script";
-import { VercelAnalytics } from "@/components/shared/vercel-analytics";
-import { SiteStructuredData } from "@/components/seo/site-structured-data";
+import { InternalRouteFrame } from "@/components/internal/internal-route-frame";
 import { SITE_URL } from "@/lib/site-url";
 import { cn } from "@/lib/utils";
 
@@ -61,21 +56,7 @@ export default function RootLayout({
       className={cn("h-full scroll-smooth", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:right-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[#167A58] focus:px-4 focus:py-2 focus:text-[13px] focus:font-semibold focus:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#167A58]"
-        >
-          דלג לתוכן ראשי
-        </a>
-        <SiteHeader />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <HomeFooter />
-        <ConsentManager />
-        <GA4Script />
-        <VercelAnalytics />
-        <SiteStructuredData />
+        <InternalRouteFrame>{children}</InternalRouteFrame>
       </body>
     </html>
   );

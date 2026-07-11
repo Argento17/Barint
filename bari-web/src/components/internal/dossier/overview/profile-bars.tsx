@@ -42,7 +42,7 @@ export function ProductProfileBars({ assessment }: { assessment: Layer3["assessm
 
   return (
     <div className="rounded-md border border-neutral-200 p-4">
-      <h3 className="mb-2 text-sm font-semibold text-neutral-800">Product profile</h3>
+      <h3 className="mb-2 text-sm font-semibold text-neutral-800">Product profile <span className="font-normal text-neutral-400">(higher is better)</span></h3>
       <p className="mb-3 text-[11px] text-neutral-400">
         Per-axis assessment scores (0–100), highest first. Product signal only — never blended with data quality or publication fields.
       </p>
@@ -50,9 +50,9 @@ export function ProductProfileBars({ assessment }: { assessment: Layer3["assessm
         <BarChart data={data} layout="vertical" margin={{ top: 4, right: 24, bottom: 4, left: 8 }}>
           <CartesianGrid strokeDasharray="3 3" horizontal={false} />
           <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 11 }} />
-          <YAxis type="category" dataKey="label" width={120} tick={{ fontSize: 11 }} />
+          <YAxis type="category" dataKey="label" width={160} tick={{ fontSize: 11 }} />
           <Tooltip formatter={(value) => [value == null ? "—" : `${value}`, "score"]} />
-          <Bar dataKey="value" radius={[4, 4, 4, 4]}>
+          <Bar dataKey="value" radius={[4, 4, 4, 4]} label={{ position: "right", formatter: (value: unknown) => value == null ? "—" : String(value), fontSize: 11, fill: "#404040" }}>
             {data.map((d) => (
               <Cell key={d.key} fill="#167A58" fillOpacity={0.85} />
             ))}

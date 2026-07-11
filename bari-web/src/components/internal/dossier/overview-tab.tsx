@@ -7,6 +7,13 @@ import { VerdictBlock } from "./overview/verdict-block";
 import type { ProductDossier } from "@/lib/dossier/types";
 import type { VerdictResolution } from "@/lib/dossier/verdict";
 
+function statusLine(dossier: ProductDossier, verdict: VerdictResolution): string {
+  const barcode = dossier.layer_1.barcode_state.status;
+  const verified = dossier.layer_4.calculation.status === "pass" && verdict.status === "matched" && verdict.product.confidence === "verified";
+  const barcodeText = barcode === "verified" ? "Barcode identity is verified" : barcode === "pending_manual_review" ? "Needs manual barcode review" : barcode === "found_but_conflicting" ? "Barcode identity has a conflicting match" : barcode === "malformed" ? "Barcode appears malformed" : barcode === "not_found" ? "Barcode was not found" : "Barcode identity is unresolved";
+  return `Status: ${barcodeText}. Score is ${verified ? "verified" : "not fully verified"}.`;
+}
+
 /**
  * Overview tab — the DEFAULT view on the dossier detail page (TASK-620 /
  * PD-3.1). English UI. Answers in <30s: what is this product, what does Bari
@@ -24,6 +31,8 @@ export function OverviewTab({ dossier, verdict }: { dossier: ProductDossier; ver
         shelfId={dossier.generation.shelf_id}
         verdict={verdict}
       />
+
+      <p className="rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3 text-sm font-semibold text-neutral-800">{statusLine(dossier, verdict)}</p>
 
       <VerdictBlock verdict={verdict} calculationCheck={dossier.layer_4.calculation} />
 
