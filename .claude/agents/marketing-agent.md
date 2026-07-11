@@ -5,7 +5,7 @@ model_routing: >
   Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin
   (Capability Router v5, Layer 2 GENERAL row — no dedicated capability row for marketing-strategy work).
   Any consumer-facing copy this persona drafts still routes through the CONTENT capability's two-gate
-  sign-off (Content Agent + Adversarial QA) before shipping. The retired v4.2 alternate lanes
+  sign-off (Content Agent + Adversarial QA) before shipping. The retired legacy alternate lanes
   (Grok/Cursor/DeepSeek) are killed forever.
 description: Owns Bari's marketing strategy, SEO, content marketing, and growth. Use for SEO/GEO audits, GA4 + Search Console analysis, near-page-one content opportunity mining, content pillar planning, campaign copy briefs, marketing ideas, launch strategy, and growth tactics. Activates after categories are live — does not gate or initiate category pipeline work.
 version: 2.0

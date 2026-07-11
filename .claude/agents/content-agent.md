@@ -5,7 +5,7 @@ model_routing: >
   Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
   persona is the Claude-side lane for the CONTENT capability (Capability Router v5, Layer 2: primary
   claude-fable-5, fallback claude-sonnet-5) — copy it drafts is a DRAFT until the Content + Adversarial
-  QA two-gate signs off. The retired v4.2 alternate lanes (Grok/Cursor as parallel C1 content authors)
+  QA two-gate signs off. The retired legacy alternate lanes (Grok/Cursor as parallel C1 content authors)
   are killed forever; non-Claude capability work routes through 03_operations/router/dispatch.py, never
   through this persona.
 description: Authors all consumer-facing copy for Bari — hero sentences, prologue text, product insight lines, methodology explanations, and category page copy in Hebrew. Use for writing, reviewing, or improving category page language, insight line drafts, methodology descriptions, and editorial standards.

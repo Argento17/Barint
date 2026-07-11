@@ -50,6 +50,17 @@ Two-to-four sentences: was this run efficient? Where did the tokens actually go?
 the highest ROI for next run? End with the run's headline efficiency ratio (e.g. "30% of delegated tokens were
 avoidable rework").
 
+### 8. Skill-edit proposals (the self-improvement step — added 2026-07-04, TASK-505)
+The audit is incomplete until its findings flow BACK into the system files. For each corrective action in §6,
+answer: *which SKILL.md / agent .md / hook / C0 gate would have prevented this class of error?* Emit a concrete
+proposed diff (file + section + exact replacement text) — not "do better" prose. Rules: (a) reversible
+skill/agent text edits within your lane → APPLY them now and list them as applied; (b) edits touching
+governance, scoring philosophy, or another agent's lane law → file the proposed diff in the report and route to
+the owning agent; (c) an error class that recurs across two audits without its proposed edit applied = a
+process failure, flag it red. This closes the loop the 2026 pattern calls "self-improving skills": telemetry
+measures, then the measured lesson gets codified where the next run will actually read it. (This standard is
+kept in sync with `.claude/skills/telemetry/SKILL.md` §8; TASK-605 restored the parity.)
+
 ---
 
 ## Capture discipline (so the data exists next time)

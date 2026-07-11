@@ -38,7 +38,11 @@ is read **directly**; nothing is generated or reconciled.
 6. **Close or escalate:** verified + pass/fail → record `CLOSED` with a `close_reason` citing evidence,
    tick the board, move the file to `tasks\closed\`. Verified-but-tradeoff (accept/reject of
    cost/scope/strategy) → route to Product / surface to the owner. go-live → `red_team_cleared` first
-   (the `guard-golive-close.ps1` hook enforces it).
+   (the `guard-golive-close.ps1` hook enforces it). Every close also satisfies the **lesson-resolution
+   contract** (`01_framework/operations/lesson_resolution_contract_v1.md`) — a `lesson_trigger` plus, for
+   any meaningful trigger, one machine-verified `lesson_outcome` — enforced by `check_lesson_resolution.py`
+   via `guard-lesson-on-close.ps1` (fails open locally) and the required `lesson_resolution_gate.yml` CI
+   job (fails closed). This is what makes "a lesson never ends as passive documentation" deterministic.
 7. **Open the next:** any `blocks`/`depends_on` gap the close unlocks → open + dispatch.
 8. **Report:** decision map + what closed + what's next.
 

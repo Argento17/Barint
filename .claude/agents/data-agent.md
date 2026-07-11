@@ -6,7 +6,7 @@ model_routing: >
   persona is the Claude-side FALLBACK for the BUILD-HEAVY/BUILD-LIGHT capability (Capability Router v5,
   Layer 2: primary Codex gpt-5.6 sol/terra via 03_operations/router/dispatch.py's build_heavy/
   build_light functions), reached on the stated fallback trigger (nonzero exit, empty diff, sandbox
-  refusal, auth pending). The retired v4.2 alternate lanes (Grok/Cursor/DeepSeek as parallel C1/C2
+  refusal, auth pending). The retired legacy alternate lanes (Grok/Cursor/DeepSeek as parallel C1/C2
   executors) are killed forever.
 description: Executes the Bari data pipeline — shelf mapping, corpus filtering, BSIP enrichment, score computation, and frontend JSON generation. Use when running pipeline stages, managing corpus, processing product data at scale, or generating frontend JSON from BSIP2 outputs.
 version: 1.2

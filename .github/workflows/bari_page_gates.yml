@@ -1,0 +1,72 @@
+# Bari page-gate battery (TASK-505) — CI-resident deterministic gates.
+# Runs the spine conformance sweep + an OFF-ban census on every PR that touches
+# comparison data or the page generator. These gates already exist locally; this
+# workflow makes them fire even when nobody remembers to run them (audit finding:
+# "everything fires interactively only").
+name: Bari Page Gates
+
+on:
+  pull_request:
+    paths:
+      - "bari-web/src/data/comparisons/**"
+      - "bari-web/src/data/seo/**"
+      - "03_operations/page_generator/**"
+      - "03_operations/spine/**"
+      - "02_products/**"
+      - ".github/workflows/bari_page_gates.yml"
+      - "CLAUDE.md"
+      - "AGENTS.md"
+      - ".claude/agents/**"
+      - "01_framework/operations/capability_router_v5.md"
+      - "03_operations/router/adapters_parity_selftest.py"
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+jobs:
+  conformance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Spine conformance sweep (every category must re-flow)
+        run: python 03_operations/page_generator/conformance.py --all
+
+  adapters-parity:
+    # Living-rules pilot (TASK-605, STF memo 2026-07-11). Per-vendor rule adapters
+    # (CLAUDE.md, AGENTS.md, .claude/agents/*.md) must point at the canonical
+    # capability_router_v5.md and carry zero retired version strings (v4.2). Fails
+    # closed so router-adapter drift can never recur silently.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Adapter version-parity selftest (+ fixture meta-test)
+        run: |
+          set -e
+          python 03_operations/router/adapters_parity_selftest.py --selftest
+          python 03_operations/router/adapters_parity_selftest.py --selftest-fixture
+
+  off-ban-census:
+    # OFF is banned project-wide (CLAUDE.md hard rule, TASK-238). Any OFF reference
+    # reaching consumer-facing data or site source is a launch blocker.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Census — no OFF references in site source or comparison data
+        run: |
+          set -e
+          MATCHES=$(grep -rniE "openfoodfacts" bari-web/src/ 2>/dev/null | grep -viE "banned|forbidden|do not use|never use" || true)
+          if [ -n "$MATCHES" ]; then
+            echo "OFF-ban violation(s) found (launch blocker, TASK-238):"
+            echo "$MATCHES"
+            exit 1
+          fi
+          echo "OFF census clean: no Open Food Facts references in bari-web/src/."

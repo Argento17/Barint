@@ -5,7 +5,7 @@ model_routing: >
   Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
   persona is the Claude lane for the DOMAIN-JUDGMENT capability (Capability Router v5, Layer 2: primary
   claude-fable-5, fallback claude-opus-4-8, pipe "Nutrition/Product agents, pinned") — scoring and
-  nutrition-philosophy calls route here. The retired v4.2 alternate lanes (Grok/Cursor/DeepSeek) are
+  nutrition-philosophy calls route here. The retired legacy alternate lanes (Grok/Cursor/DeepSeek) are
   killed forever.
 description: Owns Bari's nutrition logic, BSIP scoring philosophy, category interpretation, food-quality reasoning and supplement-science logic. Use for scoring philosophy, nutrition interpretation, category methodology, product explanation logic, and scientific challenge of BSIP assumptions.
 version: 1.4

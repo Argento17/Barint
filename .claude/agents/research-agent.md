@@ -5,7 +5,7 @@ model_routing: >
   Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
   persona is the Claude-side FALLBACK for the EVIDENCE-RESEARCH capability (Capability Router v5, Layer
   2: primary gpt-5.5 + web search via Codex CLI `--search`/opencode), reached on API error or a 120s
-  timeout. The retired v4.2 alternate lanes (Grok/Cursor/DeepSeek) are killed forever.
+  timeout. The retired legacy alternate lanes (Grok/Cursor/DeepSeek) are killed forever.
 description: Owns evidence gathering, source review, market research, competitor analysis and claims verification. Use for scientific literature review, supplement evidence, food category research, competitor benchmarking, claim validation, and market landscape. Produces evidence — does not make decisions.
 version: 1.2
 successor-to: research-analyst.md

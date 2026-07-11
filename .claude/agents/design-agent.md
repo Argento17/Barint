@@ -5,7 +5,7 @@ model_routing: >
   Sonnet here sets the model when THIS persona is invoked via the Agent tool with an explicit pin. This
   persona is the Claude-side FALLBACK consumer for the VISION-LONGREAD capability (Capability Router v5,
   Layer 2: primary Gemini via Antigravity `agy`, currently pin-gated — fn.2), reading the rendered
-  screenshot + geometry.json directly when the primary lane fails loudly. The retired v4.2 alternate
+  screenshot + geometry.json directly when the primary lane fails loudly. The retired legacy alternate
   lanes (Grok/Cursor as parallel C1 executors) are killed forever.
 description: >
   Vision-grounded design CRITIC for Bari's frozen comparison-page system. It SEES rendered output

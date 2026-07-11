@@ -92,6 +92,15 @@ Reaching each capability (all dispatches run_in_background):
   is partial-staged (HEAD content + only the lane's lines via `git hash-object -w` +
   `update-index --cacheinfo`) or excluded. Never commit ambient/owner-held edits under a task's
   commit message (first catch: TASK-566 nearly committed TASK-505's owner-held search_console.py edits).
+  **Worktree-stale-base rule (audit 2026-07-11, TASK-604/605):** an `Agent`-tool `isolation: worktree`
+  (and any lane worktree) can branch from a ref that is NOT your current working-branch HEAD — TASK-604/605's
+  worktrees branched from a commit 123 behind `task506`, so their edits to EXISTING files (`settings.json`
+  had its whole `permissions` block missing) would have REGRESSED the live tree if merged. On return:
+  never merge a lane worktree wholesale. **Diff the worktree's base against HEAD first;** then SALVAGE the
+  net-new files (base-independent — copy them in and re-run their selftests against the LIVE tree) and
+  RE-APPLY edits-to-existing-files as fresh deltas on the live tree (a clean isolated `git diff --no-index`
+  of the one file tells you whether the base matched). New standalone scripts are safe; edits to existing
+  config/code are not.
 - **GRUNT** — primary: Codex (`gpt-5.6 luna`) via `grunt_primary`; mechanical, **zero-judgment-call**
   work only — count/file/grep checks, byte-identity diffs, find-replace on an explicit target, regen,
   bookkeeping. Route to GRUNT ONLY when the output is 100% determined by a stated rule — if the task
@@ -163,6 +172,19 @@ REGISTER the task now with the audit finding cited (like TASK-589, registered th
 came up short); (c) log the lesson on the board line for the task, one sentence. The end-of-run
 `/telemetry` audit then *checks this happened* (a defect with no same-cycle codification is itself a
 finding) — it is the backstop, never the first place a lesson lands.
+
+**Machine-enforced now (TASK-604, STF memo 2026-07-11).** 6b is no longer discipline-only: every task
+close carries the **lesson-resolution contract** in its frontmatter
+(`01_framework/operations/lesson_resolution_contract_v1.md`) — a `lesson_trigger` plus, for any
+meaningful trigger, exactly one machine-verified `lesson_outcome` (`immediate_fix` / `rule_change` /
+`implementation_task` / `regression_test` / `human_decision`; a clean task closes with
+`lesson_trigger: none`). `check_lesson_resolution.py` enforces it via the `guard-lesson-on-close.ps1`
+hook (fails **open** locally so a broken hook never bricks work) and the **required** CI job
+`lesson_resolution_gate.yml` (fails **closed** — the binding guarantee). The validator recomputes
+recurrence from the corpus by `lesson_signature` and RED-flags a repeat whose standing prevention was
+documentation-only; a gamed `lesson_trigger: none` on a failure-shaped task WARNs. Auto-apply of a
+prevention is allowed ONLY for structurally-additive changes (a new fixture/test, a WARN-mode
+validator, provenance/index updates) — never instructions, policy, copy, scoring, routing, or release.
 
 **7. Loop.** Background dispatches re-invoke you on completion — when one returns, re-enter at step 5
 (verify) then step 2 (next ready move). Keep going until a wall.

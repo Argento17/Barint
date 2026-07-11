@@ -82,6 +82,19 @@
             ],
             "timeout": 15,
             "statusMessage": "Checking OFF-ban compliance..."
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard-lesson-on-close.ps1"
+            ],
+            "timeout": 15,
+            "statusMessage": "Checking lesson-resolution close gate..."
           }
         ]
       },

@@ -6,7 +6,7 @@ model_routing: >
   persona is the Claude-side FALLBACK for the BUILD-HEAVY/BUILD-LIGHT capability (Capability Router v5,
   Layer 2: primary Codex gpt-5.6 sol/terra via 03_operations/router/dispatch.py's build_heavy/
   build_light functions, pipe "claude-sonnet-5 (Frontend/Data agent)"), reached on the stated fallback
-  trigger (nonzero exit, empty diff, sandbox refusal, auth pending). The retired v4.2 alternate lanes
+  trigger (nonzero exit, empty diff, sandbox refusal, auth pending). The retired legacy alternate lanes
   (Grok/Cursor/DeepSeek as parallel C1/C2 executors) are killed forever.
 description: Owns Bari website implementation — Next.js, React, Tailwind, routes, components and comparison-page architecture. Use for implementing pages, fixing layout bugs, component reuse, responsive behavior, frontend integration, and build/lint issues.
 version: 1.2
