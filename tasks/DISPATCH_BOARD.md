@@ -214,6 +214,12 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
 - 🔁 **TASK-629 (re-score bread/crackers/cheese) — Data Agent sonnet, MAIN tree, bg.** Codex-worktree can't
   run the C:\Bari-hardcoded pipeline (614 proved it) → Data Agent on main. Apply |Δ|≤30 autonomously (owner
   mandate), >30=defect stop+surface, rebuild PD + parity-gate green. Orchestrator re-audits vs traces; deploy=owner.
+- 🟡 **627 + 628 RETURNED, static-verified, HELD in worktrees** (not merged): 627 trace format+scores
+  confirmed identical (spot-check 51.5/C); 628 matcher = category-aware + dedup + `category_mismatch_capture`
+  collision guard. NOT merged yet — would change build_dossiers.py / drop traces under the running 629 agent.
+  **Plan: after 629 lands, ONE consolidated rebuild** (merge 627+628 → build_dossiers → confirm protein_bars
+  calc flip + 24 cookies attach + re-score |Δ|≤30) gated by parity_gate.py (must stay 0 divergences).
+- ⏳ **TASK-629 (re-score, Data Agent, main) still running.** Then consolidated rebuild+verify.
 - 📋 **Deferred (tracked):** re-score PIPELINE build (614's root gap) · re-scrape 17 never-captured · 6
   PID_SPLIT shelf-mapping → Product Agent · cookies_coffee basis defect (>30, digest).
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
