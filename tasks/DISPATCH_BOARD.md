@@ -129,10 +129,22 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
 - ✅ **TASK-618 CLOSED** (commit fff30a15) — recovered_gtins() reads true_gtin_discovered; the 3 yogurt
   truncations now carry recovered_gtin + found_but_conflicting (malformed 129→126); 684 byte-identical,
   --check/--selftest PASS. Orchestrator-verified (distribution + exactly-3-changed).
-- 🧱 **WALL: out of ready work.** Ready queue EMPTY. Only **TASK-614 (re-score)** remains — BLOCKED on
-  the external BSIP0 parser fix (other session). **Owner review points (digest):** (1) PD-3 rendered
-  inspection view (`/internal/dossier`, local) — steer visual design; (2) cookies_coffee 5-6× defect
-  (>30, numbers arrive with the re-score). Orchestrator idle until the parser fix lands or owner input.
+- ✅ **TASK-619 (parser fix) CLOSED — committed 6057f920.** Owner handed the parser fix to the
+  orchestrator; scoped from reading the module: fat-overwrite (EV-026) + per-100g basis ALREADY fixed;
+  the one LIVE bug was `_to_float`'s `replace(",",".")` corrupting thousands-comma values (`"1,200 מג"`
+  →1.2 mg, 1000× under). Fix = `_normalize_decimal_comma` + wired into all 3 blind-replace sites +
+  cp1252-safe `--selftest` (13 cases). Verified: controlled HEAD-vs-fixed replay over 14,840 rows = **46
+  changed, ALL sodium, all thousands-comma, all ≤1895 mg (ceiling 2000)**, rest byte-identical. Lesson
+  contract PASS (regression_test). **TASK-614 now UNBLOCKED.**
+- ⏳ **TASK-614 (re-score)** — READY next (was blocked only on TASK-619). Re-enrich bread/crackers/cheese
+  from corrected captures → re-score on current engine → apply |Δ|≤30 (orchestrator authority) + surface
+  cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
+- 🖼️ **TASK-620 (PD-3.1 Overview UI) — owner-approved plan → DISPATCHED (Frontend Agent sonnet).** 3 tabs
+  (Overview default / Evidence / Technical-audit), reuse real VerdictRow via thin PD→VM adapter
+  (`getProductByBarcode`; owner blessed Option A), 3 separate namespace cards (never blended), 2D profile
+  visual, deterministic insight bullets, attention-checks. English. No store/scoring/compiler change.
+- 📊 **Telemetry after-action audit QUEUED** (owner asked) — running now that TASK-619 (the parser fix) is
+  closed; covers the run through PD MVP + parser fix.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
