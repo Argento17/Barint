@@ -53,6 +53,12 @@ launch, (4) highest-priority IN_PROGRESS, (5) RETURNED awaiting verification. If
   requests, files touched, runtime) gets treated as soft by every lane — two consecutive disclosed
   overages on TASK-582/590 prove it. Spec the cap INTO the deliverable's code path (e.g. "the canary
   runner must assert requests <= N and hard-fail past it"), not as an instruction sentence.
+  **Two-sided audits must adjudicate WHICH side is wrong (TASK-595, 2026-07-11):** a spec that diffs
+  X vs Y and labels mismatches "damage to X" silently assumes Y is truth. 25/39 of TASK-595's
+  MATERIAL rows were replay-side parser bugs (comma-thousands misread), not published-data damage.
+  Require the lane to adjudicate a sample of mismatches (read the raw source, judge plausibility,
+  say which side is wrong and why) before classifying, and the orchestrator re-adjudicates the top
+  hits on verify — never forward a one-sided diff table as a damage claim.
 - Registry Work without an id → register first: `python C:\Bari\tasks\new_task.py …` (writes the TASK
   file; then add the move to `DISPATCH_BOARD.md`).
 - **Route by capability, not by lane name.** Run the move through the Layer-1 ordered questions in
