@@ -181,8 +181,29 @@ one pipeline regenerates all three + a parity gate. Two Codex lanes running in p
 - ✅ **TASK-623 (alignment spine) CLOSED — merged 82e16591.** Audit: **710 comparison rows, 0 divergences,
   0 gaps** — PD ≡ comparison ≡ catalog TODAY. `parity_gate.py` (--selftest catches injected mismatch) wired
   into `bari_page_gates.yml` CI. **Owner's 'always aligned' rule now enforced.** Codex-built, Opus-verified.
-- ⏳ **4 lanes still running:** TASK-614 (re-score, Codex) · TASK-624 (barcode adjudication, Sonnet) ·
-  TASK-625 (protein_bars 32/32 diagnosis, Sonnet) · TASK-626 (low-evidence triage, Sonnet).
+- 🔀 **STRATEGIC PIVOT (from lanes 614 + 625) — score-reproducibility is mostly TRACE-BACKFILL, not
+  re-score.** TASK-625 proved protein_bars 32/32 = scored by a quarantined one-off script that wrote
+  CORRECT, reproducible scores but never emitted standard trace files → not trace-derivable. cakes/crackers/
+  cheese = same TASK-563 family (partial run-dir drift), scores also largely fine. **So the fix for the 150
+  = make existing correct scores DERIVABLE (trace-backfill, scores UNCHANGED) — NOT re-score** (which the
+  standing [[published_scores_not_trace_derivable]] rule already forbids). My initial 're-score the class'
+  framing was wrong; corrected.
+- 🚧 **TASK-614 (re-score) BLOCKED → superseded by the pivot.** Codex found NO runnable uniform re-score
+  pipeline (builders hard-code C:\Bari paths); refused to fabricate. **Only a small DATA-ERROR subset needs
+  correction** (bread/crackers/cheese comma/fat + cookies basis). **Cookies_coffee Class-B QUANTIFIED (owner
+  digest):** 4 products (7290122781359, 7290000061245, 7290118423904, 7290118422617) — per-serving nutrition
+  served as per-100g, 4.75–6× understated (e.g. 93→465 kcal). >30 defect, do NOT auto-apply. Findings saved:
+  `03_operations/bsip2/proto_v0/reports/task614_rescore_findings.json`.
+- ✅ **TASK-626 (low-evidence triage) RETURNED — all 44 RE-SCRAPABLE, 0 genuinely-missing.** Root = capture-
+  pipeline defect: 17 never-captured (yohananof), **24 (all cookies_coffee) = capture EXISTS but barcode→PID
+  matcher didn't attach it (fix the matcher ONCE)**, 3 collision/parser edge cases. Flagged a cross-category
+  GTIN-collision bug (milk barcode → capture tagged 'bread', compiler marks status=retrieved w/ null →
+  overstates completeness). Report: `03_operations/product_dossier/reports/task626_low_evidence_triage.json`.
+- 🧭 **EMERGING THEME (3/4 lanes):** the corpus's issues are mostly **plumbing, not bad data/scores** —
+  trace-emission gaps (backfill), capture-matcher misses (re-attach/re-scrape), a few real data errors
+  (cookies basis; comma/fat). Underlying scores/data largely CORRECT. Lower-risk program than 're-score all'.
+- ⏳ **1 lane still running:** TASK-624 (barcode adjudication, Sonnet). Consolidated corrected plan → owner
+  when it lands.
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
   Re-enrich+re-score bread/crackers/cheese on corrected engine via the uniform pipeline → regenerate
   comparison JSON → rebuild PD (stays aligned). PROPOSAL only: |Δ|≤30 apply-set, >30 = defect (stop),

@@ -1,0 +1,27 @@
+{
+  "task": "TASK-614",
+  "status": "BLOCKED_PIPELINE_DISCOVERY",
+  "class_a": {
+    "shelves": ["bread", "crackers", "cheese"],
+    "excluded_barcode": "7290016967074",
+    "products": [],
+    "reason": "No worktree-relative, existing BSIP1 re-enrichment entry point was found that consumes the corrected TASK-602 capture schemas. Existing category builders and BSIP2 runners hard-code C:\\Bari paths; the generic rescore tool consumes those config paths verbatim. Running them would not establish that the corrected captures in this worktree were scored."
+  },
+  "cookies_coffee_class_b": {
+    "disposition": "DEFECT_QUANTIFIED_DO_NOT_RESCORE_OR_APPLY",
+    "likely_root_cause": "Per-serving nutrition appears to have been treated as per-100g in the served comparison data.",
+    "products": [
+      {"barcode": "7290122781359", "name": "מיני עוגיות קלאסי 80 גרם", "served": {"energyKcal": 93.0, "protein": 1.8, "sugar": 4.6, "fat": 3.6, "satFat": 0.4, "fiber": 1.1, "sodium": 55.0}, "expected_per_100g": {"energyKcal": 465.0, "protein": 9.0, "sugar": 22.8, "fat": 18.0, "satFat": 1.9, "fiber": 5.5, "sodium": 275.0}, "expected_over_served_range": [4.75, 5.0]},
+      {"barcode": "7290000061245", "name": "עוגיות שוקוצ'יפס ממולאות 220 גרם", "served": {"energyKcal": 97.0, "protein": 1.2, "sugar": 6.2, "fat": 5.2, "satFat": 2.2, "sodium": 31.0}, "expected_per_100g": {"energyKcal": 527.0, "protein": 6.4, "sugar": 34.0, "fat": 28.2, "satFat": 11.9, "sodium": 170.0}, "expected_over_served_range": [5.333, 5.484]},
+      {"barcode": "7290118423904", "name": "קראנץ שוקו וניל עוגיות 200 גרם", "served": {"energyKcal": 94.0, "protein": 0.5, "sugar": 6.3, "fat": 5.4, "satFat": 2.4, "sodium": 19.0}, "expected_per_100g": {"energyKcal": 554.0, "protein": 3.0, "sugar": 37.0, "fat": 32.0, "satFat": 14.0, "sodium": 110.0}, "expected_over_served_range": [5.789, 6.0]},
+      {"barcode": "7290118422617", "name": "קראנץ קרם וניל עוגיות 200 גרם", "served": {"energyKcal": 92.0, "protein": 0.6, "sugar": 6.0, "fat": 4.9, "satFat": 2.4, "sodium": 14.0}, "expected_per_100g": {"energyKcal": 539.0, "protein": 3.5, "sugar": 35.0, "fat": 29.0, "satFat": 14.0, "sodium": 80.0}, "expected_over_served_range": [5.714, 5.918]}
+    ]
+  },
+  "commands_completed": [
+    "python 03_operations\\bsip0\\manifest\\build_manifest.py",
+    "python 03_operations\\product_dossier\\registry\\registry_ops.py --selftest",
+    "python 03_operations\\product_dossier\\registry\\registry_ops.py"
+  ],
+  "pd_rebuilt": false,
+  "pd_reason": "No comparison JSON was regenerated because no trace-derived Class-A scores were produced. Rebuilding PD now would preserve the old comparison values and would not satisfy the requested alignment condition."
+}
