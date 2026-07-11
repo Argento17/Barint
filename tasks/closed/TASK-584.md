@@ -2,9 +2,16 @@
 id: TASK-584
 title: Rename integrations/clients/http.py to stop stdlib http shadow
 owner: data-agent
-status: BLOCKED
+status: CLOSED
 priority: LOW
 created_at: 2026-07-10
+closed_at: 2026-07-11
+close_reason: >
+  Subsumed and executed by TASK-566 (commit 6c49a37c, task506): http.py renamed http_client.py,
+  16/16 importers updated (not just the 1 this task named - the re-grep it asked for was done),
+  regression test added preventing an http.py reappearing under integrations/clients/. Pickup
+  condition ("when the tree is quiet") met on the unattended 2026-07-11 3AM run. Verification
+  evidence recorded in TASK-566 close_reason.
 depends_on: []
 blocks: []
 summary: >

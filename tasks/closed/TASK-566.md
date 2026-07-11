@@ -2,9 +2,23 @@
 id: TASK-566
 title: integrations/clients/http.py shadows stdlib http — silently breaks transformers-dependent gates
 owner: data-agent
-status: IN_PROGRESS
+status: CLOSED
 priority: HIGH
 created_at: 2026-07-10
+closed_at: 2026-07-11
+close_reason: >
+  Both fixes delivered, orchestrator-verified, committed 6c49a37c (task506). (1) http.py ->
+  http_client.py (git detected 100% rename); 16/16 importers updated - orchestrator re-grepped:
+  0 residual old-import hits; shadow fix independently reproduced (sys.path.insert + import
+  http.client loads stdlib post-fix); OFF client diff = import-line only, still "1.0-disabled".
+  (2) Fail-loud: GateDidNotRunError + gate_status() probe in hebrew_grammar_gate (orchestrator
+  probe run: ('ok', None) with model load), run_evals.py --with-grammar now hard-fails exit 1
+  on gate unavailability (previously silent grammar-free "clean" output). Tests 13/13 re-run
+  independently by orchestrator in .venv. C0 PASS exit 0. Disclosed verify_citations TC-1
+  selftest red confirmed PRE-EXISTING and unrelated (author/year parse logic; live PubMed check
+  passes through renamed client) -> registered TASK-593. search_console.py committed as
+  HEAD+import-line only; its ambient TASK-505 SA edits stay uncommitted (owner controls that
+  commit). Subsumes TASK-584 (the rename was its whole scope).
 depends_on: []
 blocks: []
 category_id: null
