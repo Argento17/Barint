@@ -76,6 +76,20 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   → **TASK-614 (HIGH, BLOCKED on batch-5+consolidated-manifest+parser-fix):** systematic re-score of
   bread (+ other MATERIAL shelves) on CURRENT engine w/ corrected nutrition, full re-audit +
   Adversarial QA, verify every |Δ|≤30; excl. 7290016967074 (identity anomaly). Consumer deploy = owner-merge.
+- ✅ **TASK-602 BATCH 5 DONE → BASELINE SCRAPE COMPLETE.** cakes/cookies/crackers/protein/juices:
+  54 scraped, 13 honest NOT_FOUND (3-engine-checked). Tripwire-1 clean (0 served diff). bread_v3
+  confirmed LEGACY (unreferenced) → skipped. Barcode: 54 benign_retailer_sku (incl. synthetic_729000
+  Shufersal PLU), **0 true_truncation** — the truncation alarm is now DEAD across the corpus. Caught 2
+  own tooling bugs pre-commit. **TWO tripwire-1 findings → folded into TASK-614:** (A) **crackers 19/19
+  (100%) fat placeholder** (0.25/3.5g vs live 2-32g) — Class A, ≤30, orchestrator authority; (B)
+  **cookies_coffee 4 products whole-panel 5-6× too LOW** (92-97 vs live 465-554 kcal/100g, per-100g
+  both sides) — **Class B DEFECT (likely >30 → owner digest, NOT auto-shipped)**; +1 cookies sodium 4×.
+  Root causes (fat=null→placeholder EV-026; cookies=per-serving/per-100g basis err; comma-thousands
+  sodium) → BSIP0 parser fix (other session). **Baseline now = whole corpus captured except ~15
+  genuinely-unavailable products (13 NOT_FOUND + 2 Yohananof-exclusive).**
+- ⏳ **NEXT (orchestrator, after PD-2 join returns):** consolidated manifest rebuild + census +
+  registry recompile (folds batch-4/5 captures) — deferred while PD-2 join reads manifest/registry.
+  Then TASK-614 unblocks when the parser fix lands.
 - ✅ **TASK-609 (PD-1) CLOSED — committed cec1be4b.** Codex terra built `registry_ops.py` (only
   registry writer) + `product_registry.json`: **687 products (710 rows, 23 dupes deduped, 0 missing/
   0 collisions/0 splits)**, barcode states verified 440 / malformed 129 / pending 118 / not_found 0 /
