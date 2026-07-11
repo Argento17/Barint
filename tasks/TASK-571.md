@@ -38,7 +38,21 @@ Vercel **Deployment Checks** (docs: https://vercel.com/docs/deployment-checks). 
 - GitHub identifies checks by JOB NAME; if we ever rename these jobs, the Deployment Checks selection must be updated or promotion stalls (documented Vercel limitation).
 - After enabling, the next master push is the live test: watch the deployment page show "Checks" between Build and Promote.
 
-## Click-path VERIFIED ready (orchestrator, 2026-07-11, "go ahead")
+## CORRECTED mechanism (TASK-603 research, 2026-07-11) — supersedes the click-path below
+The picker was empty in the owner's Vercel dialog. Root cause per Vercel docs (TASK-603):
+- Do NOT add the `repository-dispatch/actions/status@v1` snippet — it's only for
+  repository_dispatch workflows; ours run on push, so Vercel gates the GitHub checks directly.
+  No secret/token needed.
+- The picker only lists checks Vercel has OBSERVED on a completed CI + production-deploy cycle on a
+  recent master SHA. **Load-bearing unknown (needs owner GitHub-Actions visibility): are all six
+  jobs GREEN on the latest master commit?** If any is red on the ubuntu runner, Vercel has no
+  success to offer → empty picker. Diagnose the six on the Actions tab first.
+- Sequence: (1) confirm the six jobs pass green on a master SHA; (2) confirm a Vercel production
+  deploy completed on that same SHA; (3) THEN Deployment Checks → Add Checks → GitHub → the six
+  names appear/tick; (4) if STILL empty after a confirmed green cycle → undocumented Vercel picker
+  issue → Vercel support, do NOT hack the snippet.
+
+## (superseded) earlier click-path — job names VERIFIED ready (orchestrator, 2026-07-11, "go ahead")
 All six job names confirmed to exist on origin/master AND to run on every master push (no `paths:`
 filter on the push trigger — the paths filters are pull_request-only, so no required check can be
 skipped-and-stall):
