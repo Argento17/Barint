@@ -16,6 +16,24 @@ summary: >
 
 <!-- opened with new_task.py; fill in context / scope / the deliverable -->
 
+## Research phase DELIVERED + orchestrator-verified (2026-07-11, unattended run)
+Report: `03_operations/reports/research/task562_sucralose_dechlorination_v1.md` (C0 PASS exit 0).
+- **Q1 Israeli authorization: UNVERIFIED** — governing reg identified (תקנות בריאות הציבור (מזון)
+  (תוספי מזון), תשנ"ו-1996) but every MoH additive sub-page 404/403s post-migration; honest unknown,
+  no inference. Label evidence (2 Israeli products with sucralose sold via Shufersal) = circumstantial.
+- **Q2 corpus bearing: 6 products carry sucralose** (4/167 cakes corpus, 2/61 cookies corpus).
+  **2 are LIVE consumer-facing oven-baked cookies on /hashvaot/cookies-coffee: 311463 (עוגיות חמאה
+  ללת"ס, 45.2/D) + 960860015432 (עוגיות ללת"ס מקמח מלא, 46.0/D)** — orchestrator independently
+  re-scanned the live JSON: exactly 2/117, barcodes/grades match. 3 protein bars = cold-formed, not
+  published; 1 ambiguous (baked sub-component 20%, not published).
+- **Q3: EV-109 draft written in the report** (not registered). No score exposure (efsa_no_scoring_exposure
+  stands). Copy flag: existing E955 additive explanation ("dose-dependent, authorised at current levels")
+  does not reflect EFSA's baked-application finding — needs Nutrition review, then two-gate if copy changes.
+- PMID 41710869 verified live; DOI resolves (paywalled — temperature/compound details marked
+  UNVERIFIED-DETAIL, honest split).
+**NEXT (owner of task = nutrition-agent): adjudicate EV-109 registration + the E955 copy flag.
+Nothing published; guide exclusion stands. → owner digest (2 live D-grade products implicated).**
+
 ## Dispatch log
 - 2026-07-11 03:xx (unattended orchestrate run) — dispatched Research Agent (claude-sonnet pin,
   background). Capability = EVIDENCE-RESEARCH; **fallback activation logged (Router v5 Layer-0

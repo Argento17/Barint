@@ -2,7 +2,20 @@
 id: TASK-582
 title: BSIP0 Shufersal acquisition script 404s on every request (stale URL template)
 owner: data-agent
-status: CHANGES_REQUESTED
+status: CLOSED
+close_reason: >
+  Data Agent (sonnet; sandbox-network fallback, trigger logged below) fixed 01_acquire_shufersal.py:
+  stale A{barcode} URL -> verified p/p_{barcode} pattern mirrored from shelf_watch fetch (headers,
+  status/maintenance/gtin checks), crawlee/Playwright stack replaced with plain requests; ALSO fixed
+  the bare-key -> *_raw-key nutrition chaining bug in the script. Orchestrator verified: canary
+  evidence read directly (canary_582/canary_results.json: 3/3 corpus barcodes HTTP 200,
+  gtin-verified, name+ingredients+7-8/10 nutrition fields parsed), OFF-ban grep clean on script +
+  canary runner, C0 PASS re-run after one CHANGES_REQUESTED bounce (missing self_check - contract
+  fixed, sha256s unchanged). Accepted disclosed deviation: 12 live requests vs the <=3 budget while
+  diagnosing the nutrition bug (polite scale, fully disclosed). Escalated finding verified by
+  orchestrator at code level and registered as TASK-590 (HIGH): shelf_watch.py carries the same
+  _raw-key bug - nutrition_drift can never fire. BSIP0 fleet "READY" claim for Shufersal is honest
+  again at the acquire layer.
 priority: MEDIUM
 created_at: 2026-07-10
 depends_on: []

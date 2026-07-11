@@ -302,3 +302,90 @@ Built from datastate_rewrite_drafts_v2.json. NOTHING applied to live yet.
 2. Owner lifts the PRODUCT DESCRIPTIONS FREEZE for this batch (still not lifted in writing).
 Then: apply 19 fields to the 2 live JSON on branch -> real-DOM render -> orchestrator reads
 rendered rows -> corpus gate --check (must stay green / lower) -> only then push (deploy = owner-gated).
+
+---
+
+## ANCHOR-VOICE REWRITE (v4/v5) + QA SIGN-OFF (2026-07-10)
+
+Owner rejected v2 (cited numbers) and v3 (removed numbers but recited profile in
+corpus-ranked analyst-speak), then GAVE the anchor line himself (§H5 of the feedback log:
+"גאודה הולנדית קלאסית, עשירה ומלוחה. היא מכילה חלבון גבוה אך גם שומן גבוה. מדובר במוצר יחסית
+נקי אבל יש לשים לב לכמות הנצרכת"). Key correction: naming a nutrient high/low IN WORDS is
+REQUIRED, not banned — only cited VALUES (numbers) are banned.
+
+v4 = 19 fields rewritten to the owner's 3-beat voice (identity+character → plain nutrient read
+→ takeaway). QA fact-gate verdict: PASS WITH FIXES.
+- All deterministic gates 0/19 (incl. nutrition_value_citation). Grammar: 17 flags, 0 true
+  positives (all smichut false positives). Voice/altitude: PASS (none merely recites).
+- 2 BLOCKING (fabrication + regressed define-by-negation): RT-1 "מהולנד" (unsupported origin,
+  brand=null) on 8606974; RT-2 "במקום סוכר" on 7290013453068 (define-by-negation the antithesis
+  regex misses). + RT-4 "מלאכותיים" not on label. All three applied as exact QA-specified
+  DELETIONS → v5 (scratch), re-gated 0 on every rule incl. explicit "במקום" scan.
+- RT-3 (MEDIUM, flagged to owner not silently shipped): spelt-cookie satFat "surprising"
+  framing leans on a value the trace doesn't list as a limiter.
+
+Preview (live line vs v5 new voice, all 19) published for owner voice approval:
+https://claude.ai/code/artifact/b5165faa-da04-47a5-a8dd-1c335fe86bab
+
+## GATE GAP CLOSED (commit 4d469cfc)
+bimkom_define_by_negation_fires — "במקום X" (instead-of) is the same owner define-by-negation
+ban ANTITHESIS_RE missed. Excludes spatial sense (במקום אחד/הנכון). Gated hard; baseline 2272→2293.
+Tested against all 19 live "במקום": 17 fire, 2 silent.
+
+## AWAITING OWNER: voice verdict on the v5 preview.
+If approved: apply 19 to live JSON → render-verify → then fan out the 3-beat voice across the
+502 rows that cite values, and build the judge on the approved voice as the calibration set.
+
+---
+
+## VOICE JUDGE BUILT + VALIDATED (commit bd00d95c, 2026-07-10)
+
+The semantic gate the regexes can't be: catches "recites the profile vs describes the food"
+(the 4-round defect). Calibrated on the owner's own verdicts this session — positives = §H5
+anchor + 19 approved v5 lines; negatives = v2 (numbers) + v3 (no-number analyst-speak).
+
+`03_operations/evals/copy_evals/voice_judge.py` (blind, headless claude, 3-beat rubric) +
+`voice_judge_validate.py` (confusion matrix).
+
+Validated N=51 (sonnet): **recall 1.000** — caught all 35 owner rejections INCLUDING 16/16 hard
+v3 no-number lines (the make-or-break). Precision 0.875 — over-strict on 5 ingredient-led
+positives (errs SAFE, never passes a recite line). Orchestrator-verified smoke: anchor PASS(99),
+numbers FAIL(2), correct Hebrew reasoning.
+
+TRUST STATUS: ADVISORY flag-for-human-review, NOT a hard auto-block (precision too soft; would
+over-flag good ingredient-led lines). Correctly NOT wired into run_evals as a blocking gate.
+To harden precision: add more owner-approved INGREDIENT-LED positives to the calibration set.
+
+## STANDING STATE (end of session block)
+- Enforcement: nutrition_value_citation + bimkom + H4 detectors + corpus ratchet gate, all
+  committed (task506), baseline 2293. em-dash advisory.
+- Voice: APPROVED by owner (§H5 anchor). 19 pilot fields = v5, both gates + QA PASS, in scratch.
+- Judge: built, validated (advisory), committed.
+- NOTHING LIVE. Go-live (apply to pages + deploy) = owner's explicit trigger.
+- Next when owner triggers: fan the approved voice across 502 value-citing + 22 verdict-less
+  rows (judge advises, hard gates block), then render + deploy the pilot or the sweep.
+
+---
+
+## SWEEP SHELF 1 — HUMMUS: pipeline proven (2026-07-10)
+
+Full-shelf test of the sweep pipeline (Content author → hard gates → voice judge → orchestrator verify).
+- v1: hard gates 0, but BLIND voice judge flagged 39/57 for corpus-relative framing ("טיפוסי לקטגוריה",
+  "באמצע המדף") — the v3 analyst-speak the owner rejected. Gates can't see it; judge did. Orchestrator
+  read a sample, confirmed the calls correct.
+- v2 rework (kill corpus-relative, sensory identity first): much better on read. BUT orchestrator's
+  independent check caught 2 bimkom "במקום X" define-by-negation leaks the agent's self-check reported
+  as clean (self-verify gap). Deleted the clauses, kept the findings → v3.
+- v3 BLIND judge (orchestrator-run, not the agent's tuned number): 54/57 PASS = 95%. Agent claimed
+  56/57 → minimal overfit. Of the 3 fails: 2 (score 62) genuinely describe (judge over-strict, its known
+  failure mode); 1 (score 42) genuinely flat, opens on ingredient list — one line to polish.
+- Files: sweep_hummus_v3.json (scratch). Hard gates + corpus-relative grep + bimkom all 0.
+
+LEARNINGS baked in for the rest of the sweep:
+1. A shelf is NOT done at gates-green — the judge must pass it too (semantic voice).
+2. Re-verify the agent's hard-gate self-check independently (bimkom leak proved it).
+3. Re-run the judge BLIND on the orchestrator side (agent tuning against a stochastic judge overstates).
+4. Corpus-relative framing is the default regression — brief every shelf to ban it explicitly.
+
+Remaining sweep: ~15 shelves cite nutrition values. NOT yet QA-fact-signed. NOTHING LIVE.
+Owner decision pending: pace/mode of the 15-shelf rollout (large autonomous compute) + go-live trigger.

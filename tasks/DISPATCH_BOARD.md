@@ -33,6 +33,42 @@ close on verified non-tripwire returns. Digest: `tasks/digests/2026-07-11-orches
 TASK-573 (USDA FDC ingredient exposure — needs FDC_API_KEY = external account, owner opt-in),
 TASK-543 (yogurt mirror reconcile — data-agent WIP full), TASK-550 M2 (fold owner-approved §H5 anchor
 voice + judge into content_agent_v1 — content lane, after owner rules on TASK-576 sweep pace).
+**RESULTS (all returns C0-PASS + orchestrator-verified before close):**
+- ✅ **TASK-552 CLOSED** — ledger gap ROOT-CAUSED: legitimate engine step, serialization omission.
+  score_engine.py:3959 subtracts polyol + emul_comp penalties; trace_writer.py never serializes them.
+  Census (orchestrator re-ran, exact match): 5747 traces, 1165 gap (20.3%) = 1146 emul-omission +
+  19 hummus EV-094 floor (distinct). Independent of TASK-563. NO score wrong, NO change made.
+  Fix = **TASK-592** (forward-only trace completeness + selftest; backfill excluded → 563 owner bucket).
+- ✅ **TASK-566 CLOSED** (commit 6c49a37c) — http.py→http_client.py (16/16 importers, 0 residual grep);
+  grammar gate fail-loud (GateDidNotRunError + gate_status; run_evals --with-grammar hard-fails).
+  13/13 tests orchestrator-re-run. Disclosed verify_citations TC-1 selftest red = PRE-EXISTING →
+  **TASK-593** (LOW). search_console.py partial-staged (import line only; TASK-505 SA edits stay
+  owner-held). ✅ **TASK-584 CLOSED** — subsumed (the rename was its whole scope).
+- ✅ **TASK-553 CLOSED** — margin gate live in superlatives_for() (cereals tokens 3→1: rice-apple
+  lowest_sugar + Vitabix lowest_kcal revoked, orchestrator re-derived); S_VERBATIM global GONE
+  (s_verbatim/<slug>.json; s_products from grade=="S" — verified exactly 2/52 yogurt, [] cereals;
+  extracted copy byte-identical to signed-off strings). 9/9 tests re-run. NOTE: old code's
+  s_grade_explanations_v1.md source pointer is a dead path (pre-existing; real provenance = git history).
+- 🟡 **TASK-562 evidence DELIVERED, verified** (stays open, nutrition-agent adjudication):
+  **2 LIVE D-grade cookies_coffee products carry sucralose in oven-baked form (311463, 960860015432 —
+  orchestrator re-scanned 2/117 exact)** while EFSA 2026 declined baked-goods authorization; Israeli
+  authorization UNVERIFIED (MoH pages 404 post-migration; honest unknown). EV-109 drafted, not
+  registered. No score exposure. → owner digest.
+- ✅ **GHOST TRIAGE EXECUTED** — 106 pre-compaction ghosts classified (report:
+  tasks/reports/ghost_triage_2026-07-11.md); **32 CLOSED** (18 done-in-fact + 14 superseded/obsolete,
+  each close_reason citing evidence; orchestrator mechanically asserted 25 artifact checks first);
+  TASK-200/201/202 confirmed correctly CLOSED (no reopen). 408C/321B kept open (partial/real gap).
+**⬆️ SURFACED FROM TRIAGE — top still-live ghosts now on the board:**
+- 🔴 **TASK-475 CRITICAL (owner)** — 57 products (bread 23/crackers 19/protein-bars 15) score on lost
+  BSIP1→BSIP2 ingredient handoff; 8 downward grade movers measured; rescore = tripwire-1 → owner go/no-go.
+- 🔴 **TASK-463 CRITICAL** — ~97 live products falsely display "no limiting factors"; fix blocked by the
+  product-descriptions freeze (owner sequencing).
+- **TASK-383** — verify_citations.py exists but is not CI-wired; citation-fabrication gate unenforced on the live line.
+- **TASK-443** — 3 confirmed-truncated cookies_coffee records need BSIP0 re-scrape (blocks TASK-440 re-flow).
+- **TASK-474** — red-team backfill: 7 of 8 categories still uncovered (cakes, cheese, choc-bars/tablets, crackers, milk, protein-bars).
+- **TASK-253/349** — Shadow1 + Gold Set harnesses built, CI wire (Phase 4) undone. **TASK-395F** — forward
+  provenance gate at generate_page = the structural fix for the TASK-563 class. **TASK-238** — OFF-ban DoD
+  audit never formally signed off (standing launch gate).
 
 ## 🟢 APPROVED PROGRAM WAVE 1 (2026-07-10, owner "approved. go ahead") — paper trails + gating
 **PR: https://github.com/Argento17/Barint/pull/new/task564-schema-lag** (commit 5b5b70d6). Owner merges.
