@@ -1369,8 +1369,8 @@
   "inputs": {
     "capture_manifest": "03_operations/bsip0/manifest/capture_manifest.json",
     "served_comparisons": "bari-web/src/data/comparisons/*.json",
-    "task602_barcode_reason_scope": "02_products/**/bsip0_outputs/task602* (barcode_class / barcode_reconciliation / is_valid_gtin_served+resolution_method / true_gtin_discovered fields)",
-    "task602_reconciliation_scope": "02_products/**/bsip0_outputs/task602*"
+    "task602_barcode_reason_scope": "02_products/**/bsip0_outputs/task602* + 02_products/_barcode_reconciliation_task624/* (barcode_class / barcode_reconciliation / is_valid_gtin_served+resolution_method / true_gtin_discovered / recovered_gtin fields)",
+    "task602_reconciliation_scope": "02_products/**/bsip0_outputs/task602* + 02_products/_barcode_reconciliation_task624/*"
   },
   "pid_scheme": "sha256-96:bari-pid-v1:[shelf,served_id,verbatim_name]",
   "products": [
@@ -1397,7 +1397,7 @@
           "value": "bsip1_6666444"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_00b106326d1214d2800d54bf",
       "name_provenance": {
@@ -1413,7 +1413,7 @@
           "value": "bc-004"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_00bc4b4a09ad4deda5c76fa3",
       "name_provenance": {
@@ -1497,7 +1497,7 @@
           "value": "bc-007"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_030526519451933ea8b9f1c2",
       "name_provenance": {
@@ -1898,7 +1898,7 @@
           "value": "bsip1_cheese_474502"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_09ea81af09ef06408378a78f",
       "name_provenance": {
@@ -1966,7 +1966,7 @@
           "value": "ck-2986058"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_0abf191de9efbeaffc4a5cdf",
       "name_provenance": {
@@ -2076,7 +2076,7 @@
           "value": "ck-5317194"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_0c368b701c41e65d6eddd4ef",
       "name_provenance": {
@@ -2113,7 +2113,7 @@
           "value": "ck-311463"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_0c4d7d414274f86b2ea5bf85",
       "name_provenance": {
@@ -2339,7 +2339,7 @@
           "value": "cake_2472186"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_0fb97cdd5345ea8970dfafdf",
       "name_provenance": {
@@ -2355,7 +2355,7 @@
           "value": "cake_5431913"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_0fee15eebbfb7152cb30388e",
       "name_provenance": {
@@ -2371,7 +2371,7 @@
           "value": "cake_2472117"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_107e062bc1d86c62e3d5a475",
       "name_provenance": {
@@ -2476,7 +2476,7 @@
           "value": "bsip1_cheese_2824183"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_135a1187a54be3f9e7e7611e",
       "name_provenance": {
@@ -2523,7 +2523,7 @@
           "value": "bc-048"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_13abf794e205ae77c2f3da47",
       "name_provenance": {
@@ -3357,7 +3357,7 @@
           "value": "cake_4504649"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_1f8ba25a4cf4b42c6eb1d95e",
       "name_provenance": {
@@ -3457,7 +3457,7 @@
           "value": "ck-311128"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_20b8283cf18b791c4ad419d5",
       "name_provenance": {
@@ -3642,7 +3642,7 @@
           "value": "bsip1_2987963"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_2299c67d4de854ddbf12a867",
       "name_provenance": {
@@ -4970,7 +4970,7 @@
           "value": "bsip1_3989096"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_35bf7eeaa45d9740dc4cfdb9",
       "name_provenance": {
@@ -5416,7 +5416,7 @@
           "value": "cake_2472087"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_3ca157b8fcce19d297f74209",
       "name_provenance": {
@@ -5592,7 +5592,7 @@
           "value": "bsip1_cheese_4127329"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_3de75336bd0aba7c4e993196",
       "name_provenance": {
@@ -5754,7 +5754,7 @@
           "value": "cake_4170103"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_3f6c85b3e13b6b518bdcb98d",
       "name_provenance": {
@@ -6010,7 +6010,7 @@
           "value": "bsip1_ricecakes_4952792"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_41e731e4c218bcee5102a708",
       "name_provenance": {
@@ -6115,7 +6115,7 @@
           "value": "bsip1_cheese_2824640"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_4307ee514b9dbe8fa8f4c305",
       "name_provenance": {
@@ -6173,7 +6173,7 @@
           "value": "cake_4504687"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_437e2e028e85339092cd9cf1",
       "name_provenance": {
@@ -6323,7 +6323,7 @@
           "value": "bsip1_8644112"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_465d8b51efdef6cef037ee80",
       "name_provenance": {
@@ -6646,7 +6646,7 @@
           "value": "bc-005"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_4a92bfa11969214f156ef7de",
       "name_provenance": {
@@ -6739,7 +6739,7 @@
           "value": "ck-311708"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_4bd512e3d4f1196bb497598d",
       "name_provenance": {
@@ -6957,7 +6957,7 @@
           "value": "bsip1_3727667"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_4eb2cc5fc7401037480e4b7d",
       "name_provenance": {
@@ -6973,7 +6973,7 @@
           "value": "bsip1_yogurt_4068172"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_4ecfd444036d27ebaf1a3593",
       "name_provenance": {
@@ -7180,7 +7180,7 @@
           "value": "bc-031"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_52b723947ade663a4d16f539",
       "name_provenance": {
@@ -7264,7 +7264,7 @@
           "value": "cake_2472148"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_53a6e653a1366d9ff880b7d3",
       "name_provenance": {
@@ -7301,7 +7301,7 @@
           "value": "bsip1_yogurt_6664693"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5509d0d7e3390f730e129a9b",
       "name_provenance": {
@@ -7395,7 +7395,7 @@
           "value": "cake_6983770"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_58370ff57c40372ba76fc0f4",
       "name_provenance": {
@@ -7437,7 +7437,7 @@
           "value": "ck-99804"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_59f803a46d7c2f154f5263b0",
       "name_provenance": {
@@ -7542,7 +7542,7 @@
           "value": "cake_5718021"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5b65d5df658b5e9ad31296f5",
       "name_provenance": {
@@ -7558,7 +7558,7 @@
           "value": "bsip1_8645935"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5b6ace06ed70dadeb64ed2dd",
       "name_provenance": {
@@ -7663,7 +7663,7 @@
           "value": "bsip1_yogurt_3126712"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5d99261acec1f5b68ef562bd",
       "name_provenance": {
@@ -7742,7 +7742,7 @@
           "value": "bsip1_yogurt_4068011"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5f021a78f7539b477ad93405",
       "name_provenance": {
@@ -7758,7 +7758,7 @@
           "value": "bsip1_cereal_72968"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_5fd1de85e39bedad1d1a3521",
       "name_provenance": {
@@ -7826,7 +7826,7 @@
           "value": "cake_5718038"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_61a52d74e3d7d0e55e9f1db7",
       "name_provenance": {
@@ -8103,7 +8103,7 @@
           "value": "cake_9397697"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_65d0054d27cd1b5cd47aaab8",
       "name_provenance": {
@@ -8195,7 +8195,7 @@
           "value": "ck-540160"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_67aba2561da366def181e4ef",
       "name_provenance": {
@@ -8495,7 +8495,7 @@
           "value": "cake_6983794"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_6b5038b46fee1929c126d7fc",
       "name_provenance": {
@@ -8828,7 +8828,7 @@
           "value": "bsip1_cereal_1343845"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_706fdfac3aa2ec0f62e6f6e7",
       "name_provenance": {
@@ -8870,7 +8870,7 @@
           "value": "bc-016"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_71b6618139dcef47e85ec1ea",
       "name_provenance": {
@@ -9218,14 +9218,14 @@
           "value": "snk-011"
         }
       ],
-      "barcode_reason": "unclassified",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_7752efc25f3cd556e5cff9bb",
       "name_provenance": {
         "locator": "/products/10/name",
         "source_file": "bari-web/src/data/comparisons/snacks_frontend_v5.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "016000423534"
     },
     {
       "aliases": [
@@ -9234,7 +9234,7 @@
           "value": "bsip1_cheese_3075850"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_7771425dcbb62217845e2c04",
       "name_provenance": {
@@ -9763,7 +9763,7 @@
           "value": "cake_4170097"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_7c02d3f71c54e6f66070664c",
       "name_provenance": {
@@ -9779,7 +9779,7 @@
           "value": "bsip1_467320"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_7c6b100af543f6d7738502bc",
       "name_provenance": {
@@ -9921,7 +9921,7 @@
           "value": "bsip1_6724786"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_817265eaf2e087aec940f2fc",
       "name_provenance": {
@@ -10052,7 +10052,7 @@
           "value": "bc-009"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_83e589cd82296dd79f875eaa",
       "name_provenance": {
@@ -10953,7 +10953,7 @@
           "value": "bc-036"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_93853d4ae7a1537005ee02f7",
       "name_provenance": {
@@ -10995,7 +10995,7 @@
           "value": "cake_2472223"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_948b29319a0c812e56bd2268",
       "name_provenance": {
@@ -11053,7 +11053,7 @@
           "value": "ck-74184"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_95f72060df8ea6512b31a173",
       "name_provenance": {
@@ -11122,7 +11122,7 @@
           "value": "ck-61245"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_97671e489bc70ebac1b511ad",
       "name_provenance": {
@@ -11324,7 +11324,7 @@
           "value": "bsip1_467153"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_9a71a70e699985b23e2b8e4e",
       "name_provenance": {
@@ -11524,7 +11524,7 @@
           "value": "ck-2986065"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_9d411d1055a91b6c2b4bcf3c",
       "name_provenance": {
@@ -11577,7 +11577,7 @@
           "value": "bsip1_yogurt_408354"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_9e4ce711d1ebc35f283097f5",
       "name_provenance": {
@@ -11927,7 +11927,7 @@
           "value": "cake_1361207"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_a2dfc53153fb3343e411863b",
       "name_provenance": {
@@ -12405,7 +12405,7 @@
           "value": "bsip1_ricecakes_4267230"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_a936c7d35c7f719045ac9410",
       "name_provenance": {
@@ -12566,7 +12566,7 @@
           "value": "cake_2472841"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_aa80ea6d4018236c837484f9",
       "name_provenance": {
@@ -12898,14 +12898,14 @@
           "value": "snk-006"
         }
       ],
-      "barcode_reason": "unclassified",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_b1131602bfdbffbabfeb3e6d",
       "name_provenance": {
         "locator": "/products/5/name",
         "source_file": "bari-web/src/data/comparisons/snacks_frontend_v5.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "016000548404"
     },
     {
       "aliases": [
@@ -12977,7 +12977,7 @@
           "value": "bsip1_yogurt_4119133"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_b3502e65fc833ede03f31194",
       "name_provenance": {
@@ -13045,7 +13045,7 @@
           "value": "cake_9399288"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_b4428556cc4f82a2e4e91032",
       "name_provenance": {
@@ -13061,7 +13061,7 @@
           "value": "cake_2472193"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_b45fe43104928b4889aa93d9",
       "name_provenance": {
@@ -13544,14 +13544,14 @@
           "value": "snk-007"
         }
       ],
-      "barcode_reason": "unclassified",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_bb683c24ccf262ed810557c0",
       "name_provenance": {
         "locator": "/products/6/name",
         "source_file": "bari-web/src/data/comparisons/snacks_frontend_v5.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "016000548503"
     },
     {
       "aliases": [
@@ -14273,7 +14273,7 @@
           "value": "cake_2472261"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_c45b76831f1ca04695b6ee21",
       "name_provenance": {
@@ -14512,7 +14512,7 @@
           "value": "cake_6983787"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_c6a71fe2d7811f6a7a9424a9",
       "name_provenance": {
@@ -14761,7 +14761,7 @@
           "value": "cake_9397642"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_ca227d1368e70eaceba334a3",
       "name_provenance": {
@@ -15170,7 +15170,7 @@
           "value": "bsip1_yogurt_5839078"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_ccefdd279357600beda3fed9",
       "name_provenance": {
@@ -15259,7 +15259,7 @@
           "value": "bsip1_6666307"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_cd3a22b8b889e39096b565c8",
       "name_provenance": {
@@ -15399,7 +15399,7 @@
           "value": "bsip1_yogurt_57132"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_ceba6f39075cadc2cbbccdd4",
       "name_provenance": {
@@ -15778,7 +15778,7 @@
           "value": "ck-313160"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_d35c82897a3d1df1702c0b33",
       "name_provenance": {
@@ -16067,7 +16067,7 @@
           "value": "bsip1_yogurt_4584528"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_d8588f87afd5388422dd91fe",
       "name_provenance": {
@@ -16125,7 +16125,7 @@
           "value": "bc-037"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_db2d8225023ecaa59319c2d1",
       "name_provenance": {
@@ -16209,7 +16209,7 @@
           "value": "bsip1_5174551"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_dc628c35c9b1a38c14ffa5c9",
       "name_provenance": {
@@ -16501,7 +16501,7 @@
           "value": "cake_2472254"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_e04cd550dd4aa47bf814a532",
       "name_provenance": {
@@ -16564,7 +16564,7 @@
           "value": "ck-313184"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_e150e3d64552936f476708fc",
       "name_provenance": {
@@ -17172,7 +17172,7 @@
           "value": "bsip1_cheese_41445"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_e8a2d6760d742d23bda97c5d",
       "name_provenance": {
@@ -17344,7 +17344,7 @@
           "value": "bsip1_cheese_41452"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_ed6dd0b0f1319d37de6f41a8",
       "name_provenance": {
@@ -18509,7 +18509,7 @@
           "value": "cake_1361177"
         }
       ],
-      "barcode_reason": "unclassified",
+      "barcode_reason": "non_gtin_retailer_sku",
       "barcode_status": "malformed",
       "bari_pid": "bari_fe8c25fa53f27c7920c03506",
       "name_provenance": {

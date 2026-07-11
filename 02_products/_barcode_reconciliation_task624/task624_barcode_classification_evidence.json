@@ -1,0 +1,719 @@
+{
+  "schema": "bari_task624_barcode_reconciliation_v1",
+  "task": "TASK-624",
+  "generated_at": "2026-07-11",
+  "purpose": "Additive registry evidence for TASK-624 (barcode adjudication of the 152 flagged products). Read by registry_ops.py recovered_gtins() and barcode_reconciliation_reasons() (TASK-624 marker added alongside the existing task602 marker -- see RECONCILIATION_MARKERS). Every row was verified against a committed direct-retailer-scrape artifact (Shufersal/Yohananof observations_bsip0 or raw_store capture) -- never Open Food Facts, never invented. benign_retailer_sku rows: the served short code appears verbatim as the retailer catalog/image-asset self-reference (P_<code> Cloudinary slug or raw_store P_<code> capture folder), i.e. it resolves to itself and is a genuine non-GS1 retailer SKU/PLU, not a broken GTIN. recovered_gtin rows: the served value is an 11-digit string that is a 12-digit UPC-A with its leading zero stripped; the full 0-prefixed code is independently corroborated by the same retailer capture own image URL literal (not guessed, not blind-padded) and passes the UPC-A check digit.",
+  "records": [
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_6666444",
+      "name": "סלט מטבוחה",
+      "barcode": "6666444",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GOR36_Z_P_6666444_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-004",
+      "name": "גבינה צפתית 5% שומן",
+      "barcode": "554457",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NEG30_Z_P_554457_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-007",
+      "name": "גבינה בולגרית 5% שומן",
+      "barcode": "2133162",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/INR18_Z_P_2133162_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_474502",
+      "name": "גבינה לבנה 5% שומן",
+      "barcode": "474502",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YXB22_Z_P_474502_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-2986058",
+      "name": "פתי בר וניל",
+      "barcode": "2986058",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WFJ38_Z_P_2986058_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-5317194",
+      "name": "ביסקוויט בטעם וניל",
+      "barcode": "5317194",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/MQL30_Z_P_5317194_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-311463",
+      "name": "עוגיות חמאה ללת\"ס",
+      "barcode": "311463",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RSI18_Z_P_311463_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472186",
+      "name": "עוגת מאפין וניל",
+      "barcode": "2472186",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QBB30_Z_P_2472186_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_5431913",
+      "name": "עוגת גבינה פירורים",
+      "barcode": "5431913",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/AIS26_Z_P_5431913_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472117",
+      "name": "עוגת פס קפוצ'ינו",
+      "barcode": "2472117",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PYK24_Z_P_2472117_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_2824183",
+      "name": "גבינה לבנה 5% שומן",
+      "barcode": "2824183",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QTK28_Z_P_2824183_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-048",
+      "name": "כדורי פטה בשמן מתובל",
+      "barcode": "369617",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZTA32_Z_P_369617_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_4504649",
+      "name": "מיני שטרודל קרם פטיסייר",
+      "barcode": "4504649",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GQS32_Z_P_4504649_2.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-311128",
+      "name": "עוגיות בטעם חמאה",
+      "barcode": "311128",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RFL16_Z_P_311128_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_2987963",
+      "name": "חומוס",
+      "barcode": "2987963",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZAQ44_Z_P_2987963_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_3989096",
+      "name": "סלט חציל פיקנטי",
+      "barcode": "3989096",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XZT44_Z_P_3989096_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472087",
+      "name": "עוגת פס שוקולד",
+      "barcode": "2472087",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PXG30_Z_P_2472087_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_4127329",
+      "name": "קוטג' 5% שומן",
+      "barcode": "4127329",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UMK28_Z_P_4127329_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_4170103",
+      "name": "עוגת קרנץ אגוזים וקינמון",
+      "barcode": "4170103",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FTO16_Z_P_4170103_1.png"
+    },
+    {
+      "shelf": "crackers",
+      "served_id": "bsip1_ricecakes_4952792",
+      "name": "פריכיות אורז דקות אורגני",
+      "barcode": "4952792",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "03_operations/bsip0/raw_store/shufersal/ricecakes/P_4952792/ (raw_store capture folder keyed by Shufersal P_<code> slug)"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_2824640",
+      "name": "גבינה לבנה 5%",
+      "barcode": "2824640",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RKZ26_Z_P_2824640_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_4504687",
+      "name": "מיני שטרודל חלבה שוקולד",
+      "barcode": "4504687",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GSE34_Z_P_4504687_2.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_8644112",
+      "name": "סלט מטבוחה יום יום",
+      "barcode": "8644112",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UCV26_Z_P_8644112_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-005",
+      "name": "גבינה צפתית מעודנת 5%",
+      "barcode": "554532",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/NHD24_Z_P_554532_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-311708",
+      "name": "עוגיות מחיטה מלאה",
+      "barcode": "311708",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SBT20_Z_P_311708_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_3727667",
+      "name": "חומוס מסעדה",
+      "barcode": "3727667",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/BGU38_Z_P_3727667_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_4068172",
+      "name": "יוגורט עיזים בדלי",
+      "barcode": "4068172",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KZD28_Z_P_4068172_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-031",
+      "name": "גבינה צפתית בטעמים",
+      "barcode": "4861360",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OIJ28_Z_P_4861360_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472148",
+      "name": "עוגת פס היער השחור",
+      "barcode": "2472148",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/PZP28_Z_P_2472148_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_6664693",
+      "name": "אפרסק3% שומן",
+      "barcode": "6664693",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/DZI40_Z_P_6664693_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_6983770",
+      "name": "שיש אסם",
+      "barcode": "6983770",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HZN40_Z_P_6983770_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-99804",
+      "name": "עוגיות שוקולד לבן חלבי",
+      "barcode": "99804",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QPP30_Z_P_99804_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_5718021",
+      "name": "עוגת שטרודל גבינה",
+      "barcode": "5718021",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HOW24_Z_P_5718021_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_8645935",
+      "name": "חומוס",
+      "barcode": "8645935",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WUY40_Z_P_8645935_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_3126712",
+      "name": "יוגורט עיזים ביו 3%",
+      "barcode": "3126712",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WHD22_Z_P_3126712_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_4068011",
+      "name": "יוגורט כבשים 5% שומן",
+      "barcode": "4068011",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KSY20_Z_P_4068011_1.png"
+    },
+    {
+      "shelf": "cereals",
+      "served_id": "bsip1_cereal_72968",
+      "name": "דגני בוקר סיני מיניס",
+      "barcode": "72968",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/CXL32_Z_P_72968_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_5718038",
+      "name": "עוגת שטרודל תפוחי עץ",
+      "barcode": "5718038",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/HPN32_Z_P_5718038_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_9397697",
+      "name": "חמישיית מאפין שוקו צ'יפס",
+      "barcode": "9397697",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QWW50_Z_P_9397697_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-540160",
+      "name": "עוגיות ללת\"ס מקמח מלא",
+      "barcode": "540160",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SAJ16_Z_P_540160_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_6983794",
+      "name": "תפוז",
+      "barcode": "6983794",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAL46_Z_P_6983794_1.png"
+    },
+    {
+      "shelf": "granola",
+      "served_id": "bsip1_cereal_1343845",
+      "name": "גרנולה עם פירות",
+      "barcode": "1343845",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KXI28_Z_P_1343845_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-016",
+      "name": "בולגרית מעודנת 5%",
+      "barcode": "2107798",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/XAD34_Z_P_2107798_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_3075850",
+      "name": "לבנה עם זעתר",
+      "barcode": "3075850",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ZAX28_Z_P_3075850_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_4170097",
+      "name": "עוגת קרנץ' בטעם שוקולד",
+      "barcode": "4170097",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FTI28_Z_P_4170097_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_467320",
+      "name": "מלך החומוס אבו מרוואן",
+      "barcode": "467320",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OGV22_Z_P_467320_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_6724786",
+      "name": "ממרח פלפלים קלויים",
+      "barcode": "6724786",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OWP40_Z_P_6724786_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-009",
+      "name": "בולגרית מעודנת 5% שומן",
+      "barcode": "2133889",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JPQ34_Z_P_2133889_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-036",
+      "name": "גבינת טמרה מלוחה בקר 17%",
+      "barcode": "3075805",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/YZE28_Z_P_3075805_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472223",
+      "name": "עוגת מאפין תפוז",
+      "barcode": "2472223",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QCM22_Z_P_2472223_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-74184",
+      "name": "פתי בר קלאסי",
+      "barcode": "74184",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/ESF24_Z_P_74184_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-61245",
+      "name": "עוגיות שוקוציפס+שוקולד",
+      "barcode": "61245",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/LOO18_Z_P_61245_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_467153",
+      "name": "מלך החומוס סמיר הגדול",
+      "barcode": "467153",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/OAK26_Z_P_467153_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-2986065",
+      "name": "פתי בר בטעם שוקולד",
+      "barcode": "2986065",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/WFQ36_Z_P_2986065_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_408354",
+      "name": "יוגורט קראנצ פצפוצים",
+      "barcode": "408354",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FAX24_Z_P_408354_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_1361207",
+      "name": "עוגת פס אוכמניות",
+      "barcode": "1361207",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KPC20_Z_P_1361207_1.png"
+    },
+    {
+      "shelf": "crackers",
+      "served_id": "bsip1_ricecakes_4267230",
+      "name": "פריכיות אורז מלא מצופות",
+      "barcode": "4267230",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "03_operations/bsip0/raw_store/shufersal/ricecakes/P_4267230/ (raw_store capture folder keyed by Shufersal P_<code> slug)"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472841",
+      "name": "עוגת סבתא בטעם שוקולד",
+      "barcode": "2472841",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/RAG28_Z_P_2472841_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_4119133",
+      "name": "יוגורט בכד6.5% שומן",
+      "barcode": "4119133",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IJE22_Z_P_4119133_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_9399288",
+      "name": "עוגת פס גבינה אפויה",
+      "barcode": "9399288",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/TGB48_Z_P_9399288_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472193",
+      "name": "עוגת מאפין שוקולד",
+      "barcode": "2472193",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QBI28_Z_P_2472193_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472261",
+      "name": "עוגת מאפין תפוחי עץ",
+      "barcode": "2472261",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QDY24_Z_P_2472261_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_6983787",
+      "name": "עוגת שוקולד צ'יפס",
+      "barcode": "6983787",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IAE48_Z_P_6983787_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_9397642",
+      "name": "5עוגות מאפין בטעם שוקולד",
+      "barcode": "9397642",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QUT40_Z_P_9397642_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_5839078",
+      "name": "יוגורט ביו 3%",
+      "barcode": "5839078",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/EQX40_Z_P_5839078_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_6666307",
+      "name": "סלט חומוס",
+      "barcode": "6666307",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/GJK34_Z_P_6666307_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_57132",
+      "name": "יוגורט ביו 1.5%",
+      "barcode": "57132",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/FMJ18_Z_P_57132_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-313160",
+      "name": "עוגיות שוקולד זהבה",
+      "barcode": "313160",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UFP14_Z_P_313160_1.png"
+    },
+    {
+      "shelf": "yogurt_spoonable",
+      "served_id": "bsip1_yogurt_4584528",
+      "name": "יוגורט ביו 1.7%",
+      "barcode": "4584528",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UUZ36_Z_P_4584528_1.png"
+    },
+    {
+      "shelf": "brined_cheeses",
+      "served_id": "bc-037",
+      "name": "גבינה מלוחה חמד 16%",
+      "barcode": "48413",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/SPA20_Z_P_48413_1.png"
+    },
+    {
+      "shelf": "hummus",
+      "served_id": "bsip1_5174551",
+      "name": "חומוס יום יום",
+      "barcode": "5174551",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/JQE28_Z_P_5174551_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_2472254",
+      "name": "עוגת מאפין אגוזים",
+      "barcode": "2472254",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/QDR26_Z_P_2472254_1.png"
+    },
+    {
+      "shelf": "cookies_coffee",
+      "served_id": "ck-313184",
+      "name": "עוגיות גן חיות טעם וניל",
+      "barcode": "313184",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/UGN20_Z_P_313184_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_41445",
+      "name": "קוטג' 5%",
+      "barcode": "41445",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHA18_Z_P_41445_1.png"
+    },
+    {
+      "shelf": "cheese",
+      "served_id": "bsip1_cheese_41452",
+      "name": "קוטג' מהדרין 9% שומן",
+      "barcode": "41452",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/IHH16_Z_P_41452_1.png"
+    },
+    {
+      "shelf": "cakes_hard_cookies",
+      "served_id": "cake_1361177",
+      "name": "עוגת פס דובדבנים",
+      "barcode": "1361177",
+      "barcode_class": "benign_retailer_sku",
+      "evidence_type": "retailer_asset_self_reference",
+      "evidence_reference": "https://res.cloudinary.com/shufersal/image/upload/f_auto,q_auto/v1551800922/prod/product_images/products_zoom/KNY26_Z_P_1361177_1.png"
+    },
+    {
+      "shelf": "snack_bars",
+      "served_id": "snk-011",
+      "name": "חטיף שיבולת שועל+שוקולד",
+      "served_barcode": "16000423534",
+      "recovered_gtin": "016000423534",
+      "evidence_type": "leading_zero_restoration_corroborated",
+      "evidence_reference": "Yohananof direct scrape image_url literally embeds 016000423534 (02_products/snack_bars/observations_bsip0/yohananof/16000423534/product.json); served barcode field lost the leading zero. Checksum of 016000423534 is a valid UPC-A (gtin_is_valid). Brand=Nature Valley."
+    },
+    {
+      "shelf": "snack_bars",
+      "served_id": "snk-006",
+      "name": "חטיף שיבולת שועל עם דבש",
+      "served_barcode": "16000548404",
+      "recovered_gtin": "016000548404",
+      "evidence_type": "leading_zero_restoration_corroborated",
+      "evidence_reference": "Yohananof direct scrape image_url literally embeds 016000548404 (02_products/snack_bars/observations_bsip0/yohananof/16000548404/product.json); served barcode field lost the leading zero. Checksum of 016000548404 is a valid UPC-A (gtin_is_valid). Brand=Nature Valley."
+    },
+    {
+      "shelf": "snack_bars",
+      "served_id": "snk-007",
+      "name": "חטיף שיבולת שועל+מייפל",
+      "served_barcode": "16000548503",
+      "recovered_gtin": "016000548503",
+      "evidence_type": "leading_zero_restoration_corroborated",
+      "evidence_reference": "Yohananof direct scrape image_url literally embeds 016000548503 (02_products/snack_bars/observations_bsip0/yohananof/16000548503/product.json); served barcode field lost the leading zero. Checksum of 016000548503 is a valid UPC-A (gtin_is_valid). Brand=Nature Valley."
+    }
+  ]
+}

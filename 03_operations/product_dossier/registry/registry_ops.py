@@ -10,18 +10,20 @@ unlikely; should one nevertheless occur, this writer allocates distinct
 domain-separated digest PIDs and marks every affected record for manual review.
 
 This module is the only registry writer.  It reads only served comparison JSONs,
-the capture manifest, and explicit TASK-602 reconciliation tables.  It never
-reads Open Food Facts or observations directories, and writes only below this
-module's registry directory.  Names are used transiently to mint the PID but are
-not copied to the registry: the stored name reference is a provenance pointer.
+the capture manifest, and explicit reconciliation tables (TASK-602 rescrape
+batches + the TASK-624 barcode-adjudication evidence file, jointly addressed by
+``RECONCILIATION_MARKERS``).  It never reads Open Food Facts or observations
+directories, and writes only below this module's registry directory.  Names are
+used transiently to mint the PID but are not copied to the registry: the stored
+name reference is a provenance pointer.
 
 Every ``malformed``-status record also carries an additive ``barcode_reason``
 sub-classification (TASK-613): ``non_gtin_retailer_sku`` for a served barcode
 that fails GTIN checksum/length but is a genuine, retailer-native SKU/PLU that
 resolves to itself; ``truncated_or_invalid`` for a served barcode that is a true
 truncation of a different, longer GTIN or is recorded as genuinely unresolvable;
-``unclassified`` where no committed TASK-602 reconciliation evidence covers that
-barcode value at all. The 5-state ``barcode_status`` enum is unchanged by this --
+``unclassified`` where no committed reconciliation evidence covers that barcode
+value at all. The 5-state ``barcode_status`` enum is unchanged by this --
 ``barcode_reason`` is additive, never a replacement.
 """
 
@@ -44,6 +46,13 @@ TASK602_ROOT = REPO_ROOT / "02_products"
 VALID_GTIN_LENGTHS = {8, 12, 13}
 STATUSES = ("verified", "found_but_conflicting", "malformed", "not_found", "pending_manual_review")
 BARCODE_REASONS = ("non_gtin_retailer_sku", "truncated_or_invalid", "unclassified")
+# Reconciliation-evidence path markers scanned by recovered_gtins() and
+# barcode_reconciliation_reasons(). "task602" is the original TASK-602 rescrape
+# batch convention; "task624" (TASK-624 barcode adjudication, 2026-07-11) is a
+# second, cross-shelf evidence file at
+# 02_products/_barcode_reconciliation_task624/ -- same row schema, same
+# direct-scrape-only evidentiary bar (never Open Food Facts, never invented).
+RECONCILIATION_MARKERS = ("task602", "task624")
 
 
 def assert_write_boundary(path: Path) -> None:
@@ -129,7 +138,8 @@ def recovered_gtins() -> dict[str, set[str]]:
     old_keys = {"served_barcode", "old_barcode", "truncated_barcode", "source_barcode", "barcode"}
     new_keys = {"recovered_gtin", "resolved_gtin", "true_gtin", "resolved_barcode", "true_gtin_discovered"}
     for path in sorted(TASK602_ROOT.rglob("*")):
-        if "task602" not in path.as_posix().lower() or path.suffix.lower() != ".json":
+        lowered = path.as_posix().lower()
+        if not any(marker in lowered for marker in RECONCILIATION_MARKERS) or path.suffix.lower() != ".json":
             continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
@@ -204,7 +214,8 @@ def barcode_reconciliation_reasons() -> dict[str, str]:
     """
     votes: dict[str, set[str]] = defaultdict(set)
     for path in sorted(TASK602_ROOT.rglob("*")):
-        if "task602" not in path.as_posix().lower() or path.suffix.lower() != ".json":
+        lowered = path.as_posix().lower()
+        if not any(marker in lowered for marker in RECONCILIATION_MARKERS) or path.suffix.lower() != ".json":
             continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
@@ -314,8 +325,8 @@ def build_registry() -> dict[str, Any]:
         "inputs": {
             "served_comparisons": "bari-web/src/data/comparisons/*.json",
             "capture_manifest": "03_operations/bsip0/manifest/capture_manifest.json",
-            "task602_reconciliation_scope": "02_products/**/bsip0_outputs/task602*",
-            "task602_barcode_reason_scope": "02_products/**/bsip0_outputs/task602* (barcode_class / barcode_reconciliation / is_valid_gtin_served+resolution_method / true_gtin_discovered fields)",
+            "task602_reconciliation_scope": "02_products/**/bsip0_outputs/task602* + 02_products/_barcode_reconciliation_task624/*",
+            "task602_barcode_reason_scope": "02_products/**/bsip0_outputs/task602* + 02_products/_barcode_reconciliation_task624/* (barcode_class / barcode_reconciliation / is_valid_gtin_served+resolution_method / true_gtin_discovered / recovered_gtin fields)",
         },
         "products": sorted(records, key=lambda record: record["bari_pid"]),
         "aliases": alias_table,
