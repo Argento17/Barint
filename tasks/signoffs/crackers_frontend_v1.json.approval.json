@@ -1,22 +1,21 @@
 {
   "copy_id": "crackers_frontend_v1",
   "file": "bari-web/src/data/comparisons/crackers_frontend_v1.json",
-  "sha256": "1a508b1d2b280f3e787d8e3d8afed166309f03d8029a85084d516a5f78f00a90",
+  "sha256": "33b71030dfe2a8ee4a3ced108cd670620397bd8b57aabde01466ea319dc54fc5",
   "gates": {
     "content_agent": {
       "agent": "Content Agent",
-      "date": "2026-07-05",
-      "evidence": "Content Agent SIGN-OFF (agent a406588b930c578d8) confirmed no copy contradicts any of the 13 new grades (8 B->A, 3 C->B, 2 D->C)"
+      "date": "2026-07-11",
+      "evidence": "TASK-633: authored the 4 grade-changed crackers rows (8434165658523, 74375, 7290018790328, 7290011489595) for the TASK-629 re-score; Tom voice, no cited nutrient values. By-barcode copy diff vs the prior-approved state (sha 1a508b1d, 2026-07-05) confirms the copy delta is EXACTLY these 4 rows; the other 49 rows' insightLine/rowVerdict are byte-identical to that prior approval."
     },
     "red_team": {
       "agent": "Adversarial QA / Red-Team",
-      "date": "2026-07-05",
-      "evidence": "Adversarial QA SIGN-OFF (agent a10f8ecf6486f88b3) confirmed production JSON matches the fully-verified EV-104 pilot exactly (0/53 mismatches vs crosser_reconciliation_table.csv, score==trace spot-check 5/5) -- full chain: Nutrition proposed -> Product D7 co-signed WITH CONDITIONS -> Data Agent engine pilot reconciled crosser count (Product's 8/3/2 confirmed correct over Nutrition's 7/4/2) -> Nutrition cleared the one cap-clip case -> Adversarial QA independently re-derived all 13 crossers + checked 306 products across 5 other categories for zero cross-contamination (Condition 5 SIGN-OFF) -> Data Agent implemented to production, RT-1 legacy-barcode gap checked and found not to exist -> this final parity confirmation"
+      "date": "2026-07-11",
+      "evidence": "TASK-633 re-gate (agent aa2ddf10c8618829a): re-verified all 4 revised rows against ingredients_raw / d4_additives / expansion.nutrition; prior BLOCK findings (RT-2 unsupported saturated-fat on 7290011489595; RT-3 partial-list on 8434165658523) resolved; 0 open findings; verdict SIGN-OFF. The 49 unchanged rows carry the prior-approved copy (1a508b1d)."
     }
   },
-  "approved_at": "2026-07-05",
-  "task": null,
-  "migrated_from": "crackers_frontend_v1.json.ok",
-  "migration_note": "sha256 pinned to HEAD content at migration time by migrate_signoffs.py (TASK-567); original approval predates hash pinning",
-  "legacy_marker_text": "2026-07-05 | EV-104 protein-scale calibration shipped, supersedes prior content-only marker | content-gate: Content Agent SIGN-OFF (agent a406588b930c578d8) confirmed no copy contradicts any of the 13 new grades (8 B->A, 3 C->B, 2 D->C) | red-team: Adversarial QA SIGN-OFF (agent a10f8ecf6486f88b3) confirmed production JSON matches the fully-verified EV-104 pilot exactly (0/53 mismatches vs crosser_reconciliation_table.csv, score==trace spot-check 5/5) -- full chain: Nutrition proposed -> Product D7 co-signed WITH CONDITIONS -> Data Agent engine pilot reconciled crosser count (Product's 8/3/2 confirmed correct over Nutrition's 7/4/2) -> Nutrition cleared the one cap-clip case -> Adversarial QA independently re-derived all 13 crossers + checked 306 products across 5 other categories for zero cross-contamination (Condition 5 SIGN-OFF) -> Data Agent implemented to production, RT-1 legacy-barcode gap checked and found not to exist -> this final parity confirmation"
+  "approved_at": "2026-07-11",
+  "task": "TASK-633",
+  "supersedes_sha256": "1a508b1d2b280f3e787d8e3d8afed166309f03d8029a85084d516a5f78f00a90",
+  "note": "Prior approval 1a508b1d (2026-07-05, EV-104) voided by the TASK-629 re-score (score/grade/nutrition fields) + TASK-633 copy on 4 rows. Copy-delta since the prior approval verified = only the 4 two-gate-signed-off rows; score changes are the verified |delta|<=30 re-score (orchestrator authority, not copy sign-off). Pins the current staged blob sha256."
 }
