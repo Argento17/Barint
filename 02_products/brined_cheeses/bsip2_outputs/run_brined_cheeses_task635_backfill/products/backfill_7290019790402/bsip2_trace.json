@@ -1,0 +1,34 @@
+{
+  "bsip2_version": "trace_backfill_v1",
+  "algorithm_version": "historical_lens_output_not_reexecuted",
+  "trace_generated_at": null,
+  "specification_version": "TASK-635 trace-only backfill from served comparison JSON",
+  "input_reference": {
+    "canonical_product_id": "backfill_7290019790402",
+    "barcode": "7290019790402",
+    "product_name_he": null,
+    "brand": "מחלבת רמת הגולן",
+    "source_retailers": null,
+    "bsip1_source_path": null,
+    "audit_ref": null,
+    "bsip1_schema_version": null,
+    "load_errors": []
+  },
+  "evaluation_status": "historical_trace_backfill",
+  "run_id": "task635_trace_backfill",
+  "category": "brined_cheeses",
+  "nova_proxy": null,
+  "confidence_score": null,
+  "dimension_scores": null,
+  "final_score_estimate": 74.3,
+  "grade_estimate": "B",
+  "explanation_drivers": null,
+  "backfill_provenance": {
+    "source": "served comparison JSON",
+    "triage_class": "A",
+    "original_trace_score": 76.4,
+    "served_score": 74.3,
+    "served_grade": "B",
+    "score_identity_assertion": "passed"
+  }
+}
