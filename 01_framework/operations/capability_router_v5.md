@@ -35,6 +35,19 @@ separately.
    receives zero judgment calls. Builders never author Hebrew copy. Nothing skips
    orchestrator verification, including Codex ("fully trusted with tasks" means trusted to
    execute, never exempt from verification).
+9. **THE BARI TIER MAP.**
+
+   | Tier | Claude | OpenAI |
+   |---|---|---|
+   | SST (strategist) | Fable 5 (claude-fable-5) | Sol 5.6 (gpt-5.6-sol) |
+   | Heavy builder | Sonnet 5 (claude-sonnet-5) | Terra 5.6 (gpt-5.6-terra) |
+   | Grunt | Haiku 4.5 (claude-haiku-4-5) | Luna 5.6 (gpt-5.6-luna) |
+   | Deterministic | Scripts | Scripts |
+
+   SST models never perform actual code work or grunt work; they only strategize, inspect,
+   orchestrate, and ideate work. Opus 4.8 remains on QA: the Adversarial QA pin and
+   Claude-side CHALLENGE stay `claude-opus-4-8` unchanged. Fallbacks stay within tier,
+   across vendor.
 
 ---
 
@@ -43,19 +56,20 @@ separately.
 | # | Question about the task | Capability | Exit criterion |
 |---|---|---|---|
 | 1 | Output fully determined by written rules, validator exists? | DETERMINISTIC | Validator exit 0 |
-| 2 | Needs decomposition, architecture, or ambiguous scope? | PLANNING | Written spec with acceptance criteria + the re-routing decision for the implementation |
-| 3 | Produces consumer-facing Hebrew copy? | CONTENT | Copy validators pass AND both gates signed, sha256-pinned |
-| 4 | Coding with ANY complexity signal (checklist below)? | BUILD-HEAVY | Builds clean, tests pass, reviewed diff, return contract validates |
-| 5 | Coding with NO complexity signal? | BUILD-LIGHT | Same as BUILD-HEAVY |
-| 6 | Mechanical non-code work (renames, fills, conversions)? | GRUNT | Re-verified by validator/orchestrator; zero unexplained diffs |
-| 7 | Evidence research (papers, regulation, government sources, nutrition science, competitors)? | EVIDENCE-RESEARCH | Every claim carries a source; citations pass verify_citations.py |
-| 8 | Engineering research (GitHub, libraries, frameworks, APIs, implementation patterns)? | ENGINEERING-RESEARCH | Recommendation names exact versions + licenses + a working proof snippet |
-| 9 | Bulk one-pass reading, or judging images / rendered pages? | VISION-LONGREAD | Structured report produced (only artifact type accepted) |
-| 10 | Scoring or nutrition philosophy? | DOMAIN-JUDGMENT | Reasoned recommendation citing the governing framework docs |
-| 11 | Needs an independent second opinion (or follows any delivery above)? | CHALLENGE | Verdict with evidence, produced cross-vendor per Invariant 3 |
-| 12 | Anything else | GENERAL | Return contract validates |
+| 2 | Explicit strategist consultation? (owner-invoked /stf, or an owner-ordered strategist debate/second-strategist opinion) | STRATEGY-CONSULT | Verdict memo: positions, cruxes, converged recommendation, dissent recorded honestly |
+| 3 | Needs decomposition, architecture, or ambiguous scope? | PLANNING | Written spec with acceptance criteria + the re-routing decision for the implementation |
+| 4 | Produces consumer-facing Hebrew copy? | CONTENT | Copy validators pass AND both gates signed, sha256-pinned |
+| 5 | Coding with ANY complexity signal (checklist below)? | BUILD-HEAVY | Builds clean, tests pass, reviewed diff, return contract validates |
+| 6 | Coding with NO complexity signal? | BUILD-LIGHT | Same as BUILD-HEAVY |
+| 7 | Mechanical non-code work (renames, fills, conversions)? | GRUNT | Re-verified by validator/orchestrator; zero unexplained diffs |
+| 8 | Evidence research (papers, regulation, government sources, nutrition science, competitors)? | EVIDENCE-RESEARCH | Every claim carries a source; citations pass verify_citations.py |
+| 9 | Engineering research (GitHub, libraries, frameworks, APIs, implementation patterns)? | ENGINEERING-RESEARCH | Recommendation names exact versions + licenses + a working proof snippet |
+| 10 | Bulk one-pass reading, or judging images / rendered pages? | VISION-LONGREAD | Structured report produced (only artifact type accepted) |
+| 11 | Scoring or nutrition philosophy? | DOMAIN-JUDGMENT | Reasoned recommendation citing the governing framework docs |
+| 12 | Needs an independent second opinion (or follows any delivery above)? | CHALLENGE | Verdict with evidence, produced cross-vendor per Invariant 3 |
+| 13 | Anything else | GENERAL | Return contract validates |
 
-**Complexity checklist (question 4).** ANY single signal routes BUILD-HEAVY. All are
+**Complexity checklist (question 5).** ANY single signal routes BUILD-HEAVY. All are
 checkable from the task spec — never a vibe call:
 - Touches ≥ 2 modules/packages
 - Any migration (schema, data, framework)
@@ -63,7 +77,7 @@ checkable from the task spec — never a vibe call:
 - A feature spanning UI + data layers
 - PLANNING estimated it above ~1 day
 
-**Ordering rule.** PLANNING (Q2) sits above all implementation. An ambiguous build request
+**Ordering rule.** PLANNING (Q3) sits above all implementation. An ambiguous build request
 never reaches a builder directly: Claude resolves it into a spec, and the spec re-enters the
 router.
 
@@ -75,8 +89,9 @@ router.
 |---|---|---|---|---|
 | PLANNING | claude-fable-5 | claude-opus-4-8 | Main chat / Plan agent | Model unavailable |
 | CONTENT | claude-fable-5 | claude-sonnet-5 | Content Agent, pinned | Spawn failure or 2 consecutive rejected drafts |
-| BUILD-HEAVY | codex gpt-5.6-sol¹ | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
+| BUILD-HEAVY | codex gpt-5.6-terra¹ | claude-sonnet-5 (Frontend/Data agent) | `codex exec` in a worktree, sandbox `workspace-write` | Nonzero exit, empty diff, sandbox refusal, or auth pending |
 | BUILD-LIGHT | codex gpt-5.6-terra¹ | claude-sonnet-5 agent | same | same |
+| STRATEGY-CONSULT | codex gpt-5.6-sol via `codex exec` READ-ONLY sandbox (the Claude side of the debate is the orchestrator session itself = Fable 5) | fable-only debate (degraded: cross-vendor lost - flag it) | `codex exec`, sandbox `read-only` | API/CLI error or auth pending |
 | GRUNT | codex gpt-5.6-luna¹ | claude-haiku-4-5 (Agent tool) | `codex exec`, sandbox `workspace-write`; deliberately cross-vendor fallback | API/CLI error, or any output failing its validator once |
 | EVIDENCE-RESEARCH | gpt-5.5 + web search | Claude Research Agent (sonnet pin) | Codex web-search config / opencode API | API error or timeout 120s |
 | ENGINEERING-RESEARCH | codex gpt-5.6-terra + web search¹ | Claude Research Agent (sonnet pin) | `codex exec -c tools.web_search=true`, read-only sandbox | same |
@@ -85,12 +100,14 @@ router.
 | CHALLENGE | claude-opus-4-8 **when producer was Codex/GPT** · gpt-5.5-pro **when producer was Claude or Gemini** | the other one | Agent tool (opus pin) / opencode API | Producer-vendor outage |
 | GENERAL | claude-sonnet-5 (explicit pin) | claude-haiku-4-5 for trivial | Agent tool | Spawn failure |
 
+Heavy-vs-light is complexity/timeout discipline; both are the same builder tier.
+
 ¹ **PINNED 2026-07-10** after owner ChatGPT-subscription OAuth (`codex login status` =
 "Logged in using ChatGPT"). The GPT-5.6 family (GA 2026-07-09) ships exactly three tiers,
 costly → cheap, mapping one-to-one onto our Codex seats:
-**sol** (detail/polish, $5/$30 per 1M → BUILD-HEAVY) · **terra** (everyday workhorse,
-$2.50/$15 → BUILD-LIGHT + ENGINEERING-RESEARCH) · **luna** (clear repeatable work, $1/$6 →
-GRUNT). On subscription there is no per-token bill, but costlier tiers burn plan quota
+**sol** (strategist consultation, $5/$30 per 1M → STRATEGY-CONSULT) · **terra** (builder,
+$2.50/$15 → BUILD-HEAVY + BUILD-LIGHT + ENGINEERING-RESEARCH) · **luna** (clear repeatable work,
+$1/$6 → GRUNT). On subscription there is no per-token bill, but costlier tiers burn plan quota
 faster — routing grunt to luna is a quota decision, not just hygiene. Known CLI bug
 (openai/codex#31873): the interactive `/model` picker does not list the 5.6 tiers but `-m`
 accepts them — the router always passes `-m`, so unaffected. Sandbox tiers: `read-only` /
