@@ -170,6 +170,22 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   data-quality labels), status line above cards, values-on-bars + 'higher is better', human action phrasing
   (PID_SPLIT → tech audit only), evidence not-retrieved now 'Missing'. Codex-built + Opus cross-vendor
   verified — the routing pattern working end-to-end. Owner viewing.
+
+## 🩹 CORPUS REMEDIATION PROGRAM — "fix everything" (owner-started 2026-07-11)
+PD now quantifies the job: **302/687 (44%) have ≥1 issue**, in 4 defect classes — **score-reproducibility
+150** (77 fail+73 warn; the trust-critical class = TASK-563), publishability 188, **barcode 152**
+(126 malformed+23 pending+3 conflicting), low-evidence(<50%) 44. Worst: protein_bars 32/32(!), cakes
+41/62, crackers 41/53, cheese 33/47, cookies_coffee 41/117, bread 23/29. Owner chose: **start on score
+reproducibility now.** OWNER RULE: **the PD must ALWAYS align with the product catalog + comparison pages** —
+one pipeline regenerates all three + a parity gate. Two Codex lanes running in parallel:
+- 🔗 **TASK-623 (alignment spine) — Codex terra, worktree C:/bari_wt_623, background.** Audit PD↔comparison↔
+  catalog agreement + build a parity gate (extend TASK-588 pattern) that FAILS on divergence + CI-wire it.
+  PD publication_record is already `served_json_verbatim` → connected at source; gate guards staleness.
+- 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
+  Re-enrich+re-score bread/crackers/cheese on corrected engine via the uniform pipeline → regenerate
+  comparison JSON → rebuild PD (stays aligned). PROPOSAL only: |Δ|≤30 apply-set, >30 = defect (stop),
+  exclude 7290016967074; quantify cookies_coffee 5-6× (Class B, >30, owner digest). Orchestrator re-audits
+  every number vs traces; consumer deploy = owner merge.
 - ✅ **TASK-620 (PD-3.1) CLOSED — owner-approved + render-verified.** Kept the COMPLETE Claude build
   (overview-tab + 3 separate namespace cards + real ComparisonRow verdict w/ 'Estimated' badge + 2D
   profile bars + deterministic bullets + attention-checks), which was already integrated with the live
