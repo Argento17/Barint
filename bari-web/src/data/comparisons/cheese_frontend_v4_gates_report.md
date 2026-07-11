@@ -1,14 +1,14 @@
 # Bari Page Generator — Gate Report
 
-**Input:** `C:\Bari\bari-web\src\data\comparisons\cheese_frontend_v4.json`
-**Generated:** 2026-07-10T08:45:05Z  |  **Elapsed:** 0.3s
+**Input:** `bari-web/src/data/comparisons/cheese_frontend_v4.json`
+**Generated:** 2026-07-11T13:38:01Z  |  **Elapsed:** 0.2s
 
 ## Summary
 
 | Gate | Status |
 |------|--------|
 | [PASS] G1 SCHEMA | PASS |
-| [PASS] G2 COVERAGE | PASS |
+| [WARN] G2 COVERAGE | WARN |
 | [FAIL] G3 SCOPE | FAIL |
 | [PASS] G4 OFF | PASS |
 | [FAIL] G5 GRADE-INTEGRITY | FAIL |
@@ -23,7 +23,7 @@
 ### [PASS] G1 SCHEMA
   INFO: Document validates against schema
 
-### [PASS] G2 COVERAGE
+### [WARN] G2 COVERAGE
   INFO: imageUrl: 47/47 non-null
   INFO: name: 47/47 non-null
   INFO: score: 47/47 non-null
@@ -38,8 +38,7 @@
   INFO: expansion.nutrition.fiber: 2/47
   INFO: expansion.nutrition.sodium: 47/47
   INFO: expansion.confidenceLabel: 47/47
-  INFO: Corpus barcodes with image in BSIP1: 59/59
-  INFO: imageUrl: no regression vs BSIP1 corpus
+  WARN: No corpus provided — imageUrl regression check skipped
   INFO: name: all products have Hebrew characters in name
   INFO: verdict coverage: every product has an authored insightLine or rowVerdict
   INFO: v3 milk-depth coverage checks: SKIP (schema_version='', not v3)
@@ -66,26 +65,9 @@
 
 ### [FAIL] G5 GRADE-INTEGRITY
   INFO: Boundary policy: floor
-  FAIL: barcode=7290114311472: JSON score=75.7 vs trace score=73.5 (diff=2.200 > tolerance=0.05)
-  FAIL: barcode=7290114310918: JSON score=74.7 vs trace score=72.5 (diff=2.200 > tolerance=0.05)
-  FAIL: barcode=56272: JSON score=68.2 vs trace score=68.0 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=3523230065467: JSON score=68.0 vs trace score=63.8 (rounded trace=64, diff=4.000 > tolerance=0.05)
-  FAIL: barcode=3523230065467: displayed grade=B is better than trace-derived grade=C (trace_score=63.8) — grade inflation
-  FAIL: barcode=7290011194246: JSON score=67.1 vs trace score=66.9 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7622201798154: JSON score=62.8 vs trace score=60.6 (diff=2.200 > tolerance=0.05)
-  FAIL: barcode=7290019635369: JSON score=57.0 vs trace score=54.7 (rounded trace=55, diff=2.000 > tolerance=0.05)
-  FAIL: barcode=7290119375219: JSON score=56.2 vs trace score=50.9 (diff=5.300 > tolerance=0.05)
-  FAIL: barcode=7290108504378: JSON score=55.6 vs trace score=55.4 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7290019635376: JSON score=55.5 vs trace score=51.2 (diff=4.300 > tolerance=0.05)
-  FAIL: barcode=7290019635116: JSON score=48.5 vs trace score=44.3 (diff=4.200 > tolerance=0.05)
-  FAIL: barcode=7622201521493: JSON score=47.5 vs trace score=47.3 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7290112342102: JSON score=44.9 vs trace score=44.6 (diff=0.300 > tolerance=0.05)
-  FAIL: barcode=7290116936604: JSON score=44.7 vs trace score=44.5 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7290116933078: JSON score=42.9 vs trace score=42.7 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7290019635581: JSON score=37.0 vs trace score=32.8 (rounded trace=33, diff=4.000 > tolerance=0.05)
-  FAIL: barcode=7290019635581: displayed grade=D is better than trace-derived grade=E (trace_score=32.8) — grade inflation
-  FAIL: barcode=7290011499624: JSON score=33.8 vs trace score=33.6 (diff=0.200 > tolerance=0.05)
-  FAIL: barcode=7290019635383: JSON score=23.4 vs trace score=23.2 (diff=0.200 > tolerance=0.05)
+  FAIL: barcode=6040619: JSON score=81.2 vs trace score=81.3 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=7290108502541: JSON score=47.6 vs trace score=47.7 (diff=0.100 > tolerance=0.05)
+  FAIL: barcode=7622201139278: JSON score=45.5 vs trace score=45.6 (diff=0.100 > tolerance=0.05)
 
 ### [FAIL] G6 COPY-SAFETY
   FAIL: barcode=7290019635581 field=rowVerdict: banned phrase 'חלבון נמוך' found
