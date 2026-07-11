@@ -161,6 +161,12 @@ Then:
 
 **6. Persist durable state.** Registry status + `close_reason` and `DISPATCH_BOARD.md` are the durable
 record — never leave state only in this chat. There is no dashboard to regenerate.
+- **Branch-assert before every commit/merge (guard, 2026-07-11).** Run `git rev-parse --abbrev-ref HEAD`
+  and confirm it is the intended session branch BEFORE any orchestrator commit or merge. Agent-tool
+  domain subagents run in the **main tree cwd** (not a worktree) and can `git checkout` a different
+  branch under you — a wave of commits can silently land on the wrong branch. Reconcile a mis-landed
+  stack with `git merge --ff-only <stray>` onto the session branch, then `git branch -f <stray>
+  <clean-base>`. Prefer telling main-tree domain agents "do NOT git checkout/branch/commit."
 
 **6b. Codify the lesson PER TASK (owner ruling 2026-07-10 — "that's what I expect in each task of the
 orchestrator").** Lesson capture is a per-task step, not an end-of-run afterthought. At every close /
