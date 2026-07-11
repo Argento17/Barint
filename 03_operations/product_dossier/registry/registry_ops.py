@@ -122,8 +122,12 @@ def recovered_gtins() -> dict[str, set[str]]:
     without an explicit old/served barcode mapping they are not reconciliation evidence.
     """
     mappings: dict[str, set[str]] = defaultdict(set)
-    old_keys = {"served_barcode", "old_barcode", "truncated_barcode", "source_barcode"}
-    new_keys = {"recovered_gtin", "resolved_gtin", "true_gtin", "resolved_barcode"}
+    # "barcode" is the served short/truncated code as recorded in the TASK-602
+    # rescrape row itself (batch2 yogurt-drinkable schema); "true_gtin_discovered"
+    # is that same row's recovered true GTIN (see _classify_reconciliation_row
+    # docstring). Both are read literally -- never guessed or invented.
+    old_keys = {"served_barcode", "old_barcode", "truncated_barcode", "source_barcode", "barcode"}
+    new_keys = {"recovered_gtin", "resolved_gtin", "true_gtin", "resolved_barcode", "true_gtin_discovered"}
     for path in sorted(TASK602_ROOT.rglob("*")):
         if "task602" not in path.as_posix().lower() or path.suffix.lower() != ".json":
             continue
@@ -350,6 +354,18 @@ def selftest() -> None:
     assert reasons, "expected non-empty TASK-602 barcode reconciliation evidence"
     assert set(reasons.values()) <= set(BARCODE_REASONS)
 
+    # TASK-618: recovered_gtins() must read the actual committed batch-2
+    # yogurt-drinkable field names -- served "barcode" (short/truncated code)
+    # paired with "true_gtin_discovered" on the SAME row -- and nothing else.
+    recovered = recovered_gtins()
+    expected_recoveries = {
+        "4068035": "7290004068035",
+        "55336": "7290000055336",
+        "58030": "7290000058030",
+    }
+    for served, true_gtin in expected_recoveries.items():
+        assert recovered.get(served) == {true_gtin}, f"expected {served} -> {{{true_gtin}}}, got {recovered.get(served)}"
+
     registry = build_registry()
     for record in registry["products"]:
         assert record["barcode_reason"] in BARCODE_REASONS or record["barcode_reason"] is None
@@ -357,6 +373,28 @@ def selftest() -> None:
             assert record["barcode_reason"] in BARCODE_REASONS, "every malformed record must carry a barcode_reason"
         else:
             assert record["barcode_reason"] is None, "barcode_reason is additive to malformed only"
+
+    # TASK-618: exactly the 3 genuine yogurt-drinkable truncations recover their
+    # true GTIN and flip malformed -> found_but_conflicting; nothing else moves.
+    expected_transitions = {
+        "bsip1_yogurt_4068035": "7290004068035",
+        "bsip1_yogurt_55336": "7290000055336",
+        "bsip1_yogurt_58030": "7290000058030",
+    }
+    seen_served_ids: set[str] = set()
+    for record in registry["products"]:
+        for alias in record["aliases"]:
+            if alias.get("type") == "served_id" and alias.get("value") in expected_transitions:
+                seen_served_ids.add(alias["value"])
+                expected_gtin = expected_transitions[alias["value"]]
+                assert record["barcode_status"] == "found_but_conflicting", (
+                    f"{alias['value']} expected found_but_conflicting, got {record['barcode_status']}"
+                )
+                assert record["recovered_gtin"] == expected_gtin, (
+                    f"{alias['value']} expected recovered_gtin {expected_gtin}, got {record['recovered_gtin']}"
+                )
+                assert record["barcode_reason"] is None, "found_but_conflicting is not malformed; barcode_reason must be None"
+    assert seen_served_ids == set(expected_transitions), f"expected all 3 target served_ids present, saw {seen_served_ids}"
 
     first, second = canonical_json(build_registry()), canonical_json(build_registry())
     assert first == second, "registry build is not deterministic"

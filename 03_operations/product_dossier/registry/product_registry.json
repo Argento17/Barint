@@ -68,6 +68,8 @@
     "{\"gtin\":\"5941021001674\",\"retailer\":\"unknown\",\"type\":\"retailer_gtin\"}": "bari_a3ec67c67c172142799a6442",
     "{\"gtin\":\"6009684861000\",\"retailer\":\"unknown\",\"type\":\"retailer_gtin\"}": "bari_8586e041366a55efa35eef70",
     "{\"gtin\":\"7290000051352\",\"retailer\":\"unknown\",\"type\":\"retailer_gtin\"}": "bari_99823653f142dcfd663a79cb",
+    "{\"gtin\":\"7290000055336\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_0b2379429c5c0a4e22eacdc1",
+    "{\"gtin\":\"7290000058030\",\"retailer\":\"unknown\",\"type\":\"retailer_gtin\"}": "bari_dc7eda8a4edec47893524771",
     "{\"gtin\":\"7290000061245\",\"retailer\":\"shufersal\",\"type\":\"retailer_gtin\"}": "bari_871ebb020889b83242a1f32b",
     "{\"gtin\":\"7290000075143\",\"retailer\":\"shufersal\",\"type\":\"retailer_gtin\"}": "bari_8ded61fe2e92b04d631b2826",
     "{\"gtin\":\"7290000136523\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_9fe0b1a8074faf1f974a16ea",
@@ -76,6 +78,7 @@
     "{\"gtin\":\"7290001247730\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_f41c598f6617c40faa0a433e",
     "{\"gtin\":\"7290003009640\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_7bd7f26b750745bf4320b7ed",
     "{\"gtin\":\"7290004030100\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_55256fbe106f9404cccb8f6c",
+    "{\"gtin\":\"7290004068035\",\"retailer\":\"unknown\",\"type\":\"retailer_gtin\"}": "bari_842c5b68670b01f79376d007",
     "{\"gtin\":\"7290004122195\",\"retailer\":\"shufersal\",\"type\":\"retailer_gtin\"}": "bari_a2468540e0a977cef946054e",
     "{\"gtin\":\"7290006822192\",\"retailer\":\"tiv_taam\",\"type\":\"retailer_gtin\"}": "bari_ffec3a5f893210ae21cfa518",
     "{\"gtin\":\"7290006983787\",\"retailer\":\"shufersal\",\"type\":\"retailer_gtin\"}": "bari_0df6693549c876088e133704",
@@ -1977,16 +1980,21 @@
         {
           "type": "served_id",
           "value": "bsip1_yogurt_55336"
+        },
+        {
+          "gtin": "7290000055336",
+          "retailer": "tiv_taam",
+          "type": "retailer_gtin"
         }
       ],
-      "barcode_reason": "truncated_or_invalid",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_0b2379429c5c0a4e22eacdc1",
       "name_provenance": {
         "locator": "/products/15/name",
         "source_file": "bari-web/src/data/comparisons/yogurt_drinkable_frontend_v1.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "7290000055336"
     },
     {
       "aliases": [
@@ -10155,16 +10163,21 @@
         {
           "type": "served_id",
           "value": "bsip1_yogurt_4068035"
+        },
+        {
+          "gtin": "7290004068035",
+          "retailer": "unknown",
+          "type": "retailer_gtin"
         }
       ],
-      "barcode_reason": "truncated_or_invalid",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_842c5b68670b01f79376d007",
       "name_provenance": {
         "locator": "/products/1/name",
         "source_file": "bari-web/src/data/comparisons/yogurt_drinkable_frontend_v1.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "7290004068035"
     },
     {
       "aliases": [
@@ -16210,16 +16223,21 @@
         {
           "type": "served_id",
           "value": "bsip1_yogurt_58030"
+        },
+        {
+          "gtin": "7290000058030",
+          "retailer": "unknown",
+          "type": "retailer_gtin"
         }
       ],
-      "barcode_reason": "truncated_or_invalid",
-      "barcode_status": "malformed",
+      "barcode_reason": null,
+      "barcode_status": "found_but_conflicting",
       "bari_pid": "bari_dc7eda8a4edec47893524771",
       "name_provenance": {
         "locator": "/products/16/name",
         "source_file": "bari-web/src/data/comparisons/yogurt_drinkable_frontend_v1.json"
       },
-      "recovered_gtin": null
+      "recovered_gtin": "7290000058030"
     },
     {
       "aliases": [
