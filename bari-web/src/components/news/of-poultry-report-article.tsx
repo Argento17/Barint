@@ -8,6 +8,7 @@ import { OfPoultryReportHero } from "@/components/news/of-poultry-report-hero";
 import { InsightBlock } from "@/components/blog/shared/insight-block";
 import { RecentArticleCard } from "@/components/blog/shared/recent-article-card";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import {
   HASHVAOT_HREF,
   NEWS_INDEX_HREF,
@@ -40,6 +41,7 @@ export function OfPoultryReportArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)} dir="rtl">
+      <MobileActionBar />
       <article>
         <OfPoultryReportHero />
 

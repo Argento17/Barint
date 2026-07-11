@@ -9,6 +9,7 @@ import { OliveOilExternalResearch } from "@/components/blog/olive-oil-external-r
 import { OliveOilOriginChart } from "@/components/blog/olive-oil-origin-chart";
 import { OliveOilTransparencyMatrix } from "@/components/blog/olive-oil-transparency-matrix";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { HASHVAOT_HREF, oliveOilArticle } from "@/lib/blog/olive-oil-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -210,6 +211,7 @@ export function OliveOilArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         <OliveOilArticleHero />
 

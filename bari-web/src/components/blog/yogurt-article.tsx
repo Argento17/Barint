@@ -8,6 +8,7 @@ import { YogurtArticleHero } from "@/components/blog/yogurt-article-hero";
 import { YogurtScoreChart } from "@/components/blog/yogurt-score-chart";
 import { YogurtComparisonMatrix } from "@/components/blog/yogurt-comparison-matrix";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import {
   yogurtArticle,
   YOGURT_HASHVAOT_HREF,
@@ -284,6 +285,7 @@ export function YogurtArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         {/* Hero */}
         <YogurtArticleHero />

@@ -9,6 +9,7 @@ import { ComparisonTable } from "@/components/shared/comparison-table";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import { SUGAR_METRIC } from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
@@ -130,6 +131,7 @@ export function CakesHardCookiesComparisonPage({
      * Mirrors the bc-page treatment from the brined golden template.
      */
     <div className="chc-page min-h-screen bg-[#EFEFEB] sm:py-8 lg:py-10" dir="rtl">
+      <MobileActionBar title={hero.title} />
       {/* Scoped style block — ONLY affects .chc-page descendants */}
       <style>{`
         .chc-page .bari-cmp-row:nth-child(even of .bari-cmp-row) {

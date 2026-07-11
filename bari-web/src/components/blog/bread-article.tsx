@@ -13,6 +13,7 @@ import { InsightBlock } from "@/components/blog/shared/insight-block";
 import { RecentArticleCard } from "@/components/blog/shared/recent-article-card";
 import { ScienceSection } from "@/components/blog/shared/science-section";
 import { HomeContainer } from "@/components/home/section-frame";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { BREAD_HASHVAOT_HREF, BREAD_BLOG_HREF, breadArticle } from "@/lib/blog/bread-article-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -22,6 +23,7 @@ export function BreadArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar title={article.hero.title} />
       <article>
         {/* Hero */}
         <BreadArticleHero />

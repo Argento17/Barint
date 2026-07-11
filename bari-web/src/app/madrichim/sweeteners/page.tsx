@@ -53,6 +53,7 @@ import { ChocolateBarHeroCard } from "@/components/guides/sweetener/chocolate-ba
 import { SweetenerSectionIcon } from "@/components/guides/sweetener/section-icon";
 import { SweetenerPullQuote } from "@/components/guides/sweetener/pull-quote";
 import { SweetenerVideoEmbed } from "@/components/guides/sweetener/video-embed";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 
 export const metadata: Metadata = {
   // title mirrors structuralStrings.title (Content-authored, v5). description remains a
@@ -69,6 +70,7 @@ export default function SweetenersGuideRoute() {
 
   return (
     <div className="min-h-screen bg-[#F7F7F2] text-[#111318]" dir="rtl" lang="he">
+      <MobileActionBar title={structuralStrings.title} />
       {/* Unapproved-draft banner — build-status marker, not editorial copy. Content's own
           note (source file, "מחרוזות מבניות מהפרונטאנד") confirms this string is out of
           their scope: "אינו עותק צרכני... חייב לרדת מהעמוד לפני go-live." */}

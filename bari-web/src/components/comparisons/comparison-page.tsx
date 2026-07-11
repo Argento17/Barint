@@ -6,6 +6,7 @@ import { CategoryHero } from "@/components/shared/category-hero";
 import { CategoryPrologue } from "@/components/shared/category-prologue";
 import { MethodologyFooter } from "@/components/shared/methodology-footer";
 import { ComparisonTable } from "@/components/shared/comparison-table";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import type { MetricSpec } from "@/components/shared/comparison-metric-column";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import type { ComparisonShelfFilters } from "@/lib/comparisons/registry/types";
@@ -247,6 +248,7 @@ export function ComparisonPage<TFilterId extends string = string>({
 
   return (
     <div className="min-h-screen bg-[#EFEFEB] sm:py-8 lg:py-10" dir="rtl">
+      <MobileActionBar title={hero.title} />
       <div
         className={cn(
           "mx-auto w-full overflow-hidden bg-white",

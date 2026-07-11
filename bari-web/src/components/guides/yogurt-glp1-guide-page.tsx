@@ -21,6 +21,7 @@ import Link from "next/link";
 import { CategoryNoteBox } from "@/components/comparisons/comparison-page";
 import { BariProductThumbnail } from "@/components/comparisons/bari-product-thumbnail";
 import { ScoreChip } from "@/components/shared/score-chip";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { shouldBlendWhiteForCategory } from "@/lib/comparisons/thumbnail-blend-white-categories";
 import type { YogurtGlp1ShortlistItem } from "@/lib/guides/yogurt-glp1-guide-data";
 
@@ -77,6 +78,7 @@ export function YogurtGlp1GuidePage({
 }: YogurtGlp1GuidePageProps) {
   return (
     <div className="min-h-screen bg-[#F7F7F2] text-[#111318]" dir="rtl" lang="he">
+      <MobileActionBar title={hero.title} />
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10">
         {/* Hero */}
         <header>

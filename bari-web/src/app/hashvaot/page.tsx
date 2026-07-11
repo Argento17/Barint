@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { HomeContainer } from "@/components/home/section-frame";
 import { HashvaotCategoryBox } from "@/components/hashvaot/hashvaot-category-box";
 import { HASHVAOT_CATEGORIES } from "@/lib/hashvaot/hashvaot-categories";
+import { BlogEditorialBackdrop } from "@/components/blog/blog-editorial-backdrop";
 import { cn } from "@/lib/utils";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 
@@ -19,14 +20,16 @@ export default function HashvaotIndexPage() {
   return (
     <main
       className={cn(
-        "relative min-h-screen bg-[#F7F7F2] text-[#111318]",
+        "relative overflow-hidden min-h-screen bg-[#F7F7F2] text-[#111318]",
         siteHeaderOffsetClass
       )}
     >
-      <HomeContainer className="py-14 md:py-20">
+      <BlogEditorialBackdrop />
+
+      <HomeContainer className="relative py-14 md:py-20">
         <div className="flex items-start justify-between gap-6">
           <div className="min-w-0">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
               Bari comparisons
             </p>
             <h1 className="mt-2 max-w-3xl text-balance text-4xl font-extrabold tracking-[-0.05em] md:text-5xl">

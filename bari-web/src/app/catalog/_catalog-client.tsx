@@ -365,7 +365,7 @@ export function CatalogClient({ summary, initialRows, detailsById }: CatalogClie
         {/* ── Page title (+ OLI top-left) ────────────────────────────────── */}
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#1F8F6A]/80">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#167A58]">
               BARI CATALOG
             </p>
             <h1

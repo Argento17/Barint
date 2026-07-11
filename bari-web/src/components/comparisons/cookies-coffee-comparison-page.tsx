@@ -11,6 +11,7 @@ import {
   COOKIES_COFFEE_SAT_FAT_METRIC,
 } from "@/components/shared/comparison-metric-column";
 import { partialThresholdMet } from "@/components/comparisons/comparison-page";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { comparisonWebSectionPaddingClass } from "@/lib/design/bari-comparison-tokens";
 import { cn } from "@/lib/utils";
 import type { BariProductVM } from "@/lib/view-models";
@@ -97,6 +98,7 @@ export function CookiesCoffeeComparisonPage({
      * Mirrors the bc-page treatment from the brined golden template.
      */
     <div className="cc-page min-h-screen bg-[#EFEFEB] sm:py-8 lg:py-10" dir="rtl">
+      <MobileActionBar title={hero.title} />
       {/* Scoped style block — ONLY affects .cc-page descendants */}
       <style>{`
         /* even-row warm bg — overrides global .bari-cmp-row:nth-child(even of .bari-cmp-row) */

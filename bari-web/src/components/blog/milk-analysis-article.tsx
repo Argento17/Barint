@@ -13,6 +13,7 @@ import { MilkAnalysisShelfSpectrum } from "@/components/blog/milk-analysis-shelf
 import { MilkAnalysisRecent } from "@/components/blog/milk-analysis-recent";
 import { MilkAnalysisSimplicity } from "@/components/blog/milk-analysis-simplicity";
 import { ProductThumbnail } from "@/components/comparisons/product-thumbnail";
+import { MobileActionBar } from "@/components/shared/mobile-action-bar";
 import { BariGradeBadge } from "@/components/comparisons/bari-grade-badge";
 import { HomeContainer } from "@/components/home/section-frame";
 import {
@@ -190,6 +191,7 @@ export function MilkAnalysisArticle() {
 
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)}>
+      <MobileActionBar />
       <article>
         <MilkAnalysisHero />
 
