@@ -1,0 +1,142 @@
+{
+  "schema": "bsip0_known_not_found_allowlist_v1",
+  "purpose": "Documented, owner-visible list of served products that genuinely lack a canonical BSIP0 capture (nutrition_raw_source.rows). Every entry here is a real-world gap (product not found on any attempted retailer, or found but with an empty/insufficient nutrition panel) -- NOT a build_manifest.py scanning miss. coverage_gate.py's corpus mode treats a missing-capture product as a HARD FAIL unless its GTIN+shelf appears here. Adding an entry is a claim that must cite a source artifact; it is never a silent pass.",
+  "entries": [
+    {
+      "shelf": "cakes_hard_cookies_frontend_v1",
+      "gtin": "7290006775023",
+      "name_he": "עוגה אנגלית 450 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cakes_hard_cookies/bsip0_outputs/task602_cakes_hard_cookies_rescrape_20260711/cakes_hard_cookies_frontend_v1_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cakes_hard_cookies_frontend_v1",
+      "gtin": "7290018893487",
+      "name_he": "עוגות אישיות קוקוס",
+      "status": "NOT_FOUND",
+      "source": "02_products/cakes_hard_cookies/bsip0_outputs/task602_cakes_hard_cookies_rescrape_20260711/cakes_hard_cookies_frontend_v1_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cakes_hard_cookies_frontend_v1",
+      "gtin": "7290006775337",
+      "name_he": "עוגת שמרים פרג 400 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cakes_hard_cookies/bsip0_outputs/task602_cakes_hard_cookies_rescrape_20260711/cakes_hard_cookies_frontend_v1_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cakes_hard_cookies_frontend_v1",
+      "gtin": "7290013927996",
+      "name_he": "עוגת שמרים קרנאץ' בטעם שוקולד 400 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cakes_hard_cookies/bsip0_outputs/task602_cakes_hard_cookies_rescrape_20260711/cakes_hard_cookies_frontend_v1_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cakes_hard_cookies_frontend_v1",
+      "gtin": "7290006775085",
+      "name_he": "עוגת שמרים במילוי קרם בטעם שוקולד 400 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cakes_hard_cookies/bsip0_outputs/task602_cakes_hard_cookies_rescrape_20260711/cakes_hard_cookies_frontend_v1_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "7290020030184",
+      "name_he": "עוגיות מזרחיות עם זעתר 400 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "7290013156921",
+      "name_he": "עוגיות אצבעות מתוקות ללא סוכר גאקובס 350 גרם",
+      "status": "INSUFFICIENT_DATA",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "Product page found on Shufersal (shufersal_direct engine, result.status=scraped) but nutrition/ingredients panels were empty on the live page (result.sufficient=false, nutrition_raw all blank strings). Genuinely blind, not a manifest-scan miss -- there is no captured panel for build_manifest to find."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "8410376037784",
+      "name_he": "עוגיות סנדוויץ' שוקולד",
+      "status": "NOT_FOUND",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine (imported SKU, EAN prefix 84)."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "7290019870470",
+      "name_he": "עוגיות סנדוויץ עם קרם בטעם שוקו 176 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "4006529002170",
+      "name_he": "עוגיות גולד רינג 400 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine (imported SKU, EAN prefix 40)."
+    },
+    {
+      "shelf": "cookies_coffee_frontend_v2",
+      "gtin": "7290019870463",
+      "name_he": "עוגיות סנדוויץ עם קרם בטעם וניל 176 גרם",
+      "status": "NOT_FOUND",
+      "source": "02_products/cookies_coffee/bsip0_outputs/task602_cookies_coffee_rescrape_20260711/cookies_coffee_frontend_v2_rescrape_results.json",
+      "note": "TASK-602 batch-5 rescrape: barcode not found on any attempted retailer engine."
+    },
+    {
+      "shelf": "hard_cheeses_frontend_v4",
+      "gtin": "7290004122348",
+      "name_he": "פרוסות גבינת עמק מופחתת שומן 9% בד\"צ 200 גרם",
+      "status": "YOHANANOF_EXCLUSIVE",
+      "source": "02_products/hard_cheeses/yohananof_scrape/7290004122348/ (nutrition.html, ingredients.html, discovery.json) + bsip1_outputs/bsip1_hardcheese_7290004122348.json (no nutrition_raw_source key)",
+      "note": "Only discovered/listed on Yohananof; not present on Shufersal/Victory/Tiv Taam. Scraped as raw HTML pages during TASK-602 batch-4, never converted into a nutrition_raw_source.rows capture -- genuinely absent from the canonical capture format, confirmed by direct inspection of the BSIP1 output (no nutrition_raw_source key at all)."
+    },
+    {
+      "shelf": "hard_cheeses_frontend_v4",
+      "gtin": "7290117265888",
+      "name_he": "גבינת גאודה מגורדת יוחננוף 400 גרם",
+      "status": "YOHANANOF_EXCLUSIVE",
+      "source": "02_products/hard_cheeses/yohananof_scrape/7290117265888/ (nutrition.html, ingredients.html, discovery.json) + bsip1_outputs/bsip1_hardcheese_7290117265888.json (no nutrition_raw_source key)",
+      "note": "Store-brand SKU exclusive to Yohananof (name literally contains the retailer's brand); not present on Shufersal/Victory/Tiv Taam. Scraped as raw HTML during TASK-602 batch-4, never converted into a nutrition_raw_source.rows capture -- genuinely absent from the canonical capture format, confirmed by direct inspection of the BSIP1 output (no nutrition_raw_source key at all)."
+    },
+    {
+      "shelf": "juices_frontend_v3",
+      "gtin": "7290008690713",
+      "name_he": "מיץ חמוציות 1 ליטר",
+      "status": "NOT_FOUND",
+      "source": "02_products/juices/bsip0_outputs/task602_juices_batch5_mopup_20260711/juices_frontend_v3_rescrape_results.json (also documented in tasks/returns/TASK-602_batch2_return.md)",
+      "note": "Checked Shufersal + Tiv Taam (Hazi Hinam has no discovered juice category); barcode not found."
+    },
+    {
+      "shelf": "juices_frontend_v3",
+      "gtin": "7290001247891",
+      "name_he": "נקטר אפרסקים פחית 330 מ\"ל",
+      "status": "NOT_FOUND",
+      "source": "02_products/juices/bsip0_outputs/task602_juices_batch5_mopup_20260711/juices_frontend_v3_rescrape_results.json (also documented in tasks/returns/TASK-602_batch2_return.md)",
+      "note": "Checked Shufersal + Tiv Taam (Hazi Hinam has no discovered juice category); barcode not found."
+    },
+    {
+      "shelf": "juices_frontend_v3",
+      "gtin": "7290019056737",
+      "name_he": "מיץ אשכולית 2 ליטר",
+      "status": "NOT_FOUND",
+      "source": "02_products/juices/bsip0_outputs/task602_juices_batch5_mopup_20260711/juices_frontend_v3_rescrape_results.json (also documented in tasks/returns/TASK-602_batch2_return.md)",
+      "note": "Checked Shufersal + Tiv Taam (Hazi Hinam has no discovered juice category); barcode not found."
+    },
+    {
+      "shelf": "milk_frontend_v1",
+      "gtin": "7290119385560",
+      "name_he": "משקה סויה בריסטה 500 מ\"ל",
+      "status": "NOT_FOUND",
+      "source": "02_products/milk_and_alternatives/bsip0_outputs/task602_milk_rescrape_20260711/milk_rescrape_final.json (also documented in tasks/returns/TASK-602_return.md)",
+      "note": "Alpro soy barista 500ml. 404 across attempted retailers including a Hebrew-name search fallback (\"בריסטה\"); Yohananof/Victory not attempted (time-boxed pilot)."
+    }
+  ]
+}
