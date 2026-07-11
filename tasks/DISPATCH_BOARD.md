@@ -178,9 +178,11 @@ PD now quantifies the job: **302/687 (44%) have ≥1 issue**, in 4 defect classe
 41/62, crackers 41/53, cheese 33/47, cookies_coffee 41/117, bread 23/29. Owner chose: **start on score
 reproducibility now.** OWNER RULE: **the PD must ALWAYS align with the product catalog + comparison pages** —
 one pipeline regenerates all three + a parity gate. Two Codex lanes running in parallel:
-- 🔗 **TASK-623 (alignment spine) — Codex terra, worktree C:/bari_wt_623, background.** Audit PD↔comparison↔
-  catalog agreement + build a parity gate (extend TASK-588 pattern) that FAILS on divergence + CI-wire it.
-  PD publication_record is already `served_json_verbatim` → connected at source; gate guards staleness.
+- ✅ **TASK-623 (alignment spine) CLOSED — merged 82e16591.** Audit: **710 comparison rows, 0 divergences,
+  0 gaps** — PD ≡ comparison ≡ catalog TODAY. `parity_gate.py` (--selftest catches injected mismatch) wired
+  into `bari_page_gates.yml` CI. **Owner's 'always aligned' rule now enforced.** Codex-built, Opus-verified.
+- ⏳ **4 lanes still running:** TASK-614 (re-score, Codex) · TASK-624 (barcode adjudication, Sonnet) ·
+  TASK-625 (protein_bars 32/32 diagnosis, Sonnet) · TASK-626 (low-evidence triage, Sonnet).
 - 🔁 **TASK-614 (re-score pilot) — Codex terra, worktree C:/bari_wt_614, background (IN_PROGRESS, unblocked).**
   Re-enrich+re-score bread/crackers/cheese on corrected engine via the uniform pipeline → regenerate
   comparison JSON → rebuild PD (stays aligned). PROPOSAL only: |Δ|≤30 apply-set, >30 = defect (stop),
