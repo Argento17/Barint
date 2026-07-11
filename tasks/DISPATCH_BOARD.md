@@ -157,11 +157,16 @@ Owner rule: **do NOT combine product quality and data quality into one score.**
   `acquire_hazi_hinam.py:122` (feeds NutritionalValues_For100Gr), `yohananof/parser.py:26`,
   `pipeline/extractor.py:74` (OCR), `salty_snacks_real/01_scrape_yoh_panels.py:56`, `yohananof_milk/04...`.
   Plus a locale edge case (`0,123` 3-decimal → corrupted). Great ROI on the cross-vendor challenge. → TASK-621.
-- 🔧 **TASK-621 (comma completeness) REGISTERED — patch the sibling paths through `_normalize_decimal_comma`
-  + harden the 3-decimal case. BLOCKS TASK-614.** (Was going to Codex, but `acquire_hazi_hinam.py` is
-  UNTRACKED — HEAD-worktree wouldn't contain it; needs the dirty-tree handling below.)
-- ⛔ **TASK-614 (re-score) — RE-BLOCKED on TASK-621** (must fix ALL comma paths before re-scoring, or the
-  re-score runs on partially-corrupt data — challenge's decision-level-replay caveat).
+- ✅ **TASK-621 (comma completeness) CLOSED — merged 71772f36.** Codex gpt-5.6-terra (BUILD primary, probed
+  live) routed 7 sibling BSIP0 paths through `normalize_decimal_comma` + hardened `0,DDD` (0,123→0.123, not
+  1,000-breaking); shared selftest 13→17. Opus-verified (cross-vendor: Claude verifies OpenAI). **Comma
+  corruption now closed corpus-wide.**
+- ▶️ **TASK-614 (re-score) — NOW UNBLOCKED & READY.** All comma paths fixed. Next: re-enrich bread/crackers/
+  cheese from corrected captures → re-score on current engine → apply |Δ|≤30 (orchestrator authority) +
+  surface cookies_coffee 5-6× (>30 defect). Consumer deploy = owner merge.
+- 🖌️ **TASK-622 (PD-3.1 refinements) — DISPATCHED to Codex terra (worktree C:/bari_wt_622), background.**
+  Owner round-2: English internal chrome (VerdictRow stays Hebrew = consumer-facing) + human list columns +
+  strong status line + values-on-bars + human action phrasing + evidence not-retrieved status fix.
 - ✅ **TASK-620 (PD-3.1) CLOSED — owner-approved + render-verified.** Kept the COMPLETE Claude build
   (overview-tab + 3 separate namespace cards + real ComparisonRow verdict w/ 'Estimated' badge + 2D
   profile bars + deterministic bullets + attention-checks), which was already integrated with the live
