@@ -14,6 +14,15 @@ the capture manifest, and explicit TASK-602 reconciliation tables.  It never
 reads Open Food Facts or observations directories, and writes only below this
 module's registry directory.  Names are used transiently to mint the PID but are
 not copied to the registry: the stored name reference is a provenance pointer.
+
+Every ``malformed``-status record also carries an additive ``barcode_reason``
+sub-classification (TASK-613): ``non_gtin_retailer_sku`` for a served barcode
+that fails GTIN checksum/length but is a genuine, retailer-native SKU/PLU that
+resolves to itself; ``truncated_or_invalid`` for a served barcode that is a true
+truncation of a different, longer GTIN or is recorded as genuinely unresolvable;
+``unclassified`` where no committed TASK-602 reconciliation evidence covers that
+barcode value at all. The 5-state ``barcode_status`` enum is unchanged by this --
+``barcode_reason`` is additive, never a replacement.
 """
 
 from __future__ import annotations
@@ -34,6 +43,7 @@ MANIFEST_PATH = REPO_ROOT / "03_operations" / "bsip0" / "manifest" / "capture_ma
 TASK602_ROOT = REPO_ROOT / "02_products"
 VALID_GTIN_LENGTHS = {8, 12, 13}
 STATUSES = ("verified", "found_but_conflicting", "malformed", "not_found", "pending_manual_review")
+BARCODE_REASONS = ("non_gtin_retailer_sku", "truncated_or_invalid", "unclassified")
 
 
 def assert_write_boundary(path: Path) -> None:
@@ -134,9 +144,88 @@ def recovered_gtins() -> dict[str, set[str]]:
     return mappings
 
 
+def _classify_reconciliation_row(row: dict[str, Any], served: str) -> str | None:
+    """Read one TASK-602 batch record's own literal verdict for a non-GTIN served
+    barcode. Returns None when the row carries no usable signal (caller falls
+    back to ``unclassified``). Never infers beyond what the row states.
+
+    Schemas observed across batches (each read literally, not guessed):
+      - batch5 canonical shelves: flat ``barcode_class`` in
+        {"benign_retailer_sku", "true_truncation"}.
+      - batch2 yogurt-drinkable: ``true_gtin_discovered`` populated with a GTIN
+        that differs from the served value -> true truncation.
+      - batch3 bread/chocolate: nested ``barcode_reconciliation.resolution_method``
+        -- any non-empty method here resolved the served value to *itself*
+        (never to a different discovered GTIN in these batches), so it is benign.
+      - batch4 cheese/hard_cheeses: flat ``is_valid_gtin_served`` + top-level
+        ``resolution_method`` on a scraped row -- same "resolves to itself" case.
+      - any row explicitly recorded as unresolved after a full retailer sweep
+        (status other than "scraped") is a genuine unresolvable code.
+    """
+    barcode_class = row.get("barcode_class")
+    if barcode_class == "benign_retailer_sku":
+        return "non_gtin_retailer_sku"
+    if barcode_class == "true_truncation":
+        return "truncated_or_invalid"
+
+    true_gtin = row.get("true_gtin_discovered")
+    if isinstance(true_gtin, str) and true_gtin != served:
+        return "truncated_or_invalid"
+
+    reconciliation = row.get("barcode_reconciliation")
+    if isinstance(reconciliation, dict) and isinstance(reconciliation.get("resolution_method"), str) and reconciliation["resolution_method"]:
+        return "non_gtin_retailer_sku"
+
+    if (
+        row.get("is_valid_gtin_served") is False
+        and isinstance(row.get("resolution_method"), str)
+        and row.get("resolution_method")
+        and row.get("status") == "scraped"
+    ):
+        return "non_gtin_retailer_sku"
+
+    if row.get("status") not in (None, "scraped"):
+        return "truncated_or_invalid"  # explicitly recorded as unresolved, not silently dropped
+
+    return None
+
+
+def barcode_reconciliation_reasons() -> dict[str, str]:
+    """Classify every non-GTIN served barcode found in committed TASK-602 batch
+    files as ``non_gtin_retailer_sku`` (genuine retailer-native SKU/PLU that
+    resolves to itself) or ``truncated_or_invalid`` (resolves to a different,
+    longer GTIN, or is recorded as genuinely unresolvable). A barcode value with
+    conflicting evidence across files is intentionally left out of this table --
+    it falls back to the ``unclassified`` default rather than being guessed.
+    """
+    votes: dict[str, set[str]] = defaultdict(set)
+    for path in sorted(TASK602_ROOT.rglob("*")):
+        if "task602" not in path.as_posix().lower() or path.suffix.lower() != ".json":
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        rows = data.get("records") if isinstance(data, dict) else data if isinstance(data, list) else None
+        if not isinstance(rows, list):
+            continue
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            served = row.get("barcode") if isinstance(row.get("barcode"), str) else row.get("served_barcode")
+            if not isinstance(served, str) or gtin_is_valid(served):
+                continue  # only non-GTIN served values are in scope for this split
+            reason = _classify_reconciliation_row(row, served)
+            if reason is not None:
+                assert reason in BARCODE_REASONS
+                votes[served].add(reason)
+    return {barcode: next(iter(reasons)) for barcode, reasons in votes.items() if len(reasons) == 1}
+
+
 def build_registry() -> dict[str, Any]:
     manifest = manifest_by_gtin()
     recovered = recovered_gtins()
+    barcode_reasons = barcode_reconciliation_reasons()
     source_products = served_products()
     pid_groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for product in source_products:
@@ -186,10 +275,12 @@ def build_registry() -> dict[str, Any]:
                 status = "malformed"
         if len(valid_values) >= 2 or (recovered_candidates and served != recovered_candidates[0]):
             status = "found_but_conflicting"
+        barcode_reason = barcode_reasons.get(served, "unclassified") if status == "malformed" and served is not None else None
         records.append({
             "bari_pid": product["bari_pid"],
             "aliases": aliases,
             "barcode_status": status,
+            "barcode_reason": barcode_reason,
             "recovered_gtin": recovered_candidates[0] if len(recovered_candidates) == 1 else None,
             "name_provenance": {"source_file": product["source_file"], "locator": product["locator"]},
             "_collision": id(product) in collision_products,
@@ -201,9 +292,11 @@ def build_registry() -> dict[str, Any]:
         record = source_to_record[product["bari_pid"]]
         if record.pop("_collision"):
             record["barcode_status"] = "pending_manual_review"
+            record["barcode_reason"] = None
             record["review_reason"] = "PID_COLLISION"
         if id(product) in ambiguous_product_ids:
             record["barcode_status"] = "pending_manual_review"
+            record["barcode_reason"] = None
             record["review_reason"] = "PID_SPLIT"
 
     alias_table: dict[str, str] = {}
@@ -218,6 +311,7 @@ def build_registry() -> dict[str, Any]:
             "served_comparisons": "bari-web/src/data/comparisons/*.json",
             "capture_manifest": "03_operations/bsip0/manifest/capture_manifest.json",
             "task602_reconciliation_scope": "02_products/**/bsip0_outputs/task602*",
+            "task602_barcode_reason_scope": "02_products/**/bsip0_outputs/task602* (barcode_class / barcode_reconciliation / is_valid_gtin_served+resolution_method / true_gtin_discovered fields)",
         },
         "products": sorted(records, key=lambda record: record["bari_pid"]),
         "aliases": alias_table,
@@ -236,6 +330,34 @@ def selftest() -> None:
     assert gtin_is_valid("7290016245325")
     assert not gtin_is_valid("7290016245326")
     assert not gtin_is_valid("123456")
+
+    # barcode_reason classification logic, exercised on synthetic rows so the
+    # assertions hold regardless of future corpus/reconciliation-file churn.
+    assert _classify_reconciliation_row({"barcode_class": "benign_retailer_sku"}, "12345") == "non_gtin_retailer_sku"
+    assert _classify_reconciliation_row({"barcode_class": "true_truncation"}, "12345") == "truncated_or_invalid"
+    assert _classify_reconciliation_row({"true_gtin_discovered": "7290000012345"}, "12345") == "truncated_or_invalid"
+    assert _classify_reconciliation_row({"true_gtin_discovered": "12345"}, "12345") is None  # discovered == served: no truncation signal
+    assert _classify_reconciliation_row(
+        {"barcode_reconciliation": {"resolution_method": "direct_by_served_short_code_on_shufersal_p_url_NAME_VERIFIED"}}, "12345"
+    ) == "non_gtin_retailer_sku"
+    assert _classify_reconciliation_row(
+        {"is_valid_gtin_served": False, "resolution_method": "name_match_overlap_1.00", "status": "scraped"}, "12345"
+    ) == "non_gtin_retailer_sku"
+    assert _classify_reconciliation_row({"status": "NOT_FOUND"}, "12345") == "truncated_or_invalid"
+    assert _classify_reconciliation_row({}, "12345") is None
+
+    reasons = barcode_reconciliation_reasons()
+    assert reasons, "expected non-empty TASK-602 barcode reconciliation evidence"
+    assert set(reasons.values()) <= set(BARCODE_REASONS)
+
+    registry = build_registry()
+    for record in registry["products"]:
+        assert record["barcode_reason"] in BARCODE_REASONS or record["barcode_reason"] is None
+        if record["barcode_status"] == "malformed":
+            assert record["barcode_reason"] in BARCODE_REASONS, "every malformed record must carry a barcode_reason"
+        else:
+            assert record["barcode_reason"] is None, "barcode_reason is additive to malformed only"
+
     first, second = canonical_json(build_registry()), canonical_json(build_registry())
     assert first == second, "registry build is not deterministic"
     assert_write_boundary(OUTPUT_PATH)
