@@ -19,6 +19,8 @@ on:
       - ".claude/agents/**"
       - "01_framework/operations/capability_router_v5.md"
       - "03_operations/router/adapters_parity_selftest.py"
+      - "03_operations/product_dossier/parity_gate.py"
+      - "bari-web/src/data/dossiers_generated/**"
   push:
     branches: [master]
   workflow_dispatch: {}
@@ -52,6 +54,30 @@ jobs:
           set -e
           python 03_operations/router/adapters_parity_selftest.py --selftest
           python 03_operations/router/adapters_parity_selftest.py --selftest-fixture
+
+  product-dossier-parity:
+    # TASK-623 — published PD record, served comparison corpus, and inventory
+    # direct-projection contract must move together.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: bari-web/package-lock.json
+      - name: Product Dossier parity selftest and live gate
+        run: |
+          set -e
+          pip install beautifulsoup4 lxml
+          python 03_operations/product_dossier/build_dossiers.py
+          npm --prefix bari-web ci
+          npm --prefix bari-web run sync:dossiers
+          python 03_operations/product_dossier/parity_gate.py --selftest
+          python 03_operations/product_dossier/parity_gate.py
 
   off-ban-census:
     # OFF is banned project-wide (CLAUDE.md hard rule, TASK-238). Any OFF reference
