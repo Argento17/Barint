@@ -40,7 +40,7 @@ export function OliveOilArticleHero() {
             <div>
               <p className="text-2xl font-extrabold tracking-tight text-[#C0392B]">0 מתוך 13</p>
               <p className="mt-0.5 text-xs font-bold uppercase tracking-[0.12em] text-[#7A817C]">
-                מצהירים על תאריך קציר
+                מצהירים על תאריך מסיק
               </p>
             </div>
             <div>

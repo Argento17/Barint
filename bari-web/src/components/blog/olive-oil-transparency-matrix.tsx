@@ -53,7 +53,7 @@ export function OliveOilTransparencyMatrix() {
                 מקור
               </th>
               <th className="px-3 py-3 text-center text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#7A817C]">
-                תאריך קציר
+                תאריך מסיק
               </th>
               <th className="px-3 py-3 text-center text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[#7A817C]">
                 PDO / PGI
