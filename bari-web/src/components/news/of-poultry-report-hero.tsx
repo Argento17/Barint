@@ -2,16 +2,20 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 
 import { HomeContainer } from "@/components/home/section-frame";
-import { poultryReportArticle, NEWS_INDEX_HREF } from "@/lib/news/of-poultry-report-content";
+import { NEWS_INDEX_HREF, type PoultryReportArticle } from "@/lib/news/of-poultry-report-content";
 
 /**
  * OfPoultryReportHero — mirrors food-dyes-article-hero.tsx (back-link, eyebrow,
  * title, deck, meta line) with one addition required by the news-article spec:
  * an explicit "מקור" (source) attribution line crediting the third-party
  * investigation this piece comments on.
+ *
+ * Generalized in TASK-769 to take `article` as a prop (was a hard import of
+ * poultryReportArticle) so the same hero renders any honest-broker news piece
+ * sharing the PoultryReportArticle shape — see algimel-tahini-alert-article.tsx.
  */
-export function OfPoultryReportHero() {
-  const { hero } = poultryReportArticle;
+export function OfPoultryReportHero({ article }: { article: PoultryReportArticle }) {
+  const { hero } = article;
 
   return (
     <header className="relative overflow-hidden border-b border-black/6 bg-[#FFFFFF]">

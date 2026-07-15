@@ -13,6 +13,7 @@ import {
   HASHVAOT_HREF,
   NEWS_INDEX_HREF,
   poultryReportArticle,
+  type PoultryReportArticle,
 } from "@/lib/news/of-poultry-report-content";
 import { siteHeaderOffsetClass } from "@/lib/site-layout";
 import { cn } from "@/lib/utils";
@@ -22,8 +23,9 @@ import { cn } from "@/lib/utils";
  * honest-broker commentary on a third-party investigation (שומרים / Ynet,
  * poultry industry). TASK-521.
  *
- * Every string rendered here comes from src/data/news/of-poultry-report.json.
- * Any future edit to that data file still requires sign-off from both the
+ * Every string rendered here comes from src/data/news/of-poultry-report.json
+ * (or, since TASK-769, whatever data file is passed in via `article`). Any
+ * future edit to a news data file still requires sign-off from both the
  * Content Agent and the Adversarial QA / Red-Team gate before it ships
  * (content_signoff_hard_rule).
  *
@@ -35,15 +37,24 @@ import { cn } from "@/lib/utils";
  * ClaimStatusCard (mirrors shared FindingCard geometry — see that file's
  * doc comment for why it isn't a drop-in shared component: it needs a
  * verification-status chip FindingCard has no field for).
+ *
+ * Generalized in TASK-769 to accept an optional `article` prop (defaulting
+ * to poultryReportArticle for zero-touch backward compatibility on the
+ * of-poultry-report page) instead of hard-importing poultry data — this is
+ * the shared, data-driven renderer for every "honest-broker" news piece that
+ * matches the PoultryReportArticle shape. See algimel-tahini-alert-article.tsx
+ * for the second consumer.
  */
-export function OfPoultryReportArticle() {
-  const article = poultryReportArticle;
-
+export function OfPoultryReportArticle({
+  article = poultryReportArticle,
+}: {
+  article?: PoultryReportArticle;
+} = {}) {
   return (
     <div className={cn("bg-[#F7F7F2] text-[#111318]", siteHeaderOffsetClass)} dir="rtl">
       <MobileActionBar />
       <article>
-        <OfPoultryReportHero />
+        <OfPoultryReportHero article={article} />
 
         {/* Honest-broker disclaimer */}
         <HomeContainer className="py-10 md:py-14">
