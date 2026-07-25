@@ -36,6 +36,33 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // ---- Image Optimization QUOTA CONTROLS (2026-07-25) -------------------------------
+    // Vercel bills one "transformation" per distinct (src x width x quality x format) on a
+    // cache MISS *or* STALE — so an expiring cache re-bills the same image forever. The
+    // default minimumCacheTTL is 14400s (4 hours), which re-bills one image at one width up
+    // to ~6x/day (~180x/month). Against 676 distinct product image URLs in the comparison
+    // corpus, that is what exhausted the 5,000/month free-tier allowance — not image volume.
+    //
+    // Product images are content-addressed by barcode and effectively immutable, so a long
+    // TTL costs nothing. To replace an image, change its URL (or add a version query) —
+    // never shorten this TTL back just to re-fetch a single asset.
+    minimumCacheTTL: 2678400, // 31 days
+    // Next's defaults offer 15 candidate widths (8 deviceSizes + 7 imageSizes). Every width a
+    // browser can request is a SEPARATE billable transformation, so widths this site never
+    // renders are pure exposure. Product thumbnails display at 48-128px (see
+    // bari-product-thumbnail.tsx, guide-product-row.tsx); heroes and charts are responsive.
+    // Dropping the 2048/3840 tiers and the unused 32/384 steps takes the per-image ceiling
+    // from 15 widths to 9. Widen deliberately if a new surface genuinely needs a size.
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [48, 64, 96, 128, 256],
+    // Pin the single quality actually used. Already Next's default, but pinning it means a
+    // future `quality={90}` prop cannot silently mint a second full set of variants across
+    // every product image.
+    qualities: [75],
+    // NOTE: `formats` is deliberately LEFT UNSET, which means webp only. Adding
+    // ["image/avif", "image/webp"] would DOUBLE the variants — and the bill — for every
+    // image. Do not add AVIF while on the free tier.
+    // -----------------------------------------------------------------------------------
     // Product thumbnails are optimized/proxied through Next's image endpoint so they
     // are served SAME-ORIGIN from bari.digital/_next/image (never hotlinked to the
     // retailer host by the visitor's browser). This makes images survive ad blockers,
